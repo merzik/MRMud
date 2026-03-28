@@ -1,0 +1,894 @@
+#AREA Monastery of Order~
+#AUTHORS Deadblt~
+
+
+
+
+
+#HELPS
+-1 monastery~
+      The monasterys of Order and Chaos were founded to help the
+      warrior followers of each god to fight and achieve supremacy
+      in the Realms.  The monasterys provide a safe haven from
+      attack by enemies, as well as special equipment for followers.
+
+           (-) Other mud areas by Deadbolt.
+
+
+{-}Deadbolt
+~
+0 $~
+
+
+
+
+#RANGES 0 99 0 99
+#FLAGS AFLAG_NOTELEPORT
+#MOBILES
+#16102
+order avatar~
+the Avatar of Order~
+The avatar of Order stands here, glowing brightly.~
+In it's right hand is a nail, symbolic of the organizing aspect of Order.
+Order brings together, creates structure, and names all things in the world.
+In society, this means the forming of organizations.  Groups of individuals
+that will support and help eachother.
+
+In its left hand is a sword, symbolic of the separating aspect of Order.
+Order separates, removes the false, and distinguishes one thing from another.
+In society, this means separating those who belong and those who do not.
+Removing from the group the undesirables, by force if necessary.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN
+0 S
+95 BODY_HEAD BODY_HEAD 2d2000+10000 25d7+19
+0 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>greet_prog 100~
+if whichgod($n) == 1
+  mpechoat $n The Avatar of Order says 'Greetings warrior of Order'
+  mpechoat $n The Avatar of Order says 'Everything and everyone here'
+  mpechoat $n The Avatar of Order says 'is at your service.  If you'
+  mpechoat $n The Avatar of Order says 'need the special equipment,'
+  mpechoat $n The Avatar of Order says 'just ask.'
+endif
+~
+>speech_prog equipment token hole~
+if whichgod($n) != 1
+  slay $n
+  say SILENCE INFIDEL!
+else
+  mpecho The Avatar of Order says 'remember, you can only' 
+  mpecho The Avatar of Order says 'get the equipment once every'
+  mpecho The Avatar of Order says 'ten levels.'
+  if quest(1,1,$n) == 0
+    if level($n) >= 10
+      if level($n) < 20
+        mpoload 16101
+        if actorhasobjnum(16101)
+          mpjunk token161_0
+          mpechoat $n The Avatar of Order says 'You already have a token.'
+        endif
+        give token161_O $n
+        mpjunk token161_O
+        mpoload 16102
+        if actorhasobjnum(16102)
+          mpjunk hole161_0
+          mpechoat $n The Avatar of Order says 'You already have a hole.'
+        endif
+        give hole161_O $n
+        mpjunk hole161_O
+        mpmset $n quest 1 1 1
+      endif
+    endif
+  endif
+  if quest(2,1,$n) == 0
+    if level($n) >= 20
+      if level($n) < 30
+        mpoload 16101
+        if actorhasobjnum(16101)
+          mpjunk token161_0
+          mpechoat $n The Avatar of Order says 'You already have a token.'
+        endif
+        give token161_O $n
+        mpjunk token161_O
+        mpoload 16102
+        if actorhasobjnum(16102)
+          mpjunk hole161_0
+          mpechoat $n The Avatar of Order says 'You already have a hole.'
+        endif
+        give hole161_O $n
+        mpjunk hole161_O
+        mpmset $n quest 2 1 1
+      endif
+    endif
+  endif
+  if quest(3,1,$n) == 0
+    if level($n) >= 30
+      if level($n) < 40
+        mpoload 16101
+        if actorhasobjnum(16101)
+          mpjunk token161_0
+          mpechoat $n The Avatar of Order says 'You already have a token.'
+        endif
+        give token161_O $n
+        mpjunk token161_O
+        mpoload 16102
+        if actorhasobjnum(16102)
+          mpjunk hole161_0
+          mpechoat $n The Avatar of Order says 'You already have a hole.'
+        endif
+        give hole161_O $n
+        mpjunk hole161_O
+        mpmset $n quest 3 1 1
+      endif
+    endif
+  endif
+  if quest(4,1,$n) == 0
+    if level($n) >= 40
+      if level($n) < 50
+        mpoload 16101
+        if actorhasobjnum(16101)
+          mpjunk token161_0
+          mpechoat $n The Avatar of Order says 'You already have a token.'
+        endif
+        give token161_O $n
+        mpjunk token161_O
+        mpoload 16102
+        if actorhasobjnum(16102)
+          mpjunk hole161_0
+          mpechoat $n The Avatar of Order says 'You already have a hole.'
+        endif
+        give hole161_O $n
+        mpjunk hole161_O
+        mpmset $n quest 4 1 1
+      endif
+    endif
+  endif
+  if quest(5,1,$n) == 0
+    if level($n) >= 50
+      if level($n) < 60
+        mpoload 16101
+        if actorhasobjnum(16101)
+          mpjunk token161_0
+          mpechoat $n The Avatar of Order says 'You already have a token.'
+        endif
+        give token161_O $n
+        mpjunk token161_O
+        mpoload 16102
+        if actorhasobjnum(16102)
+          mpjunk hole161_0
+          mpechoat $n The Avatar of Order says 'You already have a hole.'
+        endif
+        give hole161_O $n
+        mpjunk hole161_O
+        mpmset $n quest 5 1 1
+      endif
+    endif
+  endif
+  if quest(6,1,$n) == 0
+    if level($n) >= 60
+      if level($n) < 70
+        mpoload 16101
+        if actorhasobjnum(16101)
+          mpjunk token161_0
+          mpechoat $n The Avatar of Order says 'You already have a token.'
+        endif
+        give token161_O $n
+        mpjunk token161_O
+        mpoload 16102
+        if actorhasobjnum(16102)
+          mpjunk hole161_0
+          mpechoat $n The Avatar of Order says 'You already have a hole.'
+        endif
+        give hole161_O $n
+        mpjunk hole161_O
+        mpmset $n quest 6 1 1
+      endif
+    endif
+  endif
+  if quest(7,1,$n) == 0
+    if level($n) >= 70
+      if level($n) < 80
+        mpoload 16101
+        if actorhasobjnum(16101)
+          mpjunk token161_0
+          mpechoat $n The Avatar of Order says 'You already have a token.'
+        endif
+        give token161_O $n
+        mpjunk token161_O
+        mpoload 16102
+        if actorhasobjnum(16102)
+          mpjunk hole161_0
+          mpechoat $n The Avatar of Order says 'You already have a hole.'
+        endif
+        give hole161_O $n
+        mpjunk hole161_O
+        mpmset $n quest 7 1 1
+      endif
+    endif
+  endif
+  if quest(8,1,$n) == 0
+    if level($n) >= 80
+      if level($n) < 90
+        mpoload 16101
+        if actorhasobjnum(16101)
+          mpjunk token161_0
+          mpechoat $n The Avatar of Order says 'You already have a token.'
+        endif
+        give token161_O $n
+        mpjunk token161_O
+        mpoload 16102
+        if actorhasobjnum(16102)
+          mpjunk hole161_0
+          mpechoat $n The Avatar of Order says 'You already have a hole.'
+        endif
+        give hole161_O $n
+        mpjunk hole161_O
+        mpmset $n quest 8 1 1
+      endif
+    endif
+  endif
+  if quest(9,1,$n) == 0
+    if level($n) >= 90
+      if level($n) < 96
+        mpoload 16101
+        if actorhasobjnum(16101)
+          mpjunk token161_0
+          mpechoat $n The Avatar of Order says 'You already have a token.'
+        endif
+        give token161_O $n
+        mpjunk token161_O
+        mpoload 16102
+        if actorhasobjnum(16102)
+          mpjunk hole161_0
+          mpechoat $n The Avatar of Order says 'You already have a hole.'
+        endif
+        give hole161_O $n
+        mpjunk hole161_O
+        mpmset $n quest 9 1 1
+      endif
+    endif
+  endif
+endif
+~
+|
+#16104
+spells ether~
+The presence of Order~
+~
+~
+ACT_SMART|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_ETHEREAL
+0 S
+99 BODY_HEAD BODY_HEAD 1d1+9882 1d1+95
+0 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>greet_prog 100~
+if whichgod($n) == 2
+  cast 'earthquake'
+  slay $n
+endif
+~
+>rand_prog 50~
+mpquiet on
+if rand(25)
+  cast 'sanctuary' $r
+else
+  if rand(33)
+    cast 'enhanced revive' $r
+  else
+    if rand(50)
+      cast 'giant strength' $r
+    else
+      cast 'enhanced heal' $r
+    endif
+  endif
+endif
+~
+|
+#16105
+order high knight~
+The High Knight of Order~
+The High Knight of Order stands here, guarding the Monastery.~
+The Knight has steel blue eyes, the kind you hear about in
+legends.  With its helm off and bright shining silver armor
+it does look like something out of a legend.  It never moves
+much, but it seems to be totally aware of everything.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_SANCTUARY
+0 S
+149 BODY_HEAD BODY_HEAD 2d2000+30000 35d7+49
+0 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>rand_prog 100~
+if quest(0,2,$i) > 0
+  mpgoto 16100
+  mpmadd $i quest 0 2 -1 
+endif
+~
+>range_prog 100~
+mpmset $i quest 0 2 2
+~
+>greet_prog 100~
+if whichgod($n) == 2
+  mpechoat $n The High Knight of Order screams 'Infidel!'
+  mpkill $n
+else
+  if whichgod($n) == 1
+    mpechoat $n The High Knight of Order nods.
+  else
+    mpechoat $n The High Knight of Order sends you packing.
+    mptransfer $n 17621
+    mpat 17621 mpforce $n look
+  endif
+endif
+~
+>fight_prog 100~
+mpmset $i quest 0 2 2
+mpquiet on
+cast 'tremor'
+~
+|
+#16107
+mortician tall gentleman~
+the mortician of Order~
+A tall gentleman in formal black dress stands here.~
+This fellow works to preserve the bodies you see about, poking some
+sort of tube into each and emptying the chest cavity.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS
+0 S
+95 BODY_HEAD|BODY_LEG|BODY_ARM BODY_HEAD 1d1000+10000 22d7+9
+0 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+#16108
+gate_maker~
+a gate-maker~
+~
+~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_FLYING|AFF_PASS_DOOR|AFF_ETHEREAL
+0 S
+95 BODY_HEAD BODY_ARM 1d1+9517 1d1+96
+0 RACE_DWARF
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>rand_prog 100~
+if quest(0,1,$i) == 0
+  up 
+  up 
+  up 
+  up 
+  up 
+  mpmset $i quest 0 1 1
+  recho This function temporarily disabled, open-gate.
+else
+  mpmset $i quest 0 1 0
+  recho This function temporarily disabled, close-gate.
+  mpgoto 16116
+  suicide 
+endif
+~
+|
+#0
+
+
+
+
+#OBJECTS
+#16101
+token161_O order~
+a token of order~
+There is a small card of some silvery metal lying here.~
+There is an inscription on the back of the token...
+
+  ____________________________________________________________________
+ |                                                                    |
+ | This token can be used to restore any follower of Order... only    |
+ | once every 4 game hours, so use it wisely. The command 'call-order'|
+ | activates it.  It must be held to work.                            |
+ |____________________________________________________________________|
+
+To check if you can call upon order again use the command: checktoken.~
+ITEM_TYPE_CONTAINER
+ITEM_FLAG_LEVEL|ITEM_FLAG_AUTO_ENGRAVE
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+1 CONT_CLOSEABLE -1 0
+0 0 10
+P 0
+TRIG_UNKNOWN 100 call-order
+OPROG_IF OIF_USER_WHICH_GOD = 1 1 6
+P 1
+TRIG_VOID
+OPROG_IF OIF_WEAR_LOC ! WEAR_NONE 2 8
+P 2
+TRIG_VOID
+OPROG_OBJECT_QUEST_IF 0 12  = 0 3 7
+P 3
+TRIG_VOID
+OPROG_IF OIF_USER_PK_STATUS = 2 13 5
+P 5
+TRIG_VOID
+OPROG_GOD_COMMAND
+recho The power of Order fills the room. & restore $~
+P 5
+TRIG_VOID
+OPROG_QUEST_SET 0 12 800
+P 6
+TRIG_VOID
+OPROG_ECHO
+You arent a follower of Order.~
+P 7
+TRIG_VOID
+OPROG_ECHO
+You cant call on the power of Order again yet.~
+P 8
+TRIG_VOID
+OPROG_ECHO
+You must hold the token to call on Order.~
+P 10
+TRIG_UNKNOWN 100 checktoken
+OPROG_OBJECT_QUEST_IF 0 12  = 0 11 12
+P 11
+TRIG_VOID
+OPROG_ECHO
+You can call on the power of Order.~
+P 12
+TRIG_VOID
+OPROG_ECHO
+You cant call on the power of Order again yet.~
+P 13
+TRIG_VOID
+OPROG_ECHO
+You can only use this power during combat with our Chaotic foes or times of dire need!~
+P 20
+TRIG_TICK 100
+OPROG_IF OIF_USER_WHICH_GOD = 0 30 21
+P 21
+TRIG_VOID
+OPROG_IF OIF_USER_WHICH_GOD = 2 31 22
+P 22
+TRIG_VOID
+OPROG_IF OIF_USER_WHICH_GOD = 4 32 23
+P 23
+TRIG_VOID
+OPROG_OBJECT_QUEST_IF 0 12  > 0 24 0
+P 24
+TRIG_VOID
+OPROG_QUEST_ADD 0 12 -1
+P 30
+TRIG_VOID
+OPROG_ECHO
+Learn the wrath of order, you nerveless cretin!~
+P 30
+TRIG_VOID
+OPROG_APPLY OAPPLY_HIT -500
+P 30
+TRIG_VOID
+OPROG_APPLY OAPPLY_MANA -500
+P 30
+TRIG_VOID
+OPROG_APPLY OAPPLY_MOVE -500
+P 30
+TRIG_VOID
+OPROG_JUNK
+P 31
+TRIG_VOID
+OPROG_ECHO
+May the fiery wrath of Order see your soul through to oblivion!~
+P 31
+TRIG_VOID
+OPROG_APPLY OAPPLY_HIT -500
+P 31
+TRIG_VOID
+OPROG_APPLY OAPPLY_MANA -500
+P 31
+TRIG_VOID
+OPROG_APPLY OAPPLY_MOVE -500
+P 31
+TRIG_VOID
+OPROG_JUNK
+P 32
+TRIG_VOID
+OPROG_ECHO
+You need a token ?~
+P 32
+TRIG_VOID
+OPROG_JUNK
+#16102
+hole161_O portable order~
+a portable hole of order~
+There is a circular hoop of silver lying here.~
+A bright silver circle serves as a frame for what appears to be
+a hole into another place in the realms.  You can even feel warm
+air coming out of it.  
+
+As you look closely you see there is writing around the outside 
+of the circle...
+  ___________________________________________________________________________
+ |                                                                           |
+ | Followers of Order can use this portable hole to open a warp to the       |
+ | monastery of order.  The command is 'warp' and it must be held to work.   |
+ |___________________________________________________________________________|~
+ITEM_TYPE_CONTAINER
+ITEM_FLAG_LEVEL|ITEM_FLAG_AUTO_ENGRAVE
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+1 CONT_CLOSEABLE -1 0
+0 0 10
+P 1
+TRIG_UNKNOWN 100 warp
+OPROG_IF OIF_WEAR_LOC ! WEAR_NONE 2 7
+P 2
+TRIG_VOID
+OPROG_OBJECT_QUEST_IF 0 1  = 0 3 21
+P 3
+TRIG_VOID
+OPROG_IF OIF_USER_WHICH_GOD = 1 4 22
+P 4
+TRIG_VOID
+OPROG_IF OIF_USER_POSITION = POS_FIGHTING 23 5
+P 5
+TRIG_VOID
+OPROG_IF OIF_USER_POSITION < POS_STANDING 24 6
+P 6
+TRIG_VOID
+OPROG_IF OIF_USER_PERCENT_HITPT < 40 25 10
+P 10
+TRIG_VOID
+OPROG_QUEST_SET 0 1 1
+P 10
+TRIG_VOID
+OPROG_GOD_COMMAND
+emote disappears through a warp to Order's Monastery. & mpgoto 16108 & 
+mpechoaround $ $ appears through a warp. &look~
+P 20
+TRIG_VOID
+OPROG_ECHO
+You arent holding the portable hole!~
+P 21
+TRIG_VOID
+OPROG_ECHO
+You cant open a gate again yet.~
+P 22
+TRIG_VOID
+OPROG_ECHO
+You arent a follower of Order! Infidel!~
+P 23
+TRIG_VOID
+OPROG_ECHO
+You cant warp the continuum and fight at the same time!.~
+P 24
+TRIG_VOID
+OPROG_ECHO
+You must stand upright to concentrate sufficiently.~
+P 25
+TRIG_VOID
+OPROG_ECHO
+You are too wounded to summon enough energy for this task...~
+P 100
+TRIG_TICK 100
+OPROG_OBJECT_QUEST_IF 0 1  = 1 101 0
+P 101
+TRIG_VOID
+OPROG_QUEST_SET 0 1 0
+#16121
+scroll detect invis~
+a scroll of detect invisible~
+There is a tightly bound scroll lying here.~
+~
+ITEM_TYPE_SCROLL
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+30 SPELL_DETECT_INVIS SPELL_NONE SPELL_NONE
+1 10 30
+#16122
+potion detect invis~
+a potion of detect invisible~
+There is a small metal vial lying here.~
+~
+ITEM_TYPE_POTION
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+30 SPELL_DETECT_INVIS SPELL_NONE SPELL_NONE
+1 10 30
+#0
+
+
+
+
+#ROOMS
+#16100
+A Wooden Pagoda~
+The walls seem to be woven from the forest itself.  Branches from nearby
+trees bend and twist, merging into a smooth wall on the inside.~
+161 0 SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 16101
+DDIR_WEST
+~
+~
+0 -1 17621
+S
+#16101
+Pathway Through a Grove~
+Soft light filters through the trees.  They form a dense web above you.
+Large stones painted red line the sides of the path.  You see some runes
+enscribed on the stones.~
+161 0 SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 16102
+DDIR_WEST
+~
+~
+0 -1 16100
+S
+#16102
+Pathway Through a Grove~
+Soft light filters through the trees.  They form a dense web above you.
+Large stones painted red line the sides of the path.  You see some runes
+enscribed on the stones.~
+161 0 SECT_CITY
+DDIR_SOUTH
+161 0 1~
+~
+0 -1 16105
+DDIR_WEST
+~
+~
+0 -1 16101
+S
+#16105
+Pathway Through a Grove~
+Soft light filters through the trees.  They form a dense web above you.
+Large stones painted red line the sides of the path.  You see some runes
+enscribed on the stones.~
+161 0 SECT_CITY
+DDIR_SOUTH
+~
+~
+0 -1 16106
+DDIR_WEST
+~
+~
+0 -1 16102
+S
+#16106
+Pathway Through a Grove~
+Soft light filters through the trees.  They form a dense web above you.
+Large stones painted red line the sides of the path.  You see some runes
+enscribed on the stones.~
+161 ROOM_NO_MOB SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 16105
+DDIR_SOUTH
+~
+~
+0 -1 16108
+S
+#16107
+Monastery of Order~
+The flat walls of the monastery seem to shine with a pure silver light.
+You sense great peace and purity all around you.  Several low couches
+and a table decorate the room.  This seems a good place to rest from
+your battles.~
+161 0 SECT_INSIDE
+DDIR_EAST
+~
+~
+0 -1 16108
+DDIR_SOUTH
+~
+~
+0 -1 16110
+S
+#16108
+Monastery of Order~
+The flat walls of the monastery seem to shine with a pure silver light.
+You sense great peace and purity all around you.  You stand in the 
+entrance to the Monastery of Order.  A large circular rug depicting
+Order setting down the laws of existence decorates the floor.~
+161 ROOM_ALTAR_O SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 16106
+DDIR_EAST
+~
+~
+0 -1 16109
+DDIR_SOUTH
+~
+~
+0 -1 16111
+DDIR_WEST
+~
+~
+0 -1 16107
+S
+#16109
+Monastery of Order~
+The flat walls of the monastery seem to shine with a pure silver light.
+You sense great peace and purity all around you.  The walls of this 
+room are decorated with pictures of various champions of Order.~
+161 0 SECT_INSIDE
+DDIR_SOUTH
+~
+~
+0 -1 16112
+DDIR_WEST
+~
+~
+0 -1 16108
+E
+pictures~
+You see a painting of Gillikak slaying Tiamat.~
+S
+#16110
+Monastery of Order~
+The flat walls of the monastery seem to shine with a pure silver light.
+You sense great peace and purity all around you.  You see wanted posters
+lining the walls of the room.~
+161 0 SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 16107
+DDIR_EAST
+~
+~
+0 -1 16111
+DDIR_SOUTH
+~
+~
+0 -1 16113
+E
+wanted posters~
+There is a poster of Satan, with a reward of 15mil coins.
+There is a poster of Airball, with a reward of 10mil coins.~
+S
+#16111
+Monastery of Order~
+The flat walls of the monastery seem to shine with a pure silver light.
+You sense great peace and purity all around you.  This is the center
+room of the Monastery.  You stand on a slightly raised platform.  It
+is inlaid with a silver relief symbol of Order.~
+161 ROOM_SAFE SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 16108
+DDIR_EAST
+~
+~
+0 -1 16112
+DDIR_SOUTH
+~
+~
+0 -1 16114
+DDIR_WEST
+~
+~
+0 -1 16110
+S
+#16112
+Monastery of Order~
+The flat walls of the monastery seem to shine with a pure silver light.
+You sense great peace and purity all around you.  There are a great many
+shelves filled with books here.~
+161 0 SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 16109
+DDIR_SOUTH
+~
+~
+0 -1 16115
+DDIR_WEST
+~
+~
+0 -1 16111
+S
+#16113
+Monastery of Order~
+The flat walls of the monastery seem to shine with a pure silver light.
+You sense great peace and purity all around you.  This seems to be a
+staging area for warriors of order.~
+161 0 SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 16110
+DDIR_EAST
+~
+~
+0 -1 16114
+S
+#16114
+Monastery of Order~
+The flat walls of the monastery seem to shine with a pure silver light.
+You sense great peace and purity all around you.  You see an altar and
+sevaral mats placed on the ground, for meditation.~
+161 ROOM_ALTAR_O SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 16111
+DDIR_EAST
+~
+~
+0 -1 16115
+DDIR_WEST
+~
+~
+0 -1 16113
+S
+#16115
+Monastery of Order~
+The flat walls of the monastery seem to shine with a pure silver light.
+You sense great peace and purity all around you.  You see several bodies
+wrapped in cloth on low tables.~
+161 ROOM_MORGUE SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 16112
+DDIR_WEST
+~
+~
+0 -1 16114
+S
+#16116
+death room~
+~
+161 ROOM_NO_MOB SECT_INSIDE
+S
+#0
+
+
+
+
+#RESETS
+M 0 16105   1 16100 ; The High Knight of Order in A Wooden Pagoda          
+M 0 16102   1 16111 ;      the Avatar of Order in Monastery of Order       
+M 0 16104  20 16107 ;    The presence of Order in Monastery of Order       
+M 0 16104  20 16108 ;    The presence of Order in Monastery of Order       
+M 0 16104  20 16109 ;    The presence of Order in Monastery of Order       
+M 0 16104  20 16110 ;    The presence of Order in Monastery of Order       
+M 0 16104  20 16111 ;    The presence of Order in Monastery of Order       
+M 0 16104  20 16111 ;    The presence of Order in Monastery of Order       
+M 0 16104  20 16112 ;    The presence of Order in Monastery of Order       
+M 0 16104  20 16113 ;    The presence of Order in Monastery of Order       
+M 0 16104  20 16114 ;    The presence of Order in Monastery of Order       
+M 0 16104  20 16115 ;    The presence of Order in Monastery of Order       
+G 1 16101   1       ;         a token of order
+G 1 16102   1       ; a portable hole of order
+M 0 16107   1 16115 ;   the mortician of Order in Monastery of Order       
+G 1 16121 1000       ;a scroll of detect invisi
+G 1 16122 1000       ;a potion of detect invisi
+S
+
+
+
+
+#SHOPS
+16107 ITEM_TYPE_POTION ITEM_TYPE_SCROLL ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING
+     ITEM_TYPE_NOTHING 100  50  1 23 ;the mortician of Order
+0
+
+
+
+
+#SPECIALS
+S
+
+
+
+
+#$

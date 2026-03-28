@@ -1,0 +1,1248 @@
+#AREA Centaur Grove~
+#AUTHORS Jaxom~
+#RANGES 5 35 1 99
+#FLAGS AFLAG_NOCASTLE|AFLAG_NOTELEPORT
+#RESETMSG The clatter of centaur hooves rings through the grove.~
+
+
+#HELPS
+-1 'CENTAUR GROVE' CENTAURHQ~
+{120}Centaur Grove
+-------------
+
+The Centaur Grove is where all centaur come to meet and plan their moves
+in the neverending racial wars.  Given the fact that most centaurs come
+to this grove well armed and prepared for war, it is suprisingly peaceful.
+
+This grove was created on April 8, 1999 by
+
+(a) {170}Jaxom{300}
+
+{a}JAXOM
+~
+96 CENTAURHQVNUM~
+The vnum for joining centaur hq is 13523.  At the centaur leader.
+~
+0$~
+
+
+#MOBILES
+#13500
+centaurgrove~
+a centaur~
+A centaur eyes you suspiciously.~
+He stands over eight feet tall and is powerfully muscled.  His equine lower
+section merges smoothly with his human torso making this mixed breed
+seem very natural.~
+ACT_SMART|ACT_BODY|ACT_RACE AFF_TONGUES|AFF_UNDERSTAND 0 S
+30 0 BODY_FOOT 1d1+479 1d1+21
+50000 RACE_CENTAUR
+POS_STANDING POS_STANDING SEX_MALE
+#13501
+target~
+a target~
+A target is carved in the tree here.~
+It is made up of concentric rings carved into the tree.  A small sign
+hangs nearby saying to ask the leader to reset the range for you.~
+ACT_SMART|ACT_BODY|ACT_RACE|ACT_SENTINEL AFF_TONGUES|AFF_UNDERSTAND 0 S
+95 0 0 1d1+8000 1d1+80
+1000 RACE_GNOME
+POS_SLEEPING POS_SLEEPING SEX_NEUTRAL
+>death_prog 100~
+if quest(0, 3, $n) > 0
+  if quest(0, 3, $n) < 5
+    mpechoat $n You hit the target dead center!
+    mpmadd $n quest 0 3 1
+  endif
+endif
+~
+|
+#13502
+centaurgrove~
+a centaur~
+A centaur is here.~
+She stands around seven feet tall and is powerfully muscled.  Her equine
+lower section merges smoothly with her human torso making this mixed breed
+seem very natural.  You are a little distracted by the fact that she wears
+no clothes.~
+ACT_SMART|ACT_BODY|ACT_RACE|ACT_SENTINEL AFF_TONGUES|AFF_UNDERSTAND 0 S
+30 0 BODY_FOOT 1d1+479 1d1+21
+50000 RACE_CENTAUR
+POS_STANDING POS_STANDING SEX_FEMALE
+#13503
+centaurgrove blacksmith~
+a centaur blacksmith~
+A centaur glances toward you.~
+He stands over eight feet tall and is powerfully muscled.  His equine lower
+section merges smoothly with his human torso making this mixed breed
+seem very natural.~
+ACT_SMART|ACT_BODY|ACT_RACE|ACT_SENTINEL AFF_TONGUES|AFF_UNDERSTAND 0 S
+25 0 BODY_FOOT 1d1+1000 1d1+30
+50000 RACE_CENTAUR
+POS_STANDING POS_STANDING SEX_MALE
+#13504
+centaurgrove leader~
+a centaur leader~
+A centaur stands here proudly.~
+He stands over nine feet tall and is powerfully muscled.  His equine lower
+section merges smoothly with his human torso making this mixed breed
+seem very natural.~
+ACT_SMART|ACT_BODY|ACT_RACE|ACT_SENTINEL AFF_TONGUES|AFF_UNDERSTAND 0 S
+50 0 BODY_FOOT 10d10+1000 10d1+30
+50000 RACE_CENTAUR
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if race($n) == 9
+  if quest(0, 3, $n) == 0
+    say Welcome to our headquarters, $n
+    say We always need new recruits.  Would you care to join?
+  else
+    if quest(0, 3, $n) == 5
+      say Great job $n!  Welcome to the Centaur Army!
+      mpechoat $n To officially join you must type the following:
+      mpechoat $n army join [password]
+      say Come tell me anytime you feel you deserve a
+      say promotion, and I will see what I can do.
+      mpmset $n long Private $n of the Centaur Cavalry is here.
+      mpmset $n quest 0 3 6
+    else
+      if quest(0, 3, $n) == 6
+        say Report Soldier!
+        say Do you wish to retire or think you deserve
+        say a promotion?
+      else
+        if quest(0, 3, $n) == 7
+          say How does it feel to be put out to pasture?
+        else
+          say Keep practicing!  You will get it right!
+      endif
+    endif
+  endif
+else
+  if race($n) == 10
+    shout The despicable Gith have entered the Grove!
+    mpkill $n
+  endif
+endif
+~
+>speech_prog promotion rank~
+if race($n) == 9
+ if quest(0, 3, $n) == 6
+  if level($n) > 89
+    say You have achieved the rank of General.
+    say Congratulations!
+    mpmset $n long General $n of the Centaur Cavalry is here.
+  else
+    if level($n) > 69
+      say You have achieved the rank of Major.
+      say Congratulations!
+      mpmset $n long Major $n of the Centaur Cavalry is here.
+    else
+      if level($n) > 49
+        say You have achieved the rank of Captain.
+        say Congratulations!
+        mpmset $n long Captain $n of the Centaur Cavalry is here.
+      else
+        if level($n) > 29
+          say You have achieved the rank of Sergeant.
+          say Congratulations!
+          mpmset $n long Sergeant $n of the Centaur Cavalry is here.
+        else
+          say You are still only a Private.
+          say Keep trying, one day you'll get there!
+          mpmset $n long Private $n of the Centaur Cavalry is here.
+        endif
+      endif
+    endif
+  endif
+ endif
+endif
+~
+>speech_prog retire resign~
+say Of course you may retire, Oldtimer.
+mpechoat $n Type the following: army retire [password]
+mpmset $n long (Oldtimer) $n is out to pasture.
+mpmset $n quest 0 3 7
+~
+>speech_prog yes yeah ok yep sure~
+if race($n) == 9
+  if quest(0, 3, $n) == 0
+    say Excellent!  Now before you are allowed to join
+    say you must complete a simple training exercise.
+    say Go to the Archery range and prove your skill
+    say by hitting dead center at least four targets.
+    rescale 13501 $n 100
+    mpmset $n quest 0 3 1
+  endif
+endif
+~
+>speech_prog archery practice reset range~
+say The targets have been set up for you at the range.
+rescale 13501 $n 100
+~
+|
+#13505
+centaurgrove healer~
+a centaur healer~
+A centaur inquires after your health.~
+She stands around seven feet tall and is powerfully muscled.  Her equine
+lower section merges smoothly with her human torso making this mixed breed
+seem very natural.  You are a little distracted by the fact that she wears
+no clothes.~
+ACT_SMART|ACT_BODY|ACT_RACE|ACT_SENTINEL AFF_TONGUES|AFF_UNDERSTAND|AFF_SANCTUARY 0 S
+50 0 BODY_FOOT 10d10+1000 10d1+30
+50000 RACE_CENTAUR
+POS_STANDING POS_STANDING SEX_FEMALE
+>rand_prog 100~
+if rand(15)
+  cast sanctuary $n
+else
+  if rand(15)
+    cast bless $n
+  else
+    if rand(15)
+      cast 'giant strength' $n
+    else
+      if rand(15)
+        cast shield $n
+      else
+        if rand(15)
+          cast armor $n
+        else
+          cast 'cure critical' $n
+        endif
+      endif
+    endif
+  endif
+endif
+~
+|
+#13506
+centaurgrove mage~
+a centaur mage~
+The centaur doesn't seem to notice your approach.~
+She stands around seven feet tall and is powerfully muscled.  Her equine
+lower section merges smoothly with her human torso making this mixed breed
+seem very natural.  You are a little distracted by the fact that she wears
+no clothes.~
+ACT_SMART|ACT_BODY|ACT_RACE|ACT_SENTINEL AFF_TONGUES|AFF_UNDERSTAND 0 S
+25 0 BODY_FOOT 1d1+1000 1d1+30
+50000 RACE_CENTAUR
+POS_STANDING POS_STANDING SEX_FEMALE
+#13507
+centaurgrove sentinel~
+a centaur sentinel~
+A centaur sentinel stands here proudly.~
+He stands over nine feet tall and is powerfully muscled.  His equine lower
+section merges smoothly with his human torso making this mixed breed
+seem very natural.~
+ACT_SMART|ACT_BODY|ACT_RACE|ACT_SENTINEL AFF_TONGUES|AFF_UNDERSTAND 0 S
+95 0 BODY_FOOT 1d1+8000 1d1+80
+50000 RACE_CENTAUR
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if race($n) == 9
+  if sex($n) == 1
+    say Greetings Brother.
+  else
+    say Greetings Sister.
+  endif
+else
+  if race($n) == 10
+    shout The despicable Gith have entered the Grove!
+    rescale 13507 $n 160
+    mpkill $n
+  else
+    say Outsiders may not enter the grove.
+    mptransfer $n 15200
+  endif
+endif
+~    
+|  
+#0
+
+#OBJECTS
+#13500
+sign~
+a sign~
+A sign has been carved into the side of a living tree.~
+The sign:      |                      |
+               |                      |
+               |______________________|
+               |                      |
+               |    Centaur's Only    |
+               |                      |
+               | Outsider's will not  |
+               |     be tolerated     |
+               |______________________|
+               |                      |
+               |                      |
+               |                      |
+~
+ITEM_TYPE_FURNITURE
+ITEM_FLAG_LEVEL
+0
+0 0 0 0
+10 10 1
+#13501
+centaur spear~
+a centaur spear~
+A spear has been left here.~
+The shaft is about ten feet long and a foot of sharpened steel has been attached to
+one end.~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 2 5 2
+2 300 10
+A
+APPLY_CON 2
+P 1
+TRIG_WEAR 100
+OPROG_IF OIF_USER_RACE ! 9 2 0
+P 2
+TRIG_VOID
+OPROG_ECHO You break the centaur made spear trying to wield it.~
+P 2
+TRIG_VOID
+OPROG_JUNK
+#13502
+centaur barding chainmail~
+chainmail barding~
+A set of chainmail barding has been left here.~
+It is chainmail barding of the type that might fit on a large warhorse.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_ABOUT
+5 0 0 0
+5 500 10
+A
+APPLY_CON 2
+P 1
+TRIG_WEAR 100
+OPROG_IF OIF_USER_RACE ! 9 2 0
+P 2
+TRIG_VOID
+OPROG_ECHO You break the centaur made equipment trying to wear it.~
+P 2
+TRIG_VOID
+OPROG_JUNK
+#13503
+centaur chainmail tunic~
+a chainmail tunic~
+A chainmail tunic has been left here.~
+It is cut low in the front and high in the back.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_BODY
+5 0 0 0
+5 400 10
+A
+APPLY_CON 2
+P 1
+TRIG_WEAR 100
+OPROG_IF OIF_USER_RACE ! 9 2 0
+P 2
+TRIG_VOID
+OPROG_ECHO You break the centaur made equipment trying to wear it.~
+P 2
+TRIG_VOID
+OPROG_JUNK
+#13504
+centaur pill~
+a centaur pill~
+A pill that looks like a horse should be taking it is here.~
+It is the size of a horse pill.~
+ITEM_TYPE_PILL
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+5 SPELL_PASS_DOOR SPELL_DETECT_HIDDEN SPELL_DETECT_INVIS
+1 100 10
+P 1
+TRIG_COMMAND 100 eat
+OPROG_IF OIF_USER_RACE ! 9 2 0
+P 2
+TRIG_VOID
+OPROG_ECHO You choke trying to swallow the enormous pill!~
+P 2
+TRIG_VOID
+OPROG_APPLY OAPPLY_HIT -200
+P 2
+TRIG_VOID
+OPROG_JUNK
+#13505
+centaur potion~
+a centaur potion~
+A potion that looks like a horse should be taking it is here.~
+It is the size of a horse potion.~
+ITEM_TYPE_POTION
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+5 SPELL_GIANT_STRENGTH SPELL_DETECT_HIDDEN SPELL_DETECT_INVIS
+1 100 10
+P 1
+TRIG_COMMAND 100 quaff
+OPROG_IF OIF_USER_RACE ! 9 2 0
+P 2
+TRIG_VOID
+OPROG_ECHO You choke trying to swallow the viscous fluid!~
+P 2
+TRIG_VOID
+OPROG_APPLY OAPPLY_HIT -200
+P 2
+TRIG_VOID
+OPROG_JUNK
+#13506
+centaur scroll~
+a centaur scroll~
+A scroll that looks like it is written in centaurish is here.~
+It is a scrap of parchment with writing on it.~
+ITEM_TYPE_SCROLL
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+5 SPELL_PASS_DOOR SPELL_BLESS SPELL_SANCTUARY
+1 100 10
+P 1
+TRIG_COMMAND 100 recite
+OPROG_IF OIF_USER_RACE ! 9 2 0
+P 2
+TRIG_VOID
+OPROG_ECHO You head pounds as you try to read the centaur language.~
+P 2
+TRIG_VOID
+OPROG_APPLY OAPPLY_HIT -20
+P 2
+TRIG_VOID
+OPROG_JUNK
+#13507
+centaur wand~
+a centaur wand~
+A thick wand has been dropped here.~
+It is a thick stick imbued with magic spells.~
+ITEM_TYPE_WAND
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+10 8 3 SPELL_PASS_DOOR 
+1 100 20
+#13508
+centaur staff~
+a centaur staff~
+A thick staff has been dropped here.~
+It is a thick staff imbued with magic spells.~
+ITEM_TYPE_STAFF
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+12 9 3 SPELL_DETECT_HIDDEN
+2 100 20
+P 1
+TRIG_COMMAND 100 brandish
+OPROG_IF OIF_USER_RACE ! 9 2 0
+P 2
+TRIG_VOID
+OPROG_ECHO You drop the enormous staff breaking your toes.~
+P 2
+TRIG_VOID
+OPROG_APPLY OAPPLY_HIT -100
+P 2
+TRIG_VOID
+OPROG_JUNK
+#13509
+centaur scroll recall~
+a centaur scroll of recall~
+A scroll that looks like it is written in centaurish is here.~
+It is a scrap of parchment with writing on it.~
+ITEM_TYPE_SCROLL
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+10 SPELL_WORD_OF_RECALL 0 0
+1 10 10
+P 1
+TRIG_COMMAND 100 recite
+OPROG_IF OIF_USER_RACE ! 9 2 0
+P 2
+TRIG_VOID
+OPROG_ECHO You head pounds as you try to read the centaur language.~
+P 2
+TRIG_VOID
+OPROG_APPLY OAPPLY_HIT -20
+P 2
+TRIG_VOID
+OPROG_JUNK
+#0
+
+#ROOMS
+#13500
+Tethir Forest~
+The forest here seems very peaceful compared with the rest of it and
+you can hear the sounds of small wildlife all around you.  To the
+northeast the trees come togeather in a wall that looks unpenetratable.~
+135 ROOM_NO_MOB SECT_FOREST
+DDIR_NORTH
+Outside the Grove~
+~
+0 -1 13501
+DDIR_SOUTH
+Tethyr~
+~
+0 -1 15250
+S
+#13501
+Outside the Grove~
+The forest here seems very peaceful compared with the rest of it and
+you can hear the sounds of small wildlife all around you.  The tightly
+packed trees here make it impossible to get inside the grove.  Perhaps
+there is another way in.~
+135 0 SECT_FOREST
+DDIR_NORTH
+Outside the Grove~
+~
+0 -1 13518
+DDIR_SOUTH
+Outside the Grove~
+~
+0 -1 13500
+DDIR_EAST
+~
+~
+0 -1 13502
+S
+#13502
+Outside the Grove~
+The forest here seems very peaceful compared with the rest of it and
+you can hear the sounds of small wildlife all around you.  The tightly
+packed trees here make it impossible to get inside the grove.  Perhaps
+there is another way in.~
+135 0 SECT_FOREST
+DDIR_NORTH
+Outside the Grove~
+~
+0 -1 13503
+DDIR_WEST
+Outside the Grove~
+~
+0 -1 13501
+DDIR_EAST
+Outside the Grove~
+~
+0 -1 13504
+S
+#13503
+Outside the Grove~
+The forest here seems very peaceful compared with the rest of it and
+you can hear the sounds of small wildlife all around you.  The tightly
+packed trees here make it impossible to get inside the grove.  Perhaps
+there is another way in.~
+135 0 SECT_FOREST
+DDIR_NORTH
+Outside the Grove~
+~
+0 -1 13517
+DDIR_WEST
+Outside the Grove~
+~
+0 -1 13518
+DDIR_SOUTH
+Outside the Grove~
+~
+0 -1 13502
+S
+#13504
+Outside the Grove~
+The forest here seems very peaceful compared with the rest of it and
+you can hear the sounds of small wildlife all around you.  The tightly
+packed trees here make it impossible to get inside the grove.  Perhaps
+there is another way in.~
+135 0 SECT_FOREST
+DDIR_WEST
+Outside the Grove~
+~
+0 -1 13502
+DDIR_EAST
+Outside the Grove~
+~
+0 -1 13505
+S
+#13505
+Outside the Grove~
+The forest here seems very peaceful compared with the rest of it and
+you can hear the sounds of small wildlife all around you.  The tightly
+packed trees here make it impossible to get inside the grove.  Perhaps
+there is another way in.~
+135 0 SECT_FOREST
+DDIR_WEST
+Outside the Grove~
+~
+0 -1 13504
+DDIR_EAST
+Outside the Grove~
+~
+0 -1 13506
+S
+#13506
+Outside the Grove~
+The forest here seems very peaceful compared with the rest of it and
+you can hear the sounds of small wildlife all around you.  The tightly
+packed trees here make it impossible to get inside the grove.  Perhaps
+there is another way in.~
+135 0 SECT_FOREST
+DDIR_WEST
+Outside the Grove~
+~
+0 -1 13505
+DDIR_EAST
+Outside the Grove~
+~
+0 -1 13507
+S
+#13507
+Outside the Grove~
+The forest here seems very peaceful compared with the rest of it and
+you can hear the sounds of small wildlife all around you.  The tightly
+packed trees here make it impossible to get inside the grove.  Perhaps
+there is another way in.~
+135 0 SECT_FOREST
+DDIR_NORTH
+Outside the Grove~
+~
+0 -1 13508
+DDIR_WEST
+Outside the Grove~
+~
+0 -1 13506
+S
+#13508
+Outside the Grove~
+The forest here seems very peaceful compared with the rest of it and
+you can hear the sounds of small wildlife all around you.  The tightly
+packed trees here make it impossible to get inside the grove.  Perhaps
+there is another way in.~
+135 0 SECT_FOREST
+DDIR_NORTH
+Outside the Grove~
+~
+0 -1 13509
+DDIR_SOUTH
+Outside the Grove~
+~
+0 -1 13507
+S
+#13509
+Outside the Grove~
+The forest here seems very peaceful compared with the rest of it and
+you can hear the sounds of small wildlife all around you.  There is a way
+into the grove to the west.~
+135 0 SECT_FOREST
+DDIR_NORTH
+Outside the Grove~
+~
+0 -1 13510
+DDIR_WEST
+Outside the Grove~
+~
+0 -1 13519
+DDIR_SOUTH
+Outside the Grove~
+~
+0 -1 13508
+S
+#13510
+Outside the Grove~
+The forest here seems very peaceful compared with the rest of it and
+you can hear the sounds of small wildlife all around you.  The tightly
+packed trees here make it impossible to get inside the grove.  Perhaps
+there is another way in.~
+135 0 SECT_FOREST
+DDIR_NORTH
+Outside the Grove~
+~
+0 -1 13511
+DDIR_SOUTH
+Outside the Grove~
+~
+0 -1 13509
+S
+#13511
+Outside the Grove~
+The forest here seems very peaceful compared with the rest of it and
+you can hear the sounds of small wildlife all around you.  The tightly
+packed trees here make it impossible to get inside the grove.  Perhaps
+there is another way in.~
+135 0 SECT_FOREST
+DDIR_WEST
+Outside the Grove~
+~
+0 -1 13512
+DDIR_SOUTH
+Outside the Grove~
+~
+0 -1 13510
+S
+#13512
+Outside the Grove~
+The forest here seems very peaceful compared with the rest of it and
+you can hear the sounds of small wildlife all around you.  The tightly
+packed trees here make it impossible to get inside the grove.  Perhaps
+there is another way in.~
+135 0 SECT_FOREST
+DDIR_WEST
+Outside the Grove~
+~
+0 -1 13513
+DDIR_EAST
+Outside the Grove~
+~
+0 -1 13511
+S
+#13513
+Outside the Grove~
+The forest here seems very peaceful compared with the rest of it and
+you can hear the sounds of small wildlife all around you.  The tightly
+packed trees here make it impossible to get inside the grove.  Perhaps
+there is another way in.~
+135 0 SECT_FOREST
+DDIR_NORTH
+Archery Range~
+~
+0 -1 13532
+DDIR_WEST
+Outside the Grove~
+~
+0 -1 13514
+DDIR_EAST
+Outside the Grove~
+~
+0 -1 13512
+S
+#13514
+Outside the Grove~
+The forest here seems very peaceful compared with the rest of it and
+you can hear the sounds of small wildlife all around you.  The tightly
+packed trees here make it impossible to get inside the grove.  Perhaps
+there is another way in.~
+135 0 SECT_FOREST
+DDIR_WEST
+Outside the Grove~
+~
+0 -1 13515
+DDIR_EAST
+Outside the Grove~
+~
+0 -1 13513
+S
+#13515
+Outside the Grove~
+The forest here seems very peaceful compared with the rest of it and
+you can hear the sounds of small wildlife all around you.  The tightly
+packed trees here make it impossible to get inside the grove.  Perhaps
+there is another way in.~
+135 0 SECT_FOREST
+DDIR_SOUTH
+Outside the Grove~
+~
+0 -1 13516
+DDIR_EAST
+Outside the Grove~
+~
+0 -1 13514
+S
+#13516
+Outside the Grove~
+The forest here seems very peaceful compared with the rest of it and
+you can hear the sounds of small wildlife all around you.  The tightly
+packed trees here make it impossible to get inside the grove.  Perhaps
+there is another way in.~
+135 0 SECT_FOREST
+DDIR_NORTH
+Outside the Grove~
+~
+0 -1 13515
+DDIR_SOUTH
+Outside the Grove~
+~
+0 -1 13517
+S
+#13517
+Outside the Grove~
+The forest here seems very peaceful compared with the rest of it and
+you can hear the sounds of small wildlife all around you.  The tightly
+packed trees here make it impossible to get inside the grove.  Perhaps
+there is another way in.~
+135 0 SECT_FOREST
+DDIR_NORTH
+Outside the Grove~
+~
+0 -1 13516
+DDIR_SOUTH
+Outside the Grove~
+~
+0 -1 13503
+S
+#13518
+Outside the Grove~
+The forest here seems very peaceful compared with the rest of it and
+you can hear the sounds of small wildlife all around you.  The tightly
+packed trees here make it impossible to get inside the grove.  Perhaps
+there is another way in.~
+135 0 SECT_FOREST
+DDIR_SOUTH
+Inside the Grove~
+~
+0 -1 13501
+DDIR_EAST
+Inside the Grove~
+~
+0 -1 13503
+S
+#13519
+Inside the Centaur Grove~
+The inside of this grove seems to be the permanent home of the centaur
+military.  All around you, centaurs bustle about busy preparing for war.
+If you were the size of a puny human you would easily be trampled beneath
+the hooves of the centaurs.~
+135 ROOM_NO_MOB SECT_FOREST
+DDIR_WEST
+Outside the Grove~
+~
+0 -1 13520
+DDIR_EAST
+Outside the Grove~
+~
+0 -1 13509
+S
+#13520
+Inside the Centaur Grove~
+The inside of this grove seems to be the permanent home of the centaur
+military.  All around you, centaurs bustle about busy preparing for war.
+If you were the size of a puny human you would easily be trampled beneath
+the hooves of the centaurs.~
+135 0 SECT_FOREST
+DDIR_NORTH
+Inside the Grove~
+~
+0 -1 13522
+DDIR_WEST
+Inside the Grove~
+~
+0 -1 13523
+DDIR_EAST
+Inside the Grove~
+~
+0 -1 13519
+DDIR_SOUTH
+Inside the Grove~
+~
+0 -1 13521
+S
+#13521
+Inside the Centaur Grove~
+The inside of this grove seems to be the permanent home of the centaur
+military.  All around you, centaurs bustle about busy preparing for war.
+If you were the size of a puny human you would easily be trampled beneath
+the hooves of the centaurs.~
+135 0 SECT_FOREST
+DDIR_NORTH
+Inside the Grove~
+~
+0 -1 13520
+DDIR_WEST
+Inside the Grove~
+~
+0 -1 13525
+S
+#13522
+Inside the Centaur Grove~
+The inside of this grove seems to be the permanent home of the centaur
+military.  All around you, centaurs bustle about busy preparing for war.
+If you were the size of a puny human you would easily be trampled beneath
+the hooves of the centaurs.~
+135 0 SECT_FOREST
+DDIR_WEST
+Inside the Grove~
+~
+0 -1 13524
+DDIR_SOUTH
+Inside the Grove~
+~
+0 -1 13520
+S
+#13523
+Inside the Centaur Grove~
+The inside of this grove seems to be the permanent home of the centaur
+military.  All around you, centaurs bustle about busy preparing for war.
+If you were the size of a puny human you would easily be trampled beneath
+the hooves of the centaurs.~
+135 ROOM_SAFE|ROOM_ALTAR_N SECT_FOREST
+DDIR_NORTH
+Inside the Grove~
+~
+0 -1 13524
+DDIR_WEST
+Inside the Grove~
+~
+0 -1 13526
+DDIR_EAST
+Inside the Grove~
+~
+0 -1 13520
+DDIR_SOUTH
+Inside the Grove~
+~
+0 -1 13525
+S
+#13524
+Inside the Centaur Grove~
+The inside of this grove seems to be the permanent home of the centaur
+military.  All around you, centaurs bustle about busy preparing for war.
+If you were the size of a puny human you would easily be trampled beneath
+the hooves of the centaurs.~
+135 0 SECT_FOREST
+DDIR_NORTH
+Inside the Grove~
+~
+0 -1 13530
+DDIR_WEST
+Inside the Grove~
+~
+0 -1 13527
+DDIR_EAST
+Inside the Grove~
+~
+0 -1 13522
+DDIR_SOUTH
+Inside the Grove~
+~
+0 -1 13523
+S
+#13525
+Inside the Centaur Grove~
+The inside of this grove seems to be the permanent home of the centaur
+military.  All around you, centaurs bustle about busy preparing for war.
+If you were the size of a puny human you would easily be trampled beneath
+the hooves of the centaurs.~
+135 0 SECT_FOREST
+DDIR_NORTH
+Inside the Grove~
+~
+0 -1 13523
+DDIR_WEST
+Inside the Grove~
+~
+0 -1 13528
+DDIR_EAST
+Inside the Grove~
+~
+0 -1 13521
+DDIR_SOUTH
+Inside the Grove~
+~
+0 -1 13531
+S
+#13526
+Inside the Centaur Grove~
+The inside of this grove seems to be the permanent home of the centaur
+military.  All around you, centaurs bustle about busy preparing for war.
+If you were the size of a puny human you would easily be trampled beneath
+the hooves of the centaurs.~
+135 0 SECT_FOREST
+DDIR_NORTH
+Inside the Grove~
+~
+0 -1 13527
+DDIR_WEST
+Inside the Grove~
+~
+0 -1 13529
+DDIR_EAST
+Inside the Grove~
+~
+0 -1 13523
+DDIR_SOUTH
+Inside the Grove~
+~
+0 -1 13528
+S
+#13527
+Inside the Centaur Grove~
+The inside of this grove seems to be the permanent home of the centaur
+military.  All around you, centaurs bustle about busy preparing for war.
+If you were the size of a puny human you would easily be trampled beneath
+the hooves of the centaurs.~
+135 0 SECT_FOREST
+DDIR_EAST
+Inside the Grove~
+~
+0 -1 13524
+DDIR_SOUTH
+Inside the Grove~
+~
+0 -1 13526
+S
+#13528
+Inside the Centaur Grove~
+The inside of this grove seems to be the permanent home of the centaur
+military.  All around you, centaurs bustle about busy preparing for war.
+If you were the size of a puny human you would easily be trampled beneath
+the hooves of the centaurs.~
+135 0 SECT_FOREST
+DDIR_NORTH
+Inside the Grove~
+~
+0 -1 13526
+DDIR_EAST
+Inside the Grove~
+~
+0 -1 13525
+S
+#13529
+Inside the Centaur Grove~
+The inside of this grove seems to be the permanent home of the centaur
+military.  All around you, centaurs bustle about busy preparing for war.
+If you were the size of a puny human you would easily be trampled beneath
+the hooves of the centaurs.~
+135 0 SECT_FOREST
+DDIR_EAST
+Inside the Grove~
+~
+0 -1 13526
+S
+#13530
+Inside the Centaur Grove~
+The inside of this grove seems to be the permanent home of the centaur
+military.  All around you, centaurs bustle about busy preparing for war.
+If you were the size of a puny human you would easily be trampled beneath
+the hooves of the centaurs.~
+135 0 SECT_FOREST
+DDIR_SOUTH
+Inside the Grove~
+~
+0 -1 13524
+S
+#13531
+Inside the Centaur Grove~
+The inside of this grove seems to be the permanent home of the centaur
+military.  All around you, centaurs bustle about busy preparing for war.
+If you were the size of a puny human you would easily be trampled beneath
+the hooves of the centaurs.~
+135 0 SECT_FOREST
+DDIR_NORTH
+Inside the Grove~
+~
+0 -1 13525
+S
+#13532
+Archery Range~
+The forest here is fairly sparse.  There is a row of small baskets on
+the ground here with each basket containing several arrows.  The ground
+around each of the baskets looks trampled along with paths leading through
+the trees to the north.~
+135 ROOM_NO_MOB|ROOM_SAFE SECT_FOREST
+DDIR_NORTH
+Down the Range~
+~
+0 -1 13539
+DDIR_WEST
+Archery Range~
+~
+0 -1 13533
+DDIR_EAST
+Archery Range~
+~
+0 -1 13535
+DDIR_SOUTH
+Outside the Grove~
+~
+0 -1 13513
+S
+#13533
+Archery Range~
+The forest here is fairly sparse.  There is a row of small baskets on
+the ground here with each basket containing several arrows.  The ground
+around each of the baskets looks trampled along with paths leading through
+the trees to the north.~
+135 0 SECT_FOREST
+DDIR_NORTH
+Down the Range~
+~
+0 -1 13538
+DDIR_WEST
+Archery Range~
+~
+0 -1 13534
+DDIR_EAST
+Archery Range~
+~
+0 -1 13532
+S
+#13534
+Archery Range~
+The forest here is fairly sparse.  There is a row of small baskets on
+the ground here with each basket containing several arrows.  The ground
+around each of the baskets looks trampled along with paths leading through
+the trees to the north.~
+135 0 SECT_FOREST
+DDIR_NORTH
+Down the Range~
+~
+0 -1 13537
+DDIR_EAST
+Archery Range~
+~
+0 -1 13533
+S
+#13535
+Archery Range~
+The forest here is fairly sparse.  There is a row of small baskets on
+the ground here with each basket containing several arrows.  The ground
+around each of the baskets looks trampled along with paths leading through
+the trees to the north.~
+135 0 SECT_FOREST
+DDIR_NORTH
+Down the Range~
+~
+0 -1 13540
+DDIR_WEST
+Archery Range~
+~
+0 -1 13532
+DDIR_EAST
+Archery Range~
+~
+0 -1 13536
+S
+#13536
+Archery Range~
+The forest here is fairly sparse.  There is a row of small baskets on
+the ground here with each basket containing several arrows.  The ground
+around each of the baskets looks trampled along with paths leading through
+the trees to the north.~
+135 0 SECT_FOREST
+DDIR_NORTH
+Down the Range~
+~
+0 -1 13541
+DDIR_WEST
+Archery Range~
+~
+0 -1 13535
+S
+#13537
+Down the Range~
+The forest here is fairly sparse.  Carved on most of the trees here are
+targets that you can see have been well use for archery practice.  The
+path up the range is well trampled and you are not suprised to see that
+the centaurs do not seem to miss their targets much.~
+135 0 SECT_FOREST
+DDIR_SOUTH
+Archery Range~
+~
+0 -1 13534
+S
+#13538
+Down the Range~
+The forest here is fairly sparse.  Carved on most of the trees here are
+targets that you can see have been well use for archery practice.  The
+path up the range is well trampled and you are not suprised to see that
+the centaurs do not seem to miss their targets much.~
+135 0 SECT_FOREST
+DDIR_SOUTH
+Archery Range~
+~
+0 -1 13533
+S
+#13539
+Down the Range~
+The forest here is fairly sparse.  Carved on most of the trees here are
+targets that you can see have been well use for archery practice.  The
+path up the range is well trampled and you are not suprised to see that
+the centaurs do not seem to miss their targets much.~
+135 0 SECT_FOREST
+DDIR_SOUTH
+Archery Range~
+~
+0 -1 13532
+S
+#13540
+Down the Range~
+The forest here is fairly sparse.  Carved on most of the trees here are
+targets that you can see have been well use for archery practice.  The
+path up the range is well trampled and you are not suprised to see that
+the centaurs do not seem to miss their targets much.~
+135 0 SECT_FOREST
+DDIR_SOUTH
+Archery Range~
+~
+0 -1 13535
+S
+#13541
+Down the Range~
+The forest here is fairly sparse.  Carved on most of the trees here are
+targets that you can see have been well use for archery practice.  The
+path up the range is well trampled and you are not suprised to see that
+the centaurs do not seem to miss their targets much.~
+135 0 SECT_FOREST
+DDIR_SOUTH
+Archery Range~
+~
+0 -1 13536
+S
+#0
+
+#RESETS
+O 0 13500 1 13500 ; sign in forest
+M 0 13500 9 13518 ; centaur outside grove
+M 0 13500 9 13503 ; centaur outside grove
+M 0 13500 9 13504 ; centaur outside grove
+M 0 13500 9 13506 ; centaur outside grove
+M 0 13500 9 13508 ; centaur outside grove
+M 0 13500 9 13510 ; centaur outside grove
+M 0 13500 9 13512 ; centaur outside grove
+M 0 13500 9 13514 ; centaur outside grove
+M 0 13500 9 13516 ; centaur outside grove
+M 0 13501 15 13537 ; target in range
+M 0 13501 15 13537 ; target in range
+M 0 13501 15 13537 ; target in range
+M 0 13501 15 13538 ; target in range
+M 0 13501 15 13538 ; target in range
+M 0 13501 15 13538 ; target in range
+M 0 13501 15 13539 ; target in range
+M 0 13501 15 13539 ; target in range
+M 0 13501 15 13539 ; target in range
+M 0 13501 15 13540 ; target in range
+M 0 13501 15 13540 ; target in range
+M 0 13501 15 13540 ; target in range
+M 0 13501 15 13541 ; target in range
+M 0 13501 15 13541 ; target in range
+M 0 13501 15 13541 ; target in range
+M 0 13502 9 13533 ; centaur in range
+M 0 13502 9 13534 ; centaur in range
+M 0 13502 9 13535 ; centaur in range
+M 0 13502 9 13536 ; centaur in range
+M 0 13502 9 13502 ; centaur outside grove
+M 0 13502 9 13505 ; centaur outside grove
+M 0 13502 9 13507 ; centaur outside grove
+M 0 13502 9 13511 ; centaur outside grove
+M 0 13502 9 13513 ; centaur outside grove
+M 0 13503 1 13531 ; centaur blacksmith in grove
+G 1 13501 200 ; shoes
+G 1 13502 200 ; barding
+G 1 13503 200 ; tunic
+M 0 13504 1 13523 ; centaur leader in grove
+M 0 13505 1 13529 ; centaur healer in grove
+M 0 13506 1 13530 ; centaur mage in grove
+G 1 13504 500 ; pill
+G 1 13505 500 ; potion
+G 1 13506 500 ; scroll
+G 1 13507 500 ; wand
+G 1 13508 500 ; staff
+G 1 13509 500 ; recall
+M 0 13507 1 13500 ; sentinel in grove
+S
+
+#SHOPS
+13503 ITEM_TYPE_ARMOR ITEM_TYPE_WEAPON ITEM_TYPE_CONTAINER ITEM_TYPE_NOTHING
+     ITEM_TYPE_NOTHING 100  70  0 23 ; blacksmith
+13506 ITEM_TYPE_SCROLL ITEM_TYPE_POTION ITEM_TYPE_PILL ITEM_TYPE_WAND
+     ITEM_TYPE_STAFF 100  70  0 23 ; mage
+0
+
+#$

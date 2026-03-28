@@ -1,0 +1,1203 @@
+#AREA MerKingdom~
+#AUTHORS McG&Jos~
+
+
+
+
+
+#HELPS
+0 $~
+
+
+
+
+#RANGES 15 35 0 99
+#FLAGS AFLAG_NODEBUG
+#MOBILES
+#7701
+scylla~
+Scylla~
+Scylla is swimming around here.~
+One of the most beautiful creatures you have ever seen.
+You are tempted to follow her.~
+ACT_SENTINEL
+AFF_DETECT_INVIS|AFF_FLYING
+-800 S
+25 0 0 1d1+1475 1d8+20
+5000 70135
+POS_STANDING POS_STANDING SEX_FEMALE
+>death_prog 100~
+if actorhasobjnum(30900)
+or actorhasobjnum(30966)
+or actorhasobjnum(30967)
+or actorhasobjnum(30968)
+or actorhasobjnum(30969)
+  if quest(30,1,$n) == 0
+    mpmset $n quest 30 1 1
+    mpoload 30914
+    mpforce $n HELP GUILDTOKEN
+    mpquiet on
+    c 'giant strength' $n
+    give i30914 $n
+    mpquiet off
+  endif
+endif~
+|
+#7702
+charybdis~
+Charybdis~
+Charybdis is swimming around here.~
+One of the most beautiful creatures you have ever seen.
+She looks a lot like Scylla.~
+ACT_SENTINEL
+AFF_DETECT_INVIS|AFF_FLYING
+-800 S
+25 0 0 1d1+1265 1d8+20
+5000 70135
+POS_STANDING POS_STANDING SEX_FEMALE
+#7703
+mermaid~
+The Mermaid~
+The Mermaid is standing here.~
+The Mermaid has long flowing hair that sways with the movement of the water
+around her.  Her tail slowly swishes in the water.~
+ACT_SENTINEL
+AFF_SANCTUARY
+1000 S
+22 0 0 400d2+30 3d8+14
+6500 35625
+POS_STANDING POS_STANDING SEX_FEMALE
+#7704
+dolphin~
+The dolphin~
+A curious dolphin swims up to you, looking for attention.~
+You see a bottle-nosed dolphin nosing around.  He has big eyes that seem to
+see everything that is going on.~
+0
+AFF_DETECT_INVIS|AFF_SANCTUARY|AFF_FLYING
+1000 S
+15 0 0 1d1+251 4d8+5
+400 5687
+POS_STANDING POS_STANDING SEX_MALE
+#7705
+octopus~
+The octopus~
+A large, intimidating octopus is eyeing you.~
+This octopus has several scars from previous battles.  It looks mean, 
+especially with all eight of its tentacles inching towards you.~
+ACT_SENTINEL|ACT_SCAVENGER|ACT_AGGRESSIVE
+0
+-500 S
+20 0 0 1d1+400 3d6+9
+2000 20422
+POS_STANDING POS_STANDING SEX_NEUTRAL
+#7706
+frog~
+the slimy, green frog~
+A slimy, green frog is hopping around.~
+You see an energetic frog bouncing around.  He occasionally flicks his 
+tounge out at a passing bug, but other than that, he seems oblivious to 
+the world around him.~
+0
+0
+0 S
+4 0 0 4d10+2 1d8+0
+10 459
+POS_STANDING POS_STANDING SEX_MALE
+#7707
+sponge~
+The sponge~
+A sponge is lying here doing what sponges do best -- nothing!~
+What kind of description do you expect when looking at a sponge?~
+ACT_SENTINEL|16
+0
+0 S
+1 0 0 12d1+0 1d4+0
+10 10
+POS_STANDING POS_STANDING SEX_NEUTRAL
+#7708
+oyster~
+The oyster~
+An oyster is nestled in between two rocks.~
+You can't tell much about this oyster because all you see is a hard
+grayish-brownish outer shell.~
+ACT_SENTINEL
+0
+0 S
+2 0 0 4d7+4 1d8+0
+15 152
+POS_RESTING POS_RESTING SEX_NEUTRAL
+#7709
+blowfish fish~
+The blowfish~
+A horny blowfish is swimming here, hoping to displace some of his lust.~
+The fish before you is in disarray, looking for someone or something to
+latch on to.  It puckers its lips with alarming frequency.~
+0
+0
+0 S
+12 0 0 1d1+155 1d9+8
+400 2918
+POS_STANDING POS_STANDING SEX_NEUTRAL
+#7710
+lobster~
+A lobster~
+A lobster is crawling around, clicking his claws at you.~
+You see a reddish-colored lobster with two enormous claws.  He is looking
+at you with his beady eyes.  He scurries away from you as you approach him.~
+ACT_AGGRESSIVE|ACT_WIMPY
+0
+-200 S
+5 0 0 10d7+50 2d4+1
+150 631
+POS_STANDING POS_STANDING SEX_MALE
+#7711
+crab~
+A crab~
+A crab is scurrying across the floor.~
+This crab is cranky.  It looks like it has had a bad day.~
+ACT_SCAVENGER
+0
+-100 S
+5 0 0 10d7+10 2d4+4
+150 631
+POS_STANDING POS_STANDING SEX_NEUTRAL
+#7712
+hydra heads~
+The Hydra~
+Seven ugly heads glare at you in unison.~
+You cringe in terror at the sight of seven snarling heads on a scaly body.~
+ACT_SENTINEL|ACT_SCAVENGER
+AFF_DETECT_INVIS|AFF_SANCTUARY
+-850 S
+27 0 0 30d10+320 5d9+9
+18851 84345
+POS_RESTING POS_RESTING SEX_NEUTRAL
+#7736
+rock rocks~
+a large rock~
+A large rock is lying here.~
+You see a large round rock that looks like it could weigh a ton.~
+ACT_SENTINEL|ACT_PET
+AFF_DETECT_INVIS|AFF_FLYING|AFF_PASS_DOOR
+0 S
+3 0 0 20d3+5 1d7+0
+0 300
+POS_STANDING POS_STANDING SEX_NEUTRAL
+#7737
+spirit evil~
+an evil spirit~
+An evil spirit shoots forth from Pandora's Box.~
+This evil spirit is very irritated that you opened its box!~
+ACT_SENTINEL|ACT_AGGRESSIVE
+AFF_DETECT_INVIS|AFF_SANCTUARY|AFF_FLYING
+-1000 S
+13 0 0 16d10+40 2d8+5
+1000 3616
+POS_STANDING POS_STANDING SEX_NEUTRAL
+#7738
+pandora~
+Pandora~
+Pandora stands here, hoping you do not see her.~
+She warns you solemnly, "Stay away from the box...."~
+ACT_SENTINEL
+AFF_INVISIBLE|AFF_DETECT_INVIS|AFF_FLYING|AFF_PASS_DOOR
+0 S
+20 0 0 1d1+292 1d10+20
+2000 20422
+POS_STANDING POS_STANDING SEX_FEMALE
+#7739
+trapfiller~
+The Traproom Filler Monster~
+~
+~
+ACT_SENTINEL
+AFF_INVISIBLE|AFF_PASS_DOOR
+0 S
+1 0 0 1d1+7 1d1+4
+0 10
+POS_STANDING POS_STANDING SEX_MALE
+#7780
+sjflkdjfla~
+the Guardian~
+A Guardian is here, angry with you.~
+~
+ACT_PET
+AFF_DETECT_INVIS|AFF_PASS_DOOR
+1000 S
+1 0 0 1d1+4 1d1+2
+0 10
+POS_STANDING POS_STANDING SEX_MALE
+#7781
+axydlbaaxr~
+A friend~
+The Mermaid's friend smiles at you sweetly.~
+~
+0
+0
+0 S
+1 0 0 1d1+7 1d1+2
+0 10
+POS_STANDING POS_STANDING SEX_MALE
+#7791
+jkxlskajshdg~
+MacGruff~
+MacGruff the Great Swashbuckler is sleeping here.~
+MacGruff lies here asleep.~
+ACT_PET
+AFF_DETECT_INVIS|AFF_SANCTUARY
+1000 S
+30 0 0 50d10+400 1d1+94
+0 106194
+POS_STANDING POS_STANDING SEX_MALE
+#7792
+sjflkdjfla~
+the Guardian~
+A Guardian is here, angry with you.~
+~
+ACT_PET
+AFF_DETECT_INVIS|AFF_PASS_DOOR
+1000 S
+1 0 0 1d1+5 1d1+2
+0 10
+POS_STANDING POS_STANDING SEX_MALE
+#7793
+sjflkdjfla~
+the Guardian~
+A Guardian is here, angry with you.~
+~
+ACT_PET
+AFF_DETECT_INVIS|AFF_PASS_DOOR
+1000 S
+1 0 0 1d1+4 1d1+3
+0 10
+POS_STANDING POS_STANDING SEX_MALE
+#7794
+sjflkdjfla~
+the Guardian~
+A Guardian is here, angry with you.~
+~
+ACT_PET
+AFF_DETECT_INVIS|AFF_PASS_DOOR
+1000 S
+1 0 0 1d1+6 1d1+4
+0 10
+POS_STANDING POS_STANDING SEX_MALE
+#7795
+sjflkdjfla~
+the Guardian~
+A Guardian is here, angry with you.~
+~
+ACT_PET
+AFF_DETECT_INVIS|AFF_PASS_DOOR
+1000 S
+1 0 0 1d1+4 1d1+3
+0 10
+POS_STANDING POS_STANDING SEX_MALE
+#7796
+sjflkdjfla~
+the Guardian~
+A Guardian is here, angry with you.~
+~
+ACT_PET
+AFF_DETECT_INVIS|AFF_PASS_DOOR
+1000 S
+1 0 0 1d1+6 1d1+3
+0 10
+POS_STANDING POS_STANDING SEX_MALE
+#7797
+sjflkdjfla~
+the Guardian~
+A Guardian is here, angry with you.~
+~
+ACT_PET
+AFF_DETECT_INVIS|AFF_PASS_DOOR
+1000 S
+1 0 0 1d1+5 1d1+3
+0 10
+POS_STANDING POS_STANDING SEX_MALE
+#7798
+sjflkdjfla~
+the Guardian~
+A Guardian is here, angry with you.~
+~
+ACT_PET
+AFF_DETECT_INVIS|AFF_PASS_DOOR
+1000 S
+1 0 0 1d1+5 1d1+3
+0 10
+POS_STANDING POS_STANDING SEX_MALE
+#7799
+sjflkdjfla~
+the Guardian~
+A Guardian is here, angry with you.~
+~
+ACT_PET
+AFF_DETECT_INVIS|AFF_PASS_DOOR
+1000 S
+1 0 0 1d1+5 1d1+3
+0 10
+POS_STANDING POS_STANDING SEX_MALE
+#0
+
+
+
+
+#OBJECTS
+#7701
+tail scale mail~
+a scale mail tail~
+A tail is lying here, made of a scaly material.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_ANTI_EVIL|ITEM_FLAG_ANTI_NEUTRAL|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_LEGS
+10 0 0 0
+15 37500 22
+E
+scale tail mail~
+You have small guilt pains for having killed such a beautiful creature to
+obtain it, but it nonetheless looks like it would fit comfortably.  Some
+small openings at the end of it will easily allow your feet through, and
+will probably not hinder your walking at all.~
+#7702
+tin tuna~
+a tin of tuna~
+A tin of tuna has been left here, unopened.~
+~
+ITEM_TYPE_FOOD
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+24 0 0 NOT_POISONED
+1 25 1
+#7703
+claw~
+a lobster's claw~
+A lobster's claw lies here.~
+pinch/pinches~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 4 2 WEAPON_PIERCE
+7 5 6
+#7704
+pearl~
+a pearl~
+An opulent pearl has been accidentally dropped here.~
+~
+ITEM_TYPE_TREASURE
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+0 0 0 0
+4 10000 1
+#7706
+bug~
+a bug~
+The frog's extra bug is lying here, but he will probably want it back.~
+~
+ITEM_TYPE_FOOD
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+12 0 0 NOT_POISONED
+1 3 1
+#7707
+lamp lava~
+a lava lamp~
+A small lava lamp, giving off just as much heat as it is light.~
+~
+ITEM_TYPE_LIGHT
+ITEM_FLAG_GLOW|ITEM_FLAG_HUM|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 30000 0
+4 0 13
+#7708
+pile gold coins~
+a pile of gold coins~
+A pile of gold coins is lying here.~
+~
+ITEM_TYPE_MONEY
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+75 0 0 0
+0 75 1
+#7709
+box~
+pandora's box~
+A large, unlocked, box is sitting here, completely unattended.~
+~
+ITEM_TYPE_CONTAINER
+ITEM_FLAG_LEVEL
+0
+-1 5 -1 0
+100 100 1
+#7710
+treasure coins~
+a large treasure~
+A large treasure is in the Box.~
+~
+ITEM_TYPE_MONEY
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+10000 0 0 0
+0 10000 1
+#7711
+staff brilliant blue~
+a brilliant blue staff~
+A staff lies on the ground discarded.~
+~
+ITEM_TYPE_STAFF
+ITEM_FLAG_GLOW|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+15 1 1 SPELL_HEAL
+4 1000 4
+#7712
+shield fire~
+a shield of fire~
+A burning red shield is here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_GLOW|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_SHIELD
+10 0 0 0
+20 20000 26
+#7713
+head hydra~
+one of Hydra's heads~
+Hydra's head lies on the ground, glaring at you icily.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HEAD|ITEM_WEAR_HOLD
+1 0 0 0
+4 1000 13
+A
+APPLY_CON 2
+#0
+
+
+
+
+#ROOMS
+#7700
+~
+~
+77 0 0
+S
+#7701
+The Entrance to the MerKingdom~
+As you enter, you notice that your breath leaves your body.  Strangely,
+though, you do not have any desire to breathe.  A signpost is here, bearing
+a short message.  Fish and human-like creatures are swimming around peacefully,
+yielding a serene atmosphere.  Your presence does not seem to frighten them in
+any way.  Nonetheless, you notice that these creatures are avoiding certain
+areas of their realm carefully.~
+77 ROOM_INDOORS SECT_WATER_SWIM
+DDIR_NORTH
+~
+~
+0 -1 7710
+DDIR_UP
+You can barely see the water above where you entered this lovely kingdom.~
+~
+0 -1 17806
+E
+sign signpost~
+The sign reads:
+Welcome to our lovely kingdom.  We hope that you will enjoy your visit or
+residence in our world.  Please beware of some of our creatures, however.
+They do not represent our city in any other capacity than that they live here.
+
+Best wishes from us to you in our world.
+
+                                           The MerKingdom Council of Relations~
+S
+#7702
+Inside the Whirlpool~
+You are trapped inside the whirlpool, and there is virtually no chance
+that you will be able to get back upwards to where you came.  The eye of the
+whirlpool, which you see below you, leads downward to what appears to be much
+safer waters.~
+77 ROOM_DARK|ROOM_NO_MOB SECT_INSIDE
+DDIR_DOWN
+~
+~
+0 -1 7704
+S
+#7703
+A Whirlpool~
+You are at the top of a gigantic whirlpool, which exerts a small pressure
+on you.  Downward you can only see more of the whirlpool, and it looks a
+little dangerous.~
+77 ROOM_NO_MOB SECT_INSIDE
+DDIR_DOWN
+~
+~
+0 -1 7702
+S
+#7704
+Eye of the Whirlpool~
+The force exerted on you now is about as bad as you can imagine.  You have
+a clear view of the area below you, which looks peaceful and tranquil.  There
+is no exit other than downward.~
+77 ROOM_NO_MOB SECT_INSIDE
+DDIR_DOWN
+A peaceful and tranquil area is your general impression.~
+~
+0 -1 7701
+S
+#7710
+A Watery Passageway~
+A beautiful Mermaid sits here on a rock, smiling.  As she inspects you,
+you get the general idea that she knows a little more about this area than
+you do.~
+77 0 SECT_WATER_SWIM
+DDIR_NORTH
+~
+~
+0 -1 7711
+S
+#7711
+A Narrow Passageway~
+A pair of beautiful creatures rest here, even more beautiful in fact than
+the Mermaid you just visited.  Their gentle voices and beautiful songs fill
+the air.  You seem to have an irrestible urge to follow them.  It appears that
+the same boring passageway is all that awaits you to the north.~
+77 0 SECT_WATER_SWIM
+DDIR_NORTH
+~
+~
+0 -1 7743
+DDIR_EAST
+~
+~
+0 -1 7712
+DDIR_SOUTH
+~
+~
+0 -1 7737
+DDIR_WEST
+~
+~
+0 -1 7735
+S
+#7712
+A Rocky Shortcut~
+As you go in this direction, you notice more and more rocks that you
+must avoid.  You see a large mountainlike structure ahead.~
+77 ROOM_INDOORS SECT_WATER_SWIM
+DDIR_EAST
+~
+~
+0 -1 7713
+DDIR_WEST
+~
+~
+0 -1 7711
+S
+#7713
+A Rocky Shortcut~
+The rocks are getting even worse.  You are getting closer to the mountain.
+A small light shines through what might be a hole in the mountain.  As you
+barely avoid a rock, you realize that that rock might cut off your way
+back to where you came from.~
+77 0 SECT_WATER_SWIM
+DDIR_EAST
+~
+~
+0 -1 7714
+S
+#7714
+The Front of the Mountain~
+You have now reached the mountain, which you can see has a small crack in
+it.  A light shines through the crack, and through the crack you can make out
+a small city.  It appears that you might just barely squeeze through the 
+crack.~
+77 0 SECT_WATER_SWIM
+DDIR_EAST
+~
+~
+0 -1 7715
+S
+#7715
+The Crevice~
+Well, you thought you could make it, but you didn't.  The rock from the
+mountain collapses on your ribcage, and you momentarily stop breathing.
+There is no visible way out, you are lodged in amongst some rocks.
+Taunting you to the eastern side is the sight of the city.  Maybe some other
+way, some other time.........~
+77 ROOM_NO_MOB|ROOM_INDOORS SECT_INSIDE
+S
+#7730
+Cavern~
+You have reached a large open cavern.  You try to look up but the ceiling
+is much too high for you to see.  All sorts of sea creatures swim by you, wary
+but also uninterested.~
+77 ROOM_DARK SECT_WATER_SWIM
+DDIR_EAST
+~
+~
+0 -1 7733
+DDIR_UP
+You cannot see anything above you.  The ceiling, if it exists, is much too
+high for you to see.~
+~
+0 -1 0
+S
+#7731
+Narrow Tunnel~
+You get a claustrophobic feeling from the narrowness of the tunnel. There
+are jagged pieces of rock littering the floor that you must carefully avoid.
+The only exits you can see are to the east and south.~
+77 ROOM_DARK SECT_WATER_SWIM
+DDIR_EAST
+~
+~
+0 -1 7735
+DDIR_SOUTH
+~
+~
+0 -1 7730
+S
+#7732
+Inside of a Cave~
+You are standing in a tunnel that is cluttered with debris from previous
+rock slides.  It is hard to navigate through here because of all the rocks.
+You see a dim light from the north and another tunnel leading upwards.~
+77 ROOM_DARK SECT_WATER_SWIM
+DDIR_NORTH
+~
+~
+0 -1 7744
+DDIR_UP
+~
+~
+0 -1 7731
+S
+#7733
+Sloping Passage~
+You barely fit between the two walls as you climb sideways through this
+passage.  The passage leads southward and opens up in that direction.~
+77 ROOM_DARK SECT_WATER_SWIM
+DDIR_SOUTH
+~
+~
+0 -1 7735
+S
+#7734
+In the Water~
+The water envelops you as you swim slowly through.  As you look around, you
+admire the beautiful scenery and colorful detail.~
+77 0 SECT_WATER_SWIM
+DDIR_NORTH
+~
+~
+0 -1 7737
+S
+#7735
+Entrance to the Underwater Cave~
+You find yourself standing at the mouth of an underwater cave.  You can't
+seem to see anything inside, but you can detect that there are almost certainly
+SOME life forms there.~
+77 0 SECT_WATER_SWIM
+DDIR_EAST
+~
+~
+0 -1 7738
+DDIR_DOWN
+~
+~
+0 -1 7732
+S
+#7736
+Resting Place~
+You swim away from the small hole, and come upon what appears to be a
+a resting place for animals of this world.  You can see exits into several
+different-looking areas.  To the east you notice you will be exploring
+the hole again.~
+77 0 SECT_WATER_SWIM
+DDIR_NORTH
+~
+~
+0 -1 7751
+DDIR_EAST
+~
+~
+0 -1 7741
+DDIR_WEST
+~
+~
+0 -1 7752
+DDIR_DOWN
+~
+~
+0 -1 7744
+S
+#7737
+Watery Pass~
+As you swim along, you have time to notice the small details in the 
+creatures around you.  Some of them are quite majestic-looking, while others
+have a simple beauty.  Their fluid motions and smooth swimming makes you
+wonder how clumsy you must look to them.~
+77 0 SECT_WATER_SWIM
+DDIR_EAST
+~
+~
+0 -1 7743
+DDIR_WEST
+~
+~
+0 -1 7738
+S
+#7738
+Trembling Pass~
+The water around you begins to splash violently at your body, but then
+stops abruptly.  The reactions of the small creatures around you suggest that
+such occurences are quite common.~
+77 0 SECT_WATER_SWIM
+DDIR_EAST
+~
+~
+0 -1 7744
+DDIR_WEST
+~
+~
+0 -1 7734
+S
+#7739
+A Tiny Crack~
+You swim away from the hollow rock and you can see, through a small crack
+to the west, the top of a fiery red hole.  You can probably squeeze
+through the crack.  To the south you see the entrance to the hollow rock you
+have just explored.~
+77 0 SECT_WATER_SWIM
+DDIR_SOUTH
+~
+~
+0 -1 7745
+DDIR_WEST
+~
+~
+0 -1 7757
+S
+#7740
+Inside the Hollow Rock~
+You marvel at the idea that you are inside of a rock.  The water in here
+is stale and musty, and the water is darker than anywhere else.~
+77 0 SECT_WATER_SWIM
+DDIR_UP
+~
+~
+0 -1 7736
+DDIR_DOWN
+~
+~
+0 -1 7739
+S
+#7741
+The Octopus Lair~
+As you walk into this lair, you shiver with fear.  This looks like the
+home of a vicious creature, one who seems to be able to cling to anything.
+Bones and ink litter the floor.~
+77 0 SECT_WATER_SWIM
+DDIR_UP
+~
+~
+0 -1 7740
+S
+#7742
+Deepest Part of the Hole~
+From here you can see the bottom of the hollow rock.  There is little else
+here, that you can tell.  To the west you can just make on some muffled noises.
+   You watch a large fish leave east, then hear a mysterious shriek.  You
+wonder if you would be able to withstand what the fish apparently could not.~
+77 0 SECT_WATER_SWIM
+DDIR_EAST
+~
+~
+0 -1 7741
+DDIR_WEST
+~
+~
+0 -1 7736
+S
+#7743
+Watery Plateau~
+You are standing in the middle of a plateau.  The floor is covered 
+with sand and silt and the floor beneath you is covered with greenish algae, 
+slick to the touch.  A path bends toward the east where you see a
+large coral structure.  To the north, you see a busy intersection.~
+77 0 SECT_WATER_SWIM
+DDIR_NORTH
+~
+~
+0 -1 7744
+DDIR_EAST
+~
+~
+0 -1 7749
+DDIR_SOUTH
+~
+~
+0 -1 7711
+S
+#7744
+Entrance to Everywhere~
+This is a busy intersection.  There are many sea creatures speeding
+past you.  No matter where you stand, you are always in someone's or 
+something's way.  Exits lead in every direction.~
+77 0 SECT_WATER_SWIM
+DDIR_NORTH
+~
+~
+0 -1 7745
+DDIR_EAST
+~
+~
+0 -1 7751
+DDIR_SOUTH
+~
+~
+0 -1 7750
+DDIR_WEST
+~
+~
+0 -1 7737
+DDIR_UP
+~
+~
+0 -1 7745
+DDIR_DOWN
+~
+~
+0 -1 7738
+E
+sign~
+!@!@!@!@!@!@!@!@!@!@!@!@!@!@!@!@!@!@!@!@!@!@!@!@!@!@!@!@!@!@!@!@!@!@!@!@
+
+
+            * * *      *      * * *                *      * * *
+            *         * *       *                 * *       *
+            * * *    * * *      *                * * *      *
+            *       *     *     *               *     *     *
+            * * *  *       *    *              *       *    *
+
+
+             * * * * *    * * * *    * * * *   '   * * * *
+                 *        *     *    *             *
+                 *        *     *    * * * *       * * * *
+                 *        *     *    *                   *
+             * * *        * * * *    * * * *       * * * *
+
+
+!@!@!@!@!@!@!@!@!@!@!@!@!@!@!@!@!@!@!@!@!@!@!@!@!@!@!@!@!@!@!@!@!@!@!@!@~
+S
+#7745
+The Hollow Rock~
+You have entered what appears to be a hollow rock, but it is unclear
+whether or not the rock was hollow by nature or by some external force.
+The rugged cut of the ceiling suggests it is purely a work of nature, but
+you nonetheless have a since of eerieness.~
+77 0 SECT_WATER_SWIM
+DDIR_NORTH
+~
+~
+0 -1 7746
+S
+#7746
+Inside the Rock~
+The rock you have entered spreads out before you, and you can see that it
+is clearly a natural phenomenon.  A hole leads downward, and you cannot see
+far enough to tell what awaits you in that direction.  Your other option,
+west, appears to be a much safer alternative.~
+77 0 SECT_WATER_SWIM
+DDIR_WEST
+~
+~
+0 -1 7740
+DDIR_DOWN
+~
+~
+0 -1 7747
+S
+#7747
+Down the Hole~
+Fortunately, you traced your steps well enough that you realize you need
+to go east, not up, to return to where you came.  In fact, you sense such
+evil above you that you have no real desire to go in that direction.  The
+hole also continues downward.~
+77 0 SECT_WATER_SWIM
+DDIR_EAST
+~
+~
+0 -1 7746
+DDIR_UP
+~
+~
+0 -1 7741
+DDIR_DOWN
+~
+~
+0 -1 7748
+S
+#7748
+A Slender Tunnel~
+This is not the hole you anticipated it was, but instead is just a small
+and narrow tunnel.  The hole lies to the west, which is down a steep incline.
+There are no exits in any other direction.~
+77 0 SECT_WATER_SWIM
+DDIR_WEST
+~
+~
+0 -1 7742
+S
+#7749
+Entrance to Coral Reef~
+This area is filled with delicate and intricate coral formations.  It
+is very colourful and you have the urge to touch it, but you don't because
+it is razor sharp.~
+77 0 SECT_WATER_SWIM
+DDIR_EAST
+~
+~
+0 -1 7755
+S
+#7750
+Coral Reef~
+All you can see is coral.  It has grown up high enough to form a sort 
+of wall and an overhang.  It looks really fragile, so fragile that if you
+make a sudden movement or loud noise the whole thing will come crashing
+down.  The only exit you can see is to the east, but it is very dark.  
+You wonder what is lurking just beyond the light.
+There is a note stuck to a piece of coral that is jutting out of the wall.~
+77 ROOM_INDOORS SECT_WATER_SWIM
+DDIR_EAST
+~
+~
+0 -1 7756
+E
+note~
+*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_
+
+
+                                WARNING!
+
+       SSHHH!       SSHHH!       SSHHH!       SSHHH!       SSHHH!
+
+
+Absolutely NO (none whatsoever) shouting is allowed in this room!
+
+Sudden movement is also strongly discouraged!
+
+
+       SSHHH!       SSHHH!       SSHHH!       SSHHH!       SSHHH!
+
+
+*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_~
+S
+#7751
+On Top of Coral Formation~
+From this vantage point you can see for a long ways, except that all
+you can see is more coral.  You do however notice that there are many 
+cracks that could conceal monsters.  The only way that you can tell leads 
+off of this formation is a sloping path to the south.~
+77 0 SECT_WATER_SWIM
+DDIR_SOUTH
+~
+~
+0 -1 7750
+S
+#7752
+A Dead End~
+As you walk westward, a small slab of rock behind you shuts,
+blocking off all light.  Behind the slab you hear the giggling of the marine
+creatures you passed at the resting place.  There is no way back.  You hear 
+loud, hurried noises as you move farther eastward.~
+77 0 SECT_WATER_SWIM
+DDIR_EAST
+~
+~
+0 -1 7744
+S
+#7753
+Inferno~
+You swim inside the volcano, and to your chagrin, the temperature only
+rises.  Fortunately, there is a small opening in the volcano wall to
+the south, obviously created by the inhabitants of this kingdom.  It leads
+you back to a bluish, safe waters.  Also you notice that you could
+probably still swim back up to the top of the volcano.  You will have to
+race the eruption to do so, however.~
+77 0 SECT_WATER_SWIM
+DDIR_SOUTH
+~
+~
+0 -1 7711
+DDIR_UP
+~
+~
+0 -1 7759
+S
+#7754
+Pandora's Hideout~
+As you enter this room, you notice a complete change of environment.
+The volcano eruption is not even noticeable to this quiet, simple room.
+The room is a standard room, yet it apparently lies in the middle of the
+water.  You sense that some forces beyond this dimension are in control here.
+It might be safer to leave to the north, where you can see the water again.~
+77 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 7711
+S
+#7755
+Coral Formation~
+The further you swim, the more dense the coral gets.  At places you can
+barely squeeze through.  In front of you stands a large coral formation
+that looks like it has been forming for many years.~
+77 0 SECT_WATER_SWIM
+DDIR_SOUTH
+~
+~
+0 -1 7711
+DDIR_WEST
+~
+~
+0 -1 7756
+S
+#7756
+Inside the Coral Formation~
+This seems to be some sort of secret cavern within the coral formation.
+The lack of light and the general dismal feeling of this cavern makes
+you wonder if you are the first one to set foot inside here in ages.
+To the north you can just barely make out an exit.~
+77 ROOM_DARK SECT_WATER_SWIM
+DDIR_NORTH
+~
+~
+0 -1 7755
+S
+#7757
+Lava Slide~
+You see before you to the north a huge volcano, which has spilled forth
+a large amount of lava on the sea floor, causing all the sea life to die out.
+You see caracasses of fish and other marine animals littering the ground,
+burnt to a crisp.   The volcano itself is itself a breathtaking sight,
+but at the same time a terrible one.~
+77 ROOM_NO_MOB SECT_WATER_SWIM
+DDIR_NORTH
+~
+~
+0 -1 7758
+DDIR_SOUTH
+~
+~
+0 -1 7739
+S
+#7758
+Atop the Volcano~
+You reach the top of the volcano, and notice that it is starting to shake
+violently.  There is easily enough room for you to go down inside the volcano,
+but you hardly think that would be a wise decision.~
+77 0 SECT_WATER_SWIM
+DDIR_DOWN
+~
+~
+0 -1 7753
+S
+#7759
+Atop the Volcano~
+You swim back up to the top of the volcano, but you are sidetracked by
+the eruption of the volcano.  As you reach the top, the momentum of the 
+eruption pushes you up much higher than the volcano's mouth.  Your only
+escape is to the north.~
+77 0 SECT_WATER_SWIM
+DDIR_NORTH
+~
+~
+0 -1 7754
+S
+#7791
+MacGruff's Dog House~
+Welcome to your home.  Kick your feet up, there is a wonderful pillow
+on the ground and fresh new bowls of water and food for you.~
+77 ROOM_NO_MOB|ROOM_INDOORS|ROOM_PRIVATE SECT_WATER_SWIM
+S
+#0
+
+
+
+
+#RESETS
+M 0  7703   1  7710 ;              The Mermaid in A Watery Passageway      
+E 1  7701  1 7 ;equip a scale mail tail        
+M 0  7710   3  7741 ;                A lobster in The Octopus Lair         
+E 1  7703  3 ITEM_WEAR_HEAD ;equip a lobster's claw         
+M 0  7710   3  7747 ;                A lobster in Down the Hole            
+E 1  7703  3 ITEM_WEAR_HEAD ;equip a lobster's claw         
+M 0  7710   3  7742 ;                A lobster in Deepest Part of the Hole 
+E 1  7703  3 ITEM_WEAR_HEAD ;equip a lobster's claw         
+M 0  7711   3  7751 ;                   A crab in On Top of Coral Formation
+M 0  7711   3  7739 ;                   A crab in A Tiny Crack             
+M 0  7711   3  7742 ;                   A crab in Deepest Part of the Hole 
+M 0  7709   2  7730 ;             The blowfish in Cavern                   
+M 0  7709   2  7736 ;             The blowfish in Resting Place            
+M 0  7712   1  7756 ;                The Hydra in Inside the Coral Formatio
+E 1  7713  1 6 ;equip one of Hydra's heads     
+M 0  7704   2  7710 ;              The dolphin in A Watery Passageway      
+G 1  7702   5       ;            a tin of tuna
+M 0  7704   2  7744 ;              The dolphin in Entrance to Everywhere   
+G 1  7702   5       ;            a tin of tuna
+M 0  7702   1  7711 ;                Charybdis in A Narrow Passageway      
+M 0  7701   1  7711 ;                   Scylla in A Narrow Passageway      
+M 0  7739   1  7715 ;The Traproom Filler Monst in The Crevice              
+M 0  7705   1  7741 ;              The octopus in The Octopus Lair         
+M 0  7706   5  7738 ;    the slimy, green frog in Trembling Pass           
+G 1  7706  10       ;                    a bug
+M 0  7706   5  7745 ;    the slimy, green frog in The Hollow Rock          
+G 1  7706  10       ;                    a bug
+M 0  7706   5  7755 ;    the slimy, green frog in Coral Formation          
+G 1  7706  10       ;                    a bug
+M 0  7706   5  7739 ;    the slimy, green frog in A Tiny Crack             
+G 1  7706  10       ;                    a bug
+M 0  7706   5  7735 ;    the slimy, green frog in Entrance to the Underwate
+G 1  7706  10       ;                    a bug
+M 0  7707   3  7750 ;               The sponge in Coral Reef               
+M 0  7707   3  7756 ;               The sponge in Inside the Coral Formatio
+M 0  7707   3  7743 ;               The sponge in Watery Plateau           
+M 0  7708   3  7737 ;               The oyster in Watery Pass              
+M 0  7708   3  7734 ;               The oyster in In the Water             
+M 0  7708   3  7751 ;               The oyster in On Top of Coral Formation
+G 1  7704   1       ;                  a pearl
+M 0  7738   1  7754 ;                  Pandora in Pandora's Hideout        
+E 1  7707 10 0 ;equip a lava lamp              
+O 0  7709   1  7754 ;            pandora's box in Pandora's Hideout        
+M 0  7781   1  7791 ;                 A friend in MacGruff's Dog House     
+M 0  7736  10  7750 ;             a large rock in Coral Reef               
+M 0  7736  10  7750 ;             a large rock in Coral Reef               
+M 0  7736  10  7750 ;             a large rock in Coral Reef               
+M 0  7736  10  7750 ;             a large rock in Coral Reef               
+M 0  7736  10  7750 ;             a large rock in Coral Reef               
+M 0  7736  10  7750 ;             a large rock in Coral Reef               
+M 0  7736  10  7750 ;             a large rock in Coral Reef               
+M 0  7736  10  7750 ;             a large rock in Coral Reef               
+M 0  7736  10  7750 ;             a large rock in Coral Reef               
+M 0  7736  10  7750 ;             a large rock in Coral Reef               
+O 1  7708   1  7756 ;     a pile of gold coins in Inside the Coral Formatio
+S
+
+
+
+
+#SHOPS
+0
+
+
+
+
+#SPECIALS
+S
+
+
+
+
+#$

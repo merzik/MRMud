@@ -1,0 +1,3259 @@
+#AREA Hartsvale~
+#AUTHORS Blythe~
+
+
+
+
+#HELPS
+-1 HARTSVALE~
+{110}Hartsvale
+
+{160}Hartsvale is an area based on the The Twilight Giants trilogy by Troy Denning.
+They are part of TSR's Forgotten Realms books.  The kingdom of Hartsvale is a 
+land where giants and giant kin are as common as humans.  It is even rumoured 
+that some of the humans may have giant kin in their ancestry.
+
+There are two quests in the area, one starting at the Titan of Twilight
+(yielding level 90 ac/mana equip) and the other starting at
+Brianna of Hartwick (yielding level 65 damage and ac gear).
+
+NB: The giants of Hartsvale are very suspicious of assassins.
+
+{110}(a) Area created by Blythe
+
+{160}Last updated 14th December 1998{300}
+
+{a}BLYTHE
+~
+0 $~
+
+
+
+
+#RANGES 70 95 0 99
+#FLAGS AFLAG_NODEBUG
+#MOBILES
+#5700
+brianna hartwick queen~
+Brianna of Hartwick~
+Brianna of Hartwick stands here.~
+A regal woman looks at you haughtily.  She stands near 7 feet tall. 
+She looks very young to be the queen of Hartsvale.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_SANCTUARY|AFF_UNDERSTAND|AFF_TONGUES
+0 S
+95 BODY_HAND BODY_HAND|BODY_FOOT 10d10+14000 2d10+80
+359620 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_FEMALE
+>all_greet_prog 100~
+if quest(0, 4, $n) == 0
+  say Welcome to my court $n.
+  say I'm sorry you have not come at a happier time.  
+  say I am trying to find a traitor among us.  
+  say If we don't find the traitor, 
+  say I will be taken to Twilight Vale
+  say against my will.  Will you help me find the traitor?
+  emote looks at you enquiringly.
+  mpmset $n quest 0 4 1
+else
+  if quest(0, 4, $n) == 7
+    if sex($n) == 1
+      mpmset $n long Lord $n of Hartsvale is here.
+      say Welcome $n,
+      say I knight thee Lord $n of Hartsvale 
+      say for your great service to the crown!
+    else
+      mpmset $n long Lady $n of Hartsvale is here.
+      say Welcome $n,
+      say I knight thee Lady $n of Hartsvale 
+      say for your great service to the crown!
+    endif
+    mpmset $n quest 0 4 8
+  else
+    if quest(0, 4, $n) == 1
+      nod $n
+    else
+      if quest(0, 4, $n) == 8
+        if sex($n) == 1
+          say Welcome Lord $n of Hartsvale.
+        else
+          say Welcome Lady $n of Hartsvale.
+        endif
+      else
+        say Have you found the traitor among us yet $n?
+      endif
+    endif
+  endif
+endif
+~
+>speech_prog yes~
+if quest(0, 4, $n) == 1
+say Go see Basil the Veeberg.
+say He will tell you something that may help you.
+mpmset $n quest 0 4 2
+break
+else
+say Yes? Yes what?
+peer $n
+endif
+~
+>death_prog 1~
+mpoload 5733
+~
+>give_prog i5736~
+if quest(5, 4, $n) == 3
+  mpecho Brianna drinks the Potion.
+  mpecho Brianna's eyes glaze over.
+  mpmset $n quest 5 4 4
+endif
+~
+>speech_prog p Come to Twilight Vale with me.~
+if quest(5, 4, $n) == 4
+  mpechoat $n The Queen looks at you in a daze.
+  say I will do what you say, $n.
+  mpechoat $n You take the queen by the hand and lead her from the castle.
+  mpmset $n quest 5 4 5
+  mpmset self quest 12 4 0
+endif
+~
+>rand_prog 100~
+if quest(5, 4, $r) == 5
+  if quest(12, 4, self) == 0
+    if rand (50)
+      if inroom($i) == 5705
+        connect 1 5736
+        mpechoat $r You mutter to yourself under your breath as you try to remember how to get back
+        mpechoat $r to the Twilight Vale...
+        mpforce $r east
+        east 
+        mpat 5705 connect 1 -1
+        mpmset self quest 12 4 1
+        break
+      endif
+    endif
+  endif
+  if quest(12, 4, self) == 1
+    if rand (50)
+      if inroom($i) == 5736
+        connect 0 5753
+        mpechoat $r You mutter to yourself under your breath as you try to remember how to get back
+        mpechoat $r to the Twilight Vale...
+        mpforce $r north
+        north 
+        mpat 5736 connect 0 -1
+        mpmset self quest 12 4 2
+        break
+      endif
+    endif
+  endif
+  if quest(12, 4, self) == 2
+    if rand (50)
+      if inroom($i) == 5753
+        connect 0 5756
+        mpechoat $r You mutter to yourself under your breath as you try to remember how to get back
+        mpechoat $r to the Twilight Vale...
+        mpforce $r north
+        north 
+        mpat 5753 connect 0 5754
+        mpmset self quest 12 4 3
+        break
+      endif
+    endif
+  endif
+  if quest(12, 4, self) == 3
+    if rand (50)
+      if inroom($i) == 5756
+        connect 0 5773
+        mpechoat $r You mutter to yourself under your breath as you try to remember how to get back
+        mpechoat $r to the Twilight Vale...
+        mpforce $r north
+        north 
+        mpat 5756 connect 0 5764
+        mpmset self quest 12 4 4
+        break
+      endif
+    endif
+  endif
+  if quest(12, 4, self) == 4
+    if rand (50)
+      if inroom($i) == 5773
+        connect 0 5780
+        mpechoat $r You mutter to yourself under your breath as you try to remember how to get back
+        mpechoat $r to the Twilight Vale...
+        mpforce $r north
+        north 
+        mpat 5773 connect 0 5778
+        mpmset self quest 12 4 6
+        break
+      endif
+    endif
+  endif
+  if quest(12,4, self) == 6
+    if rand (50)
+      if inroom($i) == 5780
+        mpechoat $r You mutter to yourself under your breath as you try to remember how to get back
+        mpechoat $r to the Twilight Vale...
+        mpforce $r north
+        north 
+        mpmset self quest 12 4 7
+        break
+      endif
+    endif
+  endif
+  if quest(12, 4, self) == 7
+    if rand (50)
+      if inroom($i) == 5735
+        mpmset $n quest 5 4 6
+        mpechoat $r A-ha! This is they way back!
+        mpforce $r north
+        north 
+        mpmset self quest 12 3 8
+        mppurge $i
+        break
+      endif
+    endif
+  endif
+endif
+~
+|
+#5701
+Tavis Burdun Firbolg Scout~
+Tavis Burdun~
+Tavis Burdun, the Firbolg Scout, scouts the area.~
+Tavis Burdun scouts the territory around you.  He wields a large hickory 
+bow called Bear Driller.  He stands 8 feet tall, small for a firbolg, and 
+his bow is a foot taller than him.~
+ACT_SMART|ACT_BODY|ACT_RACE
+AFF_UNDERSTAND|AFF_STEALTH|AFF_TONGUES|AFF_DETECT_HIDDEN|AFF_DETECT_INVIS
+0 S
+95 BODY_HAND BODY_HAND|BODY_FOOT 10d10+9900 3d10+75
+1000 RACE_OGRE
+POS_STANDING POS_STANDING SEX_MALE
+>speech_prog help~
+if quest(0, 4, $n) == 3
+  mpoload 5716
+  emote reaches back and gets an arrow from his quiver.
+  give i5716 $n
+  drop i5716
+  say $n, this is a rune arrow that Basil the Verbeeg has made.
+  say It is explosive and may help you kill the traitor.
+  say To activate it you have to think BASILISWISE.
+  say I have sent my charge Avner to find out who the traitor is.
+  mpmset $n quest 0 4 4
+endif
+~
+>death_prog 100~
+if quest(5, 4, $n) == 2
+  if quest(10, 1, $n) == 0
+    shout NO! I have failed you my Queen!
+    mpmset $n quest 10 1 1
+  endif
+endif
+if rand (1)
+  mpoload 5733
+endif
+~
+|
+#5702
+Basil verbeeg~
+Basil the Verbeeg~
+Basil the Verbeeg stands here.~
+He stands 9 feet tall, with gangling arms, bowed legs and huge feet
+as flat as a beavers tail.  He looks gaunt and half starved, with a
+distended belly and stooped shoulders.  A scrawny beard hangs from his
+chin while his thick lips give him an affable yet oddly sly smile.~
+ACT_SENTINEL|ACT_SCAVENGER|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_SANCTUARY|AFF_UNDERSTAND|AFF_TONGUES
+0 S
+95 BODY_HEAD BODY_HAND 10d10+9900 2d7+85
+100000 RACE_OGRE
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 100~
+if quest(0, 4, $n) == 2
+  say Ahhhh, $n, Queen Brianna has sent you?
+  say Go find Tavis Burdun, Lord Scout, he has some rune 
+  say arrows that I have made that you can use when killing 
+  say the traitor. 
+  mpmset $n quest 0 4 3
+else
+  if quest(0, 4, $n) == 8
+    if sex($n) == 1
+      say Welcome Lord $n of Hartsvale.
+    else
+      say Welcome Lady $n of Hartsvale.
+    endif
+  else
+    say The Queen is worried, $n.
+    mpecho Basil marks runes onto an arrow.
+  endif
+endif
+~
+>death_prog 1~
+mpoload 5733
+~
+>rand_prog 5~
+say Do you need any runes drawn?
+~
+>speech_prog yes~
+say Well I have a few runes available to you for a price.
+mpforce $n list
+~
+|
+#5703
+prince arlien gilthwit~
+Prince Arlien of Gilthwit~
+Prince Arlien of Gilthwit stands here.~
+He is a swarthy handsome man with dark curly hair and a cleft chin.  His 
+brown eyes watch you alertly and measures you up.  He wears a servicable 
+heavy plate armour and a helmet with wicked looking horns.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_UNDERSTAND|AFF_HUNT|AFF_TONGUES
+-1000 S
+95 BODY_LEG BODY_HAND 10d10+9900 2d10+65
+287052 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if quest(0, 4, $n) == 5
+  say So! That little rat Avner is telling tales?  
+  say Well I will get Brianna to Twilight Vale.
+endif
+~
+>death_prog 100~
+if quest(0, 4, $n) == 6
+  mpmload 5706
+  mpecho Another head bursts out of Arlien's armour, as you watch in horror!
+  mpforce julien mpkill $n
+endif
+~
+>social_prog shiver~
+if quest(0, 4, $n) == 5
+  mpmset $n quest 0 4 6
+endif
+~
+|
+#5704
+goboka ogre shaman~
+Goboka the Ogre Shaman~
+Goboka the Ogre Shaman stands here.~
+He is a huge ogre with skin as brown as an acorn.  He stands about 10 feet 
+tall.  He wears the skin of an enormous white bear over his shoulders and 
+a human thigh bone through his greasy topknot.  He smiles at you and 
+reveals a mouth filled with ugly orange fangs.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_UNDERSTAND|AFF_HUNT|AFF_TONGUES
+-1000 S
+95 BODY_ARM BODY_HEAD 10d10+9900 2d5+85
+1000 RACE_OGRE
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if quest(5, 4, $n) == 2
+  if quest(10, 1, $n) == 1
+    if quest(11, 1, $n) == 1
+      mpoload 5736
+      give potion $n
+      say Give this potion to Brianna.  Make sure she 
+      say drinks it.
+      say Say to her 'Come to Twilight Vale with me.'
+      say and she should go with you without resistance.
+      mpmset $n quest 5 4 3
+    endif
+  endif
+endif
+~
+|
+#5705
+captain selwyn~
+Captain Selwyn~
+Captain Selwyn stands here.~
+He is the captain of the Company of the Winter Wolf, the Queen of 
+Hartsvale's personal guard.~
+ACT_SENTINEL|ACT_TRAIN|ACT_PRACTICE|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_UNDERSTAND|AFF_TONGUES
+500 S
+95 BODY_HEAD BODY_HAND|BODY_FOOT 20d10+20000 3d5+90
+50000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if quest(0, 4, $n) == 8
+  if sex($n) == 1
+    say Welcome Lord $n of Hartsvale, I am here to help you 
+    say train and practice.
+  else
+    say Welcome Lady $n of Hartsvale, I am here to help you 
+    say train and practice.
+  endif
+endif
+~
+>death_prog 1~
+mpoload 5733
+~
+|
+#5706
+julien arno ettin~
+Julien and Arno~
+Julien and Arno, the ettin looms over you.~
+He is the original ettin, servant of the titan.  You recognise one of 
+his heads, Julien, as being an enlarged version of the handsome Prince 
+Arlien.  The other head, Arno, is ugly and doesn't seem as intelligent 
+as Julien.~
+ACT_SENTINEL|ACT_SMART|ACT_ONE_FIGHT|ACT_BODY|ACT_RACE
+AFF_SANCTUARY|AFF_UNDERSTAND|AFF_HUNT|AFF_TONGUES
+-1000 S
+95 BODY_HEAD BODY_HAND 10d10+9900 2d10+75
+100000 RACE_OGRE
+POS_STANDING POS_STANDING SEX_MALE
+>death_prog 100~
+if quest(0, 4, $n) == 6
+  mpoload 5703
+  mpoload 5717
+  mpoload 5738
+  mpoload 5739
+  mpmset $n quest 0 4 7
+  shout I have failed you my Titan!
+  mpat 5734 mpforce titan shout NO! You have killed my faithful servant.  I shall avenge him.
+endif
+~
+|
+#5707
+titan twilight~
+The Titan of Twilight~
+The Titan of Twilight stands here.~
+He is majestically robed and larger than a castle.  In fact he is so
+big he could pluck castle towers from the ground like you would pluck
+a flower.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_SANCTUARY|AFF_UNDERSTAND|AFF_TONGUES
+-1000 S
+95 BODY_FOOT BODY_FOOT 10d10+14000 2d10+75
+333208 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 100~
+if quest(0, 4, $n) == 6
+  say You killed my faithful servant.  You will die!
+  mpkill $n
+else
+  if quest(0, 4, $n) == 7
+    say You killed my faithful servant.  You will die!
+    mpkill $n
+  else
+    if quest(5, 4, $n) == 0
+      say We need to bring Brianna of Hartwick to the 
+      say Twilight Vale.  But we have been having 
+      say difficulty getting her here.
+      say Are you prepared to help us?
+    else
+      if quest(5, 4, $n) == 6
+        say Ahh so you have brought the Queen to me $n.
+        mpecho The Queen comes out of her daze and screams in terror.
+        mpechoat $n The Queen gives you a look of betrayal.
+        mpecho The Titan orders servants to take the Queen away.
+        mpechoat $n The titan turns to you.
+        say Now for your reward $n.
+        mpechoat $n The titan laughs at you diabolically.
+        mpmset $n quest 5 4 7
+        rescale 5707 $n 80
+        mpkill $n
+      endif
+    endif
+  endif
+~
+>speech_prog yes~
+if quest(5, 4, $n) == 0
+  say Go see my servant the ettin, Julien and Arno
+  say and ask him for help.
+  mpmset $n quest 5 4 1
+endif
+~
+>death_prog 100~
+if quest(5, 4, $n) == 7
+  mpoload 5705
+  mpoload 5706
+  mpmset $n long $n Betrayer of Hartsvale is here.
+  mpmset $n quest 5 4 8
+endif
+~
+|
+#5708
+avner thief~
+Avner the thief~
+Avner the thief stands here.~
+You see before you a slightly built teenager.  Orphaned as a
+young boy, he's made his way as a thief until he was placed
+in Tavis Burden's care.~
+ACT_SMART|ACT_BODY|ACT_RACE
+AFF_UNDERSTAND|AFF_PASS_DOOR|AFF_STEALTH|AFF_TONGUES
+0 S
+95 BODY_MOUTH BODY_MOUTH|BODY_HAND 8d10+9500 2d10+65
+150000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if quest(0, 4, $n) == 4
+  say Hey $n, Tavis says you're helping him and the Queen?
+endif
+~
+>speech_prog yes~
+if quest(0, 4, $n) == 4
+  say I've figured out who the traitor is.  
+  say Its Prince Arlien of Gilthwit!!!!
+  say Go kill him, $n!
+  mpmset $n quest 0 4 5
+endif
+~
+>death_prog 100~
+if quest(5, 4, $n) == 2
+  if quest(11, 1, $n) == 0
+    shout NO! I have failed you my Queen!
+    mpmset $n quest 11 1 1
+  endif
+endif
+if rand (1)
+  mpoload 5733
+endif
+~
+|
+#5709
+blizzard horse~
+Blizzard~
+Blizzard, Brianna's horse sidles up to you.~
+She is the queens favourite horse.  A white flecked mare with
+a snowy mane and a disposition as fierce and unpredictable as
+her namesake.~
+ACT_SENTINEL|ACT_BODY|ACT_RACE|ACT_SMART
+AFF_HUNT
+0 S
+95 BODY_LEG BODY_MOUTH|BODY_LEG 7d9+9600 2d10+75
+1000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_FEMALE
+>greet_prog 70~
+mpforce $n sneeze
+if quest(5, 4, $n) == 8
+  mpecho Blizzard kicks $n vengefully.
+endif
+~
+>speech_prog restart~
+if quest(5, 4, $n) <= 7
+mpmset $n quest 5 4 0
+mpmset $n quest 10 1 0
+mpmset $n quest 11 1 0
+endif
+if quest(0, 4, $n) <= 7
+mpmset $n quest 0 4 0
+endif
+mpmset $n quest 12 7 0
+emote steps on your foot.
+~
+|
+#5710
+frost giant~
+a Frost giant~
+A frost giant stands here.~
+He looks cold and big.~
+ACT_SENTINEL|ACT_BODY|ACT_RACE|ACT_SMART
+0
+-800 S
+95 BODY_HAND BODY_HAND|BODY_FOOT 1d1+8000 1d1+73
+20000 RACE_OGRE
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if quest(0, 4, $n) == 8
+  growl $n
+  say You killed the Ettin!
+  rescale 5710 $n 105
+endif
+~
+>death_prog 100~
+if quest(12, 7, $n) == 100
+  mpmset $n long (GIANTS BANE) $n is here.
+  mpmset $n quest 12 7 101
+else
+  mpmadd $n quest 12 7 1
+endif
+if quest(0, 4, $n) == 8
+  mpechoat $n You feel the strength of the giants run through you!
+  mpquiet on
+  cast heal $n
+  cast heal $n
+  cast heal $n
+  cast heal $n
+  cast heal $n
+  cast 'giant strength' $n
+  mpquiet off
+  mpechoaround $n $n seems to grow in stature as they absorb the power of the giant.
+endif
+~
+|
+#5711
+stone giant~
+a Stone giant~
+A stone giant bellows at you!~
+He looms over you.  He appears to be made of rock and if
+he stood still you would think he was part of the mountain behind him.~
+ACT_SENTINEL|ACT_BODY|ACT_RACE|ACT_SMART
+0
+-700 S
+85 BODY_HAND BODY_HAND|BODY_FOOT 1d1+4990 1d1+62
+50000 RACE_OGRE
+POS_STANDING POS_STANDING SEX_MALE
+>death_prog 100~
+if quest(12, 7, $n) == 100
+  mpmset $n long (GIANTS BANE) $n is here.
+  mpmset $n quest 12 7 101
+else
+  mpmadd $n quest 12 7 1
+endif
+~
+|
+#5712
+hill giant~
+a Hill giant~
+A hill giant looks at you stupidly.~
+The giant stands taller than you with a stupid looking grin on his face.~
+ACT_SENTINEL|ACT_BODY|ACT_RACE|ACT_SMART
+0
+-300 S
+75 BODY_HAND BODY_HAND|BODY_FOOT 1d1+3390 1d1+52
+20000 RACE_OGRE
+POS_STANDING POS_STANDING SEX_MALE
+>death_prog 100~
+if quest(12, 7, $n) == 100
+  mpmset $n long (GIANTS BANE) $n is here.
+  mpmset $n quest 12 7 101
+else
+  mpmadd $n quest 12 7 1
+endif
+~
+|
+#5713
+ettin giant~
+an Ettin~
+An Ettin, a two headed giant, argues with himself here.~
+He is the most beastial of all giants, with two ugly heads.
+They travel alone, as their two heads can barely get along with
+each other let alone with other giants.~
+ACT_SENTINEL|ACT_BODY|ACT_RACE|ACT_SMART
+0
+-800 S
+95 BODY_HAND BODY_HAND|BODY_FOOT 1d1+8000 1d1+73
+100000 RACE_OGRE
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if quest(0, 4, $n) == 8
+  growl $n
+  say You killed the Ettin!
+  rescale 5713 $n 125
+endif
+~
+>death_prog 100~
+if quest(12, 7, $n) == 100
+  mpmset $n long (GIANTS BANE) $n is here.
+  mpmset $n quest 12 7 101
+else
+  mpmadd $n quest 12 7 1
+endif
+if quest(0, 4, $n) == 8
+  mpechoat $n You feel the strength of the giants run through you!
+  mpquiet on
+  cast heal $n
+  cast heal $n
+  cast heal $n
+  cast heal $n
+  cast heal $n
+  cast 'giant strength' $n
+  mpquiet off
+  mpechoaround $n $n seems to grow in stature as they absorb the power of the giant.
+endif
+~
+|
+#5714
+fire giant~
+a Fire giant~
+A fire giant growls at you.~
+He is a lanky creature that looms three times the size of a man.
+He is armoured in a steaming black plate.  He wears a massive helmet
+on his head and a buckler as large as a table strapped to one forearm.
+In his other had he carries a flaming sword 10 feet long.~
+ACT_SENTINEL|ACT_BODY|ACT_RACE|ACT_SMART
+0
+-800 S
+80 BODY_HAND BODY_HAND|BODY_FOOT 1d1+3999 1d1+57
+20000 RACE_OGRE
+POS_STANDING POS_STANDING SEX_MALE
+>death_prog 100~
+if quest(12, 7, $n) == 100
+  mpmset $n long (GIANTS BANE) $n is here.
+  mpmset $n quest 12 7 101
+else
+  mpmadd $n quest 12 7 1
+endif
+~
+|
+#5715
+winter wolf guard~
+a Winter wolf guard~
+A Winter Wolf Guard stands to attention.~
+A member of the Queens own personal guard.  His armour is immaculate
+and he stands to attention, ready to protect his queen at a moments notice.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+0
+800 S
+65 BODY_HAND BODY_HAND|BODY_FOOT 1d1+2239 1d1+43
+20000 RACE_OGRE
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 50~
+if quest(5, 4, $n) == 8
+  rescale 5715 $n 125
+  say You have betrayed the Queen, $n!
+  mpkill $n
+else
+  if quest(0, 4, $n) == 8
+    mpecho The guard stands to attention.
+    if inroom ($n) == 5702
+      if sex ($n) == 1
+        say Welcome Lord $n of Hartsvale.
+      else
+        say Welcome Lady $n of Hartsvale.
+      endif
+      mpoload 5704
+      unlock gate
+      open gate
+    endif
+  endif
+endif
+~
+|
+#5716
+ogre~
+an Ogre~
+An ogre is ready to kill you!~
+His skinny torso is haggard and stooped, with hunched shoulders
+and gangling arms that end in huge, gnarl fingered hands.~
+ACT_SENTINEL|ACT_BODY|ACT_RACE|ACT_SMART
+0
+-800 S
+70 BODY_HAND BODY_HAND|BODY_FOOT 1d1+2800 1d1+47
+20000 RACE_OGRE
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 50~
+if quest(5, 4, $n) == 8
+  mpechoat $n The ogre grunts at you in recognition.
+endif
+~
+|
+#5717
+storm giant~
+a Storm Giant~
+A Storm Giant looks at you stormily.~
+It stands amoung the tallest of giants.  His skin is the colour
+of an angry storm cloud.  He looks at you with a slightly disinterested
+expression on his face.~
+ACT_SENTINEL|ACT_BODY|ACT_RACE|ACT_SMART
+0
+0 S
+95 BODY_HAND BODY_HAND|BODY_FOOT 1d1+8000 1d1+73
+100000 RACE_OGRE
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if quest(0, 4, $n) == 8
+  growl $n
+  say You killed the Ettin!
+  rescale 5717 $n 125
+endif
+~
+>death_prog 100~
+if quest(12, 7, $n) == 100
+  mpmset $n long (GIANTS BANE) $n is here.
+  mpmset $n quest 12 7 101
+else
+  mpmadd $n quest 12 7 1
+endif
+if quest(0, 4, $n) == 8
+  mpechoat $n You feel the strength of the giants run through you!
+  mpquiet on
+  cast heal $n
+  cast heal $n
+  cast heal $n
+  cast heal $n
+  cast heal $n
+  cast 'giant strength' $n
+  mpquiet off
+  mpechoaround $n $n seems to grow in stature as they absorb the power of the giant.
+endif
+~
+|
+#5718
+bird~
+a Bird~
+A bird flies around the giants.~
+Just an ordinary bird.  This one is attracted to the storm giants.~
+ACT_SENTINEL|ACT_BODY|ACT_RACE|ACT_SMART
+0
+1000 S
+10 BODY_CLAW BODY_WING|BODY_CLAW 10d10+150 1d10+15
+2658 RACE_OGRE
+POS_STANDING POS_STANDING SEX_FEMALE
+#5719
+ethereal julienandarno~
+ethereal julienandarno~
+Ethereal julienandarno~
+This mob loads Julien and Arno if the quest bits are right.~
+ACT_SENTINEL|ACT_BODY|ACT_RACE|ACT_SMART
+AFF_ETHEREAL
+1000 S
+10 0 0 10d10+150 1d10+15
+2590 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_FEMALE
+>all_greet_prog 100~
+if quest(5, 4, $n) == 1
+  mpechoat $n Julien and Arno lumbers up to you.
+  mpmload 5720
+endif
+~
+|
+#5720
+julien arno ettin~
+Julien and Arno~
+Julien and Arno, the ettin looms over you.~
+He is the original ettin, servant of the titan.  You recognise one of 
+his heads, Julien, as being an enlarged version of the handsome Prince 
+Arlien.  The other head, Arno, is ugly and doesn't seem as intelligent 
+as Julien.~
+ACT_SENTINEL|ACT_SMART|ACT_ONE_FIGHT|ACT_BODY|ACT_RACE
+AFF_SANCTUARY|AFF_UNDERSTAND|AFF_TONGUES
+-1000 S
+95 BODY_HEAD BODY_HAND 10d10+9900 2d10+75
+100000 RACE_OGRE
+POS_STANDING POS_STANDING SEX_MALE
+>speech_prog help~
+if quest(5, 4, $n) == 1
+  say You need to kill those who are stopping us from
+  say bringing Brianna to Twilight Vale - that scout of
+  say of hers, Tavis Burden and his little follower Avner.
+  say Once you have killed them go see Goboka the Ogre Shaman.
+  say He should have something that could help you.
+  mpmset $n quest 5 4 2
+endif
+~
+|
+#0
+
+
+
+
+#OBJECTS
+#5700
+White bear skin~
+a White bear skin~
+A length of white fur lies here.~
+This was once the skin of an enormous white bear.  It smells pretty putrid.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_ANTI_GOOD|ITEM_FLAG_NOREMOVE|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_BODY
+15 0 0 0
+5 5000 85
+A
+APPLY_CON -5
+A
+APPLY_HITROLL 6
+A
+APPLY_DAMROLL 5
+#5701
+Thigh bone~
+a thigh bone~
+A long bleached bone lies here.~
+It is a human thigh bone with greasy strands of hair wrapped around it.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_ANTI_GOOD|ITEM_FLAG_NOREMOVE|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HEAD
+15 0 0 0
+5 1000 85
+A
+APPLY_WIS -5
+A
+APPLY_HITROLL 5
+A
+APPLY_DAMROLL 6
+#5702
+bear driller bow hickory~
+the bear driller~
+A long length of hickory lies here.~
+It is a large hickory bow about 9 feet long.~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_MAGIC|ITEM_FLAG_ANTI_EVIL|ITEM_FLAG_NOREMOVE|ITEM_FLAG_LEVEL|ITEM_FLAG_AUTO_ENGRAVE
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 7 4 WEAPON_POUND
+5 10000 75
+A
+APPLY_AC -12
+C
+thump~
+FLAG_CLASS_ILLUSIONIST|FLAG_CLASS_ELEMENTALIST|FLAG_CLASS_NECROMANCER|FLAG_CLASS_MONK
+#5703
+Enchanted plate armour~
+enchanted plate armour~
+A suit of servicable plate armour lies here.~
+It looks very heavy and plain.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_ANTI_GOOD|ITEM_FLAG_LEVEL|ITEM_FLAG_AUTO_ENGRAVE
+ITEM_WEAR_TAKE|ITEM_WEAR_BODY
+16 0 0 0
+30 1000000 65
+A
+APPLY_DEX 3
+P 1
+TRIG_HIT 60
+OPROG_APPLY OAPPLY_HIT 20
+P 1
+TRIG_VOID
+OPROG_ECHO
+Your wounds tingle as your armour tries to heal them!~
+#5704
+gate key~
+a Gate key~
+A golden key lies here.~
+It looks like it might fit the gate of Castle Hartwick~
+ITEM_TYPE_KEY
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+4 0 0 0
+1 100 50
+#5705
+titan jewelled crown~
+the Titan's jewelled crown~
+A mass of glittering jewels lies here.~
+The crown is made of solid gold with jewells of all kinds imbedded
+all around it.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_ANTI_GOOD|ITEM_FLAG_NOREMOVE|ITEM_FLAG_LEVEL|ITEM_FLAG_AUTO_ENGRAVE
+ITEM_WEAR_TAKE|ITEM_WEAR_HEAD
+21 0 0 0
+40 5000000 90
+A
+APPLY_DAMROLL -9
+A
+APPLY_MANA 100
+P 1
+TRIG_TICK 5
+OPROG_IF OIF_WEAR_LOC ! WEAR_NONE 2 0
+P 2
+TRIG_VOID
+OPROG_APPLY OAPPLY_MANA 20
+P 2
+TRIG_VOID
+OPROG_ECHO
+The power of Twilight Vale infuses you.~
+#5706
+titan robe~
+the Titan's Robe~
+A robe of maroon velvet lies here.~
+The robe looks warm and luxurious.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_ANTI_GOOD|ITEM_FLAG_NOREMOVE|ITEM_FLAG_LEVEL|ITEM_FLAG_AUTO_ENGRAVE
+ITEM_WEAR_TAKE|ITEM_WEAR_ABOUT
+21 0 0 0
+40 5000000 90
+A
+APPLY_DAMROLL -9
+A
+APPLY_MANA 100
+P 1
+TRIG_TICK 5
+OPROG_IF OIF_WEAR_LOC ! WEAR_NONE 2 0
+P 2
+TRIG_VOID
+OPROG_APPLY OAPPLY_MANA 20
+P 2
+TRIG_VOID
+OPROG_ECHO
+The power of Twilight Vale infuses you.~
+#5707
+quiver tavis~
+the Quiver of Tavis~
+A quiver lies here.~
+Just a plain ordinary quiver that you would use to hold arrows.~
+ITEM_TYPE_CONTAINER
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_ABOUT
+750 0 0 0
+5 1000 50
+#5708
+Stone mace~
+stone mace~
+A mace of stone lies here.~
+Its made of stone.~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 4 4 WEAPON_POUND
+10 1000 40
+A
+APPLY_AC -5
+#5709
+Dagger avner~
+the Dagger of Avner~
+The Dagger of Avner lies here.~
+Its an old well used, yet well maintained dagger.~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_ANTI_EVIL|ITEM_FLAG_LEVEL|ITEM_FLAG_AUTO_ENGRAVE
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 7 8 WEAPON_PIERCE
+5 1000 63
+#5710
+Steaming black plate~
+steaming black plate~
+Black armour burns a hole in the ground here.~
+The armour is hot!~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_BODY
+15 0 0 0
+15 5000 75
+A
+APPLY_DAMROLL 4
+#5711
+Steaming black helmet~
+a Steaming black helmet.~
+A helmet burns a hole in the ground here.~
+The helmet is hot!~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HEAD
+15 0 0 0
+15 5000 75
+A
+APPLY_DAMROLL 4
+#5712
+Steaming black buckler~
+steaming black buckler~
+A shield burns a hole in the ground here.~
+The buckler is hot!~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_SHIELD
+15 0 0 0
+15 5000 75
+A
+APPLY_DAMROLL 4
+#5713
+Flaming sword~
+a Flaming sword~
+A sword burns a hole in the ground here.~
+The sword is hot!~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 5 10 WEAPON_SLICE
+15 5000 64
+#5714
+Golden arrow~
+a Golden arrow~
+An arrow of gold catches your eye.~
+It is an arrow made of solid gold, inscribed with magical runes.
+It has been reserved to kill Queen Brianna if she is taken by the
+giants to Twilight Vale~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+1 0 0 0
+5 2000000 30
+A
+APPLY_MANA 20
+A
+APPLY_INT 3
+#5715
+ice diamond~
+an Ice diamond~
+An ice diamond glitters here.~
+Where this diamond touches your body, it feels numb.~
+ITEM_TYPE_WAND
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+30 5 3 SPELL_HEAL
+1 400000 40
+#5716
+Rune arrow~
+the Rune arrow~
+An odd looking arrow lies here.~
+The arrow is inscribed with odd looking runes.  The words "Basil is wise"
+pop into your head.~
+ITEM_TYPE_AMMO
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+1 10 10 10
+5 1000 60
+A
+APPLY_DAMROLL 2
+C
+poke~
+FLAG_CLASS_ILLUSIONIST|FLAG_CLASS_ELEMENTALIST|FLAG_CLASS_ROGUE|FLAG_CLASS_RANGER|FLAG_CLASS_NECROMANCER|FLAG_CLASS_MONK
+P 1
+TRIG_UNKNOWN 100 BASILISWISE
+OPROG_IF OIF_WEAR_LOC ! WEAR_NONE 5 2
+P 2
+TRIG_VOID
+OPROG_GOD_COMMAND
+mpechoat $ You aren't holding the rune arrow.~
+P 5
+TRIG_VOID
+OPROG_IF OIF_USER_ROOM_NUM = 5763 10 11
+P 10
+TRIG_VOID
+OPROG_GOD_COMMAND
+shiver arlien & 
+shout Basil is Wise! & 
+RECHO An enormous explosion shakes the ground beneath you, as the rune arrow explodes! & 
+kill arlien~
+P 10
+TRIG_VOID
+OPROG_JUNK
+P 11
+TRIG_VOID
+OPROG_GOD_COMMAND
+mpechoat $ You feel a little foolish when you can find no traitors in sight.~
+#5717
+Horned helmet~
+the Horned helmet~
+Wicked looking horns emerge from the ground.~
+A helmet fit for a prince, with wicked horns.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_ANTI_GOOD|ITEM_FLAG_NOREMOVE|ITEM_FLAG_LEVEL|ITEM_FLAG_AUTO_ENGRAVE
+ITEM_WEAR_TAKE|ITEM_WEAR_HEAD
+10 0 0 0
+20 300000 65
+A
+APPLY_HITROLL 3
+A
+APPLY_DAMROLL 7
+#5718
+Medallion hiatea golden~
+the Medallion of Hiatea~
+A golden medallion catches your eye.~
+A silver necklace with a golden medallion stamped with the symbol of Hiatea.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_NECK
+4 0 0 0
+5 500000 50
+A
+APPLY_INT 2
+A
+APPLY_WIS 3
+A
+APPLY_CON 3
+#5719
+Waterskin hiatea~
+the Waterskin of Hiatea~
+A plain looking waterskin lies here.~
+Its made of ordinary animal hide.~
+ITEM_TYPE_POTION
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+40 SPELL_HEAL SPELL_CURE_CRITICAL SPELL_CURE_SERIOUS
+1 500000 50
+#5720
+Water trough~
+a Water trough~
+A water trough to feed the animals.~
+It is full of clean refreshing looking water.  Its probably got
+animal slober in it too!~
+ITEM_TYPE_FOUNTAIN
+ITEM_FLAG_LEVEL
+0
+0 0 0 0
+500 100 96
+#5721
+Sign~
+a Sign~
+A sign is here.~
+_______________________________________
+.                  (                                       )
+.                  (         {110}Area created by Blythe{300}        )
+.                  (                                       )
+.                  ( {150}Based on The Twilight Giant's Trilogy{300} )
+.                  (            {150}by Troy Denning{300}            )
+.                  (            {130}Forgotten Realms{300}      {120}TSR{300}  )
+.                  (                                       )
+.                  (  {170}Thanks to my husband Jaxom for his{300}   )
+.                  (      {170}help and showing me how.{300} {110}:){300}      )
+.                  (                                       )
+.                  (                              Ver 1.3  )
+.                  (_______________________________________)
+.                                   |     |
+.                                  {120}\{300}|     |{120}/{300}~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL
+0
+0 0 0 0
+500 100 96
+#5722
+winter wolf tabard~
+a winter wolf tabard~
+A tabard of the winter wolf guard lies here.~
+It is blood red with the symbol of the winter wolf guard on the front.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_ABOUT
+12 0 0 0
+5 10000 60
+A
+APPLY_HITROLL 4
+A
+APPLY_DAMROLL 3
+#5723
+winter wolf cloak~
+a winter wolf cloak~
+A cloak of the winter wolf guard lies here.~
+It is blood red with the symbol of the winter wolf guard on the back.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_NECK
+12 0 0 0
+5 10000 60
+A
+APPLY_HITROLL 4
+A
+APPLY_DAMROLL 3
+#5724
+winter wolf chainmail~
+a winter wolf chainmail~
+A chainmail of the winter wolf guard lies here.~
+It is blood red with the symbol of the winter wolf guard on the front.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_BODY
+12 0 0 0
+5 10000 60
+A
+APPLY_HITROLL 4
+A
+APPLY_DAMROLL 3
+#5725
+winter wolf signet ring~
+a winter wolf signet ring~
+A signet ring of the winter wolf guard lies here.~
+It is blood red with the symbol of the winter wolf guard on the front.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_FINGER
+12 0 0 0
+5 10000 60
+A
+APPLY_HITROLL 4
+A
+APPLY_DAMROLL 3
+#5726
+winter wolf chainmail skirt~
+a winter wolf chainmail skirt~
+A chainmail skirt of the winter wolf guard lies here.~
+It is blood red with the symbol of the winter wolf guard on the side.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_LEGS
+12 0 0 0
+5 10000 60
+A
+APPLY_HITROLL 4
+A
+APPLY_DAMROLL 3
+#5727
+winter wolf boots~
+a winter wolf boots~
+A pair of boots of the winter wolf guard lies here.~
+They are blood red with the symbol of the winter wolf guard on the front.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_FEET
+12 0 0 0
+5 10000 60
+A
+APPLY_HITROLL 4
+A
+APPLY_DAMROLL 3
+#5728
+winter wolf medallion~
+a winter wolf medallion~
+A medallion of the winter wolf guard lies here.~
+It is blood red with the symbol of the winter wolf guard on the front.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_NECK
+12 0 0 0
+5 10000 60
+A
+APPLY_HITROLL 4
+A
+APPLY_DAMROLL 3
+#5729
+winter wolf helm~
+a winter wolf helm~
+A helm of the winter wolf guard lies here.~
+It is blood red with the symbol of the winter wolf guard on the front.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HEAD
+12 0 0 0
+5 10000 60
+A
+APPLY_HITROLL 4
+A
+APPLY_DAMROLL 3
+#5730
+winter wolf gauntlets~
+a pair of winter wolf gauntlets~
+A pair of gauntlets of the winter wolf guard lies here.~
+It is blood red with the symbol of the winter wolf guard on the front.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HANDS
+12 0 0 0
+5 10000 60
+A
+APPLY_HITROLL 4
+A
+APPLY_DAMROLL 3
+#5731
+winter wolf shield~
+a winter wolf shield~
+A shield of the winter wolf guard lies here.~
+It is blood red with the symbol of the winter wolf guard on the front.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_SHIELD
+12 0 0 0
+5 10000 60
+A
+APPLY_HITROLL 4
+A
+APPLY_DAMROLL 3
+#5732
+winter wolf long sword~
+a winter wolf long sword~
+A long sword of the winter wolf guard lies here.~
+It has a blood red hilt with a shiny well kept blade.~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 5 10 WEAPON_SLICE
+5 10000 60
+#5733
+mickey mace galen~
+a Mickey Mace of Galen~
+A drool covered mace lies here.~
+This is the toy of Blythe's son Galen.  Its actually Mickey Mouse and you
+got this one from Hartsvale.~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 2 2 WEAPON_POUND
+1 1000 10
+A
+APPLY_MANA 10
+#5734
+rune bark~
+a rune bark~
+A piece of bark with strange markings lies here.~
+Its an ordinary piece of bark made magical by the runes marked on it.~
+ITEM_TYPE_WAND
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+50 4 3 SPELL_ARMOR
+1 200 60
+#5735
+rune stick~
+a rune stick~
+A stick with strange markings lies here.~
+Its an ordinary stick made magical by the runes marked on it.~
+ITEM_TYPE_WAND
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+50 4 3 SPELL_STONE_SKIN
+1 500 60
+#5736
+potion crushed ice diamonds~
+a potion of crushed ice diamonds~
+A potion of crushed ice diamonds lies here.~
+A crystal container containing magical crushed ice diamonds.~
+ITEM_TYPE_POTION
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+50 SPELL_HARM SPELL_CURSE SPELL_SANCTUARY
+1 20000 60
+#5737
+rune leaf~
+a rune leaf~
+A leaf with strange markings lies here.~
+Its an ordinary leaf made magical by the runes marked on it.~
+ITEM_TYPE_WAND
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+50 4 3 SPELL_SHIELD
+1 200 60
+#5738
+enchanted girth~
+an enchanted girth~
+An enchanted girth shimmers here.~
+It is a girth with a great enchantment on it to absorb any damage done
+to you by enemies.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_ANTI_GOOD|ITEM_FLAG_LEVEL|ITEM_FLAG_AUTO_ENGRAVE|ITEM_FLAG_NOREMOVE
+ITEM_WEAR_TAKE|ITEM_WEAR_WAIST
+9 0 0 0
+5 100000 65
+A
+APPLY_DAMROLL 7
+A
+APPLY_HITROLL 4
+P 1
+TRIG_HIT 60
+OPROG_APPLY OAPPLY_HIT 20
+P 1
+TRIG_VOID
+OPROG_ECHO
+Your wounds tingle as your enchanted girth tries to heal them!~
+#5739
+enchanted boots~
+a pair of enchanted boots~
+A pair of enchanted boots lie on the ground here.~
+They are boots with an enchantment on them to make them absorb any damage
+done to you by an apponent.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_ANTI_GOOD|ITEM_FLAG_LEVEL|ITEM_FLAG_AUTO_ENGRAVE|ITEM_FLAG_NOREMOVE
+ITEM_WEAR_TAKE|ITEM_WEAR_FEET
+17 0 0 0
+5 100000 65
+A
+APPLY_DEX 3
+P 1
+TRIG_HIT 60
+OPROG_APPLY OAPPLY_HIT 20
+P 1
+TRIG_VOID
+OPROG_ECHO
+The wounds on your feet tingle as your enchanted boots try to heal them!~
+
+#0
+
+
+
+
+#ROOMS
+#5700
+Icy Pass~
+The icy walls of this pass rise steeply to either side.  Icy winds
+howl down the chasm.~
+57 ROOM_NO_MOB SECT_MOUNTAIN
+DDIR_NORTH
+Hartsvale~
+~
+0 -1 5701
+DDIR_SOUTH
+Roads of Toril~
+~
+0 -1 4594
+S
+#5701
+Hartsvale~
+As you exit the pass you see Castle Hartwick spread below you.
+It seems like an oasis in an icy desert.~
+57 0 SECT_MOUNTAIN
+DDIR_NORTH
+Castle Hartwick Gatehouse~
+~
+0 -1 5702
+DDIR_EAST
+Cold Marches~
+~
+0 -1 5736
+DDIR_SOUTH
+Icy Pass~
+~
+0 -1 5700
+DDIR_WEST
+Clearwhirl River~
+~
+0 -1 5715
+S
+#5702
+Castle Hartwick Gatehouse~
+The gatehouse of Castle Hartwick looms above you.  Banners hang from the 
+gatehouse announcing that the Queen is in residence.  The massive gates are 
+shut.~
+57 0 SECT_CITY
+DDIR_NORTH
+Great Hall~
+Gate~
+EX_ISDOOR|EX_CLOSED|EX_LOCKED 5704 5704
+DDIR_EAST
+Stable~
+~
+0 -1 5703
+DDIR_SOUTH
+Hartsvale~
+~
+0 -1 5701
+DDIR_UP
+Above the gatehouse~
+~
+0 -1 5707
+S
+#5703
+Stable~
+The soft sounds of horse snickering can be heard.  The smell of hay
+is strong.  The hay gets up your nose and you sneeze.~
+57 ROOM_INDOORS|ROOM_SAFE SECT_INN
+DDIR_WEST
+Gatehouse~
+~
+0 -1 5702
+S
+#5704
+Great Hall~
+The room is massive.  Great intricate tapestries hang on the massive stone 
+walls.  A long purple carpet leads down the hall and up the stairs to
+the throne room.~
+57 ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+Gatehouse~
+~
+0 -1 5702
+DDIR_UP
+Throneroom~
+~
+0 -1 5705
+S
+#5705
+Throne room~
+This room is very grand.  A large throne is before you, draped with exotic 
+velvets.~
+57 ROOM_INDOORS SECT_INSIDE
+DDIR_UP
+Library~
+~
+0 -1 5706
+DDIR_DOWN
+Great Hall~
+~
+0 -1 5704
+X BRAVEHEART.MID~
+S
+#5706
+Library~
+The room is lined with shelves full of tomes covering many a subject.~
+57 ROOM_INDOORS SECT_INSIDE
+DDIR_DOWN
+Throne Room~
+~
+0 -1 5705
+S
+#5707
+Above the Gatehouse~
+You stand above the gatehouse, looking to the east and the west you see the 
+castle walls.~
+57 0 SECT_CITY
+DDIR_EAST
+Castle wall~
+~
+0 -1 5714
+DDIR_WEST
+Castle wall~
+~
+0 -1 5708
+DDIR_DOWN
+Gatehouse~
+~
+0 -1 5702
+S
+#5708
+Castle wall~
+These battlements tower above the surrounding lands.  The wall that you
+walk upon is at least 30 feet thick and looks as though it can withstand
+any attack.~
+57 0 SECT_CITY
+DDIR_NORTH
+Castle wall~
+~
+0 -1 5709
+DDIR_EAST
+Above the gatehouse~
+~
+0 -1 5707
+S
+#5709
+Castle wall~
+These battlements tower above the surrounding lands.  The wall that you
+walk upon is at least 30 feet thick and looks as though it can withstand
+any attack.  Looking out over the battlement you can see the Clearwhirl River.~
+57 0 SECT_CITY
+DDIR_NORTH
+Castle wall~
+~
+0 -1 5710
+DDIR_SOUTH
+Castle wall~
+~
+0 -1 5708
+S
+#5710
+Castle wall~
+These battlements tower above the surrounding lands.  The wall that you
+walk upon is at least 30 feet thick and looks as though it can withstand
+any attack.~
+57 0 SECT_CITY
+DDIR_EAST
+Castle wall~
+~
+0 -1 5711
+DDIR_SOUTH
+Castle wall~
+~
+0 -1 5709
+S
+#5711
+Castle wall~
+These battlements tower above the surrounding lands.  The wall that you
+walk upon is at least 30 feet thick and looks as though it can withstand
+any attack.~
+57 0 SECT_CITY
+DDIR_EAST
+Castle wall~
+~
+0 -1 5712
+DDIR_WEST
+Castle wall~
+~
+0 -1 5710
+S
+#5712
+Castle wall~
+These battlements tower above the surrounding lands.  The wall that you
+walk upon is at least 30 feet thick and looks as though it can withstand
+any attack.~
+57 0 SECT_CITY
+DDIR_SOUTH
+Castle wall~
+~
+0 -1 5713
+DDIR_WEST
+Castle wall~
+~
+0 -1 5711
+S
+#5713
+Castle wall~
+These battlements tower above the surrounding lands.  The wall that you
+walk upon is at least 30 feet thick and looks as though it can withstand
+any attack.  You can see the Cold Marches to the east.~
+57 0 SECT_CITY
+DDIR_NORTH
+Castle wall~
+~
+0 -1 5712
+DDIR_SOUTH
+Castle wall~
+~
+0 -1 5714
+S
+#5714
+Castle wall~
+These battlements tower above the surrounding lands.  The wall that you
+walk upon is at least 30 feet thick and looks as though it can withstand
+any attack.~
+57 0 SECT_CITY
+DDIR_NORTH
+Castle wall~
+~
+0 -1 5713
+DDIR_WEST
+Above the Gate House~
+~
+0 -1 5707
+S
+#5715
+Clearwhirl River~
+This river moves swiftly and the water is icy cold.  The banks of the
+river are covered in snow.  The edges of the river have a thick covering
+of ice that the swift moving water has been unable to break up.~
+57 0 SECT_WATER_NOSWIM
+DDIR_NORTH
+Clearwhirl River~
+~
+0 -1 5716
+DDIR_EAST
+Hartsvale~
+~
+0 -1 5701
+S
+#5716
+Clearwhirl River~
+This river moves swiftly and the water is icy cold.  The banks of the
+river are covered in snow.  The edges of the river have a thick covering
+of ice that the swift moving water has been unable to break up.~
+57 0 SECT_WATER_NOSWIM
+DDIR_NORTH
+Clearwhirl River~
+~
+0 -1 5717
+DDIR_SOUTH
+Clearwhirl River~
+~
+0 -1 5715
+S
+#5717
+Clearwhirl River~
+This river moves swiftly and the water is icy cold.  The banks of the
+river are covered in snow.  The edges of the river have a thick covering
+of ice that the swift moving water has been unable to break up.~
+57 0 SECT_WATER_NOSWIM
+DDIR_SOUTH
+Clearwhirl River~
+~
+0 -1 5716
+DDIR_WEST
+Clearwhirl River~
+~
+0 -1 5718
+S
+#5718
+Clearwhirl River~
+This river moves swiftly and the water is icy cold.  The banks of the
+river are covered in snow.  The edges of the river have a thick covering
+of ice that the swift moving water has been unable to break up.~
+57 0 SECT_WATER_NOSWIM
+DDIR_NORTH
+Clearwhirl River~
+~
+0 -1 5719
+DDIR_EAST
+Clearwhirl River~
+~
+0 -1 5717
+S
+#5719
+Clearwhirl River~
+This river moves swiftly and the water is icy cold.  The banks of the
+river are covered in snow.  The edges of the river have a thick covering of
+ice that the swift moving water has been unable to break up.~
+57 0 SECT_WATER_NOSWIM
+DDIR_NORTH
+Ice Spires~
+~
+0 -1 5720
+DDIR_SOUTH
+Clearwhirl River~
+~
+0 -1 5718
+S
+#5720
+Ice Spires~
+You are surrounded by icy mountain peaks.  They look insurmountable.  An icy 
+wind buffets you as it blows down from the peaks.  Leafless trees add to the 
+barren feeling of the land.~
+57 0 SECT_MOUNTAIN
+DDIR_NORTH
+Ice Spires~
+~
+0 -1 5723
+DDIR_SOUTH
+Clearwhirl River~
+~
+0 -1 5719
+DDIR_WEST
+Ice Spires~
+~
+0 -1 5721
+S
+#5721
+Ice Spires~
+You are surrounded by icy mountain peaks.  They look insurmountable.  An icy 
+wind buffets you as it blows down from the peaks.~
+57 0 SECT_MOUNTAIN
+DDIR_EAST
+Ice Spires~
+~
+0 -1 5720
+DDIR_WEST
+Ice Spires~
+~
+0 -1 5722
+S
+#5722
+Ice Spires~
+You are surrounded by icy mountain peaks.  They look insurmountable.  An icy 
+wind buffets you as it blows down from the peaks.  You can hear animals howl 
+mournfully in the distance.~
+57 0 SECT_MOUNTAIN
+DDIR_EAST
+Ice Spires~
+~
+0 -1 5721
+S
+#5723
+Ice Spires~
+You are surrounded by icy mountain peaks.  They look insurmountable.  An icy 
+wind buffets you as it blows down from the peaks.~
+57 0 SECT_MOUNTAIN
+DDIR_NORTH
+Ice Spires~
+~
+0 -1 5728
+DDIR_EAST
+Ice Spires~
+~
+0 -1 5724
+DDIR_SOUTH
+Ice Spires~
+~
+0 -1 5720
+DDIR_WEST
+Ice Spires~
+~
+0 -1 5726
+S
+#5724
+Ice Spires~
+You are surrounded by icy mountain peaks.  They look insurmountable.  An icy 
+wind buffets you as it blows down from the peaks.  Snow falls down the back of 
+your armour.~
+57 0 SECT_MOUNTAIN
+DDIR_EAST
+Ice Spires~
+~
+0 -1 5725
+DDIR_WEST
+Ice Spires~
+~
+0 -1 5723
+S
+#5725
+Ice Spires~
+You are surrounded by icy mountain peaks.  They look insurmountable.  An icy 
+wind buffets you as it blows down from the peaks.~
+57 0 SECT_MOUNTAIN
+DDIR_WEST
+Ice Spires~
+~
+0 -1 5724
+DDIR_EAST
+Cuthbert Fief~
+~
+0 -1 5766
+S
+#5726
+Ice Spires~
+You are surrounded by icy mountain peaks.  They look insurmountable.  An icy 
+wind buffets you as it blows down from the peaks.  The snow cracks under 
+your footsteps.~
+57 0 SECT_MOUNTAIN
+DDIR_EAST
+Ice Spires~
+~
+0 -1 5723
+DDIR_WEST
+Ice Spires~
+~
+0 -1 5727
+S
+#5727
+Ice Spires~
+You are surrounded by icy mountain peaks.  They look insurmountable.  An icy 
+wind buffets you as it blows down from the peaks.~
+57 0 SECT_MOUNTAIN
+DDIR_NORTH
+Ice Spires~
+~
+0 -1 5729
+DDIR_EAST
+Ice Spires~
+~
+0 -1 5726
+S
+#5728
+Ice Spires~
+You are surrounded by icy mountain peaks.  They look insurmountable.  An icy 
+wind buffets you as it blows down from the peaks.~
+57 0 SECT_MOUNTAIN
+DDIR_NORTH
+Ice Spires~
+~
+0 -1 5730
+DDIR_SOUTH
+Ice Spires~
+~
+0 -1 5723
+S
+#5729
+Ice Spires~
+You are surrounded by icy mountain peaks.  They look insurmountable.  An icy 
+wind buffets you as it blows down from the peaks.  You feel your eyelashes 
+turning to icicles.~
+57 0 SECT_MOUNTAIN
+DDIR_NORTH
+Ice Spires~
+~
+0 -1 5732
+DDIR_SOUTH
+Ice Spires~
+~
+0 -1 5727
+S
+#5730
+Ice Spires~
+You are surrounded by icy mountain peaks.  They look insurmountable.  An icy 
+wind buffets you as it blows down from the peaks.~
+57 0 SECT_MOUNTAIN
+DDIR_SOUTH
+Ice Spires~
+~
+0 -1 5728
+DDIR_WEST
+Ice Spires~
+~
+0 -1 5731
+S
+#5731
+Ice Spires~
+You are surrounded by icy mountain peaks.  They look insurmountable.  An icy 
+wind buffets you as it blows down from the peaks.~
+57 0 SECT_MOUNTAIN
+DDIR_EAST
+Ice Spires~
+~
+0 -1 5730
+DDIR_WEST
+Ice Spires~
+~
+0 -1 5732
+S
+#5732
+Ice Spires~
+You are surrounded by icy mountain peaks.  They look insurmountable.  An icy 
+wind buffets you as it blows down from the peaks.  Your hair stands up on end
+at the howl of a wolf.~
+57 0 SECT_MOUNTAIN
+DDIR_EAST
+Ice Spires~
+~
+0 -1 5731
+DDIR_SOUTH
+Ice Spires~
+~
+0 -1 5729
+DDIR_WEST
+Ice Spires~
+~
+0 -1 5733
+S
+
+@removed room connection to north pole  12/18/03
+#5733
+Ice Spires~
+You are surrounded by icy mountain peaks.  They look insurmountable.  An icy 
+wind buffets you as it blows down from the peaks.~
+57 0 SECT_MOUNTAIN
+DDIR_EAST
+Ice Spires~
+~
+0 -1 5732
+S
+#5734
+Twilight Vale~
+You are in the shadow of Split Mountain.  The sun never shines directly
+on this vale.  It is always twilight here.  A grand palace sprawls before
+you.~
+57 ROOM_DARK SECT_FIELD
+DDIR_SOUTH
+Bleari Plain~
+~
+0 -1 5735
+S
+#5735
+Bleari Plain~
+You feel a magical presence emanating from the north.  It sends a chill down 
+your spine.  It feels slightly warmer here.~
+57 0 SECT_FIELD
+DDIR_NORTH
+Twilight Vale~
+~
+0 -1 5734
+DDIR_SOUTH
+Wyrms Tongue Ice Field~
+~
+0 -1 5780
+S
+#5736
+Cold Marches~
+All around you, you see plains of icy windswept scrub.  The occasional
+tree makes a valiant attempt at surviving such a harsh climate.  A chill
+wind whips at your hair, making your nose turn red with the cold.~
+57 0 SECT_FIELD
+DDIR_EAST
+Cold Marches~
+~
+0 -1 5737
+DDIR_WEST
+Hartsvale~
+~
+0 -1 5701
+S
+#5737
+Cold Marches~
+All around you, you see plains of icy windswept scrub.  The occasional
+tree makes a valiant attempt at surviving such a harsh climate.  A chill
+wind whips at your hair, making your nose turn red with the cold.  Take
+care to not touch your armour in case your skin sticks to it!~
+57 0 SECT_FIELD
+DDIR_NORTH
+Cold Marches~
+~
+0 -1 5739
+DDIR_EAST
+Cold Marches~
+~
+0 -1 5740
+DDIR_SOUTH
+Cold Marches~
+~
+0 -1 5738
+DDIR_WEST
+Cold Marches~
+~
+0 -1 5736
+S
+#5738
+Cold Marches~
+All around you, you see plains of icy windswept scrub.  The occasional
+tree makes a valiant attempt at surviving such a harsh climate.  A chill
+wind whips at your hair, making your nose turn red with the cold.  The snot
+dripping from your nose freezes on your faces.~
+57 0 SECT_FIELD
+DDIR_NORTH
+Cold Marches~
+~
+0 -1 5737
+DDIR_EAST
+Cold Marches~
+~
+0 -1 5741
+S
+#5739
+Cold Marches~
+All around you, you see plains of icy windswept scrub.  The occasional
+tree makes a valiant attempt at surviving such a harsh climate.  A chill
+wind whips at your hair, making your nose turn red with the cold.  Your
+leggings are damp making you more miserable in this chill cold.~
+57 0 SECT_FIELD
+DDIR_NORTH
+Cold Marches~
+~
+0 -1 5746
+DDIR_EAST
+Cold Marches~
+~
+0 -1 5751
+DDIR_SOUTH
+Cold Marches~
+~
+0 -1 5737
+S
+#5740
+Cold Marches~
+All around you, you see plains of icy windswept scrub.  The occasional
+tree makes a valiant attempt at suriving such a harsh climate.  A chill
+wind whips at your hair, making your nose turn red with the cold.~
+57 0 SECT_FIELD
+DDIR_NORTH
+Cold Marches~
+~
+0 -1 5751
+DDIR_EAST
+Cold Marches~
+~
+0 -1 5745
+DDIR_SOUTH
+Cold Marches~
+~
+0 -1 5741
+DDIR_WEST
+Cold Marches~
+~
+0 -1 5737
+S
+#5741
+Cold Marches~
+All around you, you see plains of icy windswept scrub.  The occasional
+tree makes a valiant attempt at surviving such a harsh climate.  A chill
+wind whips at your hair, making your nose turn red with the cold.~
+57 0 SECT_FIELD
+DDIR_NORTH
+Cold Marches~
+~
+0 -1 5740
+DDIR_EAST
+Cold Marches~
+~
+0 -1 5742
+DDIR_WEST
+Cold Marches~
+~
+0 -1 5738
+S
+#5742
+Cold Marches~
+All around you, you see plains of icy windswept scrub.  The occasional
+tree makes a valiant attempt at surviving such a harsh climate.  A chill
+wind whips at your hair, making your nose turn red with the cold.  A
+scrawny rabbit scampers along the plain desperate to get away before you
+make him your meal.~
+57 0 SECT_FIELD
+DDIR_NORTH
+Cold Marches~
+~
+0 -1 5745
+DDIR_EAST
+Cold Marches~
+~
+0 -1 5743
+DDIR_WEST
+Cold Marches~
+~
+0 -1 5741
+S
+#5743
+Cold Marches~
+All around you, you see plains of icy windswept scrub.  The occasional
+tree makes a valiant attempt at surviving such a harsh climate.  A chill
+wind whips at your hair, making your nose turn red with the cold.~
+57 0 SECT_FIELD
+DDIR_NORTH
+Cold Marches~
+~
+0 -1 5744
+DDIR_WEST
+Cold Marches~
+~
+0 -1 5742
+S
+#5744
+Cold Marches~
+All around you, you see plains of icy windswept scrub.  The occasional
+tree makes a valiant attempt at surviving such a harsh climate.  A chill
+wind whips at your hair, making your nose turn red with the cold.  You
+look around you and you can see no signs of civilisation.~
+57 0 SECT_FIELD
+DDIR_NORTH
+Cold Marches~
+~
+0 -1 5750
+DDIR_SOUTH
+Cold Marches~
+~
+0 -1 5743
+DDIR_WEST
+Cold Marches~
+~
+0 -1 5745
+S
+#5745
+Cold Marches~
+All around you, you see plains of icy windswept scrub.  The occasional
+tree makes a valiant attempt at surviving such a harsh climate.  A chill
+wind whips at your hair, making your nose turn red with the cold.~
+57 0 SECT_FIELD
+DDIR_EAST
+Cold Marches~
+~
+0 -1 5744
+DDIR_SOUTH
+Cold Marches~
+~
+0 -1 5742
+DDIR_WEST
+Cold Marches~
+~
+0 -1 5740
+S
+#5746
+Cold Marches~
+All around you, you see plains of icy windswept scrub.  The occasional
+tree makes a valiant attempt at surviving such a harsh climate.  A chill
+wind whips at your hair, making your nose turn red with the cold.  You can
+hear the grunt of ogres in the distance.~
+57 0 SECT_FIELD
+DDIR_EAST
+Cold Marches~
+~
+0 -1 5747
+DDIR_SOUTH
+Cold Marches~
+~
+0 -1 5739
+S
+#5747
+Cold Marches~
+All around you, you see plains of icy windswept scrub.  The occasional
+tree makes a valiant attempt at surviving such a harsh climate.  A chill
+wind whips at your hair, making your nose turn red with the cold.~
+57 0 SECT_FIELD
+DDIR_EAST
+Cold Marches~
+~
+0 -1 5748
+DDIR_SOUTH
+Cold Marches~
+~
+0 -1 5751
+DDIR_WEST
+Cold Marches~
+~
+0 -1 5746
+S
+#5748
+Cold Marches~
+All around you, you see plains of icy windswept scrub.  The occasional
+tree makes a valiant attempt at surviving such a harsh climate.  A chill
+wind whips at your hair, making your nose turn red with the cold.
+You can smell the smell of sour milk and you know there are ogres in
+the area.~
+57 0 SECT_FIELD
+DDIR_NORTH
+Cuthbert Pass~
+~
+0 -1 5753
+DDIR_EAST
+Cold Marches~
+~
+0 -1 5749
+DDIR_WEST
+Cold Marches~
+~
+0 -1 5747
+S
+#5749
+Cold Marches~
+All around you, you see plains of icy windswept scrub.  The occasional
+tree makes a valiant attempt at surviving such a harsh climate.  A chill
+wind whips at your hair, making your nose turn red with the cold.~
+57 0 SECT_FIELD
+DDIR_SOUTH
+Cold Marches~
+~
+0 -1 5750
+DDIR_WEST
+Cold Marches~
+~
+0 -1 5748
+S
+#5750
+Cold Marches~
+All around you, you see plains of icy windswept scrub.  The occasional
+tree makes a valiant attempt at surviving such a harsh climate.  A chill
+wind whips at your hair, making your nose turn red with the cold.  The smell
+of sour milk makes your stomach heave.~
+57 0 SECT_FIELD
+DDIR_NORTH
+Cold Marches~
+~
+0 -1 5749
+DDIR_SOUTH
+Cold Marches~
+~
+0 -1 5744
+S
+#5751
+Cold Marches~
+All around you, you see plains of icy windswept scrub.  The occasional
+tree makes a valiant attempt at surviving such a harsh climate.  A chill
+wind whips at your hair, making your nose turn red with the cold.~
+57 0 SECT_FIELD
+DDIR_NORTH
+Cold Marches~
+~
+0 -1 5747
+DDIR_EAST
+Goboka's Hut~
+~
+0 -1 5752
+DDIR_SOUTH
+Cold Marches~
+~
+0 -1 5740
+DDIR_WEST
+Cold Marches~
+~
+0 -1 5739
+S
+#5752
+Goboka's Hut~
+You enter a dim dark hut.  The stench is overwhelming.  The ogre here
+would win no awards for housekeeping.  Bones of various sizes litter
+the floor.  Your not sure but you could swear that some of them are human!~
+57 ROOM_DARK|ROOM_INDOORS SECT_INSIDE
+DDIR_WEST
+Cold Marshes~
+~
+0 -1 5751
+S
+#5753
+Cuthbert Pass~
+You are travelling between two mountains.  The cliffs on each side are very 
+steep and look unpassable.  The way is potholed and precarious.~
+57 0 SECT_MOUNTAIN
+DDIR_SOUTH
+Cold Marshes~
+~
+0 -1 5748
+DDIR_NORTH
+Cuthbert Pass~
+~
+0 -1 5754
+S
+#5754
+Cuthbert Pass~
+You are travelling between two mountains.  The cliffs on each side are very 
+steep and look unpassable.  The way is potholed and precarious.~
+57 0 SECT_MOUNTAIN
+DDIR_NORTH
+Cuthbert Fief~
+~
+0 -1 5755
+DDIR_SOUTH
+Cuthbert Pass~
+~
+0 -1 5753
+S
+#5755
+Cuthbert Fief~
+You are in a lush valley covered in trees.  Patches of snow cover the
+trees and the ground.  Birds can be heard chirping, and the rustle of
+other wildlife indicates that food should be plentiful.~
+57 0 SECT_FOREST
+DDIR_NORTH
+Lake Cuthbert~
+~
+0 -1 5768
+DDIR_EAST
+Cuthbert Fief~
+~
+0 -1 5757
+DDIR_SOUTH
+Cuthbert Pass~
+~
+0 -1 5754
+DDIR_WEST
+Cuthbert Fief~
+~
+0 -1 5756
+S
+#5756
+Cuthbert Fief~
+You are in a lush valley covered in trees.  Patches of snow cover the
+trees and the ground.  Birds can be heard chirping, and the rustle of
+other wildlife indicates that food should be plentiful.~
+57 0 SECT_FOREST
+DDIR_EAST
+Cuthbert Fief~
+~
+0 -1 5755
+S
+#5757
+Cuthbert Fief~
+You are in a lush valley covered in trees.  Patches of snow cover the
+trees and the ground.  Birds can be heard chirping, and the rustle of
+other wildlife indicates that food should be plentiful.  You can
+hear a cow lowing in the distance.~
+57 0 SECT_FOREST
+DDIR_NORTH
+Cuthbert Fief~
+~
+0 -1 5760
+DDIR_EAST
+Cuthbert Fief~
+~
+0 -1 5758
+DDIR_WEST
+Cuthbert Fief~
+~
+0 -1 5755
+S
+#5758
+Cuthbert Fief~
+You are in a lush valley covered in trees.  Patches of snow cover the trees
+and the ground.  Birds can be heard chirping, and the rustle of other
+wildlife indicates that food should be plentiful.  You can hear the roar
+of a fire giant in the distance.~
+57 0 SECT_FOREST
+DDIR_SOUTH
+Cuthbert Fief~
+~
+0 -1 5759
+DDIR_WEST
+Cuthbert Fief~
+~
+0 -1 5757
+S
+#5759
+Cuthbert Fief~
+You are in a lush valley covered in trees.  Patches of snow cover the
+trees and the ground.  Birds can be heard chirping, and the rustle
+of other wildlife indicates that food should be plentiful.  A deer
+can be seen looking at you from the bushes.~
+57 0 SECT_FOREST
+DDIR_NORTH
+Cuthbert Fief~
+~
+0 -1 5758
+S
+#5760
+Cuthbert Fief~
+You are in a lush valley covered in trees.  Patches of snow cover
+the trees and the ground.  Birds can be heard chirping, and the rustle
+of other wildlife indicates that food should be plentiful.
+Water birds settle on the lake to your west.~
+57 0 SECT_FOREST
+DDIR_NORTH
+Cuthbert Fief~
+~
+0 -1 5761
+DDIR_SOUTH
+Cuthbert Feif~
+~
+0 -1 5757
+DDIR_WEST
+Lake Cuthbert~
+~
+0 -1 5768
+S
+#5761
+Cuthbert Fief~
+You are in a lush valley covered in trees.  Patches of snow cover the
+trees and the ground.  Birds can be heard chirping, and the rustle
+of other wildlife indicates that food should be plentiful.  You hear
+someone muttering nearby.~
+57 0 SECT_FOREST
+DDIR_EAST
+Cuthbert Fief~
+~
+0 -1 5762
+DDIR_SOUTH
+Cuthbert Fief~
+~
+0 -1 5760
+S
+#5762
+Cuthbert Fief~
+You are in a lush valley covered in trees.  Patches of snow cover the
+trees and the ground.  Birds can be heard chirping, and the rustle of
+other wildlife indicates that food should be plentiful.  The sound of
+someone muttering to themselves has become louder.~
+57 0 SECT_FOREST
+DDIR_EAST
+Cuthbert Fief~
+~
+0 -1 5763
+DDIR_WEST
+Cuthbert Fief~
+~
+0 -1 5761
+S
+#5763
+Cuthbert Fief~
+You are in a lush valley covered in trees.  Patches of snow cover the
+trees and the ground.  Birds can be heard chirping, and the rustle of
+other wildlife indicates that food should be plentiful.~
+57 0 SECT_FOREST
+DDIR_WEST
+Cuthbert Fief~
+~
+0 -1 5762
+S
+#5764
+Cuthbert Fief~
+You are in a lush valley covered in trees.  Patches of snow cover the
+trees and the ground.  Birds can be heard chirping, and the rustle
+of other wildlife indicates that food should be plentiful.  You look out
+over the still lake and a feeling of peace comes over you.~
+57 0 SECT_FOREST
+DDIR_NORTH
+Cuthbert Fief~
+~
+0 -1 5767
+DDIR_EAST
+Lake Cuthbert~
+~
+0 -1 5768
+DDIR_SOUTH
+Cuthbert Fief~
+~
+0 -1 5756
+DDIR_WEST
+Cuthbert Fief~
+~
+0 -1 5765
+S
+#5765
+Cuthbert Fief~
+You are in a lush valley covered in trees.  Patches of snow cover the
+trees and the ground.  Birds can be heard chirping, and the rustle
+of other wildlife indicates that food should be plentiful.~
+57 0 SECT_FOREST
+DDIR_EAST
+Cuthbert Fief~
+~
+0 -1 5764
+DDIR_WEST
+Cuthbert Fief~
+~
+0 -1 5766
+S
+#5766
+Cuthbert Fief~
+You are in a lush valley covered in trees.  Patches of snow cover
+the trees and the ground.  Birds can be heard chirping, and the
+rustle of other wildlife indicates that food should be plentiful.~
+57 0 SECT_FOREST
+DDIR_EAST
+Cuthbert Fief~
+~
+0 -1 5765
+DDIR_WEST
+Ice Spires~
+~
+0 -1 5725
+S
+#5767
+Cuthbert Fief~
+You are in a lush valley covered in trees.  Patches of snow cover the
+trees and the ground.  Birds can be heard chirping, and the rustle of
+other wildlife indicates that food should be plentiful.  You step
+in a puddle of melted snow.~
+57 0 SECT_FOREST
+DDIR_SOUTH
+Cuthbert Fief~
+~
+0 -1 5764
+DDIR_WEST
+Cuthbert Fief~
+~
+0 -1 5769
+S
+#5768
+Cuthbert Lake~
+The water is still.  The lake seems bottomless.  Broken pieces of ice
+litter the still surface.~
+57 0 SECT_WATER_NOSWIM
+DDIR_EAST
+Cuthbert Fief~
+~
+0 -1 5760
+DDIR_SOUTH
+Cuthbert Fief~
+~
+0 -1 5755
+DDIR_WEST
+Cuthbert Fief~
+~
+0 -1 5764
+S
+#5769
+Cuthbert Fief~
+You are in a lush valley covered in trees.  Patches of snow cover the
+trees and the ground.  Birds can be heard chirping, and the rustle of
+other wildlife indicates that food should be plentiful.  Here would be
+a good place to make camp, providing there are no fire giants nearby.~
+57 0 SECT_FOREST
+DDIR_NORTH
+Cuthbert Fief~
+~
+0 -1 5770
+DDIR_EAST
+Cuthbert Fief~
+~
+0 -1 5767
+S
+#5770
+Cuthbert Fief~
+You are in a lush valley covered in trees.  Patches of snow cover the
+trees and the ground.  Birds can be heard chirping, and the rustle of
+other wildlife indicates that food should be plentiful.~
+57 0 SECT_FOREST
+DDIR_NORTH
+Wyrms River~
+~
+0 -1 5771
+DDIR_SOUTH
+Cuthbert Pass~
+~
+0 -1 5769
+S
+#5771
+Wyrms River~
+The river flows rapidly.  Take care that your craft does not capsize.
+The water swirls around you, chunks of ice beating up against your boat.~
+57 0 SECT_WATER_NOSWIM
+DDIR_NORTH
+Wyrms River~
+~
+0 -1 5772
+DDIR_SOUTH
+Cuthbert Fief~
+~
+0 -1 5770
+S
+#5772
+Wyrms River~
+The river flows rapidly.  Take care that your craft does not capsize.
+The water swirls around you, chunks of ice beating up against your boat.~
+57 0 SECT_WATER_NOSWIM
+DDIR_NORTH
+Wyrms Tongue Ice Field~
+~
+0 -1 5773
+DDIR_SOUTH
+Wyrms River~
+~
+0 -1 5771
+S
+#5773
+Wyrms Tongue Ice Field~
+You are on a large plain of hard packed ice.  No trees can be seen on
+the plain.  A chill wind blows clear across the ice.~
+57 0 SECT_FIELD
+DDIR_EAST
+Wyrms Tongue Ice Field~
+~
+0 -1 5775
+DDIR_SOUTH
+Wyrms River~
+~
+0 -1 5772
+DDIR_WEST
+Wyrms Tongue Ice Field~
+~
+0 -1 5774
+DDIR_NORTH
+~
+~
+0 -1 5778
+S
+#5774
+Wyrms Tongue Ice Field~
+You are on a large plain of hard packed ice.  No trees can be seen on the
+plain.   A chill wind blows clear across the ice.  You hear the loud
+boom of ice cracking.~
+57 0 SECT_FIELD
+DDIR_NORTH
+Wyrms Tongue Ice Field~
+~
+0 -1 5782
+DDIR_EAST
+Wyrms Tongue Ice Field~
+~
+0 -1 5773
+S
+#5775
+Wyrms Tongue Ice Field~
+You are on a large plain of hard packed ice.  No trees can be seen on
+the plain.  A chill wind blows clear across the ice.  A lone rabbit
+can be seen scampering across the icy plain.~
+57 0 SECT_FIELD
+DDIR_NORTH
+Wyrms Tongue Ice Field~
+~
+0 -1 5776
+DDIR_WEST
+Wyrms Tongue Ice Field~
+~
+0 -1 5773
+S
+#5776
+Wyrms Tongue Ice Field~
+You are on a large plain of hard packed ice.  No trees can be seen on
+the plain.  A chill wind blows clear across the ice.~
+57 0 SECT_FIELD
+DDIR_NORTH
+Wyrms Tongue Ice Field~
+~
+0 -1 5779
+DDIR_EAST
+Wyrms Tongue Ice Field~
+~
+0 -1 5777
+DDIR_SOUTH
+Wyrms Tongue Ice Field~
+~
+0 -1 5775
+DDIR_WEST
+Wyrms Tongue Ice Field~
+~
+0 -1 5778
+S
+#5777
+Wyrms Tongue Ice Field~
+You are on a large plain of hard packed ice.  No trees can be seen
+on the plain.   A chill wind blows clear across the ice.  If you make
+camp here you know you will be spending a chilly night.~
+57 0 SECT_FIELD
+DDIR_WEST
+Wyrms Tongue Ice Field~
+~
+0 -1 5776
+DDIR_UP
+Split Mountain~
+~
+0 -1 5794
+S
+#5778
+Wyrms Tongue Ice Field~
+You are on a large plain of hard packed ice.  No trees can be seen
+on the plain.   A chill wind blows clear across the ice.~
+57 0 SECT_FIELD
+DDIR_NORTH
+Wyrms Tongue Ice Field~
+~
+0 -1 5780
+DDIR_EAST
+Wyrms Tongue Ice Field~
+~
+0 -1 5776
+DDIR_SOUTH
+Wyrms Tongue Ice Field~
+~
+0 -1 5773
+DDIR_WEST
+Wyrms Tongue Ice Field~
+~
+0 -1 5782
+S
+#5779
+Wyrms Tongue Ice Field~
+You are on a large plain of hard packed ice.  No trees can be seen
+on the plain.   A chill wind blows clear across the ice.  The snot
+from your nose freezes before it drips into your mouth.~
+57 0 SECT_FIELD
+DDIR_SOUTH
+Wyrms Tongue Ice Field~
+~
+0 -1 5776
+DDIR_WEST
+Wyrms Tongue Ice Field~
+~
+0 -1 5780
+S
+#5780
+Wyrms Tongue Ice Field~
+You are on a large plain of hard packed ice.  No trees can be seen
+on the plain.  A chill wind blows clear across the ice.~
+57 0 SECT_FIELD
+DDIR_NORTH
+Bleari Plain~
+~
+0 -1 5735
+DDIR_EAST
+Wyrms Tongue Ice Field~
+~
+0 -1 5779
+DDIR_SOUTH
+Wyrms Tongue Ice Field~
+~
+0 -1 5778
+DDIR_WEST
+Wyrms Tongue Ice Field~
+~
+0 -1 5781
+S
+#5781
+Wyrms Tongue Ice Field~
+You are on a large plain of hard packed ice.  No trees can be seen on
+the plain.  A chill wind blows clear across the ice.  Icicles hang from
+your hair.~
+57 0 SECT_FIELD
+DDIR_EAST
+Wyrms Tongue Ice Field~
+~
+0 -1 5780
+DDIR_SOUTH
+Wyrms Tongue Ice Field~
+~
+0 -1 5782
+S
+#5782
+Wyrms Tongue Ice Field~
+You are on a large plain of hard packed ice.  No trees can be seen on
+the plain. A chill wind blows clear across the ice.  The seat of your
+pants freezes from the wet patch you got when you fell in the snow
+earlier.~
+57 0 SECT_FIELD
+DDIR_NORTH
+Wyrms Tongue Ice Field~
+~
+0 -1 5781
+DDIR_EAST
+Wyrms Tongue Ice Field~
+~
+0 -1 5778
+DDIR_SOUTH
+Wyrms Tongue Ice Field~
+~
+0 -1 5774
+DDIR_WEST
+Wyrms Tongue Ice Field~
+~
+0 -1 5783
+S
+#5783
+Wyrms Tongue Ice Field~
+You are on a large plain of hard packed ice.  No trees can be seen on
+the plain.  A chill wind blows clear across the ice.~
+57 0 SECT_FIELD
+DDIR_EAST
+Wyrms Tongue Ice Field~
+~
+0 -1 5782
+DDIR_UP
+Ice Spires North~
+~
+0 -1 5784
+S
+#5784
+Ice Spires North~
+Pinnacles of ice rear up towards the clouded sky.  A chill wind whips at
+your armour.  Roars of ferocious creatures can be heard in the distance.
+You wonder if you will ever feel your fingers again.~
+57 0 SECT_MOUNTAIN
+DDIR_WEST
+Ice Spires North~
+~
+0 -1 5785
+DDIR_DOWN
+Wyrms Tongue Ice Field~
+~
+0 -1 5783
+S
+#5785
+Ice Spires North~
+Pinnacles of ice rear up towards the clouded sky.  A chill wind whips at
+your armour.  Roars of ferocious creatures can be heard in the distance.
+You wonder if you will ever feel your toes again.~
+57 0 SECT_MOUNTAIN
+DDIR_NORTH
+Ice Spires North~
+~
+0 -1 5786
+DDIR_SOUTH
+Ice Spires North~
+~
+0 -1 5790
+DDIR_WEST
+Ice Spires North~
+~
+0 -1 5788
+DDIR_EAST
+Ice Spires North~
+~
+0 -1 5784
+S
+#5786
+Ice Spires North~
+Pinnacles of ice rear up towards the clouded sky.  A chill wind whips at
+your armour.  Roars of ferocious creatures can be heard in the distance.
+The glare of the sun off the snow hurts your eyes.~
+57 0 SECT_MOUNTAIN
+DDIR_SOUTH
+Ice Spires North~
+~
+0 -1 5785
+DDIR_UP
+Ice Spires North~
+~
+0 -1 5787
+S
+#5787
+Ice Spires North~
+Pinnacles of ice rear up towards the clouded sky.  A chill wind whips at
+your armour.  Roars of ferocious creatures can be heard in the distance.~
+57 0 SECT_MOUNTAIN
+DDIR_DOWN
+Ice Spires North~
+~
+0 -1 5786
+S
+#5788
+Ice Spires North~
+Pinnacles of ice rear up towards the clouded sky.  A chill wind whips at
+your armour.  Roars of ferocious creatures can be heard in the distance.
+Your ears have icicles on their tips.~
+57 0 SECT_MOUNTAIN
+DDIR_EAST
+Ice Spires North~
+~
+0 -1 5785
+DDIR_UP
+Ice Spires North~
+~
+0 -1 5789
+S
+#5789
+Ice Spires North~
+Pinnacles of ice rear up towards the clouded sky.  A chill wind whips at
+your armour.  Roars of ferocious creatures can be heard in the distance.
+Your helm feels like it has frozen to your head.~
+57 0 SECT_MOUNTAIN
+DDIR_DOWN
+Ice Spires North~
+~
+0 -1 5788
+S
+#5790
+Ice Spires North~
+Pinnacles of ice rear up towards the clouded sky.  A chill wind whips at
+your armour.  Roars of ferocious creatures can be heard in the distance.
+All the metal armour you wear should have been replaced with leather hmmm?~
+57 0 SECT_MOUNTAIN
+DDIR_NORTH
+Ice Spires North~
+~
+0 -1 5785
+DDIR_DOWN
+Ice Spires North~
+~
+0 -1 5793
+S
+#5791
+Ice Spires North~
+Pinnacles of ice rear up towards the clouded sky.  A chill wind whips at
+your armour.  Roars of ferocious creatures can be heard in the distance.~
+57 0 SECT_MOUNTAIN
+DDIR_DOWN
+Ice Spires North~
+~
+0 -1 5792
+S
+#5792
+Ice Spires North~
+Pinnacles of ice rear up towards the clouded sky.  A chill wind whips at
+your armour.  Roars of ferocious creatures can be heard in the distance.
+The hilt of your sword is icy to the touch.~
+57 0 SECT_MOUNTAIN
+DDIR_NORTH
+Ice Spires North~
+~
+0 -1 5793
+DDIR_UP
+Ice Spires North~
+~
+0 -1 5791
+S
+#5793
+Ice Spires North~
+Pinnacles of ice rear up towards the clouded sky.  A chill wind whips at
+your armour.  Roars of ferocious creatures can be heard in the distance.
+The wind whistles up your kilt.~
+57 0 SECT_MOUNTAIN
+DDIR_SOUTH
+Ice Spires North~
+~
+0 -1 5792
+DDIR_UP
+Ice Spires North~
+~
+0 -1 5790
+S
+#5794
+Split Mountain~
+If you didn't know better you could swear that the shape of this mountain 
+resembles that of a large woman!  You feel like there is a history about
+this mountain.~
+57 0 SECT_MOUNTAIN
+DDIR_NORTH
+Split Mountain~
+~
+0 -1 5795
+DDIR_UP
+Split Mountain~
+~
+0 -1 5796
+DDIR_DOWN
+Wyrms Tongue Ice Field~
+~
+0 -1 5777
+S
+#5795
+Split Mountain~
+If you didn't know better you could swear that the shape of this mountain 
+resembles that of a large woman!  You feel like there is a history about
+this mountain.~
+57 0 SECT_MOUNTAIN
+DDIR_NORTH
+Base of a Mountain~
+~
+0 -1 4948
+DDIR_SOUTH
+Split Mountain~
+~
+0 -1 5794
+DDIR_UP
+Split Mountain~
+~
+0 -1 5797
+S
+#5796
+Split Mountain~
+If you didn't know better you could swear that the shape of this mountain 
+resembles that of a large woman!  You feel like there is a history about
+this mountain.  Take care as you climb, the mountain looks very precarious.~
+57 0 SECT_MOUNTAIN
+DDIR_NORTH
+Split Mountain~
+~
+0 -1 5797
+DDIR_EAST
+Split Mountain Cave~
+~
+0 -1 5799
+DDIR_UP
+Split Mountain~
+~
+0 -1 5798
+DDIR_DOWN
+Split Mountain~
+~
+0 -1 5794
+S
+#5797
+Split Mountain~
+If you didn't know better you could swear that the shape of this mountain 
+resembles that of a large woman!  You feel like there is a history about
+this mountain.  Make sure you don't fall back down the mountain!~
+57 0 SECT_MOUNTAIN
+DDIR_SOUTH
+Split Mountain~
+~
+0 -1 5796
+DDIR_DOWN
+Split Mountain~
+~
+0 -1 5795
+F 5795 5 50
+S
+#5798
+Split Mountain~
+If you didn't know better you could swear that the shape of this mountain 
+resembles that of a large woman!  You feel like there is a history about
+this mountain.  It sure is a long way to the bottom of the mountain.~
+57 0 SECT_MOUNTAIN
+DDIR_DOWN
+Split Mountain~
+~
+0 -1 5796
+F 5794 5 100
+S
+#5799
+Split Mountain Cave~
+You have entered an eerily dark cave.  Bones of long dead animals litter the 
+floor.  Take care that your own bones are not future room decorations here.~
+57 ROOM_DARK|ROOM_INDOORS SECT_INSIDE
+DDIR_WEST
+Split Mountain~
+~
+0 -1 5796
+S
+#0
+
+
+
+
+#RESETS
+M 0  5700   1  5705          ;Brianna of Hartwick in Throne room              
+E 1  5718 500 ITEM_WEAR_NECK ;equip the Medallion of Hiatea  
+E 1  5719 500 17             ;equip the Waterskin of Hiatea  
+M 0  5701   1  5701 ;             Tavis Burdun in Hartsvale                
+E 1  5702 500 ITEM_WEAR_HEAD ;equip the bear driller         
+E 1  5707 500 12 ;equip the Quiver of Tavis      
+P 1  5714 500  5707 ;           a Golden arrow in the Quiver of Tavis      
+M 0  5702   1  5706 ;        Basil the Verbeeg in Library                  
+G 1  5734 500       ;              a rune bark
+G 1  5735 500       ;             a rune stick
+G 1  5737 500       ;              a rune leaf
+M 0  5703   1  5763 ;Prince Arlien of Gilthwit in Cuthbert Fief            
+M 0  5704   1  5752 ;   Goboka the Ogre Shaman in Goboka's Hut             
+E 1  5700 500 12 ;equip a White bear skin        
+E 1  5701 500 6 ;equip a thigh bone             
+M 0  5705   1  5704 ;           Captain Selwyn in Great Hall
+E 1 5722 500 ITEM_WEAR_ABOUT ; equip tabard
+E 1 5723 500 ITEM_WEAR_NECK ; equip cloak
+E 1 5724 500 ITEM_WEAR_BODY ; equip chainmail
+E 1 5725 500 ITEM_WEAR_FINGER ; equip signet ring
+E 1 5726 500 ITEM_WEAR_LEGS ; equip chain mail skirt
+E 1 5727 500 ITEM_WEAR_FEET ; equip boots
+E 1 5730 500 ITEM_WEAR_HANDS ; equip gauntlets
+E 1 5731 500 ITEM_WEAR_SHIELD ; equip shield
+E 1 5732 500 ITEM_WEAR_WIELD ; wield long sword
+G 1 5728 500 ; medallion in inventory
+M 0  5707   1  5734 ;    The Titan of Twilight in Twilight Vale            
+M 0  5708   1  5736 ;          Avner the thief in Cold Marches             
+E 1  5709 500 ITEM_WEAR_HEAD ;equip the Dagger of Avner      
+M 0  5709   1  5703 ;                 Blizzard in Stable                   
+M 0  5710  10  5784 ;            a Frost giant in Ice Spires North         
+M 0  5710  10  5785 ;            a Frost giant in Ice Spires North         
+G 1  5715 500       ;           an Ice diamond
+M 0  5710  10  5786 ;            a Frost giant in Ice Spires North         
+M 0  5710  10  5787 ;            a Frost giant in Ice Spires North         
+G 1  5715 500       ;           an Ice diamond
+M 0  5710  10  5788 ;            a Frost giant in Ice Spires North         
+M 0  5710  10  5789 ;            a Frost giant in Ice Spires North         
+G 1  5715 500       ;           an Ice diamond
+M 0  5710  10  5790 ;            a Frost giant in Ice Spires North         
+M 0  5710  10  5791 ;            a Frost giant in Ice Spires North         
+G 1  5715 500       ;           an Ice diamond
+M 0  5710  10  5792 ;            a Frost giant in Ice Spires North         
+M 0  5710  10  5793 ;            a Frost giant in Ice Spires North         
+M 0  5711   6  5794 ;            a Stone giant in Split Mountain           
+M 0  5711   6  5795 ;            a Stone giant in Split Mountain           
+M 0  5711   6  5796 ;            a Stone giant in Split Mountain           
+M 0  5711   6  5797 ;            a Stone giant in Split Mountain           
+M 0  5711   6  5798 ;            a Stone giant in Split Mountain           
+M 0  5711   6  5799 ;            a Stone giant in Split Mountain Cave      
+M 0  5712  14  5720 ;             a Hill giant in Ice Spires               
+M 0  5712  14  5721 ;             a Hill giant in Ice Spires               
+M 0  5712  14  5722 ;             a Hill giant in Ice Spires               
+M 0  5712  14  5723 ;             a Hill giant in Ice Spires               
+M 0  5712  14  5724 ;             a Hill giant in Ice Spires               
+M 0  5712  14  5725 ;             a Hill giant in Ice Spires               
+M 0  5712  14  5726 ;             a Hill giant in Ice Spires               
+M 0  5712  14  5727 ;             a Hill giant in Ice Spires               
+M 0  5712  14  5728 ;             a Hill giant in Ice Spires               
+M 0  5712  14  5729 ;             a Hill giant in Ice Spires               
+M 0  5712  14  5730 ;             a Hill giant in Ice Spires               
+M 0  5712  14  5731 ;             a Hill giant in Ice Spires               
+M 0  5712  14  5732 ;             a Hill giant in Ice Spires               
+M 0  5712  14  5733 ;             a Hill giant in Ice Spires               
+M 0  5713  11  5753 ;                 an Ettin in Cuthbert Pass            
+M 0  5713  11  5735 ;                 an Ettin in Bleari Plain             
+M 0  5714  14  5755 ;             a Fire giant in Cuthbert Fief            
+E 1  5710 500 5 ;equip steaming black plate     
+M 0  5714  14  5756 ;             a Fire giant in Cuthbert Fief            
+E 1  5711 500 6 ;equip a Steaming black helmet. 
+M 0  5714  14  5757 ;             a Fire giant in Cuthbert Fief            
+E 1  5712 500 11 ;equip steaming black buckler   
+M 0  5714  14  5758 ;             a Fire giant in Cuthbert Fief            
+E 1  5713 500 ITEM_WEAR_HEAD ;equip a Flaming sword          
+M 0  5714  14  5759 ;             a Fire giant in Cuthbert Fief            
+E 1  5710 500 5 ;equip steaming black plate     
+M 0  5714  14  5760 ;             a Fire giant in Cuthbert Fief            
+E 1  5711 500 6 ;equip a Steaming black helmet. 
+M 0  5714  14  5761 ;             a Fire giant in Cuthbert Fief            
+E 1  5712 500 11 ;equip steaming black buckler   
+M 0  5714  14  5762 ;             a Fire giant in Cuthbert Fief            
+E 1  5710 500 5 ;equip steaming black plate     
+M 0  5714  14  5764 ;             a Fire giant in Cuthbert Fief            
+E 1  5711 500 6 ;equip a Steaming black helmet. 
+M 0  5714  14  5765 ;             a Fire giant in Cuthbert Fief            
+E 1  5712 500 11 ;equip steaming black buckler   
+M 0  5714  14  5766 ;             a Fire giant in Cuthbert Fief            
+E 1  5710 500 5 ;equip steaming black plate     
+M 0  5714  14  5767 ;             a Fire giant in Cuthbert Fief            
+E 1  5712 500 11 ;equip steaming black buckler   
+M 0  5714  14  5769 ;             a Fire giant in Cuthbert Fief            
+E 1  5713 500 ITEM_WEAR_HEAD ;equip a Flaming sword          
+M 0  5714  14  5770 ;             a Fire giant in Cuthbert Fief            
+E 1  5713 500 ITEM_WEAR_HEAD ;equip a Flaming sword          
+M 0  5715  11  5702 ;      a Winter wolf guard in Castle Hartwick Gatehouse
+G 1  5704  20       ;               a Gate key
+E 1  5722 500 12 ;equip a winter wolf tabard     
+M 0  5715  11  5705 ;      a Winter wolf guard in Throne room              
+E 1  5723 500 3 ;equip a winter wolf cloak      
+M 0  5715  11  5705 ;      a Winter wolf guard in Throne room              
+E 1  5724 500 5 ;equip a winter wolf chainmail  
+M 0  5715  11  5707 ;      a Winter wolf guard in Above the Gatehouse      
+E 1  5725 500 ITEM_WEAR_FINGER ;equip a winter wolf signet ring
+M 0  5715  11  5708 ;      a Winter wolf guard in Castle wall              
+E 1  5726 500 7 ;equip a winter wolf chainmail s
+M 0  5715  11  5709 ;      a Winter wolf guard in Castle wall              
+E 1  5727 500 ITEM_WEAR_BODY ;equip a winter wolf boots      
+M 0  5715  11  5710 ;      a Winter wolf guard in Castle wall              
+E 1  5728 500 ITEM_WEAR_NECK ;equip a winter wolf medallion  
+M 0  5715  11  5711 ;      a Winter wolf guard in Castle wall              
+E 1  5729 500 6 ;equip a winter wolf helm       
+M 0  5715  11  5712 ;      a Winter wolf guard in Castle wall              
+E 1  5730 500 9 ;equip a pair of winter wolf gau
+M 0  5715  11  5713 ;      a Winter wolf guard in Castle wall              
+E 1  5731 500 11 ;equip a winter wolf shield     
+M 0  5715  11  5714 ;      a Winter wolf guard in Castle wall              
+E 1  5732 500 ITEM_WEAR_HEAD ;equip a winter wolf long sword 
+M 0  5716  16  5736 ;                  an Ogre in Cold Marches             
+M 0  5716  16  5737 ;                  an Ogre in Cold Marches             
+E 1  5708 500 ITEM_WEAR_HEAD ;equip stone mace               
+M 0  5716  16  5738 ;                  an Ogre in Cold Marches             
+M 0  5716  16  5739 ;                  an Ogre in Cold Marches             
+E 1  5708 500 ITEM_WEAR_HEAD ;equip stone mace               
+M 0  5716  16  5740 ;                  an Ogre in Cold Marches             
+M 0  5716  16  5741 ;                  an Ogre in Cold Marches             
+E 1  5708 500 ITEM_WEAR_HEAD ;equip stone mace               
+M 0  5716  16  5742 ;                  an Ogre in Cold Marches             
+M 0  5716  16  5743 ;                  an Ogre in Cold Marches             
+E 1  5708 500 ITEM_WEAR_HEAD ;equip stone mace               
+M 0  5716  16  5744 ;                  an Ogre in Cold Marches             
+M 0  5716  16  5745 ;                  an Ogre in Cold Marches             
+E 1  5708 500 ITEM_WEAR_HEAD ;equip stone mace               
+M 0  5716  16  5746 ;                  an Ogre in Cold Marches             
+M 0  5716  16  5747 ;                  an Ogre in Cold Marches             
+E 1  5708 500 ITEM_WEAR_HEAD ;equip stone mace               
+M 0  5716  16  5748 ;                  an Ogre in Cold Marches             
+M 0  5716  16  5749 ;                  an Ogre in Cold Marches             
+E 1  5708 500 ITEM_WEAR_HEAD ;equip stone mace               
+M 0  5716  16  5750 ;                  an Ogre in Cold Marches             
+M 0  5716  16  5751 ;                  an Ogre in Cold Marches             
+M 0  5717  11  5773 ;            a Storm Giant in Wyrms Tongue Ice Field   
+M 0  5717  11  5774 ;            a Storm Giant in Wyrms Tongue Ice Field   
+M 0  5717  11  5775 ;            a Storm Giant in Wyrms Tongue Ice Field   
+M 0  5717  11  5776 ;            a Storm Giant in Wyrms Tongue Ice Field   
+M 0  5717  11  5777 ;            a Storm Giant in Wyrms Tongue Ice Field   
+M 0  5717  11  5778 ;            a Storm Giant in Wyrms Tongue Ice Field   
+M 0  5717  11  5779 ;            a Storm Giant in Wyrms Tongue Ice Field   
+M 0  5717  11  5780 ;            a Storm Giant in Wyrms Tongue Ice Field   
+M 0  5717  11  5781 ;            a Storm Giant in Wyrms Tongue Ice Field   
+M 0  5717  11  5782 ;            a Storm Giant in Wyrms Tongue Ice Field   
+M 0  5717  11  5783 ;            a Storm Giant in Wyrms Tongue Ice Field   
+M 0  5718  22  5774 ;                   a Bird in Wyrms Tongue Ice Field   
+M 0  5718  22  5775 ;                   a Bird in Wyrms Tongue Ice Field   
+M 0  5718  22  5776 ;                   a Bird in Wyrms Tongue Ice Field   
+M 0  5718  22  5777 ;                   a Bird in Wyrms Tongue Ice Field   
+M 0  5718  22  5778 ;                   a Bird in Wyrms Tongue Ice Field   
+M 0  5718  22  5779 ;                   a Bird in Wyrms Tongue Ice Field   
+M 0  5718  22  5780 ;                   a Bird in Wyrms Tongue Ice Field   
+M 0  5718  22  5781 ;                   a Bird in Wyrms Tongue Ice Field   
+M 0  5718  22  5782 ;                   a Bird in Wyrms Tongue Ice Field   
+M 0  5718  22  5783 ;                   a Bird in Wyrms Tongue Ice Field   
+M 0  5718  22  5774 ;                   a Bird in Wyrms Tongue Ice Field   
+M 0  5718  22  5775 ;                   a Bird in Wyrms Tongue Ice Field   
+M 0  5718  22  5776 ;                  a Bird in Wyrms Tongue Ice Field   
+M 0  5718  22  5777 ;                   a Bird in Wyrms Tongue Ice Field   
+M 0  5718  22  5778 ;                   a Bird in Wyrms Tongue Ice Field   
+M 0  5718  22  5779 ;                  a Bird in Wyrms Tongue Ice Field   
+M 0  5718  22  5780 ;                   a Bird in Wyrms Tongue Ice Field   
+M 0  5718  22  5781 ;                   a Bird in Wyrms Tongue Ice Field   
+M 0  5718  22  5782 ;                  a Bird in Wyrms Tongue Ice Field   
+M 0  5718  22  5783 ;                   a Bird in Wyrms Tongue Ice Field   
+M 0  5720   1  5799 ;  julien and arno in Split Mountain Cave      
+D 0  5702 DIR_NORTH DOOR_CLOSED_LOCKED ;door in Castle Hartwick Gatehouse
+O 0  5720   1  5703 ;           a Water trough in Stable                   
+O 0  5721   1  5701 ;                   a Sign in Hartsvale                
+S
+
+
+
+
+#SHOPS
+5702 ITEM_TYPE_WAND ITEM_TYPE_PILL ITEM_TYPE_SCROLL ITEM_TYPE_STAFF
+     ITEM_TYPE_POTION 100  50  6 20 ;Basil the Verbeeg
+0
+
+
+
+
+#SPECIALS
+S
+
+
+
+
+#$

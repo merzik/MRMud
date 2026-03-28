@@ -1,0 +1,6478 @@
+#AREA The North Pole~
+#AUTHORS Kat~
+#AUTHORS Superdave Minmay Andelisha~
+
+#HELPS
+-1 NPOLEBITINFO~
+1-4  ralph
+5-9  dave quest
+9-17 song quest
+18-19 crown quest
+quest 20 x x is usable
+rooms
+4400 is avail
+last avail room is 4569, 4570 and up are used
+there are many rooms from 4400-4569 avail
+~
+-1 SUPER_MINMAY_ATTACK~
+{110}A naked bather's SONIC ASSAULT ***Destroys*** you for 879 hp!!!{300}
+{110}A naked bather's SONIC ASSAULT ***Destroys*** you for 999 hp!!!{300}
+A naked bather's SONIC ASSAULT misses you.
+{110}A naked bather's SONIC ASSAULT ***Destroys*** you for 854 hp!!!{300}
+{110}A naked bather's SONIC ASSAULT ***Destroys*** you for 798 hp!!!{300}
+A naked bather parries your attack.
+{110}A naked bather's SONIC ASSAULT ***Destroys*** you for 923 hp!!!{300}
+{110}A naked bather's SONIC ASSAULT ***Destroys*** you for 878 hp!!!{300}
+~
+
+-1 NORTH_POLE_GUITAR_SOUND~
+{110}A Chaotic sound fills the room.{300}
+~
+-1 NPOLE_JINGLE~
+{160}JINGLE {150}JINGLE {130}JINGLE {110}JINGLE
+~
+
+-1 NORTHPOLE 'NORTH POLE' 'THE NORTH POLE'~
+{171}                   * * * T H E   N O R T H  P O L E * * *                      {120}
+HO HO HO!  This is an area made by Clan Christmas.  There are a few fun quests,
+none of which are too difficult, so enjoy.
+Well, maybe the one made by Andelisha is kinda tough....*PONDER*
+
+{130}CREDITS{150}
+Rooms, Mobs, layout by Kathy aka. Andelisha
+Primary Quest/Mobprog Coding by {171}SUPERDAVE{300}
+Other various Room descs by Clan Christmas members.
+
+{174}Version 2.4 Aug 8st, 1998{300}
+
+Midi Enhanced
+~
+
+0 $~
+
+
+#RANGES 0 99 0 99
+#FLAGS AFLAG_NODEBUG|AFLAG_NOTELEPORT
+#MOBILES
+#4401
+Clarence~
+Clarence~
+Clarence is standing here working to get his wings.~
+Yes, this is Clarence from "It's a Wonderful Life."  Since the movie is
+so popular and overplayed during the Christmas holidays, Clarence has
+lost his wings.  He stands here with a very mournful face, hoping that with
+each sale, will earn him his wings so he can leave.  It's been almost two
+centuries that he has been here, and he has gotten used to the work.
+He doesn't seem to want to leave anymore.
+~
+2|4096|16384|65536|ACT_RACE
+8|2048|16777216
+1000 S
+1 1 1 1d1+24 1d1+14
+0 0
+7 7 1
+>greet_prog 15~
+say Can you help me get my wings?
+~
+>speech_prog wings~
+say What I need to do is help someone real well in order to get my wings.
+~
+>speech_prog help~
+say Sorry, God hasn't told me yet what i need to do, exactly.  Try back
+say later. I might have some ideas then.
+~
+|
+#4402
+Billy~
+Billy~
+Billy stands here trying to shoot your eyes out.~
+Billy's mom always said that he couldn't get a BB gun for christmas
+because he would shoot his eyes out.  Well, when he got older, he
+decided to buy his own weapon shop, and let people have the opportunity
+of shooting their own eyes out, no matter how old they were.~
+2|4096|16384|65536|ACT_RACE
+8|2048|16777216
+0 S
+1 1 1 1d1+24 1d1+14
+0 0
+7 7 1
+>greet_prog 25~
+say My momma always said I'd shoot my eyes out. So you better be careful
+say when playing with your toys.
+~
+>rand_prog 10~
+say Ya know, y'all can make nice stuff out of reindeer pelts.
+~
+>speech_prog reindeer pelts~
+say If i had a pelt i could show y'all how.
+say Y'alls need a skinning knife to get pelts though.
+~
+>give_prog i4446~
+mpjunk i4446
+smile $n
+mpecho Billy pulls out a knife and cuts up the pelt.
+if rand(75)
+ mpoload 4434
+endif
+if rand(75)
+ mpoload 4435
+endif
+if rand(75)
+  mpoload 4436
+endif
+drop i4434
+drop i4435
+drop i4436
+say that was the best i could do.
+~
+|
+#4403
+Ralph~
+Ralph~
+Ralph stand here with his eyes closed.~
+Ralph stand here with his eyes closed so that he doesn't see you change
+your clothes.  He is very bashful.~
+2|4096|16384|65536|ACT_RACE
+8|2048|16777216
+0 S
+1 1 1 1d1+24 1d1+14
+0 0
+7 7 1
+>all_greet_prog 100~
+tell $n Good Morning. Hope you having a nice day!
+if quest(1,4,$n) == 14
+  tell $n Thanks again for finding all my ornaments!
+endif
+if quest(1,4,$n) == 1
+ if actorhasobjnum(4466)
+   tell $n I see you got an Ornament box!
+   tell $n May i have it?
+ endif
+endif
+~
+>rand_prog 15~
+say It sure would be nice to have a Christmas TREE in
+say here with a bunch of ORNAMENTS.
+~
+>speech_prog tree~
+say You can find trees growing outside the village.
+say Can't find any ORNAMENTS without a tree you know.
+say They seem to be attracted to Christmas trees.
+~
+>speech_prog ornaments~
+say Yeah, I always wanted a set of the 12 days of 
+say Christmas Ornaments that Mrs. Fields sold awhile
+say ago.  You probably would have to search real hard
+say to find a BOX and a full SET.
+~
+>speech_prog set~
+say Will you try to get me a full set of ornaments?
+~
+>speech_prog box~
+say Boxes are easy to get, but ornaments are not.
+~
+>speech_prog yes~
+if quest (1,4,$n) == 0
+  mpmset $n quest 1 4 1
+  Say Thank you for helping me $n.
+  Say Please bring me any ornaments that you may find!
+else
+  say Sorry you can't help me...
+endif
+~
+>speech_prog p I am not in the mood.~
+mpmset $n quest 1 4 0
+tell $n I am very sorry you couldnt help me.
+~
+>speech_prog search~
+tell $n People from time to time throw out ornaments.
+tell $n If you have a tree, and ATTRACT in the right spots,
+tell $n you might get lucky and find an ornament.
+tell $n If you do, please let me have it okay.
+~
+>give_prog I4466~
+  if quest (1,4,$n) == 1
+    mpmset $n quest 1 4 2
+    tell $n Now I have the special limited edition ornament box!
+    tell $n When I get the ORNAMENTS, I'll have somewhere to put them!
+    tell $n Now all you need is a TREE to ATTRACT them with!
+    bounce
+    hum
+    say On the first day of Christmas, my true love gave to me:
+  else 
+    sigh
+    say Why are you giving me this box?  I have no Ornaments
+    say to put in there so please take it back.
+    give i4466 $n 
+  endif~
+>give_prog I4451~
+  if quest (1,4,$n) == 2
+    mpmset $n quest 1 4 3
+    tell $n Thanks!  One down and eleven to go!
+    bounce
+    emote puts the coin in a box.
+    mpquiet on
+    mpjunk I4451
+    mpquiet off 
+    hum
+    say On the second day of Christmas, my true love gave to me:
+  else
+   say I can't accept this...Either i got this one already, or
+   say it's not the next one i need.  Take it back.
+   give i4451 $n
+ endif~
+>give_prog I4452~
+  if quest (1,4,$n) == 3
+    mpmset $n quest 1 4 4
+    tell $n Thanks!  Two down and ten to go!
+    bounce
+    emote puts the coin in a box.
+    mpquiet on
+    mpjunk I4452
+    mpquiet off 
+    hum
+    say On the third day of Christmas, my true love gave to me:
+  else
+    say I can't accept this...Either i got this one already, or
+   say it's not the next one i need.  Take it back.
+   give i4452 $n 
+ endif~
+>give_prog I4453~
+  if quest (1,4,$n) == 4
+    mpmset $n quest 1 4 5
+    tell $n Thanks!  Three down and nine to go!
+    bounce
+    emote puts the coin in a box.
+    mpquiet on
+    mpjunk I4453
+    mpquiet off 
+    hum
+    say On the fourth day of Christmas, my true love gave to me:
+  else
+   say I can't accept this...Either i got this one already, or
+   say it's not the next one i need.  Take it back.
+   give $o $n 
+ endif~
+>give_prog I4454~
+  if quest (1,4,$n) == 5
+    mpmset $n quest 1 4 6
+    tell $n Thanks!  Four down and eight to go!
+    bounce
+    emote puts the coin in a box.
+    mpquiet on
+    mpjunk I4454
+    mpquiet off 
+    hum
+    say On the fifth day of Christmas, my true love gave to me:
+  else
+   say I can't accept this...Either i got this one already, or
+   say it's not the next one i need.  Take it back.
+   give $o $n
+ endif~
+>give_prog I4455~
+  if quest (1,4,$n) == 6
+    mpmset $n quest 1 4 7
+    tell $n Thanks!  Five down and seven to go!
+    bounce
+    emote puts the coin in a box.
+    mpquiet on
+    mpjunk I4455
+    mpquiet off 
+    hum
+    say On the sixth day of Christmas, my true love gave to me:
+  else
+    say I can't accept this...Either i got this one already, or
+   say it's not the next one i need.  Take it back.
+   give $o $n
+ endif~
+>give_prog I4456~
+  if quest (1,4,$n) == 7
+    mpmset $n quest 1 4 8
+    tell $n Thanks!  Six down and six to go!
+    bounce
+    emote puts the coin in a box.
+    mpquiet on
+    mpjunk I4456
+    mpquiet off 
+    hum
+    say On the seventh day of Christmas, my true love gave to me:
+  else
+   say I can't accept this...Either i got this one already, or
+   say it's not the next one i need.  Take it back.
+   give $o $n
+ endif~
+>give_prog I4457~
+  if quest (1,4,$n) == 8
+    mpmset $n quest 1 4 9
+    tell $n Thanks!  Seven down and five to go!
+    bounce
+    emote puts the coin in a box.
+    mpquiet on
+    mpjunk I4457
+    mpquiet off 
+    hum
+    say On the eighth day of Christmas, my true love gave to me:
+  else
+    say I can't accept this...Either i got this one already, or
+   say it's not the next one i need.  Take it back.
+   give $o $n
+ endif~
+>give_prog I4458~
+  if quest (1,4,$n) == 9
+    mpmset $n quest 1 4 10
+    tell $n Thanks!  Eight down and four to go!
+    bounce
+    emote puts the coin in a box.
+    mpquiet on
+    mpjunk I4458
+    mpquiet off 
+    hum
+    say On the ninth day of Christmas, my true love gave to me:
+  else
+    say I can't accept this...Either i got this one already, or
+   say it's not the next one i need.  Take it back.
+   give $o $n
+ endif~
+>give_prog I4459~
+  if quest (1,4,$n) == 10
+    mpmset $n quest 1 4 11
+    tell $n Thanks!  Nine down and three to go!
+    bounce
+    emote puts the coin in a box.
+    mpquiet on
+    mpjunk I4459
+    mpquiet off 
+   hum
+    say On the tenth day of Christmas, my true love gave to me:
+  else
+    say I can't accept this...Either i got this one already, or
+   say it's not the next one i need.  Take it back.
+   give $o $n
+ endif~
+>give_prog I4460~
+  if quest (1,4,$n) == 11
+    mpmset $n quest 1 4 12
+    tell $n Thanks!  Ten down and two to go!
+    bounce
+    emote puts the coin in a box.
+    mpquiet on
+    mpjunk I4460
+    mpquiet off 
+    hum
+    say On the eleventh day of Christmas, my true love gave to me:
+  else
+    say I can't accept this...Either i got this one already, or
+   say it's not the next one i need.  Take it back.
+   give $o $n
+ endif~
+>give_prog I4461~
+  if quest (1,4,$n) == 12
+    mpmset $n quest 1 4 13
+    tell $n Thanks!  Eleven down and one to go!
+    bounce
+    emote puts the coin in a box.
+    mpquiet on
+    mpjunk I4461
+    mpquiet off 
+    hum
+    say On the twelth day of Christmas, my true love gave to me:
+  else
+   say I can't accept this...Either i got this one already, or
+   say it's not the next one i need.  Take it back.
+   give $o $n
+ endif~
+>give_prog I4462~
+  if quest (1,4,$n) == 13
+    mpmset $n quest 1 4 14
+    tell $n Thanks!  You did it! I have all the days of Christmas now!
+    tell $n How can I ever thank you?  I have been searching and searching
+    tell $n for these darn ornaments.  Thank you once again!
+    tell $n Please accept this CHRISTMAS star in return!
+    bounce
+    mpquiet on
+    mpjunk I4462 
+    mpoload 4463
+    mpquiet off
+    give i4463 $n  
+else
+    say I can't accept this...Either i got this one already, or
+   say it's not the next one i need.  Take it back.
+   give $o $n
+ endif
+~
+|
+#4404
+Mrs. Fields~
+Mrs. Fields~
+Mrs. Fields stands here making her yummy cookies.~
+Mrs. Fields stands here making lots and lots of yummy cookies.
+Christmas is her favorite time of the year.  When she found out that
+Christmas is celebrated in this village 365 days a year, she just had
+to move in.~
+2|4096|16384|65536|ACT_RACE
+8|2048|16777216
+0 S
+1 1 1 1d1+24 1d1+14
+0 0
+7 7 2
+>rand_prog 10~
+say Don't forget to try one of my delicious cookies.
+smile 
+~
+|
+#4405
+Bernard~
+Bernard~
+Bernard stands here waiting to train your muscles.~
+Bernard is a helpful elf.  He likes to train people so that they can help
+Santa Claus deliver his present around the globe.~
+2|ACT_TRAIN|4096|16384|65536|ACT_RACE
+8|2048|16777216
+0 S
+5 1 1 1d1+240 1d1+145
+0 RACE_ELF
+7 7 1
+>rand_prog 25~
+say You call those muscles?  Come here, I'll show you muscles!
+~
+|
+#4406
+Quinton~
+Quinton~
+Quinton stands here with a clipboard and pencil.~
+Quinton is part of the research and development team for the North Pole. He
+loves to help people figure out what they want to do with their lives.  He
+is such a busy body.~
+2|ACT_PRACTICE|4096|16384|65536|ACT_RACE
+8|2048|16777216
+0 S
+5 1 1 1d1+129 1d1+149
+0 0
+7 7 1
+#4407
+Janice~
+Janice~
+Janice stands here singing Christmas carols.~
+Janice stands here looking resigned.  She looks very fit and warm. 
+She must have taken alot of abuse that has made her REAL strong.
+Don't mess with her!~
+2|ACT_WIMPY|4096|16384|65536|ACT_RACE
+8|2048|16777216
+1000 S
+95 1|32|64 1|32|64 1d1+12999 1d1+90
+385326 0
+7 7 2
+>rand_prog 75~
+if quest(0,5,self) == 1
+ say Sleigh bells ring, are you listening...
+ mpmset self quest 0 5 2
+ break
+endif
+if quest(0,5,self) == 2
+ say In the Lane, snow is glistening...
+ mpmset self quest 0 5 3
+ break
+endif
+if quest(0,5,self) == 3
+ say A beautiful sight...
+ mpmset self quest 0 5 4
+ break
+endif
+if quest(0,5,self) == 4
+ say We're happy tonight...
+ mpmset self quest 0 5 5
+ break
+endif
+if quest(0,5,self) == 5
+ say Walking in a winter wonderland!
+ mpmset self quest 0 5 6
+ break
+endif
+if quest(0,5,self) == 6
+ say Gone away, is the blue bird...
+ mpmset self quest 0 5 7
+ break
+endif
+if quest(0,5,self) == 7
+ say Here to stay, is a new bird...
+ mpmset self quest 0 5 8
+ break
+endif
+if quest(0,5,self) == 8
+ say He sings a love song, as we go along...
+ mpmset self quest 0 5 9
+ break
+endif
+if quest(0,5,self) == 9
+ say Walking in a winter wonderland!
+ mpmset self quest 0 5 10
+ break
+endif
+if quest(0,5,self) == 10
+ say In the meadow we can build a snowman...
+ mpmset self quest 0 5 11
+ break
+endif
+if quest(0,5,self) == 11
+ say Then pretend that he is Parson Brown...
+ mpmset self quest 0 5 12
+ break
+endif
+if quest(0,5,self) == 12
+ say He'll say are you married? We'll say No man!
+ mpmset self quest 0 5 13
+ break
+endif
+if quest(0,5,self) == 13
+ say But you can do the job when you're in town.
+ mpmset self quest 0 5 14
+ break
+endif
+if quest(0,5,self) == 14
+ say Okay, what was the name of that song?
+ mpmset self quest 0 5 15
+ break
+endif
+if quest(10,4,self) > 0
+  mpmadd self quest 10 4 1
+else
+  if rand(25)
+    say Would you like to hear a song?
+  endif
+endif
+if quest(10,4,self) > 12
+  say I guess you don't know...
+  mpmset self quest 10 4 0
+  mpmset self quest 0 5 0 
+endif
+~
+>speech_prog yes~
+if quest(0,5,self) == 0
+ MPFORCE all EXTERNAL XMASWINT.MID
+ mpmset self quest 0 5 1
+ mpmset self quest 10 4 1
+ say Okay, here goes!
+ sing
+endif
+~
+>speech_prog p winter wonderland~
+if quest(0,5,self) == 15
+ say Yes!  You're right!
+ mpmset self quest 10 4 0
+ mpmset self quest 0 5 0
+ if quest(12,1,$n) == 1
+   mpmset $n quest 16 1 1
+   say Great! You've learned a song! 
+ endif
+else
+ poke $n
+ say Hey! Wait till I finish, lemme start again!
+ mpmset self quest 0 5 1
+ mpmset self quest 10 4 1
+  MPFORCE all EXTERNAL XMASWINT.MID
+endif
+~
+|
+#4408
+Michael~
+Michael~
+Michael is singing Christmas carols.~
+Michael stands here lookking resigned.  He looks very fit and warm.  
+He must have taken alot of abuse that has made him REAL strong.
+Don't mess with him!~
+2|128|4096|16384|65536|ACT_RACE
+8|2048|16777216
+1000 S
+95 1|32|64 1|32|64 1d1+10999 1d1+90
+376567 0
+7 7 1
+>rand_prog 75~
+if quest(0,5,self) == 1
+ say Dashing through the snow...
+ mpmset self quest 0 5 2
+ break
+endif
+if quest(0,5,self) == 2
+ say In a one-horse open sleigh...
+ mpmset self quest 0 5 3
+ break
+endif
+if quest(0,5,self) == 3
+ say Through the fields we go...
+ mpmset self quest 0 5 4
+ break
+endif
+if quest(0,5,self) == 4
+ say laughing all the way...
+ mpmset self quest 0 5 5
+ break
+endif
+if quest(0,5,self) == 5
+ say Bells on bob-tail ring...
+ mpmset self quest 0 5 6
+ break
+endif
+if quest(0,5,self) == 6
+ say Making spirits bright...
+ mpmset self quest 0 5 7
+ break
+endif
+if quest(0,5,self) == 7
+ say Oh what fun it is to ride and sing...
+ mpmset self quest 0 5 8
+ break
+endif
+if quest(0,5,self) == 8
+ say A sleighing song tonight...
+ mpmset self quest 0 5 9
+ break
+endif
+if quest(0,5,self) == 9
+ say Jingle bells, jingle bells...
+ mpmset self quest 0 5 10
+ break
+endif
+if quest(0,5,self) == 10
+ say Jingle all the way...
+ mpmset self quest 0 5 11
+ break
+endif
+if quest(0,5,self) == 11
+ say Oh what fun, it is to ride...
+ mpmset self quest 0 5 12
+ break
+endif
+if quest(0,5,self) == 12
+ say In a one-horse open sleigh, hey!
+ mpmset self quest 0 5 13
+ break
+endif
+if quest(0,5,self) == 13
+ say Jingle bells, jingle bells...
+ mpmset self quest 0 5 14
+ break
+endif
+if quest(0,5,self) == 14
+ say Jingle all the way...
+ mpmset self quest 0 5 15
+ break
+endif
+if quest(0,5,self) == 15
+ say Oh what fun, it is to ride...
+ mpmset self quest 0 5 16
+ break
+endif
+if quest(0,5,self) == 16
+ say In a one-horse open sleigh!
+ smile
+ say Okay, what was the name of that song?
+ mpmset self quest 0 5 17
+ break
+endif
+if quest(10,4,self) > 0
+  mpmadd self quest 10 4 1
+else
+  if rand(25)
+    say Would you like to hear a song?
+  endif
+endif
+if quest(10,4,self) > 12
+  say I guess you don't know...
+  mpmset self quest 10 4 0
+  mpmset self quest 0 5 0 
+endif
+~
+>speech_prog yes~
+if quest(0,5,self) == 0
+mpmset self quest 0 5 1
+mpmset self quest 10 4 1
+say Okay, here goes!
+MPFORCE all EXTERNAL XMASJING.MID
+sing
+endif
+~
+>speech_prog p jingle bells~
+if quest(0,5,self) == 17
+ say Yes!  You're right!
+ mpmset self quest 10 4 0
+ mpmset self quest 0 5 0
+ if quest(12,1,$n) == 1
+   mpmset $n quest 13 1 1
+   say Great! You've learned a song!
+ endif
+else
+  poke $n
+  Say HEY!  Wait till I finish, now i gotta start over.
+  mpmset self quest 0 5 1
+  mpmset self quest 10 4 1
+  MPFORCE all EXTERNAL XMASJING.MID
+endif
+~
+|
+#4409
+Frosty~
+Frosty~
+Frosty the snowman stands here.~
+Frosty the snowman is a jolly happy soul.  With his corncob pipe and a
+button nose, and two eys made of coal.  He is a fairytale they say.  He is
+made of snow, but the children know, how he came to life one day.  There
+must have been some magic in that old silk hat they found.  For when they
+placed it on his head, he began to dance around.
+~
+2|128|4096|16384|65536|ACT_RACE
+8|2048|16777216
+1000 S
+95 1|32|64 1|32|64 1d1+9999 1d1+75
+355925 0
+7 7 1
+>all_greet_prog 100~
+If quest(18,2,$n) == 0
+  tell $n Welcome my good buddy, would you happen to have seen my old silk hat?
+endif
+~
+>speech_prog yes~
+if quest(18,2,$n) == 0
+ mpmset $n quest 18 2 1
+ tell $n May I have it then?  I will tell you a story if you do.
+endif
+~
+>speech_prog no~
+if quest(18,2,$n) == 0
+ tell $n Well if you find it anywhere please return it to me.
+ tell $n I bet one of those other snowmen was jealous of me
+ tell $n and took it!
+endif
+~
+>give_prog i4471~
+if quest(18,2,$n) == 1
+ mpjunk i4471
+ mpecho $I wears the silk hat upon his head.
+ say Thank you $n!  For your reward I will tell you about an old
+ say magical CROWN I once saw on my adventures throughout the land.
+ mpmset $n quest 18 2 2
+else
+ give i4471 $n
+ say No thanks, I have one already.
+ mpecho $I wears an old silk hat upon his head.
+endif
+~
+>speech_prog crown~
+if quest(18,2,$n) == 2
+ mpmset $n quest 18 2 3
+ say Ehem!  Oh yes, the Crown of the Ancients!  There is a small
+ say village named Walachia, where a holy priest lives.
+ say Seek out this priest and show him this snowflake, and he will
+ say know that I sent you.
+ mpoload 4472
+ give i4472 $n
+endif
+~
+| 
+#4410
+snowman~
+A Snowman~
+A snowman stands here.~
+A little, pudgy snowman stand before you.  His body is made of snowballs
+which are in 3 sizes, small, medium, and large.  His black eyes and red
+nose just make you giggle when you see him.~
+4096|16384|65536|ACT_RACE
+8|2048|16777216
+500 S
+74 16|32 1|8|32 2d100+2700 1d48+24
+50000 0
+7 7 1
+>rand_prog 10~
+say Brrr... it's cold out here.
+~
+>death_prog 10~
+mpoload 4412
+If rand(50)
+ mpoload 4471
+ mpecho The snowman explodes in a furry of snow!
+endif
+~
+|
+#4411
+snow woman~
+A Snowwoman~
+A snowwoman stands here.~
+A little, pudgy snow-woman stand before you.  Her body is made
+of many snowballs which are in 4 sizes: tiny, small, medium, and large.
+Her black eyes and red nose and cheecks just make you want to rub noses
+with her.~
+4096|16384|65536|ACT_RACE
+8|2048|16777216
+500 S
+73 16|32 1|8|32 4d100+2600 1d16+40
+50000 0
+7 7 2
+>rand_prog 10~
+say Brrr.... its cold out here.
+say You want to help get me warm?
+~
+>social_prog fondle~
+if isnpc ($n)
+  lick $n
+else
+  if sex($n) == 0
+    fondle $n
+  else
+    if sex($n) == 2
+      scream 
+      say I'm not that type!
+      slap $n
+    else
+      french $n
+    endif
+  endif
+endif
+~
+>social_prog french~
+if isnpc ($n)
+  lick $n
+else
+  if sex($n) == 0
+    fondle $n
+  else
+    if sex($n) == 2
+      scream 
+      say I'm not that type!
+      slap $n
+    else
+      french $n
+    endif
+  endif
+endif
+~
+>social_prog lick~
+if isnpc ($n)
+  lick $n
+else
+  if sex($n) == 0
+    fondle $n
+  else
+    if sex($n) == 2
+      scream 
+      say I'm not that type!
+      slap $n
+    else
+      lick $n
+    endif
+  endif
+endif
+~
+>social_prog pat~
+if isnpc ($n)
+  lick $n
+else
+  say I'm not a dog. Please don't pet me!
+  kick $n
+endif
+~
+>death_prog 10~
+mpoload 4413
+~
+|
+#4412
+candy cane~
+A candy cane~
+A candy cane walks around you.~
+Here stands a candy cane about 4 foot high and about 3 inches in diameter.
+If it was a real candy cane that you could eat, it would take you days,
+and days, and days to finish.~
+4096|65536|ACT_RACE
+8|2048|16777216
+500 S
+64 1|16 8 3d100+1851 3d7+40
+25000 0
+7 7 SEX_NEUTRAL
+>death_prog 10~
+mpoload 4420
+~
+|
+#4413
+reindeer~
+A reindeer~
+A reindeer stands here prancing nervously.~
+This is one of the children of the main 9 reindeer that pull Santa's
+sleigh.  It is quite dextrous and strong because of its breeding.~
+4096|65536|ACT_RACE
+8|2048|16777216
+100 S
+64 1|16 8 3d80+1481 2d5+45
+5000 0
+7 7 SEX_NEUTRAL
+>death_prog 50~
+if actorhasobjnum(4448)
+ mpecho $n Whips out his knife and skins the reindeer!
+ mpoload 4446
+else
+ mpecho $n Beats the reindeer into a messy pulp.
+endif
+~
+|
+#4414
+toy soldier~
+A toy soldier~
+A toy soldier walks by you guarding the town.~
+A tall, doll stands before you, dressed in a soldier's outfit.
+Its cheeks are painted a dull red.  Its sword looks pretty sharp.~
+2|4096|65536|ACT_RACE|ACT_STAY_AREA
+8|32|2048|16777216
+100 S
+95 1|32|64 8 4d90+12000 2d5+133
+10000 RACE_DROW
+7 7 1
+#4415
+elf~
+An Elf~
+An elf stands here looking for something to do.~
+An ordinary elf stands looking looking to get into trouble.  His mischievous
+looks warn you that something is gonna happen soon that really wont be expected.~
+4096|65536|ACT_RACE|ACT_SENTINEL
+8|2048|16777216
+-100 S
+64 1|32|64 8 3d80+1485 2d5+45
+10000 RACE_ELF
+7 7 1
+#4416
+penguin~
+A Penguin~
+A cute penquin stands here.~
+A ordinary penguin stands here in his cute tuxedo looking all dressed up and has
+nowhere to go.~
+4096|65536|ACT_RACE
+8|2048|16777216
+-100 S
+60 1|32|64 8 1d1+1633 2d5+40
+5000 RACE_HALFLING
+7 7 1
+#4417
+slave~
+Zoren's Slave~
+A tanned god-like creature stand here fanning you with a palm branch.~
+A tall man, stands here looking at you, hoping to fulfil your every wish.~
+65536|ACT_RACE
+0
+0 S
+5 1 8 1d1+49 1d1+5
+0 0
+7 7 1
+>all_greet_prog 50~
+say Can I help you?
+~
+|
+#4418
+fake santa~
+Santa Claus~
+A Santa Claus stands here ringing his bell.~
+This is a hired santa claus being paid to ring his bell.  He is strong
+man who has never had his money stolen.  He loves to help the people who
+donate to his cause.~
+2|4096|65536|ACT_RACE
+8|128|2048|16777216
+0 S
+1 1 1 10d1000+2 6d100+250
+0 0
+7 7 1
+>rand_prog 80~
+mpquiet on
+get all
+put all i4421
+drop all
+mpquiet off
+if rand(1)
+  shout HO HO HO!  MERRY CHRISTMAS!
+endif
+~
+>greet_prog 100~
+if quest(17,1,$n) == 0
+ if quest(12,5,$n) == 31
+  smile $n
+  shout HO HO HO HO HO HO!
+  tell $n You have proved that you have the Christmas
+  tell $n Spirit!  Here, take this wreath and wear it
+  tell $n with pride.
+  mpoload 4409
+  give wreath $n
+  mpmset $n quest 17 1 1
+ endif
+endif
+if rand(33)
+ say Would you like to donate to my cause?
+endif
+~
+>speech_prog cause donate~
+say The salvation army needs your donations.
+~
+>speech_prog donation~
+say Just give me money if you want to make a donation.
+~
+>bribe_prog 100000~
+if quest(12,1,$n) == 0
+ bounce
+ SAY For your generous gift, i'll tell you a secret.
+ SAY I'm really Santa Claus!  Really I am.
+ SAY Go and learn 4 Christmas songs, and I'll give
+ SAY you a nice present.
+ mpmset $n quest 12 1 1
+else
+say thank you for your donation!
+endif
+~
+>bribe_prog 1~
+say Thank You for your donation!
+TELL $n But could you give more?
+hug $n
+~
+|
+
+@ adjusted hp and dam dice 8/3/03
+#4419
+greyhound~
+A greyhound~
+A greyhound runs circles around you.~
+A very lithe greyhound runs around you.  He wants you to pat him and
+tell him he has done a good job.~
+ACT_PET|4096|65536|ACT_RACE
+8|2048|16777216
+-100 S
+20 1|32|64 8 1d35+75 1d10+15
+5000 RACE_HALFLING
+7 7 1
+>rand_prog 15~
+mpecho The greyhound barks at you.
+~
+>greet_prog 25~
+mpecho The greyound pees on $r.
+~
+|
+
+@adjusted hp and dam dice 8/3/03
+#4420
+pet penquin~
+A pet penquin~
+A pet penquin waddles around you.~
+A penquin stands here waddling around you.  It doesn't like real hot
+areas, so please try to keep him cold.~
+ACT_PET|4096|65536|ACT_RACE
+2048|16777216
+0 S
+35 1|8 8 2d11+99 2d5+25
+0 0
+7 7 SEX_NEUTRAL
+
+@adjusted hp and dam dice 8/3/03
+#4421
+pet seal~
+A pet seal~
+A pet seal rests here.~
+A little white seal rests here waiting for you to show him the world.~
+ACT_PET|4096|65536|ACT_RACE
+2048|16777216
+0 S
+40 1|8 8 2d101+50 2d5+25
+0 0
+7 7 SEX_NEUTRAL
+
+@ removed knife fight_prog 8/3/03
+@ adjusted hp and dam dice  8/3/03
+#4422
+pet walrus~
+A pet Walrus~
+A pet walrus sits here taking up most of the space in the room.~
+A walrus sits here with his tusks hanging out, and barking once in a
+while.~
+ACT_PET|4096|65536|ACT_RACE
+2048|16777216
+0 S
+60 1|8 8 2d101+100 2d5+45
+0 0
+7 7 SEX_NEUTRAL
+
+@adjusted hp and dam dice
+@removed aff_sneak
+#4423
+pet reindeer~
+A pet reindeer~
+A pet reindeer stands here docilely.~
+A tan reindeer stands here looking at you with love in his eyes.  He is
+willing to even die for you.~
+ACT_PET|4096|65536|ACT_RACE
+2048|16777216|128
+0 S
+50 1|8 8 2d101+150 1d15+60
+0 0
+7 7 SEX_NEUTRAL
+#4424
+Bianca~
+Bianca~
+Miss Bianca stands here waiting to sell you a pet.~
+Miss Bianca is a little mouse from the Rescuers down Under.  She wants
+to make sure that you will not abuse her pets.~
+2|4096|16384|65536|ACT_RACE
+8|2048|16777216
+1000 S
+1 1 1 1d1+24 1d1+14
+0 0
+7 7 2
+#4425
+present~
+A present~
+A wrapped present sits on the floor.~
+A beautifully wrapped present sits on the floor.  You can't see the name
+tag, but hope it's for you.~
+65536|ACT_RACE
+0
+0 S
+29 1|8 BODY_MOUTH|BODY_TAIL 1d100+350 1d4+17
+2000 RACE_GNOME
+7 7 SEX_NEUTRAL
+#4426
+deer~
+trainee deer~
+A deer stands here waiting around.~
+A beautiful young buck stands here waiting his next instructions in the art
+of  'CHRISTMAS'~
+65536|ACT_RACE
+256
+0 S
+29 32|8192 32|8192 1d1+400 1d20+9
+1500 RACE_ORC
+7 7 SEX_NEUTRAL
+#4427
+elf~
+trainee elf~
+An confused elf stands here.~
+This elf is really confused.  He does know what's going on at all~
+65536|ACT_RACE
+256
+0 S
+28 1|8 1|8 1d10+380 1d38+1
+1500 RACE_ELF
+7 7 1
+#4428
+bear~
+A bear~
+A cute teddy bear lies in the corner.~
+A cute teddy near lies in the corner.  It will be very well loved by its
+next owner.~
+65536|ACT_RACE
+256
+0 S
+9 1|BODY_EYE 1|BODY_EYE 1d20+50 2d6+7
+100 RACE_HALFLING
+7 7 SEX_NEUTRAL
+#4429
+top~
+A top~
+A top spins here.~
+This is one of the most favorite of all toys to all generations.  A
+spinning top.  It is just like the engerizer bunny and doesnt know when to
+quit.~
+65536|ACT_RACE
+0
+0 S
+14 1|BODY_EYE 1|BODY_EYE 3d20+95 2d6+7
+150 RACE_HALFLING
+7 7 SEX_NEUTRAL
+#4430
+blocks~
+Blocks~
+A stack of blocks stand here.~
+A stack of multicolored blocks stand here waiting to be pushed, so that
+they can fall down.~
+65536|ACT_RACE
+0
+0 S
+14 1|BODY_CLAW 1|BODY_CLAW 4d10+100 2d6+7
+100 RACE_HALFLING
+7 7 SEX_NEUTRAL
+#4431
+ribbon~
+A ribbon~
+A ribbon floats here in the wind.~
+A piece of curling ribbon floats in the wind.~
+65536|ACT_RACE
+0
+0 S
+14 16|BODY_TAIL 16|BODY_TAIL 4d10+100 2d6+7
+100 RACE_HALFLING
+7 7 SEX_NEUTRAL
+#4432
+box~
+A wrapped box~
+An wrapped box sits in the corner.~
+This wrapped box is filled with CHRISTMAS toys.~
+4096|65536|ACT_RACE
+AFF_DETECT_EVIL
+0 S
+19 16 16 2d25+185 1d20+6
+1000 RACE_HALFLING
+7 7 SEX_NEUTRAL
+#4433
+doll~
+A doll~
+A doll fell in the corner.~
+This doll just wants to be played with and held.~
+4096|65536|ACT_RACE
+0
+0 S
+24 1|32 1|32|64 2d40+240 1d20+8
+1000 RACE_HALFLING
+7 7 2
+#4434
+train~
+A train~
+A model train runs in circles around the room.~
+This is a model train that any young child will love.  Even some adults
+might fight over playing with this train.~
+65536|ACT_RACE
+0
+0 S
+28 BODY_HORN BODY_HORN 10d5+375 3d10+4
+10000 RACE_HALFLING
+4 4 0
+>death_prog 33~
+if rand(50)
+  mpoload 4418
+  mpecho A hat falls out onto the floor.
+else
+  mpoload 4419
+  mpecho A whistle falls out onto the floor.
+endif
+~
+|
+
+#4435
+paper~
+Wrapping Paper~
+A roll of paper sits in the corner.~
+This roll of wrapping paper doesnt ever have an end to it.~
+65536|ACT_RACE
+0
+0 S
+24 1|16 1|BODY_TAIL 5d20+260 1d18+9
+10000 RACE_HALFLING
+4 4 SEX_NEUTRAL
+
+#4436
+Meredith~
+Meredith~
+Meredith stands here singing Christmas carols.~
+Meredith stands here looking resigned.  She looks very fit and warm. 
+She must have taken alot of abuse that has made her REAL strong.
+Don't mess with her!~
+2|ACT_WIMPY|4096|16384|65536|ACT_RACE
+8|2048|16777216
+1000 S
+95 1|32|64 1|32|64 1d1+12999 1d1+90
+335283 0
+7 7 2
+>rand_prog 75~
+if quest(0,5,self) == 1
+ say You know Dasher and Dancer and Prancer and Vixen...
+ mpmset self quest 0 5 2
+ break
+endif
+if quest(0,5,self) == 2
+ say Comet and Cupid and Donner and Blitzen...
+ mpmset self quest 0 5 3
+ break
+endif
+if quest(0,5,self) == 3
+ say But do you recall?
+ mpmset self quest 0 5 4
+ break
+endif
+if quest(0,5,self) == 4
+ say The most famous reindeer of all?
+ mpmset self quest 0 5 5
+ break
+endif
+if quest(0,5,self) == 5
+ say Rudolph the red-nosed reindeer...
+ mpmset self quest 0 5 6
+ break
+endif
+if quest(0,5,self) == 6
+ say Had a very shiny nose...
+ mpmset self quest 0 5 7
+ break
+endif
+if quest(0,5,self) == 7
+ say And if you ever saw it...
+ mpmset self quest 0 5 8
+ break
+endif
+if quest(0,5,self) == 8
+ say You would even say it glows.
+ mpmset self quest 0 5 9
+ break
+endif
+if quest(0,5,self) == 9
+ say All of the other reindeer...
+ mpmset self quest 0 5 10
+ break
+endif
+if quest(0,5,self) == 10
+ say Used to laugh and call him names...
+ mpmset self quest 0 5 11
+ break
+endif                
+if quest(0,5,self) == 11
+ say They never let poor Rudolph...
+ mpmset self quest 0 5 12
+ break
+endif
+if quest(0,5,self) == 12
+ say Join in any reindeer games...
+ mpmset self quest 0 5 13
+ break
+endif
+if quest(0,5,self) == 13
+ say Then one foggy CHRISTMAS Eve...
+ mpmset self quest 0 5 14
+ break
+endif
+if quest(0,5,self) == 14
+ say Santa came to say...
+ mpmset self quest 0 5 15
+ break
+endif
+if quest(0,5,self) == 15
+ say Rudolph with your nose so bright...
+ mpmset self quest 0 5 16
+ break
+endif
+if quest(0,5,self) == 16
+ say Won't you guide my sleigh tonight...
+ mpmset self quest 0 5 17
+ break
+endif
+if quest(0,5,self) == 17
+ say Then how the reindeer loved him....
+ mpmset self quest 0 5 18
+ break
+endif
+if quest(0,5,self) == 18
+ say As they shouted out with glee...
+ mpmset self quest 0 5 19
+ break
+endif
+if quest(0,5,self) == 19
+ say Rudolph the red-nosed reindeer...
+ mpmset self quest 0 5 20
+ break
+endif
+if quest(0,5,self) == 20
+ say You'll go down in history!
+ mpmset self quest 0 5 21
+ smile
+ say Okay, what was the name of that song?
+ break
+endif
+if quest(10,4,self) > 0
+  mpmadd self quest 10 4 1
+else
+  if rand(25)
+    say Would you like to hear a song?
+  endif
+endif
+if quest(10,4,self) > 12
+  say I guess you don't know...
+  mpmset self quest 10 4 0
+  mpmset self quest 0 5 0 
+endif
+~
+>speech_prog yes~
+if quest(0,5,self) == 0
+mpmset self quest 0 5 1
+mpmset self quest 10 4 1
+say Okay, here goes!
+MPFORCE all EXTERNAL XMASRUDO.MID
+sing
+endif
+~
+>speech_prog p rudolph the red-nosed reindeer~
+if quest(0,5,self) == 21
+ say Yes!  You're right!
+ mpmset self quest 10 4 0
+ mpmset self quest 0 5 0
+ if quest(12,1,$n) == 1
+   mpmset $n quest 14 1 1
+   say Great! You've learned a song! 
+ endif
+else
+ poke $n
+ say HEY! Wait till I finish. Guess I'll start again!
+ MPFORCE all EXTERNAL XMASRUDO.MID
+ mpmset self quest 0 5 1
+ mpmset self quest 10 4 1
+endif
+~
+|
+
+#4437
+Randy~
+Randy~
+Randy is singing Christmas carols.~
+Randy stands here lookking resigned.  He looks very fit and warm.  
+He must have taken alot of abuse that has made him REAL strong.
+Don't mess with him!
+~
+2|ACT_WIMPY|4096|16384|65536|ACT_RACE
+8|2048|16777216
+1000 S
+95 1|32|64 1|32|64 1d1+10999 1d1+90
+365477 0
+7 7 1
+>rand_prog 75~
+if quest(0,5,self) == 1
+ say You better watch out, you better not cry...
+ mpmset self quest 0 5 2
+ break
+endif
+if quest(0,5,self) == 2
+ say Better not pout, I'm telling you why...
+ mpmset self quest 0 5 3
+ break
+endif
+if quest(0,5,self) == 3
+ say Santa Claus is coming to town.
+ mpmset self quest 0 5 4
+ break
+endif
+if quest(0,5,self) == 4
+ say He's making a list, and checking it twice...
+ mpmset self quest 0 5 5
+ break
+endif
+if quest(0,5,self) == 5
+ say Gonna find out who's naughty or nice...
+ mpmset self quest 0 5 6
+ break
+endif
+if quest(0,5,self) == 6
+ say Santa Claus is coming to town.
+ mpmset self quest 0 5 7
+ break
+endif
+if quest(0,5,self) == 7
+ say He sees you when you're sleeping...
+ mpmset self quest 0 5 8
+ break
+endif
+if quest(0,5,self) == 8
+ say He knows when you're awake...
+ mpmset self quest 0 5 9
+ break
+endif
+if quest(0,5,self) == 9
+ say He knows if you've been bad or good...
+ mpmset self quest 0 5 10
+ break
+endif
+if quest(0,5,self) == 10
+ say So you better be good for goodness sake.
+ mpmset self quest 0 5 11
+ break
+endif                
+if quest(0,5,self) == 11
+ say Oh you better watch out...
+ mpmset self quest 0 5 12
+ break
+endif
+if quest(0,5,self) == 12
+ say You better not cry...
+ mpmset self quest 0 5 13
+ break
+endif
+if quest(0,5,self) == 13
+ say Better not pout, I'm telling you why...
+ mpmset self quest 0 5 14
+ break
+endif
+if quest(0,5,self) == 14
+ say Santa Claus is coming to town!
+ mpmset self quest 0 5 15
+ break
+endif
+if quest(0,5,self) == 15
+ mpmset self quest 0 5 16
+ smile
+ say Okay, what was the name of that song?
+ break
+endif
+if quest(10,4,self) > 0
+  mpmadd self quest 10 4 1
+else
+  if rand(15)
+    say Would you like to hear a song?
+  endif
+endif
+if quest(10,4,self) > 12
+  say I guess you don't know...
+  mpmset self quest 10 4 0
+  mpmset self quest 0 5 0 
+endif
+~
+>speech_prog yes~
+if quest(0,5,self) == 0
+mpmset self quest 0 5 1
+mpmset self quest 10 4 1
+say Okay, here goes!
+MPFORCE all EXTERNAL XMASSANT.MID
+sing
+endif
+~
+>speech_prog p santa claus is coming to town~
+if quest(0,5,self) == 16
+ say Yes!  You're right!
+   mpmset self quest 0 5 0
+ mpmset self quest 10 4 0
+ if quest(12,1,$n) == 1
+   mpmset $n quest 15 1 1
+   say Great! You've learned a song! 
+ endif
+else
+ poke $n
+ say Hey! I'm not finished!  Lemme start again from the beginning!
+ MPFORCE all EXTERNAL XMASSANT.MID
+ mpmset self quest 0 5 1
+ mpmset self quest 10 4 1
+endif
+~
+|
+#4438
+cooper butler~
+Mr. Cooper~
+Mr. Cooper, The Butler of the house is here.~
+This guy looks like he's in charge of taking care of the affairs of the
+house, like hiring workers and such.
+~
+2|4096|16384
+2048|16777216|8|AFF_DETECT_HIDDEN 0 S
+5 1 4096 5D100+1 1D100+1
+5000 0
+7 7 1
+>speech_prog job help~
+if quest(5,4,$n) == 0
+tell $n So you want a job eh?
+tell $n I guess you have to talk to the master upstairs.
+mpmset $n quest 5 4 1
+endif
+~ 
+>speech_prog hired~
+if quest(5,4,$n) == 2
+if sex($n) == 1
+  mpmset $n quest 5 4 3
+  tell $n Okay, you're just in time my friend.
+  tell $n It seems there's a toilet stopped up and you look like
+  tell $n the perfect guy to take care of it!
+  mpoload 4424
+  give plunger $n
+  tell $n Go PLUNGE that toilet and come back when you're done.
+else
+ tell $n I think you had better go talk to Kathee.
+ emote attempts to fondle $n !
+endif
+endif
+~
+>all_greet_prog 100~
+if sex($n) == 1
+   if quest(5,4,$n) == 5
+      mpmset $n quest 5 4 6
+      tell $n Good job man!  
+      ponder
+      tell $n Hmm...it looks like Ruddy has made a mess again.
+      tell $n Take this broom and SWEEP the barn clean.
+      tell $n Come back when you're done.
+      mpoload 4425
+      give broom $n
+   endif
+   if quest(5,4,$n) == 7
+      mpmset $n quest 5 4 8
+      mpechoat $n $i sniffs the air when you arrive...
+      tell $n My god!  What is that horrid smell?!?!
+      tell $n I guess you finished sweeping out the stable.
+      tell $n Kathee tells me some dishes need washing.
+      tell $n So take this sponge and WASH those dishes!  Be a man!
+      mpoload 4426
+      give sponge $n
+   endif
+   if quest(5,4,$n) == 9
+      mpmset $n quest 5 4 10
+      tell $n Wow!  I didn't think you'd be man enough to actually
+      tell $n wash those dishes!  Okay, one last thing.
+      tell $n Go feed Ruudy this snack.  Watch out though, he bites!
+      mpoload 4427
+      give snack $n
+   endif
+   if quest(5,4,$n) == 11
+      tell $n Good Job!  Go see Dave for your payment.
+      tell $n I'm glad I found someone like you to do all the dirty work!
+      wink $n
+   endif     
+else
+if rand(10)
+mpecho Cooper pinches $n's butt!
+endif
+if rand(10)
+seduce $n
+endif
+endif
+~
+|
+#4439
+Cook Kathee~
+Kathee~
+Kathee the Cook walks around tiredly.
+~
+Kathee looks like a tired woman.  She must have kids that run her ragged
+at home.  She looks lost and confused as well.
+~
+2|4096|16384
+2048|16777216|8|32 0 S
+5 1 4096 5D100+1 1D100+1
+5000 0
+7 7 2
+>rand_prog 15~
+mpquiet on
+cast 'feast'
+mpquiet off
+mpecho You grab a bite to eat while Kathee isn't looking!
+~
+>speech_prog hired~
+if quest(5,4,$n) == 2
+if sex($n) == 2 
+  mpmset $n quest 5 4 3
+  tell $n Really?  You're just in time young lady!
+  tell $n The guest are coming soon and i've got too much to do!
+  tell $n Okay, take this duster and go DUST the monster heads
+  tell $n in the trophy room.
+ mpoload 4428
+  give duster $n
+  tell $n Come back when you're done.
+ else
+  tell $n I think you need to talk to Mr. Cooper.
+ endif
+endif
+~
+>all_greet_prog 100~
+if sex($n) == 2
+   if quest(5,4,$n) == 5
+      mpmset $n quest 5 4 6
+      tell $n Finished so soon?
+      tell $n You'd make a perfect housewife for a lucky man!
+      wink $n
+      tell $n Well, no time to gossip now, it seems the guests
+      tell $n made a mess of the guest room last night.
+      tell $n Take this sheet and CHANGE it in the guest room upstairs.
+      tell $n Come back when you're done.
+      mpoload 4429
+      give sheets $n
+   endif
+   if quest(5,4,$n) == 7
+      mpmset $n quest 5 4 8
+      smile $n
+      tell $n Wow!  That sure was fast!  I wish i had a daughter like you!
+      tell $n Well, why don't you take this hose and WATER the veggies
+      tell $n in the garden.  Then get some veggies and COOK them in
+      tell $n the kitchen.
+      mpoload 4433
+      give hose $n
+   endif
+   if quest(5,4,$n) == 9
+      mpmset $n quest 5 4 10
+      tell $n Hehe, one last thing and you can get your payment.
+      tell $n Take this snack and feed it to Ruudy the Reindeer.
+      mpoload 4427
+      give snack $n
+   endif
+   if quest(5,4,$n) == 11
+      tell $n Good Job!  Go see Dave for your payment.
+      tell $n I wish more girls like you would do womanly chores
+      tell $n and serve the men like you're supposed to.
+      smile $n
+   endif     
+endif
+~
+|
+#4447
+ghost~
+ghost~
+a ghost is here.~
+you can't see it.~
+2|4096|16384
+33554432|2048|16777216|8|32 0 S
+5 1 4096 5D100+1 1D100+1
+5000 0
+7 7 1
+>rand_prog 33~
+mpecho Veronica blows you a kiss.
+if quest(5,4,$r) == 12
+ mpmset $r quest 5 4 13
+endif
+mpforce $r east
+~
+|
+#4440
+dave~
+Dave~
+Dave, the handsome guy is here.~
+What a handsome guy you think to yourself. I wish i were just like him!
+~
+2|4096|16384|ACT_RACE
+2048|16777216|8|32 0 S
+5 1 4096 5D100+1 1D100+1
+5000 RACE_GNOME
+7 7 1
+>speech_prog job~
+if quest(5,4,$n) == 1
+  mpmset $n quest 5 4 2
+  if sex($n) == 1
+     tell $n Okay friend, you look like a hard worker.
+     tell $n Go tell Mr. Cooper that you are HIRED.
+  else
+     mpecho $I takes one look at your lovely form and smiles.
+     tell $n Hey baby, you got the job.
+     tell $n Go find Kathee and tell her that you are HIRED.
+  endif
+endif
+~
+>rand_prog 100~
+if rand(10)
+  say what do you want from me?
+  break
+endif
+if rand(5)
+  say Can't you see i'm busy?
+  emote looks at the bathroom door.
+  wink $n
+  break
+endif
+if rand(5)
+  ponder $n
+  break
+endif
+if rand(5)
+  doh
+  break
+endif
+~ 
+>all_greet_prog 100~
+if quest(5,4,$n) == 11
+   mpmset $n quest 5 4 12
+   if sex($n) == 1
+     tell $n Man, I can't believe you did all those chores!
+     tell $n You really need to find a hard working wife
+     tell $n if you know what I mean.
+     tell $n Here, take this special whip as your payment.
+     tell $n You REALLY deserve a weapon like this.
+     mpoload 4432
+     give i4432 $n
+     tell $n By the way, have you visited the oracle yet?
+     shout I want to announce that $n is trully whipped!
+   else
+     cheek $n
+     tell $n Wow, if I wasn't such a playboy, I'd ask you to marry me!
+     tell $n Girls that do housework like you are very rare!!
+     tell $n Okay, take this nice pen as your reward.
+     tell $n Remember that the pen is mighter than the sword.
+     mpoload 4422
+     give i4422 $n
+     tell $n By the way, have you visited the oracle yet?
+   endif
+endif
+if quest(5,4,$n) == 13
+  tell $n You must be addicted!
+  tell $n Here, Give this back to her.
+  mpoload 4445
+  give robe $n
+  mpmset $n quest 5 4 14
+endif
+~
+|
+#4441
+ruudy reindeer~
+Ruudy the Reindeer~
+Ruudy the Red-Nosed Reindeer is here, eating hay.
+~
+You marvel at how his nose glows so bright.
+~
+2|4096|16384|ACT_RACE
+2048|16777216|8|32 0 S
+5 1 4096 5D100+1 1D100+1
+5000 RACE_GNOME
+7 7 1
+>give_prog I4427~
+ mpecho Ruudy gobbles down then snack like a starved animal.
+ mpjunk snack
+ mpmset $n quest 5 4 11
+ mpmset self quest 0 4 1
+~
+>rand_prog 50~
+if quest(0,4,self) == 1
+ mpecho Ruudy gets a funny look on his face!
+ mpmset self quest 0 4 2
+ break
+endif
+if quest(0,4,self) == 2
+ fart $r
+ mpmset self quest 0 4 3
+ break
+endif
+if quest(0,4,self) == 3
+ mpoload 4423
+ mpoload 4470
+ mpquiet on
+ drop i4423
+ drop i4470
+ mpquiet off
+ mpecho A glowing reindeer dropping falls to the floor!
+ mpecho Ruddy kicks away a pile of hay, revealing some cloth.
+ mpmset self quest 0 4 0
+endif
+~
+|
+#4442
+voice~
+A Sexy female voice~
+voice
+~
+voice
+~
+2|4096|16384
+33554432|2048|16777216|8|32 0 S
+1 1 4096 5D100+1 1D100+1
+5000 0
+7 7 2
+>all_greet_prog 100~
+tell $n YOU PERVERT!  GET OUTTA HERE!
+mpforce $n help super_minmay_attack
+mpforce $n help plon
+mpquiet on
+mpforce $n rest
+mpquiet off
+mptransfer $n 9755
+~
+|
+#4443
+ethereal mob~
+ethereal mob~
+mob~
+this mob just doesnt exist. *snicker*~
+2|4096|16384
+AFF_INVISIBLE|8|32|AFF_INFRARED|AFF_SNEAK|33554432
+0 S
+1 0 0 1d1+24 1d1+24
+0 0
+7 7 2
+>all_greet_prog 100~
+if class($n) = 6
+  if level($n) >= 36
+    if quest(31,1,$n) == 1
+     tell $n you were warned!  Now you pay the price!
+    else
+     tell $n Santa Claus doesn't like mean assassins in his area. Please leave and
+     tell $n don't come back.  You aren't welcome here anymore.
+     tell $n This is your only warning...come again and you'll be sorry.
+     mptransfer $n 4401
+    endif
+  endif
+endif
+~
+|
+#4449
+ghost~
+A ghost~
+~
+~
+2|4096|16384
+33554432|2048|16777216|8|32 0 S
+5 1 4096 5D100+1 1D100+1
+5000 0
+0 0 7
+>all_greet_prog 100~
+if quest(10,2,$n) == 1
+  cackle
+else
+say BOO!!!
+mpforce $n cringe
+mpforce $n up
+endif
+~
+|
+#4445
+ethereal_pit_mob~
+ethereal_pit_mob~
+mob~
+this mob is for making donation pits~
+2|4096|16384
+8|32|33554432
+0 S
+1 0 0 1d1+50 1d1+24
+0 0
+7 7 1
+>rand_prog 75~
+mpquiet on
+get all
+put all i4421
+drop all
+mpquiet off
+~
+|
+#4446
+veronica gypsy~
+Veronica~
+Veronica the Gypsy is here.~
+You see a strange Indian woman here.  She is dressed in funky robes which are
+somewhat revealing.  She must lure in many hapless guys who wouldn't want
+their fortunes told otherwise.~
+2|4096|16384
+2048|16777216|8|32 0 S
+95 0 0 1D1+20000 1D1+500
+0 0
+7 7 2
+>rand_prog 10~
+say Ah, you have come to see the wise ORACLE!
+say Would you like your fortune told?
+~
+>speech_prog yes~
+cackle
+tell $n Ah, well it will cost you then!
+tell $n 1000, 10000, 100000 or 1,000,000 what will it be?
+~
+>bribe_prog 1000000~
+emote looks into her crystal ball.
+bounce
+cackle
+if sex($n) != 1
+  say HEHEHEHE, $n, with that much cash, you can get any guy you want!!!
+else
+  say EHEHEHE, $n, with that much cash, you can get any girl you want!!!
+  say But why have them when you got little o'le me right here!
+  mpecho The oracle opens the curtains and takes $n by the hand.
+  mptransfer $n 4551
+  mpecho The oracle leads $n into a private room and closes the curtains.
+  mpgoto 4551
+  mpat 4528 mpecho You can hear loud grunts and groans coming from the other room!
+  mpecho You are ravished over and over and over and over again!
+  mpmset $n move -900
+  mpecho you sure are tired!!!!
+  say That was great. lets do it again sometime.
+  wink $n
+  east
+  emote Buttons up her robe.
+  say whos next?
+endif
+~
+>bribe_prog 100000~
+emote looks into her crystal ball.
+grin $n
+if sex($n) == 1
+  say HEHEHE, $n, I see that you will marry a very beautiful girl!
+else
+  say HEHEHE, $n, I see that you will marry a very handsome guy!
+endif
+~
+>bribe_prog 10000~
+emote looks into her crystal ball.
+smile $n
+if sex($n) == 1
+  say HEHE, $n, I see that you will find yourself a nice girl.
+else
+  say HEHE, $n, I see that you will find yourself a nice guy.
+endif
+~
+>bribe_prog 1000~
+emote looks into her crystal ball.
+ponder $n
+if sex($n) == 1
+  say Hrmm, $n, I see that you will find yourself an UGLY girl.
+else
+  say Hrmm, $n, I see that you will find yourself an UGLY guy.
+endif
+~
+>give_prog i4445~
+say thanks!
+kiss $n
+french $n
+~
+|
+#4448
+shan~
+Shan~
+Shan the body piercer is here.~
+You see a guy with long hair down past his butt!  He has got piercings and
+tattoos all over his body!~
+4096|16384|2
+16777216|2048|8|32 0 S
+95 0 0 1d1+15000 1d20+150
+0 0
+7 7 1
+>all_greet_prog 100~
+if quest(10,2,$n) == 0
+ tell $n Hey friend, can you help me?
+ tell $n I seem to have lost my guitar.  I think it got stolen.
+ tell $n If you find the thief who stole it, bring it back to
+ tell $n me and I will reward you somehow.
+ mpmset $n quest 10 2 1 
+endif
+if quest(10,2,$n) == 1
+ tell $n Hurry up and find my guitar!
+ tell $n Oh, he was a thin fellow with a white pumpkin head.
+endif
+if quest(10,2,$n) == 2
+  tell $n I see you killed that thief!
+  if actorhasobjnum(4464)
+    say I see you found it!  But you took too long and I have
+    say already purchased another.  I guess you can keep it.
+    say But I did promise you a reward so here.
+    mpecho pulls off the ring from his nose.
+    mpoload 4465
+    give i4465 $n
+    say Take this, it's the least I can do.
+    mpmset $n quest 10 2 3
+  else
+    tell $n But where is my guitar?
+  endif
+endif
+if quest(10,2,$n) == 3
+  tell $n Thanks again friend, I owe you one.
+endif
+~
+>give_prog i4464~
+mpjunk all
+mpoload 4464
+give i4464 $n
+Say I don't need this old thing anymore!
+~
+|
+#4450
+jack skellington~
+Jack Skellington~
+A skellington is here!~
+He's very thin with a pumpkin head!~
+4096|16384|65536
+AFF_STEALTH|AFF_INVISIBLE|8|32|512 0 S
+30 0 0 1D1+1000 1D35+5
+0 0
+7 7 1
+>rand_prog 5~
+mpquiet on
+cast 'stability' $i
+mpquiet off
+if rand(1)
+   shout What's this?  What's this?
+endif
+~
+>fight_prog 25~
+if level($r) < 30
+  mpquiet on
+  cast 'heal' $r
+  mpquiet off
+endif
+~
+>death_prog 100~
+shout I AM THE PUMPKIN KING!!!!
+if quest(10,2,$n) == 1
+  mpmset $n quest 10 2 2
+  mpquiet on
+  mpoload 4464
+  drop i4464
+  mpquiet off
+endif
+~
+| 
+#4451
+sesame~
+sesame~
+~
+~
+2|4096|16384
+33554432|2048|16777216|8|32 0 S
+5 1 4096 5D100+1 1D100+1
+5000 0
+0 0 7
+>rand_prog 5~
+if rand(50)
+  mpecho You trip over a pile of dirty laundry.
+else
+  mpecho You can hear grunts and groans and moans, but coming from where?
+endif
+~
+|
+
+#4452
+anaconda~
+an anaconda~
+A fifty foot long snake is coiled in the corner~
+This is one of the biggest snakes you've ever seen.  It seems to be resting,
+as a snake normally does.  It is probably hungry, so you had better not get
+near it.~
+2|4096|16384
+8|32 0 S
+75 1 4096 5D2000+1 1D150+1
+5000 0
+0 0 7
+
+#4453
+fairy~
+~
+~
+~
+2|4096|16384
+33554432|2048|16777216|8|32 0 S
+10 1 4096 5D100+1 1D100+1
+5000 0
+0 0 7
+>all_greet_prog 100~
+mpquiet on
+cast fly $n
+mpquiet off
+~
+|
+
+#4454
+catsheep~
+~
+~
+~
+2|4096|16384
+33554432|2048|16777216|8|32 0 S
+10 1 4096 5D100+1 1D100+1
+5000 0
+0 0 7
+>rand_prog 10~
+if rand(50)
+  mpecho You hear some sheep going 'baaaaaaaaaaa'.
+else
+  mpecho A cat you can not see goes 'meow meow'.
+endif
+~
+|
+
+@ adjusted hp and dam dice 8/3/03
+@ made aff_invis instead of aff_stealth + aff_sneak 8/3/03
+@ removed aff_sanc, aff_pass_door, aff_flying, aff_clear 8/3/03
+@ raised level from 89 to 91 8/3/03
+@ added aff_blind aff_curse AFF_FAERIE_FIRE 8/3/03
+@ added act_one_fight  8/3/03
+#4455
+ghost christmas past~
+The Ghost of Christmas Past~
+A strangely glowing entity fades in and out.~
+A sharp chill runs down your spine, as you stare into the gaze of this
+horrific apparition.  It wields a long scythe and is dressed in a robe
+made of tattered black fabric.  It fades in and out of existance at will,
+while always keepings its glowing red eyes focused upon you.~
+ACT_PET|4096|65536|ACT_RACE|ACT_ONE_FIGHT
+2048|16777216|2|8|AFF_BLIND|AFF_CURSE|AFF_FAERIE_FIRE
+0 S
+91 BODY_HEAD BODY_CLAW 2d10+400 1d5+70
+100000 2
+7 7 SEX_MALE
+
+#0
+
+
+#OBJECTS
+#4400
+swan fountain~
+a swan fountain~
+A carved ice sculpture drips here.~
+This large piece of ice is carved into a beautiful, graceful swan.  The
+water that drips off the sculpture is collected in the basin below it and
+used as drinking water.~
+ITEM_TYPE_FOUNTAIN
+ITEM_FLAG_HUM|16384
+0
+0 0 0 0
+1000 0 1
+#4401
+cookie~
+a cookie~
+A chocolate chunk cookie.~
+A cookie sits here waiting to be eaten.~
+ITEM_TYPE_FOOD
+16384
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+12 0 0 NOT_POISONED
+1 100 1
+#4402
+cup eggnog~
+a cup of spiced eggnog~
+A cold cup of spiked eggnog sits here waiting to be drunk.~
+The smell of rum wafts out of the cup as you bring it to your nose.
+It brings back memories of Christmas' past.~
+ITEM_TYPE_DRINK_CON
+16384
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+1 1 LIQ_ALE NOT_POISONED
+1 100 1
+#4403
+platter~
+a sample platter~
+A sample of everything to try for Christmas dinner.~
+This silver tray is full of scrumpous tidbits that are typically
+served at Christmas dinner.~
+ITEM_TYPE_SCROLL
+16384
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+30 SPELL_CREATE_SPRING SPELL_CREATE_FOOD SPELL_CREATE_FOOD
+2 10000 30
+#4404
+clear potion~
+a clear potion~
+A potion levitates here.~
+This potion will make you see the stars.~
+ITEM_TYPE_POTION
+16384
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+60 SPELL_DETECT_INVIS SPELL_DETECT_HIDDEN SPELL_INFRAVISION
+3 10000 50
+A
+APPLY_AC 10
+#4405
+transparent scroll~
+a transparent scroll~
+A transparent scroll lays forgotten here.~
+This scroll you can almost see through, as if you had xray vision.~
+ITEM_TYPE_SCROLL
+16384
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+30 SPELL_DETECT_INVIS SPELL_DETECT_HIDDEN SPELL_INFRAVISION
+10 10000 25
+#4406
+fire scroll~
+a Fire scroll~
+The chared scroll lays here forgotten.~
+This scroll has been near an explosion. Be careful with your usage.  No
+warranties or guarantees with purchase.~
+ITEM_TYPE_SCROLL
+16384
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+30 SPELL_FIREBALL SPELL_FIREBALL SPELL_NONE
+10 10000 25
+#4407
+recall scroll~
+a recall scroll~
+A recall scroll lays here.~
+This is an ordinary recall scroll.~
+ITEM_TYPE_SCROLL
+16384
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+1 SPELL_WORD_OF_RECALL SPELL_NONE SPELL_NONE
+0 1 2
+#4408
+beak~
+a hard beak~
+A hard useless beak lies here.~
+This beak was originally on a penguin.  It is a yellowish color, and has a
+very hard sharp edge.  Be careful that you dont hurt yourself on it.~
+ITEM_TYPE_WEAPON
+4096|1024|512|16384
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 8 7 11
+2 100000 54
+C
+hard beak~
+127
+
+#4409
+wreath~
+a fresh evergreen wreath~
+A fresh evergreen wreath lies here.~
+This is a good item that Santa Claus hands out.  It smells just like Christmas,
+and will always remind you of that time of the year.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|16384|ITEM_FLAG_AUTO_ENGRAVE
+ITEM_WEAR_TAKE|ITEM_WEAR_ABOUT|ITEM_WEAR_HEAD
+7 0 0 0
+15 0 35
+A
+APPLY_DAMROLL 4
+A
+APPLY_HITROLL 3
+P 1
+TRIG_VOID
+OPROG_ECHO You take a big sniff of the pine fresh scent!~
+
+@ changed trig_tick from 10 to 1
+#4410
+pointy elf shoes~
+a pair of Pointy elf Shoes~
+A set of elf shoes lay here discarded.~
+This set of elf boots have a curling point in the front show, and jingle bells
+on the back.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|16384
+ITEM_WEAR_TAKE|ITEM_WEAR_FEET
+5 0 0 0
+15 100000 35
+A
+APPLY_DAMROLL 4
+A
+APPLY_HITROLL 3
+P 1
+TRIG_TICK 1
+OPROG_IF OIF_WEAR_LOC = WEAR_FEET 2 0
+P 2
+TRIG_VOID
+OPROG_ECHO
+You hear the sound of jingle bells as you shuffle your feet.~
+P 2
+TRIG_VOID
+OPROG_GOD_COMMAND
+mpforce all help NPOLE_JINGLE~
+#4411
+christmas candle~
+a christmas candle~
+A lone candle lays here undiscovered.~
+This is an ordinary christmas candle that you use to plug into a christmas
+candle holder.  Be careful around flamable materials.  You don't want to get 
+burned if anything catches on fire.~
+ITEM_TYPE_LIGHT
+ITEM_FLAG_GLOW|ITEM_FLAG_MAGIC|16384
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+1 0 1000 0
+2 1000 1
+A
+APPLY_WIS 1
+A
+APPLY_CON 1
+#4412
+ribbon~
+a ribbon~
+A ribbon lays here discarded.~
+This multicolored ribbon is what is gets tied around the presents in the workshop.
+It looks very strong, and is hard to cut.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_ANTI_EVIL|16384
+ITEM_WEAR_TAKE|ITEM_WEAR_FINGER|ITEM_WEAR_NECK
+8 0 0 0
+15 10000 40
+A
+APPLY_MANA 60
+#4413
+bow~
+a multicolored christmas bow~
+A smushed bow lies on the ground.~
+This bow has a matching ribbon.  Even though it is smushed, it still looks very
+beautiful.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_ANTI_EVIL|16384
+ITEM_WEAR_TAKE|ITEM_WEAR_HEAD
+8 0 0 0
+15 10000 40
+A
+APPLY_MANA 60
+#4414
+name tag~
+a name tag~
+A package tag lays on the floor discarded.~
+You really wish that this tag was on your christmas presents.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|16384
+ITEM_WEAR_TAKE|ITEM_WEAR_NECK|ITEM_WEAR_WRIST
+0 0 0 0
+2 1000 3
+A
+APPLY_CON 1
+A
+APPLY_WIS 1
+#4415
+bear claws sharp~
+a set of bear claws~
+A sharp object lays on the ground.~
+This is a set of bear claws of one the toys in santa's workshop.~
+ITEM_TYPE_WEAPON
+16384
+ITEM_WEAR_WIELD|ITEM_WEAR_TAKE
+0 2 10 WEAPON_CLAW
+5 100 15
+#4416
+antler reindeer~
+a reindeer antler~
+An antler has been broken off and left here!~
+It's covered in velvet.~
+ITEM_TYPE_WEAPON
+16384
+ITEM_WEAR_WIELD|ITEM_WEAR_TAKE
+0 3 6 WEAPON_PIERCE
+5 1500 15
+#4417
+sticky tape~
+a piece of sticky tape~
+Something sticky is on the ground.~
+This piece of tape is pretty wide.  It could seal anything.~
+ITEM_TYPE_ARMOR
+16384
+ITEM_WEAR_TAKE|ITEM_WEAR_ARMS
+4 0 0 0
+15 15000 14
+P 1
+TRIG_HIT 55
+OPROG_IF OIF_WEAR_LOC = WEAR_ARMS 2 0
+P 2
+TRIG_VOID
+OPROG_APPLY OAPPLY_HIT 25
+#4418
+train engineer hat~
+a train engineer's hat~
+A striped hat is here.~
+This is an engineer's hat.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|16384
+ITEM_WEAR_TAKE|ITEM_WEAR_HEAD
+6 0 0 0
+2 150000 24
+A
+APPLY_DAMROLL 3
+#4419
+whistle~
+a engineer's whistle~
+A whistle is on the floor~
+The sound of a train whistle makes you feel better.~
+ITEM_TYPE_STAFF
+16384
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+30 5 5 SPELL_HEAL
+10 100000 25
+#4420
+candy cane~
+a candy cane~
+A piece of candy is on the floor.~
+Some little kid has sucked on this piece of candy, to form a point.~
+ITEM_TYPE_WEAPON
+16384
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 5 4 WEAPON_STAB
+15 1500 16
+#4421
+tree~
+a Christmas tree~
+A Large Christmas Tree stands in the corner.~
+You can see many little presents around the tree.
+~
+ITEM_TYPE_CONTAINER 16384 0
+1000 0 -1 0
+1 1 101
+#4422
+pen~
+a shiny pen~
+A shiny pen has been left here.~
+This pen looks mightier than a sword.
+~
+ITEM_TYPE_WEAPON 16384|1 1|ITEM_WEAR_WIELD
+0 3 3 2
+1 100 2
+A
+APPLY_INT 1
+A
+APPLY_STR 1
+C
+scribble~
+127
+
+#4423
+reindeer dropping~
+a reindeer dropping~
+A reindeer dropping has been dumped here!
+~
+The reindeer dropping glows bright and gives off a pleasant odor!
+~
+ITEM_TYPE_TRASH
+16384|1|64
+0
+0 0 0 0
+0 0 1
+
+#4424
+plunger~
+a rubber plunger~
+A plunger has been left here.~
+This is perfect to PLUNGE toliets with.
+~
+ITEM_TYPE_TRASH 16384 1
+0 0 0 0
+1 5 1
+P 1
+TRIG_UNKNOWN 100 plunge
+OPROG_IF OIF_USER_ROOM_NUM = 4541 2 4
+P 2
+TRIG_VOID
+OPROG_GOD_COMMAND
+MPMSET $ QUESTR 4400 5 4 5 & RECHO $ gets down on his knees and unclogs the toilet!~
+P 2
+TRIG_VOID
+OPROG_JUNK
+P 4
+TRIG_VOID
+OPROG_ECHO Nothing here needs plunging!
+~
+#4425
+broom~
+a wooden broom~
+A regular looking broom leans against a wall.~
+This broom is used to SWEEP rooms clean.
+~
+ITEM_TYPE_TRASH 16384 1
+0 0 0 0
+1 5 1
+P 1
+TRIG_UNKNOWN 100 sweep
+OPROG_IF OIF_USER_ROOM_NUM = 4542 2 4
+P 2
+TRIG_VOID
+OPROG_GOD_COMMAND
+MPMSET $ QUESTR 4400 5 4 7 & RECHO $ spends some time sweeping the area clean!~
+P 2
+TRIG_VOID
+OPROG_JUNK
+P 4
+TRIG_VOID
+OPROG_ECHO No sweeping is needed here right now!
+~
+#4426
+sponge~
+a cleaning sponge~
+A normal cleaning sponge.~
+This is perfect to WASH dishes with.
+~
+ITEM_TYPE_TRASH 16384 1
+0 0 0 0
+1 5 1
+P 1
+TRIG_UNKNOWN 100 wash
+OPROG_IF OIF_USER_ROOM_NUM = 4540 2 4
+P 2
+TRIG_VOID
+OPROG_GOD_COMMAND
+MPMSET $ QUESTR 4400 5 4 9 & RECHO Unlike a normal guy, $ rolls up his sleeves and washes all the dishes!~
+P 2
+TRIG_VOID
+OPROG_JUNK
+P 4
+TRIG_VOID
+OPROG_ECHO No dishes need washing here!
+~
+#4427
+snack~
+a fruity snack~
+A fruity snack has been left uneaten.~
+This looks fit for reindeer to eat.
+~
+ITEM_TYPE_TRASH 16384 1
+0 0 0 0
+1 5 1
+#4428
+duster~
+a feather duster~
+A feather duster has been left here.~
+This feather duster is used to DUST things.
+~
+ITEM_TYPE_TRASH 16384 1
+0 0 0 0
+1 5 1
+P 1
+TRIG_UNKNOWN 100 dust
+OPROG_IF OIF_USER_ROOM_NUM = 4533 2 4
+P 2
+TRIG_VOID
+OPROG_GOD_COMMAND
+MPMSET $ QUESTR 4400 5 4 5 & RECHO $ dusts all the trophies clean!~
+P 2
+TRIG_VOID
+OPROG_JUNK
+P 4
+TRIG_VOID
+OPROG_ECHO This place doesn't need any dusting now!
+~
+#4429
+sheets~
+a bed sheet~
+Some lazy idiot left a bed sheet here.~
+A green sheet used to CHANGE beds.
+~
+ITEM_TYPE_TRASH 16384 1
+0 0 0 0
+1 5 1
+P 1
+TRIG_UNKNOWN 100 change
+OPROG_IF OIF_USER_ROOM_NUM = 4538 2 4
+P 2
+TRIG_VOID
+OPROG_GOD_COMMAND
+MPMSET $ QUESTR 4400 5 4 7 & RECHO Using her natural feminine skills, $ easily makes the bed!~
+P 2
+TRIG_VOID
+OPROG_JUNK
+P 4
+TRIG_VOID
+OPROG_ECHO No beds need making here right now!
+~
+#4430
+veggies~
+a few garden veggies~
+a bountiful amount of veggies.~
+Perhaps you can COOK these veggies!
+~
+ITEM_TYPE_TRASH 16384 1
+0 0 0 0
+1 5 1
+P 1
+TRIG_UNKNOWN 100 cook
+OPROG_IF OIF_USER_ROOM_NUM = 4540 2 4
+P 2
+TRIG_VOID
+OPROG_GOD_COMMAND
+MPMSET $ QUESTR 4400 5 4 9 & RECHO $ uses her feminine skills and cooks a fantastic meal!~
+P 2
+TRIG_VOID
+OPROG_JUNK
+P 4
+TRIG_VOID
+OPROG_ECHO You don't feel like cooking right now!
+~
+#4431
+present~
+a nicely wrapped present~
+A nicely wrapped present sits here!~
+A nice Christmas Present just for you!
+~
+ITEM_TYPE_TRASH 16384 1
+0 0 0 0
+1 5 1
+#4433
+hose~
+a long green watering hose~
+A coiled up hose has been left here.~
+This is used to WATER plants with!
+~
+ITEM_TYPE_TRASH 16384 1
+0 0 0 0
+1 5 1
+P 1
+TRIG_UNKNOWN 100 water
+OPROG_IF OIF_USER_ROOM_NUM = 4543 2 4
+P 2
+TRIG_VOID
+OPROG_GOD_COMMAND
+MPOLOAD 4430 & recho $ takes out her hose and waters the plants!~
+P 2
+TRIG_VOID
+OPROG_ECHO You bend over and gather some veggies!~
+P 2
+TRIG_VOID
+OPROG_JUNK
+P 4
+TRIG_VOID
+OPROG_ECHO There's nothing worth watering right now.
+~
+#4432
+cat whip~
+a cat whip~
+A fuzzy whip has been left here.~
+This whip is seemingly made out of of curly 'kitty' fur.
+It also gives off a peculiar aroma.
+~
+ITEM_TYPE_WEAPON
+16384|1
+1|ITEM_WEAR_WIELD
+0 3 3 2
+1 100 2
+A
+APPLY_INT 1
+A
+APPLY_CON 1
+C
+cat whip~
+127
+#4446
+reindeer pelt~
+a reindeer pelt~
+Someone slaughtered a poor reindeer and cut off his skin.~
+This is just a normal reindeer skin.~
+9 16384 1|1024
+7 0 0 0
+1 20 13
+A
+APPLY_DEX 1
+#4434
+reindeer belt~
+a reindeer skin belt~
+A furry belt lays here.~
+This is a belt made of Reindeer fur.~
+9 16384 1|2048
+6 0 0 0
+1 20 13
+A
+APPLY_DEX 1
+A
+APPLY_HIT 10
+#4435
+reindeer bracer~
+a reindeer skin bracer~
+A furry bracer lays here.~
+This is a bracer made of Reindeer fur.~
+9 16384 1|4096
+5 0 0 0
+1 20 13
+A
+APPLY_DEX 1
+A
+APPLY_DAMROLL 2
+#4436
+reindeer bracer~
+a reindeer skin bracer~
+A furry bracer lays here.~
+This is a bracer made of Reindeer fur.~
+9 16384 1|4096
+5 0 0 0
+1 20 13
+A
+APPLY_DEX 1
+A
+APPLY_HITROLL 2
+#4437
+flower poinsettia~
+a dozen poinsettia flowers~
+A pile of red flowers has been left here.~
+{110}This christmas flower makes a nice gift for a lady.~
+13 16384 1
+0 0 0 0
+1 360000 1
+#4438
+bough holly leaves pile~
+a bough of holly~
+A pile of leaves has fallen off the tree.~
+You can perhaps 'fashion' a wreath out of these.~
+13 16384 1
+0 0 0 0
+1 1 1
+P 1
+TRIG_UNKNOWN 100 fashion~
+OPROG_GOD_COMMAND mpoload 4447~
+P 1
+TRIG_VOID
+OPROG_ECHO You spend some time and make a wreath!~
+P 1
+TRIG_VOID
+OPROG_JUNK
+#4439
+box save~
+a box of saving~
+A big box sits here.~
+This box has the words {110}'Save'{300} written on it.~
+15 16384 1
+800 0 -1 0
+5 10000 60
+#4440
+box leveling~
+a box of leveling~
+A big box sits here.~
+This box has the words {110}'Leveling'{300} written on it.~
+15 16384 1
+500 0 -1 0
+5 10000 40
+#4441
+box spelling~
+a box of spelling up~
+A big box sits here.~
+This box has the words {110}'Spelling up'{300} written on it.~
+15 16384 1
+500 0 -1 0
+5 10000 40
+#4442
+box seeing~
+a box of seeing and passing~
+A big box sits here.~
+This box has the words {110}'Seeing'{300} written on it.~
+15 16384 1
+500 0 -1 0
+5 10000 40
+#4443
+box junk~
+a box of junk~
+A big box sits here.~
+This box has the words {110}'Junk'{300} written on it.~
+15 16384 1
+500 0 -1 0
+5 10000 40
+#4444
+lowbie box~
+a big box of lowbie stuff~
+A big box sits here.~
+This box has the words {110}'Lowbie'{300} written on it.~
+15 16384 1
+1500 0 -1 0
+5 10000 75
+A
+APPLY_HIT -100
+#4445
+robe oracle~
+the Oracle's Robe~
+A pile of sparkling clothes is here.~
+This is a thin robe made of a see through material.  However, it seems to have
+magical properties and offers nice protection.~
+9 16384 1|1024
+9 0 0 0
+1 100000 24
+A
+APPLY_DEX 2
+A
+APPLY_DAMROLL 2
+#4447
+wreath~
+a wreath made of holly.~
+A ring of leaves has been dropped here.~
+{120}This is a normal looking wreath of holly leaves.~
+9 16384 1|4
+6 0 0 0
+1 1 13
+A
+APPLY_STR 1
+A
+APPLY_DAMROLL 2
+#4448
+knife skinning~
+a skinning knife~
+A small knife is here.~
+This is useful for skinning dead animals.~
+5 16384 1|8192
+0 2 4 2
+1 50 13
+#4450
+christmas tree~
+a christmas tree~
+A christmas tree grows here.~
+{120}This is a a beautiful fir that will look gorgeous after it is decorated
+properly for the holidays.  You might want to {110}ATTRACT{120} some ornaments
+for it.~
+ITEM_TYPE_TRASH
+16384
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+0 0 0 0
+10 1 2
+P 1
+TRIG_UNKNOWN 100 attract~
+OPROG_OBJECT_QUEST_IF 0 4 = 0 3 5
+P 3
+TRIG_VOID
+OPROG_IF OIF_USER_ROOM_NUM = 4418 4 200
+P 4
+TRIG_VOID
+OPROG_ECHO
+You see the faint sparkle of an ornament hanging off a tree.~
+P 4
+TRIG_VOID
+OPROG_ECHO
+You trudge through the 3 ft snow to get it!~
+P 4
+TRIG_VOID
+OPROG_GOD_COMMAND
+MPOLOAD 4451~
+P 4
+TRIG_VOID
+OPROG_QUEST_ADD 0 4 1
+P 5
+TRIG_VOID
+OPROG_OBJECT_QUEST_IF 0 4 = 1 6 8
+P 6
+TRIG_VOID
+OPROG_IF  OIF_USER_ROOM_NUM = 4439 7 200
+P 7
+TRIG_VOID
+OPROG_ECHO You see the faint sparkle of an ornament hanging off a tree.~
+P 7
+TRIG_VOID
+OPROG_ECHO
+You trudge through the 3 ft snow to get it!~
+P 7
+TRIG_VOID
+OPROG_GOD_COMMAND
+MPOLOAD 4452~
+P 7
+TRIG_VOID
+OPROG_QUEST_ADD 0 4 1
+P 8
+TRIG_VOID
+OPROG_OBJECT_QUEST_IF 0 4 = 2 9 11
+P 9
+TRIG_VOID
+OPROG_IF OIF_USER_ROOM_NUM = 4423 10 200
+P 10
+TRIG_VOID
+OPROG_ECHO You see the faint sparkle of an ornament hanging off a tree.~
+P 10
+TRIG_VOID
+OPROG_ECHO
+You trudge through the 3 ft snow to get it!~
+P 10
+TRIG_VOID
+OPROG_GOD_COMMAND
+MPOLOAD 4453~
+P 10
+TRIG_VOID
+OPROG_QUEST_ADD 0 4 1
+P 11
+TRIG_VOID
+OPROG_OBJECT_QUEST_IF 0 4 = 3 12 14
+P 12
+TRIG_VOID
+OPROG_IF  OIF_USER_ROOM_NUM = 4428 13 200
+P 13
+TRIG_VOID
+OPROG_ECHO You see the faint sparkle of an ornament hanging off a tree.~
+P 13
+TRIG_VOID
+OPROG_ECHO
+You trudge through the 3 ft snow to get it!~
+P 13
+TRIG_VOID
+OPROG_GOD_COMMAND
+MPOLOAD 4454~
+P 13
+TRIG_VOID
+OPROG_QUEST_ADD 0 4 1
+P 14
+TRIG_VOID
+OPROG_OBJECT_QUEST_IF 0 4 = 4 15 17
+P 15
+TRIG_VOID
+OPROG_IF  OIF_USER_ROOM_NUM = 4408 16 200
+P 16
+TRIG_VOID
+OPROG_ECHO You see the faint sparkle of an ornament hanging off a tree.~
+P 16
+TRIG_VOID
+OPROG_ECHO
+You trudge through the 3 ft snow to get it!~
+P 16
+TRIG_VOID
+OPROG_GOD_COMMAND
+MPOLOAD 4455~
+P 16
+TRIG_VOID
+OPROG_QUEST_ADD 0 4 1
+P 17
+TRIG_VOID
+OPROG_OBJECT_QUEST_IF 0 4 = 5 18 20
+P 18
+TRIG_VOID
+OPROG_IF  OIF_USER_ROOM_NUM =   4412   19   200
+P 19
+TRIG_VOID
+OPROG_ECHO You see the faint sparkle of an ornament hanging off a tree.~
+P 19
+TRIG_VOID
+OPROG_ECHO
+You trudge through the 3 ft snow to get it!~
+P 19
+TRIG_VOID
+OPROG_GOD_COMMAND
+MPOLOAD 4456~
+P 19
+TRIG_VOID
+OPROG_QUEST_ADD 0 4 1
+P 20
+TRIG_VOID
+OPROG_OBJECT_QUEST_IF 0 4 =   6   21   23
+P 21
+TRIG_VOID
+OPROG_IF  OIF_USER_ROOM_NUM = 4426 22 200
+P 22
+TRIG_VOID
+OPROG_ECHO You see the faint sparkle of an ornament hanging off a tree.~
+P 22
+TRIG_VOID
+OPROG_ECHO
+You trudge through the 3 ft snow to get it!~
+P 22
+TRIG_VOID
+OPROG_GOD_COMMAND
+MPOLOAD 4457~
+P 22
+TRIG_VOID
+OPROG_QUEST_ADD 0 4 1
+P 23
+TRIG_VOID
+OPROG_OBJECT_QUEST_IF 0 4 = 7   24   26
+P 24
+TRIG_VOID
+OPROG_IF  OIF_USER_ROOM_NUM =   4417   25   200
+P 25
+TRIG_VOID
+OPROG_ECHO You see the faint sparkle of an ornament hanging off a tree.~
+P 25
+TRIG_VOID
+OPROG_ECHO
+You trudge through the 3 ft snow to get it!~
+P 25
+TRIG_VOID
+OPROG_GOD_COMMAND
+MPOLOAD 4458~
+P 25
+TRIG_VOID
+OPROG_QUEST_ADD 0 4 1
+P 26
+TRIG_VOID
+OPROG_OBJECT_QUEST_IF 0 4 =   8   27   30
+P 27
+TRIG_VOID
+OPROG_IF  OIF_USER_ROOM_NUM =   4433   28   200
+P 28
+TRIG_VOID
+OPROG_ECHO You see the faint sparkle of an ornament hanging off a tree.~
+P 28
+TRIG_VOID
+OPROG_ECHO
+You trudge through the 3 ft snow to get it!~
+P 28
+TRIG_VOID
+OPROG_GOD_COMMAND
+MPOLOAD 4459~
+P 28
+TRIG_VOID
+OPROG_QUEST_ADD 0 4 1
+P 30
+TRIG_VOID
+OPROG_OBJECT_QUEST_IF 0 4 =   9   30   32
+P 30
+TRIG_VOID
+OPROG_IF  OIF_USER_ROOM_NUM =   4431   31   200
+P 31
+TRIG_VOID
+OPROG_ECHO You see the faint sparkle of an ornament hanging off a tree.~
+P 31
+TRIG_VOID
+OPROG_ECHO
+You trudge through the 3 ft snow to get it!~
+P 31
+TRIG_VOID
+OPROG_GOD_COMMAND
+MPOLOAD 4460~
+P 31
+TRIG_VOID
+OPROG_QUEST_ADD 0 4 1
+P 32
+TRIG_VOID
+OPROG_OBJECT_QUEST_IF 0 4 =   10   33   35
+P 33
+TRIG_VOID
+OPROG_IF  OIF_USER_ROOM_NUM =   4422   34   200
+P 34
+TRIG_VOID
+OPROG_ECHO You see the faint sparkle of an ornament hanging off a tree.~
+P 34
+TRIG_VOID
+OPROG_ECHO
+You trudge through the 3 ft snow to get it!~
+P 34
+TRIG_VOID
+OPROG_GOD_COMMAND
+MPOLOAD 4461~
+P 34
+TRIG_VOID
+OPROG_QUEST_ADD 0 4 1
+P 35
+TRIG_VOID
+OPROG_OBJECT_QUEST_IF 0 4 = 11   36   38
+P 36
+TRIG_VOID
+OPROG_IF  OIF_USER_ROOM_NUM =   4410   37   200
+P 37
+TRIG_VOID
+OPROG_ECHO You see the faint sparkle of an ornament hanging off a tree.~
+P 37
+TRIG_VOID
+OPROG_ECHO
+You trudge through the 3 ft snow to get it!~
+P 37
+TRIG_VOID
+OPROG_GOD_COMMAND
+MPOLOAD 4462~
+P 37
+TRIG_VOID
+OPROG_QUEST_ADD 0 4 1
+P 38
+TRIG_VOID
+OPROG_OBJECT_QUEST_IF 0 4 = 12 39 200
+P 39
+TRIG_VOID
+OPROG_GOD_COMMAND
+MPOLOAD 4463~
+P 39
+TRIG_VOID
+OPROG_ECHO The tree withers away to nothingness!~
+P 39
+TRIG_VOID
+OPROG_JUNK
+P 200
+TRIG_VOID
+OPROG_ECHO You sigh and trudge on your way to find another ornament.~
+#4451
+coin partridge~
+a coin~
+A coin lays here.~
+This coin is engraved with a picture of a partridge in a pear tree.~
+ITEM_TYPE_TREASURE
+16384
+ITEM_WEAR_TAKE
+20 0 0 0
+1 10000 2
+#4452
+coin dove~
+a coin~
+A coin lays here.~
+This coin is engraved with a picture of two turtle doves.~
+ITEM_TYPE_TREASURE
+16384
+ITEM_WEAR_TAKE
+20 0 0 0
+1 10000 2
+#4453
+coin hens~
+a coin~
+A coin lays here.~
+This coin is engraved with a picture of three french hens.~
+ITEM_TYPE_TREASURE
+16384
+ITEM_WEAR_TAKE
+20 0 0 0
+1 10000 2
+#4454
+coin birds~
+a coin~
+A coin lays here.~
+This coin is engraved with a picture of four calling birds.~
+ITEM_TYPE_TREASURE
+16384
+ITEM_WEAR_TAKE
+20 0 0 0
+1 10000 2
+#4455
+coin rings~
+a coin~
+A coin lays here.~
+This coin is engraved with a picture of five golden rings.~
+ITEM_TYPE_TREASURE
+16384
+ITEM_WEAR_TAKE
+20 0 0 0
+1 10000 2
+#4456
+coin geese~
+a coin~
+A coin lays here.~
+This coin is engraved with a picture of six geese a laying.~
+ITEM_TYPE_TREASURE
+16384
+ITEM_WEAR_TAKE
+20 0 0 0
+1 10000 2
+#4457
+coin swans~
+a coin~
+A coin lays here.~
+This coin is engraved with a picture of seven swans a swimmin.~
+ITEM_TYPE_TREASURE
+16384
+ITEM_WEAR_TAKE
+20 0 0 0
+1 10000 2
+#4458
+coin maids~
+a coin~
+A coin lays here.~
+This coin is engraved with a picture of eight maids a milking.~
+ITEM_TYPE_TREASURE
+16384
+ITEM_WEAR_TAKE
+20 0 0 0
+1 10000 2
+#4459
+coin ladies~
+a coin~
+A coin lays here.~
+This coin is engraved with a picture of nine ladies dancing.~
+ITEM_TYPE_TREASURE
+16384
+ITEM_WEAR_TAKE
+20 0 0 0
+1 10000 2
+#4460
+coin lords~
+a coin~
+A coin lays here.~
+This coin is engraved with a picture of ten lords a leaping.~
+ITEM_TYPE_TREASURE
+16384
+ITEM_WEAR_TAKE
+20 0 0 0
+1 10000 2
+#4461
+coin pipers~
+a coin~
+A coin lays here.~
+This coin is engraved with a picture of eleven pipers piping.~
+ITEM_TYPE_TREASURE
+16384
+ITEM_WEAR_TAKE
+20 0 0 0
+1 10000 2
+#4462
+coin drummers~
+a coin~
+A coin lays here.~
+This coin is engraved with a picture of twelve drummers drumming.~
+ITEM_TYPE_TREASURE
+16384
+ITEM_WEAR_TAKE
+20 0 0 0
+1 10000 2
+#4463
+north star~
+a North star~
+A shining star has fallen from the sky!~
+{130}This North Star shines very brightly.  Only a person with a Christmas
+spirit can obtain this.~
+ITEM_TYPE_LIGHT
+16384|1|64|8192|65536|2
+ITEM_WEAR_TAKE
+0 0 -1 0
+1 1000000 20
+P 1
+TRIG_UNKNOWN 100 xmas~
+OPROG_IF OIF_WEAR_LOC ! -1 2 7
+P 2
+TRIG_VOID
+OPROG_IF OIF_USER_PERCENT_HITPT ! 100 3 0
+P 3
+TRIG_VOID
+OPROG_IF OIF_USER_PERCENT_MANA ! 0 4 0
+P 4
+TRIG_VOID
+OPROG_APPLY OAPPLY_MANA -50
+P 4
+TRIG_VOID
+OPROG_APPLY OAPPLY_HIT 65
+P 7
+TRIG_VOID
+OPROG_ECHO You need to hold the star!~
+E
+christmas~
+If you have the Christmas Spirit, you may use the magical
+POWERS contained within this star.~
+E
+powers~
+You gaze into the star and see the words XMAS.~
+A
+APPLY_MANA 40
+#4464
+guitar~
+A strange guitar~
+A strange guitar sits on the ground.~
+This looks like a stolen guitar! To whom does it belong???~
+ITEM_TYPE_WEAPON
+16384|ITEM_FLAG_NOREMOVE|512|1024
+ITEM_WEAR_TAKE|8192
+0 4 4 6
+1 100000 13
+P 1
+TRIG_UNKNOWN 100 strum
+OPROG_GOD_COMMAND RECHO A Chaotic sound fills the room.~
+P 2
+TRIG_UNKNOWN 100 cstrum
+OPROG_GOD_COMMAND MPFORCE all help NORTH_POLE_GUITAR_SOUND ~
+C
+song~
+127
+#4465
+nose~
+a nose ring~
+A nose ring has been left here.~
+This is a nasty looking nose ring.~
+ITEM_TYPE_ARMOR
+16384|ITEM_FLAG_NOREMOVE|512|1024
+ITEM_WEAR_TAKE|16|2048
+2 0 0 0
+1 100000 3
+A
+APPLY_CON 1
+A
+APPLY_DAMROLL 1
+#4466
+ornament box~
+An ornament box~
+A small box has been left here!~
+There are some WORDS written on the side of the box.~
+ITEM_TYPE_TREASURE
+16384
+ITEM_WEAR_TAKE
+20 0 0 0
+1 10000 2
+E
+words~
+The words read Mrs Field's Limited Edition Ornaments.
+The box is empty.
+~
+#4467
+north pole~
+the North Pole~
+~
+{110}This {170}must {110}be {170}the {110}NORTH {170}POLE!~
+ITEM_TYPE_FURNITURE
+16384
+0
+0 0 0 0
+10000 1 101
+
+#4468
+squid popsicle~
+a tasty squid popsicle~
+A slimy popsicle is melting here.~
+This is a tasty looking frozen-squid-on-a-stick.  It's covered with
+chocolate and sprinkled with nuts!~
+ITEM_TYPE_FOOD
+16384
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+36 0 0 NOT_POISONED
+1 100000 1
+
+#4469
+dirty sock~
+a dirty smelly sock~
+A smelly sock has been left here.~
+This sock looks to be made of wool, but your eyes are watering so bad from 
+the odor, you cannot focus.  The smell is almost unbearable and rubbing off
+on your hand.~
+ITEM_TYPE_CONTAINER
+16384
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+500 0 -1 0
+0 1 40
+P 1
+TRIG_TICK 1
+OPROG_ECHO A foul stench brings tears to your eyes.~
+
+
+#4470
+work sleeves cloth~
+a pair of work sleeves~
+A small pile of cloth sits here.~
+These are some dirty sleeves which are used for rags.  They must have been
+dropped here because they are too dirty for further use.  Upon closer
+inspection, they seem to covered with reindeer poop!~
+ITEM_TYPE_ARMOR
+16384
+ITEM_WEAR_TAKE|ITEM_WEAR_ARMS
+1 0 0 0
+0 1 2
+P 1 
+TRIG_TICK 20
+OPROG_IF OIF_WEAR_LOC = 256 2 0
+P 2
+TRIG_VOID
+OPROG_ECHO The sleeves give off a strange odor.~
+P 2
+TRIG_VOID
+OPROG_APPLY OAPPLY_HIT 10 
+A
+APPLY_INT 1
+A
+APPLY_CON 1
+
+#4471
+weathered black old silk hat~
+an old silk hat~
+A black weathered hat has been dropped here.~
+This old, tattered and crinkled hat seems to belong to no one.  It's
+quality is quite shoddy, but there is a label on the inside.~
+ITEM_TYPE_ARMOR
+16384
+ITEM_WEAR_TAKE|ITEM_WEAR_HEAD
+1 0 0 0
+0 10 1
+E
+label~
+Property of Frosty the Snowman.~
+
+#4472
+snowflake~
+a snowflake~
+A small snowflake melts upon the ground.~
+This small tiny snowflake slowly melts in your hand.  You had better do
+whatever it is you are gonna do with it before it does.~
+ITEM_TYPE_TREASURE
+16384
+ITEM_WEAR_TAKE
+1 0 0 0
+0 10 1
+P 1
+TRIG_TICK 100
+OPROG_OBJECT_QUEST_IF 0 4 < 15 2 3
+P 2
+TRIG_VOID
+OPROG_QUEST_ADD 0 4 1
+P 2
+TRIG_VOID
+OPROG_ECHO The snowflake seems to be melting!~
+P 3
+TRIG_VOID
+OPROG_ECHO The snowflake has completely melted!~
+P 3
+TRIG_VOID
+OPROG_JUNK
+
+#0
+
+#ROOMS
+#4400
+~
+~
+44 0 0
+S
+#4401
+A Mountain Trail~
+{170}As you leave the icy landing behind you, the world looks smaller and smaller 
+as you walk toward the enormous mountain range until it is all that you see 
+before you.  As it gets colder and colder, you wonder if there is anything 
+alive in this vast, barren, snow covered plain.  Even the trees don't dare 
+to make noise as you struggle by.~
+44 4|8 5
+DDIR_UP
+A Path through the mountains~
+~
+0 -1 4402
+DDIR_DOWN
+Icy landing~
+~
+0 -1 4559
+S
+#4402
+A Path through the mountains~
+{170}This path through the beautiful mountain never seems to be getting
+anywhere. The mountains can't get any larger in your prespective, but you
+don't seem to be making any headway.  You stop to catch your breath, 
+and see the faint sight of smoke coming from around the mountain.  As
+you take a deep breath, you detect the faint smell of woodsmoke.~
+44 4|8 5
+D0
+A snow covered path~
+~
+0 -1 4403
+DDIR_DOWN
+A barren path~
+~
+0 -1 4401
+S
+#4403
+A Snow Covered Path~
+{170}As you begin to climb the mountain, you occassionaly hear what sounds like
+Christmas carols.  You can also hear shrieks of laughter that seem to
+remind you of the snowball fights when you were younger.  The mountains
+tower over you. As you look closer, you can barely make out a path in the 
+snow.  The path appears to lead north into a valley.  You get a strong 
+feeling that this is where the sounds are coming from.~
+44 8 5
+D0
+Entrance to the valley~
+~
+0 -1 4405
+D2
+A Path through the mountains~
+~
+0 -1 4402
+DDIR_UP
+Top of the mountain~
+~
+0 -1 4404
+S
+#4404
+Top of the Mountain~
+{170}The scenery robs you of all thought and reason.  With the hard journey
+behind you, you take a moment to enjoy the peaceful mountainside, the
+various lakes and valleys that surrond the mountain range.  There appears
+to be a village on the northside of the mountainside, that must be the source
+of all the songs and laughter you heard earlier.~
+44 8 5
+DDIR_DOWN
+A Snow Covered Path~
+~
+0 -1 4403
+F 4403 1 10
+S
+#4405
+Entrance to the Village~
+{170}You stand before the entrance to the village. Off to your right you see a
+little guardhouse.  That kind of reminds you of your last grade school
+Christmas play.  The brightly covered house is snuggled into a snow bank
+that surrounds it.  The toy soldiers that you see in the window, look at
+you and wave.  It seems they don't want to leave their nice warm office
+to come outside and greet you.
+{120}  You can see a sign here.~
+44 8 2
+D0
+A well cleaned road~
+gate~
+3 -1 4406
+D2
+A Snow Covered Path~
+~
+0 -1 4403
+
+E
+sign~
+{300}      {171}+===========================================================+
+{300}      {171}|   ___  _   _  ____  ____  ___  ____  __  __    __    ___  |
+{300}      {171}|  / __)( )_( )(  _ \(_  _)/ __)(_  _)(  \/  )  /__\  / __) |
+{300}      {171}| ( (__  ) _ (  )   / _)(_ \__ \  )(   )    (  /(__)\ \__ \ |
+{300}      {171}|  \___)(_) (_)(_)\_)(____)(___/ (__) (_/\/\_)(__)(__)(___/ |
+{300}      {171}|                 ____  _____  _    _  _  _                 |
+{300}      {171}|                (_  _)(  _  )( \/\/ )( \( )                |
+{300}      {171}|                  )(   )(_)(  )    (  )  (                 |
+{300}      {171}|                 (__) (_____)(__/\__)(_)\_)                |
+{300}      {171}|                                                           |
+{300}      {171}+===========================================================+
+~
+S
+#4406
+Beginning of Scrooge Street~
+This lane is known for the main character in the story "A Christmas Carol"
+by  Charles Dickens.  The character Scrooge had a change of heart after
+being visited by 3 different spirits.  The other streets in the town also 
+follow the script.  The city's townspeople have not scrimped at all, when 
+it came to the city's design.  The streets are paved with red and white brick,
+kinda of in a candy-cane design.  The buildings that lead off this road are also
+painted in the same motif as the guardshack outside the gates.  You hear
+the faint sounds of haggling and bargaining nearby.~
+44 8 0
+D0
+Circle Plaza~
+~
+0 -1 4408
+D2
+Entrance to the Village~
+gate~
+3 -1 4405
+S
+#4407
+Spells 'R Us~
+The shop is covered by a fabric tarp that keeps the brillant sunlight from
+fading and damaging the merchandise.  In the far distance, you can see the
+fabulous mountain range that you just came through.  The local townspeople
+need a lot of help with magic items, even though they are of a magical
+nature since they deal with the Christmas season day and day out, 365 1/4
+days a year.  The smells of christmas pine, frankensense and mir, waft 
+around you as you peruse the merchandise.  The faint muttering and the 
+occasional cursing, along with the random and frequent explosions do not 
+inspire you to search beyond the counter.~
+44 8|1024|4 1
+D0
+Circle Plaza~
+~
+0 -1 4413
+D1
+Circle Plaza~
+~
+0 -1 4408
+S
+#4408
+Circle Plaza~
+The plaza is centered around a fountain to the north.  The plaza contains
+many diverse shops that sell everything from different parts of the world.
+The people who live here, travel the world constantly in search of new and
+exciting things to add to the shopkeeper's stock.  You may want to get
+into a habit of looking.  One never knows what one might find.~
+44 8 1
+D0
+Swan Plaza~
+~
+0 -1 4414
+D1
+Warriors 'R Us~
+~
+0 -1 4409
+D2
+Beginning of Scrooge Street~
+~
+0 -1 4406
+D3
+Spells 'R Us~
+~
+0 -1 4407
+S
+#4409
+Weapons 'R Us~
+This the local shop that all the townspeople come to trade-in their dull
+swords, knives, and broken arrows.  The open air bazaar does nothing to
+prevent the cold northern wind from blowing right through you.  The sounds
+of hammering and clanking can be heard coming from behind the sales
+counter. An occasional lone curse prevents your curosity from looking past
+the counter.~
+44 8|1024|4 1
+D0
+Circle Plaza~
+~
+0 -1 4415
+D3
+Circle Plaza~
+~
+0 -1 4408
+S
+#4410
+West end of Past Blvd~
+You arrive at the end of the cobblestone street.  This part of town seems
+strangely nicer than the rest.  You can see an enormous stone wall with a large
+gate in it.  Beyond the gate you can see a {110}SUPER{300} huge yard filled with massive,
+sparkling Christmas trees.  A {110}SUPER{300} huge mansion can be seen past the gate.
+You sit down and wonder who could have built such a lovely home, and why the
+heck is it all colored in red and white stripes.
+    {121}There is a small sign here.~
+44 8 1
+D1
+Corner of 34th and Past Blvd~
+~
+0 -1 4411
+D3
+SUPERGATE~
+supergate~
+3 -1 4531
+E
+sign~
+{120}          +---------------------------------------+
+{120}          |  This is the {110}SUPER{120} home of {110}DAVE{120}       |
+{120}          +---------------------------------------+
+~
+S
+#4411
+Corner of 34th Street and Past Blvd~
+The cobblestone streets meet here at a city stop light.  The stop light
+malfunctions alot.  No one really pays any attention to it so it just keeps
+blinking in bright red and green, with no lengthy intervals to let traffic
+pass.~
+44 4 1
+D0
+34th Street~
+~
+0 -1 4433
+D1
+Past Blvd~
+~
+0 -1 4412
+D3
+West end of Past Blvd~
+~
+0 -1 4410
+S
+#4412
+Past Blvd~
+This is one of the throughfares through the town.  The cobblestone road
+looks very beautiful, while the piles of snow on each side of the street
+are still pristine white.  You can see houses to both the north and south with
+snowmen and snowwomen in the yards.  Everyone in the town takes real pride
+in their homes, and with it being constantly winter, they have living christmas
+trees in their yards, with their festive flowers looking out of their
+windows.~
+44 8 1
+D1
+Circle Plaza~
+~
+0 -1 4413
+D3
+Corner of 34th Street and Past Blvd~
+~
+0 -1 4411
+S
+#4413
+Circle Plaza~
+The plaza is centered around a fountain to the east.  The plaza contains
+many diverse shops that sell everything from different parts of the world.
+The people who live here, travel the world constantly in search of new and
+exciting things to add to the shopkeeper's stock.  You may want to get
+into a habit of looking.  One never know what one might find.~
+44 8 1
+D0
+Armor 'R Us~
+~
+0 -1 4419
+D1
+Swan Fountain~
+~
+0 -1 4414
+D2
+Spells 'R Us~
+~
+0 -1 4407
+D3
+Past Blvd~
+~
+0 -1 4412
+S
+#4414
+Swan Fountain~
+Here in the center of the circle plaza, stands a beautiful ice sculpture.
+The tall, opaque piece of ice is carved into a Swan.  The Swan's wings are
+gently unfurled, and the water dripping from the wings is caught in the
+reservoir that the townspeople gather for their drinking water.  Even
+though the sculpture has been in the full heat of the sun, it appears that
+not much of it has melted.  The magics of this place must be strong, if
+they can prevent ice from completely melting.~
+44 8|1024|4 SECT_INN
+D0
+Circle Plaza~
+~
+0 -1 4420
+D1
+Circle Plaza~
+~
+0 -1 4415
+D2
+Circle Plaza~
+~
+0 -1 4408
+D3
+Circle Plaza~
+~
+0 -1 4413
+DDIR_UP
+The Great Hall~
+~
+0 -1 19165
+X XMAS.MID~
+S
+#4415
+Circle Plaza~
+The plaza is centered around a fountain to the west.  The plaza contains
+many diverse shops that sell everything from different parts of the world.
+The people who live here, travel the world constantly in search of new and
+exciting things to add to the shopkeeper's stock.  You may want to get
+into a habit of looking.  One never know what one might find.~
+44 8 1
+D0
+Bakers 'R Us~
+~
+0 -1 4421
+D1
+Past Blvd~
+~
+0 -1 4416
+D2
+Weapons 'R Us~
+~
+0 -1 4409
+D3
+Swan Fountain~
+~
+0 -1 4414
+S
+#4416
+Past blvd~
+This is one of the throughfares through the town.  The cobblestone road
+looks very beautiful, while the piles of snow on each side of the street
+are still pristine white.  You can see houses both to the north and south
+with snowmen and snowwomen in the yards.  Everyone in the town takes real
+pride in their homes, and with it being constantly winter, they have
+living christmas trees in their yards, with their festive flowers looking
+out of their windows.~
+44 8 1
+D1
+Corner of Past and Rudolph~
+~
+0 -1 4417
+D3
+Circle Plaza~
+~
+0 -1 4415
+S
+#4417
+Corner of Past and Rudolph Lane~
+This corner of the town also has an erraticaly malfunctioning stoplight. 
+The blinking red and green lights seem to be going in time with the carols
+that are being sung on the street corner.  The enormous mountain ranges
+get closer as you move toward the east.~
+44 4 1
+D0
+Rudolph Lane~
+~
+0 -1 4435
+D1
+East end of Past Blvd~
+~
+0 -1 4418
+D3
+Past Blvd~
+~
+0 -1 4416
+S
+#4418
+East end of Past Blvd~
+Set back slightly from the street is a large mansion with tall chimneys
+and a solid wooden front door to the north. The windows are big, the
+exterior is in good repair and the front garden is well tended.  ONE
+would assume that whoever lives here is a tidy person.
+{130}WELCOME{300} is printed in large letters on the doormat.~ 
+44 8 1
+D3
+Corner of Past and Rudolph~
+~
+0 -1 4417
+D0
+ICE CASTLE of BRRR~
+wooden~
+3 -1 4545
+S
+#4419
+Armors 'R Us~
+This the local shop that all the townspeople come to trade-in their worn and
+tattered armours for new and improved armours with reinforced knees and
+elbows.  The open air bazaar does nothing to prevent the cold northern wind
+from blowing right through you, so you had better change quickly, for you
+wouldn't want to catch a cold.  The sounds of sewing machines and hammering
+metal can be heard in the background.
+~
+44 8|1024|4 1
+D1
+Circle Plaza~
+~
+0 -1 4420
+D2
+Circle Plaza~
+~
+0 -1 4413
+S
+#4420
+Circle Plaza~
+The plaza is centered around a fountain to the south.  The plaza contains
+many diverse shops that sell everything from different parts of the world.
+The people who live here, travel the world constantly in search of new and
+exciting things to add to the shopkeeper's stock.  You may want to get
+into a habit of looking.  One never knows what one might find.~
+44 8 1
+D0
+Scrooge Street~
+~
+0 -1 4422
+D1
+Bakers 'R Us~
+~
+0 -1 4421
+D2
+Swan Fountain~
+~
+0 -1 4414
+D3
+Armors 'R Us~
+~
+0 -1 4419
+S
+#4421
+Bakers 'R Us~
+The tantalizing smells of freshly baked goods just drag you off the
+street.  The smell of gingerbread, oatmeal, and chocolate cookies can
+satisfy any hunger.  If you think about your mom in fear, there are also
+smoked turkeys, hams, and salmon here too for your main course.  
+Pumpkin pies sit on the counter just ready to be eaten, along with bread 
+pudding.  There is no cursing to be heard here, just helpful bakers that 
+hum christmas carols under their breath as they work.~
+44 8|1024|4 1
+D2
+Circle Plaza~
+~
+0 -1 4415
+D3
+Circle Plaza~
+~
+0 -1 4420
+S
+#4422
+Scrooge Street~
+This is the Main thorughfare of the North Pole.  The streets that intersect it
+are all contected to the important areas.  To the north, you can see a large,
+sprawling building.  To the south, there is a fountain, and you can hear mummurs
+of conversation and haggling in the distance.  The homes to the east and west,
+follow the basic landscaping of the area, with living christmas trees in their
+yards, and bright, festive plants in their front windows.~
+44 8 1
+D0
+Corner of Scrooge and Present Blvd~
+~
+0 -1 4427
+D2
+Circle Plaza~
+~
+0 -1 4420
+S
+#4423
+West end of Present Blvd~
+The cobblestone boulevard ends at the front of a huge gate.  You can barely
+catch a glimpse of the huge mansion, behind the tall, graceful pine trees.
+The snow-covered mountain range is a lovely backdrop for the tall trees, and
+the smell of pine just brings back memories of Christmas's past.   All of the
+trees would make graceful christmas trees in any home, as the owner of the mansion
+has bedecked them with christmas lights that flash in time to the music heard
+near by.~
+44 8 1
+D1
+Corner of 34th Street and Present Blvd~
+~
+0 -1 4424
+S
+#4424
+Corner of 34th Street and Present Blvd~
+This corner of the town also has an erraticaly malfunctioning stoplight.
+The blinking red and green lights seem to be going in time with the carols
+that are being sung on the street corner.  The enormous mountain range get
+closer as you move toward the west.~
+44 4 1
+D1
+Present Blvd~
+~
+0 -1 4425
+D2
+34th Street~
+~
+0 -1 4432
+D3
+West end of Present Blvd~
+~
+0 -1 4423
+S
+#4425
+Present Blvd~
+This is one of the throughfares through the town.  The cobblestone road
+looks very beautiful, while the piles of snow on each side of the street
+are still pristine white.  You can see houses both to the north and south
+with snowmen and snowwomen in the yards.  Everyone in the town takes real
+pride in their homes, and with it being constantly winter, they have
+living christmas trees in their yards, with their festive flowers 
+looking out of  their windows.~
+44 8 1
+D0
+Ean's House~
+door~
+3 -1 4445
+D1
+Present Blvd~
+~
+0 -1 4426
+D2
+Vel's House~
+door~
+3 -1 4455
+D3
+Corner of Present Blvd and 34th Street~
+~
+0 -1 4424
+S
+#4426
+Present Blvd~
+This is one of the throughfares through the town.  The cobblestone road
+looks very beautiful, while the piles of snow on each side of the street
+are still pristine white.  You can see houses both to the north and south
+with snowmen and snowwomen in the yards.  Everyone in the town takes real
+pride in their homes, and with it being constantly winter, they have
+living christmas trees in their yards, with their festive flowers
+looking out of their windows.~
+44 8 1
+D1
+Corner of Present Blvd and Scrooge Street~
+~
+0 -1 4427
+D2
+BadHabit's House~
+door~
+3 -1 4448
+D3
+Present Blvd~
+~
+0 -1 4425
+DDIR_UP
+Taveren's House~
+door~
+3 -1 4457
+D0
+HOUSE OF PYTHOS~
+mahogany~
+3 -1 4566
+S
+#4427
+Corner of Present Blvd and Scrooge Street~
+This is one of the quieter corners in the town.  Not very many people walk
+this way, unless they have something real urgent to do.  The beautiful
+countryside is quite a charming place to come to relax in.  The flashing
+light here does work, but since noone pays any attention to the other four
+lights in town, it's just habit not to pay attention to this light either.~
+44 8 1
+D0
+Scrooge Street~
+~
+0 -1 4436
+D1
+Present Blvd~
+~
+0 -1 4428
+D2
+Scrooge Street~
+~
+0 -1 4422
+D3
+Present Blvd~
+~
+0 -1 4426
+S
+#4428
+Present Blvd~
+This is one of the throughfares through the town.  The cobblestone road
+looks very beautiful, while the piles of snow on each side of the street
+are still pristine white.  You can see houses both to the north and south
+with snowmen and snowwomen in the yards.  Everyone in the town takes real
+pride in their homes, and with it being constantly winter, they have living
+christmas trees in their yards, with their festive flowers looking out of
+their windows.~
+44 8 1
+D1
+Present Blvd~
+~
+0 -1 4429
+D2
+Shiden's House~
+door~
+3 -1 4452
+D3
+Corner of Scrooge Street and Present Blvd~
+~
+0 -1 4427
+D0
+Home of Eury and Angel~
+Kiwi~
+3 -1 4567
+S
+#4429
+Present Blvd~
+This is one of the throughfares through the town.  The cobblestone road
+looks very beautiful, while the piles of snow on each side of the street
+are still pristine white.  You can see houses both to the north and south
+with snowmen and snowwomen in the yards.  Everyone in the town takes real
+pride in their homes, and with it being constantly winter, they have living
+christmas trees in their yards, with their festive flowers looking out of
+their windows.~
+44 8 1
+D0
+Wart's House~
+door~
+3 -1 4446
+D1
+Corner of Present Blvd and Rudolph Lane~
+~
+0 -1 4430
+D2
+Zoren's House~
+door~
+3 -1 4453
+D3
+Present Blvd~
+~
+0 -1 4428
+S
+#4430
+Corner of Present and Rudolph Lane~
+This corner of the town also has an erraticaly malfunctioning stoplight. 
+The blinking red and green lights seem to be going in time with the carols
+that are being sung on the street corner.  The enormous mountain range get
+closer as you move toward the west.~
+44 4 1
+D1
+End of Present Blvd~
+~
+0 -1 4431
+D2
+Rudolph Lane~
+~
+0 -1 4434
+D3
+Present Blvd~
+~
+0 -1 4429
+S
+#4431
+East end of Present Blvd~
+The cobblestone boulevard ends at the front of a huge gate.  You can barely
+catch a glimpse of the huge manison, behind the tall, graceful pine trees.
+The snow-covered mountain range is a lovely backdrop for the tall trees,
+and the smell of pine just brings back memories of christmas's past.   All
+of the trees would make graceful christmas trees in any home, as the owner
+of the mansion has bedecked them with christmas lights that flash in time
+to the music heard near by.~
+44 8 1
+D3
+Corner of Rudloph Lane and Present Blvd~
+~
+0 -1 4430
+S
+#4432
+34th Street~
+This is one of the secondary throughfares in the north pole.  The beautiful
+cobblestone streets are piled with fresh piles on snow plowed to the sides.
+The houses look picture-perfect, surrounded by their living christmas trees
+and bright, festive plants in their front windows.~
+44 8 1
+D0
+Corner of 34th and Present Blvd~
+~
+0 -1 4424
+D1
+Fiest's House~
+door~
+3 -1 4451
+D2
+34th Street~
+~
+0 -1 4433
+D3
+Pteer's House~
+door~
+3 -1 4450
+S
+#4433
+34th Street~
+This is one of the secondary throughfares in the north pole.  The beautiful
+cobblestone streets are piled with fresh piles on snow plowed to the sides.
+The houses look picture-perfect, surrounded by their living christmas trees,
+and bright, colorful plants in their front windows.~
+44 8 1
+D0
+34th Street~
+~
+0 -1 4432
+D2
+Corner of Past and 34th Street~
+~
+0 -1 4411
+D1
+TAT's House~
+door~
+3 -1 4527
+D3
+The Oracle~
+curtain~
+3 -1 4528
+S
+#4434
+Rudolph Lane~
+This is Rudolph Lane.  The local people try not to visit this street too
+often, because it has a bad reputation of partying.  The sounds of music
+can be heard in the near distance, and the light poles on this street have
+red lights, that flash on and off in beat with the music.  One wonders
+about the sanity and morals of the people that live on this street.~
+44 8 1
+D0
+Corner of Rudolph and Present Blvd~
+~
+0 -1 4430
+D1
+Casca's House~
+door~
+3 -1 4456
+D2
+Rudolph Lane~
+~
+0 -1 4435
+D3
+Blackeye's Hovel~
+door~
+3 -1 4447
+S
+#4435
+Rudolph Lane~
+This is Rudolph Lane.  The local people try not to visit this street too
+often, because it has a bad reputation of partying.  The sounds of music
+can be heard in the near distance, and the light poles on this street have
+red lights, that flash on and off in beat with the music.  One wonders
+about the sanity and morals of  the people that live on this street.~
+44 8 1
+D0
+Rudolph Lane~
+~
+0 -1 4434
+D2
+Corner of Past Blvd and Rudolph Lane~
+~
+0 -1 4417
+D1
+Daith's Home~
+door~
+3 -1 4529
+D3
+Lenroc's Home~
+door~
+3 -1 4530
+S
+#4436
+Scrooge Street~
+The enormous snow covered mountains are still the main focus of your sight
+on the horizon.  The homes in this area follow the general outlay of the
+rest of the town.  With snow men and snow women decorating the landscape
+among the living christmas trees, and the bright, festive flowers in the
+windows,  the homes look very cozy and welcoming to the passerby.~
+44 8 1
+D0
+Corner of Scrooge Street and Future Blvd~
+~
+0 -1 4439
+D2
+Corner of Scrooge Street and Present Blvd~
+~
+0 -1 4427
+S
+#4437
+Bernard's Office~
+As you wonder into this room, you wonder what all the broken equipment is
+from.  Upon future inspection, you see it is from years and years of use
+and abouse.  This is where the local townspeople come to train the
+abilities to help them prepare for life outside of the town.  The trainer,
+Bernard, has been training young folk since Santa started making his 
+delivers upteen years ago.  He has seen everything in his lifetime, and 
+like Santa is immortal.~
+44 8|1024|4 1
+D1
+Future Blvd~
+~
+0 -1 4438
+S
+#4438
+Future Blvd~
+This is the futuristic side of the pole.  Many new and interesting items
+are being discovered in the homes and shops in this area.  The only thing
+is, that the townspeople are very leery of newcomers to the pole, and
+almost never give away secrets, unless you have moved in to live with them
+for a while.  This might be your chance to move in, and help them spread
+the christmas spirit across the realm.~
+44 8 1
+D1
+Corner of Scrooge Street and Future Blvd~
+~
+0 -1 4439
+D3
+Bernard's Office~
+~
+0 -1 4437
+S
+#4439
+Scrooge Street and Future Blvd~
+The town is quieter here.  This feels to be an area of thoughtfulness and
+self inspection about the future of your life.  The singing can be heard
+vaguely in the north, but it sounds different than the singing you heard
+in the rest of the town.
+~
+44 8 1
+D0
+Entrance to Santa's Workshop~
+~
+0 -1 4442
+D1
+Future Blvd~
+~
+0 -1 4440
+D2
+Scrooge Street~
+~
+0 -1 4436
+D3
+Future Blvd~
+~
+0 -1 4438
+S
+#4440
+Future Blvd~
+This is the futuristic side of the pole.  Many new and interesting items
+are being discovered in the homes and shops in this area.  The only thing
+is, that the townspeople are very leery of newcomers to the pole, and
+almost never give away secrets, unless you have moved in to live with them
+for a while.  This might be your chance to move in, and help them spread 
+the christmas spirit across the realm.~
+44 8 1
+D1
+Research and Development~
+~
+0 -1 4441
+D3
+Corner of Scrooge Street and Future Blvd~
+~
+0 -1 4439
+DDIR_UP
+Pets 'R Us~
+~
+0 -1 4458
+S
+#4441
+Research and Development~
+As you walk into this building, the quiet makes you tip toe.  You see
+scholars sitting on benches as they study for exams to further their
+education.  There are many rooms in this building and each has a title on
+the close doorway, each pertaining to the different classes in the realm.
+If you need to study, just walk into the room and do what you must.~
+44 8|1024 1
+D3
+Future Blvd~
+~
+0 -1 4440
+S
+#4442
+Entrance to Santa's Workshop~
+The beautiful mountain are dwarfed by the emense building before you.  It
+stands 2 stories tall, and looks in a giant gingerbread hosue. This is
+where all the toys are made for christmas.  You should see the warehouse!!!
+     {120}There is a sign on the door.~
+44 8 1
+D0
+Front Office~
+door~
+3 -1 4443
+D2
+Corner of Scrooge Street and Future Blvd~
+~
+0 -1 4439
+E
+sign~
+{170}                Open 364 days a year, 24 hours a day.
+{130}           Area under reconstruction.  Come back later.~
+S
+#4443
+Main Office of Santa's Workshop~
+This is the main office of santa's workshop.  You can hear the clatter of
+keys being typed as efficient secretaries type in the wishlists of kids
+around the world.  The bright flowers remind them of home, and the
+elegantly decorated tree takes up about one quarter of the available
+floor space.
+       {120}There is a sign on the counter.~
+44 8|4 1
+D2
+Entrance to Santa's Workshop~
+door~
+3 -1 4442
+D3
+Entrance to Plant~
+door~
+3 -1 4480
+E
+sign~
+Taking applications for seasonal help.
+Ask the secretary for an application.~
+S
+#4445
+Ean's House~
+This is the home of Ean Highmoor. You are surrounded by misc. treasures
+and assorted junk. He obviously doesn't throw anything away. Next to the
+fireplace you see a nice comfy chair, why not sit down and rest awhile.
+There is also a large book shelf along the wall near the fireplace.
+The rest of the room is featureless except for the swimsuit calendar on
+the bathroom door. Although it is just an average house you feel a bit
+nervous like you are being watched and hear a faint giggle somewhere in
+the room, maybe you should leave.~
+44 8|1024|4 0
+D2
+Present Blvd~
+door~
+3 -1 4425
+S
+#4446
+A House of Gleaming Light~
+Before you is a beautiful cozy house.  Looking in front of you, is what
+appears to be a cozy couch.  Shinning in from the window, is a magnificent
+array of colors from the sun hitting the glass. Above the door, is a 
+"WELCOME" sign letting you know that you may enter any time you
+like. Kick back and relax.  Who knows what you might find around in here...~
+44 8|1024|4 SECT_INN
+D2
+Present Blvd~
+door~
+3 -1 4429
+E
+picture~
+Looking on the west wall, you notice a strange three-dimensional picture.
+It almost appears to tell stories of the past, present, and future. 
+Before the image disappears, you notice a picture of an Eclipse.  What
+does this mean??~
+E
+light~
+The lights from the window are breath taking.  You can feel an energy
+rush up and down your spine looking at such a beautiful site.~
+E
+safe~
+There is no safe here.  Do you really think that Wart would let you
+into his house knowing you would have easy access to his money? 
+I Didn't think so!!!~
+E
+card~
+You spot a [CHRISTMAS] card that has been given to Wart, from all his
+fellow clan members.  The clan must REALLY care about eachother to
+share [CHRISTMAS] cards :-)~
+E
+house~
+This house is that of Wart's. He is a member of the clan [CHRISTMAS].
+Please feel free to check it out!~
+E
+christmas~
+You notice several items pertaining to Christmas.  You can tell that this
+is a VERY important holiday to Wart.  You see several pictures of all the
+members of his group that he is in, that is just so happened to be called
+{121}[CHRISTMAS].~
+E
+window~
+You can hardly see out the window as it is SO filled with wonderful beams
+of colorful light!~
+E
+couch~
+A closer look at the couch makes you want to sit on it.  It looks VERY
+comfortable!~
+E
+sign~
+WELCOME TO WART'S HUMBLE ABODE
+
+You are welcome here any time you like.  Nothing really special here
+right now, but as time goes on, this abode will grow to be a large,
+beautiful mansion.  Please visit this area every so often to see the
+additions that will be brought forth here.  Thanks.~
+S
+#4447
+Blackeye's Hovel~
+Four large overstuffed leather chairs sit in front of the hearth.  A small
+fire flickers in the fireplace.  On the mantle there are four intricately
+carved busts.  Under each there is a name: Rapscallion, Blackeye, Pinkus,
+Shiner.  In the far corner you see two tapped kegs.  A group of mugs is
+stacked beside them.  As you look closer you realize there is a mug for
+each member of the Christmas clan. A ladder lead to the loft Above.~
+44 8|4 0
+D1
+Rudolph Lane~
+door~
+3 -1 4434
+S
+#4448
+Badhabit's House~
+Upon entering this small abode you are surrounded by the scent of wild flowers,
+and the aroma of ripe fruit.   Your eyes are drawn to the center of the room,
+where a hole in the vine ceiling allows light to come flooding in.  Right
+inside this sunbeam, sitting upon a table, are some beautiful peaches, so
+perfect you daren't touch them.  As you continue to inspect the room your eyes
+are drawn away from the sunlit core to one corner where you see a plethora of
+leather arm chairs, couches, and ottomans, most of them in neutral colors, but
+one stands out.~
+44 8|4 0
+D0
+Present Blvd~
+door~
+3 -1 4426
+D2
+The Retreat~
+door~
+3 -1 4449
+E
+couch chair ottoman~
+A beautiful piece of workmanship, the ebony marvel looks both
+dignified and comfortable, this is the place Baddie sits when she is
+at her most pensive.  As night falls you can almost imagine BadHabit,
+and her sister GoodMood sitting here with their friends discussing
+adventures past, and adventures yet to come.  As you sit there
+silently, thinking, voices start to sound, and images start to form as
+if the room itself is remembering a cheery night.~
+E
+images room~
+As you look around you see BadHabit in her favorite chair, GoodMood
+providing a small feast of appetizers, sitting in among the many chairs
+you can see Gooddie's husband Jamon, and many of their friends.  As a
+small storm starts to brew, a fire lights in the fireplace, without your
+help.  As light floods into the corners of the room, the vision fades, and
+you are suprised to see a door leading south. As you peer into the next
+room, you see what appear to be BadHabit's private chambers.~
+S
+#4449
+The  Retreat~
+The first thing you notice upon entering this room is a large, and
+plain looking bed, as you take a seat on it to rest your weary bones
+it moves out from under you, as if flowing away from your body.
+As you look out the small windows you see a winter wonderland beyond them,
+and as the beauty of the softly falling snow overwhelms you, you begin to
+understand why Baddie finds so much peace here.~
+44 8 0
+D0
+Badhabit's house~
+~
+0 -1 4448
+E
+bed~
+As you inspect it more closely you are astounded to find that it is
+actually made of the skin of an impossibly large buffalo, which is
+then filled with water, and sealed.  This water bed is truly a
+marvel, not having been seen before in the Realms.  Next to the odd
+bed is a small table with a scroll, and plume where it is believed
+that Baddie writes her deepest and most personal thoughts.~  
+E
+plume scroll~
+You are tempted to delve into her private scroll, and yet, the power
+of her presence lingering around you forbids you, and you cannot resist.
+So strong are Baddie's feelings for what she has written that her will
+for privacy thwarts even the boldest intruder.~  
+S
+#4450
+Pteer's House~
+You just entered the room of Pteer. Surprisingly it looks really nice.
+Bear rugs cover the floor and there is a bed in the center.
+The western wall sports a large window.~
+44 8|4 0
+D1
+34th Street~
+door~
+3 -1 4432
+E
+window~
+When you look out the window you see penguins chasing the snowpeople around
+the northpole.~
+E
+bed~
+Boy does it look comfortable~
+S
+#4451
+Fiest's House~
+Upon entering this home, you become mesmerised by the sight of
+literally thousands of brightly colored Christmas lights skillfully
+arranged across the hall, fixing the room with an ever shifting parody of
+colors.  Looking around, you feel enveloped in warmth as you notice friends
+and family start to gather around the hall, reminiscing times gone by, the
+sweet sounds of children's laughter in the background beckoning you to
+stay and join in the joy and celebration.
+    {120}A rather decent Christmas TREE stands in the center of the hall. 
+    {121}You notice a large neon sign at the far end of the hall.~
+44 8|4 0
+D3
+34th Street~
+door~
+3 -1 4432
+E
+sign~
+{161}A large neon sign flashing "Merry Christmas".~
+E
+window~
+Looking out of a window, you see a magnificent garden of lush greenery,
+where cute bunnies and tame reindeers roam freely, with occasional
+glimpses of the elusive WARThog, OR A CLEar lake sparkling under the
+warmth of the sun.~
+E
+fireplace~
+You hear the soft crackling of dry firewood as you approach the
+fireplace, where four pictures framed in gold catches your attention, each
+with a particular name engraved onto the frame : ANDELISHA, SUPERDAVE,
+SLAIC and ZOREN.~
+E
+christmas tree~
+The tree is covered with glittering jewels and delightful trinkets, promising
+treasureS HIDEN within it's intertwining branches.  Dozens of hand wrapped
+gifts lie CASCAded beneath the tree, and you suddenly feel an urge to unwrap
+one.~
+E
+hall~
+Tables and seats of beautifully carved ivory fill the hall, glistening
+under the light. Wallpaper depicting trendy Christmas designs adorn the
+walls, joining the soft, VELvet carpet laid atop the marble floor.~
+S
+#4452
+Shiden's home~
+As you enter this room you are hipnotized by an angelic sound flowing
+from a Grand piano.  Gazing around the room you feel a sense of comfort
+and warmth.  There is a quiet mist floating up from the cloud-like floor,
+and the tall crystal pillars that surround you let off a gleaming but
+gentle light.  Moving closer to the piano you can see the outline of an
+angelic figure. The music flows from her fingers like a gentle breeze out
+into the room.  As you feel the gentle melodies caressing your mind and
+soul, you begin to wonder if you have stepped into a piece of heaven.~
+44 8|1024|4 0
+D0
+Present Blvd~
+door~
+3 -1 4428
+D1
+Zoren's home~
+~
+0 -1 4453
+S
+#4453
+Zoren's home~
+This is where zoren comes to relax from the pressing tasks of killing
+around the realm, and restocking the shopkeeper's warehouses.  She really
+hates the cold weather, and so is rarely found in the north pole.  She 
+LOVES the tropics.  You might want to look for her there.~
+44 8|4 0
+D0
+Present Blvd~
+door~
+3 -1 4429
+D3
+Shiden's home~
+~
+0 -1 4452
+DDIR_DOWN
+Portal~
+portal~
+3|EX_LOCKED|EX_HIDDEN -1 4454
+S
+#4454
+Zoren's getaway~
+Stepping into this room, the smell of coconut oil entices your nostrils.
+As you stroll in you hear a washer running in the backround.  A tall end
+Muscular tanned hardbody in a SARONG passes by you with an arm full of
+laundry.  As you step towards the porch, your eyes are drawn to tiny
+sunbeams dancing on the rippling muscles of two scantly clad men fanning
+palm branches up and down.  On the porch you see Zoren sipping on a
+Margarita soaking up some rays.  She smiles contentedly as Shiden expertly
+massages her feet.
+Zoren raises her shades and says, {130}'Come on in and let my men serve you, but
+leave the massage man for me. I have plans for him.
+{300}Zoren grins evily at you with a twinkle in her eye.~
+44 8|4 0
+DDIR_UP
+Zoren's home~
+~
+0 -1 4453
+D3
+a small porch~
+~
+0 -1 4560
+E
+sarong~
+You see a strip of thin white cotton fabric clinging to the bulging groin
+and firm ass of this tanned god-like creature.~
+S
+#4455
+Vel's Cottage~
+Walking into this cottage you are surprised to find that there is no wall
+to the west side.  As your eyes wander around the room, you look out the
+open wall onto a small porch.  Your eyes rest for a moment on the mantle
+place over the fireplace.  Upon it you see a plethora of treasures given
+to Vel by her Ex-husband Eltharion during their days of courtship.  As you
+stand in the middle looking around, you become aware of an aura of
+warmth, not actual heat, but rather of openness and friendliness.  You
+begin to feel the bond this small cottage represents.   No matter how
+apart her travels take her, Vel knows that when she returns to this warm
+cottage she can leave the cares of the world behind and just enjoy her
+time with her lovely home.  She sometimes sit for hours and hours on the
+porch swing, Vel leaning back securely against the strong foundation of
+her swing, thinking of nothing and everything, watching the beautiful sunset
+pass by.~
+44 8|4 0
+D0
+Present Blvd~
+door~
+3 -1 4425
+S
+#4456
+Casca's Abode~
+You have entered into the home of Casca Rufio Longinius. There is a large
+fireplace in the corner with Christmas stockings hanging down in front of
+it. There is also a small sign hanging above a comfortable EZ chair where
+Casca occassionally settles down to read some of his favorite books.~
+44 8|4 0
+D3
+Rudolph Lane~
+door~
+3 -1 4434
+E
+stocking~
+The stockings are stuffed full of Christmas gifts for Casca's friends. You
+make out the names like Bismarck, Menion, and Korendir, to name just a
+few.~
+E
+sign~
+Twas the night before Christmas and Casca wasn't home for he was out
+getting EQ for all the little gnomes.~
+S
+#4457
+The Tree-house~
+This small tree-house is sheltered from outside forces of evil by the
+branches of love and friendship that surround it.  Pink monkeys flit in
+and out of sight through  the upper branches of the tree. All who pass
+this tree feel the pull of Taveren passing through their lives. On the
+wall hangs a picture of the rogueish assassin, Lenroc, protecting his
+AesSedai as she wields the power of Blah! healing all who pass her way.
+Together these three companions make up a force  impenetrable by any
+other malignant beings or forces.  This young couple, full of fire, is
+perfectly matched in both ability and temperament.  Lenroc and Taveren's
+brash willingness to attack any evil, no matter how insurmountable, is
+balanced by the firm and wise hand of Taveren's older sister AesSedai.
+Teamwork and friendship guide these perfectly matched adventurers on a
+quest against all odds, to restore good to all the realms.~
+44 8|1024|4 SECT_FOREST
+DDIR_DOWN
+Present Blvd~
+~
+0 -1 4426
+S
+#4458
+Pets 'R Us~
+This is the local pet shop where Santa Claus picks up the animals he
+gives away at Christmas time.  Watch out! Some of the animals are not
+domesticated yet, and will bite you if you aren't careful.~
+44 8|1024|ROOM_PET_SHOP 1
+DDIR_DOWN
+Future Blvd~
+~
+0 -1 4440
+S
+#4459
+pet shop inventory~
+Pet shop inventory~
+44 4|8 0
+S
+#4476
+mob chute 4~
+Mob chute to warehouse~
+44 8 0
+D0
+Warehouse~
+~
+0 -1 4501
+D1
+Warehouse~
+~
+0 -1 4507
+D2
+Warehouse~
+~
+0 -1 4504
+D3
+Warehouse~
+~
+0 -1 4499
+DDIR_UP
+Warehouse~
+~
+0 -1 4502
+DDIR_DOWN
+Warehouse~
+~
+0 -1 4497
+S
+#4477
+mob chute 3~
+Mob chute to warehouse~
+44 8 0
+D0
+Warehouse~
+~
+0 -1 4505
+D1
+Warehouse~
+~
+0 -1 4506
+D2
+Warehouse~
+~
+0 -1 4508
+D3
+Warehouse~
+~
+0 -1 4509
+DDIR_UP
+Warehouse~
+~
+0 -1 4503
+DDIR_DOWN
+Warehouse~
+~
+0 -1 4501
+S
+#4478
+mob chute 2~
+Mob chute to warehouse~
+44 8 0
+D0
+Warehouse~
+~
+0 -1 4525
+D1
+Warehouse~
+~
+0 -1 4513
+D2
+Warehouse~
+~
+0 -1 4519
+D3
+Warehouse~
+~
+0 -1 4514
+DDIR_UP
+Warehouse~
+~
+0 -1 4515
+DDIR_DOWN
+Warehouse~
+~
+0 -1 4520
+S
+#4479
+mob chute 1~
+Mob chute to warehouse~
+44 8 0
+D0
+Warehouse~
+~
+0 -1 4521
+D1
+Warehouse~
+~
+0 -1 4522
+D2
+Warehouse~
+~
+0 -1 4523
+D3
+Warehouse~
+~
+0 -1 4518
+DDIR_UP
+Warehouse~
+~
+0 -1 4519
+DDIR_DOWN
+Warehouse~
+~
+0 -1 4517
+S
+#4480
+Entrance into the workshop~
+This is the entrance into Santa Claus's workshop.  The heavy doors in front
+of you are to prevent all the sounds of the assembly line from disturbing
+the front office clerks.  You can still hear the clerks clicking and
+clacking away on their keyboards.~
+44 8|2 0
+D0
+Heavy Metal Door~
+heavy~
+3 -1 4483
+D1
+Front Office~
+~
+0 -1 4443
+S
+#4481
+West end of Assembly Line~
+This is the west end of the building.  The conveyor belt drops off the toys
+here, and the elves separate them, and send them down the table.  There are
+a bunch of tags littering the floor here.  Maybe your missing present lost
+it's tag here?  You might be able to find it.~
+44 8 0
+D0
+Conveyor~
+~
+0 -1 4487
+D1
+Middle of Assembly Line~
+~
+0 -1 4482
+S
+#4482
+Middle of Assembly line~
+This is the middle of the assembly line.  This is where the wrapping paper
+is decided on, along with coordinating bows and curly ribbons.  The tree in
+the background, along with the christmas music playing reminds you that
+this workshop and the people in it eat, drink, breathe Christmas 365 days a
+year.~
+44 8 0
+D0
+Storage room~
+~
+0 -1 4489
+D1
+End of Assembly Line~
+~
+0 -1 4483
+D3
+West end of Assembly Line~
+~
+0 -1 4481
+S
+#4483
+East end of assembly line~
+This is the east end of the long line of tables.  There is a HUGE purple
+slide to the east.  The slide is nicknamed "barney" for the children's
+dinosaur on public television.  This is how the workers send the wrapped
+packages to the warehouse department.~
+44 8 0
+D1
+entrance to slide~
+~
+0 -1 4484
+D2
+Entrance to plant~
+heavy metal door~
+3 -1 4480
+D3
+Middle of assembly line~
+~
+0 -1 4482
+S
+#4484
+Barney~
+This huge slide is nicknamed for the barney on public theater, you could
+slide down the slide with the presents, but the mean looks on the elves
+standing near you, make you change your mind.  You'll take the stairs just
+to be nice this time.~
+44 8 0
+D3
+End of Assembly line~
+~
+0 -1 4483
+DDIR_DOWN
+Entrance to the warehouse~
+~
+0 -1 4485
+S
+#4485
+Entrance to the warehouse~
+This is the entrance to the warehouse.  This is where all the wrapped
+presents are stored until the christmas eve when santa decides who gets a
+present, and who gets coal.  You look into the windows of the 2 story
+building and see very colorful wrapping paper.  You wish that your present
+was wrapped and waiting for you inside, but since you have been so mean,
+you probably will get a lump of coal.~
+44 8|4 0
+D0
+Warehouse~
+~
+0 -1 4498
+DDIR_UP
+Barney~
+~
+0 -1 4484
+S
+#4486
+Side room~
+This is a side storage room.  This is one of the rooms that all the toys
+are stashed in before they are sorted and wrapped.  The delivery people
+just throw all the toys in here without any concern of the safety of the
+toy.~
+44 8 0
+D1
+Conveyor~
+~
+0 -1 4487
+S
+#4487
+Conveyor~
+In front of you stands a very large conveyor belt.  This belt takes the
+toys from the storage rooms and delivers them to the sorting and wrapping
+elves.~
+44 8 0
+D0
+Conveyor~
+~
+0 -1 4491
+D1
+Side room~
+~
+0 -1 4488
+D2
+West end of Assembly line~
+~
+0 -1 4481
+D3
+Side room~
+~
+0 -1 4486
+S
+#4488
+Side room~
+This is a side storage room.  This is one of the rooms that all the toys
+are stashed in before they are sorted and wrapped.  The delivery people
+just throw all the toys in here without any concern of the safety of the
+toy.~
+44 8 0
+D3
+Conveyor~
+~
+0 -1 4487
+S
+#4489
+Storage Room~
+This is where all the supplies are kept for the wrapping team.  The
+wrapping paper, bow, curling ribbon, and scotch tape.  Be careful if you
+move anything, the elves will get upset, because this is a very orderly
+room.~
+44 8 0
+D0
+Storage Room~
+~
+0 -1 4493
+D2
+Middle of assembly line~
+~
+0 -1 4482
+S
+#4490
+Side room~
+This is a side storage room.  This is one of the rooms that all the toys
+are stashed in before they are sorted and wrapped.  The delivery people
+just throw all the toys in here without any concern of the safety of the
+toy.~
+44 8 0
+D1
+Conveyor~
+~
+0 -1 4491
+S
+#4491
+Conveyor~
+In front of you stands a very large conveyor belt.  This belt takes the
+toys from the storage rooms and delivers them to the sorting and wrapping
+elves.~
+44 8 0
+D0
+Conveyor~
+~
+0 -1 4495
+D1
+Storage~
+~
+0 -1 4493
+D2
+Conveyor~
+~
+0 -1 4487
+D3
+Side room~
+~
+0 -1 4490
+S
+#4492
+Side room~
+This is a side storage room.  This is one of the rooms that all the toys
+are stashed in before they are sorted and wrapped.  The delivery people
+just throw all the toys in here without any concern of the safety of the
+toy.~
+44 8 0
+D1
+Conveyor~
+~
+0 -1 4491
+S
+#4493
+Storage Room~
+This is where all the supplies are kept for the wrapping team.  The
+wrapping paper, bow, curling ribbon, and scotch tape.  Be careful if you
+move anything, the elves will get upset, because this is a very orderly
+room.~
+44 8 0
+D2
+Middle of assembly line~
+~
+0 -1 4489
+D3
+conveyor~
+~
+0 -1 4491
+S
+#4494
+Side room~
+This is a side storage room.  This is one of the rooms that all the toys
+are stashed in before they are sorted and wrapped.  The delivery people
+just throw all the toys in here without any concern of the safety of the
+toy.~
+44 8 0
+D1
+Conveyor~
+~
+0 -1 4495
+S
+#4495
+Conveyor~
+This is the end of the conveyor belt.  This belt takes the toys from the
+storage rooms and delivers them to the sorting and wrapping elves.~
+44 8 0
+D1
+Side room~
+~
+0 -1 4496
+D2
+Conveyor~
+~
+0 -1 4491
+D3
+Side room~
+~
+0 -1 4494
+S
+#4496
+Side room~
+This is a side storage room.  This is one of the rooms that all the toys
+are stashed in before they are sorted and wrapped.  The delivery people
+just throw all the toys in here without any concern of the safety of the
+toy.~
+44 8 0
+D3
+Conveyor~
+~
+0 -1 4495
+S
+#4497
+Warehouse~
+This is the huge warehouse were the elves store all the of the presents
+that they wrap through the year.~
+44 8 0
+D0
+Warehouse~
+~
+0 -1 4500
+D1
+Warehouse~
+~
+0 -1 4498
+S
+#4498
+Warehouse~
+This is the huge warehouse were the elves store all the of the presents
+that they wrap through the year.~
+44 8|4 0
+D0
+Warehouse~
+~
+0 -1 4501
+D1
+Warehouse~
+~
+0 -1 4499
+D2
+Entrance to warehouse~
+~
+0 -1 4485
+D3
+Warehouse~
+~
+0 -1 4497
+DDIR_UP
+Warehouse~
+~
+0 -1 4513
+S
+#4499
+Warehouse~
+This is the huge warehouse were the elves store all the of the presents
+that they wrap through the year.~
+44 8 0
+D0
+Warehouse~
+~
+0 -1 4502
+D3
+Warehouse~
+~
+0 -1 4501
+S
+#4500
+Warehouse~
+This is the huge warehouse were the elves store all the of the presents
+that they wrap through the year.~
+44 8 0
+D0
+Warehouse~
+~
+0 -1 4504
+D1
+Warehouse~
+~
+0 -1 4501
+D2
+Warehouse~
+~
+0 -1 4497
+S
+#4501
+Warehouse~
+This is the huge warehouse were the elves store all the of the presents
+that they wrap through the year.~
+44 8 0
+D0
+Warehouse~
+~
+0 -1 4505
+D1
+Warehouse~
+~
+0 -1 4502
+D2
+Warehouse~
+~
+0 -1 4498
+D3
+Warehouse~
+~
+0 -1 4500
+S
+#4502
+Warehouse~
+This is the huge warehouse were the elves store all the of the presents
+that they wrap through the year.~
+44 8 0
+D0
+Warehouse~
+~
+0 -1 4506
+D2
+Warehouse~
+~
+0 -1 4499
+D3
+Warehouse~
+~
+0 -1 4501
+S
+#4503
+Warehouse~
+This is the huge warehouse were the elves store all the of the presents
+that they wrap through the year.~
+44 8 0
+D1
+Warehouse~
+~
+0 -1 4504
+S
+#4504
+Warehouse~
+This is the huge warehouse were the elves store all the of the presents
+that they wrap through the year.~
+44 8 0
+D0
+Warehouse~
+~
+0 -1 4508
+D1
+Warehouse~
+~
+0 -1 4505
+D2
+Warehouse~
+~
+0 -1 4500
+D3
+Warehouse~
+~
+0 -1 4503
+S
+#4505
+Warehouse~
+This is the huge warehouse were the elves store all the of the presents
+that they wrap through the year.~
+44 8 0
+D0
+Warehouse~
+~
+0 -1 4509
+D1
+Warehouse~
+~
+0 -1 4506
+D2
+Warehouse~
+~
+0 -1 4501
+D3
+Warehouse~
+~
+0 -1 4504
+S
+#4506
+Warehouse~
+This is the huge warehouse were the elves store all the of the presents
+that they wrap through the year.~
+44 8 0
+D0
+Warehouse~
+~
+0 -1 4510
+D1
+Warehouse~
+~
+0 -1 4507
+D2
+Warehouse~
+~
+0 -1 4502
+D3
+Warehouse~
+~
+0 -1 4505
+S
+#4507
+Warehouse~
+This is the huge warehouse were the elves store all the of the presents
+that they wrap through the year.~
+44 8 0
+D3
+Warehouse~
+~
+0 -1 4506
+S
+#4508
+Warehouse~
+This is the huge warehouse were the elves store all the of the presents
+that they wrap through the year.~
+44 8 0
+D1
+Warehouse~
+~
+0 -1 4509
+D2
+Warehouse~
+~
+0 -1 4504
+S
+#4509
+Warehouse~
+This is the huge warehouse were the elves store all the of the presents
+that they wrap through the year.~
+44 8 0
+D0
+Warehouse~
+~
+0 -1 4511
+D1
+Warehouse~
+~
+0 -1 4510
+D2
+Warehouse~
+~
+0 -1 4505
+D3
+Warehouse~
+~
+0 -1 4508
+S
+#4510
+Warehouse~
+This is the huge warehouse were the elves store all the of the presents
+that they wrap through the year.~
+44 8 0
+D2
+Warehouse~
+~
+0 -1 4506
+D3
+Warehouse~
+~
+0 -1 4509
+S
+#4511
+Warehouse~
+This is the huge warehouse were the elves store all the of the presents
+that they wrap through the year.~
+44 8 0
+D2
+Warehouse~
+~
+0 -1 4509
+S
+#4512
+Warehouse~
+This is the huge warehouse were the elves store all the of the presents
+that they wrap through the year.~
+44 8 0
+D0
+Warehouse~
+~
+0 -1 4515
+D1
+Warehouse~
+~
+0 -1 4513
+S
+#4513
+Warehouse~
+This is the huge warehouse were the elves store all the of the presents
+that they wrap through the year.~
+44 8 0
+D0
+Warehouse~
+~
+0 -1 4516
+D1
+Warehouse~
+~
+0 -1 4514
+D3
+Warehouse~
+~
+0 -1 4512
+DDIR_DOWN
+Warehouse~
+~
+0 -1 4498
+S
+#4514
+Warehouse~
+This is the huge warehouse were the elves store all the of the presents
+that they wrap through the year.~
+44 8 0
+D0
+Warehouse~
+~
+0 -1 4517
+D3
+Warehouse~
+~
+0 -1 4513
+S
+#4515
+Warehouse~
+This is the huge warehouse were the elves store all the of the presents
+that they wrap through the year.~
+44 8 0
+D0
+Warehouse~
+~
+0 -1 4519
+D1
+Warehouse~
+~
+0 -1 4516
+D2
+Warehouse~
+~
+0 -1 4512
+S
+#4516
+Warehouse~
+This is the huge warehouse were the elves store all the of the presents
+that they wrap through the year.~
+44 8 0
+D0
+Warehouse~
+~
+0 -1 4520
+D1
+Warehouse~
+~
+0 -1 4517
+D2
+Warehouse~
+~
+0 -1 4513
+D3
+Warehouse~
+~
+0 -1 4515
+S
+#4517
+Warehouse~
+This is the huge warehouse were the elves store all the of the presents
+that they wrap through the year.~
+44 8 0
+D0
+Warehouse~
+~
+0 -1 4521
+D2
+Warehouse~
+~
+0 -1 4514
+D3
+Warehouse~
+~
+0 -1 4516
+S
+#4518
+Warehouse~
+This is the huge warehouse were the elves store all the of the presents
+that they wrap through the year.~
+44 8 0
+D1
+Warehouse~
+~
+0 -1 4519
+S
+#4519
+Warehouse~
+This is the huge warehouse were the elves store all the of the presents
+that they wrap through the year.~
+44 8 0
+D0
+Warehouse~
+~
+0 -1 4523
+D1
+Warehouse~
+~
+0 -1 4520
+D2
+Warehouse~
+~
+0 -1 4515
+D3
+Warehouse~
+~
+0 -1 4518
+S
+#4520
+Warehouse~
+This is the huge warehouse were the elves store all the of the presents
+that they wrap through the year.~
+44 8 0
+D0
+Warehouse~
+~
+0 -1 4524
+D1
+Warehouse~
+~
+0 -1 4521
+D2
+Warehouse~
+~
+0 -1 4516
+D3
+Warehouse~
+~
+0 -1 4519
+S
+#4521
+Warehouse~
+This is the huge warehouse were the elves store all the of the presents
+that they wrap through the year.~
+44 8 0
+D0
+Warehouse~
+~
+0 -1 4525
+D1
+Warehouse~
+~
+0 -1 4522
+D2
+Warehouse~
+~
+0 -1 4517
+D3
+Warehouse~
+~
+0 -1 4520
+S
+#4522
+Warehouse~
+This is the huge warehouse were the elves store all the of the presents
+that they wrap through the year.~
+44 8 0
+D3
+Warehouse~
+~
+0 -1 4521
+S
+#4523
+Warehouse~
+This is the huge warehouse were the elves store all the of the presents
+that they wrap through the year.~
+44 8 0
+D1
+Warehouse~
+~
+0 -1 4524
+D2
+Warehouse~
+~
+0 -1 4519
+S
+#4524
+Warehouse~
+This is the huge warehouse were the elves store all the of the presents
+that they wrap through the year.~
+44 8 0
+D1
+Warehouse~
+~
+0 -1 4525
+D2
+Warehouse~
+~
+0 -1 4520
+D3
+Warehouse~
+~
+0 -1 4523
+S
+#4525
+Warehouse~
+This is the huge warehouse were the elves store all the of the presents
+that they wrap through the year.~
+44 8 0
+D2
+Warehouse~
+~
+0 -1 4521
+D3
+Warehouse~
+~
+0 -1 4524
+S
+#4526
+Warehouse~
+This is the huge warehouse were the elves store all the of the presents
+that they wrap through the year.~
+44 8 0
+D2
+Warehouse~
+~
+0 -1 4524
+S
+#4527
+TaT's Home~
+This room has a cozy feel to it.  In the doorway you see a floormat that
+says, "Welcome, make yourself at home!".  You also notice that the room
+is surrounded by a huge fish tank ... how strange.  There is heater in
+the corner, keeping the room warm.  Next to the heater is a big, plush,
+leather couch with an inviting look.~
+44 8|4 0
+D3
+outside~
+~
+0 -1 4433
+S
+#4528
+THE ORACLE~
+welcome to Maiden Oracle's house. this house has many airy peaceful
+rooms---one of which should suit your mood. The furnishings are sparse
+but add to the element of serenity within the house. Maiden Oracle is
+especially fond of kitties and plants and so expect to see them
+everywhere.  She wishes you a pleasant stay in her home and offers you
+the happiness and peace which she loving placed into and finds in her
+house.~
+44 8|1024|8192|4 0
+D1
+outside~
+~
+0 -1 4433
+X ORACLE.JPG~
+S
+#4529
+Piercing Studio~
+As you enter the room you think to your self 'what a mess'.
+Old magazines and empty cans of soda fill the room. Small ashtrays
+overflowing with cigarette butts, and an old dirty rug are on the
+floor.
+~
+44 8|1024|4 0
+D3
+outside~
+~
+0 -1 4435
+S
+#4530
+A Cozy Home~
+This room appears quite warm and cozy. There are many large padded chairs
+scattered throughout the room, and there are some couches as well.  There
+is a stick and a hoop in the corner of the room, apparently part of some
+wierd game.  The lighting here is bright, but not too bright.  As you
+think about it, you notice that you can't see any source for the light.
+It seems to come from everywhere and no where at once.  There are tables
+scattered around the room that hold reading material as well as refreshing
+food and beverages.  You get the feeling that anyone is welcome to rest here.
+~
+44 8|1024|4 0
+D1
+outside~
+~
+0 -1 4435
+S
+#4531
+A big yard~
+You stand inside a huge yard with a SUPER-huge red and white striped mansion
+to the west.  No one seems to be around at this time.
+{120}The grass here is very green and gives off a nice fresh scent.
+{300}You instinctively pick some up and stuff it under your armpits.
+You can see some steps which lead to the SUPER-huge mansion, but a large
+oaken door blocks the way.
+     {120}There is a sign here, perhaps you should look at it?~
+44 4|1024|8 SECT_FOREST
+D3
+Oaken door~
+oaken~
+3 -1 4532
+D1
+West end of Past Blvd~
+~
+0 -1 4410
+E
+sign~                                   
+{300}
+                {171}+--------------------------------+{300}
+                {171}|        Need a 'JOB'?           |{300}
+                {171}|       Inquire within           |{300}
+                {171}+--------------------------------+{300}
+~
+S
+#4532
+The living room~
+{170}You are inside the living room of a very nice looking home.  Strangely,
+{110}everything is decorated in red and white colors, with a touch of green here
+{170}and there.  Various comfy looking sofas and cushions are nicely arranged within
+{110}this room.  Whoever lives here must celebrate Christmas 24 hours, 365 days a
+{170}year.  Exits go in all directions from this room.  
+~
+44 1024|4 0
+D0
+Trophy Room~
+~
+0 -1 4533
+D1
+A large door~
+large~
+3 -1 4531
+D2
+A patio~
+~
+0 -1 4534
+D3
+A dining room~
+~
+0 -1 4539
+D4
+A hallway leading up~
+~
+0 -1 4535
+D5
+Small door leading down~
+small door~
+3 -1 4544
+S
+#4533
+The Trophy Room~
+{110}This seems to be a trophy room of some sort.  The heads of many monstrous
+{170}beasts are stuffed and mounted onto the walls.  This "Dave" guy, whoever he is,
+{110}must be quite tough to have killed all these monsters you quietly think to
+{170}yourself.  You hope he doesn't mind you looking around his house.~
+44 1024 0
+D2
+A living room~
+~
+0 -1 4532
+E
+trophy heads~
+{110}The collection of trophy heads is too large to look through, but a few ugly
+{170}ones catch your attention.  You look at the plaques underneath each head, and
+{110}note names such as Bosher, Gozai, Gilikak, Foreman Floyd, Ma'ar, Rhialle,
+{170}Mictlan, Neptune, Belial, Slayer, Rose, Darkwalker, Behemoth, Imclota, Arcus,
+{110}Babbett, Cabal, King Menos and Vortex Guardian.  Suddenly, you cringe in terror
+{170}as you see the ugliest head out of them all.
+ {300}Upon closer inspection, the nametag simply reads 'Mirror'.~
+S
+#4534
+A Large Patio~
+{110}You stand within a large patio area.  Red and white chairs and tables are
+{170}neatly arranged for you to sit in.  Small icicles hang from the awning, but You
+{110}don't feel cold at all, but rather warm.  It must be the nice friendly home
+{170}which makes you feel so good.  Unfortunately, you can smell a funny odor coming
+{110}from the building to the south, and can see a lush green garden towards the
+{170}east.  You can barely hear some sounds coming from the barn as well.
+   {120}A few {110}red{120} and {170}white{120} chairs are here.~
+44 1024 0
+D0
+A living room~
+~
+0 -1 4532
+D1
+The Garden~
+~
+0 -1 4543
+D2
+The Barn~
+barn~
+3 -1 4542
+S
+#4535
+A hallway~
+{110}You stand within a clean hallway.  The carpeting is made of a red and white
+{170}checkerboard patern, and red and white striped curtains shade the sunlight.
+{110}A door to the north and one to the west lead to bedrooms you suppose, while
+{170}the stairway down leads back to the living room.~
+44 1024 0
+D0
+Master Bedroom~
+Door~
+3 -1 4537
+D1
+Bedroom~
+Door~
+3 -1 4538
+D5
+Stairs~
+~
+0 -1 4532
+S
+#4536
+Private bathroom~
+{000}This is a bathroom, but it's filled with steam from the shower.  Too bad you
+can't see a thing!~
+44 1024 0
+D1
+the bedroom~
+~
+3 -1 4537
+S
+#4537
+The Master Bedroom~
+{110}You stand within a rather large bedroom.  A large bed with red and white
+{170}blankets sits against the northern wall, and a desk with red and white papers
+{110}is to the east.  You can see clothes strewn about, and you can hear running
+{170}water coming from the room to the west.  Perhaps it's someone taking a shower.
+    {120}There is a bed here.
+    {120}A small desk sits in the corner.~ 
+44 1024 0
+D2
+A hallway~
+~
+0 -1 4535
+D3
+Bathroom Door~
+bathroom~
+3 -1 4536
+E
+bed~
+The bed is just {110}red{300} and {170}white.~
+E
+desk~
+The desk has some {110}red{300} and {170}white{300} papers on it.  But you
+aren't nosy, so you leave them alone.~
+S
+#4538
+A Guest Room~
+{110}This is a simple guest room with a bed and nightstand in it.  It's decorated
+{170}in red and white, just like the other rooms in this strange Christmassy house.
+    {120}A nice guest bed is here.~
+44 1024 0
+D3
+door leading out~
+door~
+3 -1 4535
+S
+#4539
+The Dining room~
+{110}A large crystal table surrounded with many chairs fills up the center of this
+{170}room.  Red and white plates, napkins, and silverware are neatly set upon the
+{110}table, and a few red and white striped candles provide the light in this room.
+{170}Double doors leading toward the kitchen to the west, a door to the north, and
+{110}the living room to the east are the only exits from here.
+    {120}A nice big feast has been prepared, just waiting for consumption.
+~
+44 1024 0
+D0
+A door~
+door~
+3 -1 4541
+D1
+A living room~
+~
+0 -1 4532
+D3
+Double doors~
+double~
+3 -1 4540
+E
+feast~
+The feast looks quite yummy!~
+S
+#4540
+The kitchen~
+{110}This is the kitchen.  Surprisingly, it's not messy at all.  Many red and white
+{170}pots are bubbling, and spewing out a delightful smelling aroma.  Don't you wish
+{110}you could get a taste of that delicious food?~
+44 1024 0
+D1
+A double door~
+double door~
+3 -1 4539
+S
+#4541
+A bathroom~
+{110}You are inside a bathroom, complete with the standard white toilet and a red
+{170}washbasin.  Being the vain person you are, you can't help but to stop and look
+{110}in the mirror and check your hair.  You take so long preening yourself that
+{300}You disappear into the void. *wink* *wink*
+~
+44 1024 0
+D2
+A door~
+door~
+3 -1 4539
+E
+toilet~
+You glance at the toliet and feel like going.~
+S
+#4542
+Inside the Barn~
+{170}You are inside of a smelly red and white barn.  Piles of red and white hay are
+{110}stacked neatly into a corner.  You wonder who would be so strange to dye the
+{170}hay red and white.  They are for feeding the barn residents you assume.
+{110}Surprisingly the barn is quite clean, though it does smell quite funky in here.
+{170}A strange red glow is the only source of light in this room.~
+44 1024 0
+D0
+The Barn door~
+barn door~
+3 -1 4534
+S
+#4543
+The Garden~
+{120}This is a lush green garden.  Many green plants with red fruits and veggies
+grow within the fertile soil of this garden.  Many little animals scurry about
+as well, but they don't seem to be trying to eat the veggies.  You wonder if
+it's because the veggies taste bad, or they that they know better than to eat
+the Dave's fruits and veggies.~
+44 1024 2
+D3
+A large patio~
+~
+0 -1 4534
+S
+#4544
+The Basement~
+{000}You are inside the basement.  It's really messy in here, with all the junk
+laying about.  You just hope you don't trip and fall over anything.  It's
+quite dark in here, and you have trouble seeing.~
+44 1|65536|8192|4 0
+D4
+Small door leading up~
+small door~
+3 -1 4532
+S
+#4545
+Entrance hallway~
+As you enter the hallway you can't help but notice the fine attention to
+detail.  The faint smell of wood polish is refreshing, as are the paintings
+and etchings that line the solid totara wall panels. The thick merino wool
+carpets have only recently been beaten, and the banisters leading upstairs
+shine with wear.  You feel your spirits raise for some reason, and you find
+yourself thinking of absent friends.~
+44 8|4 0
+D2
+back outside~
+~
+0 -1 4418
+D0
+The Study~
+~
+0 -1 4546
+E
+Painting Paintings~
+You see a very realistic picture of three young adventurers holding what
+looks like large pewter mugs and smiling out at you. Engraved neatly in
+a flowing script are the words: {130}Lagdestroyer, Brrr, Merry - Chakkor.~
+E
+Etching Etchings~
+There are so many to choose from. You notice one that looks like an old map
+with various locations clearly marked. Chakkor is in the middle, Ofcol to
+the north and Thalos to the southeast. The map must be very old because
+the Roads of the Realm are not there.~
+E
+Carpet Carpets Wool Merino~
+Hand shorn from Merino sheep, hand dyed and carefully handwoven over many
+years these carpets have such a long pile that they will easily withstand
+the footsteps of another 100 years.~
+S
+#4546
+The study~
+The walls are lined with bookshelves and bow under the weight of books,
+scrolls and memorabilia. A desk sits squarely in the centre of the room,
+with quills and inks all neatly arranged and fully stocked. A wall hanging
+looks as new as the day it was made despite it's prominent location above
+the fireplace. This looks like a fine place to sit down and reminisce about
+the days of old.
+A Lovely garden is to the north.~
+44 8 0
+D2
+Entrance~
+~
+0 -1 4545
+D1
+Banquet hall~
+~
+0 -1 4547
+D0
+The Garden~
+~
+0 -1 4550
+E
+Memorabilia~
+You see a collection of rings, stones and small necklaces amongst some
+larger items. Some of them look familiar, but many are foreign and look
+very old... if only they could talk. You see an old sandle here with a
+broken buckle, and a small jar of sand.~
+E
+Wall Hanging~
+The wall hanging is made from very expensive wool, and the colours are
+vibrant enough to make you wander if it might be magically enhanced in
+some way. The picture shows a unicorn in a green valley. It's a very old
+wall hanging, but the scene looks hauntingly familiar.~
+S
+#4547
+Banquet hall~
+You can almost picture the extravagant banquets and decadent evenings spent
+at the large rimu dining table sitting on a raised dias near the middle of
+the room. Around the room stand various suits of armour and on the wall hang
+shields and banners celebrating battles of old. Your stomach rumbles as you
+think about the last good meal you had.~
+44 8 0
+D3
+The Study~
+~
+0 -1 4546
+D2
+The Formal Room~
+~
+0 -1 4548
+E
+Rimu Table~
+When you look closely you notice some faint scratches and marks in the surface
+of the table. They have been carefully repaired, but once damaged you can
+never quite hide the different wood colour.~
+E
+Suit Suits Armour Shield Shields Banner Banners~
+You see familiar crests from the Mist City guard, Amber and Ofcol along with
+some rather mouldy looking banners. The shields have definately been used
+before, but are now firmly attached to the walls.~
+S
+#4548
+Formal room~
+At the far end of the room sits a fireplace, with three full sized portraits
+hung evenly above. Standing against the walls are several stone statues that
+look very human and add an aura of formality to this brightly lit room. The
+windows are clean and the bare kauri floorboards have been polished to
+perfection. A vase of pohutukawa flowers rests on a matai table close by.~
+44 8 0
+D0
+Banquet Hall~
+~
+0 -1 4547
+E
+Portrait Portraits~
+These portraits must have taken a long time to finish. There are no names
+attached to them, but they hardly need them. You recognise Lagdestroyer,
+Brrr and Merry looking down at you. These paintings have obviuously been
+done after they had travelled the Realm together. They look very wise and
+benevolent, if not a little mischievous.~
+E
+Pohutukawa Flower Flowers Vase~
+The pohutukawa flowers are bright red and have a collection of spiny tufts
+that go in all directions from the stems. A very special flower that blooms
+during christmas time and promises hope and happiness for the years ahead.
+It's presence here must mean something.~
+S
+#4549
+Brrr's bedchamber~
+A glorious four-poster bed of hand carved kowhai radiates it's golden glow
+on the walls. A full length mirror leans against the wall to the north and
+you notice some spare blankets and furs in a large chest. You feel the years
+creeping up on you as you take another look at the comfortable bed.~
+44 8|1024 12
+D5
+The Entrance~
+~
+0 -1 4545
+E
+Glorious Four Bed~
+The bed is fully made up, has four massive pillows and a goose down duvet
+that feels warm to the touch. This is definately the most comfortable bed
+you've seen since you left home. It's very solid and must have taken many
+years to create~
+E
+Mirror~
+There is someone watching you... oh... that's your reflection.~
+S
+#4550
+The Garden~
+{120}This is a nice well kept garden.  Many strange plants from all over the
+realms grow here as well.  The owner of this home must be one heck of a 
+gardener.~
+44 0 3
+D2
+The Study~
+~
+0 -1 4546
+S
+#4551
+Backroom~
+It's too dark to see anything in here!
+~
+44 1|512|8192|8|1024 0
+D1
+The Oracle~
+~
+0 -1 4528
+S
+#4552
+hidden room~
+It's too dark to see anything in here!
+~
+44 1|8192|8|1024 0
+S
+#4557
+Northern ocean~
+{140}You sail upon the Northern Ocean.  Who knows where this will lead.  Thankfully
+the waves are not too strong.  The water does feel a bit chilly this far north
+in the world however.~
+44 0 8
+D0
+Northern ocean~
+~
+0 -1 4558
+D1
+Northern ocean~
+~
+0 -1 4557
+D2
+Barren trail~
+~
+0 -1 4556
+D3
+Northern ocean~
+~
+0 -1 4557
+S
+#4558
+Northern ocean~
+{140}You sail upon the Northern Ocean.  Who knows where this will lead. Thankfully
+the waves are not too strong.  The water does feel a bit chilly this far north
+in the world however.  You spot an icy land formation north of here.~
+44 0 8
+D0
+Icy landing~
+~
+0 -1 4559
+D1
+Northern ocean~
+~
+0 -1 4558
+D2
+Northern ocean~
+~
+0 -1 4557
+D3
+Northern ocean~
+~
+0 -1 4558
+S
+#4559
+Icy landing~
+{170}You stand upon what seems to be a giant island seemingly made of ice.  Snow is
+all around, but strangely you do not feel cold.  To the south you can see the
+Northern Ocean.  A trail leads up into the mountain from this point.
+     {170}A{110} H{170}u{110}g{170}e{110} r{170}e{110}d{170} a{110}n{170}d{110} w{170}h{110}i{170}t{110}e{170} p{110}o{170}l{110}e{170} i{110}s{170} e{110}m{170}b{110}e{170}d{110}d{170}e{110}d{170} i{110}n{170}t{110}o{170} t{110}h{170}e{110} s{170}n{110}o
+{170}w{110}.~
+44 4 5
+DDIR_UP
+Mountain trail~
+~
+0 -1 4401
+D2
+Northern Ocean~
+~
+0 -1 4558
+S 
+
+#4560
+A small porch~
+As you step on to this rustic porch, where the sun beats down on weathered
+wood, you feel a yearning desire to toss of your shoes and throw down
+your weapon.  The sunlight sparkling off of the distant snowcovered mountains
+sends little prisms of sunlight flashing off your face.  Sparkles of warm
+sunlight cause you to sleep.
+   {120}You see two worn chairs made of shaved wood, beckoning you to rest.~
+44 4 1
+
+D1
+Zoren's hideaway~
+~
+0 -1 4454
+E
+chairs~
+A pair of simple rustic cabin chairs.~
+E
+porch~
+This romantic garden-side porch is where the great lovers Zoren and Shiden
+have spent countless hours making love under the stars.~
+E
+panties~
+{130}Ooops! Did I leave those there?~
+S
+
+
+#4566
+The House of Pythos~
+On the north wall are portraits of all the members of the House of Pythos,
+with a small section for honorary members.  On the east wall is a huge cage
+with a fifty foot long anaconda and a sign that reads:
+{110}     * DO NOT MESS WITH THE HOUSE PET *{300}
+The south wall is bare except for a large peg rack with unknown uses.~
+44 0 0
+D2
+Present Blvd~
+~
+0 -1 4426
+S
+#4567
+Eurydice and Angelique's Home~
+A room of warmth and comfort greets you.  There is a bright fire blazing in
+the fireplace and the mantle is draped with pine and silver ferns.  Two
+rocking chairs sit in front of the fire, and a small cat is curled up on
+the hearth rug.  You could swear you hear the baa-baa of sheep somewhere
+nearby, but you can't be sure.~
+44 0 0
+D2
+Present Blvd~
+~
+0 -1 4428
+S
+#0
+
+
+#RESETS
+
+M 0  4438   1  4532 ;    Mr. Cooper the Butler in The living room          
+M 0  4445   1  4532 ;    pit mob in living room
+M 0  4439   1  4539 ;          Kathee the Cook in The Dining room          
+M 0  4440   1  4537 ;                     Dave in The Master Bedroom       
+M 0  4441   1  4542 ;       Ruddy the Reindeer in Inside the Barn          
+M 0  4442   1  4536 ;           A female voice in Private bathroom         
+O 0  4421   1  4532 ;         a Christmas tree in The living room          
+P 1  4431  10  4421 ; a nicely wrapped present
+O 0  4421   1  4545 ; tree in brrr
+M 0  4445   1  4545 ; pitmob in brrr
+M 0 4446 1 4528   ;                    oracle
+E 1 4445 1 12 ;                        robe on body
+M 0  4424   1  4458 ;                   Bianca in Pets 'R Us               
+M 0  4401   1  4407 ;                 Clarence in Spells 'R Us             
+G 1  4404 1000       ;           a clear potion
+G 1  4405 1000       ;     a transparent scroll
+G 1  4406 1000       ;            a Fire scroll
+G 1  4407 1000       ;          a recall scroll
+G 1  4441 1000       ;          spell box
+G 1  4442 1000       ;          see box
+M 0  4402   1  4409 ;                    Billy in Weapons 'R Us            
+G 1  4448 1000 ;                          knife in shop
+M 0  4403   1  4419 ;                    Ralph in Armors 'R Us             
+G 1  4439   1000 ;                       save box
+G 1  4439   1000 ;                       level box
+M 0  4404   1  4421 ;              Mrs. Fields in Bakers 'R Us             
+G 1  4401 1000       ;                 a cookie
+G 1  4402 1000       ;   a cup of spiced eggnog
+G 1  4403 1000       ;         a sample platter
+G 1  4466 1000       ;         ornament box
+G 1  4444 1000       ;         lowbie box
+G 1  4443 1000       ;         junk box
+G 1  4437 1000       ;         flowers
+G 1  4468 1000       ;         squid
+O 0  4400   1  4414 ;          a swan fountain in Swan Fountain            
+M 0  4447   1  4551 ;                  ghost mobroom
+M 0  4449   1  4544 ;                  ghost basement
+M 0  4405   1  4437 ;                  Bernard in Bernard's Office         
+M 0  4406   1  4441 ;                  Quinton in Research and Development 
+M 0  4407   1  4417 ;                   Janice in Corner of Past and Rudolp
+M 0  4437   1  4424 ;                    Randy in Corner of 34th Street and
+M 0  4436   1  4411 ;                 Meredith in Corner of 34th Street and
+M 0  4408   1  4430 ;                  Michael in Corner of Present and Rud
+M 0  4410   2  4428 ;                A Snowman in Present Blvd             
+M 0  4410   2  4426 ;                A Snowman in Present Blvd             
+M 0  4410   2  4415 ;                A Snowman in Circle Plaza             
+M 0  4410   2  4413 ;                A Snowman in Circle Plaza             
+M 0  4410   2  4434 ;                A Snowman in Rudolph Lane             
+M 0  4410   2  4432 ;                A Snowman in 34th Street              
+M 0  4411   2  4425 ;              A Snowwoman in Present Blvd             
+M 0  4411   2  4429 ;              A Snowwoman in Present Blvd                     bow
+M 0  4411   2  4412 ;              A Snowwoman in Past Blvd                
+M 0  4411   2  4416 ;              A Snowwoman in Past blvd                
+M 0  4411   2  4433 ;              A Snowwoman in 34th Street              
+M 0  4411   2  4435 ;              A Snowwoman in Rudolph Lane             
+M 0  4412   1  4408 ;             A candy cane in Circle Plaza             
+M 0  4412   1  4420 ;             A candy cane in Circle Plaza             
+M 0  4412   1  4413 ;             A candy cane in Circle Plaza             
+M 0  4412   1  4415 ;             A candy cane in Circle Plaza             
+M 0  4412   2  4410 ;             A candy cane in West end of Past Blvd    
+M 0  4412   2  4418 ;             A candy cane in East end of Past Blvd    
+M 0  4412   2  4423 ;             A candy cane in West end of Present Blvd 
+M 0  4412   2  4431 ;             A candy cane in East end of Present Blvd 
+M 0  4412   2  4438 ;             A candy cane in Future Blvd              
+M 0  4412   2  4440 ;             A candy cane in Future Blvd              
+M 0  4413   2  4432 ;               A reindeer in 34th Street              
+G 1  4416  10 ;                     horn
+M 0  4413   2  4434 ;               A reindeer in Rudolph Lane             
+G 1 4416 10 ;
+M 0  4413   2  4422 ;               A reindeer in Scrooge Street           
+G 1 4416 10 ;
+M 0  4413   2  4436 ;               A reindeer in Scrooge Street           
+G 1 4416 10 ;
+M 0  4413   2  4443 ;               A reindeer in Main Office of Santa's Wo
+G 1 4416 10 ;
+M 0  4414   1  4405 ;            A toy soldier in Entrance to the Village  
+M 0  4414   1  4405 ;            A toy soldier in Entrance to the Village  
+M 0  4414   1  4405 ;            A toy soldier in Entrance to the Village  
+M 0  4414   1  4405 ;            A toy soldier in Entrance to the Village  
+M 0  4415   2  4433 ;                   An Elf in 34th Street
+E 1  4410 999 ITEM_WEAR_FEET ;equip a pair of Pointy elf Shoe
+M 0  4415   2  4435 ;                   An Elf in Rudolph Lane             
+E 1  4410 999 ITEM_WEAR_FEET ;equip a pair of Pointy elf Shoe
+M 0  4415   1  4443 ;                   An Elf in Main Office of Santa's Wo
+E 1  4410 999 ITEM_WEAR_FEET ;equip a pair of Pointy elf Shoe
+M 0  4415   1  4422 ;                   An Elf in Scrooge Street           
+E 1  4410 999 ITEM_WEAR_FEET ;equip a pair of Pointy elf Shoe
+M 0  4416   1  4454 ;                A Penguin in Zoren's getaway          
+G 1  4408  20 ;                         beak
+M 0  4409   1  4439 ;                   Frosty in Scrooge street            
+M 0  4419   1  4459 ;              A greyhound in pet shop inventory       
+M 0  4420   1  4459 ;            A pet penquin in pet shop inventory       
+M 0  4421   1  4459 ;               A pet seal in pet shop inventory       
+M 0  4422   1  4459 ;             A pet Walrus in pet shop inventory       
+M 0  4423   1  4459 ;           A pet reindeer in pet shop inventory
+M 0  4455   1  4459 ;           ghost       
+M 0  4425   1  4515 ;                A present in Warehouse                
+M 0  4425   1  4516 ;                A present in Warehouse                
+M 0  4426   1  4517 ;             trainee deer                  
+M 0  4426   1  4518 ;             trainee deer 
+M 0  4426   1  4519 ;             trainee deer 
+M 0  4427   1  4520 ;              trainee elf                  
+M 0  4427   1  4521 ;              trainee elf 
+M 0  4427   1  4522 ;              trainee elf   
+M 0  4428   2  4482 ;                   A bear in Side room                
+M 0  4428   2  4483 ;                   A bear in Side room   
+G 1  4415 25;                          claw to bear
+M 0  4428   2  4484 ;                   A bear in Side room
+M 0  4428   2  4484 ;                   A bear in Side room
+M 0  4428   2  4486 ;                   A bear in Side room   
+M 0  4428   2  4487 ;                   A bear in Side room   
+G 1  4415 25;                          claw to bear
+M 0  4428   1  4488 ;                   A bear in Side room                
+M 0  4429   2  4489 ;                    A top in Side room                
+M 0  4429   2  4494 ;                    A top in Side room
+G 1  4411  99 ;                        light bulb
+M 0  4429   2  4496 ;                    A top in Side room
+M 0  4429   2  4496 ;                    A top in Side room
+G 1  4414  99 ;                        name tag
+M 0  4429   2  4496 ;                    A top in Side room
+M 0  4429   1  4481 ;                    A top in Side room
+M 0  4429   2  4482 ;                    A top in Side room
+G 1  4411  99 ;                        light bulb
+M 0  4429   1  4490 ;                    A top in Side room
+M 0  4429   1  4490 ;                    A top in Side room
+M 0  4429   1  4490 ;                    A top in Side room
+G 1  4414  99 ;                        name tag
+M 0  4429   1  4490 ;                    A top in Side room
+M 0  4430   2  4481 ;                   Blocks in Side room
+M 0  4430   1  4482 ;                   Blocks in Side room
+M 0  4430   2  4486 ;                   Blocks in Side room
+M 0  4430   1  4492 ;                   Blocks in Side room
+M 0  4430   2  4493 ;                   Blocks in Side room
+M 0  4430   1  4494 ;                   Blocks in Side room                                                
+M 0  4431   1  4489 ;                 A ribbon in Storage Room             
+M 0  4432   1  4500 ;            A wrapped box in Storage Room             
+M 0  4434   1  4522 ;                  A train in Warehouse                
+M 0  4434   1  4523 ;                  A train in Warehouse                
+M 0  4434   1  4524 ;                  A train in Warehouse                
+M 0  4434   1  4525 ;                  A train in Warehouse
+M 0  4434   1  4526 ;                  A train in Warehouse                
+M 0  4434   1  4521 ;                  A train in Warehouse                                
+M 0  4435   1  4497 ;           Wrapping Paper in Storage Room             
+M 0  4435   1  4505 ;           Wrapping Paper in Storage Room             
+G 1  4417  99 ;                 tape to paper
+M 0  4435   1  4501 ;           Wrapping Paper in Storage Room             
+M 0  4435   1  4502 ;           Wrapping Paper in Storage Room             
+G 1  4417  99 ;                 tape to paper
+M 0  4435   1  4503 ;           Wrapping Paper in Storage Room             
+M 0  4435   1  4504 ;           Wrapping Paper in Storage Room             
+G 1  4417  99 ;                 tape to paper
+M 0  4426   3  4479 ;             trainee deer in mob chute 1              
+M 0  4426   3  4479 ;             trainee deer in mob chute 1              
+M 0  4426   3  4479 ;             trainee deer in mob chute 1              
+M 0  4426   3  4479 ;             trainee deer in mob chute 1
+M 0  4426   3  4479 ;             trainee deer in mob chute 1              
+M 0  4426   3  4479 ;             trainee deer in mob chute 1              
+M 0  4426   3  4479 ;             trainee deer in mob chute 1              
+M 0  4426   3  4479 ;             trainee deer in mob chute 1                            
+M 0  4427   3  4478 ;              trainee elf in mob chute 2              
+M 0  4427   3  4478 ;              trainee elf in mob chute 2              
+M 0  4427   3  4478 ;              trainee elf in mob chute 2              
+M 0  4427   3  4478 ;              trainee elf in mob chute 2
+M 0  4427   3  4478 ;              trainee elf in mob chute 2              
+M 0  4427   3  4478 ;              trainee elf in mob chute 2              
+M 0  4427   3  4478 ;              trainee elf in mob chute 2              
+M 0  4427   3  4478 ;              trainee elf in mob chute 2                            
+M 0  4433   3  4477 ;                   A doll in mob chute 3              
+M 0  4433   3  4477 ;                   A doll in mob chute 3              
+M 0  4433   3  4477 ;                   A doll in mob chute 3              
+M 0  4433   3  4477 ;                   A doll in mob chute 3              
+M 0  4433   3  4477 ;                   A doll in mob chute 3              
+M 0  4433   3  4478 ;                   A doll in mob chute 3              
+M 0  4433   3  4477 ;                   A doll in mob chute 3              
+M 0  4433   3  4477 ;                   A doll in mob chute 3              
+M 0  4432   3  4476 ;            A wrapped box in mob chute 4
+G 1  4417  999      ;            nametag to box
+M 0  4432   3  4476 ;            A wrapped box in mob chute 4              
+M 0  4432   3  4476 ;            A wrapped box in mob chute 4              
+M 0  4432   3  4476 ;            A wrapped box in mob chute 4        
+M 0  4432   3  4476 ;            A wrapped box in mob chute 4              
+M 0  4432   3  4476 ;            A wrapped box in mob chute 4              
+M 0  4432   3  4476 ;            A wrapped box in mob chute 4        
+G 1  4417  999      ;            nametag to box
+
+M 0  4418   1  4414 ;     santa at fountain
+O 0  4421   1  4414 ;     tree at fountain      
+M 0  4417   1  4454 ;     zoren slave
+O 0  4450   99  4402 ;     tree in mountain
+O 0  4450   99  4403 ;     tree
+O 0  4450   99  4404 ;     tree
+O 0  4450   99  4402 ;     tree in mountain
+O 0  4450   99  4404 ;     tree
+O 0  4450   99  4402 ;     tree in mountain
+O 0  4450   99  4403 ;     tree
+M 0  4448   1   4529 ;    shan
+M 0  4450   1   4544 ;    skellington
+D 0 4405 0 1 ;            gate in entrance
+D 0 4442 0 1 ;            door to factory
+D 0 4443 3 1 ;            door to factory entrance
+D 0 4480 0 1 ;            heavy north close
+D 0 4483 2 1 ;            heavy south close
+D 0 4410 3 1 ;            supergate
+O 0 4438 99 4404 ;         holly
+O 0 4467 1 4559 ;          north pole
+M 0 4451 1 4453 ;          open sesame
+O 0 4469 999 4453 ;        sock on floor of zoren
+M 0 4452 1 4566   ;        pythos anaconda
+M 0 4454 1 4567   ;        sheep, cat
+S
+
+
+
+
+#SHOPS
+4401 ITEM_TYPE_POTION ITEM_TYPE_SCROLL ITEM_TYPE_DRINK_CON ITEM_TYPE_NOTHING
+     ITEM_TYPE_NOTHING 100  75 6  20 ;Clarence
+4402 ITEM_TYPE_WEAPON ITEM_TYPE_TREASURE ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING
+     ITEM_TYPE_NOTHING 100  75 6  20 ;Billy
+4403 ITEM_TYPE_ARMOR ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING
+     ITEM_TYPE_NOTHING 100  75 6  20 ;Ralph
+4404 ITEM_TYPE_FOOD ITEM_TYPE_SCROLL ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING
+     ITEM_TYPE_NOTHING 100  75 6  20 ;Mrs. Fields
+4424 ITEM_TYPE_NOTHING ITEM_TYPE_BOAT ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING
+     ITEM_TYPE_NOTHING 100  75 6  20 ;Bianca
+0
+
+
+
+
+#SPECIALS
+M 4414 spec_guard
+S
+
+
+
+
+#$

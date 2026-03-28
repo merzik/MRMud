@@ -1,0 +1,1626 @@
+#AREA Tsarian Rock~
+#AUTHORS Blythe~
+#RANGES 5 25 1 99
+#RESETMSG Cheap! Cheep! MEEEEEOOOOOOWWW! SQUAWK!!! MMmmmmmmmmmmmmmmmmmm!~
+#FLAGS AFLAG_NODEBUG|AFLAG_NOCASTLE|AFLAG_NOTELEPORT
+
+#HELPS
+-1 TSARIANHQ~
+
+Tsarian Rock
+
+Tsarian Rock is the home of the Tsarian Army Head Quarters.
+It is located south of Chakkor off the roads of the realm.
+
+To join the army and achieve some status in the Tsarian Army, it
+is recommended that one does the quest that the Tsarian General
+gives.
+
+This area was created by Blythe and was last updated 25th April 1999.
+
+(a) Blythe
+
+{a}BLYTHE
+~
+0$~
+
+
+#MOBILES
+#14300
+ethereal guard ~
+ethereal guard~
+ethereal guard for rooms 11 12 14 and 15.~
+ethereal guard~
+ACT_SMART|ACT_BODY|ACT_RACE|ACT_SENTINEL AFF_TONGUES|AFF_UNDERSTAND|AFF_ETHEREAL 0 S
+1 0 0 10d10+10000 10d10+100
+10000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_FEMALE
+>all_greet_prog 50~
+if race($n) != 11
+  mpechoat $n {140}You are not welcome at Tsarian Rock.{300}
+  mpechoaround $n $n is not welcome at Tsarian Rock!
+  mpechoaround $n screams with pain as they are slapped out of the rock
+  mpechoaround $n by a giant cat paw.
+  mptransfer $n 9755
+  mpat 9755 mpecho $n narrowly escaped being the cats dinner!
+endif
+~
+|
+#14301
+ethereal entrance guard ~
+ethereal entrance guard~
+ethereal guard for room 00~
+ethereal entrance guard~
+ACT_SMART|ACT_BODY|ACT_RACE|ACT_SENTINEL AFF_TONGUES|AFF_UNDERSTAND|AFF_ETHEREAL 0 S
+1 0 0 10d10+10000 10d10+100
+10000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_FEMALE
+>all_greet_prog 100~
+if race($n) != 11
+  mpechoat $n {110}Warning!  You have entered Tsarian Rock.{300}
+  mpechoat $n {110}Enter at your own risk.{300}
+  mpechoat $n {110}Aviaran are welcome for lunch!{300}
+endif
+~
+|
+#14302
+tsarian guard ~
+a Tsarian guard~
+A Tsarian Guard stands at attention here.~
+The guard has light yellow spotted fur coat.  He is a tall graceful
+and slender humanoid feline.  She has a long tail, paws with long
+claws and a cat like face.~
+ACT_SMART|ACT_BODY|ACT_RACE|ACT_SENTINEL AFF_TONGUES|AFF_UNDERSTAND 0 S
+20 0 0 1d1+300 1d1+20
+10000 RACE_TSARIAN
+POS_STANDING POS_STANDING SEX_FEMALE
+>all_greet_prog 50~
+if race($n) == 8
+  shout MMMMmmmmmmmm LUNCH!!!
+  mpkill $n
+  mpmset $n long (Cat's Lunch) $n is here.
+endif
+~
+>death_prog 20~
+mpoload 14301
+mpecho The Guard coughs up a furball as he dies.
+~
+|
+#14303
+tsarian armourer~
+The Tsarian Armourer~
+The Tsarian Armourer repairs some leather armour here.~
+He has a dark orange spotted fur coat.  His head is that of a cat
+and his body is that of a fur covered humanoid.  He is dressed
+in light weight armour. ~
+ACT_SMART|ACT_BODY|ACT_RACE|ACT_SENTINEL AFF_TONGUES|AFF_UNDERSTAND 0 S
+1 0 0 10d10+10000 10d10+100
+10000 RACE_TSARIAN
+POS_STANDING POS_STANDING SEX_MALE
+#14304
+tsarian witch~
+The Tsarian Witch~
+The Tsarian Witch mixes a potion here.~
+She has the palest golden fur with light grey spots.  She is wearing
+long golden robes that shimmer and show her lithe humanoid body
+to advantage.~
+ACT_SMART|ACT_BODY|ACT_RACE|ACT_SENTINEL AFF_TONGUES|AFF_UNDERSTAND 0 S
+1 0 0 10d10+10000 10d10+100
+10000 RACE_TSARIAN
+POS_STANDING POS_STANDING SEX_FEMALE
+#14305
+tsarian barman~
+The Tsarian Barman~
+The Tsarian Barman pours you a drink.~
+Sporting fur of a dark red brown with large black spots he is the biggest
+Tsarian you have ever seen.  He wears a light weight armour with a name
+plate attatched to it.  Looking closer at the name plate you read the
+word "Tiny".  It seems someone has a sense of humour.~
+ACT_SMART|ACT_BODY|ACT_RACE|ACT_SENTINEL AFF_TONGUES|AFF_UNDERSTAND 0 S
+1 0 0 10d10+10000 10d10+100
+10000 RACE_TSARIAN
+POS_STANDING POS_STANDING SEX_MALE
+#14306
+tsarian general~
+The Tsarian General~
+The Tsarian General studies maps here.~
+He stands tall and lithe wearing full leather armour.  His fur is a 
+burnt orange with darker orange spots.  He has piercing green cat eyes.
+If you are in the Tsarian Army perhaps you could ask him about any
+PROMOTIONs that you may deserve.~
+ACT_SMART|ACT_BODY|ACT_RACE|ACT_SENTINEL AFF_TONGUES|AFF_UNDERSTAND 0 S
+95 0 0 10d10+10000 10d10+100
+10000 RACE_TSARIAN
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if race($n) == 11
+  if quest(0, 5, $n) == 0
+    say Greetings $n.  Could I interest you in joining
+    say the Tsarian Army?
+  else
+    if quest(0, 5, $n) == 6
+      say Ahhh good you have cleared out those terrible birds.
+      say You are more than welcome to join our ranks.
+      mpechoat $n To join type the following:
+      mpechoat $n army join <password>
+      mpmset $n quest 0 5 7
+      say At any time you make come back to
+      say if you have achieved PROMOTION in our ranks.
+      mpmset $n long (Private) $n of the Tsarian Army is here.
+      mpquiet on
+      mpforce $n drop i14300
+      sac i14300
+      mpquiet off
+    else
+      if quest(0, 5, $n) < 6
+        if quest(0, 5, $n) > 1
+          say Go Back!  I can still hear the dreadful
+          say sqwarking of all those birds above the rock!
+        endif
+      endif
+    endif
+  endif
+endif
+~
+>speech_prog yes~
+if quest(0, 5, $n) == 0
+  if race($n) == 11
+    say First $n you have to proove you are worthy of us.
+    say We have an infestation of birds in the forest
+    say above our rock.  Clean them out.
+    mpoload 14300
+    give papers $n
+    say Keep these papers with you at ALL times.
+    say It will show my men that you are a
+    say a possibility for our army and not kick
+    say out of the rock.
+    say Keep them in plain view all the time.
+    mpmset $n quest 0 5 1
+    mpmset $n long (Tsarian Army Trainee) $n is here.
+  endif
+endif
+~
+>speech_prog promotion promotions~
+if quest(0, 5, $n) == 7
+  if level($n) > 89
+    say You have achieved the rank of General in our army.
+    mpechoat $n The general gives you nod of respect.
+    mpmset $n long (General) $n of the Tsarian Army is here.
+  else
+    if level($n) > 70
+      say You have achieved the rank of Captain in our army.
+      mpmset $n long (Captain) $n of the Tsarian Army is here.
+    else
+      if level($n) > 45
+        say You have achieved the rank of Leutenient in our army.
+        mpmset $n long (Leutenient) $n of the Tsarian Army is here.
+      else
+        say You are still a Private $n.
+        say Keep fighting the battle.
+      endif
+    endif
+  endif
+endif
+~ 
+>speech_prog retire resign~
+say I am saddened that you feel the need to leave our ranks.
+say But you have served us well $n.
+mpmset $n long (Retired) $n of the Mighty Tsarian Army is here.
+mpmset $n quest 0 5 8
+mpechoat $n To resign from the army type the following:
+mpechoat $n army retire <password>
+~
+>death_prog 1~
+mpoload 14313
+~
+|
+#14307
+tsarian fighter~
+a Tsarian fighter~
+A Tsarian fighter looks at you sleepily.~
+He looks like you have disturbed him while he slept.~
+ACT_SMART|ACT_BODY|ACT_RACE|ACT_SENTINEL AFF_TONGUES|AFF_UNDERSTAND 0 S
+20 0 0 1d1+279 1d1+17
+10000 RACE_TSARIAN
+POS_SLEEPING POS_STANDING SEX_MALE
+>death_prog 20~
+mpoload 14301
+mpecho The fighter coughs up a furball as he dies.
+~
+|
+#14308
+tsarian kitten~
+a Tsarian kitten.~
+A Tsarian kitten spits at you.~
+Covered in the softest of golden fur, her spots are barely visable.
+It seems that Tsarian spots emerge as a kitten grows older.~
+ACT_SMART|ACT_BODY|ACT_RACE|ACT_SENTINEL AFF_TONGUES|AFF_UNDERSTAND 0 S
+15 0 0 1d1+199 1d1+15
+10000 RACE_TSARIAN
+POS_SLEEPING POS_STANDING SEX_FEMALE
+>death_prog 20~
+mpoload 14301
+mpecho The kitten coughs up a furball as she dies.
+~
+|
+#14309
+tsarian mistress~
+a Tsarian mistress~
+A Tsarian mistress looks angry at being disturbed.~
+She is ready to fight to protect her young.  Her coat is a dark
+orange and her spots a deep black.  Though she is dressed in
+a light gown she acts as though she is fully armoured and
+ready to fight.~
+ACT_SMART|ACT_BODY|ACT_RACE|ACT_SENTINEL AFF_TONGUES|AFF_UNDERSTAND 0 S
+25 0 0 1d1+379 1d1+19
+10000 RACE_TSARIAN
+POS_STANDING POS_STANDING SEX_FEMALE
+>death_prog 20~
+mpoload 14301
+mpecho The Tsarian Mistress coughs up a furball as she dies.
+~
+|
+#14310
+big bird~
+a big bird~
+A big bird guards its nest here.~
+It is an incredibly big yellow bird with long yellow feathers.
+It has a large yellow beak and has a suprisingly friendly
+and intelligent look.  It looks like it is ready to recite
+the alphabet to you.~
+ACT_SMART|ACT_BODY|ACT_RACE|ACT_SENTINEL AFF_TONGUES|AFF_UNDERSTAND 0 S
+95 0 0 1d1+8000 1d1+75
+10000 RACE_AVIARAN
+POS_STANDING POS_STANDING SEX_MALE
+>death_prog 100~
+if quest(0, 5, $n) < 6
+  mpmadd $n quest 0 5 1
+  shout Sssqqquuuaaaaarrrrkkkkkkk!!!!!!
+endif
+~
+|
+#14311
+big bird~
+a big bird~
+A big bird guards its nest here.~
+It is an incredibly big yellow bird with long yellow feathers.
+It has a large yellow beak and has a suprisingly friendly
+and intelligent look.  It looks like it is ready to recite
+the alphabet to you.~
+ACT_SMART|ACT_BODY|ACT_RACE|ACT_SENTINEL AFF_TONGUES|AFF_UNDERSTAND 0 S
+95 0 0 1d1+8000 1d1+75
+10000 RACE_AVIARAN
+POS_STANDING POS_STANDING SEX_MALE
+>death_prog 100~
+if quest(0, 5, $n) < 6
+  mpmadd $n quest 0 5 1
+  shout Sssqqquuuaaaaarrrrkkkkkkk!!!!!!
+endif
+~
+|
+#14312
+big bird~
+a big bird~
+A big bird guards its nest here.~
+It is an incredibly big yellow bird with long yellow feathers.
+It has a large yellow beak and has a suprisingly friendly
+and intelligent look.  It looks like it is ready to recite
+the alphabet to you.~
+ACT_SMART|ACT_BODY|ACT_RACE|ACT_SENTINEL AFF_TONGUES|AFF_UNDERSTAND 0 S
+95 0 0 1d1+8000 1d1+75
+10000 RACE_AVIARAN
+POS_STANDING POS_STANDING SEX_MALE
+>death_prog 100~
+if quest(0, 5, $n) < 6
+  mpmadd $n quest 0 5 1
+  shout Sssqqquuuaaaaarrrrkkkkkkk!!!!!!
+endif
+~
+|
+#14313
+big bird~
+a big bird~
+A big bird guards its nest here.~
+It is an incredibly big yellow bird with long yellow feathers.
+It has a large yellow beak and has a suprisingly friendly
+and intelligent look.  It looks like it is ready to recite
+the alphabet to you.~
+ACT_SMART|ACT_BODY|ACT_RACE|ACT_SENTINEL AFF_TONGUES|AFF_UNDERSTAND 0 S
+95 0 0 1d1+8000 1d1+76
+10000 RACE_AVIARAN
+POS_STANDING POS_STANDING SEX_MALE
+>death_prog 100~
+if quest(0, 5, $n) < 6
+  mpmadd $n quest 0 5 1
+  shout Sssqqquuuaaaaarrrrkkkkkkk!!!!!!
+endif
+~
+|
+#14314
+big bird~
+a big bird~
+A big bird guards its nest here.~
+It is an incredibly big yellow bird with long yellow feathers.
+It has a large yellow beak and has a suprisingly friendly
+and intelligent look.  It looks like it is ready to recite
+the alphabet to you.~
+ACT_SMART|ACT_BODY|ACT_RACE|ACT_SENTINEL AFF_TONGUES|AFF_UNDERSTAND 0 S
+95 0 0 1d1+8000 1d1+75
+10000 RACE_AVIARAN
+POS_STANDING POS_STANDING SEX_MALE
+>death_prog 100~
+if quest(0, 5, $n) < 6
+  mpmadd $n quest 0 5 1
+  shout Sssqqquuuaaaaarrrrkkkkkkk!!!!!!
+endif
+~
+|
+
+#0
+
+#OBJECTS
+#14300
+army identification papers~
+army identification papers~
+Amry Identification Papers lie here.~
+The papers state that the Tsarian that holds them may travel anywhere
+within Tsarian rock with impunity.~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 0 0
+10 10 1
+P 1
+TRIG_UNKNOWN 100 climb
+OPROG_IF OIF_USER_ROOM_NUM = 14306 2 3
+P 2
+TRIG_VOID
+OPROG_GOD_COMMAND
+mpechoat $ You climb the tree into the branches above.
+& mpgoto 14301
+& rescale 14310 $ 90~
+P 3
+TRIG_VOID
+OPROG_IF OIF_USER_ROOM_NUM = 14307 4 5
+P 4
+TRIG_VOID
+OPROG_GOD_COMMAND
+mpechoat $ You climb the tree into the branches above.
+& mpgoto 14302
+& rescale 14311 $ 90~
+P 5
+TRIG_VOID
+OPROG_IF OIF_USER_ROOM_NUM = 14308 6 7
+P 6
+TRIG_VOID
+OPROG_GOD_COMMAND
+mpechoat $ You climb the tree into the branches above.
+& mpgoto 14303
+& rescale 14312 $ 90~
+P 7
+TRIG_VOID
+OPROG_IF OIF_USER_ROOM_NUM = 14309 8 9
+P 8
+TRIG_VOID
+OPROG_GOD_COMMAND
+mpechoat $ You climb the tree into the branches above.
+& mpgoto 14304
+& rescale 14313 $ 90~
+P 9
+TRIG_VOID
+OPROG_IF OIF_USER_ROOM_NUM = 143010 10 11
+P 10
+TRIG_VOID
+OPROG_GOD_COMMAND
+mpechoat $ You climb the tree into the branches above.
+& mpgoto 14305
+& rescale 14314 $ 90~
+P 11
+TRIG_VOID
+OPROG_ECHO You cannot see anything to climb here.~
+#14301
+furball~
+a furball~
+Some cat has coughed a furball onto the ground here.~
+Its a soft squishy furball.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD|ITEM_WEAR_HANDS
+0 0 0 0
+1 10 10
+A
+APPLY_DAMROLL 2
+A
+APPLY_CON 1
+P 1
+TRIG_WEAR 100
+OPROG_IF OIF_USER_RACE ! 11 2 0
+P 2
+TRIG_VOID
+OPROG_ECHO Only a mighty Tsarian may use this!~
+P 2
+TRIG_VOID
+OPROG_JUNK
+#14302
+cats claw cat's~
+a cat's claw~
+A cat's claw lies on the ground here.~
+It is the claw of a very large cat.~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+3 0 0 0
+10 10 1
+P 1
+TRIG_WEAR 100
+OPROG_IF OIF_USER_RACE ! 11 2 0
+P 2
+TRIG_VOID
+OPROG_ECHO Only a mighty Tsarian may use this!~
+P 2
+TRIG_VOID
+OPROG_JUNK
+#14303
+tsarian collar~
+a tsarian collar~
+A Tsarian Collar lies on the ground here.~
+It is a collar made of studded leather, with a birds feather decorating
+it.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_NECK
+0 0 0 0
+5 10 5
+A
+APPLY_DAMROLL 1
+A
+APPLY_HITROLL 1
+P 1
+TRIG_WEAR 100
+OPROG_IF OIF_USER_RACE ! 11 2 0
+P 2
+TRIG_VOID
+OPROG_ECHO Only a mighty Tsarian may use this!~
+P 2
+TRIG_VOID
+OPROG_JUNK
+#14304
+bird feather cloak~
+a bird feather cloak~
+A pile of feathers lie here.~
+It is a cloak made of bird feathers and can only be worn by a Tsarian with
+pride for killing all those birds.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_NECK
+0 0 0 0
+5 10 5
+A
+APPLY_CON 1
+A
+APPLY_DAMROLL 1
+P 1
+TRIG_WEAR 100
+OPROG_IF OIF_USER_RACE ! 11 2 0
+P 2
+TRIG_VOID
+OPROG_ECHO Only a mighty Tsarian may use this!~
+P 2
+TRIG_VOID
+OPROG_JUNK
+#14305
+bird feather belt~
+a bird feather belt~
+A pile of feathers lies here.~
+It is a belt made of bird feathers and it can only be worn by a Tsarian
+with pride for killing all those birds.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WAIST
+0 0 0 0
+5 10 5
+A
+APPLY_WIS 1
+A
+APPLY_DAMROLL 1
+P 1
+TRIG_WEAR 100
+OPROG_IF OIF_USER_RACE ! 11 2 0
+P 2
+TRIG_VOID
+OPROG_ECHO Only a mighty Tsarian may use this!~
+P 2
+TRIG_VOID
+OPROG_JUNK
+#14306
+tsarian potion vision~
+a Tsarian potion of vision~
+A Tsarian potion of vision lies on the ground here.~
+It is a potion that can only be used by a Tsarian.  Any other race
+would end up poisoning themselves trying to use it.~
+ITEM_TYPE_POTION
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+5 SPELL_DETECT_INVIS 0 0
+1 100 1
+#14307
+tsarian scroll vision~
+a Tsarian scroll of vision~
+A Tsarian scroll of vision lies on the ground here.~
+It is a scroll that can only be used by a Tsarian.  Any other race
+would end up harming themselves trying to use it.~
+ITEM_TYPE_SCROLL
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+5 SPELL_DETECT_INVIS 0 0
+1 100 1
+#14308
+tsarian scroll recall~
+a Tsarian scroll of recall~
+A Tsarian scroll of recall lies on the ground here.~
+It is a scroll that can only be used by a Tsarian.  Any other race
+would end up harming themselves trying to use it.~
+ITEM_TYPE_SCROLL
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+5 SPELL_WORD_OF_RECALL 0 0
+1 120 1
+#14309
+tsarian potion pass walls moving~
+a Tsarian potion of moving walls~
+A Tsarian potion of moving walls lies on the ground here.~
+It is a potion that can only be used by a Tsarian.  Any other race
+would end up poisoning themselves trying to use it.~
+ITEM_TYPE_POTION
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+5 SPELL_PASS_DOOR 0 0
+5 100 5
+#14310
+tsarian scroll pass walls moving~
+a Tsarian scroll of moving walls~
+A Tsarian scroll of moving walls lies on the ground here.~
+It is a scroll that can only be used by a Tsarian.  Any other race
+would end up harming themselves trying to use it.~
+ITEM_TYPE_POTION
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+5 SPELL_PASS_DOOR 0 0
+5 100 5
+#14311
+glass catnip~
+a glass of catnip~
+A glass of catnip lies here.~
+It is a glass filled with a refreshing green liquid.~
+ITEM_TYPE_DRINK_CON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+3 3 0 0
+1 20 1
+#14312
+roast aviaran~
+a roast aviaran~
+A roast aviaran makes you hungry here.~
+It is a tender roast aviaran filled with a delicated bread and herb
+stuffing.~
+ITEM_TYPE_FOOD
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+8 0 0 0
+1 20 1
+#14313
+mickey mace galen~
+a mickey mace of galen~
+A mickey mace of Galen lies here.~
+It is one of the rare Mickey Maces of Galen that lies here.
+It is covered in the drool of Blythe's son Galen.  This 
+particular Mickey Mace was created when Galen was 2 years old.~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 2 5 7
+1 1000 8
+A
+APPLY_DAMROLL 2
+#14314
+fountain~
+a fountain~
+A fountain with a statue of a Tsarian Warrior sparkles here.~
+It is made of grey stone.~
+ITEM_TYPE_FOUNTAIN
+ITEM_FLAG_LEVEL
+0
+0 0 0 0
+500 10 99
+#14315
+sign~
+a sign~
+A sign hangs from the cave entrance here.~
+.{010}            8                           8
+.            8                           8
+.    ===============================================
+.   |           {140}Welcome to Tsarian Rock{300}  {010}           |
+.   |            {110}   Tsarian only! {300}{010}                  |
+.   |                                               |
+.   |        {120}  Best bird is Roast Bird  {300}{010}            |
+.   |                                               |
+.   |   {170}  Area Created by Blythe in April 1999{300} {010}     |
+.   |                                               |
+.    ==============================================={300}
+~
+ITEM_TYPE_FURNITURE
+ITEM_FLAG_LEVEL
+0
+0 0 0 0
+500 10 99
+
+#0
+
+#ROOMS
+#14300
+Tsarian Rock~
+The walls are etched with paintings depicting famous legendary Tsarian
+fighters in battle.  There is a large sign in the center of the cave.
+The floor is a soft sand and apart from the clank of your armour your
+footsteps are quiet.~
+143 ROOM_NO_MOB SECT_UNDER_GROUND
+DDIR_EAST
+~
+~
+0 -1 14314
+DDIR_WEST
+~
+~
+0 -1 17238
+S
+#14301
+Up in the trees~
+Sunlight filters through the leaves.  In a branch is a large nest.
+In the nest are five large spotted eggs.  One of them is wobbling
+from side to side.  On the edge of the nest is a few squirming
+worms.  Perhaps they are dinner for the expected hatchlings?~
+143 0 SECT_FOREST
+DDIR_DOWN
+~
+~
+0 -1 14306
+S
+#14302
+Up in the trees~
+You are high up above the ground.  You look down and are grateful
+for the fact that you have nine lives.  You hope that you are not
+on your ninth right now!  There is a large nest on the branch
+nearest you.~
+143 0 SECT_FOREST
+DDIR_DOWN
+~
+~
+0 -1 14307
+S
+#14303
+Up in the trees~
+You peer through the branches to see a large nest.  In the nest are two
+eggs.  One is cracked and you can see a small moist beak breaking through
+the shell.  The eggs lie in a bed of fur.  Soft fur.  As you look closer
+you realise it is cat fur!~
+143 0 SECT_FOREST
+DDIR_DOWN
+~
+~
+0 -1 14308
+S
+#14304
+Up in the trees~
+You see the biggest nest that you have ever seen.  Eight large spotted
+eggs fill it to almost overflowing.  They nestle on a bed of fur, hair
+and feathers.  As you watch one of the shells breaks open and you see the
+moist feathered head of a baby bird.  Mmmmm Lunch!~
+143 0 SECT_FOREST
+DDIR_DOWN
+~
+~
+0 -1 14309
+S
+#14305
+Up in the trees~
+A large nest is in the crook of two branches.  In it are three large
+baby birds.  They cheep at you expectantly.  The nest is comfortably
+lined with soft feathers, even softer fur, and soft human hair.  The
+mother bird cannot be too far away.~
+143 0 SECT_FOREST
+DDIR_DOWN
+~
+~
+0 -1 14310
+S
+#14306
+In the forest above the rock~
+All around you are large tall trees.  Sunlight barely makes its way down
+to the forest floor.  The floor of the forest is covered with tree litter
+and moss.  You look closer at a tree and realise that it would be quite
+easy to CLIMB the tree to look for birds nests above.~
+143 0 SECT_FOREST
+DDIR_EAST
+~
+~
+0 -1 14307
+S
+#14307
+In the forest above the rock~
+All around you are large tall trees.  Sunlight barely makes its way down
+to the forest floor.  The floor of the forest is covered with tree litter
+and moss.  You look closer at a tree and realise that it would be quite
+easy to CLIMB the tree to look for birds nests above.~
+143 0 SECT_FOREST
+DDIR_EAST
+~
+~
+0 -1 14308
+DDIR_WEST
+~
+~
+0 -1 14306
+S
+#14308
+In the forest above the rock~
+All around you are large tall trees.  Sunlight barely makes its way down
+to the forest floor.  The floor of the forest is covered with tree litter
+and moss.  You look closer at a tree and realise that it would be quite
+easy to CLIMB the tree to look for birds nests above.~
+143 0 SECT_FOREST
+DDIR_EAST
+~
+~
+0 -1 14309
+DDIR_WEST
+~
+~
+0 -1 14307
+DDIR_DOWN
+~
+~
+0 -1 14312
+S
+#14309
+In the forest above the rock~
+All around you are large tall trees.  Sunlight barely makes its way down
+to the forest floor.  The floor of the forest is covered with tree litter
+and moss.  You look closer at a tree and realise that it would be quite
+easy to CLIMB the tree to look for birds nests above.~
+143 0 SECT_FOREST
+DDIR_EAST
+~
+~
+0 -1 14310
+DDIR_WEST
+~
+~
+0 -1 14308
+S
+#14310
+In the forest above the rock~
+All around you are large tall trees.  Sunlight barely makes its way down
+to the forest floor.  The floor of the forest is covered with tree litter
+and moss.  You look closer at a tree and realise that it would be quite
+easy to CLIMB the tree to look for birds nests above.~
+143 0 SECT_FOREST
+DDIR_WEST
+~
+~
+0 -1 14309
+S
+#14311
+Tsarian Rock~
+You have entered the battle headquarters for the Tsarian.  Fine tapestries
+line the cave walls.  They depict famous Tsarian battle leaders. Any
+Tsarian would aspire to be like them.  The floor is covered in a soft
+sand which muffles your footsteps.~
+143 ROOM_INDOORS SECT_UNDER_GROUND
+DDIR_EAST
+~
+~
+0 -1 14312
+DDIR_SOUTH
+~
+~
+0 -1 14314
+S
+#14312
+Tsarian Rock~
+You have entered the battle headquarters for the Tsarian.  Fine tapestries
+line the cave walls.  They depict famous Tsarian battle leaders. Any
+Tsarian would aspire to be like them.  The floor is covered in a soft
+sand which muffles your footsteps.~
+143 ROOM_INDOORS SECT_UNDER_GROUND
+DDIR_WEST
+~
+~
+0 -1 14311
+DDIR_SOUTH
+~
+~
+0 -1 14315
+DDIR_UP
+~
+~
+0 -1 14308
+S
+#14313
+Tsarian Rock Restart Room~
+~
+143 ROOM_INDOORS|ROOM_SAFE|ROOM_NO_RIP SECT_UNDER_GROUND
+S
+#14314
+Tsarian Rock~
+You have entered the battle headquarters for the Tsarian.  Fine tapestries
+line the cave walls.  They depict famous Tsarian battle leaders. Any
+Tsarian would aspire to be like them.  The floor is covered in a soft
+sand which muffles your footsteps.~
+143 ROOM_INDOORS SECT_UNDER_GROUND
+DDIR_EAST
+~
+~
+0 -1 14315
+DDIR_NORTH
+~
+~
+0 -1 14311
+DDIR_WEST
+~
+~
+0 -1 14300
+S
+#14315
+Tsarian Rock~
+You have entered the battle headquarters for the Tsarian.  Fine tapestries
+line the cave walls.  They depict famous Tsarian battle leaders. Any
+Tsarian would aspire to be like them.  The floor is covered in a soft
+sand which muffles your footsteps.~
+143 ROOM_INDOORS SECT_UNDER_GROUND
+DDIR_WEST
+~
+~
+0 -1 14314
+DDIR_NORTH
+~
+~
+0 -1 14312
+DDIR_DOWN
+~
+~
+0 -1 14316
+S
+#14316
+Tsarian Rock Central~
+You stand in the centre of a large cave.  Above you is a steep ramp leading
+to the cave above, and below is a ramp leading to the sleeping quarters.
+In each direction you see the entrances to four caves.  There is a painted
+wooden sign over the entrance to each cave.  To your north a sign says "The
+Cats Claw", to your south "The Furball Cafe", to your west "Catnip and
+Potions" and finally to your east you see a sign with a large military
+Tsarnian on it.~
+143 ROOM_INDOORS|ROOM_SAFE|ROOM_NO_MOB SECT_INN
+DDIR_EAST
+~
+~
+0 -1 14319
+DDIR_WEST
+~
+~
+0 -1 14318
+DDIR_NORTH
+~
+~
+0 -1 14317
+DDIR_SOUTH
+~
+~
+0 -1 14320
+DDIR_UP
+~
+~
+0 -1 14315
+DDIR_DOWN
+~
+~
+0 -1 14321
+S
+#14317
+The Cats Claw~
+The cave walls are lined with all manner of weaponry and armour.  Taking
+a closer look at the armour you realise that most of it is specially
+designed for the Tsarian body type.  In the centre of the armoury is
+a large bench upon which lie armour like you have never seen before.
+This armour you realise would cost a small fortune.~
+143 ROOM_INDOORS SECT_UNDER_GROUND
+DDIR_SOUTH
+~
+~
+0 -1 14316
+S
+#14318
+Catnip and Potions~
+Lining the cave walls are shelves.  The shelves are filled in an orderly
+fashion with scrolls and potion bottles.  There are bottles of pills filling
+one shelf.  Standing up in a corner leaning against the wall is a large
+selection of staffs.~
+143 ROOM_INDOORS SECT_UNDER_GROUND
+DDIR_EAST
+~
+~
+0 -1 14316
+S
+#14319
+Tsarian War Planning Cave~
+The walls are covered with maps of the realms.  In the centre is a large
+table lined with large maps held in place with rocks.  Small figures
+depicting armys of different types are set strategically on the maps.
+There seems to be a big war planned.  Perhaps you should join the army
+and become part of this big offence.~
+143 ROOM_INDOORS|ROOM_SAFE SECT_UNDER_GROUND
+DDIR_WEST
+~
+~
+0 -1 14316
+S
+#14320
+The Furball Cafe~
+Along one wall are shelves filled with bottles and casks.  In front of
+that is a long bar, ideal for leaning against when drinking an ale and
+sharing tall army tales.  The rest of the room is filled with large
+tables and benches at which one can sit and enjoy a meal fit for a
+Tsarian King.  You smell something delectable cooking.  MMmmmm is that
+roast chicken?~
+143 ROOM_INDOORS SECT_UNDER_GROUND
+DDIR_NORTH
+~
+~
+0 -1 14316
+S
+#14321
+Tsarian Den~
+You stand in the centre of a large cavern.  Many small caverns
+are connected to this large one.  Down in these caverns lives
+a large community Tsarian.  The Tsarian that live here enjoy being
+part of a large community.~
+143 ROOM_SAFE|ROOM_INDOORS SECT_UNDER_GROUND
+DDIR_NORTH
+~
+~
+0 -1 14329
+DDIR_EAST
+~
+~
+0 -1 14334
+DDIR_SOUTH
+~
+~
+0 -1 14338
+DDIR_WEST
+~
+~
+0 -1 14333
+DDIR_UP
+~
+~
+0 -1 14316
+S
+#14322
+Tsarian Den~
+You are in the corner of a small cavern.  Lined along one wall are soft beds.
+On another wall is a large fire place in which glows a small warming fire.
+Upon hooks on either side of the fire place hang items of clothing and
+pieces of armour of the occupants of this particular tavern.~
+143 ROOM_INDOORS SECT_UNDER_GROUND
+
+DDIR_EAST
+~
+~
+0 -1 14323
+DDIR_SOUTH
+~
+~
+0 -1 14327
+S
+#14323
+Tsarian Den~
+On one wall is a fire place.  In it glows a warming fire.  On either
+side of the fire place are large hooks upon which hang items of
+clothing and pieces of armour.  There is a large table in the
+centre of this small cavern around which are large benches.
+This looks to be a communal eating area.~
+143 ROOM_INDOORS SECT_UNDER_GROUND
+DDIR_EAST
+~
+~
+0 -1 14324
+DDIR_SOUTH
+~
+~
+0 -1 14328
+DDIR_WEST
+~
+~
+0 -1 14322
+S
+#14324
+Tsarian Den~
+The cavern contains a series of small beds lined up along one wall.
+This looks to be some sort of room for the Tsarian young.  A rag
+doll lays on one of the beds.  On the hooks hang clothing of a size
+that a small young Tsarian would wear.~
+143 ROOM_INDOORS SECT_UNDER_GROUND
+DDIR_EAST
+~
+~
+0 -1 14325
+DDIR_SOUTH
+~
+~
+0 -1 14329
+DDIR_WEST
+~
+~
+0 -1 14323
+S
+#14325
+Tsarian Den~
+A large cook fire is in the centre of this small cavern.  Pots and pans
+hang from hooks that hang from the ceiling.  A large caldron filled
+with some sort of hot stew hangs over the fire.  The heavenly smell
+makes your stomach rumble.~
+143 ROOM_INDOORS SECT_UNDER_GROUND
+DDIR_EAST
+~
+~
+0 -1 14326
+DDIR_SOUTH
+~
+~
+0 -1 14330
+DDIR_WEST
+~
+~
+0 -1 14331
+S
+#14326
+Tsarian Den~
+You are in the corner of a small cavern.  Lined along one wall are soft beds.
+On another wall is a large fire place in which glows a small warming fire.
+Upon hooks on either side of the fire place hang items of clothing and
+pieces of armour of the occupants of this particular tavern.~
+143 ROOM_INDOORS SECT_UNDER_GROUND
+DDIR_SOUTH
+~
+~
+0 -1 14331
+DDIR_WEST
+~
+~
+0 -1 14325
+S
+#14327
+Tsarian Den~
+A large cook fire is in the centre of this small cavern.  Pots and pans
+hang from hooks that hang from the ceiling.  A large caldron filled
+with some sort of hot stew hangs over the fire.  The heavenly smell
+makes your stomach rumble.~
+143 ROOM_INDOORS SECT_UNDER_GROUND
+DDIR_NORTH
+~
+~
+0 -1 14322
+DDIR_EAST
+~
+~
+0 -1 14328
+DDIR_SOUTH
+~
+~
+0 -1 14332
+S
+#14328
+Tsarian Den~
+On one wall is a fire place.  In it glows a warming fire.  On either
+side of the fire place are large hooks upon which hang items of
+clothing and pieces of armour.  There is a large table in the
+centre of this small cavern around which are large benches.
+This looks to be a communal eating area.~
+143 ROOM_INDOORS SECT_UNDER_GROUND
+DDIR_NORTH
+~
+~
+0 -1 14323
+DDIR_EAST
+~
+~
+0 -1 14329
+DDIR_SOUTH
+~
+~
+0 -1 14333
+DDIR_WEST
+~
+~
+0 -1 14327
+S
+#14329
+Tsarian Den~
+The cavern contains a series of small beds lined up along one wall.
+This looks to be some sort of room for the Tsarian young.  A rag
+doll lays on one of the beds.  On the hooks hang clothing of a size
+that a small young Tsarian would wear.~
+143 ROOM_INDOORS SECT_UNDER_GROUND
+DDIR_NORTH
+~
+~
+0 -1 14324
+DDIR_EAST
+~
+~
+0 -1 14330
+DDIR_SOUTH
+~
+~
+0 -1 14321
+DDIR_WEST
+~
+~
+0 -1 14328
+S
+#14330
+Tsarian Den~
+A large cook fire is in the centre of this small cavern.  Pots and pans
+hang from hooks that hang from the ceiling.  A large caldron filled
+with some sort of hot stew hangs over the fire.  The heavenly smell
+makes your stomach rumble.~
+143 ROOM_INDOORS SECT_UNDER_GROUND
+DDIR_NORTH
+~
+~
+0 -1 14325
+DDIR_EAST
+~
+~
+0 -1 14331
+DDIR_SOUTH
+~
+~
+0 -1 14334
+DDIR_WEST
+~
+~
+0 -1 14329
+S
+#14331
+Tsarian Den~
+Large soft chairs are arranged haphazardly around a large fire place.
+This cavern looks like it would be a place where Tsarian fighters
+could relax after a hard day at battle.  What looks to be a chess
+board is on a small table between two of the chairs.  There seems
+to be a game in progress.~
+143 ROOM_INDOORS SECT_UNDER_GROUND
+DDIR_NORTH
+~
+~
+0 -1 14326
+DDIR_SOUTH
+~
+~
+0 -1 14335
+DDIR_WEST
+~
+~
+0 -1 14330
+S
+#14332
+Tsarian Den~
+The cavern contains a series of small beds lined up along one wall.
+This looks to be some sort of room for the Tsarian young.  A rag
+doll lays on one of the beds.  On the hooks hang clothing of a size
+that a small young Tsarian would wear.~
+143 ROOM_INDOORS SECT_UNDER_GROUND
+DDIR_NORTH
+~
+~
+0 -1 14327
+DDIR_EAST
+~
+~
+0 -1 14333
+DDIR_SOUTH
+~
+~
+0 -1 14336
+S
+#14333
+Tsarian Den~
+Large soft chairs are arranged haphazardly around a large fire place.
+This cavern looks like it would be a place where Tsarian fighters
+could relax after a hard day at battle.  What looks to be a chess
+board is on a small table between two of the chairs.  There seems
+to be a game in progress.~
+143 ROOM_INDOORS SECT_UNDER_GROUND
+DDIR_NORTH
+~
+~
+0 -1 14328
+DDIR_EAST
+~
+~
+0 -1 14321
+DDIR_SOUTH
+~
+~
+0 -1 14337
+DDIR_WEST
+~
+~
+0 -1 14332
+S
+#14334
+Tsarian Den~
+Large soft chairs are arranged haphazardly around a large fire place.
+This cavern looks like it would be a place where Tsarian fighters
+could relax after a hard day at battle.  What looks to be a chess
+board is on a small table between two of the chairs.  There seems
+to be a game in progress.~
+143 ROOM_INDOORS SECT_UNDER_GROUND
+DDIR_NORTH
+~
+~
+0 -1 14330
+DDIR_EAST
+~
+~
+0 -1 14335
+DDIR_SOUTH
+~
+~
+0 -1 14339
+DDIR_WEST
+~
+~
+0 -1 14321
+S
+#14335
+Tsarian Den~
+On one wall is a fire place.  In it glows a warming fire.  On either
+side of the fire place are large hooks upon which hang items of
+clothing and pieces of armour.  There is a large table in the
+centre of this small cavern around which are large benches.
+This looks to be a communal eating area.~
+143 ROOM_INDOORS SECT_UNDER_GROUND
+DDIR_NORTH
+~
+~
+0 -1 14331
+DDIR_SOUTH
+~
+~
+0 -1 14340
+DDIR_WEST
+~
+~
+0 -1 14334
+S
+#14336
+Tsarian Den~
+Large soft chairs are arranged haphazardly around a large fire place.
+This cavern looks like it would be a place where Tsarian fighters
+could relax after a hard day at battle.  What looks to be a chess
+board is on a small table between two of the chairs.  There seems
+to be a game in progress.~
+143 ROOM_INDOORS SECT_UNDER_GROUND
+DDIR_NORTH
+~
+~
+0 -1 14332
+DDIR_EAST
+~
+~
+0 -1 14337
+DDIR_SOUTH
+~
+~
+0 -1 14341
+S
+#14337
+Tsarian Den~
+This cavern appears to be filled with boxes.  It seems to be a cavern
+reserved for storage.  On closer inspection the boxes appear to be
+filled with a mix of different food stuffs and armour and weapons.
+Some of the boxes seem to have been sitting here for years judging
+by the amount of dust covering them.~
+143 ROOM_INDOORS SECT_UNDER_GROUND
+DDIR_NORTH
+~
+~
+0 -1 14333
+DDIR_EAST
+~
+~
+0 -1 14338
+DDIR_SOUTH
+~
+~
+0 -1 14342
+DDIR_WEST
+~
+~
+0 -1 14336
+S
+#14338
+Tsarian Den~
+You are standing in one corner of the large central cavern.  The
+walls are covered with tapestries.  Looking closer you see instead
+of battle scenes like you saw in the caverns above these tapestries
+depict Tsarian ancestors and leaders dressed in formal wear and
+formal armour.~
+143 ROOM_INDOORS SECT_UNDER_GROUND
+DDIR_NORTH
+~
+~
+0 -1 14321
+DDIR_EAST
+~
+~
+0 -1 14339
+DDIR_SOUTH
+~
+~
+0 -1 14343
+DDIR_WEST
+~
+~
+0 -1 14337
+S
+#14339
+Tsarian Den~
+This cavern appears to be filled with boxes.  It seems to be a cavern
+reserved for storage.  On closer inspection the boxes appear to be
+filled with a mix of different food stuffs and armour and weapons.
+Some of the boxes seem to have been sitting here for years judging
+by the amount of dust covering them.~
+143 ROOM_INDOORS SECT_UNDER_GROUND
+DDIR_NORTH
+~
+~
+0 -1 14334
+DDIR_EAST
+~
+~
+0 -1 14340
+DDIR_SOUTH
+~
+~
+0 -1 14344
+DDIR_WEST
+~
+~
+0 -1 14338
+S
+#14340
+Tsarian Den~
+This small cavern for the most part is clear.  Unlike other bedchambers
+that are filled with many beds this one only has one bed.  This bed
+is covered in more furs than the others.  On the hook on the wall
+hang opulent robes.  Perhaps this cavern belongs to a leader of the
+Tsarian.~
+143 ROOM_INDOORS SECT_UNDER_GROUND
+DDIR_NORTH
+~
+~
+0 -1 14335
+DDIR_SOUTH
+~
+~
+0 -1 14345
+DDIR_WEST
+~
+~
+0 -1 14339
+S
+#14341
+Tsarian Den~
+You are in the corner of a small cavern.  Lined along one wall are soft beds.
+On another wall is a large fire place in which glows a small warming fire.
+Upon hooks on either side of the fire place hang items of clothing and
+pieces of armour of the occupants of this particular tavern.~
+143 ROOM_INDOORS SECT_UNDER_GROUND
+DDIR_NORTH
+~
+~
+0 -1 14336
+DDIR_EAST
+~
+~
+0 -1 14342
+S
+#14342
+Tsarian Den~
+On one wall is a fire place.  In it glows a warming fire.  On either
+side of the fire place are large hooks upon which hang items of
+clothing and pieces of armour.  There is a large table in the
+centre of this small cavern around which are large benches.
+This looks to be a communal eating area.~
+143 ROOM_INDOORS SECT_UNDER_GROUND
+DDIR_NORTH
+~
+~
+0 -1 14337
+DDIR_EAST
+~
+~
+0 -1 14343
+DDIR_WEST
+~
+~
+0 -1 14341
+S
+#14343
+Tsarian Den~
+This cavern is smaller than any of the others.  In one corner is
+a few boards positioned over a hole.  A pile of dry leaves 
+sit in the corner.  The odour emanating from the hole leaves you
+in no doubt what this room is used for.~
+143 ROOM_INDOORS SECT_UNDER_GROUND
+DDIR_NORTH
+~
+~
+0 -1 14338
+DDIR_EAST
+~
+~
+0 -1 14344
+DDIR_WEST
+~
+~
+0 -1 14342
+S
+#14344
+Tsarian Den~
+The cavern contains a series of small beds lined up along one wall.
+This looks to be some sort of room for the Tsarian young.  A rag
+doll lays on one of the beds.  On the hooks hang clothing of a size
+that a small young Tsarian would wear.~
+143 ROOM_INDOORS SECT_UNDER_GROUND
+DDIR_NORTH
+~
+~
+0 -1 14339
+DDIR_EAST
+~
+~
+0 -1 14345
+DDIR_WEST
+~
+~
+0 -1 14343
+S
+#14345
+Tsarian Den~
+You are in the corner of a small cavern.  Lined along one wall are soft beds.
+On another wall is a large fire place in which glows a small warming fire.
+Upon hooks on either side of the fire place hang items of clothing and
+pieces of armour of the occupants of this particular tavern.~
+143 ROOM_INDOORS SECT_UNDER_GROUND
+DDIR_NORTH
+~
+~
+0 -1 14340
+DDIR_WEST
+~
+~
+0 -1 14344
+S
+
+#0
+
+#RESETS
+M 0 14300 4 14311 ;  Ethereal Guard
+G 1 14301 500 ; furball
+G 1 14313 100 ; galens mickey mace
+M 0 14300 4 14312 ;  Ethereal Guard
+M 0 14300 4 14314 ;  Ethereal Guard
+M 0 14300 4 14315 ;  Ethereal Guard
+M 0 14301 1 14300 ; Entrance Ethereal Guard
+M 0 14302 4 14311 ; Tsarian Guard
+M 0 14302 4 14312 ; Tsarian Guard
+M 0 14302 4 14314 ; Tsarian Guard
+M 0 14302 4 14315 ; Tsarian Guard
+M 0 14303 1 14317 ; Tsarian Armourer
+G 1 14302 500 ; cats claw
+G 1 14303 500 ; collar
+G 1 14304 500 ; cloak
+G 1 14305 500 ; belt
+M 0 14304 1 14318 ; Tsarian Witch
+G 1 14306 1000 ; potion vision
+G 1 14307 1000 ; scroll vision
+G 1 14308 1000 ; recall
+G 1 14309 1000 ; pass door potion
+G 1 14310 1000 ; pass door scroll
+M 0 14305 1 14320 ; Tsarian Barman
+G 1 14311 1000 ; catnip
+G 1 14312 1000 ; roast chicken
+M 0 14306 1 14319 ; Tsarian General
+M 0 14307 9 14324 ; Tsarian Fighter
+M 0 14307 9 14329 ; Tsarian Fighter
+M 0 14307 9 14321 ; Tsarian Fighter
+M 0 14307 9 14332 ; Tsarian Fighter
+M 0 14307 9 14333 ; Tsarian Fighter
+M 0 14307 9 14334 ; Tsarian Fighter
+M 0 14307 9 14335 ; Tsarian Fighter
+M 0 14307 9 14338 ; Tsarian Fighter
+M 0 14307 9 14343 ; Tsarian Fighter
+M 0 14308 32 14322 ; Tsarian Kitten
+M 0 14308 32 14322 ; Tsarian Kitten
+M 0 14308 32 14323 ; Tsarian Kitten
+M 0 14308 32 14323 ; Tsarian Kitten
+M 0 14308 32 14325 ; Tsarian Kitten
+M 0 14308 32 14325 ; Tsarian Kitten
+M 0 14308 32 14326 ; Tsarian Kitten
+M 0 14308 32 14326 ; Tsarian Kitten
+M 0 14308 32 14327 ; Tsarian Kitten
+M 0 14308 32 14327 ; Tsarian Kitten
+M 0 14308 32 14328 ; Tsarian Kitten
+M 0 14308 32 14328 ; Tsarian Kitten
+M 0 14308 32 14330 ; Tsarian Kitten
+M 0 14308 32 14330 ; Tsarian Kitten
+M 0 14308 32 14331 ; Tsarian Kitten
+M 0 14308 32 14331 ; Tsarian Kitten
+M 0 14308 32 14336 ; Tsarian Kitten
+M 0 14308 32 14336 ; Tsarian Kitten
+M 0 14308 32 14337 ; Tsarian Kitten
+M 0 14308 32 14337 ; Tsarian Kitten
+M 0 14308 32 14339 ; Tsarian Kitten
+M 0 14308 32 14339 ; Tsarian Kitten
+M 0 14308 32 14340 ; Tsarian Kitten
+M 0 14308 32 14340 ; Tsarian Kitten
+M 0 14308 32 14341 ; Tsarian Kitten
+M 0 14308 32 14341 ; Tsarian Kitten
+M 0 14308 32 14342 ; Tsarian Kitten
+M 0 14308 32 14342 ; Tsarian Kitten
+M 0 14308 32 14344 ; Tsarian Kitten
+M 0 14308 32 14344 ; Tsarian Kitten
+M 0 14308 32 14345 ; Tsarian Kitten
+M 0 14308 32 14345 ; Tsarian Kitten
+M 0 14309 16 14322 ; Tsarian Mistress
+M 0 14309 16 14323 ; Tsarian Mistress
+M 0 14309 16 14325 ; Tsarian Mistress
+M 0 14309 16 14326 ; Tsarian Mistress
+M 0 14309 16 14327 ; Tsarian Mistress
+M 0 14309 16 14328 ; Tsarian Mistress
+M 0 14309 16 14330 ; Tsarian Mistress
+M 0 14309 16 14331 ; Tsarian Mistress
+M 0 14309 16 14336 ; Tsarian Mistress
+M 0 14309 16 14337 ; Tsarian Mistress
+M 0 14309 16 14339 ; Tsarian Mistress
+M 0 14309 16 14340 ; Tsarian Mistress
+M 0 14309 16 14341 ; Tsarian Mistress
+M 0 14309 16 14342 ; Tsarian Mistress
+M 0 14309 16 14344 ; Tsarian Mistress
+M 0 14309 16 14345 ; Tsarian Mistress
+M 0 14310 1 14301 ; bird
+M 0 14311 1 14302 ; bird
+M 0 14312 1 14303 ; bird
+M 0 14313 1 14304 ; bird
+M 0 14314 1 14305 ; bird
+O 0 14314 1 14316 ; fountain
+O 0 14315 1 14300 ; sign
+
+
+
+
+S
+
+#SHOPS
+14303 ITEM_TYPE_ARMOR ITEM_TYPE_WEAPON ITEM_TYPE_LIGHT ITEM_TYPE_NOTHING
+     ITEM_TYPE_NOTHING 100  70  0 23 ; armourer
+14304 ITEM_TYPE_SCROLL ITEM_TYPE_POTION ITEM_TYPE_STAFF ITEM_TYPE_WAND
+     ITEM_TYPE_NOTHING 100  50  0 23 ; witch
+14305 ITEM_TYPE_FOOD ITEM_TYPE_DRINK_CON ITEM_TYPE_CONTAINER ITEM_TYPE_NOTHING
+     ITEM_TYPE_NOTHING 100  70  0 23 ; barman
+0
+
+#$

@@ -1,0 +1,1741 @@
+#AREA Troll Island~
+#AUTHORS Presto ~
+
+
+
+
+
+#HELPS
+1 TROLLISLAND~
+Troll Island displays the true nature of trolls.  The island is a magical
+place, where the trolls are not brutal and blood thirsty.  When trolls leave
+the island, however, the forces that held them at bay no longer grip them,
+and they become the living terrors that most people know them as.  The same
+magic that keeps them from ripping your throat out on the island, is also the
+same force that keeps them from turning to stone in sunlight.  Some people
+believe that the troll king possesses the power to control the magic, and if 
+he were to die, the trolls would become the evil most believe them to be.
+
+  (-) Back
+
+
+{-}PRESTO
+~
+0 $~
+
+
+
+
+#RANGES 50 85 0 99
+#MOBILES
+#15900
+guard troll~
+A Troll Island Guard~
+A guard of this beautiful island stands here.~
+This troll is larger than usual, and looks quite intimidating.~
+ACT_SENTINEL|ACT_SCAVENGER|ACT_STAY_AREA|ACT_SMART
+AFF_UNDERSTAND|AFF_HUNT|AFF_TONGUES
+250 S
+60 0 0 30d65+700 3d10+25
+33333 364381
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if quest(0,2,$n) == 1
+  mpecho A troll guard's eyes flash red as he looks at you!
+  mpkill $n
+endif
+~
+|
+#15901
+troll grey~
+A Grey Troll~
+A grey troll stands here.~
+This troll is of an average size.
+After seeing you look at it, it grunts.~
+ACT_SCAVENGER|16|ACT_STAY_AREA|ACT_SMART
+AFF_UNDERSTAND|AFF_PROTECT_EVIL|AFF_TONGUES
+0 S
+40 0 0 35d30+100 6d7+10
+10000 183890
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>all_greet_prog 100~
+if quest(0,2,$n) == 1
+  mpecho A grey troll's eyes flash red as he looks at you!
+  mpkill $n
+endif
+~
+|
+#15902
+troll black~
+A Black Troll~
+A black troll stands here.~
+This troll is slightly larger than average. 
+It bears an evil grin on its face.~
+ACT_SENTINEL|ACT_SCAVENGER|ACT_STAY_AREA|ACT_SMART
+AFF_UNDERSTAND|AFF_TONGUES
+-250 S
+50 0 0 30d70+250 1d10+35
+12345 269671
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if quest(0,2,$n) == 1
+  mpecho A black troll's eyes flash red as he looks at you!
+  mpkill $n
+endif
+~
+|
+#15903
+king troll~
+The Troll King~
+The Troll King is here!~
+So this is the king of the trolls.  He looks extremely intimidating.
+He's clad entirely in troll garments.  Upon noticing you, he snorts.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART
+AFF_DETECT_INVIS|AFF_SANCTUARY|AFF_UNDERSTAND|AFF_HUNT|AFF_TONGUES
+0 S
+80 0 0 300d29+1000 10d7+30
+155662 584441
+POS_STANDING POS_STANDING SEX_MALE
+>fight_prog 70~
+cast fireball $r
+~
+>death_prog 100~
+if actorhasobjnum(30900)
+or actorhasobjnum(30966)
+or actorhasobjnum(30967)
+or actorhasobjnum(30968)
+or actorhasobjnum(30969)
+  if quest(30,1,$n) == 0
+    mpmset $n quest 30 1 1
+    mpoload 30914
+    mpforce $n HELP GUILDTOKEN
+    mpquiet on
+    c 'giant strength' $n
+    give i30914 $n
+    mpquiet off
+  endif
+endif
+if quest(0,2,$n) != 1
+  tell $n From this day forward, you are an enemy of the trolls!
+  mpat $n mpmset $n quest 0 2 1
+endif
+mpoload 15918
+~
+>all_greet_prog 100~
+if quest(0,2,$n) == 1
+  shout An enemy is in our realm!  Death to $n!
+  mpkill $n
+endif
+~
+|
+#15904
+troll green~
+A Green Troll~
+A green troll stands here.~
+This troll seems old and parched.  You could probably kill him naked
+and weaponless, but looks can be deceiving.~
+ACT_SENTINEL|ACT_SCAVENGER|ACT_STAY_AREA|ACT_SMART
+AFF_UNDERSTAND|AFF_HUNT|AFF_TONGUES
+0 S
+55 0 0 40d50+400 3d10+25
+30000 315851
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if quest(0,2,$n) == 1
+  mpkill $n
+endif
+~
+|
+#15905
+child troll~
+A Troll Child~
+A troll child stands here, breaking branches off the surrounding trees.~
+The child looks like a wimp.~
+ACT_SENTINEL|16|ACT_STAY_AREA|ACT_SMART
+AFF_UNDERSTAND|AFF_PROTECT_EVIL|AFF_TONGUES
+0 S
+25 0 0 15d30+200 3d6+10
+100 70135
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>all_greet_prog 5~
+if quest(0,2,$n) == 1
+  mpkill $n
+endif
+~
+|
+#0
+
+
+
+
+#OBJECTS
+#15900
+sign~
+a sign~
+A sign is staked in the grass here.~
+~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL
+0
+0 0 0 0
+1 1 1
+E
+sign~
+The sign:                ________________________
+                        |                        |
+                        | ===  TROLL ISLAND  === |
+                        |                        |
+                        | ====================== |
+                        |                        |
+                        | ==  Presto 8/22/95  == |
+                        |________________________|
+                                    | |
+                                    | |
+                                    | |
+                                    | |
+                               \\/__|_|__\//~
+#15901
+stick light troll~
+a troll's light stick~
+A troll's light stick lies here.~
+~
+ITEM_TYPE_LIGHT
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 -1 0
+5 62384 50
+A
+APPLY_HITROLL 6
+A
+APPLY_DAMROLL 5
+#15902
+ring troll black~
+a troll's black ring~
+A troll's black ring lies here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_FINGER
+12 0 0 0
+5 62384 50
+A
+APPLY_HIT 35
+#15903
+ring troll brown~
+a troll's brown ring~
+A troll's brown ring lies here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_FINGER
+12 0 0 0
+5 62384 50
+A
+APPLY_INT 1
+A
+APPLY_MANA 50
+#15904
+broach troll~
+a troll's broach~
+A troll's broach lies here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_NECK
+12 0 0 0
+5 62384 50
+A
+APPLY_WIS 1
+A
+APPLY_HIT 30
+#15905
+cloak troll~
+a troll's cloak~
+A troll's cloak lies here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_NECK
+12 0 0 0
+5 62384 50
+A
+APPLY_DAMROLL 4
+#15906
+suit armor troll~
+a troll's suit of armor~
+A troll's suit of armor lies here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_BODY
+12 0 0 0
+15 62384 50
+A
+APPLY_STR 3
+#15907
+helm troll~
+a troll's helm~
+A troll's helm lies here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HEAD
+12 0 0 0
+5 62384 50
+A
+APPLY_WIS 3
+A
+APPLY_INT 2
+#15908
+leg guards troll~
+a troll's pair of leg guards~
+A troll's pair of leg guards lies here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_LEGS
+12 0 0 0
+5 62384 50
+A
+APPLY_MOVE 50
+A
+APPLY_DEX 2
+#15909
+boots troll~
+a troll's pair of boots~
+A troll's pair of boots lies here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_FEET
+12 0 0 0
+5 62384 50
+A
+APPLY_MOVE 50
+A
+APPLY_DEX 2
+#15910
+gloves troll~
+a troll's pair of gloves~
+A troll's pair of gloves lies here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HANDS
+12 0 0 0
+5 62384 50
+A
+APPLY_DAMROLL 4
+A
+APPLY_STR 1
+#15911
+arm guards troll~
+a troll's pair of arm guards~
+A troll's pair of arm guards lies here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_ARMS
+12 0 0 0
+5 62384 50
+A
+APPLY_HITROLL 3
+A
+APPLY_DAMROLL 3
+#15912
+shield troll~
+a troll's shield~
+A troll's shield lies here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_SHIELD
+12 0 0 0
+10 62384 50
+A
+APPLY_HITROLL 3
+A
+APPLY_DAMROLL 3
+#15913
+robe troll~
+a troll's robe~
+A troll's robe lies here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_ABOUT
+13 0 0 0
+5 62384 50
+A
+APPLY_SAVING_SPELL -5
+A
+APPLY_CON 2
+#15914
+belt troll~
+a troll's belt~
+A troll's belt lies here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WAIST
+13 0 0 0
+5 62384 50
+A
+APPLY_SAVING_SPELL -5
+A
+APPLY_CON 2
+#15915
+bracelet troll black~
+a troll's black bracelet~
+A troll's black bracelet lies here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WRIST
+12 0 0 0
+5 62384 50
+A
+APPLY_HIT 35
+#15916
+bracelet troll brown~
+a troll's brown bracelet~
+A troll's brown bracelet lies here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WRIST
+12 0 0 0
+5 62384 50
+A
+APPLY_INT 1
+A
+APPLY_MANA 50
+#15917
+sceptre~
+a troll's sceptre~
+A troll's sceptre lies here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+6 0 0 0
+5 62384 50
+A
+APPLY_HITROLL 5
+A
+APPLY_DAMROLL 5
+#15918
+club king troll~
+the Troll King's Club~
+A massive club lies on the ground here.~
+~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_NOREMOVE|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 7 7 WEAPON_CRUSH
+10 100000 50
+C
+crushing blow~
+FLAG_CLASS_ILLUSIONIST|FLAG_CLASS_ELEMENTALIST|FLAG_CLASS_ROGUE|FLAG_CLASS_RANGER|FLAG_CLASS_NECROMANCER|FLAG_CLASS_MONK|FLAG_CLASS_ASSASSIN
+A
+APPLY_AC 4
+#0
+
+
+
+
+#ROOMS
+#15900
+Floating in the Mist~
+You don't seem to be able to see anything through this mist.
+Exits lead in all directions.~
+159 ROOM_DARK|ROOM_NO_RECALL SECT_WATER_NOSWIM
+DDIR_NORTH
+You see the mist.~
+~
+0 -1 15910
+DDIR_EAST
+You see the mist.~
+~
+0 -1 15907
+DDIR_SOUTH
+You see the mist.~
+~
+0 -1 15902
+DDIR_WEST
+You see the mist.~
+~
+0 -1 15906
+S
+#15901
+Floating in the Mist~
+You don't seem to be able to see anything through this mist.
+Exits lead in all directions.~
+159 ROOM_DARK|ROOM_NO_RECALL SECT_WATER_NOSWIM
+DDIR_NORTH
+You see the mist.~
+~
+0 -1 15907
+DDIR_EAST
+You see the mist.~
+~
+0 -1 15906
+DDIR_SOUTH
+You see the mist.~
+~
+0 -1 15903
+DDIR_WEST
+You see the mist.~
+~
+0 -1 15904
+S
+#15902
+Floating in the Mist~
+You don't seem to be able to see anything through this mist.
+Exits lead in all directions.~
+159 ROOM_DARK|ROOM_NO_RECALL SECT_WATER_NOSWIM
+DDIR_NORTH
+You see the mist.~
+~
+0 -1 15906
+DDIR_EAST
+You see the mist.~
+~
+0 -1 15905
+DDIR_SOUTH
+You see the mist.~
+~
+0 -1 15905
+DDIR_WEST
+You see the mist.~
+~
+0 -1 15901
+S
+#15903
+Floating in the Mist~
+You don't seem to be able to see anything through this mist.
+Exits lead in all directions.~
+159 ROOM_DARK|ROOM_NO_RECALL SECT_WATER_NOSWIM
+DDIR_NORTH
+You see the mist.~
+~
+0 -1 15908
+DDIR_EAST
+You see the mist.~
+~
+0 -1 15909
+DDIR_SOUTH
+You see the mist.~
+~
+0 -1 15904
+DDIR_WEST
+You see the mist.~
+~
+0 -1 15900
+S
+#15904
+Floating in the Mist~
+You don't seem to be able to see anything through this mist.
+Exits lead in all directions.~
+159 ROOM_DARK|ROOM_NO_RECALL SECT_WATER_NOSWIM
+DDIR_NORTH
+You see the mist.~
+~
+0 -1 15905
+DDIR_EAST
+You see the mist.~
+~
+0 -1 15903
+DDIR_SOUTH
+You see the mist.~
+~
+0 -1 15907
+DDIR_WEST
+You see the mist.~
+~
+0 -1 15909
+S
+#15905
+Floating in the Mist~
+You don't seem to be able to see anything through this mist.
+Exits lead in all directions.~
+159 ROOM_DARK|ROOM_NO_RECALL SECT_WATER_NOSWIM
+DDIR_NORTH
+You see the mist.~
+~
+0 -1 15902
+DDIR_EAST
+You see the mist.~
+~
+0 -1 15901
+DDIR_SOUTH
+You see the mist.~
+~
+0 -1 15908
+DDIR_WEST
+You see the mist.~
+~
+0 -1 15905
+S
+#15906
+Floating in the Mist~
+You don't seem to be able to see anything through this mist.
+Exits lead in all directions.~
+159 ROOM_DARK|ROOM_NO_RECALL SECT_WATER_NOSWIM
+DDIR_NORTH
+You see the mist.~
+~
+0 -1 15901
+DDIR_EAST
+You see the mist.~
+~
+0 -1 15908
+DDIR_SOUTH
+You see the mist.~
+~
+0 -1 15901
+DDIR_WEST
+You see the mist.~
+~
+0 -1 15903
+S
+#15907
+Floating in the Mist~
+You don't seem to be able to see anything through this mist.
+Exits lead in all directions.~
+159 ROOM_DARK|ROOM_NO_RECALL SECT_WATER_NOSWIM
+DDIR_NORTH
+You see the mist.~
+~
+0 -1 15903
+DDIR_EAST
+You see the mist.~
+~
+0 -1 15902
+DDIR_SOUTH
+You see the mist.~
+~
+0 -1 15909
+DDIR_WEST
+You see the mist.~
+~
+0 -1 15905
+S
+#15908
+Floating in the Mist~
+You don't seem to be able to see anything through this mist.
+Exits lead in all directions.~
+159 ROOM_DARK|ROOM_NO_RECALL SECT_WATER_NOSWIM
+DDIR_NORTH
+You see the mist.~
+~
+0 -1 15908
+DDIR_EAST
+You see the mist.~
+~
+0 -1 15904
+DDIR_SOUTH
+You see the mist.~
+~
+0 -1 15909
+DDIR_WEST
+You see the mist.~
+~
+0 -1 15907
+S
+#15909
+Floating in the Mist~
+You don't seem to be able to see anything through this mist.
+Exits lead in all directions.~
+159 ROOM_DARK|ROOM_NO_RECALL SECT_WATER_NOSWIM
+DDIR_NORTH
+You see the mist.~
+~
+0 -1 15902
+DDIR_EAST
+You see the mist.~
+~
+0 -1 15907
+DDIR_SOUTH
+You see the mist.~
+~
+0 -1 10703
+DDIR_WEST
+You see the mist.~
+~
+0 -1 15906
+S
+#15910
+Shallow Water~
+You find youself standing in some shallow water at the edge of a large,
+strange island, to the north.  South of you is a lot of mist covered water,
+and you can't really make out anything.~
+159 ROOM_DARK|ROOM_NO_MOB SECT_WATER_SWIM
+DDIR_NORTH
+You see the mysterious island.~
+~
+0 -1 15911
+DDIR_SOUTH
+You see the mist.~
+~
+0 -1 15900
+S
+#15911
+The Beach~
+You're standing on the beach of Troll Island.  From here you can see some
+of the island.  It's definately tropical, and has very tall soft grass
+covering nearly all of it.  Trails from here lead east and west.~
+159 ROOM_NO_MOB SECT_CITY
+DDIR_EAST
+A trail leads that way.~
+~
+0 -1 15912
+DDIR_SOUTH
+You see shallow water.~
+~
+0 -1 15910
+DDIR_WEST
+A trail leads that way.~
+~
+0 -1 15913
+S
+#15912
+Walking on Troll Island~
+You're walking around on Troll Island.  Tall grass grips your boots, and you
+occasionally see a tree.  The trail you're on is wide enough for a few people
+to walk abreast.  The trail here continues to the north and west.~
+159 0 SECT_CITY
+DDIR_NORTH
+A trail leads that way.~
+~
+0 -1 15917
+DDIR_WEST
+A trail leads that way.~
+~
+0 -1 15911
+S
+#15913
+Walking on Troll Island~
+You're walking around on Troll Island.  Tall grass grips your boots, and you
+occasionally see a tree.  The trail you're on is wide enough for a few people
+to walk abreast.  The trail here continues to the north and east.~
+159 0 SECT_CITY
+DDIR_NORTH
+A trail leads that way.~
+~
+0 -1 15915
+DDIR_EAST
+A trail leads that way.~
+~
+0 -1 15911
+S
+#15914
+Walking on Troll Island~
+You're walking around on Troll Island.  Tall grass grips your boots, and you
+occasionally see a tree.  The trail you're on is wide enough for a few people
+to walk abreast.  The trail here continues to the north and east.~
+159 0 SECT_CITY
+DDIR_NORTH
+A trail leads that way.~
+~
+0 -1 15919
+DDIR_EAST
+A trail leads that way.~
+~
+0 -1 15915
+S
+#15915
+Walking on Troll Island~
+You're walking around on Troll Island.  Tall grass grips your boots, and you
+occasionally see a tree.  The trail you're on is wide enough for a few people
+to walk abreast.  The trail here continues in all directions.~
+159 0 SECT_CITY
+DDIR_NORTH
+A trail leads that way.~
+~
+0 -1 15920
+DDIR_EAST
+A trail leads that way.~
+~
+0 -1 15916
+DDIR_SOUTH
+A trail leads that way.~
+~
+0 -1 15913
+DDIR_WEST
+A trail leads that way.~
+~
+0 -1 15915
+S
+#15916
+Walking on Troll Island~
+You're walking around on Troll Island.  Tall grass grips your boots, and you
+occasionally see a tree.  The trail you're on is wide enough for a few people
+to walk abreast.  The trail here continues to the north, east and west.~
+159 0 SECT_CITY
+DDIR_NORTH
+A trail leads that way.~
+~
+0 -1 15921
+DDIR_EAST
+A trail leads that way.~
+~
+0 -1 15917
+DDIR_WEST
+A trail leads that way.~
+~
+0 -1 15915
+S
+#15917
+Walking on Troll Island~
+You're walking around on Troll Island.  Tall grass grips your boots, and you
+occasionally see a tree.  The trail you're on is wide enough for a few people
+to walk abreast.  The trail here continues in all directions.~
+159 0 SECT_CITY
+DDIR_NORTH
+A trail leads that way.~
+~
+0 -1 15922
+DDIR_EAST
+A trail leads that way.~
+~
+0 -1 15918
+DDIR_SOUTH
+A trail leads that way.~
+~
+0 -1 15912
+DDIR_WEST
+A trail leads that way.~
+~
+0 -1 15916
+S
+#15918
+Walking on Troll Island~
+You're walking around on Troll Island.  Tall grass grips your boots, and you
+occasionally see a tree.  The trail you're on is wide enough for a few people
+to walk abreast.  The trail here continues to the north, east and west.~
+159 0 SECT_CITY
+DDIR_NORTH
+A trail leads that way.~
+~
+0 -1 15923
+DDIR_EAST
+A trail leads that way.~
+~
+0 -1 15934
+DDIR_WEST
+A trail leads that way.~
+~
+0 -1 15917
+S
+#15919
+Walking on Troll Island~
+You're walking around on Troll Island.  Tall grass grips your boots, and you
+occasionally see a tree.  The trail you're on is wide enough for a few people
+to walk abreast.  The trail here continues to the south and east.~
+159 0 SECT_CITY
+DDIR_EAST
+A trail leads that way.~
+~
+0 -1 15920
+DDIR_SOUTH
+A trail leads that way.~
+~
+0 -1 15914
+S
+#15920
+Walking on Troll Island~
+You're walking around on Troll Island.  Tall grass grips your boots, and you
+occasionally see a tree.  The trail you're on is wide enough for a few people
+to walk abreast.  The trail here continues to the north, south and west.~
+159 0 SECT_CITY
+DDIR_NORTH
+A trail leads that way.~
+~
+0 -1 15925
+DDIR_SOUTH
+A trail leads that way.~
+~
+0 -1 15915
+DDIR_WEST
+A trail leads that way.~
+~
+0 -1 15919
+S
+#15921
+Walking on Troll Island~
+You're walking around on Troll Island.  Tall grass grips your boots, and you
+occasionally see a tree.  The trail you're on is wide enough for a few people
+to walk abreast.  The trail here continues to the north, east and south.  Up
+from here you see a magnificent set of stairs leading to a large temple.~
+159 0 SECT_CITY
+DDIR_NORTH
+A trail leads that way.~
+~
+0 -1 15926
+DDIR_EAST
+A trail leads that way.~
+~
+0 -1 15922
+DDIR_SOUTH
+A trail leads that way.~
+~
+0 -1 15916
+DDIR_UP
+You see a magnificent temple.~
+~
+0 -1 15939
+S
+#15922
+Walking on Troll Island~
+You're walking around on Troll Island.  Tall grass grips your boots, and you
+occasionally see a tree.  The trail you're on is wide enough for a few people
+to walk abreast.  The trail here continues in all directions.~
+159 0 SECT_CITY
+DDIR_NORTH
+A trail leads that way.~
+~
+0 -1 15927
+DDIR_EAST
+A trail leads that way.~
+~
+0 -1 15923
+DDIR_SOUTH
+A trail leads that way.~
+~
+0 -1 15917
+DDIR_WEST
+A trail leads that way.~
+~
+0 -1 15921
+S
+#15923
+Walking on Troll Island~
+You're walking around on Troll Island.  Tall grass grips your boots, and you
+occasionally see a tree.  The trail you're on is wide enough for a few people
+to walk abreast.  The trail here continues in all directions.~
+159 0 SECT_CITY
+DDIR_NORTH
+A trail leads that way.~
+~
+0 -1 15928
+DDIR_EAST
+A trail leads that way.~
+~
+0 -1 15924
+DDIR_SOUTH
+A trail leads that way.~
+~
+0 -1 15918
+DDIR_WEST
+A trail leads that way.~
+~
+0 -1 15922
+S
+#15924
+Walking on Troll Island~
+You're walking around on Troll Island.  Tall grass grips your boots, and you
+occasionally see a tree.  The trail you're on is wide enough for a few people
+to walk abreast.  The trail here continues in all directions.~
+159 0 SECT_CITY
+DDIR_NORTH
+A trail leads that way.~
+~
+0 -1 15929
+DDIR_EAST
+A trail leads that way.~
+~
+0 -1 15932
+DDIR_SOUTH
+A trail leads that way.~
+~
+0 -1 15934
+DDIR_WEST
+A trail leads that way.~
+~
+0 -1 15923
+S
+#15925
+Walking on Troll Island~
+You're walking around on Troll Island.  Tall grass grips your boots, and you
+occasionally see a tree.  The trail you're on is wide enough for a few people
+to walk abreast.  The trail here continues to the east and south.~
+159 0 SECT_CITY
+DDIR_EAST
+A trail leads that way.~
+~
+0 -1 15926
+DDIR_SOUTH
+A trail leads that way.~
+~
+0 -1 15920
+S
+#15926
+Walking on Troll Island~
+You're walking around on Troll Island.  Tall grass grips your boots, and you
+occasionally see a tree.  The trail you're on is wide enough for a few people
+to walk abreast.  The trail here continues to the south, east and west.~
+159 0 SECT_CITY
+DDIR_EAST
+A trail leads that way.~
+~
+0 -1 15927
+DDIR_SOUTH
+A trail leads that way.~
+~
+0 -1 15921
+DDIR_WEST
+A trail leads that way.~
+~
+0 -1 15925
+S
+#15927
+Walking on Troll Island~
+You're walking around on Troll Island.  Tall grass grips your boots, and you
+occasionally see a tree.  The trail you're on is wide enough for a few people
+to walk abreast.  The trail here continues to the north, south and west.~
+159 0 SECT_CITY
+DDIR_NORTH
+A trail leads that way.~
+~
+0 -1 15930
+DDIR_SOUTH
+A trail leads that way.~
+~
+0 -1 15922
+DDIR_WEST
+A trail leads that way.~
+~
+0 -1 15926
+S
+#15928
+Walking on Troll Island~
+You're walking around on Troll Island.  Tall grass grips your boots, and you
+occasionally see a tree.  The trail you're on is wide enough for a few people
+to walk abreast.  The trail here continues to the north, east and south.~
+159 0 SECT_CITY
+DDIR_NORTH
+A trail leads that way.~
+~
+0 -1 15931
+DDIR_EAST
+A trail leads that way.~
+~
+0 -1 15929
+DDIR_SOUTH
+A trail leads that way.~
+~
+0 -1 15923
+S
+#15929
+Walking on Troll Island~
+You're walking around on Troll Island.  Tall grass grips your boots, and you
+occasionally see a tree.  The trail you're on is wide enough for a few people
+to walk abreast.  The trail here continues to the south and west.~
+159 0 SECT_CITY
+DDIR_SOUTH
+A trail leads that way.~
+~
+0 -1 15924
+DDIR_WEST
+A trail leads that way.~
+~
+0 -1 15928
+S
+#15930
+Walking on Troll Island~
+You're walking around on Troll Island.  Tall grass grips your boots, and you
+occasionally see a tree.  The trail you're on is wide enough for a few people
+to walk abreast.  The trail here continues to the south and east.~
+159 0 SECT_CITY
+DDIR_EAST
+A trail leads that way.~
+~
+0 -1 15931
+DDIR_SOUTH
+A trail leads that way.~
+~
+0 -1 15927
+S
+#15931
+Walking on Troll Island~
+You're walking around on Troll Island.  Tall grass grips your boots, and you
+occasionally see a tree.  The trail you're on is wide enough for a few people
+to walk abreast.  The trail here continues to the south and west.~
+159 0 SECT_CITY
+DDIR_SOUTH
+A trail leads that way.~
+~
+0 -1 15928
+DDIR_WEST
+A trail leads that way.~
+~
+0 -1 15930
+S
+#15932
+Walking on Troll Island~
+You're walking around on Troll Island.  Tall grass grips your boots, and you
+occasionally see a tree.  The trail you're on is wide enough for a few people
+to walk abreast.  The trail here continues to the east and west.~
+159 0 SECT_CITY
+DDIR_EAST
+A trail leads that way.~
+~
+0 -1 15933
+DDIR_WEST
+A trail leads that way.~
+~
+0 -1 15924
+S
+#15933
+Walking on Troll Island~
+You're walking around on Troll Island.  Tall grass grips your boots, and you
+occasionally see a tree.  The trail you're on is wide enough for a few people
+to walk abreast.  The trail here continues to the south and west.~
+159 0 SECT_CITY
+DDIR_SOUTH
+A trail leads that way.~
+~
+0 -1 15936
+DDIR_WEST
+A trail leads that way.~
+~
+0 -1 15932
+S
+#15934
+Walking on Troll Island~
+You're walking around on Troll Island.  Tall grass grips your boots, and you
+occasionally see a tree.  The trail you're on is wide enough for a few people
+to walk abreast.  The trail here continues in all directions.~
+159 0 SECT_CITY
+DDIR_NORTH
+A trail leads that way.~
+~
+0 -1 15924
+DDIR_EAST
+A trail leads that way.~
+~
+0 -1 15935
+DDIR_SOUTH
+A trail leads that way.~
+~
+0 -1 15937
+DDIR_WEST
+A trail leads that way.~
+~
+0 -1 15918
+S
+#15935
+Walking on Troll Island~
+You're walking around on Troll Island.  Tall grass grips your boots, and you
+occasionally see a tree.  The trail you're on is wide enough for a few people
+to walk abreast.  The trail here continues to the east, south and west.~
+159 0 SECT_CITY
+DDIR_EAST
+A trail leads that way.~
+~
+0 -1 15936
+DDIR_SOUTH
+A trail leads that way.~
+~
+0 -1 15938
+DDIR_WEST
+A trail leads that way.~
+~
+0 -1 15934
+S
+#15936
+Walking on Troll Island~
+You're walking around on Troll Island.  Tall grass grips your boots, and you
+occasionally see a tree.  The trail you're on is wide enough for a few people
+to walk abreast.  The trail here continues to the north and west.~
+159 0 SECT_CITY
+DDIR_NORTH
+A trail leads that way.~
+~
+0 -1 15933
+DDIR_WEST
+A trail leads that way.~
+~
+0 -1 15935
+S
+#15937
+Walking on Troll Island~
+You're walking around on Troll Island.  Tall grass grips your boots, and you
+occasionally see a tree.  The trail you're on is wide enough for a few people
+to walk abreast.  The trail here continues to the north and east.~
+159 0 SECT_CITY
+DDIR_NORTH
+A trail leads that way.~
+~
+0 -1 15934
+DDIR_EAST
+A trail leads that way.~
+~
+0 -1 15938
+S
+#15938
+Walking on Troll Island~
+You're walking around on Troll Island.  Tall grass grips your boots, and you
+occasionally see a tree.  The trail you're on is wide enough for a few people
+to walk abreast.  The trail here continues to the north and west.~
+159 0 SECT_CITY
+DDIR_NORTH
+A trail leads that way.~
+~
+0 -1 15935
+DDIR_WEST
+A trail leads that way.~
+~
+0 -1 15937
+S
+#15939
+Temple of the Trolls~
+You find yourself walking around a beautiful temple.  It bears no sharp edges
+or mis-shapen steps, as you might expect to find from the troll race.  Upon
+examining the material used for the temple, you can, for the most part, see
+a reflection of yourself in it, only you look more troll-like than anything
+else.  The temple continues to the north.  Down you see the island.~
+159 0 SECT_CITY
+DDIR_NORTH
+You see more of the temple.~
+~
+0 -1 15940
+DDIR_DOWN
+You see the island.~
+~
+0 -1 15921
+S
+#15940
+Temple of the Trolls~
+You find yourself walking around a beautiful temple.  It bears no sharp edges
+or mis-shapen steps, as you might expect to find from the troll race.  Upon
+examining the material used for the temple, you can, for the most part, see
+a reflection of yourself in it, only you look more troll-like than anything
+else.  The temple continues in all directions.~
+159 0 SECT_CITY
+DDIR_NORTH
+You see more of the temple.~
+~
+0 -1 15956
+DDIR_EAST
+You see more of the temple.~
+~
+0 -1 15941
+DDIR_SOUTH
+You see more of the temple.~
+~
+0 -1 15939
+DDIR_WEST
+You see more of the temple.~
+~
+0 -1 15955
+S
+#15941
+Temple of the Trolls~
+You find yourself walking around a beautiful temple.  It bears no sharp edges
+or mis-shapen steps, as you might expect to find from the troll race.  Upon
+examining the material used for the temple, you can, for the most part, see
+a reflection of yourself in it, only you look more troll-like than anything
+else.  The temple continues to the east and west.~
+159 0 SECT_CITY
+DDIR_EAST
+You see more of the temple.~
+~
+0 -1 15942
+DDIR_WEST
+You see more of the temple.~
+~
+0 -1 15940
+S
+#15942
+Temple of the Trolls~
+You find yourself walking around a beautiful temple.  It bears no sharp edges
+or mis-shapen steps, as you might expect to find from the troll race.  Upon
+examining the material used for the temple, you can, for the most part, see
+a reflection of yourself in it, only you look more troll-like than anything
+else.  The temple continues to the north and west.~
+159 0 SECT_CITY
+DDIR_NORTH
+You see more of the temple.~
+~
+0 -1 15943
+DDIR_WEST
+You see more of the temple.~
+~
+0 -1 15941
+S
+#15943
+Temple of the Trolls~
+You find yourself walking around a beautiful temple.  It bears no sharp edges
+or mis-shapen steps, as you might expect to find from the troll race.  Upon
+examining the material used for the temple, you can, for the most part, see
+a reflection of yourself in it, only you look more troll-like than anything
+else.  The temple continues to the north and south.~
+159 0 SECT_CITY
+DDIR_NORTH
+You see more of the temple.~
+~
+0 -1 15944
+DDIR_SOUTH
+You see more of the temple.~
+~
+0 -1 15942
+S
+#15944
+Temple of the Trolls~
+You find yourself walking around a beautiful temple.  It bears no sharp edges
+or mis-shapen steps, as you might expect to find from the troll race.  Upon
+examining the material used for the temple, you can, for the most part, see
+a reflection of yourself in it, only you look more troll-like than anything
+else.  The temple continues to the north, south and west.~
+159 0 SECT_CITY
+DDIR_NORTH
+You see more of the temple.~
+~
+0 -1 15945
+DDIR_SOUTH
+You see more of the temple.~
+~
+0 -1 15943
+DDIR_WEST
+You see more of the temple.~
+~
+0 -1 15957
+S
+#15945
+Temple of the Trolls~
+You find yourself walking around a beautiful temple.  It bears no sharp edges
+or mis-shapen steps, as you might expect to find from the troll race.  Upon
+examining the material used for the temple, you can, for the most part, see
+a reflection of yourself in it, only you look more troll-like than anything
+else.  The temple continues to the north and south.~
+159 0 SECT_CITY
+DDIR_NORTH
+You see more of the temple.~
+~
+0 -1 15946
+DDIR_SOUTH
+You see more of the temple.~
+~
+0 -1 15944
+S
+#15946
+Temple of the Trolls~
+You find yourself walking around a beautiful temple.  It bears no sharp edges
+or mis-shapen steps, as you might expect to find from the troll race.  Upon
+examining the material used for the temple, you can, for the most part, see
+a reflection of yourself in it, only you look more troll-like than anything
+else.  The temple continues to the south and west.~
+159 0 SECT_CITY
+DDIR_SOUTH
+You see more of the temple.~
+~
+0 -1 15945
+DDIR_WEST
+You see more of the temple.~
+~
+0 -1 15947
+S
+#15947
+Temple of the Trolls~
+You find yourself walking around a beautiful temple.  It bears no sharp edges
+or mis-shapen steps, as you might expect to find from the troll race.  Upon
+examining the material used for the temple, you can, for the most part, see
+a reflection of yourself in it, only you look more troll-like than anything
+else.  The temple continues to the east and west.~
+159 0 SECT_CITY
+DDIR_EAST
+You see more of the temple.~
+~
+0 -1 15946
+DDIR_WEST
+You see more of the temple.~
+~
+0 -1 15948
+S
+#15948
+Temple of the Trolls~
+You find yourself walking around a beautiful temple.  It bears no sharp edges
+or mis-shapen steps, as you might expect to find from the troll race.  Upon
+examining the material used for the temple, you can, for the most part, see
+a reflection of yourself in it, only you look more troll-like than anything
+else.  The temple continues to the east, south and west.~
+159 0 SECT_CITY
+DDIR_EAST
+You see more of the temple.~
+~
+0 -1 15947
+DDIR_SOUTH
+You see more of the temple.~
+~
+0 -1 15958
+DDIR_WEST
+You see more of the temple.~
+~
+0 -1 15949
+S
+#15949
+Temple of the Trolls~
+You find yourself walking around a beautiful temple.  It bears no sharp edges
+or mis-shapen steps, as you might expect to find from the troll race.  Upon
+examining the material used for the temple, you can, for the most part, see
+a reflection of yourself in it, only you look more troll-like than anything
+else.  The temple continues to the east and west.~
+159 0 SECT_CITY
+DDIR_EAST
+You see more of the temple.~
+~
+0 -1 15948
+DDIR_WEST
+You see more of the temple.~
+~
+0 -1 15950
+S
+#15950
+Temple of the Trolls~
+You find yourself walking around a beautiful temple.  It bears no sharp edges
+or mis-shapen steps, as you might expect to find from the troll race.  Upon
+examining the material used for the temple, you can, for the most part, see
+a reflection of yourself in it, only you look more troll-like than anything
+else.  The temple continues to the east and south.~
+159 0 SECT_CITY
+DDIR_EAST
+You see more of the temple.~
+~
+0 -1 15949
+DDIR_SOUTH
+You see more of the temple.~
+~
+0 -1 15951
+S
+#15951
+Temple of the Trolls~
+You find yourself walking around a beautiful temple.  It bears no sharp edges
+or mis-shapen steps, as you might expect to find from the troll race.  Upon
+examining the material used for the temple, you can, for the most part, see
+a reflection of yourself in it, only you look more troll-like than anything
+else.  The temple continues to the north and south.~
+159 0 SECT_CITY
+DDIR_NORTH
+You see more of the temple.~
+~
+0 -1 15950
+DDIR_SOUTH
+You see more of the temple.~
+~
+0 -1 15952
+S
+#15952
+Temple of the Trolls~
+You find yourself walking around a beautiful temple.  It bears no sharp edges
+or mis-shapen steps, as you might expect to find from the troll race.  Upon
+examining the material used for the temple, you can, for the most part, see
+a reflection of yourself in it, only you look more troll-like than anything
+else.  The temple continues to the north, east and south.~
+159 0 SECT_CITY
+DDIR_NORTH
+You see more of the temple.~
+~
+0 -1 15951
+DDIR_EAST
+You see more of the temple.~
+~
+0 -1 15959
+DDIR_SOUTH
+You see more of the temple.~
+~
+0 -1 15953
+S
+#15953
+Temple of the Trolls~
+You find yourself walking around a beautiful temple.  It bears no sharp edges
+or mis-shapen steps, as you might expect to find from the troll race.  Upon
+examining the material used for the temple, you can, for the most part, see
+a reflection of yourself in it, only you look more troll-like than anything
+else.  The temple continues to the north and south.~
+159 0 SECT_CITY
+DDIR_NORTH
+You see more of the temple.~
+~
+0 -1 15952
+DDIR_SOUTH
+You see more of the temple.~
+~
+0 -1 15954
+S
+#15954
+Temple of the Trolls~
+You find yourself walking around a beautiful temple.  It bears no sharp edges
+or mis-shapen steps, as you might expect to find from the troll race.  Upon
+examining the material used for the temple, you can, for the most part, see
+a reflection of yourself in it, only you look more troll-like than anything
+else.  The temple continues to the north and east.~
+159 0 SECT_CITY
+DDIR_NORTH
+You see more of the temple.~
+~
+0 -1 15953
+DDIR_EAST
+You see more of the temple.~
+~
+0 -1 15955
+S
+#15955
+Temple of the Trolls~
+You find yourself walking around a beautiful temple.  It bears no sharp edges
+or mis-shapen steps, as you might expect to find from the troll race.  Upon
+examining the material used for the temple, you can, for the most part, see
+a reflection of yourself in it, only you look more troll-like than anything
+else.  The temple continues to the east and west.~
+159 0 SECT_CITY
+DDIR_EAST
+You see more of the temple.~
+~
+0 -1 15940
+DDIR_WEST
+You see more of the temple.~
+~
+0 -1 15954
+S
+#15956
+Temple of the Trolls~
+You find yourself walking around a beautiful temple.  It bears no sharp edges
+or mis-shapen steps, as you might expect to find from the troll race.  Upon
+examining the material used for the temple, you can, for the most part, see
+a reflection of yourself in it, only you look more troll-like than anything
+else.  The temple continues to the north and south.~
+159 0 SECT_CITY
+DDIR_NORTH
+You see more of the temple.~
+~
+0 -1 15960
+DDIR_SOUTH
+You see more of the temple.~
+~
+0 -1 15940
+S
+#15957
+Temple of the Trolls~
+You find yourself walking around a beautiful temple.  It bears no sharp edges
+or mis-shapen steps, as you might expect to find from the troll race.  Upon
+examining the material used for the temple, you can, for the most part, see
+a reflection of yourself in it, only you look more troll-like than anything
+else.  The temple continues to the east and west.~
+159 0 SECT_CITY
+DDIR_EAST
+You see more of the temple.~
+~
+0 -1 15944
+DDIR_WEST
+You see more of the temple.~
+~
+0 -1 15960
+S
+#15958
+Temple of the Trolls~
+You find yourself walking around a beautiful temple.  It bears no sharp edges
+or mis-shapen steps, as you might expect to find from the troll race.  Upon
+examining the material used for the temple, you can, for the most part, see
+a reflection of yourself in it, only you look more troll-like than anything
+else.  The temple continues to the north and south.~
+159 0 SECT_CITY
+DDIR_NORTH
+You see more of the temple.~
+~
+0 -1 15948
+DDIR_SOUTH
+You see more of the temple.~
+~
+0 -1 15960
+S
+#15959
+Temple of the Trolls~
+You find yourself walking around a beautiful temple.  It bears no sharp edges
+or mis-shapen steps, as you might expect to find from the troll race.  Upon
+examining the material used for the temple, you can, for the most part, see
+a reflection of yourself in it, only you look more troll-like than anything
+else.  The temple continues to the east and west.~
+159 0 SECT_CITY
+DDIR_EAST
+You see more of the temple.~
+~
+0 -1 15960
+DDIR_WEST
+You see more of the temple.~
+~
+0 -1 15952
+S
+#15960
+Pinnacle of the Temple of the Trolls~
+You stand at the peak of the temple, and you get the breath-taking view of
+the entire island.  Surrounding the island you can only see a mist-covered
+sea, but the island is totally clear of mist, and all the lush greenery
+makes you wish you lived here.  Stairs lead back down in all directions.~
+159 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+You see more of the temple.~
+~
+0 -1 15958
+DDIR_EAST
+You see more of the temple.~
+~
+0 -1 15957
+DDIR_SOUTH
+You see more of the temple.~
+~
+0 -1 15956
+DDIR_WEST
+You see more of the temple.~
+~
+0 -1 15959
+S
+#0
+
+
+
+
+#RESETS
+M 0 10701   2 15900 ;            A Sea Monster in Floating in the Mist     
+M 0 10701   2 15900 ;            A Sea Monster in Floating in the Mist     
+M 0 10701   2 15901 ;            A Sea Monster in Floating in the Mist     
+M 0 10701   2 15901 ;            A Sea Monster in Floating in the Mist     
+M 0 10701   2 15902 ;            A Sea Monster in Floating in the Mist     
+M 0 10701   2 15902 ;            A Sea Monster in Floating in the Mist     
+M 0 10701   2 15903 ;            A Sea Monster in Floating in the Mist     
+M 0 10701   2 15903 ;            A Sea Monster in Floating in the Mist     
+M 0 10701   2 15904 ;            A Sea Monster in Floating in the Mist     
+M 0 10701   2 15904 ;            A Sea Monster in Floating in the Mist     
+M 0 10701   2 15905 ;            A Sea Monster in Floating in the Mist     
+M 0 10701   2 15905 ;            A Sea Monster in Floating in the Mist     
+M 0 10701   2 15906 ;            A Sea Monster in Floating in the Mist     
+M 0 10701   2 15906 ;            A Sea Monster in Floating in the Mist     
+M 0 10701   2 15907 ;            A Sea Monster in Floating in the Mist     
+M 0 10701   2 15907 ;            A Sea Monster in Floating in the Mist     
+M 0 10701   2 15908 ;            A Sea Monster in Floating in the Mist     
+M 0 10701   2 15908 ;            A Sea Monster in Floating in the Mist     
+M 0 10701   2 15909 ;            A Sea Monster in Floating in the Mist     
+M 0 10701   2 15909 ;            A Sea Monster in Floating in the Mist     
+M 0 15900   2 15911 ;     A Troll Island Guard in The Beach                
+M 0 15900   2 15911 ;     A Troll Island Guard in The Beach                
+M 0 15900   2 15935 ;     A Troll Island Guard in Walking on Troll Island  
+M 0 15900   2 15935 ;     A Troll Island Guard in Walking on Troll Island  
+E 1 15917  5 17 ;equip a troll's sceptre        
+M 0 15900   1 15940 ;     A Troll Island Guard in Temple of the Trolls     
+E 1 15901  5 0 ;equip a troll's light stick    
+M 0 15900   1 15941 ;     A Troll Island Guard in Temple of the Trolls     
+E 1 15902  5 ITEM_WEAR_TAKE ;equip a troll's black ring     
+M 0 15900   1 15942 ;     A Troll Island Guard in Temple of the Trolls     
+E 1 15903  5 ITEM_WEAR_FINGER ;equip a troll's brown ring     
+M 0 15900   1 15943 ;     A Troll Island Guard in Temple of the Trolls     
+E 1 15904  5 3 ;equip a troll's broach         
+M 0 15900   1 15944 ;     A Troll Island Guard in Temple of the Trolls     
+E 1 15905  5 ITEM_WEAR_NECK ;equip a troll's cloak          
+M 0 15900   1 15945 ;     A Troll Island Guard in Temple of the Trolls     
+E 1 15906  5 5 ;equip a troll's suit of armor  
+M 0 15900   1 15946 ;     A Troll Island Guard in Temple of the Trolls     
+E 1 15907  5 6 ;equip a troll's helm           
+M 0 15900   1 15947 ;     A Troll Island Guard in Temple of the Trolls     
+E 1 15908  5 7 ;equip a troll's pair of leg gua
+M 0 15900   1 15948 ;     A Troll Island Guard in Temple of the Trolls     
+E 1 15909  5 ITEM_WEAR_BODY ;equip a troll's pair of boots  
+M 0 15900   1 15949 ;     A Troll Island Guard in Temple of the Trolls     
+E 1 15910  5 9 ;equip a troll's pair of gloves 
+M 0 15900   1 15950 ;     A Troll Island Guard in Temple of the Trolls     
+E 1 15911  5 10 ;equip a troll's pair of arm gua
+M 0 15900   1 15951 ;     A Troll Island Guard in Temple of the Trolls     
+E 1 15912  5 11 ;equip a troll's shield         
+M 0 15900   1 15952 ;     A Troll Island Guard in Temple of the Trolls     
+E 1 15913  5 12 ;equip a troll's robe           
+M 0 15900   1 15953 ;     A Troll Island Guard in Temple of the Trolls     
+E 1 15914  5 13 ;equip a troll's belt           
+M 0 15900   1 15954 ;     A Troll Island Guard in Temple of the Trolls     
+E 1 15915  5 14 ;equip a troll's black bracelet 
+M 0 15900   1 15955 ;     A Troll Island Guard in Temple of the Trolls     
+E 1 15916  5 15 ;equip a troll's brown bracelet 
+M 0 15900   2 15956 ;     A Troll Island Guard in Temple of the Trolls     
+M 0 15900   2 15956 ;     A Troll Island Guard in Temple of the Trolls     
+M 0 15900   2 15957 ;     A Troll Island Guard in Temple of the Trolls     
+M 0 15900   2 15957 ;     A Troll Island Guard in Temple of the Trolls     
+M 0 15900   2 15958 ;     A Troll Island Guard in Temple of the Trolls     
+M 0 15900   2 15958 ;     A Troll Island Guard in Temple of the Trolls     
+M 0 15900   2 15959 ;     A Troll Island Guard in Temple of the Trolls     
+M 0 15900   2 15959 ;     A Troll Island Guard in Temple of the Trolls     
+M 0 15900   2 15960 ;     A Troll Island Guard in Pinnacle of the Temple of
+M 0 15900   2 15960 ;     A Troll Island Guard in Pinnacle of the Temple of
+M 0 15900   2 15960 ;     A Troll Island Guard in Pinnacle of the Temple of
+M 0 15901   1 15912 ;             A Grey Troll in Walking on Troll Island  
+M 0 15901   1 15913 ;             A Grey Troll in Walking on Troll Island  
+M 0 15901   1 15914 ;             A Grey Troll in Walking on Troll Island  
+M 0 15901   1 15916 ;             A Grey Troll in Walking on Troll Island  
+M 0 15901   1 15918 ;             A Grey Troll in Walking on Troll Island  
+M 0 15901   1 15920 ;             A Grey Troll in Walking on Troll Island  
+M 0 15901   1 15922 ;             A Grey Troll in Walking on Troll Island  
+M 0 15901   1 15924 ;             A Grey Troll in Walking on Troll Island  
+M 0 15901   1 15926 ;             A Grey Troll in Walking on Troll Island  
+M 0 15901   1 15928 ;             A Grey Troll in Walking on Troll Island  
+M 0 15901   1 15930 ;             A Grey Troll in Walking on Troll Island  
+M 0 15902   1 15915 ;            A Black Troll in Walking on Troll Island  
+M 0 15902   1 15917 ;            A Black Troll in Walking on Troll Island  
+M 0 15902   1 15919 ;            A Black Troll in Walking on Troll Island  
+M 0 15902   1 15921 ;            A Black Troll in Walking on Troll Island  
+M 0 15902   1 15923 ;            A Black Troll in Walking on Troll Island  
+M 0 15902   1 15925 ;            A Black Troll in Walking on Troll Island  
+M 0 15902   1 15927 ;            A Black Troll in Walking on Troll Island  
+M 0 15902   1 15929 ;            A Black Troll in Walking on Troll Island  
+M 0 15902   1 15931 ;            A Black Troll in Walking on Troll Island  
+M 0 15903   1 15960 ;           The Troll King in Pinnacle of the Temple of
+E 1 15901  5 0 ;equip a troll's light stick    
+E 1 15902  5 ITEM_WEAR_TAKE ;equip a troll's black ring     
+E 1 15903  5 ITEM_WEAR_FINGER ;equip a troll's brown ring     
+E 1 15904  5 3 ;equip a troll's broach         
+E 1 15905  5 ITEM_WEAR_NECK ;equip a troll's cloak          
+E 1 15906  5 5 ;equip a troll's suit of armor  
+E 1 15907  5 6 ;equip a troll's helm           
+E 1 15908  5 7 ;equip a troll's pair of leg gua
+E 1 15909  5 ITEM_WEAR_BODY ;equip a troll's pair of boots  
+E 1 15910  5 9 ;equip a troll's pair of gloves 
+E 1 15911  5 10 ;equip a troll's pair of arm gua
+E 1 15912  5 11 ;equip a troll's shield         
+E 1 15913  5 12 ;equip a troll's robe           
+E 1 15914  5 13 ;equip a troll's belt           
+E 1 15915  5 14 ;equip a troll's black bracelet 
+E 1 15916  5 15 ;equip a troll's brown bracelet 
+E 1 15917  5 17 ;equip a troll's sceptre        
+M 0 15904   1 15913 ;            A Green Troll in Walking on Troll Island  
+M 0 15904   1 15914 ;            A Green Troll in Walking on Troll Island  
+M 0 15904   1 15917 ;            A Green Troll in Walking on Troll Island  
+M 0 15904   1 15920 ;            A Green Troll in Walking on Troll Island  
+M 0 15904   1 15923 ;            A Green Troll in Walking on Troll Island  
+M 0 15904   1 15926 ;            A Green Troll in Walking on Troll Island  
+M 0 15904   1 15929 ;            A Green Troll in Walking on Troll Island  
+M 0 15905   2 15932 ;            A Troll Child in Walking on Troll Island  
+M 0 15905   2 15932 ;            A Troll Child in Walking on Troll Island  
+M 0 15905   2 15933 ;            A Troll Child in Walking on Troll Island  
+M 0 15905   2 15933 ;            A Troll Child in Walking on Troll Island  
+M 0 15905   2 15934 ;            A Troll Child in Walking on Troll Island  
+M 0 15905   2 15934 ;            A Troll Child in Walking on Troll Island  
+M 0 15905   2 15936 ;            A Troll Child in Walking on Troll Island  
+M 0 15905   2 15936 ;            A Troll Child in Walking on Troll Island  
+M 0 15905   2 15937 ;            A Troll Child in Walking on Troll Island  
+M 0 15905   2 15937 ;            A Troll Child in Walking on Troll Island  
+M 0 15905   2 15938 ;            A Troll Child in Walking on Troll Island  
+M 0 15905   2 15938 ;            A Troll Child in Walking on Troll Island  
+S
+
+
+
+
+#SHOPS
+0
+
+
+
+
+#SPECIALS
+S
+
+
+
+
+#$

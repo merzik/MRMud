@@ -1,0 +1,1291 @@
+#AREA In the Air~
+
+#AUTHORS Copper ~
+
+#HELPS
+-1 AIR 'IN THE AIR'~
+IN THE AIR
+This area refers to the magical air above the central city of Chakkor,
+arguably the largest and most common city in the Realms. Certain creatures
+are known to frequent the skies there, including Griffons and Fairy
+Dragons and other winged creatures indigenous to Chakkor and the
+surrounding landscape. It is said that all rainbows begin in Chakkor.
+Perhaps there is some truth in this hearsay.
+
+     This area was originally created by Copper.
+
+     Revised by Emperor on June 4th, 1998.
+
+~
+0 $~
+
+#RANGES 5 10 0 99
+
+#MOBILES
+#1000
+fairy dragon~
+The fairy dragon~
+A fairy dragon is fluttering around here looking for something to do.~
+It's a cute little multi-colored dragon...about 2 feet long. It gracefully
+dances in the air around your head.~
+ACT_STAY_AREA|ACT_SMART
+AFF_DETECT_INVIS|AFF_DETECT_MAGIC|AFF_FLYING
+500 S
+5 0 0 5d5+50 2d4+1
+20 631
+POS_STANDING POS_STANDING SEX_NEUTRAL
+#1001
+baby griffon~
+The baby griffon~
+A baby griffon fumbles around here.~
+The baby only has a partial mane, which is white with little streaks of
+yellow.~
+ACT_STAY_AREA|ACT_SENTINEL AFF_FLYING
+300 S
+8 0 0 1d1+104 2d5+2
+500 1286
+POS_STANDING POS_STANDING SEX_MALE
+#1002
+griffon~
+The griffon~
+A large black winged griffon swoops into an attack.~
+Golden maned and black all over.  It's quite a beautiful creature if not
+for the fact it is hungry and is attacking you!~
+ACT_AGGRESSIVE|ACT_STAY_AREA|ACT_SENTINEL AFF_FLYING
+300 S
+8 0 0 1d1+104 2d5+2
+500 1286
+POS_STANDING POS_STANDING SEX_FEMALE
+#1003
+wind elemental~
+The wind elemental~
+A wind elemental spins in a funnel here.~
+The elemental is an astral creature created out of a gust of magical
+astral drifts on the elemental plane. It has two red eyes that peer out
+from the top of it's wild funnel.~ 
+ACT_STAY_AREA AFF_FLYING
+300 S
+8 0 0 1d1+104 2d5+2
+500 1286
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>rand_prog 15~
+mpecho The wind elemental spins into a maelstrom.
+~
+|
+#1004
+old leprechaun~
+The old leprechaun~
+An old leprechaun sits here, wizened with venerable age.~
+The leprechaun is very old. He has a long grey beard, and sage verdant
+eyes. He is very small yet somehow he intimidates you. He wears the
+traditional garb of a leprechaun, except it is apparent he has not
+been active for some time.~
+ACT_STAY_AREA|ACT_SENTINEL|ACT_SMART
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_SANCTUARY|AFF_TONGUES
+300 S
+20 0 0 1d1+900 2d3+20
+500 1286
+POS_RESTING POS_RESTING SEX_MALE
+>all_greet_prog 100~
+if quest (0, 2, $n) == 0
+ look $n
+ stand
+ look $n
+ smile
+ say Welcome traveler!
+ say Do you come for an attempt on the stone?
+endif
+~
+>speech_prog yes~
+say Excellent!
+say For a thousand years, I have been the guardian of
+say the last house of the world... this small stone house.
+say It is a magical place indeed!
+say All rainbows begin from a sacred room within these walls
+say Within that room is the source of power for all rainbows
+say That source is called: the Blarney Stone
+say It is a sacred stone of secret power,
+say and it can be yours, if you can answer my riddle
+grin
+say If you think you can do it, say 'I can do it'
+~
+>speech_prog p I can do it~
+if quest (0, 2, $n) == 0
+ mpmset $n quest 0 2 1
+ say Excellent!
+ say But I'll only give you the riddle if you are smart. 
+ grin
+else
+endif
+~
+>rand_prog 15~
+tap
+~
+>speech_prog p I am smart~
+if quest (0, 2, $n) == 1
+ mpmset $n quest 0 2 2
+ smile $n
+ say Good!
+ say Very well $n... here is my riddle:
+ say Together, we can never be
+ say When he is there, you won't see me
+ say When I am there, you cannot see
+ say What am I and Who is he?
+endif
+~
+>speech_prog p moon and sun~
+if quest (0, 2, $n) == 2
+ mpmset $n quest 0 2 3
+ mpecho The old leprechaun's eyes open wide!
+ mpecho The old leprechaun nearly falls over.
+ say You've done it! You've solved the riddle!
+ say You may now have access to the secret room
+ say The place where the Blarney Stone is kept
+ say and which you may now receive!
+ say To gain entrance to the chamber 
+ say simply say the word 'kcul'
+endif
+~
+>speech_prog kcul~
+look $n
+stand
+if quest (0, 2, $n) == 3
+ connect 4 1047
+ nod $n
+ mpecho The old leprechaun utters the words, 'riaehtni'.
+ mpforce $n up
+ connect 4 -1
+endif
+~
+|
+#1005
+eagle~
+The eagle~
+An eagle flies here.~
+The eagle has large black and grey wings that give it tremendous soaring
+ability, useful also for snatching food from the ground.~
+ACT_STAY_AREA AFF_FLYING
+300 S
+8 0 0 1d1+104 2d5+2
+500 1286
+POS_STANDING POS_STANDING SEX_MALE
+#0
+
+#OBJECTS
+#1001
+blarney stone~
+the blarney stone~
+A green stone of unknown power lies here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL|ITEM_FLAG_NODROP
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD|ITEM_WEAR_NECK
+1 0 0 0
+1 220000 10
+A
+APPLY_DAMROLL 2
+A
+APPLY_HITROLL 3
+E
+blarney stone~
+The stone gives its bearer strength.~
+#0
+
+#ROOMS
+#1000
+~
+~
+10 0 0
+S
+#1001
+In the air ...~
+You are flying! Currently you are about 40 meters above the ground north
+of the city. It seems like you can see forever!~
+10 0 SECT_AIR
+DDIR_EAST
+More of the same.~
+~
+0 0 1006
+DDIR_SOUTH
+More of the same.~
+~
+0 0 1002
+DDIR_UP
+More of the same.~
+~
+0 0 1021
+DDIR_DOWN
+You see Northern Chakkor.~
+~
+0 -1 9703
+S
+#1002
+In the air ...~
+The air here is choppy, a bit less stable than north, but still easily
+navigable. Below you is the north-central section of Chakkor. You can
+clearly see the Tower of Training in your direct vicinity.~
+10 0 SECT_AIR
+DDIR_NORTH
+More of the same.~
+~
+0 0 1001
+DDIR_EAST
+More of the same.~
+~
+0 0 1007
+DDIR_SOUTH
+More of the same.~
+~
+0 0 1003
+DDIR_UP
+More of the same.~
+~
+0 0 1022
+S
+#1003
+In the air ...~
+From your vantage here you can see the gates of Chakkor and beyond. The
+surrounding landscape is very peaceful, it is quite a sight. You can
+clearly discern how most roads lead towards Chakkor.~
+10 0 SECT_AIR
+DDIR_NORTH
+More of the same.~
+~
+0 0 1002
+DDIR_EAST
+More of the same.~
+~
+0 0 1008
+DDIR_SOUTH
+More of the same.~
+~
+0 0 1004
+DDIR_UP
+More of the same.~
+~
+0 0 1023
+S
+#1004
+In the air ...~
+You encounter a brief gust of hot wind here (most likely a plume from the
+blacksmith's shop) but easily regain your balance. You begin to take
+notice of the unique creatures flying in your vicinity.~
+10 0 SECT_AIR
+DDIR_NORTH
+More of the same.~
+~
+0 0 1003
+DDIR_EAST
+More of the same.~
+~
+0 0 1009
+DDIR_SOUTH
+More of the same.~
+~
+0 0 1005
+DDIR_UP
+More of the same.~
+~
+0 0 1024
+S
+#1005
+In the air ...~
+The smell of Chakkor's alleys seems to float high up towards this part of
+the sky and assail your senses. You notice a patch of trees in the distant
+horizon.~
+10 0 SECT_AIR
+DDIR_NORTH
+More of the same.~
+~
+0 0 1004
+DDIR_EAST
+More of the same.~
+~
+0 0 1010
+DDIR_UP
+More of the same.~
+~
+0 0 1025
+S
+#1006
+In the air ...~
+You can see the Temple of Chaos in your direct vicinity, its evil spires
+buttressing into the red sun, its foundation as solid as lead. Priests and
+slaves come and go.~ 
+10 0 SECT_AIR
+DDIR_EAST
+More of the same.~
+~
+0 0 1011
+DDIR_SOUTH
+More of the same.~
+~
+0 0 1007
+DDIR_WEST
+More of the same.~
+~
+0 0 1001
+DDIR_UP
+More of the same.~
+~
+0 0 1026
+S
+#1007
+In the air ...~
+You are flying! Currently you are about 20 meters above the magic shop.
+It seems like you can see forever!~
+10 0 SECT_AIR
+DDIR_NORTH
+More of the same.~
+~
+0 0 1006
+DDIR_EAST
+More of the same.~
+~
+0 0 1012
+DDIR_SOUTH
+More of the same.~
+~
+0 0 1008
+DDIR_WEST
+More of the same.~
+~
+0 0 1002
+DDIR_UP
+More of the same.~
+~
+0 0 1027
+S
+#1008
+In the air ...~
+You are flying! Currently you are about 40 meters above Main Street.
+It seems like you can see forever!~
+10 0 SECT_AIR
+DDIR_NORTH
+More of the same.~
+~
+0 0 1007
+DDIR_EAST
+More of the same.~
+~
+0 0 1013
+DDIR_SOUTH
+More of the same.~
+~
+0 0 1009
+DDIR_WEST
+More of the same.~
+~
+0 0 1003
+DDIR_UP
+More of the same.~
+~
+0 0 1028
+S
+#1009
+In the air ...~
+You are flying! Currently you are about 20 meters above the Mage Guild
+Hall. It seems like you can see forever!~
+10 0 SECT_AIR
+DDIR_NORTH
+More of the same.~
+~
+0 0 1008
+DDIR_EAST
+More of the same.~
+~
+0 0 1014
+DDIR_SOUTH
+More of the same.~
+~
+0 0 1010
+DDIR_WEST
+More of the same.~
+~
+0 0 1004
+DDIR_UP
+More of the same.~
+~
+0 0 1029
+S
+#1010
+In the air ...~
+You are flying! Currently you are about 40 meters above Poor Alley.
+It seems like you can see forever!~
+10 0 SECT_AIR
+DDIR_NORTH
+More of the same.~
+~
+0 0 1009
+DDIR_EAST
+More of the same.~
+~
+0 0 1015
+DDIR_WEST
+More of the same.~
+~
+0 0 1005
+DDIR_UP
+More of the same.~
+~
+0 0 1030
+S
+#1011
+In the air ...~
+The air is turbulent here, less stable than the otherwise serene winds in
+the sky. You see several castles in your vicinity, most of which are quite
+old and are owned by people of venerable reputation in the lands. They
+are nicely constructed and some are enormously large.~ 
+10 0 SECT_AIR 
+DDIR_EAST
+More of the same.~
+~
+0 0 1016
+DDIR_SOUTH
+More of the same.~
+~
+0 0 1012
+DDIR_WEST
+More of the same.~
+~
+0 0 1006
+DDIR_UP
+More of the same.~
+~
+0 0 1031
+S
+#1012
+In the air ...~
+You are flying! Currently you are about 20 meters above the bakery.
+It seems like you can see forever!~
+10 0 SECT_AIR
+DDIR_NORTH
+More of the same.~
+~
+0 0 1011
+DDIR_EAST
+More of the same.~
+~
+0 0 1017
+DDIR_SOUTH
+More of the same.~
+~
+0 0 1013
+DDIR_WEST
+More of the same.~
+~
+0 0 1007
+DDIR_UP
+More of the same.~
+~
+0 0 1032
+S
+#1013
+In the air ...~
+You are flying! Currently you are about 40 meters above Main Street.
+It seems like you can see forever!~
+10 0 SECT_AIR
+DDIR_NORTH
+More of the same.~
+~
+0 0 1012
+DDIR_EAST
+More of the same.~
+~
+0 0 1018
+DDIR_SOUTH
+More of the same.~
+~
+0 0 1014
+DDIR_WEST
+More of the same.~
+~
+0 0 1008
+DDIR_UP
+More of the same.~
+~
+0 0 1033
+S
+#1014
+In the air ...~
+You are flying! Currently you are about 20 meters above Armoury.
+It seems like you can see forever!~
+10 0 SECT_AIR
+DDIR_NORTH
+More of the same.~
+~
+0 0 1013
+DDIR_EAST
+More of the same.~
+~
+0 0 1019
+DDIR_SOUTH
+More of the same.~
+~
+0 0 1015
+DDIR_WEST
+More of the same.~
+~
+0 0 1009
+DDIR_UP
+More of the same.~
+~
+0 0 1034
+S
+#1015
+In the air ...~
+You are flying! Currently you are about 40 meters above Poor Alley.
+It seems like you can see forever!~
+10 0 SECT_AIR
+DDIR_NORTH
+More of the same.~
+~
+0 0 1014
+DDIR_EAST
+More of the same.~
+~
+0 0 1020
+DDIR_WEST
+More of the same.~
+~
+0 0 1010
+DDIR_UP
+More of the same.~
+~
+0 0 1035
+S
+#1016
+In the air ...~
+You see the Eastern Gates from your position here. Travelers and
+merchants come and go, some in quite a hurry. You can see the reaches of
+Tanglewood as you peruse the landscape.~ 
+10 0 SECT_AIR
+DDIR_SOUTH
+More of the same.~
+~
+0 0 1017
+DDIR_WEST
+More of the same.~
+~
+0 0 1011
+DDIR_UP
+More of the same.~
+~
+0 0 1036
+S
+#1017
+In the air ...~
+You are flying! Currently you are about 40 meters above the Temple Square.
+It seems like you can see forever!~
+10 0 SECT_AIR
+DDIR_NORTH
+More of the same.~
+~
+0 0 1016
+DDIR_SOUTH
+More of the same.~
+~
+0 0 1018
+DDIR_WEST
+More of the same.~
+~
+0 0 1012
+DDIR_UP
+More of the same.~
+~
+0 0 1037
+DDIR_DOWN
+More of the same~
+~
+0 -1 3057
+S
+#1018
+In the air ...~
+You are flying! Currently you are about 40 meters above Market Square.
+It seems like you can see forever!~
+10 0 SECT_AIR
+DDIR_NORTH
+More of the same.~
+~
+0 0 1017
+DDIR_SOUTH
+More of the same.~
+~
+0 0 1019
+DDIR_WEST
+More of the same.~
+~
+0 0 1013
+DDIR_UP
+More of the same.~
+~
+0 0 1038
+S
+#1019
+In the air ...~
+You are flying! Currently you are about 40 meters above Market and
+Commons. It seems like you can see forever!~
+10 0 SECT_AIR
+DDIR_NORTH
+More of the same.~
+~
+0 0 1018
+DDIR_SOUTH
+More of the same.~
+~
+0 0 1020
+DDIR_WEST
+More of the same.~
+~
+0 0 1014
+DDIR_UP
+More of the same.~
+~
+0 0 1039
+S
+#1020
+In the air ...~
+You are flying! Currently you are about 40 meters above ground,
+overlooking the Common Square. It seems like you can see forever!~
+10 0 SECT_AIR
+DDIR_NORTH
+More of the same.~
+~
+0 0 1019
+DDIR_WEST
+More of the same.~
+~
+0 0 1015
+DDIR_UP
+More of the same.~
+~
+0 0 1040
+S
+#1021
+In the air ...~
+You are flying! Currently you are about 60 meters above the ground just
+north of Chakkor. It seems like you can see forever!~
+10 0 SECT_AIR
+DDIR_EAST
+More of the same.~
+~
+0 0 1026
+DDIR_SOUTH
+More of the same.~
+~
+0 0 1022
+DDIR_DOWN
+More of the same.~
+~
+0 0 1001
+S
+#1022
+In the air ...~
+The humidity can be felt in greater force here, evidence of the old idea
+that hot air rises. You are also in closer proximity to the sun and in a
+state of greater exposure.~
+10 0 SECT_AIR
+DDIR_NORTH
+More of the same.~
+~
+0 0 1021
+DDIR_EAST
+More of the same.~
+~
+0 0 1027
+DDIR_SOUTH
+More of the same.~
+~
+0 0 1023
+DDIR_DOWN
+More of the same.~
+~
+0 0 1002
+S
+#1023
+In the air ...~
+You can see here the fountain of Chakkor, traditionally the central
+gathering spot in the city, but your height prevents you from seeing
+anyone specific.~
+10 0 SECT_AIR
+DDIR_NORTH
+More of the same.~
+~
+0 0 1022
+DDIR_EAST
+More of the same.~
+~
+0 0 1028
+DDIR_SOUTH
+More of the same.~
+~
+0 0 1024
+DDIR_DOWN
+More of the same.~
+~
+0 0 1003
+S
+#1024
+In the air ...~
+The clouds that float about you are enormous. Never before did you grasp
+the majesty and fullness of their shape. They seem almost solid, as if
+they are there to be treaded upon, yet every attempt turns up futile.~
+10 0 SECT_AIR
+DDIR_NORTH
+More of the same.~
+~
+0 0 1023
+DDIR_EAST
+More of the same.~
+~
+0 0 1029
+DDIR_SOUTH
+More of the same.~
+~
+0 0 1025
+DDIR_DOWN
+More of the same.~
+~
+0 0 1004
+S
+#1025
+In the air ...~
+As you fly higher and higher off the ground, your vision becomes poorer
+and your ears pop from the altitude. Flying at these heights will take
+some getting used to.~
+10 0 SECT_AIR
+DDIR_NORTH
+More of the same.~
+~
+0 0 1024
+DDIR_EAST
+More of the same.~
+~
+0 0 1030
+DDIR_DOWN
+More of the same.~
+~
+0 0 1005
+S
+#1026
+In the air ...~
+You are flying! Currently you are about 60 meters above the ground north
+of Chakkor. It seems like you can see forever!~
+10 0 SECT_AIR
+DDIR_EAST
+More of the same.~
+~
+0 0 1031
+DDIR_SOUTH
+More of the same.~
+~
+0 0 1027
+DDIR_WEST
+More of the same.~
+~
+0 0 1021
+DDIR_DOWN
+More of the same.~
+~
+0 0 1006
+S
+#1027
+In the air ...~
+You are flying! Currently you are about 40 meters above the magic shop.
+It seems like you can see forever!~
+10 0 SECT_AIR
+DDIR_NORTH
+More of the same.~
+~
+0 0 1026
+DDIR_EAST
+More of the same.~
+~
+0 0 1032
+DDIR_SOUTH
+More of the same.~
+~
+0 0 1028
+DDIR_WEST
+More of the same.~
+~
+0 0 1022
+DDIR_DOWN
+More of the same.~
+~
+0 0 1007
+S
+#1028
+In the air ...~
+You are flying! Currently you are about 60 meters above main street.
+It seems like you can see forever!~
+10 0 SECT_AIR
+DDIR_NORTH
+More of the same.~
+~
+0 0 1027
+DDIR_EAST
+More of the same.~
+~
+0 0 1033
+DDIR_SOUTH
+More of the same.~
+~
+0 0 1029
+DDIR_WEST
+More of the same.~
+~
+0 0 1023
+DDIR_DOWN
+More of the same.~
+~
+0 0 1008
+S
+#1029
+In the air ...~
+You are flying! Currently you are about 40 meters above the mage guild.
+It seems like you can see forever!~
+10 0 SECT_AIR
+DDIR_NORTH
+More of the same.~
+~
+0 0 1028
+DDIR_EAST
+More of the same.~
+~
+0 0 1034
+DDIR_SOUTH
+More of the same.~
+~
+0 0 1030
+DDIR_WEST
+More of the same.~
+~
+0 0 1024
+DDIR_DOWN
+More of the same.~
+~
+0 0 1009
+S
+#1030
+In the air ...~
+You are flying! Currently you are about 60 meters above poor alley.
+It seems like you can see forever!~
+10 0 SECT_AIR
+DDIR_NORTH
+More of the same.~
+~
+0 0 1029
+DDIR_EAST
+More of the same.~
+~
+0 0 1035
+DDIR_WEST
+More of the same.~
+~
+0 0 1025
+DDIR_DOWN
+More of the same.~
+~
+0 0 1010
+DDIR_SOUTH
+A strange glow.~
+~
+0 -1 1041
+S
+#1031
+In the air ...~
+You are flying! Currently you are about 60 meters above the ground north
+of Chakkor. It seems like you can see forever!~
+10 0 SECT_AIR
+DDIR_EAST
+More of the same.~
+~
+0 0 1036
+DDIR_SOUTH
+More of the same.~
+~
+0 0 1032
+DDIR_WEST
+More of the same.~
+~
+0 0 1026
+DDIR_DOWN
+More of the same.~
+~
+0 0 1011
+S
+#1032
+In the air ...~
+You are flying! Currently you are about 40 meters above bakery and cleric
+guild. It seems like you can see forever!~
+10 0 SECT_AIR
+DDIR_NORTH
+More of the same.~
+~
+0 0 1031
+DDIR_EAST
+More of the same.~
+~
+0 0 1037
+DDIR_SOUTH
+More of the same.~
+~
+0 0 1033
+DDIR_WEST
+More of the same.~
+~
+0 0 1027
+DDIR_DOWN
+More of the same.~
+~
+0 0 1012
+S
+#1033
+In the air ...~
+You are flying! Currently you are about 60 meters above main street.
+It seems like you can see forever!~
+10 0 SECT_AIR
+DDIR_NORTH
+More of the same.~
+~
+0 0 1032
+DDIR_EAST
+More of the same.~
+~
+0 0 1038
+DDIR_SOUTH
+More of the same.~
+~
+0 0 1034
+DDIR_WEST
+More of the same.~
+~
+0 0 1028
+DDIR_DOWN
+More of the same.~
+~
+0 0 1013
+S
+#1034
+In the air ...~
+You are flying! Currently you are about 40 meters above the armoury.
+It seems like you can see forever!~
+10 0 SECT_AIR
+DDIR_NORTH
+More of the same.~
+~
+0 0 1033
+DDIR_EAST
+More of the same.~
+~
+0 0 1039
+DDIR_SOUTH
+More of the same.~
+~
+0 0 1035
+DDIR_WEST
+More of the same.~
+~
+0 0 1029
+DDIR_DOWN
+More of the same.~
+~
+0 0 1014
+S
+#1035
+In the air ...~
+You are flying! Currently you are about 60 meters above poor alley.
+It seems like you can see forever!~
+10 0 SECT_AIR
+DDIR_NORTH
+More of the same.~
+~
+0 0 1034
+DDIR_EAST
+More of the same.~
+~
+0 0 1040
+DDIR_WEST
+More of the same.~
+~
+0 0 1030
+DDIR_DOWN
+More of the same.~
+~
+0 0 1015
+S
+#1036
+In the air ...~
+An ethereal force seems to grab you in this section of the sky. It is
+peculiar, as if a magical presence looms overhead.~
+10 0 SECT_AIR
+DDIR_SOUTH
+More of the same.~
+~
+0 0 1037
+DDIR_WEST
+More of the same.~
+~
+0 0 1031
+DDIR_UP
+~
+~
+0 -1 8700
+DDIR_DOWN
+More of the same.~
+~
+0 0 1016
+S
+#1037
+In the air ...~
+You are flying! Currently you are about 60 meters above the temple square.
+It seems like you can see forever!~
+10 0 SECT_AIR
+DDIR_NORTH
+More of the same.~
+~
+0 0 1036
+DDIR_SOUTH
+More of the same.~
+~
+0 0 1038
+DDIR_WEST
+More of the same.~
+~
+0 0 1032
+DDIR_DOWN
+More of the same.~
+~
+0 0 1017
+S
+#1038
+In the air ...~
+You are flying! Currently you are about 60 meters above market square.
+It seems like you can see forever!~
+10 0 SECT_AIR
+DDIR_NORTH
+More of the same.~
+~
+0 0 1037
+DDIR_SOUTH
+More of the same.~
+~
+0 0 1039
+DDIR_WEST
+More of the same.~
+~
+0 0 1033
+DDIR_DOWN
+More of the same.~
+~
+0 0 1018
+S
+#1039
+In the air ...~
+You are flying! Currently you are about 60 meters above market square and
+commons square. It seems like you can see forever!~
+10 0 SECT_AIR
+DDIR_NORTH
+More of the same.~
+~
+0 0 1038
+DDIR_SOUTH
+More of the same.~
+~
+0 0 1040
+DDIR_WEST
+More of the same.~
+~
+0 0 1034
+DDIR_DOWN
+More of the same.~
+~
+0 0 1019
+S
+#1040
+In the air ...~
+You are flying! Currently you are about 60 meters above commoners square
+and the dump. It seems like you can see forever!~
+10 0 SECT_AIR
+DDIR_NORTH
+More of the same.~
+~
+0 0 1039
+DDIR_WEST
+More of the same.~
+~
+0 0 1035
+DDIR_DOWN
+More of the same.~
+~
+0 0 1020
+S
+#1041
+Into the Light~
+A floating group of clouds, emitting a tremendous light, approach your
+position from the horizon. They loom motionless and somewhat hidden from
+view from below.~ 
+10 0 SECT_AIR
+DDIR_NORTH
+~
+~
+0 -1 1031
+DDIR_SOUTH
+~
+~
+0 -1 1042
+S
+#1042
+Into the Light~
+The light grows stronger as you grow nearer. The clouds, still at a
+healthy distance, seem to emanate a greenish glow amongst the aura of
+light. The clouds do not move, as if magically suspended.~
+10 0 SECT_AIR
+DDIR_NORTH
+~
+~
+0 -1 1041
+DDIR_SOUTH
+~
+~
+0 -1 1043
+S
+#1043
+A Bank of Clouds~
+You float before a bank of white clouds surrounded with a verdant glow
+that clearly indicates the work of magic.~
+10 0 SECT_AIR
+DDIR_NORTH
+~
+~
+0 -1 1042
+DDIR_SOUTH
+~
+~
+0 -1 1044
+S
+#1044
+Atop the Green Clouds~
+You stand upon a tremendous, green cloud - a part of a vast landscape of
+green celestials that float, in perfect unison and without any
+acceleration. The texture of the cloud is solid enough to walk upon
+safely.~
+10 0 0
+DDIR_NORTH
+~
+~
+0 -1 1043
+DDIR_SOUTH
+~
+~
+0 -1 1048
+DDIR_UP
+~
+~
+0 -1 1045
+S
+#1045
+Higher Atop the Green Clouds~
+You stand even higher off the ground, amidst an ear-popping altitude of
+more greenish clouds. The cloud is more stable here: it feels more like
+grass than the green mist it is. Near you, atop the cloud, there appears
+to be a small structure made of some unknown rock.~
+10 0 0
+DDIR_DOWN
+~
+~
+0 -1 1044
+DDIR_SOUTH
+~
+door~
+EX_ISDOOR|EX_CLOSED -1 1046
+S
+#1046
+The Floating House~
+You enter a large stone structure suspended in the air atop the strange
+stationary clouds. Looking around you quickly realize that the structure
+is home to a family of magical beings. You can clearly see an upper
+chambers to the structure, but there is no apparent way of getting
+through.~
+10 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+~
+door~
+EX_ISDOOR|EX_CLOSED -1 1045
+S
+#1047
+The Top of the House~
+In front of you sits a rock altar. On its surface is emblazoned a series
+of symbols, runes and inescutcheons of unknown origin. The chamber is
+circular and otherwise bare of detail. The top of the domed roof has a
+small hole that streaks forth into the sky lending to your suspicion that
+you stand at the beginning of a rainbow.~
+10 ROOM_INDOORS SECT_INSIDE
+DDIR_DOWN
+~
+~
+0 -1 1046
+S
+#1048 
+Atop the Green Clouds~
+You stand near the edge of the magical cloud and can see the bustling
+activity of Chakkor below you. You are now directly above the Griffon
+Bank, and you watch as the Griffons take off into the air carrying
+passengers and supplies.~
+10 0 0
+DDIR_NORTH
+~
+~
+0 -1 1044
+DDIR_DOWN
+~
+~
+0 -1 1049
+S
+#1049
+In the air ...~
+You are flying! Currently you are about 20 meters above Griffon Bank and
+Travel of Chakkor. It seems like you can see forever!~
+10 0 SECT_AIR
+DDIR_UP
+~
+~
+0 -1 1048
+DDIR_DOWN
+~
+~
+0 -1 16015
+S
+#0
+
+#RESETS
+O 0  1001  10  1047 ;       blarney stone                
+D 0  1045 DIR_SOUTH DOOR_CLOSED ;
+D 0  1046 DIR_NORTH DOOR_CLOSED ;
+M 0  1000  10  1005 ;           A fairy dragon in In the air ...           
+M 0  1000  10  1022 ;           A fairy dragon in In the air ...           
+M 0  1000  10  1019 ;           A fairy dragon in In the air ...           
+M 0  1001  10  1034 ;           A baby griffon in In the air ...           
+M 0  1001  10  1040 ;           A baby griffon in In the air ...
+M 0  1002  10  1030 ;                A griffon in In the air ...
+M 0  1002  10  1034 ;                A griffon in In the air ...
+M 0  1003  10  1011 ;         A wind elemental in In the air ...
+M 0  1003  10  1028 ;         A wind elemental in In the air ...
+M 0  1004  10  1046 ;       The old leprechaun in The Stone House
+M 0  1005  10  1010 ;                The eagle in In the air ...
+M 0  1005  10  1003 ;                The eagle in In the air ...
+M 0  1005  10  1042 ;                The eagle in In the air ...      
+S
+
+#SHOPS
+0
+
+#SPECIALS
+M 1000 spec_cast_mage
+S
+
+
+
+
+#$

@@ -1,0 +1,6214 @@
+#AREA Tethyr~
+
+#AUTHORS  Blythe~
+
+#HELPS
+-1 TETHYR_CHANGES~
+03.18.09 - Fixed an issue that caused [*****] BUG: Mpforce - Forcing oneself: vnum 15101..
+           The line was - mpforce arilynmob north
+           Changed to   - north (Order)
+03.18.09 - Fixed an issue that forced players attempting to awaken Zoastria to leave
+           and reenter the crypt to progress in the moonblade quest.  The quest now
+           flows properly.  (Order)
+03.27.09 - Fixed the door leading from 15168 to 15167.  The state of the door (open/closed) 
+           will now match from both rooms. (Order)
+~
+-1 TETHYR~
+The Kingdom of Tethyr is off the Sea of Swords, south of Waterdeep.
+It encompasses the city Zazesspur and the Tethir Forest.  The forest of
+Tethir is under a great threat and it is said that they need help in
+defeating the threat.
+
+There is one quest in Tethyr, to save Tethir Forest.
+To start it look for the Captain in the Breaching Whale Tavern on the
+Harbour.  The quest is best done solo, and it can be done easily with a
+non-reincarnate.  (I know - I have done it :) The equipment it
+yields is level 45, and is best done by the future wearer of the
+equipment.
+
+(a) Area created by Blythe
+
+Last Updated October 22nd, 1998
+
+
+
+{a}BLYTHE
+~
+0 $~
+
+#RANGES 20 99 0 99
+
+#FLAGS AFLAG_NODEBUG
+
+#MOBILES
+#15101
+arilynmob moonblade~
+Arilyn Moonblade~
+Arilyn Moonblade is here.~
+She is a half elf that is a broad swords width short of 6 feet tall,
+with raven dark hair that hangs in careless waves about her shoulders.
+Her eyes are an unusual dark blue flecked with bits of gold.  She has a
+tense and watchful air about her.~
+ACT_SENTINEL|ACT_SMART|ACT_NO_ORDER|ACT_BODY
+AFF_SANCTUARY|AFF_UNDERSTAND|AFF_TONGUES
+0 S
+65 BODY_HAND BODY_FOOT 10d10+8000 1d10+165
+10000 415376
+POS_STANDING POS_STANDING SEX_FEMALE
+>give_prog i15103~
+if quest(0, 5, $n) == 1
+  say Yes, I have been thinking about what the Captain 
+  say said to me.  I want to help the wild elves of 
+  say Tethir Forest.  If I am going to be able to help them,
+  say I am going to need some things from Tinkersdam.
+  say Go $n and see what he has for me.
+  mpmset $n quest 0 5 2
+  emote melts back into the shadows.
+  mpgoto 15100
+  mpjunk all
+endif
+~
+>give_prog i15119~
+if quest(0, 5, $n) == 3
+  say Thanks I needed this.
+  mpmset $n quest 0 5 4
+  say I am going to go to the Forest to try and convince
+  say the wild elves to let me help them.  
+  say Come to the Forest later.  
+  say I may need your help again.
+  emote melts into the shadows.
+  mpgoto 15100
+  mpjunk all
+endif
+~
+>speech_prog p Thank the gods!~
+if quest(0, 5, $n) == 5
+  say Don't!! $n is a friend of mine.
+  say $e is here to help us!  Aren't you $n?
+endif
+~
+>speech_prog help~
+if quest(0, 5, $n) == 6
+  say Try to get the help of the Lythari.
+  say My friend Ganamede may take you to their den.
+  say Tell him I sent you.
+  mpmset $n quest 0 5 7
+  mpecho Arilyn disappears into the trees above you.
+  mppurge wildelfmob
+  mppurge wildelfmob
+  mpgoto 15100
+endif
+~
+>speech_prog yes~
+if quest(0, 5, $n) == 8
+  say Great $n!
+  emote looks worried.
+  say We still need more help.  When I was in Abrum Assante's
+  say palace I saw an elven female, lying inside a long case
+  say in his hidden treasure room.  I think she may have been
+  say one of the former owners of my moonblade.
+  say Rescue her from there.
+  say To get the hidden treasure chamber you ... 
+  mpecho A shrill whistle pierces the air.
+  say Sorry I have to go.  Find that elf!
+  mpecho Arilyn disappears into the trees above.
+  mpmset $n quest 0 5 10
+  mpgoto 15100
+else
+  if quest(0, 5, $n) == 11
+    say Great!  I will meet you there.
+    mpmset $n quest 0 5 13
+    mpecho Arilyn disappears into the trees above you.
+    mpgoto 15100
+  else
+    if quest(0, 5, $n) == 14
+      connect 0 15271
+      mpforce zoastriamob north
+      mpforce foxfiremob north
+      mpforce ganamedemob north
+      mpmset $n quest 0 5 15
+      mpforce $n north
+      north
+    endif
+  endif
+endif
+~
+>fight_prog 100~
+if hitpercent ($i) < 50
+  mpgoto 15100
+  mpecho Arilyn's Moonblade glows blue and she disappears.
+endif
+~
+|
+#15102
+macumail captain carreigh~
+Captain Macumail~
+Captain Macumail is sitting here.~
+His mass of curly fair hair, his long and neatly trimmed whiskers,
+the bright blue and green weave os his trade mark kilt, the
+extravagant ruffles at the throat and cuffs of his white
+shirt - all these things set him apart from most of the Breaching
+Whale's rough-clad clientele.  Weighing at least 300 pounds, and
+stretching up to 7 feet he is also one of the biggest.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY
+AFF_SANCTUARY|AFF_UNDERSTAND|AFF_TONGUES
+0 S
+65 BODY_HEAD BODY_FOOT 10d10+3800 1d10+65
+10000 415376
+POS_RESTING POS_RESTING SEX_MALE
+>all_greet_prog 100~
+if quest(0, 5, $n) == 0
+  mpecho Captain Macumail nurses an ale and looks at you glumly.
+  say I failed to get Arilyn Moonblade to help the 
+  say Elven Queen.
+  say Do you want to try to convince her, $n?
+else
+  if rand(40)
+    if quest(0, 5, $n) == 16
+      say You did well $n.
+      say You helped to save Tethir Forest.
+    else
+      emote raises his Ale towards you.
+    endif
+  else
+    mpechoat $n The Captain winks at you and offers to buy you an ale.
+  endif
+endif
+~
+>speech_prog yes~
+mpoload 15103
+give parchment $n
+say Try giving this to Arilyn.
+say Last I heard she was hanging around the School of Stealth.
+mpmset $n quest 0 5 1
+~
+>death_prog 1~
+mpoload 15137
+~
+|
+#15103
+foxfiremob elven leader~
+Foxfire~
+Foxfire, Elven Leader, stands here.~
+He stands distinct from other elves with his rust
+coloured hair and his copper coloured skin.  He has an
+air of command about him.~
+ACT_SENTINEL|ACT_SMART|ACT_NO_ORDER|ACT_BODY
+AFF_SANCTUARY|AFF_UNDERSTAND|AFF_TONGUES
+0 S
+65 BODY_ARM BODY_FOOT 10d10+3800 1d10+65
+10000 415376
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if quest(0, 5, $n) == 4
+  mpechoat $n Foxfire nocks an arrow and aims it at your heart.
+  say What do you want intruder?
+  if quest(29,1,$n) < 1
+    mpmset $n quest 29 1 1
+    mpechoat $n Wild elves drop lightly from the trees above and aim arrows at you.
+    mpmload 15113
+    mpmload 15113
+  endif
+  say Why are you here?
+  say Who sent you?
+endif
+~
+>speech_prog arilyn~
+if quest(0, 5, $n) == 4
+  mpmset $n quest 0 5 5
+  mpat 15100 mpforce arilynmob mpgoto 15248
+  mpecho Arilyn drops down from the trees to stand beside the wild elves.
+  mpforce $n say Thank the gods!
+endif
+~
+>speech_prog yes~
+if quest(0, 5, $n) == 5
+  emote and his elves lower their bows.
+  say So you want to help us?
+  say There is an evil in the forest.
+  emote spits.
+  say They are cutting down the trees!!
+  mpforce arilynmob say Sacrilege!
+  say We cant take them alone.  We need HELP.
+  mpmset $n quest 0 5 6
+endif
+~
+>speech_prog p golden thorn~
+say Ahhh yes that is very hard to find.  But it does grow around Tethir Forest.  You need to look very carefully for it.
+mpmset $n quest 23 1 1
+~
+|
+#15104
+bunlap~
+Bunlap~
+Bunlap of Zhentil Keep looks at you threateningly.~
+He is massive with a cruel look on his face.  He has a
+black beard, with a scmimatr of a nose and eyes that are cold and
+gray.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY
+AFF_SANCTUARY|AFF_UNDERSTAND|AFF_TONGUES
+-1000 S
+65 BODY_HAND BODY_FOOT 10d10+2500 1d1+45
+10000 415376
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if quest(0, 5, $n) == 15
+  mpquiet on
+  mptransfer arilynmob 15100
+  mppurge
+  mpquiet off
+  mpechoat $n Your friends move out around the camp and attack Bunlaps workers.
+  laugh $n
+  say You think you and your wussy forest friends can kill me?
+  mpkill $n
+else
+  say What are you doing here?  You shouldn't be here.
+  mpkill $n
+endif
+~
+>death_prog 100~
+if quest(0, 5, $n) == 15
+  mpecho All cheer the death of Bunlap.
+  mpquiet on
+  mptransfer arilynmob
+  mpmload 15103
+  mpquiet off
+  mpforce arilynmob say We have given you some items in thanks for you help $n.
+  mpforce foxfiremob shout Tethir forest is safe again thanks to $n!
+  mpoload 15113
+  mpoload 15114
+  mpquiet on
+  cast 'giant strength' $n
+  mpoload 15138
+  give eye $n
+  mpoload 15134
+  give moonblade $n
+  mptransfer arilynmob 15100
+  mppurge foxfiremob
+  drop dark
+  drop iron
+  mpquiet off
+  mpmset $n quest 0 5 16
+endif
+~
+>fight_prog 70~
+if quest(0, 5, $n) == 15
+  mpquiet on
+  cast heal $n
+  cast heal $n
+  mpquiet off
+  mpechoat $n Your allies aid you in the battle.
+else
+  mpquiet on
+  cast heal $i
+  cast heal $i
+  cast heal $i
+  cast heal $i
+  mpquiet off
+  say By Cyric, I shall kill you!
+endif
+~
+|
+#15105
+tinkersdam~
+Tinkersdam~
+Tinkersdam is working on an invention here.~
+He wears a tunic of bright yellow, the traditional colour of Lantan
+and sandals on his bare feet.  His plump extremely bowed legs are
+hairless, as is his face - no doubt the result of many explosions his
+work occassions.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY
+AFF_SANCTUARY|AFF_UNDERSTAND|AFF_TONGUES
+0 S
+65 BODY_HAND BODY_HIP 10d10+3800 1d10+65
+10000 415376
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if quest(0, 5, $n) == 2
+  say Hmmm, Arilyn sent you for the things she ordered, hey?
+  say I have them here for her somewhere.
+  emote rifles through a table of oddments.
+  say Ahhh here we are.
+  mpoload 15119
+  give mask $n
+  mpmset $n quest 0 5 3
+  mpecho Tinkersdam absentmindedly returns to working on one of his creations.
+else
+  mpechoat $n Tinkersdam mutters away as he works on one of his creations.
+endif
+~
+>fight_prog 40~
+cast 'high explosive' $r
+~
+>rand_prog 5~
+mpecho You dive for cover as a pot in the corner explodes.
+mpmadd $r hp -30
+mpechoat $r Ouch! I guess you should choose better cover next time!
+~
+|
+#15106
+ferret assassin~
+Ferret~
+Ferret, the assassin is here.~
+She resembles her namesake in an oddly exotic way.  She is whip
+thin and has sharp features, black eyes and a long slender nose.~
+ACT_SMART|ACT_BODY
+AFF_SANCTUARY|AFF_UNDERSTAND|AFF_STEALTH|AFF_TONGUES
+0 S
+65 BODY_HAND BODY_LEG|BODY_HAND|BODY_FOOT 10d10+3800 1d10+65
+10000 415376
+POS_STANDING POS_STANDING SEX_FEMALE
+#15107
+mistress penelope~
+Mistress Penelope~
+Mistress Penelope is here.~
+She is the chatelaine and manager of the Foaming Sands Bath House.
+She is probably one of the most beautiful mature women that you
+have ever seen.  But her eyes are jaded and old.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY
+AFF_UNDERSTAND|AFF_TONGUES
+0 S
+65 BODY_HAND BODY_EYE|BODY_HIP 10d10+3800 1d10+65
+10000 415376
+POS_STANDING POS_STANDING SEX_FEMALE
+>all_greet_prog 100~
+say Welcome to the Foaming Sands Bath House.
+say Would you like a bath, massage or the works?
+~
+>speech_prog bath~
+say That will cost you 10,000 gold.
+mpmset $n quest 10 3 1
+~
+>bribe_prog 1000000~
+if quest(10, 3, $n) == 3
+  if sex($n) == 1
+    mpechoat $n A bath girl comes and leads you to a private room.
+    mptransfer $n 15272
+    mpechoaround $n A bath girl comes and leads $n to a private room.
+  else
+    mpechoat $n A bath boy comes and leads you to a private room.
+    mptransfer $n 15273
+    mpechoaround $n A bath boy comes and leads $n to a private room.
+  endif
+endif
+~
+>bribe_prog 100000~
+if quest(10, 3, $n) == 2
+  if sex($n) == 1
+    mpechoat $n A bath girl comes and leads you to a private room.
+    mptransfer $n 15272
+    mpechoaround $n A bath girl comes and leads $n to a private room.
+  else
+    mpechoat $n A bath boy comes and leads you to a private room.
+    mptransfer $n 15273
+    mpechoaround $n A bath boy comes and leads $n to a private room.
+  endif
+endif
+~
+>bribe_prog 10000~
+if quest(10, 3, $n) == 1
+  if sex($n) == 1
+    mpechoat $n A bath girl comes and leads you to a private room.
+    mptransfer $n 15272
+    mpechoaround $n A bath girl comes and leads $n to a private room.
+  else
+    mpechoat $n A bath boy comes and leads you to a private room.
+    mptransfer $n 15273
+    mpechoaround $n A bath boy comes and leads $n to a private room.
+  endif
+endif
+~
+>speech_prog massage~
+say That will cost you 100,000 gold.
+mpmset $n quest 10 3 2
+~
+>speech_prog works~
+say That will cost you 1,000,000 gold.
+mpmset $n quest 10 3 3
+~
+|
+#15108
+jill dwarf~
+Jill~
+Jill the male dwarf is here.~
+He has a form that resembles a squat two legged mushroom and a
+face that brings to mind an image of storm clouds over a craggy mountain.~
+ACT_SMART|ACT_BODY
+AFF_SANCTUARY|AFF_UNDERSTAND|AFF_TONGUES
+0 S
+65 BODY_HAND BODY_HEAD 10d10+3800 1d10+65
+10000 415376
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if quest(6, 2, $n) == 0
+  say Will you help set me free?
+endif
+~
+>speech_prog yes~
+say One of the guards around here has a key that I need to set me free.
+emote shows you the shackle iron around his ankle.
+mpmset $n quest 6 2 1
+~
+>give_prog i15146~
+if quest(6, 2, $n) == 1
+  say Thank you!
+  emote unlocks his ankle shackle.
+  say Heres a tip for helping me.
+  say There's a treasure room on the far western corridor.
+  mpmset $n quest 6 2 2
+else
+  emote pockets the key for later use.
+endif
+~
+|
+#15109
+nesstiss centaur~
+Nesstiss the Centaur~
+Nesstiss, the Centaur, stamps his hooves.~
+With the head and torso of a man, and the body and legs of a
+horse, he is a commanding creature.  His bearded face is stern
+but not unkind.~
+ACT_SMART|ACT_NO_ORDER|ACT_BODY
+AFF_SANCTUARY|AFF_UNDERSTAND|AFF_TONGUES
+0 S
+65 BODY_TAIL BODY_FOOT 10d10+3800 1d10+65
+10000 415376
+POS_STANDING POS_STANDING SEX_MALE
+#15110
+silver wolf~
+A silver wolf~
+An enormous silver wolf is here.~
+The creature's eyes are are large and intelligent, almond shaped like
+those of an elf, and its ears are long and pinted above its sharply
+triangular face.  There is a fey grace to its step.~
+ACT_SENTINEL|ACT_SMART|ACT_NO_ORDER|ACT_BODY
+AFF_SANCTUARY|AFF_UNDERSTAND|AFF_TONGUES
+0 S
+65 BODY_HAND BODY_MOUTH 10d10+3800 1d10+65
+10000 415376
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if quest(0, 5, $n) == 7
+  mpecho The silver wolf shimmers and starts to change shape.
+  mpecho A tall handsome wolf stands in his place.
+  mpecho Ganamede looks at you.
+  mpmload 15111
+  mppurge $i
+endif
+~
+>fight_prog 40~
+cast 'energy drain'
+~
+>death_prog 100~
+mpmload 15111
+mpecho The silver wolf shimmers and a beautiful fey elf appears in his place.
+mpforce 15111 mpkill $n
+~
+|
+#15111
+ganamedemob lythari~
+Ganamede the Lythari~
+Ganamede the Lythari stands here.~
+He is a beautiful young elven male, fey even by the measures of
+elven kind.  He is pale and his hair retains the shimmering silver
+colour of his wolf like form.~
+ACT_SENTINEL|ACT_SMART|ACT_NO_ORDER|ACT_BODY
+AFF_SANCTUARY|AFF_UNDERSTAND|AFF_TONGUES
+0 S
+65 BODY_HAND BODY_HAND|BODY_FOOT 10d10+3800 1d10+65
+10000 415376
+POS_STANDING POS_STANDING SEX_MALE
+>speech_prog p Arilyn sent me~
+if quest(0, 5, $n) == 7
+  nod $n
+  say Arilyn wants the help of the Lythari?
+  say I will take you to the Lythari elders.
+  mptransfer $n 15263
+  mpgoto 15263
+  mpecho You feel odd as you go between worlds.
+  mpforce $n look
+endif
+~
+>speech_prog p Arilyn sent me.~
+if quest(0, 5, $n) == 7
+  nod $n
+  say She wants the help of the Lythari?
+  say I will take you to the Lythari elders.
+  mpechoaround $n $n and Ganamede shimmer and then disappear.
+  mptransfer $n 15263
+  mpgoto 15263
+  mpecho You feel odd as you go between worlds.
+  mpforce $n look
+endif
+~
+>fight_prog 40~
+cast 'energy drain' $r
+~
+|
+#15112
+lythari elder~
+The Lythari elder~
+The Lythari elder stands here.~
+He is an elderly elven male, looking old even by elven standards.
+His hair is silver and his eyes intelligent.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY
+AFF_SANCTUARY|AFF_UNDERSTAND|AFF_TONGUES
+0 S
+65 BODY_HAND|BODY_FOOT BODY_HAND|BODY_FOOT 10d10+3800 1d10+65
+10000 415376
+POS_STANDING POS_STANDING SEX_MALE
+>speech_prog help~
+if quest(0, 5, $n) == 7
+  say We don't like to interfere in your world, but this
+  say also affects the Lythari.
+  say Go Now.
+  say Tell Arilyn that we will be there in the time of need.
+  mpmset $n quest 0 5 8
+  mppurge ganamedemob
+endif
+~
+>all_greet_prog 50~
+if quest(0, 5, $n) == 16
+  say Welcome $n.  Thank you for your help in saving Tethir Forest.
+endif
+~
+>fight_prog 10~
+cast earthquake
+~
+|
+#15113
+wildelfmob elf~
+A wild elf~
+A wild elf stands here with an arrow nocked in his bow.~
+He is lightly clad.  His ruddy skin is painted with swirling designs of
+green and brown.  His dark brown hair is worn long and plaited back.~
+ACT_SENTINEL|ACT_SMART|ACT_NO_ORDER|ACT_BODY
+AFF_SANCTUARY|AFF_UNDERSTAND|AFF_TONGUES
+0 S
+65 BODY_HAND BODY_FOOT 10d10+3800 1d10+65
+10000 415376
+POS_STANDING POS_STANDING SEX_MALE
+#15114
+zoastriamob~
+Zoastria~
+Zoastria the moon elf is here.~
+She is a tiny moon elf.  Her skin the colour of a pearl.~
+ACT_SENTINEL|ACT_SMART|ACT_NO_ORDER|ACT_BODY
+AFF_SANCTUARY|AFF_UNDERSTAND|AFF_TONGUES
+0 S
+65 BODY_HAND BODY_FOOT 10d10+3800 1d10+65
+10000 415376
+POS_STANDING POS_STANDING SEX_FEMALE
+#15115
+trainee assassin~
+A trainee assassin~
+A trainee assassin hides in the shadows.~
+A young assassin is here cloaked in black wear a sash of a sand-hue.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY
+AFF_UNDERSTAND|AFF_STEALTH|AFF_TONGUES
+-300 S
+40 BODY_HAND BODY_TORSO|BODY_FOOT 10d10+580 1d10+22
+10000 183890
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 10~
+mpecho You hear a clatter as a trainee assassin falls over his feet trying to be stealthy.
+~
+|
+#15116
+master assassin~
+A master assassin~
+A master assassin hides in the shadows here.~
+He is clothed in dark colours so that he blends in with the shadows.
+He wears a grey shadow sash, the colour of which marks that he
+is a master of his trade.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY
+AFF_UNDERSTAND|AFF_STEALTH|AFF_TONGUES
+-600 S
+60 BODY_HAND BODY_FOOT 1d1+1600 1d10+35
+10000 364381
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 10~
+mpecho The shadows in the room seem to move.
+~
+|
+#15117
+male barhand~
+A male barhand~
+A male barhand is here.~
+He is young and attractive and wearing a minimum of clothing.  Looks
+like he is ready to give female patrons a good time.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY
+AFF_UNDERSTAND|AFF_TONGUES
+0 S
+40 BODY_HAND BODY_LEG|BODY_FOOT 10d10+580 1d10+22
+10000 183890
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 40~
+if sex($n) == 2
+  say Hey there $n, wanna go upstairs and have a good time?
+  fondle $n
+endif
+~
+|
+#15118
+sleeping sailor~
+A sailor~
+A sailor is here.~
+He is naked.  Well after all he was asleep in his bed when you
+happened upon him!~
+ACT_SENTINEL|ACT_SMART|ACT_BODY
+AFF_UNDERSTAND|AFF_TONGUES
+0 S
+50 BODY_HAND BODY_FOOT 10d10+1000 1d10+28
+10000 269671
+POS_SLEEPING POS_SLEEPING SEX_MALE
+>death_prog 20~
+mpoload 15160
+~
+|
+#15119
+tavern guard~
+a tavern guard~
+A Breaching Whale Tavern Guard stands to attention here.~
+He is a burly large man.  Well armoured and well paid to protect
+the sleeping patrons of the Breaching Whale Tavern.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY
+AFF_UNDERSTAND|AFF_TONGUES
+0 S
+60 BODY_HAND BODY_FOOT 1d1+1600 1d10+35
+10000 364381
+POS_SLEEPING POS_STANDING SEX_MALE
+#15120
+whore tavern~
+a tavern whore~
+A tavern whore entertains a client here.~
+Dressed in a bustier and suspenders, and hair piled up on her hair, you
+are sure she is a temptation for the clientele of the Breaching
+Whale Tavern.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_UNDERSTAND|AFF_TONGUES
+0 S
+40 BODY_HAND BODY_HIP|BODY_FOOT 10d10+580 1d10+22
+10000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_FEMALE
+>all_greet_prog 40~
+if sex($n) == 1
+  wink $n
+  say Hello there sailor!  Want to get naughty with an ex-choir girl?
+endif
+~
+|
+#15121
+forest elf~
+A forest elf~
+A forest elf patrols the forest here.~
+He is lightly clad and carries a bow and a quiver full of arrows.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_UNDERSTAND|AFF_TONGUES
+0 S
+30 BODY_HAND BODY_LEG|BODY_FOOT 10d10+440 1d10+17
+10000 RACE_ELF
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 50~
+if quest(0, 5, $n) == 16
+  bow $n
+  mpechoat $n All the creatures of Tethir Forest are grateful to you.
+endif
+~
+|
+#15122
+bath girl~
+A bath girl~
+A Foaming Sands Bath girl stands here.~
+Scantily clad in filmy silks that are wet and cling to her body, she
+is ready to do her job - bathing the patrons of the Foaming Sands
+Bath House.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_UNDERSTAND|AFF_TONGUES
+0 S
+55 BODY_HEAD|BODY_HAND BODY_FOOT 10d10+1300 1d10+31
+10000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_FEMALE
+>all_greet_prog 40~
+if name($n) == jaxom
+  grope $n
+  say Pity Blythe got to you first.
+  sniff 
+else
+  if name($n) == blythe
+    slap $n
+    say Bitch!  You got that sexy babe Jaxom!
+  else
+    if sex($n) == 1
+      grope $n
+      say Ooooo You are almost as sexy as Jaxom!
+    endif
+  endif
+endif
+~
+|
+#15123
+morty mortician~
+Morty the mortician~
+Morty the mortician prepares your corpse for burial here.~
+A good looking male, you can see he would surely attract the women in
+droves.  Women must be dying to see him.  His first love will
+always be Valkaryie though.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_UNDERSTAND|AFF_TONGUES
+0 S
+1 BODY_HAND BODY_FOOT 1d1+32 1d1+18
+18 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 5~
+say My goodness $n, you didn't die again did you?
+emote checks on the shelf for your corpse.
+~
+|
+#15124
+crustacean~
+A crustacean~
+A crustacean clicks his claws at you.~
+He is enormous, more than 7 feet in length, not including his fan
+like tail and long antennae.  He scuttles along on several pairs
+of small curved legs.  A large toothless mouh spans the entire
+width of his head.~
+ACT_AGGRESSIVE|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_INFRARED|AFF_UNDERSTAND|AFF_TONGUES
+-200 S
+25 BODY_TAIL|BODY_CLAW BODY_TAIL|BODY_CLAW 10d10+350 1d10+15
+10000 RACE_DROW
+POS_STANDING POS_STANDING SEX_MALE
+>rand_prog 4~
+mpasound You hear an ominous clicking noise.
+~
+>death_prog 100~
+if class($n) == 4
+  if level($n) < 45
+    mpoload 15164
+  endif
+endif
+~
+|
+#15125
+palace guard~
+A Palace Guard~
+A Palace Guard stands at attention here.~
+Dressed immaculately in silver and pink armour.  He is ready to protect
+his master, Abrum Assante, and his treasures.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_UNDERSTAND|AFF_TONGUES
+0 S
+60 BODY_HEAD|BODY_HAND BODY_FOOT 1d1+1600 1d10+35
+10000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 1~
+mpecho The Palace Guard clicks his heels and salutes you.
+~
+|
+#15126
+citizen zazesspur~
+A citizen of Zazesspur~
+A citizen of Zazesspur is here.~
+He is well dress in silks and leather.  He goes about his daily business.~
+ACT_SMART|ACT_BODY|ACT_RACE
+AFF_UNDERSTAND|AFF_TONGUES
+0 S
+35 BODY_HIP BODY_FOOT 10d10+500 1d10+19
+10000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 1~
+emote looks at you oddly.
+emote mutters under his breath something about strange looking people.
+~
+|
+#15127
+drunken sailor~
+A drunken sailor~
+A drunken sailor smiles at you drunkenly.~
+Dressed in standard sailors garb that is none too clean.  He smells
+none too clean either.  You feel you could get drunk on the fumes of
+his breath alone!~
+ACT_SMART|ACT_BODY|ACT_RACE
+AFF_UNDERSTAND|AFF_TONGUES
+0 S
+45 BODY_HAND BODY_FOOT 10d10+700 1d10+25
+10000 RACE_HALFLING
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 50~
+say Got an ale for a sailor?
+~
+>give_prog i15135~
+mpechoat $n The drunken sailor puts his arm around you.
+mpechoaround $n The drunken sailor put his arm around $n.
+say Sthanksh for the shdrink
+mpechoat $n The drunken sailor spews on your nice clean boots.
+mpechoaround $n The drunken sailor spews on $n's nice clean boots.
+~
+>death_prog 40~
+mpoload 15160
+~
+|
+#15128
+barman~
+the barman~
+The barman looks at you enquiringly.~
+Dressed just in leggings and a grimy apron, he is ready to serve
+you any of your drinking needs.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_UNDERSTAND|AFF_TONGUES
+0 S
+1 BODY_HAND BODY_FOOT 1d1+36 1d1+17
+16 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 30~
+say Will it be a drink or a meal?
+say Or do you have a fine jewel you can sell me?
+~
+|
+#15129
+assassin spell master~
+the Spell Master~
+The Assassin Spell Master mixes a potion.~
+Dressed in dark shadowy robes, he tends to blend into the shadows
+like most of the assassins in the School of Stealth.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_UNDERSTAND|AFF_TONGUES
+0 S
+1 BODY_HAND BODY_FOOT 1d1+32 1d1+16
+18 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+#15130
+assassin trainer~
+The Assassin Trainer~
+The Assassin Trainer bows before you.~
+He is dressed in simple black pants and tunic.  Sweat gleams on
+his face from the hard work out he is taking.~
+ACT_SENTINEL|ACT_TRAIN|ACT_PRACTICE|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_UNDERSTAND|AFF_TONGUES
+0 S
+1 BODY_HAND BODY_FOOT 1d1+36 1d1+13
+18 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 50~
+shout AAAAEEEEEYAAAAAAAHHHHHHHHHHH
+emote swings his leg around and hits you in the head.
+mpecho Ouch!
+say I could teach you moves like that if you so wish.
+bow $r
+~
+|
+#15131
+assassin armourer~
+The Assassin Armourer~
+The Assassin Armourer polishes a breastplate for sale.~
+Dressed in long black robes over chainmail of black, hes more
+well armoured than the average assassin in the School of Stealth.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_UNDERSTAND|AFF_TONGUES
+0 S
+65 BODY_HAND BODY_FOOT 10d10+2800 1d10+55
+10000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+#15132
+zazesspur guard~
+A Zazesspur Guard~
+A guard of Zazesspur stands to attention here.~
+He is well armoured and stands ready to protect the gates of his city.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_UNDERSTAND|AFF_TONGUES
+0 S
+65 BODY_LEG|BODY_HAND BODY_FOOT 10d10+2800 1d10+55
+10000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+#15133
+stealthmob~
+stealthmob~
+Stealthmob~
+This mob is for loading arilyn in the school of stealth if the
+quest bits are at 1~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_UNDERSTAND|AFF_TONGUES|AFF_ETHEREAL
+0 S
+1 BODY_HAND BODY_FOOT 10d10+2800 1d10+55
+10000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if quest(0, 5, $n) == 1
+    mpat 15100 mptransfer arilynmob 15187
+    mpechoat $n Arilyn emerges from the shadows of the room.
+endif
+~
+>rand_prog 5~
+if quest(0, 5, $r) == 1
+    mptransfer arilynmob 15100
+    mpecho Arilyn melts into the shadows.
+endif
+~
+|
+#15134
+tinkermob~
+tinkermob~
+Tinkermob~
+This mob is for loading Arilyn after the questee has been to see
+Tinkersdam and the quest bits are at 3.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_UNDERSTAND|AFF_TONGUES|AFF_ETHEREAL
+0 S
+1 BODY_HAND BODY_FOOT 10d10+2800 1d10+55
+10000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if quest(0, 5, $n) == 3
+    mpat 15100 mpforce arilynmob mpgoto 15117
+    mpechoat $n Arilyn steps out from the shadow of a nearby building.
+endif
+~
+>rand_prog 5~
+if quest(0, 5, $r) == 3
+    mptransfer arilynmob 15100
+    mpecho Arilyn melts into the shadow of a nearby building.
+endif
+~
+|
+#15135
+forrestmob~
+forrestmob~
+Forrestmob~
+This mob loads up Arilyn if the questees quest bits are 8
+(after seeing the lythari) in Tethir forest and if their bits are 11
+(after freeing zoastria).  It also loads up golden thorn for the waterdeep quest.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_UNDERSTAND|AFF_TONGUES|AFF_ETHEREAL
+0 S
+1 BODY_HAND BODY_FOOT 10d10+2800 1d10+55
+10000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if quest(0, 5, $n) == 8
+    mpat 15100 mpforce arilynmob mpgoto 15265
+    mpecho Arilyn jumps down lightly from the trees to stand before you.
+    mpforce arilynmob say Did the Lythari agree to help us?
+else
+  if quest(0, 5, $n) == 11
+      mpat 15100 mpforce arilynmob mpgoto 15265
+      mpecho Arilyn jumps down lightly from the trees in front of you.
+      mpforce arilynmob say We are going to attack the logging camp now.
+      mpforce arilynmob say Are you with us $n?
+  else
+    if quest(23, 1, $n) == 1
+      mpoload 15162
+      mpquiet on
+      drop golden
+      mpquiet off
+      mpmset $n quest 23 1 0
+    endif
+  endif
+endif
+~
+>rand_prog 5~
+if quest(0, 5, $r) == 8
+    mptransfer arilynmob 15100
+    mpecho Arilyn disappears into the branches of the trees above you.
+else
+  if quest(0, 5, $r) == 11
+      mptransfer arilynmob 15100
+      mpecho Arilyn disappears into the branches of the trees above you.
+  else
+    mpasound You can hear a small animal rustling in the undergrowth.
+  endif
+endif
+~
+|
+#15136
+lythari elf~
+A Lythari elf~
+A Lythari elf guards the den.~
+He is a beautiful young elven male, fey even by the measures of elven
+kind.  He is pale and his hair retains the shimmering silver colour of
+his wolf like form.~
+ACT_SENTINEL|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_SANCTUARY|AFF_UNDERSTAND|AFF_TONGUES
+0 S
+45 BODY_HAND BODY_HAND|BODY_FOOT 10d10+700 1d10+25
+10000 RACE_ELF
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 30~
+if quest(0, 5, $n) ==7
+  nod $n
+else
+  if quest(0, 5, $n) == 8
+    nod $n
+  else
+    if quest(0, 5, $n) == 16
+      say Welcome $n, Saviour of the Forest.
+    else
+      shout Intruder in the Lythari Den!
+      mpkill $n
+    endif
+  endif
+endif
+~
+|
+#15137
+etherealzoastria~
+etherealzoastria~
+Etherealzoastria~
+This mob loads up zoastria when $n finds the case.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_UNDERSTAND|AFF_TONGUES|AFF_ETHEREAL
+0 S
+1 BODY_HAND BODY_FOOT 10d10+2800 1d10+55
+10000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if quest(0, 5, $n) == 10
+  mpechoat $n As the treasure room door hits the wall beside you a chest
+  mpechoat $n falls to the floor and breaks open, spilling forth its load
+  mpechoat $n of precious gems.
+  mpquiet on
+  mpoload 15112
+  drop tiara
+  mpoload 15150
+  drop gem
+  mpoload 15151
+  drop gem
+  mpoload 15152
+  drop gem
+  mpoload 15153
+  drop gem
+  mpoload 15154
+  drop gem
+  mpoload 15155
+  drop gem
+  mpoload 15156
+  drop gem
+  mpoload 15157
+  drop chest
+endif
+~
+>speech_prog awaken wake~
+if quest(0, 5, $n) == 10
+  mpecho The elven woman awakens as the glass tomb around her crumbles to dust.
+  mppurge i15143
+  mpmload 15114
+endif
+if quest(0, 5, $r) == 10
+  look $r
+  mpforce $r say Arilyn, holder of the Moonblade, sent me to ask you to help her help the wild elves of Tethir Forest.
+  mpecho {030}Zoastria says I will go to Arilyn and meet you there.{020}
+  mpecho Zoastria fades to a shadow and disappears.
+  mpmset $r quest 0 5 11
+  mppurge $i
+endif
+~
+|
+#15138
+ethereallogging~
+ethereallogging~
+Ethereallogging~
+This mob loads up all the mobs to fight with $n against bunlap.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_UNDERSTAND|AFF_TONGUES|AFF_ETHEREAL
+0 S
+1 BODY_HAND BODY_FOOT 1d1+34 1d1+11
+25 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if quest(0, 5, $n) == 13
+  mpat 15100 mpforce arilynmob mpgoto 15270
+  mpecho Arilyn smiles at you in welcome.
+  mpmload 15103
+  mpecho Foxfire, the wild elf leader, appears from the trees around you.
+  mpmload 15111
+  mpecho A silver wolf changes shape into Ganamede the Lythari elf.
+  mpmload 15114
+  mpecho A shadow takes shape before you and Zoastria appears.
+  mpquiet on
+  cast sanctuary $n
+  cast shield $n
+  cast armor $n
+  cast bless $n
+  cast 'giant strength' $n
+  cast 'enhanced heal' $n
+  cast 'enhanced revive' $n
+  mpquiet off
+  mpechoat $n Your allies do their best to prepare you for the battle ahead.
+  mpmset $n quest 0 5 14
+  mpforce arilynmob say Are we ready to move?
+endif
+~
+|
+#15139
+bath girl~
+A bath girl~
+A Foaming Sands Bath girl is ready to cater to your every need.~
+Scantily clad in filmy silks that are wet and cling to her body,
+she is ready to do her job - bathing and massaging the elite patrons
+of the Foaming Sands Bath House.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_UNDERSTAND|AFF_TONGUES
+0 S
+65 BODY_HAND BODY_FOOT 10d10+2800 1d10+55
+10000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_FEMALE
+>rand_prog 80~
+if quest(10, 3, $r) == 1
+  mpquiet on
+  cast refresh $r
+  cast refresh $r
+  cast refresh $r
+  cast refresh $r
+  cast refresh $r
+  mpquiet off
+  mpechoat $r The bath girl gently baths your body, but seems to avoid 
+  mpechoat $r certain parts the you most want washed.
+  mpechoat $r I guess you should have gone for the works.
+  mpechoat $r You feel refreshed from your bath.
+  mpmset $r quest 10 3 0
+else
+  if quest(10, 3, $r) == 2
+    mpquiet on
+    cast refresh $r
+    cast refresh $r
+    cast refresh $r
+    cast refresh $r
+    cast refresh $r
+    cast heal $r
+    cast heal $r
+    cast heal $r
+    cast heal $r
+    cast heal $r
+    mpquiet off
+    mpechoat $r The bath girl baths you and massages you.
+    mpechoat $r You feel refreshed and feel better.
+    mpechoat $r Her hands feel great on you but when she is done
+    mpechoat $r you feel that you wanted more.
+    mpechoat $r Guess you should have got the works.
+    mpmset $r quest 10 3 0
+  else
+    if quest(10, 3, $r) == 3
+      mpquiet on
+      cast refresh $r
+      cast refresh $r
+      cast refresh $r
+      cast refresh $r
+      cast refresh $r
+      cast heal $r
+      cast heal $r
+      cast heal $r
+      cast heal $r
+      cast heal $r
+      cast heal $r
+      cast heal $r
+      cast heal $r
+      cast heal $r
+      cast heal $r
+      mpoload 15161
+      give pennystoken $n
+      mpforce $n penny
+      mpjunk pennystoken
+      mppurge all
+      mpquiet off
+      mpechoat $r The bath girl runs her hands all over your body as
+      mpechoat $r she bathes and massages you.
+      mpechoat $r She is pliant to your every wish.
+      mpechoat $r You feel totally rejuvenated 
+      mpmset $r quest 10 3 0
+    endif
+  endif
+endif
+~
+|
+#15140
+bath boy~
+A bath boy~
+A Foaming Sands bath boy stands here waiting to cater to your every need.~
+He is a stunning looking male.  His chest is oiled and his body
+gleams in the lamp light.  He wears only a simple white loin cloth.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_UNDERSTAND|AFF_TONGUES
+0 S
+65 BODY_HAND BODY_FOOT 10d10+2800 1d10+55
+10000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>rand_prog 100~
+if quest(10, 3, $r) == 1
+  mpquiet on
+  cast refresh $r
+  cast refresh $r
+  cast refresh $r
+  cast refresh $r
+  cast refresh $r
+  mpquiet off
+  mpechoat $r The bath boy gently baths your body, but seems to avoid 
+  mpechoat $r certain parts the you most want washed.
+  mpechoat $r I guess you should have gone for the works.
+  mpechoat $r You feel refreshed from your bath.
+  mpmset $r quest 10 3 0
+else
+  if quest(10, 3, $r) == 2
+    mpquiet on
+    cast refresh $r
+    cast refresh $r
+    cast refresh $r
+    cast refresh $r
+    cast refresh $r
+    cast heal $r
+    cast heal $r
+    cast heal $r
+    cast heal $r
+    cast heal $r
+    mpquiet off
+    mpechoat $r The bath boy baths you and massages you.
+    mpechoat $r You feel refreshed and feel better.
+    mpechoat $r His hands feel great on you but when he is done
+    mpechoat $r you feel that you wanted more.
+    mpechoat $r Guess you should have got the works.
+    mpmset $r quest 10 3 0
+  else
+    if quest(10, 3, $r) == 3
+      mpquiet on
+      cast refresh $r
+      cast refresh $r
+      cast refresh $r
+      cast refresh $r
+      cast refresh $r
+      cast heal $r
+      cast heal $r
+      cast heal $r
+      cast heal $r
+      cast heal $r
+      cast heal $r
+      cast heal $r
+      cast heal $r
+      cast heal $r
+      cast heal $r
+      mpoload 15161
+      give pennystoken $n
+      mpforce $n penny
+      mpjunk pennystoken
+      mppurge all
+      mpquiet off
+      mpechoat $r The bath boy runs his hands all over your body as
+      mpechoat $r he bathes and massages you.
+      mpechoat $r He is pliant to your every wish.
+      mpechoat $r You feel totally rejuvenated 
+      mpmset $r quest 10 3 0
+    endif
+  endif
+endif
+~
+|
+#15142
+harbourmastermob harbour master~
+The harbour master~
+The harbour master stands here.~
+Dressed in typical sailors garb, he is ready to take you to the
+DESTINATION of your choice.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_UNDERSTAND|AFF_TONGUES
+0 S
+65 BODY_HAND BODY_FOOT 10d10+5000 1d10+75
+10000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+say Do you require passage aboard the Mist Walker?
+~
+>speech_prog destination location where yes~
+say We can take you to several different ports.
+say Moonshae Islands, Holy River, Isle of Mist,
+say Troll Island and Ocean City.
+say Where would you like to go?
+~
+>speech_prog p Moonshae Islands~
+mpmset $n quest 13 5 1
+say Passage will cost you 250,000 gold.
+~
+>speech_prog p Holy River~
+mpmset $n quest 13 5 2
+say Passage will cost you 250,000 gold.
+~
+>speech_prog p Isle of Mist~
+mpmset $n quest 13 5 3
+say Passage will cost you 250,000 gold.
+~
+>speech_prog p Troll Island~
+mpmset $n quest 13 5 4
+say Passage will cost you 250,000 gold.
+~
+>speech_prog p Ocean City~
+mpmset $n quest 13 5 5
+say Passage will cost you 250,000 gold.
+~
+>bribe_prog 250000~
+if quest(13, 5, $n) == 0
+  say You must pick a destination first.
+  mpquiet on
+  mpmadd $n gold 250000
+  mpquiet off
+  mpechoat $n The Harbour Master give you back your gold.
+else
+  if quest(21, 1, $n) == 0
+    if quest(22, 1, self) == 0 
+      mpmset $n quest 21 1 1
+      say You may board the Mistwalker now. 
+      connect 3 15275
+    else
+      mpmset $n quest 21 1 1
+      mpecho The Mist Walker is out to sea.  
+      mpecho You will have to wait till she returns.
+    endif
+  endif
+endif
+~
+|
+#15143
+mistwalkercaptain captain~
+The Mist Walker Captain~
+The Captain of the Mist Walker Stands here.~
+Dressed in typical sailors garb, he captains the Mist Walker with
+confidence and ease.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_UNDERSTAND|AFF_TONGUES
+0 S
+95 BODY_HAND BODY_FOOT 10d10+25000 1d10+155
+10000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if quest(21, 1, $n) == 0
+  shout A stowaway! $n is a stowaway!
+  mpecho $n is thrown overboard.
+  mpmset $n quest 13 5 0
+  mptransfer $n 15101
+else
+  if quest(13, 5, $n) == 0
+    say You forgot to pick a destination.
+    say Go back and see the Harbour Master.
+    mpforce $n east
+  else
+    mpat 15274 connect 3 15101
+    if quest(13, 5, $n) == 1
+      mpecho The Captain shouts Set sail for Moonshae Islands
+    else
+      if quest(13, 5, $n) == 2
+        mpecho The Captain shouts Set sail for Holy River
+      else
+        if quest(13, 5, $n) == 3
+          mpecho The Captain shouts Set sail for Isle of Mist
+        else
+          if quest(13, 5, $n) == 4
+            mpecho The Captain shouts Set sail for Troll Island
+          else
+            if quest(13, 5, $n) == 5
+              mpecho The Captain shouts Set sail for Ocean City
+            endif
+          endif
+        endif
+      endif
+    endif
+    mpmset mistwalkercaptain quest 19 2 0
+    mpat 15274 mpmset harbourmastermob quest 22 1 1
+  endif
+endif
+~
+>rand_prog 50~
+if quest(19, 2, mistwalkercaptain) == 0
+  connect 1 15101
+  mpecho You cast off and pull away from the docks of Zazesspur.
+  mpmset mistwalkercaptain quest 19 2 1
+else
+  if quest(19, 2, mistwalkercaptain) == 1
+    mpecho You sail through the Sea of Swords.
+    mpmset mistwalkercaptain quest 19 2 2
+  else
+    if quest(19, 2, mistwalkercaptain) == 2
+      if quest(13, 5, $r) == 1
+        connect 1 201
+        mpecho You sail up to the Corwell Docks of Moonshae Islands.
+        mpecho All disembark
+        mpmset $r quest 13 5 0
+        mpmset $r quest 21 1 0
+        mpforce $r east
+        connect 1 15101
+      else
+        if quest(13, 5, $r) == 2
+          connect 2 27580
+          mpecho You sail up to the right bank of Holy River.
+          mpecho All disembark
+          mpmset $r quest 13 5 0
+          mpmset $r quest 21 1 0
+          mpforce $r south
+          connect 2 15101
+        else
+          if quest(13, 5, $r) == 3
+            connect 2 10747
+            mpecho You sail up to the Isle of Mist.
+            mpecho All disembark
+            mpmset $r quest 13 5 0
+            mpmset $r quest 21 1 0
+            mpforce $r south
+            connect 2 15101
+          else
+            if quest(13, 5, $r) == 4
+              connect 0 15911
+              mpecho You sail up to the beach of Troll Island.
+              mpecho All disembark
+              mpmset $r quest 13 5 0
+              mpmset $r quest 21 1 0
+              mpforce $r north
+              connect 0 15101
+            else
+              if quest(13, 5, $r) == 5
+                connect 0 11458
+                mpecho You sail up to the beach of Ocean City.
+                mpecho All disembark
+                mpmset $r quest 13 5 0
+                mpmset $r quest 21 1 0
+                mpforce $r north
+                connect 0 15101
+              endif
+            endif
+          endif
+        endif
+      endif
+    endif
+    mpat 15274 mpecho The Mist Walker sails into port.
+    connect 1 15274 both
+    mpat 15274 mpmset harbourmastermob quest 22 1 0
+    mpmset self quest 19 2 0
+  endif
+endif
+~
+|
+#15144
+sahuagin~
+a Sahuagin~
+A Sahuagin swims here.~
+It is a fish featured huminoid, with a fish shaped head
+and webbed claws at hands and feet, and a large dorsal
+fin at the back.~
+ACT_SMART|ACT_BODY
+AFF_INVISIBLE|AFF_UNDERSTAND|AFF_SLEEP|AFF_TONGUES
+-400 S
+25 BODY_MOUTH|BODY_CLAW BODY_MOUTH|BODY_CLAW 10d10+350 1d10+15
+10000 70135
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 30~
+mpecho The Sahuagin swarm over the sides of your ship and attack!
+mpkill $n
+~
+>death_prog 100~
+if class($n) == 4
+  if level($n) < 45
+    mpoload 15163
+  endif
+endif
+~
+|
+#0
+
+
+
+
+#OBJECTS
+#15100
+gate key~
+a Gate key~
+A big key lies here.~
+It looks like it might fit the gates of Zazesspur.~
+ITEM_TYPE_KEY
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+4 0 0 0
+1 300 50
+#15101
+damp key~
+a Damp key~
+A damp key lies here.~
+Just an ordinary key that looks like its been used in a wet area.~
+ITEM_TYPE_KEY
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+4 0 0 0
+1 90 50
+#15102
+Sign~
+a Sign~
+A sign is here.~
+The sign:
+.                   _______________________________________
+.                  (                                       )
+.                  (           {120}Welcome to Tethyr{300}           )
+.                  (                                       )
+.                  (         {110}Area created by Blythe{300}        )
+.                  (                                       )
+.                  (   {160}Based on the novel Silver Shadows{300}   )
+.                  (          {160}By Elaine Cunningham{300}         )
+.                  (                                       )
+.                  (  {130}A Forgotten Realms Harper Book{300}   {140}TSR{300} )
+.                  (                                       )
+.                  (_______________________________________)
+.                                   |     |
+.                                  {120}\{300}|     |{120}/{300}~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL
+0
+0 0 0 0
+500 90 96
+#15103
+parchment moonflower~
+a parchment with a moonflower seal~
+A creamy, luminous parchment lies in a crumpled ball here.~
+The parchment:
+.                ___________________________________________
+.               {007}(                                           ){300}
+.               {007}(  {300}{027}--'-,-({117}@{300}{007}                                 ){300}
+.               {007}(                                           ){300}
+.               {007}(      {300}{157}I, Amlaruil, Lady of Evermeet,{300}{007}       ){300}
+.               {007}(           {300}{157}Queen of All Elves{300}{007}              ){300}
+.               {007}(         {300}{157}do hereby proclaim that{300}{007}           ){300}
+.               {007}(            {300}{157}Arilyn Moonblade,{300}{007}              ){300}
+.               {007}(     {300}{157}be my Ambassador to the wild elves{300}{007}    ){300}
+.               {007}(            {300}{157}of Tethir Forest{300}{007}               ){300}
+.               {007}(                                           ){300}
+.               {007}(___________________________________________){300}~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 0 0
+1 90 1
+#15104
+potion stealth~
+a potion of stealth~
+A potion of stealth lies here~
+A potion from the School of Stealth.~
+ITEM_TYPE_POTION
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+30 SPELL_DETECT_INVIS SPELL_DETECT_HIDDEN SPELL_STABILITY
+1 10000 32
+#15105
+scroll stealth~
+a scroll of stealth~
+A scroll of stealth lies here.~
+A scroll from the School of Stealth.~
+ITEM_TYPE_SCROLL
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+30 SPELL_DETECT_INVIS SPELL_DETECT_HIDDEN SPELL_STABILITY
+1 10000 32
+#15106
+potion protection~
+a potion of Protection~
+A potion of protection lies here.~
+A potion from the School of Stealth.~
+ITEM_TYPE_POTION
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+40 SPELL_SANCTUARY SPELL_ARMOR SPELL_STONE_SKIN
+1 100000 45
+#15107
+scroll protection~
+a scroll of protection~
+A scroll of protection lies here.~
+A scroll from the School of Stealth.~
+ITEM_TYPE_SCROLL
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+40 SPELL_SANCTUARY SPELL_ARMOR SPELL_STONE_SKIN
+1 100000 45
+#15108
+recall scroll~
+a recall scroll~
+A recall scroll lies here.~
+A scroll from the School of Stealth.~
+ITEM_TYPE_SCROLL
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+10 SPELL_WORD_OF_RECALL SPELL_NONE SPELL_NONE
+1 10 10
+#15109
+water trough~
+a water trough~
+A water trough to feed the animals is here.~
+A long rectangular trough full of clear water.~
+ITEM_TYPE_FOUNTAIN
+ITEM_FLAG_LEVEL
+0
+0 0 0 0
+1000 100 96
+#15110
+turban ferret~
+a turban of Ferret~
+A cobalt blue turban lies here.~
+A turban made of the finest cobalt blue silk.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HEAD
+6 0 0 0
+3 1000 35
+A
+APPLY_HITROLL 3
+A
+APPLY_DAMROLL 3
+#15111
+gloves ferret~
+the gloves of Ferret~
+A pair of leather gloves lie here.~
+They are made of the finest leather and fit your hands perfectly.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HANDS
+6 0 0 0
+3 1000 35
+A
+APPLY_HITROLL 3
+A
+APPLY_DAMROLL 3
+#15112
+silver tiara~
+a silver tiara~
+A circlet of silver and amethysts lays here.~
+It is a silver tiara studded with pale amethysts.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HEAD
+5 0 0 0
+2 1000000 35
+A
+APPLY_MANA 45
+#15113
+dark gray cloak grey~
+a dark gray cloak~
+A mass of dark gray cloth lies here.~
+It is a large cloak made of dark gray fabric.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_ANTI_GOOD|ITEM_FLAG_NOREMOVE|ITEM_FLAG_LEVEL|ITEM_FLAG_AUTO_ENGRAVE
+ITEM_WEAR_TAKE|ITEM_WEAR_NECK
+10 0 0 0
+3 1000 45
+A
+APPLY_DEX 2
+A
+APPLY_HITROLL 3
+A
+APPLY_DAMROLL 5
+#15114
+iron toed boots~
+a pair of iron-toed boots~
+A pair of iron-toed boots lay on the ground here.~
+Made of a strong leather with iron in the toes for extra damage and
+protection.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_ANTI_GOOD|ITEM_FLAG_NOREMOVE|ITEM_FLAG_LEVEL|ITEM_FLAG_AUTO_ENGRAVE
+ITEM_WEAR_TAKE|ITEM_WEAR_FEET
+10 0 0 0
+3 1000 45
+A
+APPLY_DEX 2
+A
+APPLY_HITROLL 3
+A
+APPLY_DAMROLL 5
+#15115
+yellow tunic~
+a yellow tunic~
+A pile of yellow cloth lies here.~
+A simple tunic made of a plain yellow fabric.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_BODY
+11 0 0 0
+3 1000 35
+#15116
+worn sandals~
+a pair of worn sandals~
+A pair of worn sandals like on the ground here.~
+They are made of a well worn leather.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_FEET
+11 0 0 0
+3 1000 35
+#15117
+elven bow~
+an elven bow~
+An elven bow lies here.~
+It is a bow made of a strong wood and well crafted.~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+5 5 5 WEAPON_POUND
+3 1000 30
+#15118
+elven arrows~
+some elven arrows~
+Some elven arrows lie here.~
+A well crafted elven arrow.~
+ITEM_TYPE_AMMO
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+5 20 15 2
+1 200 30
+#15119
+eye mask~
+an eye mask~
+An unusual looking mask lies here.~
+It is a half mask of some pale, supple substance that looks like the
+skin of a moon elf.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_ANTI_EVIL|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HEAD
+5 0 0 0
+3 1000 35
+#15120
+macumail kilt blue green~
+the macumail kilt~
+A kilt of blue and green weave lies here.~
+It is a kilt made of a fine fabric of a distinctive blue and green weave.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_LEGS
+8 0 0 0
+3 1000 40
+A
+APPLY_HIT 30
+#15121
+captains shirt white cotton~
+a captain's shirt~
+A pile of fine white cotton lies here.~
+It is a clean white shirt with extravagant lace trimmed ruffles at the
+throat and cuffs.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_BODY
+8 0 0 0
+3 1000 40
+A
+APPLY_HIT 30
+#15122
+shadow sash gray grey silk~
+a gray shadow sash~
+A pile of gray silk lies here.~
+It is a sash made of the finest gray silk.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WAIST
+8 0 0 0
+3 1000 50
+A
+APPLY_HITROLL 3
+A
+APPLY_DAMROLL 3
+#15123
+sand shadow sash silk~
+a sand-hued shadow sash~
+A pile of sandy coloured silk is here.~
+It is a sash made of sand-hued silk.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WAIST
+6 0 0 0
+3 1000 30
+A
+APPLY_HITROLL 2
+A
+APPLY_DAMROLL 2
+#15124
+pink tabard~
+a pink tabard~
+A tabard of pink is here.~
+{150}It is a tabard of pink silk.  One from Abrum Assante's finest guards.{300}~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_ABOUT
+4 0 0 0
+3 1000 40
+A
+APPLY_HITROLL 3
+A
+APPLY_DAMROLL 3
+#15125
+pink silver shield~
+a pink and silver shield~
+A shield of pink and silver is here.~
+{150}It is a shield of pink and silver.  One from Abrum Assante's finest guards.{300}~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_SHIELD
+4 0 0 0
+3 1000 40
+A
+APPLY_HITROLL 3
+A
+APPLY_DAMROLL 3
+#15126
+pink silver helm~
+a pink and silver helm~
+A helm of pink and silver is here.~
+{150}It is a helm of pink and silver.  One from Abrum Assante's finest guards.{300}~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HEAD
+4 0 0 0
+3 1000 40
+A
+APPLY_HITROLL 3
+A
+APPLY_DAMROLL 3
+#15127
+pink leather boots~
+a pair of pink leather boots~
+A pair of pink leather boots is here.~
+{150}It is a pair of pink leather boots.  A pair from Abrum Assante's finest
+guards.{300}~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_FEET
+4 0 0 0
+3 1000 40
+A
+APPLY_HITROLL 3
+A
+APPLY_DAMROLL 3
+#15128
+silver long sword pink~
+a silver and pink longsword~
+A silver sword with a pink hilt lies here.~
+{150}It is a fine silver sword with a pink hilt.  It is from Abrum Assante's
+finest guards.{300}~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 5 6 WEAPON_SLASH
+3 1000 40
+A
+APPLY_HITROLL 2
+A
+APPLY_DAMROLL 2
+#15129
+pink leggings~
+a pair of pink leggings~
+A pair of pink leggings lie here.~
+{150}Made from fine pink leather.  A pair from Abrum Assante's finest guards.{300}~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_LEGS
+4 0 0 0
+3 1000 40
+A
+APPLY_HITROLL 3
+A
+APPLY_DAMROLL 3
+#15130
+pink leather belt~
+a pink leather belt~
+A fine pink leather belt lays here.~
+{150}Made from pink leather with a silver buckle.  Its from Abrum Assante's
+finest guards.{300}~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WAIST
+4 0 0 0
+3 1000 40
+A
+APPLY_HITROLL 3
+A
+APPLY_DAMROLL 3
+#15131
+pink cloak~
+a pink cloak~
+A cloak of pink fabric lies here.~
+{150}Made from the finest pink fabric.  It is from Abrum Assante's finest guards.{300}~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_NECK
+4 0 0 0
+3 1000 40
+A
+APPLY_HITROLL 3
+A
+APPLY_DAMROLL 3
+#15132
+pink medallion silver~
+a pink and silver medallion~
+A medallion of pink and silver lies here.~
+{150}A pink medallion on a silver chain.  It is from Abrum Assante's finest
+guards.{300}~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_NECK
+4 0 0 0
+3 1000 40
+A
+APPLY_HITROLL 3
+A
+APPLY_DAMROLL 3
+#15133
+pink signet ring silver~
+a pink and silver signet ring~
+A pink and silver signet ring lies here.~
+{150}A silver ring with a pink stone.  It is from Abrum Assante's finest guards.{300}~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_FINGER
+4 0 0 0
+3 1000 40
+A
+APPLY_HITROLL 3
+A
+APPLY_DAMROLL 3
+#15134
+moonblade~
+the moonblade~
+The moonblade lies here.~
+The blade glimmers with a faint blue glow.  Runes of an elven nature
+are engraved into the hilt.  You feel that this weapon has a long
+history about it.~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_ANTI_EVIL|ITEM_FLAG_NOREMOVE|ITEM_FLAG_LEVEL|ITEM_FLAG_AUTO_ENGRAVE
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 5 10 WEAPON_PIERCE
+4 500000 45
+#15135
+mug ale~
+a mug of ale~
+A mug of ale is here.~
+It is a stone mug full of the finest ale.~
+ITEM_TYPE_DRINK_CON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+3 3 LIQ_ALE NOT_POISONED
+1 10 20
+#15136
+hearty stew~
+a hearty stew~
+A plate of hearty stew is here.~
+It is a stone plate filled with a hot stew.~
+ITEM_TYPE_FOOD
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+24 0 0 NOT_POISONED
+1 10 20
+#15137
+mickey mace galen~
+a Mickey Mace of Galen~
+A drool covered mace lies here.~
+This is the toy of Blythe's son Galen.  It's actually Mickey Mouse
+and you got this one from Tethyr.~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 2 2 WEAPON_POUND
+1 1000 10
+A
+APPLY_MANA 20
+#15138
+eye mask~
+an eye mask~
+An unusual looking mask lies here.~
+It is a half mask of some pale, supple substance that looks like the
+skin of a moon elf.  This one has been enchanted by Arilyn.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_ANTI_EVIL|ITEM_FLAG_LEVEL|ITEM_FLAG_AUTO_ENGRAVE
+ITEM_WEAR_TAKE|ITEM_WEAR_HEAD
+5 0 0 0
+1 300000 45
+A
+APPLY_INT 3
+A
+APPLY_HIT 30
+A
+APPLY_MANA 50
+P 1
+TRIG_TICK 80
+OPROG_IF OIF_USER_POSITION = POS_FIGHTING 2 4
+P 2
+TRIG_VOID
+OPROG_IF OIF_WEAR_LOC ! WEAR_NONE 3 0
+P 3
+TRIG_VOID
+OPROG_JUNK
+P 3
+TRIG_VOID
+OPROG_ECHO
+Your mask shatters into a million pieces.~
+P 4
+TRIG_VOID
+OPROG_IF OIF_USER_POSITION = POS_SLEEPING 5 0
+P 5
+TRIG_VOID
+OPROG_APPLY OAPPLY_HIT 40
+P 5
+TRIG_VOID
+OPROG_APPLY OAPPLY_MANA 40
+P 5
+TRIG_VOID
+OPROG_APPLY OAPPLY_MOVE 40
+P 5
+TRIG_VOID
+OPROG_ECHO
+The eye mask rejuvinates you while you sleep.~
+#15139
+purple silk tunic~
+a purple silk tunic~
+A pile of purple silk lies here.~
+{050}It is a tunic made of the finest purple silk.{300}~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_BODY
+5 0 0 0
+3 1000 20
+#15140
+shadow cloak~
+a shadow cloak~
+A shadowy pile of cloth lies here.~
+It is a cloak made of the deepest black fabric.  It helps you fade
+into the shadows.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_NECK
+4 0 0 0
+3 1000 10
+A
+APPLY_HIT 8
+#15141
+green gem~
+a green gem~
+A green gem catches the sunlight here.~
+{120}It's a green gem!{300}~
+ITEM_TYPE_TREASURE
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+0 0 0 0
+1 50000 10
+A
+APPLY_WIS 1
+A
+APPLY_CON 1
+#15142
+shrieker mushroom potion~
+the shrieker mushroom potion~
+A little bottle lies on the ground here.~
+It is a little bottle with a cork stopper in it.~
+ITEM_TYPE_POTION
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+30 SPELL_TONGUES SPELL_NONE SPELL_NONE
+1 100000 30
+#15143
+case elven woman glass~
+a case containing an elven woman.~
+A glass case containing an elven woman lays amongst the treasures here.~
+There is a slight elven woman in this glass case.  You think that
+the glass case resembles a coffin.  She doesn't appear to be alive,
+but not dead either.  She seems to be in a state of suspended animation.
+She looks like she is waiting for you to {170}awaken{300} her.~
+ITEM_TYPE_FURNITURE
+ITEM_FLAG_LEVEL
+0
+0 0 0 0
+500 9 96
+#15144
+mop~
+a mop~
+A mop lies on the ground here forming a puddle.~
+Just an ordinary mop that you would wash the floor with.~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 4 10 WEAPON_POUND
+1 1000 40
+C
+slosh~
+0
+#15145
+bucket~
+a bucket~
+A bucket lies on the floor here.~
+An ordinary bucket that you could use to fill with water or other things.~
+ITEM_TYPE_CONTAINER
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+500 0 -1 0
+1 500 40
+A
+APPLY_WIS 1
+A
+APPLY_CON 1
+#15146
+iron key~
+an iron key~
+An iron key lays rusting here.~
+It looks like a key that could be used in a set of shackle irons.~
+ITEM_TYPE_KEY
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 0 0
+1 100 30
+#15147
+pink key~
+a pink key~
+A pink key lies here.~
+{150}It's a pretty pink key!{300}~
+ITEM_TYPE_KEY
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+0 0 0 0
+1 100 50
+#15148
+pink bracer~
+a pink bracer~
+A bracer lies here.~
+{150}Made from fine pink leather.  It is from Abrum Assante's finest guards.{300}~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WRIST
+4 0 0 0
+3 1000 40
+A
+APPLY_HITROLL 3
+A
+APPLY_DAMROLL 3
+#15149
+pink bracelet~
+a pink bracelet~
+A bracelet lies here.~
+{150}Made from fine pink leather and silver chain.  It is from Abrum
+Assante's finest guards.{300}~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WRIST
+4 0 0 0
+3 1000 40
+A
+APPLY_HITROLL 3
+A
+APPLY_DAMROLL 3
+#15150
+blue gem~
+a blue gem~
+A blue gem catches the sunlight here.~
+{160}It's a blue gem!{300}~
+ITEM_TYPE_TREASURE
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+0 0 0 0
+1 50000 20
+A
+APPLY_DEX 2
+A
+APPLY_HITROLL 2
+A
+APPLY_DAMROLL 3
+#15151
+clear gem~
+a clear gem~
+A clear gem catches the sunlight here.~
+{070}It's a clear gem!{300}~
+ITEM_TYPE_TREASURE
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+0 0 0 0
+1 500000 40
+A
+APPLY_MANA 60
+A
+APPLY_AC -7
+#15152
+orange gem~
+an orange gem~
+An orange gem catches the sunlight here.~
+{010}It's an orange gem!{300}~
+ITEM_TYPE_TREASURE
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+0 0 0 0
+1 500000 45
+A
+APPLY_HIT 30
+A
+APPLY_MOVE 40
+#15153
+red gem~
+a red gem~
+A red gem catches the sunlight here.~
+{110}It's a red gem!{300}~
+ITEM_TYPE_TREASURE
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+0 0 0 0
+1 500000 45
+A
+APPLY_DEX 3
+A
+APPLY_AC -10
+#15154
+pink gem~
+a pink gem~
+A pink gem catches the sunlight here.~
+{150}It's a pink gem!{300}~
+ITEM_TYPE_TREASURE
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+0 0 0 0
+1 50000 45
+A
+APPLY_AC -10
+A
+APPLY_HIT 20
+#15155
+yellow gem~
+a yellow gem~
+A yellow gem catches the sunlight here.~
+{130}It's a yellow gem!{300}~
+ITEM_TYPE_TREASURE
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+0 0 0 0
+1 500000 45
+A
+APPLY_WIS 3
+A
+APPLY_STR 3
+A
+APPLY_DEX 3
+#15156
+purple gem~
+a purple gem~
+A purple gem catches the sunlight here.~
+{050}It's a purple gem!{300}~
+ITEM_TYPE_TREASURE
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+0 0 0 0
+1 50000 35
+A
+APPLY_MOVE 20
+A
+APPLY_HIT 20
+A
+APPLY_MANA 30
+#15157
+treasure chest~
+a treasure chest~
+A treasure chest is on the ground here.~
+Its made of tin and its heavy to pick up.~
+ITEM_TYPE_CONTAINER
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+500 0 -1 0
+10 500 45
+A
+APPLY_WIS 1
+A
+APPLY_CON 1
+A
+APPLY_INT 1
+#15158
+flimsy robe~
+a flimsy robe~
+A robe of the finest silk lies here.~
+The robe is so flimsy its see through.  No armour class but sure
+does a lot of damage by distraction!~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_NOREMOVE|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_BODY
+0 0 0 0
+1 100000 37
+A
+APPLY_HITROLL 5
+A
+APPLY_DAMROLL 4
+#15159
+towel~
+a towel~
+A towel lies here.~
+It's a towel and its slightly damp.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_NOREMOVE|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_ABOUT|ITEM_WEAR_HOLD
+0 0 0 0
+1 10000 37
+A
+APPLY_HITROLL 5
+A
+APPLY_DAMROLL 4
+#15160
+parchment flyer paper~
+a flyer~
+A piece of paper flutters here.~
+__________________________________________.
+|                                          |
+|                {110}WANTED{300}                    |
+|            {120}Brave Sailors{300}                 |
+|       {120}for an adventurous journey{300}         |
+|            {120}into the unknown.{300}             |
+|                                          |
+|         {160}See the Captain of the{300}           |
+|               {160}ES Minerva{300}                 |
+|                                          |
+|  {170}This flyer is good for one free ticket{300}  |
+|__________________________________________|
+.~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 0 0
+1 90 1
+#15161
+pennystoken token~
+a pennys token~
+A pennys token lies here.~
+This is the Energy shifter for penelope's the works.~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 0 0
+1 90 1
+P 1
+TRIG_UNKNOWN 100 penny
+OPROG_APPLY OAPPLY_MANA 1000
+P 1
+TRIG_VOID
+OPROG_JUNK
+#15162
+golden thorn~
+golden thorn~
+A Golden Thorn plant grows here.~
+It is an exotic looking plant with thorns that look like they
+are made of gold.  It is said to have magical properties.~
+ITEM_TYPE_PILL
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+40 SPELL_ARMOR SPELL_NONE SPELL_NONE
+1 10000 40
+#15163
+sahuagin fin~
+a sahuagin fin~
+A Sahuagin fin lies on the ground here.~
+The fin is sharp, and if you were on the recieving end of it whilst
+it was still attached to its former owner, it would do you serious harm.~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 0 0
+1 1000 30
+#15164
+crustacean shell~
+a crustacean shell~
+A crustacean shell lies here dripping.~
+It is the hard shell of a crustacean, almost impermeable.~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 0 0
+1 1000 30
+#15165
+tethyrian port~
+a tethyrian port~
+A bottle of Tethyrian Port lies here.~
+This is reputed to be the best port that one can get in the realms.~
+ITEM_TYPE_DRINK_CON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+3 3 LIQ_ALE NOT_POISONED
+1 1000 30
+#15166
+badge rank lythari~
+a lythari badge of rank~
+A lythari badge of rank lies here.~
+The badge is worn on the arms and signifies that the wearer is a leader of
+the lythari elves.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_NOREMOVE|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_ARMS
+9 0 0 0
+1 100000 46
+A
+APPLY_HITROLL 6
+A
+APPLY_INT 1
+#0
+
+
+
+
+#ROOMS
+#15100
+Restart room~
+This is Blythes restart room.~
+151 ROOM_NO_MOB|ROOM_NO_RECALL|ROOM_NO_RIP|ROOM_SAFE SECT_INN
+S
+#15101
+Sea of Swords~
+You are in the sea, heading towards a safe looking harbour.
+The sun glints off the water blinding you, and you can see all
+manner of craft sailing in and out of the harbour.  You see a fish
+jump out of the water.~
+151 ROOM_NO_MOB SECT_WATER_NOSWIM
+DDIR_NORTH
+Sea of Swords~
+~
+0 -1 15293
+DDIR_EAST
+Harbour~
+~
+0 -1 15102
+DDIR_SOUTH
+Sea of Swords~
+~
+0 -1 15101
+DDIR_WEST
+Sea of Swords~
+~
+0 -1 15296
+S
+#15102
+Harbour of Zazesspur~
+The harbour overlooks the Sea of Swords.
+All sorts of sea craft are docked.  Nearby you can see the
+Zazesspur boulevard.  In the distance you can see glorious castles.
+The water laps gently against the harbour and one could sit for hours
+watching the ocean.~
+151 0 SECT_CITY
+DDIR_EAST
+Tethyr~
+~
+0 -1 15103
+DDIR_WEST
+Sea of Swords~
+~
+0 -1 15101
+S
+#15103
+Tethyr~
+Tethyr is a land of many contrast and contradictions.
+Ancient ways and modern notions, pretentions of royalty and
+egalitarian fervour commingle uneasily in a land who's natural
+complexity only magnifies her woes.~
+151 0 SECT_CITY
+DDIR_EAST
+Zazesspur Gates~
+~
+0 -1 15104
+DDIR_WEST
+Harbour of Zazesspur~
+~
+0 -1 15102
+S
+#15104
+Zazesspur Gates~
+You stand before a set of the most majestic gates that you have
+ever seen.  They stand about 12 feet tall, and are made of marble
+that is streaked with gold.  Various carvings decorate the gates.
+Guards stand at attention, maybe more for show than affect.~
+151 ROOM_NO_MOB SECT_CITY
+DDIR_SOUTH
+Zazesspur Boulevard~
+Gates gate~
+EX_ISDOOR|EX_CLOSED|EX_LOCKED 15100 15106
+DDIR_WEST
+Tethyr~
+~
+0 -1 15103
+S
+#15105
+Harbour of Zazesspur~
+The harbour overlooks the Sea of Swords.  All sorts of sea craft
+are docked.  Nearby you can see the Zazesspur boulevard.  In the
+distance you can see glorious castles, and beyond that pitiful
+hovels.~
+151 0 SECT_CITY
+DDIR_EAST
+Zazesspur Boulevard~
+~
+0 -1 15106
+DDIR_SOUTH
+Zazesspur Harbour~
+~
+0 -1 15108
+DDIR_WEST
+Dock~
+~
+0 -1 15274
+S
+#15106
+Boulevard of Zazesspur~
+On either side of you are luxurious looking buildings.  In
+the distance you can see hovels, making a marked contrast
+to the palaces they are near.  Drunken sailors are rolling
+out of the nearbly tavern.~
+151 0 SECT_CITY
+DDIR_NORTH
+Zazesspur Gates~
+~
+0 -1 15104
+DDIR_EAST
+Breaching Whale Tavern~
+door~
+EX_ISDOOR -1 15107
+DDIR_SOUTH
+Zazesspur Boulevard~
+~
+0 -1 15109
+DDIR_WEST
+Harbour~
+~
+0 -1 15105
+S
+#15107
+Breaching Whale Tavern~
+It is fairly typical as dockside taverns go.  It is crowded
+with hard drinking sailors out for a bottomless mug of ale.
+It is noisy in here.  You can here people talking loudly and
+whores giggling as they entertain clients.~
+151 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+The Bar~
+~
+0 -1 15195
+DDIR_EAST
+Breaching Whale Tavern~
+~
+0 -1 15198
+DDIR_SOUTH
+Breaching Whale Tavern~
+~
+0 -1 15200
+DDIR_WEST
+Zazesspur Boulevard~
+door~
+EX_ISDOOR -1 15106
+S
+#15108
+Harbour of Zazesspur~
+The harbour overlooks the Sea of Swords.  All sorts of sea craft
+are docked.  Nearby you can see the Zazesspur boulevard.  In the
+distance you can see glorious castles.~
+151 0 SECT_CITY
+DDIR_NORTH
+Zazesspur Harbour~
+~
+0 -1 15105
+DDIR_EAST
+Zazesspur Boulevard~
+~
+0 -1 15109
+DDIR_SOUTH
+Zazesspur Harbour~
+~
+0 -1 15119
+DDIR_WEST
+Fisherman's Wharf~
+~
+0 -1 14720
+S
+#15109
+Boulevard of Zazesspur~
+On either side of you are luxurious looking buildings.  In the
+distance you can see hovels, making a marked contrast to the
+palaces they are near.  You can hear waves lap the against the
+pier in the nearby harbour.~
+151 0 SECT_CITY
+DDIR_NORTH
+Boulevard of Zazesspur~
+~
+0 -1 15106
+DDIR_EAST
+Boulevard of Zazesspur~
+~
+0 -1 15110
+DDIR_SOUTH
+Boulevard of Zazesspur~
+~
+0 -1 15120
+DDIR_WEST
+Zazesspur Harbour~
+~
+0 -1 15108
+S
+#15110
+Boulevard of Zazesspur~
+On either side of you are luxurious looking buildings.  In the
+distance you can see hovels, making a marked contrast to the
+palaces they are near.  To the south you can see the most
+magnificent pink marble palace.~
+151 0 SECT_CITY
+DDIR_EAST
+Boulevard of Zazesspur~
+~
+0 -1 15111
+DDIR_SOUTH
+Entrance to the Palace of Abrum Assante~
+~
+0 -1 15121
+DDIR_WEST
+Boulevard of Zazesspur~
+~
+0 -1 15109
+S
+#15111
+Boulevard of Zazesspur~
+On either side of you are luxurious looking buildings.  In the
+distance you can see hovels, making a marked contrast to the
+palaces they are near.  To the south you can see the walls of
+the most magnificent palace made from pink marble.~
+151 0 SECT_CITY
+DDIR_EAST
+Boulevard of Zazesspur~
+~
+0 -1 15112
+DDIR_SOUTH
+Outside the Palace Walls~
+~
+0 -1 15122
+DDIR_WEST
+Boulevard of Zazesspur~
+~
+0 -1 15110
+S
+#15112
+Boulevard of Zazesspur~
+On either side of you are luxurious looking buildings.  In the
+distance you can see hovels, making a marked contrast to the
+palaces they are near.  The pink walls of Abrum Asante's Place
+loom high above you.~
+151 0 SECT_CITY
+DDIR_EAST
+Boulevard of Zazesspur~
+~
+0 -1 15113
+DDIR_SOUTH
+Outside the Palace Walls~
+~
+0 -1 15123
+DDIR_WEST
+Boulevard of Zazesspur~
+~
+0 -1 15111
+S
+#15113
+Boulevard of Zazesspur~
+On either side of you are luxurious looking buildings.  In the
+distance you can see hovels, making a marked contrast to the
+palaces they are near.~
+151 0 SECT_CITY
+DDIR_EAST
+Boulevard of Zazesspur~
+~
+0 -1 15114
+DDIR_WEST
+Boulevard of Zazesspur~
+~
+0 -1 15112
+S
+#15114
+Boulevard of Zazesspur~
+On either side of you are luxurious looking buildings.  In the
+distance you can see hovels, making a marked contrast to the
+palaces they are near.~
+151 0 SECT_CITY
+DDIR_EAST
+Boulevard of Zazesspur~
+~
+0 -1 15115
+DDIR_WEST
+Boulevard of Zazesspur~
+~
+0 -1 15113
+S
+#15115
+Boulevard of Zazesspur~
+On either side of you are luxurious looking buildings.  In the
+distance you can see hovels, making a marked contrast to the
+palaces they are near.  The door of the building nearest you
+opens, and steamy scented air fills your lungs.  You catch a
+glimpse of beautiful scantily clad women, before the door closes
+again.~
+151 0 SECT_CITY
+DDIR_NORTH
+Boulevard of Zazesspur~
+~
+0 -1 15116
+DDIR_SOUTH
+Foaming Sands Bath House~
+Door~
+EX_ISDOOR|EX_CLOSED -1 15130
+DDIR_WEST
+Boulevard of Zazesspur~
+~
+0 -1 15114
+S
+#15116
+Boulevard of Zazesspur~
+On either side of you are luxurious looking buildings.  In the
+distance you can see hovels, making a marked contrast to the
+palaces they are near.  Mysterious darkly clad figures emerge
+from the building to the east.~
+151 0 SECT_CITY
+DDIR_NORTH
+Boulevard of Zazesspur~
+~
+0 -1 15117
+DDIR_EAST
+School of Stealth~
+door~
+EX_ISDOOR|EX_CLOSED|EX_HIDDEN|EX_PICKPROOF -1 15183
+DDIR_SOUTH
+Boulevard of Zazesspur~
+~
+0 -1 15115
+S
+#15117
+Boulevard of Zazesspur~
+On either side of you are luxurious looking buildings.  In the
+distance you can see hovels, making a marked contrast to the
+palaces they are near.~
+151 0 SECT_CITY
+DDIR_EAST
+Boulevard of Zazesspur~
+~
+0 -1 15118
+DDIR_SOUTH
+Boulevard of Zazesspur~
+~
+0 -1 15116
+S
+#15118
+Boulevard of Zazesspur~
+On either side of you are luxurious looking buildings.  In the
+distance you can see hovels, making a marked contrast to the
+palaces they are near.  To the east the grand road deteriorates
+into a more worn dirt track.~
+151 0 SECT_CITY
+DDIR_EAST
+Trade Route~
+~
+0 -1 15222
+DDIR_WEST
+Boulevard of Zazesspur~
+~
+0 -1 15117
+S
+#15119
+Harbour of Zazesspur~
+The harbour overlooks the Sea of Swords.  All sorts of sea craft
+are docked.  Nearby you can see the Zazesspur boulevard.  In the
+distance you can see glorious castles.  The Sulduskoon River
+flows into the Sea nearby.~
+151 0 SECT_CITY
+DDIR_NORTH
+Zazesspur Harbour~
+~
+0 -1 15108
+DDIR_EAST
+Boulevard of Zazesspur~
+~
+0 -1 15120
+DDIR_SOUTH
+Sulduskoon River~
+~
+0 -1 15124
+S
+#15120
+Boulevard of Zazesspur~
+On either side of you are luxurious looking buildings.  In the
+distance you can see hovels, making a marked contrast to the
+palaces they are near.  To the south are the verdant banks
+of the Sulduskoon River.~
+151 0 SECT_CITY
+DDIR_NORTH
+Boulevard of Zazesspur~
+~
+0 -1 15109
+DDIR_SOUTH
+Sulduskoon River~
+~
+0 -1 15125
+DDIR_WEST
+Zazesspur Harbour~
+~
+0 -1 15119
+S
+#15121
+Outside the palace walls~
+The palace is a wonder of pink marble and clever illusions.
+It is surrounded by a high thick wall with no hand hold, no
+secure hold for a grappling hook.  Would be theives will fall
+to their deaths easily.~
+151 0 SECT_CITY
+DDIR_NORTH
+Boulevard of Zazesspur~
+~
+0 -1 15110
+DDIR_EAST
+Entrance to the Palace of Abrum Assante~
+~
+0 -1 15122
+S
+#15122
+Entrance to the Palace of Abrum Assante~
+The palace is a wonder of pink marble and clever illusions.
+It is surrounded by a high thick wall with no hand hold, no
+secure hold for a grappling hook.  Would be thieves will
+fall to their deaths easily.  To the south the gates are closed.~
+151 0 SECT_CITY
+DDIR_NORTH
+Boulevard of Zazesspur~
+~
+0 -1 15111
+DDIR_EAST
+Outside the Palace walls~
+~
+0 -1 15123
+DDIR_WEST
+Outside the Palace walls~
+~
+0 -1 15121
+S
+#15123
+Outside the palace walls~
+The palace is a wonder of pink marble and clever illusions.
+It is surrounded by a high thick wall with no hand hold, no
+secure hold for a grappling hook.  Would be theives will fall
+to their deaths easily.~
+151 0 SECT_CITY
+DDIR_NORTH
+Boulevard of Zazesspur~
+~
+0 -1 15112
+DDIR_WEST
+Entrance to the Palace of Abrum Assante~
+~
+0 -1 15122
+S
+#15124
+Sulduskoon River~
+The river is busy with crafts of all shapes and sizes.
+Merchants bring in their wares and farmers their produce from the east.
+The river flows out to the Sea of Swords here.~
+151 ROOM_NO_MOB SECT_WATER_NOSWIM
+DDIR_NORTH
+Zazesspur Harbour~
+~
+0 -1 15119
+DDIR_EAST
+Sulduskoon River~
+~
+0 -1 15125
+DDIR_WEST
+Sea of Swords~
+~
+0 -1 15296
+S
+#15125
+Sulduskoon River~
+The river is busy with crafts of all shapes and sizes.
+Merchants bring in their wares and farmers their produce
+from the east.  The current of the river is brisk at this
+point.  Take care that your craft does not capsize or colide
+with other craft nearby.~
+151 ROOM_NO_MOB SECT_WATER_NOSWIM
+DDIR_NORTH
+Boulevard of Zazesspur~
+~
+0 -1 15120
+DDIR_EAST
+Sulduskoon River~
+~
+0 -1 15126
+DDIR_WEST
+Sulduskoon River~
+~
+0 -1 15124
+S
+#15126
+Sulduskoon River~
+The river is busy with crafts of all shapes and sizes.
+Merchants bring in their wares and farmers their produce
+from the east.  Branches of Willow trees on the banks of
+the river droop to touch the surface of the water.~
+151 0 SECT_WATER_NOSWIM
+DDIR_EAST
+Sulduskoon River~
+~
+0 -1 15127
+DDIR_WEST
+Sulduskoon River~
+~
+0 -1 15125
+S
+#15127
+Sulduskoon River~
+The river is busy with crafts of all shapes and sizes.
+Merchants bring in their wares and farmers their produce
+from the east.  A nearby boat nearly collides with yours!~
+151 0 SECT_WATER_NOSWIM
+DDIR_EAST
+Sulduskoon River~
+~
+0 -1 15128
+DDIR_WEST
+Sulduskoon River~
+~
+0 -1 15126
+S
+#15128
+Sulduskoon River~
+The river is busy with crafts of all shapes and sizes.
+Merchants bring in their wares and farmers their produce
+from the east.  Nearby you can see the lush forest of Tethir.~
+151 ROOM_NO_MOB SECT_WATER_NOSWIM
+DDIR_EAST
+Forest of Tethir~
+~
+0 -1 15129
+DDIR_WEST
+Sulduskoon River~
+~
+0 -1 15127
+S
+#15129
+Forest of Tethir~
+Majestic tall trees surround you.  You can hear animals in
+the undergrowth and birds chirping happily in the trees.
+A serenity fills you.~
+151 0 SECT_FOREST
+DDIR_NORTH
+Forest of Tethir~
+~
+0 -1 15240
+DDIR_EAST
+Forest of Tethir~
+~
+0 -1 15265
+DDIR_WEST
+Sulduskoon River~
+~
+0 -1 15128
+S
+#15130
+Foaming Sands Bath House Entrance~
+You have entered a luxurious room.  Couches covered in lush
+velvet invite you to sit in them.  Draperies provide private
+nooks for patrons.  A sideboard contains a selection of drinks
+and exotic foods.~
+151 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+Boulevard of Zazesspur~
+Door~
+EX_ISDOOR|EX_CLOSED -1 15115
+DDIR_SOUTH
+Foaming Sands Bath House~
+~
+0 -1 15131
+S
+#15131
+Foaming Sands Bath House~
+A massive bath fills the room.  The steam from the hot water
+makes the room humid and warm.  The scent of luxurious bath
+salts assail your nostrils. Beautiful women bathe the wealthy clients.~
+151 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+Foaming Sands Bath House Entrance~
+~
+0 -1 15130
+DDIR_EAST
+Foaming Sands Bath House~
+~
+0 -1 15132
+DDIR_SOUTH
+Foaming Sands Bath House~
+~
+0 -1 15135
+S
+#15132
+Foaming Sands Bath House~
+Purple silks line the walls.  A massive bath fills the room.
+The steam from the hot water makes the room humid and warm.
+The scent of luxurious bath salts assail your nostrils. Beautiful
+women dressed in lavender bathe the wealthy clients.  Purple towels
+lay awaiting to dry the wealthy men.~
+151 ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+Foaming Sands Bath House~
+~
+0 -1 15133
+DDIR_SOUTH
+Foaming Sands Bath House~
+~
+0 -1 15136
+DDIR_WEST
+Foaming Sands Bath House~
+~
+0 -1 15131
+S
+#15133
+Foaming Sands Bath House~
+The room is decorated with massive lengths of yellow silks.
+A massive bath fills the room.  The steam from the hot water makes
+the room humid and warm.  The scent of luxurious bath
+salts assail your nostrils. Beautiful women dressed in lemon
+bathe the wealthy clients.~
+151 ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+Foaming Sands Bath House~
+~
+0 -1 15134
+DDIR_SOUTH
+Foaming Sands Bath House~
+~
+0 -1 15137
+DDIR_WEST
+Foaming Sands Bath House~
+~
+0 -1 15132
+S
+#15134
+Foaming Sands Bath House~
+A massive bath fills the room.  The steam from the hot water
+makes the room humid and warm.  The scent of luxurious bath salts
+assail your nostrils. Beautiful women bathe the wealthy clients.~
+151 ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+Foaming Sands Bath House~
+~
+0 -1 15138
+DDIR_WEST
+Foaming Sands Bath House~
+~
+0 -1 15133
+S
+#15135
+Foaming Sands Bath House~
+A massive bath fills the room.  The steam from the hot water makes
+the room humid and warm.  The scent of luxurious bath salts
+assail your nostrils. Beautiful women bathe the wealthy clients.~
+151 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+Foaming Sands Bath House~
+~
+0 -1 15131
+DDIR_EAST
+Foaming Sands Bath House~
+~
+0 -1 15136
+S
+#15136
+Foaming Sands Bath House~
+A massive bath fills the room.  The steam from the hot water makes
+the room humid and warm.  The scent of luxurious bath salts
+assail your nostrils. Beautiful women bathe the wealthy clients.~
+151 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+Foaming Sands Bath House~
+~
+0 -1 15132
+DDIR_EAST
+Foaming Sands Bath House~
+~
+0 -1 15137
+DDIR_WEST
+Foaming Sands Bath House~
+~
+0 -1 15135
+S
+#15137
+Foaming Sands Bath House~
+A massive bath fills the room.  The steam from the hot water makes
+the room humid and warm.  The scent of luxurious bath salts
+assail your nostrils. Beautiful women bathe the wealthy clients.~
+151 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+Foaming Sands Bath House~
+~
+0 -1 15133
+DDIR_EAST
+Foaming Sands Bath House~
+~
+0 -1 15138
+DDIR_WEST
+Foaming Sands Bath House~
+~
+0 -1 15136
+S
+#15138
+Foaming Sands Bath House~
+A massive bath fills the room.  The steam from the hot water
+makes the room humid and warm.  The scent of luxurious bath salts
+assail your nostrils. Beautiful women bathe the wealthy clients.
+One wall of this room has an odd pattern of bricks.  Very few people
+use this room.~
+151 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+Foaming Sands Bath House~
+~
+0 -1 15134
+DDIR_SOUTH
+Tunnel~
+Trap Door~
+EX_ISDOOR|EX_CLOSED|EX_LOCKED|EX_HIDDEN|EX_PICKPROOF 15101 15139
+DDIR_WEST
+Foaming Sands Bath House~
+~
+0 -1 15137
+S
+#15139
+Tunnel~
+It is dark and the walls are damp.  You can hear the splash of water
+near by.~
+151 ROOM_DARK|ROOM_INDOORS|ROOM_PRIVATE SECT_INSIDE
+DDIR_NORTH
+Foaming Sands Bath House~
+~
+0 -1 15138
+DDIR_WEST
+Tunnel~
+~
+0 -1 15140
+S
+#15140
+Tunnel~
+It is dark and the walls are damp.  You can hear the splash of water
+near by.  The scurry of a nearby mouse sends a shiver up your spine.~
+151 ROOM_DARK|ROOM_INDOORS|ROOM_PRIVATE SECT_INSIDE
+DDIR_EAST
+Tunnel~
+~
+0 -1 15139
+DDIR_WEST
+Tunnel~
+~
+0 -1 15141
+S
+#15141
+Tunnel~
+It is dark and the walls are damp.  You can hear the splash of water
+near by.  You wonder if there is something other than you in this tunnel.~
+151 ROOM_DARK|ROOM_NO_MOB|ROOM_INDOORS|ROOM_PRIVATE SECT_INSIDE
+DDIR_EAST
+Tunnel~
+~
+0 -1 15140
+DDIR_DOWN
+Underground Spring~
+~
+0 -1 15142
+S
+#15142
+Underground Spring~
+You are in a vertical well full of spring water.~
+151 ROOM_DARK|ROOM_INDOORS SECT_UNDER_WATER
+DDIR_UP
+Tunnel~
+~
+0 -1 15141
+DDIR_DOWN
+Underground Spring~
+~
+0 -1 15143
+S
+#15143
+Underground Spring~
+You are in a vertical well full of spring water.  Bubbles of air
+rise up to the surface from below you.~
+151 ROOM_DARK|ROOM_INDOORS SECT_UNDER_WATER
+DDIR_UP
+Underground Spring~
+~
+0 -1 15142
+DDIR_DOWN
+Underground Spring~
+~
+0 -1 15144
+S
+#15144
+Underground Spring~
+You are in a vertical well full of spring water.  Carnivorous
+crustaceans crawl around the bottom of the spring.~
+151 ROOM_DARK|ROOM_INDOORS SECT_UNDER_WATER
+DDIR_WEST
+Underground Spring~
+~
+0 -1 15145
+DDIR_UP
+Underground Spring~
+~
+0 -1 15143
+S
+#15145
+Underground Spring~
+You are in a vertical well full of spring water.  A human skull
+stares blankly at you.~
+151 ROOM_DARK|ROOM_INDOORS SECT_UNDER_WATER
+DDIR_EAST
+Underground Spring~
+~
+0 -1 15144
+DDIR_WEST
+Underground Spring~
+~
+0 -1 15146
+S
+#15146
+Underground Spring~
+You are in a vertical well full of spring water.  Debris
+litters the floor of the spring.~
+151 ROOM_DARK|ROOM_INDOORS SECT_UNDER_WATER
+DDIR_EAST
+Underground Spring~
+~
+0 -1 15145
+DDIR_UP
+Underground Spring~
+~
+0 -1 15147
+S
+#15147
+Underground Spring~
+You are in a vertical well full of spring water.~
+151 ROOM_DARK|ROOM_INDOORS SECT_UNDER_WATER
+DDIR_UP
+Underground Spring~
+~
+0 -1 15148
+DDIR_DOWN
+Underground Spring~
+~
+0 -1 15146
+S
+#15148
+Underground Spring~
+You are in a vertical well full of spring water.~
+151 ROOM_DARK|ROOM_INDOORS SECT_UNDER_WATER
+DDIR_UP
+Underground Spring~
+~
+0 -1 15149
+DDIR_DOWN
+Underground Spring~
+~
+0 -1 15147
+S
+#15149
+Underground Spring~
+You are in a vertical well full of spring water.  Bubbles of
+air rise to the surface from below you.~
+151 ROOM_DARK|ROOM_INDOORS SECT_UNDER_WATER
+DDIR_UP
+Underground Spring~
+~
+0 -1 15150
+DDIR_DOWN
+Underground Spring~
+~
+0 -1 15148
+S
+#15150
+Underground Spring~
+You are in a vertical well full of spring water.  You can see
+light above you.~
+151 ROOM_DARK|ROOM_NO_MOB|ROOM_INDOORS SECT_UNDER_WATER
+DDIR_UP
+Palace Bath~
+~
+0 -1 15151
+DDIR_DOWN
+Underground Spring~
+~
+0 -1 15149
+S
+#15151
+Palace Bath~
+You are in a small dark room with a low ceiling and several
+arched portals leading off into long corridors.  It is made
+of pink marble.~
+151 ROOM_DARK|ROOM_INDOORS|ROOM_SAFE SECT_INN
+DDIR_NORTH
+Corridor~
+~
+0 -1 15156
+DDIR_EAST
+Corridor~
+~
+0 -1 15164
+DDIR_SOUTH
+Corridor~
+~
+0 -1 15171
+DDIR_WEST
+Corridor~
+~
+0 -1 15163
+DDIR_DOWN
+Underground Spring~
+~
+0 -1 15150
+S
+#15152
+Corridor~
+{150}You are in the corridor of the palace of Abrum Assante.
+The walls are made of pink marble.  Archways lead to other
+corridors.  It feels like you are in some luxurious maze.
+Somewhere one of the corridors must lead to the treasure vault!{300}~
+151 ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+Corridor~
+~
+0 -1 15153
+DDIR_SOUTH
+Corridor~
+~
+0 -1 15160
+S
+#15153
+Corridor~
+{150}You are in the corridor of the palace of Abrum Assante.  The walls
+are made of pink marble.  Somewhere one of the corridors must
+lead to the treasure vault!  Armed guards march up and down the
+corridors, protecting their master's wealth.{300}~
+151 ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+Corridor~
+~
+0 -1 15154
+DDIR_WEST
+Corridor~
+~
+0 -1 15152
+S
+#15154
+Corridor~
+{150}You are in the corridor of the palace of Abrum Assante.  The walls
+are made of pink marble. Archways lead to other corridors.
+It feels like you are in some luxurious maze.  Somewhere one
+of the corridors must lead to the treasure vault!{300}~
+151 ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+Corridor~
+~
+0 -1 15155
+DDIR_SOUTH
+Corridor~
+~
+0 -1 15162
+DDIR_WEST
+Corridor~
+~
+0 -1 15153
+S
+#15155
+Corridor~
+{150}You are in the corridor of the palace of Abrum Assante.  The
+walls are made of pink marble.  Somewhere one of the corridors
+must lead to the treasure vault! Armed guards march up and
+down the corridors, protecting their master's wealth.{300}~
+151 ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+Corridor~
+~
+0 -1 15156
+DDIR_SOUTH
+Corridor~
+~
+0 -1 15163
+DDIR_WEST
+Corridor~
+~
+0 -1 15154
+S
+#15156
+Corridor~
+{150}You are in the corridor of the palace of Abrum Assante.
+The walls are made of pink marble.  You hear the echo of
+the marching of the guards. Somewhere one of the corridors must
+lead to the treasure vault!{300}~
+151 ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+Corridor~
+~
+0 -1 15157
+DDIR_SOUTH
+Palace Bath~
+~
+0 -1 15151
+DDIR_WEST
+Corridor~
+~
+0 -1 15155
+S
+#15157
+Corridor~
+{150} You are in the corridor of the palace of Abrum Assante.  The walls
+are made of pink marble.  Somewhere one of the corridors must
+lead to the treasure vault! Armed guards march up and down the
+corridors, protecting their master's wealth.{300}~
+151 ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+Corridor~
+~
+0 -1 15158
+DDIR_WEST
+Corridor~
+~
+0 -1 15156
+S
+#15158
+Corridor~
+{150} You are in the corridor of the palace of Abrum Assante.  The
+walls are made of pink marble. Archways lead to other corridors.
+It feels like you are in some luxurious maze.  Somewhere one
+of the corridors must lead to the treasure vault!{300}~
+151 ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+Corridor~
+~
+0 -1 15159
+DDIR_WEST
+Corridor~
+~
+0 -1 15157
+S
+#15159
+Corridor~
+{150} You are in the corridor of the palace of Abrum Assante.  The
+walls are made of pink marble.  Somewhere one of the corridors
+must lead to the treasure vault! Armed guards march up and
+down the corridors, protecting their master's wealth.{300}~
+151 ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+Corridor~
+~
+0 -1 15166
+DDIR_WEST
+Corridor~
+~
+0 -1 15158
+S
+#15160
+Corridor~
+{150} You are in the corridor of the palace of Abrum Assante.  The walls
+are made of pink marble.  You hear the echo of the marching
+of the guards.  Somewhere one of the corridors must lead to the
+treasure vault!{300}~
+151 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+Corridor~
+~
+0 -1 15152
+DDIR_EAST
+Corridor~
+~
+0 -1 15161
+DDIR_SOUTH
+Corridor~
+~
+0 -1 15167
+S
+#15161
+Corridor~
+{150} You are in the corridor of the palace of Abrum Assante.  The
+walls are made of pink marble. Archways lead to other corridors.
+It feels like you are in some luxurious maze.  Somewhere one of
+the corridors must lead to the treasure vault!{300}~
+151 ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+Corridor~
+~
+0 -1 15162
+DDIR_WEST
+Corridor~
+~
+0 -1 15160
+S
+#15162
+Corridor~
+{150} You are in the corridor of the palace of Abrum Assante.  The
+walls are made of pink marble.  Somewhere one of the corridors
+must lead to the treasure vault! Armed guards march up and
+down the corridors, protecting their master's wealth.{300}~
+151 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+Corridor~
+~
+0 -1 15154
+DDIR_EAST
+Corridor~
+~
+0 -1 15163
+DDIR_SOUTH
+Corridor~
+~
+0 -1 15169
+DDIR_WEST
+Corridor~
+~
+0 -1 15161
+S
+#15163
+Corridor~
+{150} You are in the corridor of the palace of Abrum Assante.
+The walls are made of pink marble.  Somewhere one of the
+corridors must lead to the treasure vault! Armed guards march
+up and down the corridors, protecting their master's wealth.{300}~
+151 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+Corridor~
+~
+0 -1 15155
+DDIR_EAST
+Palace Bath~
+~
+0 -1 15151
+DDIR_SOUTH
+Corridor~
+~
+0 -1 15170
+DDIR_WEST
+Corridor~
+~
+0 -1 15162
+S
+#15164
+Corridor~
+{150} You are in the corridor of the palace of Abrum Assante.
+The walls are made of pink marble. Archways lead to other
+corridors.  It feels like you are in some luxurious maze.
+Somewhere one of the corridors must lead to the treasure vault!{300}~
+151 ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+Corridor~
+~
+0 -1 15165
+DDIR_SOUTH
+Corridor~
+~
+0 -1 15172
+DDIR_WEST
+Palace Bath~
+~
+0 -1 15151
+S
+#15165
+Corridor~
+{150} You are in the corridor of the palace of Abrum Assante.  The walls
+are made of pink marble.  Somewhere one of the corridors
+must lead to the treasure vault! Armed guards march up and down
+the corridors, protecting their master's wealth.{300}~
+151 ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+Corridor~
+~
+0 -1 15166
+DDIR_WEST
+Corridor~
+~
+0 -1 15164
+S
+#15166
+Corridor~
+{150} You are in the corridor of the palace of Abrum Assante.  The walls
+are made of pink marble.  You hear the echo of the marching of
+the guards.  Somewhere one of the corridors must lead to the treasure
+vault!{300}~
+151 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+Corridor~
+~
+0 -1 15159
+DDIR_SOUTH
+Corridor~
+~
+0 -1 15174
+DDIR_WEST
+Corridor~
+~
+0 -1 15165
+S
+#15167
+Corridor~
+{150} You are in the corridor of the palace of Abrum Assante.
+The walls are made of pink marble. Archways lead to other
+corridors.  It feels like you are in some luxurious maze.
+Somewhere one of the corridors must lead to the treasure vault!{300}
+{170}There is an odd looking seam on one of the walls here.{300}~
+151 ROOM_INDOORS SECT_INSIDE
+E
+seam odd~
+As you look closer at the seam, you noticed some faint lines that form the
+rough shape of a door. As you peer closer, you notice a small imperfection 
+in the center.
+~
+E
+small imperfection~
+Upon closer examanation, the imperfection is revealed to be an incredibly
+complex lock. You guess it would take some quite advanced equipment to open
+what must be a hidden door of some kind.
+~
+DDIR_NORTH
+Corridor~
+~
+0 -1 15160
+DDIR_EAST
+Treasure Vault~
+Door~
+EX_ISDOOR|EX_CLOSED|EX_LOCKED|EX_HIDDEN|EX_PICKPROOF -1 15168
+DDIR_SOUTH
+Corridor~
+~
+0 -1 15175
+S
+#15168
+Treasure Vault~
+{110}You {300}{120}have{300} {130}never{300} {140}seen{300} {150}so{300} {160}many{300} {170}riches {110}in {120}your {130}life.  {140}You {150}just {160}wish
+{170}you {110}could {120}carry {130}all {140}of {150}them {160}out {170}without {110}being {120}caught.{300}~
+151 ROOM_DARK|ROOM_INDOORS SECT_INSIDE
+DDIR_WEST
+Corridor~
+Door~
+EX_ISDOOR|EX_CLOSED -1 15167
+S
+#15169
+Corridor~
+{150} You are in the corridor of the palace of Abrum Assante.  The walls
+are made of pink marble.  Somewhere one of the corridors must
+lead to the treasure vault! Armed guards march up and down the
+corridors, protecting their master's wealth.{300}~
+151 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+Corridor~
+~
+0 -1 15162
+DDIR_SOUTH
+Corridor~
+~
+0 -1 15177
+S
+#15170
+Corridor~
+{150} You are in the corridor of the palace of Abrum Assante.  The walls
+are made of pink marble. Archways lead to other corridors.  It feels
+like you are in some luxurious maze.  Somewhere one of the
+corridors must lead to the treasure vault!{300}~
+151 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+Corridor~
+~
+0 -1 15163
+DDIR_SOUTH
+Corridor~
+~
+0 -1 15178
+S
+#15171
+Corridor~
+{150} You are in the corridor of the palace of Abrum Assante.
+The walls are made of pink marble.  You hear the echo of the
+marching of the guards.  Somewhere one of the corridors must
+lead to the treasure vault!{300}~
+151 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+Palace Bath~
+~
+0 -1 15151
+DDIR_SOUTH
+Corridor~
+~
+0 -1 15179
+S
+#15172
+Corridor~
+{150} You are in the corridor of the palace of Abrum Assante.
+The walls are made of pink marble.  Somewhere one of the corridors
+must lead to the treasure vault! Armed guards march up and down the
+corridors, protecting their master's wealth.{300}~
+151 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+Corridor~
+~
+0 -1 15164
+DDIR_EAST
+Corridor~
+~
+0 -1 15173
+DDIR_SOUTH
+Corridor~
+~
+0 -1 15180
+S
+#15173
+Corridor~
+{150} You are in the corridor of the palace of Abrum Assante.  The walls
+are made of pink marble. Archways lead to other corridors.  It feels
+like you are in some luxurious maze.  Somewhere one of the
+corridors must lead to the treasure vault!{300}~
+151 ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+Corridor~
+~
+0 -1 15174
+DDIR_SOUTH
+Corridor~
+~
+0 -1 15181
+DDIR_WEST
+Corridor~
+~
+0 -1 15172
+S
+#15174
+Corridor~
+{150} You are in the corridor of the palace of Abrum Assante.
+The walls are made of pink marble.  You hear the echo of
+the marching of the guards.  Somewhere one of the
+corridors must lead to the treasure vault!{300}~
+151 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+Corridor~
+~
+0 -1 15166
+DDIR_SOUTH
+Corridor~
+~
+0 -1 15182
+DDIR_WEST
+Corridor~
+~
+0 -1 15173
+S
+#15175
+Corridor~
+{150} You are in the corridor of the palace of Abrum Assante.
+The walls are made of pink marble. Archways lead to other
+corridors.  It feels like you are in some luxurious maze.
+Somewhere one of the corridors must lead to the treasure vault!{300}~
+151 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+Corridor~
+~
+0 -1 15167
+DDIR_EAST
+Corridor~
+~
+0 -1 15176
+S
+#15176
+Corridor~
+{150} You are in the corridor of the palace of Abrum Assante.  The
+walls are made of pink marble. Armed guards march up and down the
+corridors, protecting their master's wealth.  Somewhere one of the
+corridors must lead to the treasure vault!{300}~
+151 ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+Corridor~
+~
+0 -1 15177
+DDIR_WEST
+Corridor~
+~
+0 -1 15175
+S
+#15177
+Corridor~
+{150} You are in the corridor of the palace of Abrum Assante.  The
+walls are made of pink marble.  Somewhere one of the corridors must
+lead to the treasure vault!  You hear the echo of the marching
+of the guards.{300}~
+151 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+Corridor~
+~
+0 -1 15169
+DDIR_EAST
+Corridor~
+~
+0 -1 15178
+DDIR_WEST
+Corridor~
+~
+0 -1 15176
+S
+#15178
+Corridor~
+{150} You are in the corridor of the palace of Abrum Assante.  The
+walls are made of pink marble. Archways lead to other corridors.
+It feels like you are in some luxurious maze.  Somewhere one
+of the corridors must lead to the treasure vault!{300}~
+151 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+Corridor~
+~
+0 -1 15170
+DDIR_EAST
+Corridor~
+~
+0 -1 15179
+DDIR_WEST
+Corridor~
+~
+0 -1 15177
+S
+#15179
+Corridor~
+{150} You are in the corridor of the palace of Abrum Assante.  The
+walls are made of pink marble. Armed guards march up and down
+the corridors, protecting their master's wealth.  Somewhere
+one of the corridors must lead to the treasure vault!{300}~
+151 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+Corridor~
+~
+0 -1 15171
+DDIR_EAST
+Corridor~
+~
+0 -1 15180
+DDIR_WEST
+Corridor~
+~
+0 -1 15178
+S
+#15180
+Corridor~
+{150} You are in the corridor of the palace of Abrum Assante.  The
+walls are made of pink marble. Archways lead to other corridors.
+It feels like you are in some luxurious maze.  Somewhere one of
+the corridors must lead to the treasure vault!{300}~
+151 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+Corridor~
+~
+0 -1 15172
+DDIR_EAST
+Corridor~
+~
+0 -1 15181
+DDIR_WEST
+Corridor~
+~
+0 -1 15179
+S
+#15181
+Corridor~
+{150} You are in the corridor of the palace of Abrum Assante.  The
+walls are made of pink marble.  Somewhere one of the corridors
+must lead to the treasure vault!{300}~
+151 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+Corridor~
+~
+0 -1 15173
+DDIR_EAST
+Corridor~
+~
+0 -1 15182
+DDIR_WEST
+Corridor~
+~
+0 -1 15180
+S
+#15182
+Corridor~
+{150} You are in the corridor of the palace of Abrum Assante.  The
+walls are made of pink marble. Armed guards march up and down
+the corridors, protecting their master's wealth.  Somewhere one of
+the corridors must lead to the treasure vault!{300}~
+151 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+Corridor~
+~
+0 -1 15174
+DDIR_WEST
+Corridor~
+~
+0 -1 15181
+S
+#15183
+School of Stealth~
+You have entered the hallowed halls of the infamous School of
+Stealth.  The rooms are darkened for the comfort of the students
+and masters alike.~
+151 ROOM_DARK|ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+School of Stealth~
+~
+0 -1 15184
+DDIR_EAST
+School of Stealth~
+~
+0 -1 15188
+DDIR_SOUTH
+School of Stealth~
+~
+0 -1 15190
+DDIR_WEST
+Zazesspur Boulevard~
+~
+0 -1 15116
+S
+#15184
+School of Stealth~
+You are walking the hallowed halls of the infamous School of
+Stealth.  The rooms are darkened for the comfort of the students
+and masters alike.  The corners are shadowed.  The shadow moves!~
+151 ROOM_DARK|ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+School of Stealth~
+~
+0 -1 15185
+DDIR_EAST
+School of Stealth~
+~
+0 -1 15187
+DDIR_SOUTH
+School of Stealth~
+~
+0 -1 15183
+S
+#15185
+School of Stealth~
+You are walking the hallowed halls of the infamous School of Stealth.
+The rooms are darkened for the comfort of the students and masters alike.
+On the walls are paintings of famous assassins gone by.  Problem is in
+most of the paintings the subject is cloaked and disguised.~
+151 ROOM_DARK|ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+School of Stealth~
+~
+0 -1 15186
+DDIR_SOUTH
+School of Stealth~
+~
+0 -1 15184
+S
+#15186
+School of Stealth~
+You are walking the hallowed halls of the infamous School of Stealth.
+The rooms are darkened for the comfort of the students and masters
+alike.  The corners are shadowed.  The shadow moves!~
+151 ROOM_DARK|ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+School of Stealth Morgue~
+~
+0 -1 15194
+DDIR_WEST
+School of Stealth~
+~
+0 -1 15185
+S
+#15187
+School of Stealth~
+You are walking the hallowed halls of the infamous School of Stealth.
+The rooms are darkened for the comfort of the students and masters
+alike.  On the walls are paintings of famous assassins gone by.
+Problem is in most of the paintings the subject is cloaked and disguised.~
+151 ROOM_DARK|ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+School of Stealth Magic Shop~
+~
+0 -1 15193
+DDIR_SOUTH
+School of Stealth~
+~
+0 -1 15188
+DDIR_WEST
+School of Stealth~
+~
+0 -1 15184
+S
+#15188
+School of Stealth~
+You are walking the hallowed halls of the infamous School of Stealth.
+The rooms are darkened for the comfort of the students and masters alike.
+There are shelves full of books and scrolls on the walls.  Titles
+include "Assassination by the Master.  By Abrum Asante" and
+"The ultimate disguise.  By S.P. Hide.~
+151 ROOM_DARK|ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+School of Stealth~
+~
+0 -1 15187
+DDIR_EAST
+School of Stealth Training Hall~
+~
+0 -1 15192
+DDIR_WEST
+School of Stealth~
+~
+0 -1 15183
+S
+#15189
+School of Stealth~
+You are walking the hallowed halls of the infamous School of Stealth.
+The rooms are darkened for the comfort of the students and masters
+alike.  On the walls are paintings of famous assassins gone by.
+Problem is in most of the paintings the subject is cloaked and disguised.~
+151 ROOM_DARK|ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+School of Stealth Armour Shop~
+~
+0 -1 15191
+DDIR_WEST
+School of Stealth~
+~
+0 -1 15190
+S
+#15190
+School of Stealth.~
+You are walking the hallowed halls of the infamous School of Stealth.
+The rooms are darkened for the comfort of the students and masters alike.
+On the walls are paintings of famous assassins gone by.  Problem is
+in most of the paintings the subject is cloaked and disguised.~
+151 ROOM_DARK|ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+School of Stealth~
+~
+0 -1 15183
+DDIR_EAST
+School of Stealth~
+~
+0 -1 15189
+S
+#15191
+School of Stealth Disguise Shop.~
+Various types of armour and disguises are displayed on shelves and
+hanging on hooks on the walls.  All your assassinating needs.~
+151 ROOM_DARK|ROOM_INDOORS SECT_INSIDE
+DDIR_WEST
+School of Stealth~
+~
+0 -1 15189
+S
+#15192
+School of Stealth Training Hall~
+Various implements of the trade hang on the walls around the room.
+Mats are on the floor and ropes hang from the ceiling.
+Students climb the ropes and the walls.  Others are practicing
+falling onto the soft mats.~
+151 ROOM_DARK|ROOM_INDOORS SECT_INSIDE
+DDIR_WEST
+School of Stealth~
+~
+0 -1 15188
+S
+#15193
+School of Stealth Magic Shop~
+Potions and scrolls fill shelves line the walls.  There is
+everything here for all assassinating needs.~
+151 ROOM_DARK|ROOM_INDOORS SECT_INSIDE
+DDIR_WEST
+School of Stealth~
+~
+0 -1 15187
+S
+#15194
+School of Stealth Morgue~
+A selection of pine boxes are stacked up against one wall.  On
+a trestle is displayed the ultimate coffin made of the finest
+timber, with elaborate gold trim and handles.  On the back wall is
+a shelf.  On it lays a corpse ... is it yours?~
+151 ROOM_DARK|ROOM_INDOORS|ROOM_MORGUE SECT_INSIDE
+DDIR_WEST
+School of Stealth~
+~
+0 -1 15186
+S
+#15195
+Breaching Whale Tavern Bar~
+A long bar runs the length of the room.  Casks are on the shelf
+behind the bar.  A few bottles of fancier liquor on a higher
+shelf.  A good drink of ale is available here for the discerning
+sailor.  For a price a good hearty meal can bought here too.~
+151 ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+Breaching Whale Tavern~
+~
+0 -1 15196
+DDIR_SOUTH
+Breaching Whale Tavern~
+~
+0 -1 15107
+S
+#15196
+Breaching Whale Tavern~
+The tavern is fairly typical as dockside taverns go.  It is
+crowded with hard drinking sailors out for a bottomless mug of ale.~
+151 ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+Private booth in the Breaching Whale Tavern~
+~
+0 -1 15197
+DDIR_SOUTH
+Breaching Whale Tavern~
+~
+0 -1 15198
+DDIR_WEST
+Breaching Whale Tavern Bar~
+~
+0 -1 15195
+S
+#15197
+Private booth in the Breaching Whale Tavern~
+The booth is set of to one side against the wall allowing
+patrons sitting here to discuss things in private.  The barmaid
+makes certain that patrons sitting at private booths
+are not lacking in any way for their drinking and eating needs.~
+151 ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+Stairs~
+~
+0 -1 15199
+DDIR_WEST
+Breaching Whale Tavern~
+~
+0 -1 15196
+S
+#15198
+Breaching Whale Tavern~
+The tavern is fairly typical as dockside taverns go.  It is
+crowded with hard drinking sailors out for a bottomless mug of ale.~
+151 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+Breaching Whale Tavern~
+~
+0 -1 15196
+DDIR_EAST
+Stairs~
+~
+0 -1 15199
+DDIR_SOUTH
+Breaching Whale Tavern~
+~
+0 -1 15201
+DDIR_WEST
+Breaching Whale Tavern~
+~
+0 -1 15107
+S
+#15199
+Stairs~
+A plain set of wooden stairs with a simple bannister.~
+151 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+Private Booth in the Breaching Whale Tavern~
+~
+0 -1 15196
+DDIR_EAST
+Stable~
+Door~
+EX_ISDOOR|EX_CLOSED -1 15238
+DDIR_SOUTH
+Breaching Whale Tavern~
+~
+0 -1 15202
+DDIR_WEST
+Breaching Whale Tavern~
+~
+0 -1 15198
+DDIR_UP
+Stairs~
+~
+0 -1 15215
+S
+#15200
+Breaching Whale Tavern~
+The tavern is fairly typical as dockside taverns go.  It
+is crowded with hard drinking sailors out for a bottomless mug
+of ale.~
+151 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+Breaching Whale Tavern~
+~
+0 -1 15107
+DDIR_EAST
+Breaching Whale Tavern~
+~
+0 -1 15201
+S
+#15201
+Breaching Whale Tavern~
+The tavern is fairly typical as dockside taverns go.  It is
+crowded with hard drinking sailors out for a bottomless mug
+of ale.~
+151 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+Breaching Whale Tavern~
+~
+0 -1 15198
+DDIR_EAST
+Breaching Whale Tavern~
+~
+0 -1 15202
+DDIR_WEST
+Breaching Whale Tavern~
+~
+0 -1 15200
+S
+#15202
+Breaching Whale Tavern~
+The tavern is fairly typical as dockside taverns go.  It is crowded
+with hard drinking sailors out for a bottomless mug of ale.~
+151 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+Stairs~
+~
+0 -1 15199
+DDIR_WEST
+Breaching Whale Tavern~
+~
+0 -1 15201
+S
+#15203
+Bedchamber~
+The room boasts a deep feather bed and pristine linens, with a
+heavily armed guard at each door.  You can know that when
+you come here you get a clean room and a safe nights sleep,
+luxury in any city and a rarity in Zazesspur.~
+151 ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+Hallway~
+Door~
+EX_ISDOOR|EX_CLOSED -1 15209
+S
+#15204
+Bedchamber~
+The room boasts a deep feather bed and pristine linens,
+with a heavily armed guard at each door.  You can know that
+when you come here you get a clean room and a safe nights
+sleep, luxury in any city and a rarity in Zazesspur.~
+151 ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+Hallway~
+Door~
+EX_ISDOOR|EX_CLOSED -1 15210
+S
+#15205
+Bedchamber~
+The room boasts a deep feather bed and pristine linens, with a
+heavily armed guard at each door.  You can know that when
+you come here you get a clean room and a safe nights sleep, luxury
+in any city and a rarity in Zazesspur.~
+151 ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+Hallway~
+Door~
+EX_ISDOOR|EX_CLOSED -1 15211
+S
+#15206
+Bedchamber~
+The room boasts a deep feather bed and pristine linens,
+with a heavily armed guard at each door.  You can know that
+when you come here you get a clean room and a safe nights
+sleep, luxury in any city and a rarity in Zazesspur.~
+151 ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+Hallway~
+Door~
+EX_ISDOOR|EX_CLOSED -1 15212
+S
+#15207
+Bedchamber~
+The room boasts a deep feather bed and pristine linens,
+with a heavily armed guard at each door.  You can know that
+when you come here you get a clean room and a safe nights sleep,
+luxury in any city and a rarity in Zazesspur.~
+151 ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+Hallway~
+Door~
+EX_ISDOOR|EX_CLOSED -1 15213
+S
+#15208
+Bedchamber~
+The room boasts a deep feather bed and pristine linens, with a
+heavily armed guard at each door.  You can know that when you
+come here you get a clean room and a safe nights sleep, luxury
+in any city and a rarity in Zazesspur.~
+151 ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+Hallway~
+Door~
+EX_ISDOOR|EX_CLOSED -1 15214
+S
+#15209
+Hallway~
+A long hall extends before you.  There is a long carpet that runs
+the length of the hall.  It is immaculately clean.  An armed
+guard stands outside each of the closed doors protecting the
+patrons within, ensuring a safe nights sleep.~
+151 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+Bedchamber~
+Door~
+EX_ISDOOR|EX_CLOSED -1 15203
+DDIR_EAST
+Hallway~
+~
+0 -1 15210
+DDIR_SOUTH
+Bedchamber~
+Door~
+EX_ISDOOR|EX_CLOSED -1 15216
+S
+#15210
+Hallway~
+A long hall extends before you.  There is a long carpet that
+runs the length of the hall.  It is immaculately clean.  An
+armed guard stands outside each of the closed doors protecting
+the patrons within, ensuring a safe nights sleep.~
+151 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+Bedchamber~
+Door~
+EX_ISDOOR|EX_CLOSED -1 15204
+DDIR_EAST
+Hallway~
+~
+0 -1 15211
+DDIR_SOUTH
+Bedchamber~
+Door~
+EX_ISDOOR|EX_CLOSED -1 15217
+DDIR_WEST
+Hallway~
+~
+0 -1 15209
+S
+#15211
+Hallway~
+A long hall extends before you.  There is a long carpet that runs
+the length of the hall.  It is immaculately clean.  An armed guard
+stands outside each of the closed doors protecting the patrons within,
+ensuring a safe nights sleep.~
+151 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+Bedchamber~
+Door~
+EX_ISDOOR|EX_CLOSED -1 15205
+DDIR_EAST
+Hallway~
+~
+0 -1 15212
+DDIR_SOUTH
+Bedchamber~
+Door~
+EX_ISDOOR|EX_CLOSED -1 15218
+DDIR_WEST
+Hallway~
+~
+0 -1 15210
+S
+#15212
+Hallway~
+A long hall extends before you.  There is a long carpet that runs the
+length of the hall.  It is immaculately clean.  An armed guard stands
+outside each of the closed doors protecting the patrons within,
+ensuring a safe nights sleep.~
+151 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+Bedchamber~
+Door~
+EX_ISDOOR|EX_CLOSED -1 15206
+DDIR_EAST
+Hallway~
+~
+0 -1 15213
+DDIR_SOUTH
+Bedchamber~
+Door~
+EX_ISDOOR|EX_CLOSED -1 15219
+DDIR_WEST
+Hallway~
+~
+0 -1 15211
+S
+#15213
+Hallway~
+A long hall extends before you.  There is a long carpet that
+runs the length of the hall.  It is immaculately clean.  An armed
+guard stands outside each of the closed doors protecting the patrons
+within, ensuring a safe nights sleep.~
+151 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+Bedchamber~
+Door~
+EX_ISDOOR|EX_CLOSED -1 15207
+DDIR_EAST
+Hallway~
+~
+0 -1 15214
+DDIR_SOUTH
+Bedchamber~
+Door~
+EX_ISDOOR|EX_CLOSED -1 15220
+DDIR_WEST
+Hallway~
+~
+0 -1 15212
+S
+#15214
+Hallway~
+A long hall extends before you.  There is a long carpet that runs the
+length of the hall.  It is immaculately clean.  An armed guard
+stands outside each of the closed doors protecting the patrons within,
+ensuring a safe nights sleep.~
+151 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+Bedchamber~
+Door~
+EX_ISDOOR|EX_CLOSED -1 15208
+DDIR_EAST
+Stairs~
+~
+0 -1 15215
+DDIR_SOUTH
+Bedchamber~
+Door~
+EX_ISDOOR|EX_CLOSED -1 15221
+DDIR_WEST
+Hallway~
+~
+0 -1 15213
+S
+#15215
+Stairs~
+Plain wooden stairs carry you down to the lower level of the tavern.
+A simple banister is there to aid your way down.~
+151 ROOM_INDOORS SECT_INSIDE
+DDIR_WEST
+Hallway~
+~
+0 -1 15214
+DDIR_DOWN
+Stairs~
+~
+0 -1 15199
+S
+#15216
+Bedchamber~
+The room boasts a deep feather bed and pristine linens, with a heavily
+armed guard at each door.  You can know that when you come here you
+get a clean room and a safe nights sleep, luxury in any city and a rarity
+in Zazesspur.~
+151 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+Hallway~
+Door~
+EX_ISDOOR|EX_CLOSED -1 15209
+S
+#15217
+Bedchamber~
+The room boasts a deep feather bed and pristine linens, with a
+heavily armed guard at each door.  You can know that when you come
+here you get a clean room and a safe nights sleep, luxury in any
+city and a rarity in Zazesspur.~
+151 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+Hallway~
+Door~
+EX_ISDOOR|EX_CLOSED -1 15210
+S
+#15218
+Bedchamber~
+The room boasts a deep feather bed and pristine linens, with a
+heavily armed guard at each door.  You can know that when
+you come here you get a clean room and a safe nights sleep, luxury
+in any city and a rarity in Zazesspur.~
+151 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+Hallway~
+Door~
+EX_ISDOOR|EX_CLOSED -1 15211
+S
+#15219
+Bedchamber~
+The room boasts a deep feather bed and pristine linens, with a
+heavily armed guard at each door.  You can know that when you come
+here you get a clean room and a safe nights sleep, luxury in any
+city and a rarity in Zazesspur.~
+151 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+Hallway~
+Door~
+EX_ISDOOR|EX_CLOSED -1 15212
+S
+#15220
+Bedchamber~
+The room boasts a deep feather bed and pristine linens, with a
+heavily armed guard at each door.  You can know that when
+you come here you get a clean room and a safe nights sleep, luxury
+in any city and a rarity in Zazesspur.~
+151 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+Hallway~
+Door~
+EX_ISDOOR|EX_CLOSED -1 15213
+S
+#15221
+Bedchamber~
+The room boasts a deep feather bed and pristine linens, with a heavily
+armed guard at each door.  You can know that when you come here
+you get a clean room and a safe nights sleep, luxury in any city and
+a rarity in Zazesspur.~
+151 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+Hallway~
+Door~
+EX_ISDOOR|EX_CLOSED -1 15214
+S
+#15222
+Trade Route~
+The road is hard and well travelled.  Many a merchant travels in and
+out of Zazesspur to peddle his wares.~
+151 ROOM_NO_MOB SECT_HILLS
+DDIR_NORTH
+Roads of Toril~
+~
+0 -1 4570
+DDIR_EAST
+Trade Route~
+~
+0 -1 15223
+DDIR_WEST
+Boulevard of Zazesspur~
+~
+0 -1 15118
+S
+#15223
+Trade Route~
+The road is hard and well travelled.  Many a merchant travels in
+and out of Zazesspur to peddle his wares.~
+151 0 SECT_HILLS
+DDIR_NORTH
+Mountain Base~
+~
+0 -1 15224
+DDIR_WEST
+Trade Route~
+~
+0 -1 15222
+S
+#15224
+Mountain Base~
+You are walking around the base of a large mountain.  The occasional
+muffled boom can be heard.~
+151 0 SECT_MOUNTAIN
+DDIR_NORTH
+Mountain Base~
+~
+0 -1 15231
+DDIR_EAST
+Mountain Base~
+~
+0 -1 15225
+DDIR_SOUTH
+Trade Route~
+~
+0 -1 15223
+S
+#15225
+Mountain Base~
+You are walking around the base of a large mountain.  The occasional
+muffled boom can be heard.~
+151 0 SECT_MOUNTAIN
+DDIR_EAST
+Mountain Base~
+~
+0 -1 15226
+DDIR_WEST
+Mountain Base~
+~
+0 -1 15224
+S
+#15226
+Mountain Base~
+You are walking around the base of a large mountain.
+The occasional muffled boom can be heard.~
+151 0 SECT_MOUNTAIN
+DDIR_NORTH
+Mountain Base~
+~
+0 -1 15227
+DDIR_WEST
+Mountain Base~
+~
+0 -1 15225
+S
+#15227
+Mountain Base~
+You are walking around the base of a large mountain.  The
+occasional muffled boom can be heard.  The booms seem to
+be louder here.~
+151 0 SECT_MOUNTAIN
+DDIR_NORTH
+Mountain Base~
+~
+0 -1 15228
+DDIR_SOUTH
+Mountain Base~
+~
+0 -1 15226
+DDIR_WEST
+Mouth of Cave~
+Boulder~
+EX_ISDOOR|EX_CLOSED|EX_HIDDEN|EX_PICKPROOF -1 15232
+S
+#15228
+Mountain Base~
+You are walking around the base of a large mountain.  The occasional
+muffled boom can be heard.~
+151 0 SECT_MOUNTAIN
+DDIR_SOUTH
+Mountain Base~
+~
+0 -1 15227
+DDIR_WEST
+Mountain Base~
+~
+0 -1 15229
+S
+#15229
+Mountain Base~
+You are walking around the base of a large mountain.  The occasional
+muffled boom can be heard.~
+151 0 SECT_MOUNTAIN
+DDIR_EAST
+Mountain Base~
+~
+0 -1 15228
+DDIR_WEST
+Mountain Base~
+~
+0 -1 15230
+S
+#15230
+Mountain Base~
+You are walking around the base of a large mountain.  The occasional
+muffled boom can be heard.~
+151 0 SECT_MOUNTAIN
+DDIR_EAST
+Mountain Base~
+~
+0 -1 15229
+DDIR_SOUTH
+Mountain Base~
+~
+0 -1 15231
+S
+#15231
+Mountain Base~
+You are walking around the base of a large mountain.
+The occasional muffled boom can be heard.~
+151 0 SECT_MOUNTAIN
+DDIR_NORTH
+Mountain Base~
+~
+0 -1 15230
+DDIR_SOUTH
+Mountain Base~
+~
+0 -1 15224
+S
+#15232
+Cave Mouth~
+You have entered a dark cave.  In the distance you can hear
+muttering and booming noises.~
+151 ROOM_DARK|ROOM_NO_MOB|ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+Mountain Base~
+~
+0 -1 15227
+DDIR_WEST
+Cave Passage~
+~
+0 -1 15233
+S
+#15233
+Cave Passage~
+The cave is dark but suprisingly dry.  The floor is covered with
+a soft sand.  Unusual smells are coming from further down the cave.~
+151 ROOM_DARK|ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+Cave Mouth~
+~
+0 -1 15232
+DDIR_DOWN
+Cave Passage~
+~
+0 -1 15234
+S
+#15234
+Cave Passage~
+The cave is dark but suprisingly dry.  The floor is covered with a
+soft sand.  Unusual smells are coming from further down the cave.~
+151 ROOM_DARK|ROOM_INDOORS SECT_INSIDE
+DDIR_UP
+Cave Passage~
+~
+0 -1 15233
+DDIR_DOWN
+Cave Passage~
+~
+0 -1 15235
+S
+#15235
+Cave Passage~
+The cave is dark but suprisingly dry.  The floor is covered with a soft
+sand.  Unusual smells are coming from further down the cave.~
+151 ROOM_DARK|ROOM_INDOORS SECT_INSIDE
+DDIR_UP
+Cave Passage~
+~
+0 -1 15234
+DDIR_DOWN
+Cave Passage~
+~
+0 -1 15236
+S
+#15236
+Cave Passage~
+The cave is dark but suprisingly dry.  The floor is covered with a
+soft sand.  Unusual smells are coming from further down the cave.~
+151 ROOM_DARK|ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+Tinkersdam's Cave~
+~
+0 -1 15237
+DDIR_UP
+Cave Passage~
+~
+0 -1 15235
+S
+#15237
+Tinkersdam's Cave~
+It is an odd looking lair, vast and open, yet cluttered enough to
+give the impression of bustling activity despite the fact that it
+has but one occupant.  Several book laden shelves are propped against
+the cave walls, and half finished wonders litter a dozen or so
+long tables.  Small cooking fires dot the cave, and a muted symphony
+of hissing, crackling sounds rise from pots of bubbling, often
+luminous substances.~
+151 ROOM_INDOORS SECT_INSIDE
+DDIR_WEST
+Cave Passage~
+~
+0 -1 15236
+S
+#15238
+Stable~
+The stable houses the horses of the clients of the Breaching Whale
+Tavern.  Stacks of hay line one wall ready to feed the horses.  Tack
+hangs from hooks on the ceiling.~
+151 ROOM_INDOORS|ROOM_SAFE SECT_INN
+DDIR_WEST
+Stairs~
+Door~
+EX_ISDOOR|EX_CLOSED -1 15199
+X tavern.mid~
+S
+#15239
+Tethir Forest~
+All around you are tall majestic trees.  A sense of magic is in the air.
+You have entered the home of the wild elves.~
+151 0 SECT_FOREST
+DDIR_NORTH
+Tethir Forest~
+~
+0 -1 15241
+DDIR_EAST
+Tethir Forest~
+~
+0 -1 15242
+DDIR_SOUTH
+Tethir Forest~
+~
+0 -1 15265
+DDIR_WEST
+Tethir Forest~
+~
+0 -1 15240
+S
+#15240
+Tethir Forest~
+All around you are tall majestic trees.  A sense of magic is in the
+air.  You have entered the home of the wild elves.~
+151 0 SECT_FOREST
+DDIR_EAST
+Tethir Forest~
+~
+0 -1 15239
+DDIR_SOUTH
+Tethir Forest~
+~
+0 -1 15129
+S
+#15241
+Tethir Forest~
+All around you are tall majestic trees.  A sense of magic is in the air.
+You have entered the home of the wild elves.~
+151 0 SECT_FOREST
+DDIR_NORTH
+Lythari Den~
+Lythari Den~
+EX_ISDOOR|EX_CLOSED|EX_LOCKED|EX_HIDDEN|EX_PICKPROOF -1 15257
+DDIR_SOUTH
+Tethir Forest~
+~
+0 -1 15239
+S
+#15242
+Tethir Forest~
+All around you are tall majestic trees.  A sense of magic is in
+the air.  You have entered the home of the wild elves.  You feel
+like eyes are staring at you from the shadows.~
+151 0 SECT_FOREST
+DDIR_EAST
+Tall Trees~
+~
+0 -1 15245
+DDIR_SOUTH
+Tethir Forest~
+~
+0 -1 15243
+DDIR_WEST
+Tethir Forest~
+~
+0 -1 15239
+S
+#15243
+Tethir Forest~
+All around you are tall majestic trees.  A sense of magic is
+in the air.  You have entered the home of the wild elves.~
+151 0 SECT_FOREST
+DDIR_NORTH
+Tethir Forest~
+~
+0 -1 15242
+DDIR_EAST
+Tethir Forest~
+~
+0 -1 15244
+DDIR_WEST
+Tethir Forest~
+~
+0 -1 15265
+S
+#15244
+Tethir Forest~
+All around you are tall majestic trees.  A sense of magic is in the air.
+You have entered the home of the wild elves.~
+151 0 SECT_FOREST
+DDIR_EAST
+Tethir Forest~
+~
+0 -1 15251
+DDIR_WEST
+Tethir Forest~
+~
+0 -1 15243
+S
+#15245
+Tall Trees~
+You are the camp of the wild elves.  Ramps and bridges run
+from tree to tree.  Huts are hidden high in the boughs of the trees.
+Faint trails of smoke rise up from the cooking fires.~
+151 0 SECT_FOREST
+DDIR_NORTH
+Tall Trees~
+~
+0 -1 15246
+DDIR_EAST
+Tall Trees~
+~
+0 -1 15248
+DDIR_WEST
+Tethir Forest~
+~
+0 -1 15242
+S
+#15246
+Tall Trees~
+You are the camp of the wild elves.  Ramps and bridges run from tree
+to tree.  Huts are hidden high in the boughs of the trees.  Faint trails
+of smoke rise up from the cooking fires.  Wild elves are going
+about doing their daily business.~
+151 0 SECT_FOREST
+DDIR_EAST
+Tall Trees~
+~
+0 -1 15247
+DDIR_SOUTH
+Tall Trees~
+~
+0 -1 15245
+DDIR_UP
+Up in the trees~
+~
+0 -1 15254
+S
+#15247
+Tall Trees~
+You are the camp of the wild elves.  Ramps and bridges run from
+tree to tree.  Huts are hidden high in the boughs of the trees.  Faint
+trails of smoke rise up from the cooking fires.~
+151 0 SECT_FOREST
+DDIR_EAST
+Tall Trees~
+~
+0 -1 15249
+DDIR_SOUTH
+Tall Trees~
+~
+0 -1 15248
+DDIR_WEST
+Tall Trees~
+~
+0 -1 15246
+S
+#15248
+Tall Trees~
+You are the camp of the wild elves.  Ramps and bridges run from tree to
+tree.  Huts are hidden high in the boughs of the trees.  Faint trails
+of smoke rise up from the cooking fires.  You can see elves
+moving around the trees.~
+151 0 SECT_FOREST
+DDIR_NORTH
+Tall Trees~
+~
+0 -1 15247
+DDIR_SOUTH
+Tethir Forest~
+~
+0 -1 15251
+DDIR_WEST
+Tall Trees~
+~
+0 -1 15245
+DDIR_UP
+Up in the trees~
+~
+0 -1 15255
+S
+#15249
+Tall Trees~
+You are the camp of the wild elves.  Ramps and bridges run from tree
+to tree.  Huts are hidden high in the boughs of the trees.
+Faint trails of smoke rise up from the cooking fires.~
+151 0 SECT_FOREST
+DDIR_NORTH
+Tall Trees~
+~
+0 -1 15250
+DDIR_WEST
+Tall Trees~
+~
+0 -1 15247
+S
+#15250
+Tall Trees~
+You are the camp of the wild elves.  Ramps and bridges run from tree to
+tree.  Huts are hidden high in the boughs of the trees.  Faint
+trails of smoke rise up from the cooking fires.~
+151 0 SECT_FOREST
+DDIR_NORTH
+~
+~
+0 -1 13500
+DDIR_SOUTH
+Tall Trees~
+~
+0 -1 15249
+S
+#15251
+Tethir Forest~
+All around you are tall majestic trees.  A sense of magic is in the
+air.  You have entered the home of the wild elves.~
+151 0 SECT_FOREST
+DDIR_NORTH
+Tall Trees~
+~
+0 -1 15248
+DDIR_EAST
+Tethir Forest~
+~
+0 -1 15252
+DDIR_WEST
+Tethir Forest~
+~
+0 -1 15244
+S
+#15252
+Tethir Forest~
+All around you are tall majestic trees.  A sense of magic is in the air.
+You have entered the home of the wild elves.~
+151 0 SECT_FOREST
+DDIR_EAST
+Tethir Forest~
+~
+0 -1 15253
+DDIR_SOUTH
+Tethir Forest~
+~
+0 -1 15266
+DDIR_WEST
+Tethir Forest~
+~
+0 -1 15251
+S
+#15253
+Tethir Forest~
+All around you are tall majestic trees.  A sense of magic is in the air.
+You have entered the home of the wild elves.~
+151 0 SECT_FOREST
+DDIR_EAST
+Lythari Den Gateway~
+Gateway~
+EX_ISDOOR|EX_CLOSED|EX_LOCKED|EX_HIDDEN|EX_PICKPROOF -1 15256
+DDIR_SOUTH
+Tethir Forest~
+~
+0 -1 15267
+DDIR_WEST
+Tethir Forest~
+~
+0 -1 15252
+S
+#15254
+Up in the trees~
+You are up in the trees of the Tall Trees Camp.  The sun is
+shining down through the leaves of the canopy above you.  Ramps
+leading to different huts of the wild elves are around you.~
+151 0 SECT_FOREST
+DDIR_DOWN
+Tall Trees~
+~
+0 -1 15246
+S
+#15255
+Up in the trees~
+You are up in the trees of the Tall Trees Camp.  The sun is shining
+down through the leaves of the canopy above you.  Ramps leading to
+different huts of the wild elves are around you.~
+151 0 SECT_FOREST
+DDIR_DOWN
+Tall Trees~
+~
+0 -1 15248
+S
+#15256
+Lythari Den Gateway~
+You are in a weird place.  Its like being no where.  You are
+actually between worlds.~
+151 ROOM_NO_MOB SECT_ETHEREAL
+DDIR_EAST
+Lythari Den~
+~
+0 -1 15258
+DDIR_WEST
+Tethir Forest~
+~
+0 -1 15253
+S
+#15257
+Lythari Den Gateway~
+You are in a weird place.  Its like being no where.
+You are actually between worlds.~
+151 ROOM_NO_MOB SECT_ETHEREAL
+DDIR_NORTH
+Lythari Den~
+~
+0 -1 15258
+DDIR_SOUTH
+Tethir Forest~
+~
+0 -1 15248
+S
+#15258
+Lythari Den~
+You have never seen such a wonderful place.  The sun is shining down
+through the most magnificent trees.  Large colourful flowers give
+off the most heavenly scent.  A sense of peace fills your soul.~
+151 0 SECT_FOREST
+DDIR_EAST
+Tethir Forest~
+Gate~
+EX_ISDOOR|EX_CLOSED|EX_LOCKED|EX_HIDDEN|EX_PICKPROOF -1 15129
+DDIR_WEST
+Lythari Den~
+~
+0 -1 15259
+S
+#15259
+Lythari Den~
+You have never seen such a wonderful place.  The sun is shining down
+through the most magnificent trees.  Large colourful flowers give
+off the most heavenly scent.  A sense of peace fills your soul.~
+151 0 SECT_FOREST
+DDIR_EAST
+Lythari Den~
+~
+0 -1 15258
+DDIR_SOUTH
+Lythari Den~
+~
+0 -1 15264
+DDIR_WEST
+Lythari Den~
+~
+0 -1 15260
+S
+#15260
+Lythari Den~
+You have never seen such a wonderful place.  The sun is shining down
+through the most magnificent trees.  Large colourful flowers
+give off the most heavenly scent.  A sense of peace fills your soul.~
+151 0 SECT_FOREST
+DDIR_EAST
+Lythari Den~
+~
+0 -1 15259
+DDIR_SOUTH
+Lythari Den~
+~
+0 -1 15263
+DDIR_WEST
+Lythari Den~
+~
+0 -1 15261
+S
+#15261
+Lythari Den~
+You have never seen such a wonderful place.  The sun is shining down
+through the most magnificent trees.  Large colourful flowers give
+off the most heavenly scent.  A sense of peace fills your soul.~
+151 0 SECT_FOREST
+DDIR_EAST
+Lythari Den~
+~
+0 -1 15260
+DDIR_SOUTH
+Lythari Den~
+~
+0 -1 15262
+S
+#15262
+Lythari Den~
+You have never seen such a wonderful place.  The sun is shining down
+through the most magnificent trees.  Large colourful flowers
+give off the most heavenly scent.  A sense of peace fills your soul.~
+151 0 SECT_FOREST
+DDIR_NORTH
+Lythari Den~
+~
+0 -1 15261
+DDIR_EAST
+Lythari Den~
+~
+0 -1 15263
+S
+#15263
+Lythari Den~
+You have never seen such a wonderful place.  The sun is shining
+down through the most magnificent trees.  Large colourful flowers give
+off the most heavenly scent.  A sense of peace fills your soul.~
+151 0 SECT_FOREST
+DDIR_NORTH
+Lythari Den~
+~
+0 -1 15260
+DDIR_EAST
+Lythari Den~
+~
+0 -1 15264
+DDIR_WEST
+Lythari Den~
+~
+0 -1 15262
+S
+#15264
+Lythari Den~
+You have never seen such a wonderful place.  The sun is shining down
+through the most magnificent trees.  Large colourful flowers
+give off the most heavenly scent.  A sense of peace fills your soul.~
+151 0 SECT_FOREST
+DDIR_NORTH
+Lythari Den~
+~
+0 -1 15259
+DDIR_WEST
+Lythari Den~
+~
+0 -1 15263
+S
+#15265
+Tethir Forest~
+All around you are tall majestic trees.  A sense of magic is in the
+air.  You have entered the home of the wild elves.~
+151 0 SECT_FOREST
+DDIR_NORTH
+Tethir Forest~
+~
+0 -1 15239
+DDIR_EAST
+Tethir Forest~
+~
+0 -1 15243
+DDIR_WEST
+Tethir Forest~
+~
+0 -1 15129
+S
+#15266
+Tethir Forest~
+All around you are tall majestic trees.  A sense of magic is in the air.
+You have entered the home of the wild elves.~
+151 0 SECT_FOREST
+DDIR_NORTH
+Tethir Forest~
+~
+0 -1 15252
+DDIR_EAST
+Tethir Forest~
+~
+0 -1 15267
+DDIR_SOUTH
+Tethir Forest~
+~
+0 -1 15268
+S
+#15267
+Tethir Forest~
+All around you are tall majestic trees.  A sense of magic is in the air.
+You have entered the home of the wild elves.~
+151 0 SECT_FOREST
+DDIR_NORTH
+Tethir Forest~
+~
+0 -1 15253
+DDIR_WEST
+Tethir Forest~
+~
+0 -1 15266
+S
+#15268
+Tethir Forest~
+All around you are tall majestic trees.  A sense of magic is in the air.
+You have entered the home of the wild elves.~
+151 0 SECT_FOREST
+DDIR_NORTH
+Tethir Forest~
+~
+0 -1 15266
+DDIR_EAST
+Tethir Forest~
+~
+0 -1 15269
+S
+#15269
+Tethir Forest~
+All around you are tall majestic trees.  A sense of magic is in the air.
+You have entered the home of the wild elves.~
+151 ROOM_NO_MOB|ROOM_PRIVATE SECT_FOREST
+DDIR_EAST
+Logging Camp~
+~
+0 -1 15270
+DDIR_WEST
+Tethir Forest~
+~
+0 -1 15268
+S
+#15270
+Logging Camp~
+You look around in horror.  Someone has been cutting down the
+magnificent trees of the forest.  Sacrilege!!~
+151 ROOM_NO_MOB|ROOM_PRIVATE SECT_FOREST
+DDIR_WEST
+Tethir Forest~
+~
+0 -1 15269
+S
+#15271
+Logging Camp Tent~
+This a large canvas tent which sleeps both the manager of the logging camp
+and all of the loggers.~
+151 0 SECT_FOREST
+DDIR_SOUTH
+Logging Camp~
+~
+0 -1 15270
+S
+#15272
+Foaming Sands Bath House Private Room~
+A massive bath fills the room.  The steam from the hot water makes
+the room humid and warm.  The scent of luxurious bath salts
+assail your nostrils.  This room is just for special high paying
+clients of which you have become one.~
+151 ROOM_INDOORS|ROOM_SAFE SECT_INN
+DDIR_NORTH
+Foaming Sands Bath House Entrance~
+~
+0 -1 15130
+S
+#15273
+Foaming Sands Bath House Private Room~
+A massive bath fills the room.  The steam from the hot water makes the
+room humid and warm.  The scent of luxurious bath salts assail your
+nostrils.  This room is just for special high paying clients of which
+you have become one.~
+151 ROOM_INDOORS|ROOM_SAFE SECT_INN
+DDIR_NORTH
+Foaming Sands Bath House Entrance~
+~
+0 -1 15130
+S
+#15274
+Dock~
+You have walked out onto a wooden dock.  There are ships anchored
+out in the harbour.~
+151 0 SECT_CITY
+DDIR_EAST
+Zazesspur Harbour~
+~
+0 -1 15105
+DDIR_WEST
+The Mist Walker~
+~
+0 -1 15275
+S
+#15275
+The Mist Walker~
+You are on board an immaculately kept galleon.  The Captain welcomes
+you aboard.  Are you here to take a trip on the high seas?~
+151 ROOM_NO_MOB|ROOM_INDOORS|ROOM_PRIVATE SECT_INSIDE
+DDIR_NORTH
+Sea of Swords~
+~
+0 -1 15101
+DDIR_EAST
+Dock~
+~
+0 -1 15274
+DDIR_SOUTH
+Sea of Swords~
+~
+0 -1 15101
+DDIR_WEST
+Sea of Swords~
+~
+0 -1 15101
+S
+#15276
+White sand beach~
+This beach if formed of a powdery white sand.  It stretches the
+length of the coast line and delineates the edge of this continent.
+The Sea of Swords is to the east and if you were to sail for several
+days east you would reach the continent of Toril.~
+151 ROOM_NO_MOB SECT_DESERT
+DDIR_EAST
+Sea of Swords~
+~
+0 -1 15277
+DDIR_WEST
+Roads of the Realm~
+~
+0 -1 17501
+S
+#15277
+Sea of Swords~
+You are sailing upon the Sea of Swords, a large body of
+water off the Sword Coast.  The waves are fairly low, but
+you would not care to be swimming.  Sea gulls drift above you,
+and you can hear the occasional fish jumping out of the water.~
+151 0 SECT_WATER_NOSWIM
+DDIR_NORTH
+Sea of Swords~
+~
+0 -1 15279
+DDIR_EAST
+Sea of Swords~
+~
+0 -1 15283
+DDIR_SOUTH
+Sea of Swords~
+~
+0 -1 15278
+DDIR_WEST
+White Sand Beach~
+~
+0 -1 15276
+S
+#15278
+Sea of Swords~
+You are sailing upon the Sea of Swords, a large body of
+water off the Sword Coast.  The waves are fairly low, but
+you would not care to be swimming.  Sea gulls drift above you,
+and you can hear the occasional fish jumping out of the water.~
+151 0 SECT_WATER_NOSWIM
+DDIR_NORTH
+Sea of Swords~
+~
+0 -1 15277
+DDIR_EAST
+Sea of Swords~
+~
+0 -1 15284
+DDIR_SOUTH
+Sea of Swords~
+~
+0 -1 15278
+S
+#15279
+Sea of Swords~
+You are sailing upon the Sea of Swords, a large body of
+water off the Sword Coast.  The waves are fairly low, but
+you would not care to be swimming.  Sea gulls drift above you,
+and you can hear the occasional fish jumping out of the water.~
+151 0 SECT_WATER_NOSWIM
+DDIR_NORTH
+Sea of Swords~
+~
+0 -1 15280
+DDIR_EAST
+Sea of Swords~
+~
+0 -1 15282
+DDIR_SOUTH
+Sea of Swords~
+~
+0 -1 15277
+S
+#15280
+Sea of Swords~
+You are sailing upon the Sea of Swords, a large body of
+water off the Sword Coast.  The waves are fairly low, but
+you would not care to be swimming.  Sea gulls drift above you,
+and you can hear the occasional fish jumping out of the water.~
+151 0 SECT_WATER_NOSWIM
+DDIR_NORTH
+Sea of Swords~
+~
+0 -1 15280
+DDIR_EAST
+Sea of Swords~
+~
+0 -1 15281
+DDIR_SOUTH
+Sea of Swords~
+~
+0 -1 15279
+S
+#15281
+Sea of Swords~
+You are sailing upon the Sea of Swords, a large body of
+water off the Sword Coast.  The waves are fairly low, but
+you would not care to be swimming.  Sea gulls drift above you,
+and you can hear the occasional fish jumping out of the water.~
+151 0 SECT_WATER_NOSWIM
+DDIR_NORTH
+Sea of Swords~
+~
+0 -1 15298
+DDIR_EAST
+Sea of Swords~
+~
+0 -1 15281
+DDIR_SOUTH
+Sea of Swords~
+~
+0 -1 15282
+DDIR_WEST
+Sea of Swords~
+~
+0 -1 15280
+S
+#15282
+Sea of Swords~
+You are sailing upon the Sea of Swords, a large body of
+water off the Sword Coast.  The waves are fairly low, but
+you would not care to be swimming.  Sea gulls drift above you,
+and you can hear the occasional fish jumping out of the water.~
+151 0 SECT_WATER_NOSWIM
+DDIR_NORTH
+Sea of Swords~
+~
+0 -1 15281
+DDIR_EAST
+Sea of Swords~
+~
+0 -1 15287
+DDIR_SOUTH
+Sea of Swords~
+~
+0 -1 15283
+DDIR_WEST
+Sea of Swords~
+~
+0 -1 15279
+S
+#15283
+Sea of Swords~
+You are sailing upon the Sea of Swords, a large body of
+water off the Sword Coast.  The waves are fairly low, but
+you would not care to be swimming.  Sea gulls drift above you,
+and you can hear the occasional fish jumping out of the water.~
+151 0 SECT_WATER_NOSWIM
+DDIR_NORTH
+Sea of Swords~
+~
+0 -1 15282
+DDIR_EAST
+Sea of Swords~
+~
+0 -1 15286
+DDIR_SOUTH
+Sea of Swords~
+~
+0 -1 15284
+DDIR_WEST
+Sea of Swords~
+~
+0 -1 15277
+S
+#15284
+Sea of Swords~
+You are sailing upon the Sea of Swords, a large body of
+water off the Sword Coast.  The waves are fairly low, but
+you would not care to be swimming.  Sea gulls drift above you,
+and you can hear the occasional fish jumping out of the water.~
+151 0 SECT_WATER_NOSWIM
+DDIR_NORTH
+Sea of Swords~
+~
+0 -1 15283
+DDIR_EAST
+Sea of Swords~
+~
+0 -1 15285
+DDIR_SOUTH
+Sea of Swords~
+~
+0 -1 15284
+DDIR_WEST
+Sea of Swords~
+~
+0 -1 15278
+S
+#15285
+Sea of Swords~
+You are sailing upon the Sea of Swords, a large body of
+water off the Sword Coast.  The waves are fairly low, but
+you would not care to be swimming.  Sea gulls drift above you,
+and you can hear the occasional fish jumping out of the water.~
+151 0 SECT_WATER_NOSWIM
+DDIR_NORTH
+Sea of Swords~
+~
+0 -1 15286
+DDIR_EAST
+Sea of Swords~
+~
+0 -1 15294
+DDIR_SOUTH
+Sea of Swords~
+~
+0 -1 15285
+DDIR_WEST
+Sea of Swords~
+~
+0 -1 15284
+S
+#15286
+Sea of Swords~
+You are sailing upon the Sea of Swords, a large body of
+water off the Sword Coast.  The waves are fairly low, but
+you would not care to be swimming.  Sea gulls drift above you,
+and you can hear the occasional fish jumping out of the water.~
+151 0 SECT_WATER_NOSWIM
+DDIR_NORTH
+Sea of Swords~
+~
+0 -1 15287
+DDIR_EAST
+Sea of Swords~
+~
+0 -1 15295
+DDIR_SOUTH
+Sea of Swords~
+~
+0 -1 15285
+DDIR_WEST
+Sea of Swords~
+~
+0 -1 15283
+S
+#15287
+Sea of Swords~
+You are sailing upon the Sea of Swords, a large body of
+water off the Sword Coast.  The waves are fairly low, but
+you would not care to be swimming.  Sea gulls drift above you,
+and you can hear the occasional fish jumping out of the water.~
+151 0 SECT_WATER_NOSWIM
+DDIR_NORTH
+Sea of Swords~
+~
+0 -1 15287
+DDIR_EAST
+Sea of Swords~
+~
+0 -1 15288
+DDIR_SOUTH
+Sea of Swords~
+~
+0 -1 15286
+DDIR_WEST
+Sea of Swords~
+~
+0 -1 15282
+S
+#15288
+Sea of Swords~
+You are sailing upon the Sea of Swords, a large body of
+water off the Sword Coast.  The waves are fairly low, but
+you would not care to be swimming.  Sea gulls drift above you,
+and you can hear the occasional fish jumping out of the water.~
+151 0 SECT_WATER_NOSWIM
+DDIR_NORTH
+Sea of Swords~
+~
+0 -1 15289
+DDIR_EAST
+Sea of Swords~
+~
+0 -1 15291
+DDIR_SOUTH
+Sea of Swords~
+~
+0 -1 15295
+DDIR_WEST
+Sea of Swords~
+~
+0 -1 15287
+S
+#15289
+Sea of Swords~
+You are sailing upon the Sea of Swords, a large body of
+water off the Sword Coast.  The waves are fairly low, but
+you would not care to be swimming.  Sea gulls drift above you,
+and you can hear the occasional fish jumping out of the water.~
+151 0 SECT_WATER_NOSWIM
+DDIR_NORTH
+Sea of Swords~
+~
+0 -1 15289
+DDIR_EAST
+Sea of Swords~
+~
+0 -1 15290
+DDIR_SOUTH
+Sea of Swords~
+~
+0 -1 15288
+DDIR_WEST
+Sea of Swords~
+~
+0 -1 15289
+S
+#15290
+Sea of Swords~
+You are sailing upon the Sea of Swords, a large body of
+water off the Sword Coast.  The waves are fairly low, but
+you would not care to be swimming.  Sea gulls drift above you,
+and you can hear the occasional fish jumping out of the water.~
+151 0 SECT_WATER_NOSWIM
+DDIR_NORTH
+Sea of Swords~
+~
+0 -1 15297
+DDIR_SOUTH
+Sea of Swords~
+~
+0 -1 15291
+DDIR_WEST
+Sea of Swords~
+~
+0 -1 15289
+S
+#15291
+Sea of Swords~
+You are sailing upon the Sea of Swords, a large body of
+water off the Sword Coast.  The waves are fairly low, but
+you would not care to be swimming.  Sea gulls drift above you,
+and you can hear the occasional fish jumping out of the water.~
+151 0 SECT_WATER_NOSWIM
+DDIR_NORTH
+Sea of Swords~
+~
+0 -1 15290
+DDIR_SOUTH
+Sea of Swords~
+~
+0 -1 15292
+DDIR_WEST
+Sea of Swords~
+~
+0 -1 15288
+S
+#15292
+Sea of Swords~
+You are sailing upon the Sea of Swords, a large body of
+water off the Sword Coast.  The waves are fairly low, but
+you would not care to be swimming.  Sea gulls drift above you,
+and you can hear the occasional fish jumping out of the water.~
+151 0 SECT_WATER_NOSWIM
+DDIR_NORTH
+Sea of Swords~
+~
+0 -1 15291
+DDIR_SOUTH
+Sea of Swords~
+~
+0 -1 15293
+DDIR_WEST
+Sea of Swords~
+~
+0 -1 15295
+S
+#15293
+Sea of Swords~
+You are sailing upon the Sea of Swords, a large body of
+water off the Sword Coast.  The waves are fairly low, but
+you would not care to be swimming.  Sea gulls drift above you,
+and you can hear the occasional fish jumping out of the water.~
+151 0 SECT_WATER_NOSWIM
+DDIR_NORTH
+Sea of Swords~
+~
+0 -1 15292
+DDIR_SOUTH
+Sea of Swords~
+~
+0 -1 15101
+DDIR_WEST
+Sea of Swords~
+~
+0 -1 15294
+S
+#15294
+Sea of Swords~
+You are sailing upon the Sea of Swords, a large body of
+water off the Sword Coast.  The waves are fairly low, but
+you would not care to be swimming.  Sea gulls drift above you,
+and you can hear the occasional fish jumping out of the water.~
+151 0 SECT_WATER_NOSWIM
+DDIR_NORTH
+Sea of Swords~
+~
+0 -1 15295
+DDIR_EAST
+Sea of Swords~
+~
+0 -1 15293
+DDIR_SOUTH
+Sea of Swords~
+~
+0 -1 15296
+DDIR_WEST
+Sea of Swords~
+~
+0 -1 15285
+S
+#15295
+Sea of Swords~
+You are sailing upon the Sea of Swords, a large body of
+water off the Sword Coast.  The waves are fairly low, but
+you would not care to be swimming.  Sea gulls drift above you,
+and you can hear the occasional fish jumping out of the water.~
+151 0 SECT_WATER_NOSWIM
+DDIR_NORTH
+Sea of Swords~
+~
+0 -1 15288
+DDIR_EAST
+Sea of Swords~
+~
+0 -1 15292
+DDIR_SOUTH
+Sea of Swords~
+~
+0 -1 15294
+DDIR_WEST
+Sea of Swords~
+~
+0 -1 15286
+S
+#15296
+Sea of Swords~
+You are sailing upon the Sea of Swords, a large body of
+water off the Sword Coast.  The waves are fairly low, but
+you would not care to be swimming.  Sea gulls drift above you,
+and you can hear the occasional fish jumping out of the water.~
+151 0 SECT_WATER_NOSWIM
+DDIR_NORTH
+Sea of Swords~
+~
+0 -1 15294
+DDIR_EAST
+Sea of Swords~
+~
+0 -1 15101
+DDIR_SOUTH
+Sea of Swords~
+~
+0 -1 15296
+DDIR_WEST
+Sea of Swords~
+~
+0 -1 15296
+S
+#15297
+Sea of Swords~
+You are sailing upon the Sea of Swords, a large body of
+water off the Sword Coast.  The waves are fairly low, but
+you would not care to be swimming.  Sea gulls drift above you,
+and you can hear the occasional fish jumping out of the water.~
+151 0 SECT_WATER_NOSWIM
+DDIR_NORTH
+Sea of Swords~
+~
+0 -1 15297
+DDIR_EAST
+Sea of Swords~
+~
+0 -1 8000
+DDIR_SOUTH
+Sea of Swords~
+~
+0 -1 15290
+DDIR_WEST
+Sea of Swords~
+~
+0 -1 15297
+S
+#15298
+Sea of Swords~
+You are sailing upon the Sea of Swords, a large body of
+water off the Sword Coast.  The waves are fairly low, but
+you would not care to be swimming.  Sea gulls drift above you,
+and you can hear the occasional fish jumping out of the water.~
+151 0 SECT_WATER_NOSWIM
+DDIR_NORTH
+Sea of Swords~
+~
+0 -1 15298
+DDIR_EAST
+Corwell Firth~
+~
+0 -1 200
+DDIR_SOUTH
+Sea of Swords~
+~
+0 -1 15281
+DDIR_WEST
+Sea of Swords~
+~
+0 -1 15298
+S
+#0
+
+#RESETS
+M 0 15101   1 15100 ;         Arilyn Moonblade in Restart room             
+M 0 15102   1 15197 ;         Captain Macumail in Private booth in the Brea
+E 1 15120 100 7 ;equip the macumail kilt        
+E 1 15121 100 5 ;equip a captain's shirt        
+M 0 15103   1 15248 ;                  Foxfire in Tall Trees               
+M 0 15104   1 15271 ;                   Bunlap in Logging Camp Tent        
+M 0 15105   1 15237 ;               Tinkersdam in Tinkersdam's Cave        
+E 1 15115 100 5 ;equip a yellow tunic           
+E 1 15116 100 ITEM_WEAR_BODY ;equip a pair of worn sandals   
+G 1 15142 500       ;the shrieker mushroom pot
+M 0 15106   1 15183 ;                   Ferret in School of Stealth        
+E 1 15110 100 6 ;equip a turban of Ferret       
+E 1 15111 100 9 ;equip the gloves of Ferret     
+M 0 15107   1 15130 ;        Mistress Penelope in Foaming Sands Bath House 
+G 1 15101  20       ;               a Damp key
+M 0 15108   1 15151 ;                     Jill in Palace Bath              
+E 1 15144 500 ITEM_WEAR_HEAD ;equip a mop                    
+E 1 15145 500 17 ;equip a bucket                 
+M 0 15109   1 15229 ;     Nesstiss the Centaur in Mountain Base            
+M 0 15110   1 15251 ;            A silver wolf in Tethir Forest            
+M 0 15112   1 15263 ;        The Lythari elder in Lythari Den
+E 1 15166 100 WEAR_ARMS ; lythari badge of rank
+M 0 15115   4 15184 ;       A trainee assassin in School of Stealth        
+E 1 15123 100 13 ;equip a sand-hued shadow sash  
+M 0 15115   4 15185 ;       A trainee assassin in School of Stealth        
+E 1 15123 100 13 ;equip a sand-hued shadow sash  
+M 0 15115   4 15183 ;       A trainee assassin in School of Stealth        
+E 1 15123 100 13 ;equip a sand-hued shadow sash  
+M 0 15115   4 15190 ;       A trainee assassin in School of Stealth.       
+E 1 15123 100 13 ;equip a sand-hued shadow sash  
+M 0 15116   4 15186 ;        A master assassin in School of Stealth        
+E 1 15122 100 13 ;equip a gray shadow sash       
+M 0 15116   4 15187 ;        A master assassin in School of Stealth        
+E 1 15122 100 13 ;equip a gray shadow sash       
+M 0 15116   4 15188 ;        A master assassin in School of Stealth        
+E 1 15122 100 13 ;equip a gray shadow sash       
+M 0 15116   4 15189 ;        A master assassin in School of Stealth        
+E 1 15122 100 13 ;equip a gray shadow sash       
+M 0 15117   6 15107 ;           A male barhand in Breaching Whale Tavern   
+M 0 15117   6 15196 ;           A male barhand in Breaching Whale Tavern   
+M 0 15117   6 15201 ;           A male barhand in Breaching Whale Tavern   
+M 0 15117   6 15202 ;           A male barhand in Breaching Whale Tavern   
+M 0 15117   6 15200 ;           A male barhand in Breaching Whale Tavern   
+M 0 15117   6 15198 ;           A male barhand in Breaching Whale Tavern   
+M 0 15118  12 15203 ;                 A sailor in Bedchamber               
+M 0 15118  12 15204 ;                 A sailor in Bedchamber               
+M 0 15118  12 15205 ;                 A sailor in Bedchamber               
+M 0 15118  12 15206 ;                 A sailor in Bedchamber               
+M 0 15118  12 15207 ;                 A sailor in Bedchamber               
+M 0 15118  12 15208 ;                 A sailor in Bedchamber               
+M 0 15118  12 15216 ;                 A sailor in Bedchamber               
+M 0 15118  12 15217 ;                 A sailor in Bedchamber               
+M 0 15118  12 15218 ;                 A sailor in Bedchamber               
+M 0 15118  12 15219 ;                 A sailor in Bedchamber               
+M 0 15118  12 15220 ;                 A sailor in Bedchamber               
+M 0 15118  12 15221 ;                 A sailor in Bedchamber               
+M 0 15119  12 15209 ;           a tavern guard in Hallway                  
+M 0 15119  12 15209 ;           a tavern guard in Hallway                  
+M 0 15119  12 15210 ;           a tavern guard in Hallway                  
+M 0 15119  12 15210 ;           a tavern guard in Hallway                  
+M 0 15119  12 15211 ;           a tavern guard in Hallway                  
+M 0 15119  12 15211 ;           a tavern guard in Hallway                  
+M 0 15119  12 15212 ;           a tavern guard in Hallway                  
+M 0 15119  12 15212 ;           a tavern guard in Hallway                  
+M 0 15119  12 15213 ;           a tavern guard in Hallway                  
+M 0 15119  12 15213 ;           a tavern guard in Hallway                  
+M 0 15119  12 15214 ;           a tavern guard in Hallway                  
+M 0 15119  12 15214 ;           a tavern guard in Hallway                  
+M 0 15120   6 15203 ;           a tavern whore in Bedchamber               
+M 0 15120   6 15206 ;           a tavern whore in Bedchamber               
+M 0 15120   6 15221 ;           a tavern whore in Bedchamber               
+M 0 15120   6 15216 ;           a tavern whore in Bedchamber               
+M 0 15120   6 15218 ;           a tavern whore in Bedchamber               
+M 0 15120   6 15202 ;           a tavern whore in Breaching Whale Tavern   
+M 0 15121  16 15239 ;             A forest elf in Tethir Forest            
+E 1 15117 200 ITEM_WEAR_HEAD ;equip an elven bow             
+M 0 15121  16 15240 ;             A forest elf in Tethir Forest            
+G 1 15118 500       ;        some elven arrows
+G 1 15118 500       ;        some elven arrows
+M 0 15121  16 15241 ;             A forest elf in Tethir Forest            
+E 1 15117 200 ITEM_WEAR_HEAD ;equip an elven bow             
+M 0 15121  16 15242 ;             A forest elf in Tethir Forest            
+G 1 15118 500       ;        some elven arrows
+G 1 15118 500       ;        some elven arrows
+M 0 15121  16 15243 ;             A forest elf in Tethir Forest            
+M 0 15121  16 15244 ;             A forest elf in Tethir Forest            
+E 1 15117 200 ITEM_WEAR_HEAD ;equip an elven bow             
+M 0 15121  16 15245 ;             A forest elf in Tall Trees               
+M 0 15121  16 15246 ;             A forest elf in Tall Trees               
+G 1 15118 500       ;        some elven arrows
+G 1 15118 500       ;        some elven arrows
+M 0 15121  16 15247 ;             A forest elf in Tall Trees               
+E 1 15117 200 ITEM_WEAR_HEAD ;equip an elven bow             
+M 0 15121  16 15249 ;             A forest elf in Tall Trees               
+G 1 15118 500       ;        some elven arrows
+G 1 15118 500       ;        some elven arrows
+M 0 15121  16 15251 ;             A forest elf in Tethir Forest            
+M 0 15121  16 15253 ;             A forest elf in Tethir Forest            
+E 1 15117 200 ITEM_WEAR_HEAD ;equip an elven bow             
+M 0 15121  16 15254 ;             A forest elf in Up in the trees          
+M 0 15121  16 15266 ;             A forest elf in Tethir Forest            
+G 1 15118 500       ;        some elven arrows
+G 1 15118 500       ;        some elven arrows
+M 0 15121  16 15268 ;             A forest elf in Tethir Forest            
+E 1 15117 200 ITEM_WEAR_HEAD ;equip an elven bow             
+M 0 15121  16 15269 ;             A forest elf in Tethir Forest            
+M 0 15122   8 15131 ;              A bath girl in Foaming Sands Bath House 
+E 1 15158 500 5 ;equip a flimsy robe            
+E 1 15159 500 17 ;equip a towel                  
+M 0 15122   8 15132 ;              A bath girl in Foaming Sands Bath House 
+E 1 15158 500 5 ;equip a flimsy robe            
+E 1 15159 500 17 ;equip a towel                  
+M 0 15122   8 15133 ;              A bath girl in Foaming Sands Bath House 
+E 1 15158 500 5 ;equip a flimsy robe            
+E 1 15159 500 17 ;equip a towel                  
+M 0 15122   8 15134 ;              A bath girl in Foaming Sands Bath House 
+E 1 15158 500 5 ;equip a flimsy robe            
+E 1 15159 500 17 ;equip a towel                  
+M 0 15122   8 15135 ;              A bath girl in Foaming Sands Bath House 
+E 1 15158 500 5 ;equip a flimsy robe            
+E 1 15159 500 17 ;equip a towel                  
+M 0 15122   8 15136 ;              A bath girl in Foaming Sands Bath House 
+E 1 15158 500 5 ;equip a flimsy robe            
+E 1 15159 500 17 ;equip a towel                  
+M 0 15122   8 15137 ;              A bath girl in Foaming Sands Bath House 
+E 1 15158 500 5 ;equip a flimsy robe            
+E 1 15159 500 17 ;equip a towel                  
+M 0 15122   8 15138 ;              A bath girl in Foaming Sands Bath House 
+M 0 15123   1 15194 ;      Morty the mortician in School of Stealth Morgue 
+M 0 15124   6 15144 ;             A crustacean in Underground Spring       
+M 0 15124   6 15144 ;             A crustacean in Underground Spring       
+M 0 15124   6 15145 ;             A crustacean in Underground Spring       
+M 0 15124   6 15145 ;             A crustacean in Underground Spring       
+M 0 15124   6 15146 ;             A crustacean in Underground Spring       
+M 0 15124   6 15146 ;             A crustacean in Underground Spring       
+M 0 15125  32 15152 ;           A Palace Guard in Corridor                 
+E 1 15124 100 12 ;equip a pink tabard            
+M 0 15125  32 15153 ;           A Palace Guard in Corridor                 
+E 1 15125 100 11 ;equip a pink and silver shield 
+M 0 15125  32 15154 ;           A Palace Guard in Corridor                 
+E 1 15126 100 6 ;equip a pink and silver helm   
+M 0 15125  32 15155 ;           A Palace Guard in Corridor                 
+E 1 15127 100 ITEM_WEAR_BODY ;equip a pair of pink leather bo
+M 0 15125  32 15156 ;           A Palace Guard in Corridor                 
+E 1 15128 100 ITEM_WEAR_HEAD ;equip a silver and pink longswo
+M 0 15125  32 15157 ;           A Palace Guard in Corridor                 
+E 1 15129 100 7 ;equip a pair of pink leggings  
+M 0 15125  32 15158 ;           A Palace Guard in Corridor                 
+E 1 15130 100 13 ;equip a pink leather belt      
+M 0 15125  32 15159 ;           A Palace Guard in Corridor                 
+E 1 15131 100 3 ;equip a pink cloak             
+M 0 15125  32 15160 ;           A Palace Guard in Corridor                 
+E 1 15128 100 ITEM_WEAR_HEAD ;equip a silver and pink longswo
+M 0 15125  32 15161 ;           A Palace Guard in Corridor                 
+E 1 15126 100 6 ;equip a pink and silver helm   
+M 0 15125  32 15162 ;           A Palace Guard in Corridor                 
+E 1 15124 100 12 ;equip a pink tabard            
+M 0 15125  32 15163 ;           A Palace Guard in Corridor                 
+E 1 15125 100 11 ;equip a pink and silver shield 
+M 0 15125  32 15164 ;           A Palace Guard in Corridor                 
+E 1 15127 100 ITEM_WEAR_BODY ;equip a pair of pink leather bo
+M 0 15125  32 15165 ;           A Palace Guard in Corridor                 
+E 1 15126 100 6 ;equip a pink and silver helm   
+M 0 15125  32 15166 ;           A Palace Guard in Corridor                 
+E 1 15127 100 ITEM_WEAR_BODY ;equip a pair of pink leather bo
+M 0 15125  32 15167 ;           A Palace Guard in Corridor                 
+E 1 15124 100 12 ;equip a pink tabard            
+M 0 15125  32 15169 ;           A Palace Guard in Corridor                 
+E 1 15126 100 6 ;equip a pink and silver helm   
+M 0 15125  32 15170 ;           A Palace Guard in Corridor                 
+E 1 15125 100 11 ;equip a pink and silver shield 
+M 0 15125  32 15171 ;           A Palace Guard in Corridor                 
+E 1 15131 100 3 ;equip a pink cloak             
+M 0 15125  32 15172 ;           A Palace Guard in Corridor                 
+E 1 15130 100 13 ;equip a pink leather belt      
+M 0 15125  32 15173 ;           A Palace Guard in Corridor                 
+E 1 15132 100 ITEM_WEAR_NECK ;equip a pink and silver medalli
+M 0 15125  32 15174 ;           A Palace Guard in Corridor                 
+E 1 15128 100 ITEM_WEAR_HEAD ;equip a silver and pink longswo
+G 1 15146  10       ;              an iron key
+M 0 15125  32 15175 ;           A Palace Guard in Corridor                 
+E 1 15129 100 7 ;equip a pair of pink leggings  
+M 0 15125  32 15176 ;           A Palace Guard in Corridor                 
+E 1 15131 100 3 ;equip a pink cloak             
+M 0 15125  32 15177 ;           A Palace Guard in Corridor                 
+E 1 15130 100 13 ;equip a pink leather belt      
+M 0 15125  32 15178 ;           A Palace Guard in Corridor                 
+E 1 15132 100 ITEM_WEAR_NECK ;equip a pink and silver medalli
+M 0 15125  32 15179 ;           A Palace Guard in Corridor                 
+E 1 15133 100 ITEM_WEAR_TAKE ;equip a pink and silver signet 
+M 0 15125  32 15180 ;           A Palace Guard in Corridor                 
+E 1 15128 100 ITEM_WEAR_HEAD ;equip a silver and pink longswo
+M 0 15125  32 15181 ;           A Palace Guard in Corridor                 
+E 1 15132 100 ITEM_WEAR_NECK ;equip a pink and silver medalli
+M 0 15125  32 15182 ;           A Palace Guard in Corridor                 
+E 1 15129 100 7 ;equip a pair of pink leggings  
+M 0 15125  32 15122 ;           A Palace Guard in Entrance to the Palace of
+G 1 15147  20       ;               a pink key
+E 1 15148 100 14 ;equip a pink bracer            
+M 0 15125  32 15122 ;           A Palace Guard in Entrance to the Palace of
+E 1 15149 100 15 ;equip a pink bracelet          
+M 0 15126  13 15109 ;   A citizen of Zazesspur in Boulevard of Zazesspur   
+M 0 15126  13 15110 ;   A citizen of Zazesspur in Boulevard of Zazesspur   
+M 0 15126  13 15111 ;   A citizen of Zazesspur in Boulevard of Zazesspur   
+M 0 15126  13 15112 ;   A citizen of Zazesspur in Boulevard of Zazesspur   
+M 0 15126  13 15113 ;   A citizen of Zazesspur in Boulevard of Zazesspur   
+M 0 15126  13 15114 ;   A citizen of Zazesspur in Boulevard of Zazesspur   
+M 0 15126  13 15115 ;   A citizen of Zazesspur in Boulevard of Zazesspur   
+M 0 15126  13 15116 ;   A citizen of Zazesspur in Boulevard of Zazesspur   
+M 0 15126  13 15117 ;   A citizen of Zazesspur in Boulevard of Zazesspur   
+M 0 15126  13 15118 ;   A citizen of Zazesspur in Boulevard of Zazesspur   
+M 0 15126  13 15105 ;   A citizen of Zazesspur in Harbour of Zazesspur     
+M 0 15126  13 15108 ;   A citizen of Zazesspur in Harbour of Zazesspur     
+M 0 15126  13 15119 ;   A citizen of Zazesspur in Harbour of Zazesspur     
+M 0 15127   4 15107 ;         A drunken sailor in Breaching Whale Tavern   
+M 0 15127   4 15200 ;         A drunken sailor in Breaching Whale Tavern   
+M 0 15127   4 15201 ;         A drunken sailor in Breaching Whale Tavern   
+M 0 15127   4 15202 ;         A drunken sailor in Breaching Whale Tavern   
+M 0 15128   1 15195 ;               the barman in Breaching Whale Tavern Ba
+G 1 15135 500       ;             a mug of ale
+G 1 15136 500       ;            a hearty stew
+G 1 15141 500       ;              a green gem
+G 1 15165 1000      ;             tethyrian port
+M 0 15129   1 15193 ;         the Spell Master in School of Stealth Magic S
+G 1 15104 500       ;      a potion of stealth
+G 1 15105 500       ;      a scroll of stealth
+G 1 15106 500       ;   a potion of Protection
+G 1 15107 500       ;   a scroll of protection
+G 1 15108 500       ;          a recall scroll
+M 0 15130   1 15192 ;     The Assassin Trainer in School of Stealth Trainin
+M 0 15131   1 15191 ;    The Assassin Armourer in School of Stealth Disguis
+G 1 15139 500       ;      a purple silk tunic
+G 1 15140 500       ;           a shadow cloak
+M 0 15132   1 15104 ;        A Zazesspur Guard in Zazesspur Gates          
+G 1 15100  20       ;               a Gate key
+M 0 15133   1 15187 ;               stealthmob in School of Stealth        
+M 0 15134   1 15117 ;                tinkermob in Boulevard of Zazesspur   
+M 0 15135   3 15265 ;               forrestmob in Tethir Forest            
+M 0 15136   7 15258 ;            A Lythari elf in Lythari Den              
+M 0 15136   7 15259 ;            A Lythari elf in Lythari Den              
+M 0 15136   7 15260 ;            A Lythari elf in Lythari Den              
+M 0 15136   7 15261 ;            A Lythari elf in Lythari Den              
+M 0 15136   7 15262 ;            A Lythari elf in Lythari Den              
+M 0 15136   7 15263 ;            A Lythari elf in Lythari Den              
+M 0 15136   7 15264 ;            A Lythari elf in Lythari Den              
+M 0 15137   1 15168 ;         etherealzoastria in Treasure Vault           
+M 0 15138   1 15270 ;          ethereallogging in Logging Camp             
+M 0 15139   1 15272 ;              A bath girl in Foaming Sands Bath House 
+M 0 15140   1 15273 ;               A bath boy in Foaming Sands Bath House            
+M 0 15142   1 15274 ;       The harbour master in Dock                     
+M 0 15143   1 15275 ;  The Mist Walker Captain in The Mist Walker          
+M 0 15144  20 15278 ;               a Sahuagin in Sea of Swords            
+M 0 15144  20 15279 ;               a Sahuagin in Sea of Swords            
+M 0 15144  20 15280 ;               a Sahuagin in Sea of Swords            
+M 0 15144  20 15281 ;               a Sahuagin in Sea of Swords            
+M 0 15144  20 15282 ;               a Sahuagin in Sea of Swords            
+M 0 15144  20 15283 ;               a Sahuagin in Sea of Swords            
+M 0 15144  20 15284 ;               a Sahuagin in Sea of Swords            
+M 0 15144  20 15285 ;               a Sahuagin in Sea of Swords            
+M 0 15144  20 15286 ;               a Sahuagin in Sea of Swords            
+M 0 15144  20 15287 ;               a Sahuagin in Sea of Swords            
+M 0 15144  20 15288 ;               a Sahuagin in Sea of Swords            
+M 0 15144  20 15289 ;               a Sahuagin in Sea of Swords            
+M 0 15144  20 15290 ;               a Sahuagin in Sea of Swords            
+M 0 15144  20 15291 ;               a Sahuagin in Sea of Swords            
+M 0 15144  20 15292 ;               a Sahuagin in Sea of Swords            
+M 0 15144  20 15293 ;               a Sahuagin in Sea of Swords            
+M 0 15144  20 15294 ;               a Sahuagin in Sea of Swords            
+M 0 15144  20 15295 ;               a Sahuagin in Sea of Swords            
+M 0 15144  20 15296 ;               a Sahuagin in Sea of Swords            
+M 0 15144  20 15277 ;               a Sahuagin in Sea of Swords            
+O 0 15102   1 15103 ;                   a Sign in Tethyr                   
+O 0 15109   1 15238 ;           a water trough in Stable                   
+O 0 15143   1 15168 ;a case containing an elf in Treasure Vault           
+D 0 15116 DIR_EAST DOOR_CLOSED ;door in Boulevard of Zazesspur   
+D 0 15227 DIR_WEST DOOR_CLOSED ;door in Mountain Base            
+D 0 15167 DIR_EAST DOOR_CLOSED ;door from corridor to treasure vault   
+D 0 15168 DIR_WEST DOOR_CLOSED ;door treasure vault to corridor            
+S
+
+#SHOPS
+15129 ITEM_TYPE_SCROLL ITEM_TYPE_WAND ITEM_TYPE_STAFF ITEM_TYPE_POTION
+     ITEM_TYPE_PILL 100  50  0 23 ;the Spell Master
+15128 ITEM_TYPE_FOOD ITEM_TYPE_TRASH ITEM_TYPE_DRINK_CON ITEM_TYPE_TREASURE
+     ITEM_TYPE_NOTHING 100  50  0 23 ;the barman
+15131 ITEM_TYPE_WEAPON ITEM_TYPE_AMMO ITEM_TYPE_ARMOR ITEM_TYPE_LIGHT
+     ITEM_TYPE_CONTAINER 100  50  0 23 ;The Assassin Armourer
+0
+
+#SPECIALS
+S
+
+#$

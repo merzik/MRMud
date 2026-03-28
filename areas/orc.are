@@ -1,0 +1,1189 @@
+#AREA Orc Campgrounds~
+#AUTHORS HartsVane~
+#RANGES 10 45 0 99
+#FLAGS AFLAG_NOCASTLE
+
+
+#HELPS
+0 $~
+
+
+
+#MOBILES
+#46100
+doctor witch~
+The witch doctor~
+An orcish witch doctor is here.~
+This is the witch doctor offering services to you.  She is wearing the skins of several other races.  An ogres torso, and an elves skin as pants.  She is also wearing a necklace of TSARIAN teeth!
+~
+ACT_SMART
+AFF_SANCTUARY|AFF_DETECT_HIDDEN|AFF_DETECT_INVIS
+0 S
+99 0 0 10000d1+0 1000d1+0
+0 RACE_ORC
+POS_STANDING POS_STANDING SEX_NEUTRAL
+#46101
+drunk orc~
+Drunken Orc~
+The orc soldier is passed out here.~
+This orc looks PITIFUL! He's drunken and passed out.. *wince*
+~
+ACT_RACE|ACT_BODY
+AFF_TONGUES|AFF_SLEEP|AFF_UNDERSTAND
+0 S
+24 0 0 300d1+0 18d1+0
+10000 RACE_ORC
+POS_SLEEPING POS_SLEEPING SEX_MALE
+#46102
+orc commander~
+Orc Commander~
+The orc commander is here, sitting in his chair.~
+The orc commander glares at you with his beady eyes.  'What do you WANT?' he
+says.
+~
+ACT_RACE|ACT_BODY
+0 
+0 S
+95 0 0 10001d2+49 75d2+0
+1000000 RACE_ORC
+POS_STANDING POS_STANDING SEX_NEUTRAL
+#46103
+tree little maple~
+A Maple Tree~
+A little maple tree is here, blocking the way of travellers.~
+This small growing maple tree blocks the way for travellers.  Just killing
+it would help out most people, indeed!
+~
+ACT_RACE|ACT_BODY
+0 
+0 S
+25 0 0 400d1+0 21d1+0
+50000 RACE_HUMAN
+POS_SLEEPING POS_SLEEPING SEX_FEMALE
+#46104
+King Cantris~
+King Cantris~
+Cantris, king of the orcs is here.~
+King Cantris, the newly appointed king of the orcs is here, selling fine armor
+to you to fight with the orc army with.  He is dressed in chainmail and gloves
+of the finest metals. He even has a sword with the orc sign engraved upon it.
+~
+ACT_RACE|ACT_BODY
+0 
+0 S
+99 0 0 10000d1+0 20d6+200
+0 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+#46105
+battle orc~
+A Battle Orc~
+This orc is ready for battle!~
+This orc, dressed in all his battle armor looks ready to fight for the kingdom
+of the orcs! He has all his chainmail on, covered from head to tail, and has
+his orc battlesword wielded.  Nice... Maybe you shouldn't mess with him until
+you're like level 25.
+~
+ACT_RACE|ACT_BODY
+0 
+0 S
+30 0 0 750d1+0 25d1+0
+200000 RACE_ORC
+POS_STANDING POS_STANDING SEX_MALE
+#0
+
+
+
+#OBJECTS
+#46100
+centaur skull light~
+A skull with a candle~
+A skull with a candle in it is laying here.~
+This skull looks like the skull of a centaur.  It has a hole in the top of it that contains a candle that seems to never go out.  It's also VERY heavy for some reason! Interesting.
+~
+ITEM_TYPE_LIGHT
+ITEM_FLAG_LEVEL|ITEM_FLAG_GLOW
+ITEM_WEAR_HOLD
+0 0 -1 0
+1 10000000 95
+A
+APPLY_DAMROLL -9
+A
+APPLY_MANA 150
+A
+APPLY_HITROLL -9
+#46101
+Elven Skin Pants~
+Elven skin pants~
+Pants made of elven skin lay here.~
+These pants, made of skin from an elf are very thin and almost see through.
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_LEGS|ITEM_WEAR_TAKE
+0 0 0 0
+2 1000000 5
+A
+APPLY_CON 1
+A
+APPLY_WIS 1
+#46102
+Chainmail sleeves~
+Orcish chainmail sleeves~
+Some sleeves made of chainmail are here.~
+These chainmail sleeves were made by King Cantris, and sold to you very cheaply.
+Better hang on to these beauties!
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_ARMS
+5 0 0 0
+2 100000 15
+A
+APPLY_HITROLL 2
+A
+APPLY_DAMROLL 1
+#46103
+Chainmail Boots~
+Chainmail and steel boots~
+Boots made of steel and chainmail lay here.~
+These chainmail boots were made by King Cantris, and sold to you very cheaply.
+Better hang on to these beauties!
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_FEET
+5 0 0 0
+2 100000 15
+A
+APPLY_HITROLL 1
+A
+APPLY_DAMROLL 2
+#46104
+Chainmail Gloves~
+A pair of chainmail gloves~
+Chainmail gloves of fine quality are abandoned here.~
+These chainmail gloves were made by King Cantris, and sold to you very cheaply.
+Better hang on to these beauties!
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_HANDS|ITEM_WEAR_TAKE
+5 0 0 0
+0 100000 15
+A
+APPLY_DAMROLL 1
+A
+APPLY_HITROLL 2
+#46105
+Chainmail sash~
+A chainmail sash~
+A chainmail sash is here, just laying.~
+This chainmail sash was made by King Cantris, and sold to you very cheaply.
+Better hang on to this beauties!
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_BODY|ITEM_WEAR_TAKE
+5 0 0 0
+2 100000 15
+A
+APPLY_HITROLL 2
+A
+APPLY_DAMROLL 2
+#46106
+Chainmail bra~
+A chainmail bra~
+A bra made of chainmail looks very uncomftorable.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_ABOUT
+5 0 0 0
+2 100000 15
+A
+APPLY_DAMROLL 2
+A
+APPLY_HITROLL 1
+#46107
+Chainmail shield steel~
+A steel shield~
+A Steel Shield is here, just laying lonely.~
+ {000}` {170}.    .    .
+ {000}` {070}\\../ \..//
+ {000}` {070}|     {110}; {070}    | {300}
+ {000}`` {070}\  {110}..:.. {070} /
+ {000}``` {170}. {070}  {010}` {110}; {010}` {070}  {170}. {070}
+ {000}``` {070}|   {110}: {070}  |
+ {000}```` {070}\ {020}. . {070}/
+ {000}````` {070}\ {120}. {070}/
+ {300}
+
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_SHIELD
+7 0 0 0
+0 100000 15
+A
+APPLY_HITROLL 2
+A
+APPLY_DAMROLL 1
+#46108
+Orc Battlesword~
+An orc battlesword~
+A supior crafted battlesword is here.~
+ {000}..... {110}._________________________ {130}.
+ {170}///// {110}|_________________________ {130}/
+~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 4 5 WEAPON_SLASH
+2 200000 18
+C
+orcish battlesword~
+FLAG_CLASS_SORCERER|FLAG_CLASS_SHAMAN|FLAG_CLASS_MARAUDER|FLAG_CLASS_WARRIOR|FLAG_CLASS_WARLOCK|FLAG_CLASS_DRUID|FLAG_CLASS_GLADIATOR|FLAG_CLASS_NINJA
+#0
+
+
+
+#ROOMS
+#46101
+Dirt path to the Orc Campground~
+This path is fairly plain.  Just dirt and gravel on the ground and forests to
+each side of the trail.  If you keep going, you're bound to see some tents.
+~
+461 ROOM_NO_CASTLE SECT_HILLS
+DDIR_EAST
+~
+~
+0 -1 46102
+DDIR_WEST
+~
+~
+0 -1 17231
+S
+#46102
+Right before the campground~
+East a bit, you can see tents.  Right now you are right before the campground,
+with shrubs to each side of the trail, and dirt below you.  Very interesting..
+~
+461 ROOM_NO_CASTLE SECT_HILLS
+DDIR_WEST
+~
+~
+0 -1 46101
+DDIR_EAST
+~
+~
+0 -1 46103
+S
+#46103
+The Orcish Campgrounds~
+You seem to be between two deerskin tents.  In front of you is a campfire that is roaring with flames.  North is what looks like a soldiers tent, plain and simple.  South, however looks like a bit more intricate tent, with beads hanging off of the top.  A sign on it symbolizes that it is a witch doctor's hut.  Orc army with a witch doctor? Hm.
+~
+461 ROOM_NO_MOB SECT_FIELD
+DDIR_WEST
+~
+~
+0 -1 46102
+DDIR_NORTH
+~
+~
+0 -1 46104
+DDIR_SOUTH
+~
+~
+0 -1 46118
+DDIR_EAST
+~
+~
+0 -1 46127
+S
+#46104
+Soldier's Hut~
+>From outside this hut seemed fairly small, but more comes then meets the eye.
+This seems to be the hut of at least 20 orcs, for this long and slender room 
+has 20 beds! Common sense, eh?  However, nothing is too spectacular about this room.  Dirt floor, and nothing interesting looking describes this hut 
+very well.
+~
+461 ROOM_NO_CASTLE|ROOM_NO_MOB|ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+~
+~
+0 -1 46103
+DDIR_NORTH
+~
+~
+0 -1 46130
+S
+#46106
+Soldier's Hut~
+>From outside this hut seemed fairly small, but more comes then meets the eye.
+This seems to be the hut of at least 20 orcs, for this long and slender room 
+has 20 beds! Common sense, eh?  However, nothing is too spectacular about this room.  Dirt floor, and nothing interesting looking describes this hut 
+very well.
+~
+461 ROOM_NO_CASTLE|ROOM_NO_MOB|ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 46127
+DDIR_SOUTH
+~
+~
+0 -1 46139
+S
+#46108
+The Orcish Campgrounds~
+To the east of you is the grand hut, probaly that of the command of the orcs.
+In this section, however is a campfire that is still burning.  This one
+differs in that it has been built with perfection, and all the ashes look like
+they have been cleaned out regularly.  No more tents are north or south, but
+uncleared forest lays there, almost too dense to see 10 feet into.  Back west
+are the tents.
+~
+461 ROOM_NO_MOB SECT_FIELD
+DDIR_WEST
+~
+~
+0 -1 46127
+DDIR_EAST
+~
+~
+0 -1 46109
+DDIR_NORTH
+~
+~
+0 -1 46112
+DDIR_SOUTH
+~
+~
+0 -1 46117
+S
+
+#46109
+The commanders hut~
+This hut has been built to extreme perfection, with a front entrance and back
+one.  Beads, like that in the witch doctor's hut hang from the ceiling, and
+everything in here is hand-crafted.  The chairs are made out of oak wood and
+varnished to look shiny and almost too nice to sit on.  The walls are not
+deerskin, but they are actual wood from tree trunks, that have been split in
+two and nailed together.  The commander's chain is straight ahead of you...
+
+~
+461 0 SECT_INSIDE
+DDIR_WEST
+~
+~
+0 -1 46108
+DDIR_EAST
+~
+~
+0 -1 46110
+S
+#46110
+A clearing~
+The trees here are just stumps.  Obviously, these trees have been cut to make
+tents and huts for more orcs.  All those years of growing, cut down for orc
+wars.. hmm.  One stump seems to stick out from the others, however, because
+it seems to be hollow. Interesting, eh?
+~
+461 ROOM_NO_CASTLE|ROOM_NO_MOB SECT_HILLS
+DDIR_WEST
+~
+~
+0 -1 46109
+DDIR_NORTH
+~
+~
+0 -1 46114
+DDIR_SOUTH
+~
+~
+0 -1 46115
+S
+#46112
+The dense forest~
+This very dense forest surrounds one hut, the hut of the commander of the orcs.
+Trees reach up so high, you wonder how old they are... 40 million years? No..
+must be 50 at least! Their bases measure at least 50 feet on some of the trees
+and at times, it's hard to squeeze through the denseness of this place.
+~
+461 ROOM_NO_CASTLE SECT_FOREST
+DDIR_SOUTH
+~
+~
+0 -1 46108
+DDIR_EAST
+~
+~
+0 -1 46113
+S
+#46113
+The dense forest~
+This very dense forest surrounds one hut, the hut of the commander of the orcs.
+Trees reach up so high, you wonder how old they are... 40 million years? No..
+must be 50 at least! Their bases measure at least 50 feet on some of the trees
+and at times, it's hard to squeeze through the denseness of this place.
+~
+461 ROOM_NO_CASTLE SECT_FOREST
+DDIR_WEST
+~
+~
+0 -1 46112
+DDIR_EAST
+~
+~
+0 -1 46114
+S
+#46114
+The dense forest~
+This very dense forest surrounds one hut, the hut of the commander of the orcs.
+Trees reach up so high, you wonder how old they are... 40 million years? No..
+must be 50 at least! Their bases measure at least 50 feet on some of the trees
+and at times, it's hard to squeeze through the denseness of this place.
+~
+461 ROOM_NO_CASTLE SECT_FOREST
+DDIR_SOUTH
+~
+~
+0 -1 46110
+DDIR_WEST
+~
+~
+0 -1 46113
+S
+#46115
+The dense forest~
+This very dense forest surrounds one hut, the hut of the commander of the orcs.
+Trees reach up so high, you wonder how old they are... 40 million years? No..
+must be 50 at least! Their bases measure at least 50 feet on some of the trees
+and at times, it's hard to squeeze through the denseness of this place.
+~
+461 ROOM_NO_CASTLE SECT_FOREST
+DDIR_NORTH
+~
+~
+0 -1 46110
+DDIR_WEST
+~
+~
+0 -1 46116
+S
+
+#46116
+The dense forest~
+This very dense forest surrounds one hut, the hut of the commander of the orcs.
+Trees reach up so high, you wonder how old they are... 40 million years? No..
+must be 50 at least! Their bases measure at least 50 feet on some of the trees
+and at times, it's hard to squeeze through the denseness of this place.
+~
+461 ROOM_NO_CASTLE SECT_FOREST
+DDIR_EAST
+~
+~
+0 -1 46115
+DDIR_WEST
+~
+~
+0 -1 46117
+S
+#46117
+The dense forest~
+This very dense forest surrounds one hut, the hut of the commander of the orcs.
+Trees reach up so high, you wonder how old they are... 40 million years? No..
+must be 50 at least! Their bases measure at least 50 feet on some of the trees
+and at times, it's hard to squeeze through the denseness of this place.
+~
+461 ROOM_NO_CASTLE SECT_FOREST
+DDIR_NORTH
+~
+~
+0 -1 46108
+DDIR_EAST
+~
+~
+0 -1 46116
+S
+#46118
+Witch Doctor's Hut~
+In here is fairly big, enough room to stand straight up.  There are potions brewing all around you, and jars with elf heads and ogre heads in them.  
+Halfling eyes, Centaur hooves.. everything is found here.  The walls are made 
+of some kind of skin, you presume deer skin since it's nothing fancy.  However
+there are beads hanging from the ceiling of interesting shape and size.  A 
+witch doctor is here, asking you if you need anything.
+~
+461 ROOM_SAFE|ROOM_NO_CASTLE|ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 46103
+S
+#46127
+The Orcish Campgrounds~
+You seem to be between two deerskin tents.  In front of you is a campfire that is roaring with flames.  North is what looks like a soldiers tent, plain and simple.  South, however looks like a bit more intricate tent, with beads hanging off of the top.  A sign on it symbolizes that it is a witch doctor's hut.  Orc army with a witch doctor? Hm.
+~
+461 ROOM_NO_MOB SECT_FIELD
+DDIR_SOUTH
+~
+~
+0 -1 46106
+DDIR_EAST
+~
+~
+0 -1 46108
+DDIR_WEST
+~
+~
+0 -1 46103
+DDIR_NORTH
+~
+~
+0 -1 46128
+S
+#46128
+A reigal looking hut~
+This very reigal looking hut actually has a covered floor, and looks fairly
+grand.  Gold everything surrounds you, that is, gold chairs, a gold bed, and
+gold dishware.  The hut is still made of deerskin.  Only one bed inhabits this
+hut, and that bed belongs to the king of the orcs, Cantris... King Cantris 
+to you.
+~
+461 ROOM_SAFE|ROOM_NO_CASTLE|ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+~
+~
+0 -1 46127
+S
+#46130
+Outback the tent~
+This is the outback of the tent.  North you see a spring quenching soldier orc's
+thirst.  However each other direction is another story.  You see pitiful
+soldiers laying on the ground moaning, and some even passed out.  Wouldn't the
+commander be happy about this!?
+~
+461 0 SECT_FIELD
+DDIR_SOUTH
+~
+~
+0 -1 46104
+DDIR_NORTH
+~
+~
+0 -1 46131
+DDIR_EAST
+~
+~
+0 -1 46135
+DDIR_WEST
+~
+~
+0 -1 46136
+S
+
+#46131
+Center clearing~
+This center clearing has a spring flowing through it, with orcs eagerly
+drinking the water, trying to sober up from all the alcohol they have been
+drinking.  All around you,  you see orcs that have passed out and probably
+wouldn't even notice you.  Some of the more sober orcs have left back into
+the tent.
+~
+461 ROOM_SAFE|ROOM_NO_MOB SECT_HILLS
+DDIR_SOUTH
+~
+~
+0 -1 46130
+DDIR_NORTH
+~
+~
+0 -1 46132
+DDIR_EAST
+~
+~
+0 -1 46134
+DDIR_WEST
+~
+~
+0 -1 46137
+S
+#46132
+A sparse forested area~
+What a pitiful sight.  Orcs from every direction lay on the ground, passed out
+drunk.  You can even smell the alcohol on their breath!
+~
+461 0 SECT_FOREST
+DDIR_SOUTH
+~
+~
+0 -1 46131
+DDIR_EAST
+~
+~
+0 -1 46133
+DDIR_WEST
+~
+~
+0 -1 46138
+S
+#46133
+A sparse forested area~
+What a pitiful sight.  Orcs from every direction lay on the ground, passed out
+drunk.  You can even smell the alcohol on their breath!
+~
+461 0 SECT_FOREST
+DDIR_WEST
+~
+~
+0 -1 46132
+DDIR_SOUTH
+~
+~
+0 -1 46134
+S
+#46134
+A sparse forested area~
+What a pitiful sight.  Orcs from every direction lay on the ground, passed out
+drunk.  You can even smell the alcohol on their breath!
+~
+461 0 SECT_FOREST
+DDIR_NORTH
+~
+~
+0 -1 46133
+DDIR_WEST
+~
+~
+0 -1 46131
+DDIR_SOUTH
+~
+~
+0 -1 46135
+S
+#46135
+A sparse forested area~
+What a pitiful sight.  Orcs from every direction lay on the ground, passed out
+drunk.  You can even smell the alcohol on their breath!
+~
+461 0 SECT_FOREST
+DDIR_NORTH
+~
+~
+0 -1 46134
+DDIR_WEST
+~
+~
+0 -1 46130
+S
+#46136
+A sparse forested area~
+What a pitiful sight.  Orcs from every direction lay on the ground, passed out
+drunk.  You can even smell the alcohol on their breath!
+~
+461 0 SECT_FOREST
+DDIR_EAST
+~
+~
+0 -1 46130
+DDIR_NORTH
+~
+~
+0 -1 46137
+S
+
+#46137
+A sparse forested area~
+What a pitiful sight.  Orcs from every direction lay on the ground, passed out
+drunk.  You can even smell the alcohol on their breath!
+~
+461 0 SECT_FOREST
+DDIR_SOUTH
+~
+~
+0 -1 46136
+DDIR_EAST
+~
+~
+0 -1 46131
+DDIR_NORTH
+~
+~
+0 -1 46138
+S
+#46138
+A sparse forested area~
+What a pitiful sight.  Orcs from every direction lay on the ground, passed out
+drunk.  You can even smell the alcohol on their breath!
+~
+461 0 SECT_FOREST
+DDIR_SOUTH
+~
+~
+0 -1 46137
+DDIR_EAST
+~
+~
+0 -1 46132
+S
+#46139
+Outback of the training hut~
+Outback of this hut is what seems to be the training grounds for the orcs.  All
+of them are lined up sparring each other in their battle armor.  A path goes
+around in a circle, with different kinds of terrain to simulate all conditions
+for battle.
+~
+461 0 SECT_HILLS
+DDIR_NORTH
+~
+~
+0 -1 46106
+DDIR_SOUTH
+~
+~
+0 -1 46140
+S
+#46140
+A path around~
+This path around has very long grass, almost like that of a field.  The grass
+sometimes gets in the way of the two sparring orcs, but they seem to manage
+as both of them have a rough time fighting each other.  On each side is more
+path with different kinds of conditions.
+~
+461 0 SECT_FIELD
+DDIR_NORTH
+~
+~
+0 -1 46139
+DDIR_EAST
+~
+~
+0 -1 46141
+DDIR_WEST
+~
+~
+0 -1 46157
+S
+#46141
+A path around~
+This path around has very long grass, almost like that of a field.  The grass
+sometimes gets in the way of the two sparring orcs, but they seem to manage
+as both of them have a rough time fighting each other.  On each side is more
+path with different kinds of conditions.
+~
+461 0 SECT_FIELD
+DDIR_WEST
+~
+~
+0 -1 46140
+DDIR_SOUTH
+~
+~
+0 -1 46142
+S
+#46142
+A small pool of water~
+This knee deep water is definately a distraction for the two orcs.  The water
+looks very dirty and mucky...almost too dirty to look at.  It's not blue
+like water should be .. but a dark brown.  You can hear the clanking of the
+swords banging around you as you continue on the path.
+~
+461 0 SECT_WATER_SWIM
+DDIR_NORTH
+~
+~
+0 -1 46141
+DDIR_EAST
+~
+~
+0 -1 46143
+S
+
+#46143
+A path around~
+This path around has very long grass, almost like that of a field.  The grass
+sometimes gets in the way of the two sparring orcs, but they seem to manage
+as both of them have a rough time fighting each other.  On each side is more
+path with different kinds of conditions.
+~
+461 0 SECT_FIELD
+DDIR_WEST
+~
+~
+0 -1 46142
+DDIR_SOUTH
+~
+~
+0 -1 46144
+S
+#46144
+A path around~
+This path around has very long grass, almost like that of a field.  The grass
+sometimes gets in the way of the two sparring orcs, but they seem to manage
+as both of them have a rough time fighting each other.  On each side is more
+path with different kinds of conditions.
+~
+461 0 SECT_FIELD
+DDIR_NORTH
+~
+~
+0 -1 46143
+DDIR_SOUTH
+~
+~
+0 -1 46145
+S
+#46145
+A path around~
+This path around has very long grass, almost like that of a field.  The grass
+sometimes gets in the way of the two sparring orcs, but they seem to manage
+as both of them have a rough time fighting each other.  On each side is more
+path with different kinds of conditions.
+~
+461 0 SECT_FIELD
+DDIR_NORTH
+~
+~
+0 -1 46144
+DDIR_SOUTH
+~
+~
+0 -1 46146
+S
+#46146
+A path around~
+This path around has very long grass, almost like that of a field.  The grass
+sometimes gets in the way of the two sparring orcs, but they seem to manage
+as both of them have a rough time fighting each other.  On each side is more
+path with different kinds of conditions.
+~
+461 0 SECT_FIELD
+DDIR_NORTH
+~
+~
+0 -1 46145
+DDIR_WEST
+~
+~
+0 -1 46148
+S
+#46147
+A path around~
+This path around has very long grass, almost like that of a field.  The grass
+sometimes gets in the way of the two sparring orcs, but they seem to manage
+as both of them have a rough time fighting each other.  On each side is more
+path with different kinds of conditions.
+~
+461 0 SECT_FIELD
+DDIR_EAST
+~
+~
+0 -1 46148
+DDIR_NORTH
+~
+~
+0 -1 46149
+S
+#46148
+A path around~
+This path around has very long grass, almost like that of a field.  The grass
+sometimes gets in the way of the two sparring orcs, but they seem to manage
+as both of them have a rough time fighting each other.  On each side is more
+path with different kinds of conditions.
+~
+461 0 SECT_FIELD
+DDIR_EAST
+~
+~
+0 -1 46146
+DDIR_WEST
+~
+~
+0 -1 46147
+DDIR_SOUTH
+~
+~
+EX_ISDOOR|EX_HIDDEN -1 46158
+S
+
+#46149
+Hills~
+Small hills reside here, challenging the orcs to win on uneven ground.  It's
+not easy for them, however, as you see several of them falling down the hill.
+But none-the-less, learning is the only way.  All around you, you hear more orcs
+battleing with each other, sparring like experts.
+~
+461 0 SECT_HILLS
+DDIR_SOUTH
+~
+~
+0 -1 46147
+DDIR_WEST
+~
+~
+0 -1 46150
+S
+#46150
+A path around~
+This path around has very long grass, almost like that of a field.  The grass
+sometimes gets in the way of the two sparring orcs, but they seem to manage
+as both of them have a rough time fighting each other.  On each side is more
+path with different kinds of conditions.
+~
+461 0 SECT_FIELD
+DDIR_EAST
+~
+~
+0 -1 46149
+DDIR_WEST
+~
+~
+0 -1 46151
+S
+#46151
+A path around~
+This path around has very long grass, almost like that of a field.  The grass
+sometimes gets in the way of the two sparring orcs, but they seem to manage
+as both of them have a rough time fighting each other.  On each side is more
+path with different kinds of conditions.
+~
+461 0 SECT_FIELD
+DDIR_EAST
+~
+~
+0 -1 46150
+DDIR_NORTH
+~
+~
+0 -1 46152
+S
+#46152
+Hills~
+Small hills reside here, challenging the orcs to win on uneven ground.  It's
+not easy for them, however, as you see several of them falling down the hill.
+But none-the-less, learning is the only way.  All around you, you hear more orcs
+battleing with each other, sparring like experts.
+~
+461 0 SECT_HILLS
+DDIR_SOUTH
+~
+~
+0 -1 46151
+DDIR_WEST
+~
+~
+0 -1 46153
+S
+#46153
+A path around~
+This path around has very long grass, almost like that of a field.  The grass
+sometimes gets in the way of the two sparring orcs, but they seem to manage
+as both of them have a rough time fighting each other.  On each side is more
+path with different kinds of conditions.
+~
+461 0 SECT_FIELD
+DDIR_EAST
+~
+~
+0 -1 46152
+DDIR_NORTH
+~
+~
+0 -1 46154
+S
+#46154
+Hills~
+Small hills reside here, challenging the orcs to win on uneven ground.  It's
+not easy for them, however, as you see several of them falling down the hill.
+But none-the-less, learning is the only way.  All around you, you hear more orcs
+battleing with each other, sparring like experts.
+~
+461 0 SECT_HILLS
+DDIR_SOUTH
+~
+~
+0 -1 46153
+DDIR_NORTH
+~
+~
+0 -1 46155
+S
+
+#46155
+Hills~
+Small hills reside here, challenging the orcs to win on uneven ground.  It's
+not easy for them, however, as you see several of them falling down the hill.
+But none-the-less, learning is the only way.  All around you, you hear more orcs
+battleing with each other, sparring like experts.
+~
+461 0 SECT_HILLS
+DDIR_SOUTH
+~
+~
+0 -1 46154
+DDIR_EAST
+~
+~
+0 -1 46156
+S
+#46156
+Hills~
+Small hills reside here, challenging the orcs to win on uneven ground.  It's
+not easy for them, however, as you see several of them falling down the hill.
+But none-the-less, learning is the only way.  All around you, you hear more orcs
+battleing with each other, sparring like experts.
+~
+461 0 SECT_HILLS
+DDIR_WEST
+~
+~
+0 -1 46155
+DDIR_EAST
+~
+~
+0 -1 46157
+S
+#46157
+A path around~
+This path around has very long grass, almost like that of a field.  The grass
+sometimes gets in the way of the two sparring orcs, but they seem to manage
+as both of them have a rough time fighting each other.  On each side is more
+path with different kinds of conditions.
+~
+461 0 SECT_FIELD
+DDIR_EAST
+~
+~
+0 -1 46140
+DDIR_WEST
+~
+~
+0 -1 46156
+S
+#46158
+Room number 46158~
+
+~
+461 0 SECT_UNDER_GROUND
+DDIR_NORTH
+~
+~
+EX_ISDOOR|EX_HIDDEN -1 46148
+DDIR_SOUTH
+~
+~
+0 -1 46159
+S
+#46159
+Room number 46159~
+
+~
+461 0 SECT_UNDER_GROUND
+DDIR_NORTH
+~
+~
+0 -1 46158
+S
+#0
+
+
+
+#SHOPS
+46100 ITEM_TYPE_DRINK_CON ITEM_TYPE_TREASURE ITEM_TYPE_TRASH ITEM_TYPE_POTION
+      ITEM_TYPE_SCROLL 100 100 1 23
+46104 ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING
+      ITEM_TYPE_NOTHING 100 100 1 23
+0
+
+
+
+
+#RESETS
+M 0 46100 100 46118 ;The witch doctor loaded in room Witch Doctor's Hut
+G 0 46100 0 
+G 1 46101 100  ;Elven Skin Pants placed in inventory
+M 0 46101 100 46136 ;Drunken Orc loaded in room A sparse forested area
+M 0 46101 100 46136 ;Drunken Orc loaded in room A sparse forested area
+M 0 46101 100 46136 ;Drunken Orc loaded in room A sparse forested area
+M 0 46101 100 46136 ;Drunken Orc loaded in room A sparse forested area
+M 0 46101 100 46137 ;Drunken Orc loaded in room A sparse forested area
+M 0 46101 100 46137 ;Drunken Orc loaded in room A sparse forested area
+M 0 46101 100 46137 ;Drunken Orc loaded in room A sparse forested area
+M 0 46101 100 46137 ;Drunken Orc loaded in room A sparse forested area
+M 0 46101 100 46130 ;Drunken Orc loaded in room Outback the tent
+M 0 46101 100 46130 ;Drunken Orc loaded in room Outback the tent
+M 0 46101 100 46138 ;Drunken Orc loaded in room A sparse forested area
+M 0 46101 100 46138 ;Drunken Orc loaded in room A sparse forested area
+M 0 46101 100 46138 ;Drunken Orc loaded in room A sparse forested area
+M 0 46101 100 46138 ;Drunken Orc loaded in room A sparse forested area
+M 0 46101 100 46132 ;Drunken Orc loaded in room A sparse forested area
+M 0 46101 100 46132 ;Drunken Orc loaded in room A sparse forested area
+M 0 46101 100 46132 ;Drunken Orc loaded in room A sparse forested area
+M 0 46101 100 46132 ;Drunken Orc loaded in room A sparse forested area
+M 0 46101 100 46133 ;Drunken Orc loaded in room A sparse forested area
+M 0 46101 100 46133 ;Drunken Orc loaded in room A sparse forested area
+M 0 46101 100 46133 ;Drunken Orc loaded in room A sparse forested area
+M 0 46101 100 46133 ;Drunken Orc loaded in room A sparse forested area
+M 0 46101 100 46134 ;Drunken Orc loaded in room A sparse forested area
+M 0 46101 100 46134 ;Drunken Orc loaded in room A sparse forested area
+M 0 46101 100 46134 ;Drunken Orc loaded in room A sparse forested area
+M 0 46101 100 46134 ;Drunken Orc loaded in room A sparse forested area
+M 0 46101 100 46135 ;Drunken Orc loaded in room A sparse forested area
+M 0 46101 100 46135 ;Drunken Orc loaded in room A sparse forested area
+M 0 46101 100 46135 ;Drunken Orc loaded in room A sparse forested area
+M 0 46101 100 46135 ;Drunken Orc loaded in room A sparse forested area
+M 0 46103 100 46112 ;Maple Tree loaded in room The dense forest
+M 0 46103 100 46112 ;Maple Tree loaded in room The dense forest
+M 0 46103 100 46112 ;Maple Tree loaded in room The dense forest
+M 0 46103 100 46113 ;Maple Tree loaded in room The dense forest
+M 0 46103 100 46113 ;Maple Tree loaded in room The dense forest
+M 0 46103 100 46113 ;Maple Tree loaded in room The dense forest
+M 0 46103 100 46114 ;Maple Tree loaded in room The dense forest
+M 0 46103 100 46114 ;Maple Tree loaded in room The dense forest
+M 0 46103 100 46114 ;Maple Tree loaded in room The dense forest
+M 0 46103 100 46115 ;Maple Tree loaded in room The dense forest
+M 0 46103 100 46115 ;Maple Tree loaded in room The dense forest
+M 0 46103 100 46115 ;Maple Tree loaded in room The dense forest
+M 0 46103 100 46115 ;Maple Tree loaded in room The dense forest
+M 0 46103 100 46114 ;Maple Tree loaded in room The dense forest
+M 0 46103 100 46116 ;Maple Tree loaded in room The dense forest
+M 0 46103 100 46116 ;Maple Tree loaded in room The dense forest
+M 0 46103 100 46116 ;Maple Tree loaded in room The dense forest
+M 0 46103 100 46117 ;Maple Tree loaded in room The dense forest
+M 0 46103 100 46117 ;Maple Tree loaded in room The dense forest
+M 0 46103 100 46117 ;Maple Tree loaded in room The dense forest
+M 0 46104 100 46128 ;King Cantris loaded in room A reigal looking hut
+E 1 46108 100 WEAR_WIELD ;Equip with An orc battlesword
+G 1 46103 100  ;A pair of chainmale gloves placed in inventory
+G 1 46104 100  ;A pair of chainmale gloves placed in inventory
+G 1 46102 100  ;Orcish Chainmail Sleeves placed in inventory
+G 1 46105 100  ;A chainmail sash placed in inventory
+G 1 46106 100  ;A chainmail bra placed in inventory
+G 1 46107 100  ;A Steel Shield placed in inventory
+G 1 46108 100  ;An orc battlesword placed in inventory
+M 0 46105 100 46140 ;A Battle Orc loaded in room A path around
+M 0 46105 100 46141 ;A Battle Orc loaded in room A path around
+M 0 46105 100 46142 ;A Battle Orc loaded in room A small pool of water
+M 0 46105 100 46143 ;A Battle Orc loaded in room A path around
+M 0 46105 100 46144 ;A Battle Orc loaded in room A path around
+M 0 46105 100 46145 ;A Battle Orc loaded in room A path around
+M 0 46105 100 46146 ;A Battle Orc loaded in room A path around
+M 0 46105 100 46148 ;A Battle Orc loaded in room A path around
+M 0 46105 100 46147 ;A Battle Orc loaded in room A path around
+M 0 46105 100 46149 ;A Battle Orc loaded in room Hills
+M 0 46105 100 46150 ;A Battle Orc loaded in room A path around
+M 0 46105 100 46151 ;A Battle Orc loaded in room A path around
+M 0 46105 100 46152 ;A Battle Orc loaded in room Hills
+M 0 46105 100 46153 ;A Battle Orc loaded in room A path around
+M 0 46105 100 46154 ;A Battle Orc loaded in room Hills
+M 0 46105 100 46155 ;A Battle Orc loaded in room Hills
+M 0 46105 100 46156 ;A Battle Orc loaded in room Hills
+M 0 46105 100 46157 ;A Battle Orc loaded in room A path around
+M 0 46105 100 46159 ;A Battle Orc loaded in room Room number 46159
+M 0 46102 100 46109 ;Orc Commander loaded in room The commanders hut
+S
+
+
+
+
+#$

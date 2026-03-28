@@ -1,0 +1,756 @@
+#AREA Halfling Hq~
+#AUTHORS MrMud~
+
+
+#RANGES 0 99 0 99
+#FLAGS AFLAG_NODEBUG|AFLAG_NOTELEPORT
+#MOBILES
+#2500
+ranger halfling~
+A halfling ranger~
+A halfling ranger is standing guard here.~
+He stands about 4.5ft tall, which is quite tall for a halfling. He has 
+light brown hair and a pair of dark brown eyes.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_INFRARED|AFF_UNDERSTAND|AFF_TONGUES
+1000 S
+60 BODY_TORSO BODY_LEG|BODY_ARM|BODY_HAND 8d100+1500 10d6+10
+100000 RACE_HALFLING
+POS_STANDING POS_STANDING SEX_MALE
+#2501
+Ronoel halfling trainer~
+Ronoel~
+Ronoel is here helping the new recruits with their training.~
+Ronoel stands only 3ft tall but do not be deceive by his appearance for he 
+is a master in the martial arts and sorcery. He could crush you like a fly 
+if he so wishes to.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_TRAIN|ACT_PRACTICE|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_INFRARED|AFF_UNDERSTAND|AFF_TONGUES
+1000 S
+100 BODY_TORSO BODY_LEG|BODY_ARM|BODY_HAND 2d1000+9000 10d30+100
+100000 RACE_HALFLING
+POS_STANDING POS_STANDING SEX_MALE
+#2502
+scout halfling~
+A halfling scout~
+A halfling scout is here looking out for any signs of intrusion.~
+If he did not greet you with a nod when you walked in, you would not have 
+seen him for he is dressed in a suit of brown leather armor and he covers 
+himself with leaves, he look just like a part of this tree limb.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_INFRARED|AFF_UNDERSTAND|AFF_TONGUES
+1000 S
+60 BODY_TORSO BODY_LEG|BODY_ARM|BODY_HAND 8d100+1500 10d6+10
+100000 RACE_HALFLING
+POS_STANDING POS_STANDING SEX_MALE
+#2503
+ethereal mob~
+Ethereal mob~
+Ethereal mob~
+~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_INFRARED|AFF_UNDERSTAND|AFF_TONGUES|AFF_ETHEREAL
+1000 S
+150 BODY_TORSO BODY_LEG|BODY_ARM|BODY_HAND 20d1000+9000 1d1+500
+100000 RACE_HALFLING
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if ispc($n)
+   if race($n) != 1
+      mpechoat $n You had better go on a serious diet.
+      mpechoat $n You cannot squeeze through the small opening!
+      mptransfer $n 2510
+   endif
+endif
+~
+|
+#2504
+hratkrag king halfling~
+King Hratkrag~
+King Hratkrag is here sitting on his throne.~
+Hratkrag stands about 3.5ft tall, and seems to be quite old. He is wearing
+a suit of padded leather armor, and a dark green cape. If it were not for
+the legendary scepter which he holds in his hand, and the fact that he is
+sitting on the throne, you would not know that you are in the present of
+royalty.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_INFRARED|AFF_UNDERSTAND|AFF_TONGUES
+1000 S 
+150 BODY_TORSO BODY_LEG|BODY_ARM|BODY_HAND 20d1000+9000 1d1+500
+100000 RACE_HALFLING
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if race($n) == 1
+   smile $n
+   say Hello there my young friend.
+   say if you wishes so to join us, type <Army Join [password]>
+   say In the future, if you so wishes to resign, all you need is
+   say to come back here and type <Army Resign [password]>
+   say Just tell Nilrem "I wish to see the King." to see me.
+else
+   if armystatus($n) == 1
+      smile $n
+      say Hello there $n.
+   else
+      if armystatus($n) == 2
+         say It is nice to see you again $n.
+      endif
+   endif
+endif
+~
+|
+#2505
+Adwak druid halfling~
+Adwak the druid~
+Adwak the druid is here~
+He stands about 2.9ft tall, and covers himself with a brown cloak. He
+seems to be in charge of this guard post.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_INFRARED|AFF_UNDERSTAND|AFF_TONGUES
+1000 S
+95 BODY_TORSO BODY_LEG|BODY_ARM|BODY_HAND 18d1000+1500 10d60+10
+100000 RACE_HALFLING
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if race($n) == 1
+   say Hello there.
+   say You look really strong, do you wish to join us?
+else
+   if armystatus($n) == 1
+      say Hi $n.
+      smile $n
+   else
+      if armystatus($n) == 2
+         say It is always nice to see an old friend again.
+         smile
+      endif
+   endif
+endif
+if race($n) != 1
+   say HOW DID YOU GET IN HERE!
+   say Now get lost!
+   mpechoat $n You have been thrown out! *OUCH*
+   mptransfer $n 9755
+endif
+~
+>speech_prog yes~
+if race($n) == 1
+   if quest(0,4,$n) == 0
+   say Great! Go up stairs and tell Nilrem :
+   say I wish to have an audience with his highness.
+   mpmset $n quest 0 4 1
+endif
+~
+|
+#2506
+Eissej halfling warrior~
+Eissej the grand warrior~
+Eissej the grand warrior is here.~
+The man who stands before you is the legendary Eissej; the strongest
+halfling warrior. His is so well build that you nearly mistaken him
+as a dwarft.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_INFRARED|AFF_UNDERSTAND|AFF_TONGUES
+1000 S
+100 BODY_TORSO BODY_LEG|BODY_ARM|BODY_HAND 18d1000+1500 10d60+10
+100000 RACE_HALFLING
+POS_STANDING POS_STANDING SEX_MALE
+#2507
+Nilrem halfling invoker~
+Nilrem the invoker~
+Nilrem the invoker is here.~
+Before you stands a happy looking halfling youth. Despite of his young
+age, he seems to be in charged of the guards guarding the throne room. It
+is best that you not mess with him.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_INFRARED|AFF_UNDERSTAND|AFF_TONGUES
+1000 S
+95 BODY_TORSO BODY_LEG|BODY_ARM|BODY_HAND 18d1000+1500 10d60+10 
+100000 RACE_HALFLING
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+   nod $n
+~
+>speech_prog p I wish to have an audience with his highness.~
+if quest(0,4,$n) == 1
+   mpmset $n quest 0 4 2
+   say Very well.
+   emote opens the huge wooden door.
+   connect 0 2514
+   mpforce $n north
+   emote closes the huge wooden door.
+   connect 0 -1
+endif
+~
+>speech_prog p I wish to see the King.~
+if quest(0,4,$n) == 2
+   say Very well.
+   emote opens the huge wooden door.
+   connect 0 2514
+   mpforce $n north
+   emote closes the huge wooden door.
+   connect 0 -1
+endif
+~
+|
+#2508
+Edrad halfling knife~
+Edrad the knife~
+Edrad the knife is here.~
+Before you stands a hooded figure, you cannot tell much about this person
+judging by his looks, but somehow he gives you a chill feeling.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_INFRARED|AFF_UNDERSTAND|AFF_TONGUES
+1000 S
+95 BODY_TORSO BODY_LEG|BODY_ARM|BODY_HAND 18d1000+1500 10d60+10
+100000 RACE_HALFLING
+POS_STANDING POS_STANDING SEX_MALE
+#2509
+Cloudia halfling priestess~
+Cloudia the high priestess~
+Cloudia the high priestess is here, standing beside the king.~
+~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_INFRARED|AFF_UNDERSTAND|AFF_TONGUES
+1000 S
+100 BODY_TORSO BODY_LEG|BODY_ARM|BODY_HAND 18d1000+1500 10d60+10
+100000 RACE_HALFLING
+POS_STANDING POS_STANDING SEX_FEMALE
+#2510
+Ypmuts The corpse manager~
+Ypmuts The corpse manager~
+A stumpy looking halfling stands here arranging corpses.~
+If halflings are stumpy looking people, you don't know what else to call 
+them. They are as stumpy as they can be. However, it seems that this 
+particular halflings loves to associate himself with corpses.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_INFRARED|AFF_UNDERSTAND|AFF_TONGUES
+1000 S
+100 BODY_TORSO BODY_LEG|BODY_ARM|BODY_HAND 18d1000+1500 10d60+10
+100000 RACE_HALFLING
+POS_STANDING POS_STANDING SEX_MALE
+#2511
+Marpie the trickster~
+Marpie the trickster~
+A sly looking halfling stands here, looking at you slyly.~
+You could not help but laughing your bowel off whenever you see this 
+particular halfling when he gave you that sly look. You cannot even began 
+to imagine what a sly looking halfling looks until you met Mr. Marpie here.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_INFRARED|AFF_UNDERSTAND|AFF_TONGUES
+1000 S
+100 BODY_TORSO BODY_LEG|BODY_ARM|BODY_HAND 18d1000+1500 10d60+10
+100000 RACE_HALFLING
+POS_STANDING POS_STANDING SEX_MALE  
+#2512
+Boldar the Armster~
+Boldar the Armster~
+A beefy looking halfling stands here trying to look mean.~
+He looks mean. He looks bad and above all, he looks tough. You wonder how 
+well will he fight?~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_INFRARED|AFF_UNDERSTAND|AFF_TONGUES
+1000 S
+100 BODY_TORSO BODY_LEG|BODY_ARM|BODY_HAND 18d1000+1500 10d60+10
+100000 RACE_HALFLING
+POS_STANDING POS_STANDING SEX_MALE
+#2513
+Hanjop the grocer~
+Hanjop the grocer~
+A skinny looking halfling stands here.~
+He  looks to be the the easy going kind of halfling. Wearing a pair of 
+matching dirty brown pants and tunic, he stood at the back of the 
+counter. Ocassionally he would smile at you from where he stood.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_INFRARED|AFF_UNDERSTAND|AFF_TONGUES
+1000 S
+100 BODY_TORSO BODY_LEG|BODY_ARM|BODY_HAND 18d1000+1500 10d60+10
+100000 RACE_HALFLING
+POS_STANDING POS_STANDING SEX_MALE
+
+#0
+
+#OBJECTS
+#2500
+Dried Apples~
+Some dried apples~
+Some dried fruits littered the floor.~
+Just some normal dried apples and are not really well made. They seemed 
+moldy and produces some really weird smell.~
+ITEM_TYPE_FOOD  
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+24 0 0 0
+2 50 1
+#2501
+A cowhide water container~
+A cowhide water container~
+A container lies here.~
+After you took a gulp of water from this container, your mouth taste like 
+cowhide. You promise yourself that you would not drink from this 
+container no more.~
+ITEM_TYPE_DRINK_CON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+10 10 LIQ_WATER 0
+1 50 1
+#2502
+Halfling small sword~
+A halfling small sword~
+A needle lies here.~
+This halfling small sword looks more like that of a needle than that of a 
+sword. Or perhaps it is a toy?~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD   
+0 2 5 WEAPON_SLASH
+7 150 5
+#2503
+Halfling dagger~
+A halfling dagger~
+A pointy looking cross lies here.~
+This dagger looks more like a tooth pick than a dagger. It's so small 
+that you can barely notice the handle at the other end of the dagger.~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 2 5 WEAPON_STAB
+7 80 5
+#2504
+Halfling minor plate armor~
+A halfling mino plate armor~
+A miniture armor lies on the floor growing dust.~
+Well, this armor looks small and you think that this miniture armor will 
+be enough to protect the halflings that worn them. Or that's what you 
+hope the armor would achieve.~
+ITEM_TYPE_ARMOR  
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_BODY
+3 0 0 0
+2 100 5
+#2505
+Halfling gloves~
+A pair of halfling gloves~
+A pair of baby gloves lies here.~
+You cannot believe that halflings' hands are so small! This is not the 
+gloves used for fighting. This looks more like a baby's gloves than the 
+ones used by grown men.~
+ITEM_TYPE_ARMOR  
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HANDS
+4 0 0 0
+2 100 5
+#2506
+Recall scroll~
+A Scroll of Recall~
+A recall scroll lies here.~
+Just a scroll of recall.~
+ITEM_TYPE_SCROLL
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE   
+10 SPELL_WORD_OF_RECALL -1 -1
+1 150 2
+#2507
+Scroll of detect hidden~
+A scroll of detect hidden~
+A scroll lies here.~
+Just a magical scroll.~
+ITEM_TYPE_SCROLL
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+10 SPELL_DETECT_HIDDEN -1 -1
+1 300 20
+#2508
+Potion of detect hidden~
+A potion of detect hidden~ 
+A potion lies here.~
+Just a magical potion.~
+ITEM_TYPE_POTION
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+10 SPELL_DETECT_HIDDEN -1 -1
+1 300 20
+
+#0
+
+
+#ROOMS
+#2500
+Le Morgue~
+Nothing uncommon fo a morgue that spread throughout the reamls of the 
+mortal. However, what you don't understand is that this morgue is 
+overwhelmingly littered with corpses of halflings. You cannot imagine 
+what have happened, only speculate that the halflings are probably losing 
+the battle against the humans.~ 
+25 ROOM_INDOORS|ROOM_NO_RECALL|ROOM_MORGUE|ROOM_SAFE SECT_INSIDE
+DDIR_EAST
+~
+~
+0 -1 2502
+S
+#2501
+Le Mystical Store~
+The magical shop of the halfling headquarters, and this is the only one 
+in this village. Shabby and dirty, this place looks more like a fish 
+market than that of magical shops you have seen throughout the realm.~
+25 ROOM_INDOORS|ROOM_NO_RECALL|ROOM_SAFE SECT_INSIDE
+DDIR_SOUTH
+~
+~
+0 -1 2502
+S
+#2502
+A tunnel under the huge tree~
+The tunnel runs in all direction. To your north is the magical supply 
+shop. To your east is the general supply shop. To your south is the 
+weapons and armor supply shop. To your west is the morgue, and the tunnel 
+leads up to a guard post inside this gigantic tree.~ 
+25 ROOM_INDOORS|ROOM_NO_RECALL|ROOM_SAFE SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 2501
+DDIR_EAST
+~
+~
+0 -1 2504
+DDIR_SOUTH
+~
+~
+0 -1 2503
+DDIR_WEST
+~
+~
+0 -1 2500
+DDIR_UP
+~
+~
+0 -1 2508
+S
+#2503
+Le Arms Trading Post~
+The smell of iron and coal filled this shop as you entered it. Score of 
+broken armors and weapons littered the floor and the shelves that are 
+found against the walls of the shop. Tinkering sound of metal hitting 
+metal echo though this shop. From the sound of it, it seems that the 
+smith who owns this place is venting his anger on whatever he is working on.~
+25 ROOM_INDOORS|ROOM_NO_RECALL|ROOM_SAFE SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 2502
+S
+#2504
+Le Supply Store~
+This is the neatest shop you have come across so far, as the rest of the 
+shops you have encounter in the halfling headquarter are either in very 
+poor conditions or are very filty. The shelves are devoid of dust and 
+items that are to be sold are properly placed in the shelves. On top of 
+that, the items themselves looks sturdy and of superior quality.~
+25 ROOM_INDOORS|ROOM_NO_RECALL|ROOM_SAFE SECT_INSIDE
+DDIR_WEST
+~
+~
+0 -1 2502
+S
+#2505
+Room in the huge tree~
+You find yourself in a medium size room which is illuminated by a strange 
+flower that is sitting in the center of the room. You cannot help but 
+ponder if this place is made by mortals, or by nature.~
+25 ROOM_INDOORS|ROOM_NO_RECALL|ROOM_SAFE SECT_INSIDE
+DDIR_EAST
+~
+~
+0 -1 2508
+E
+flower strange~
+This must be the single most beautiful thing you have ever seen, it looks 
+awful lot like a rose except it seems to be made of glass, with rays of 
+light flowing within it.~
+S
+#2506
+Huge room in the tree~
+You find yourself in a gigantic room, which seems to be the center of the 
+huge tree. To your north you notice a stairway, to your east are a few
+halfling guardians, and to your west are a few more halfling guardians. It 
+seems that they are guarding something very important.~
+25 ROOM_INDOORS|ROOM_NO_RECALL|ROOM_SAFE SECT_INSIDE
+DDIR_SOUTH
+~
+~
+0 -1 2507
+DDIR_UP
+~
+~
+0 -1 2516
+S
+#2507
+A passageway in the tree~
+You find yourself in a dark narrow passageway inside this huge tree. To 
+your north you can see a huge room full of guards and to your south is a 
+guard post.~
+25 ROOM_INDOORS|ROOM_NO_RECALL|ROOM_SAFE|ROOM_DARK SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 2506
+DDIR_SOUTH
+~
+~
+0 -1 2508
+S
+#2508
+A guard post~
+Who would have thought that there is so much room inside a tree. You find 
+yourself inside a room, full of halfling guards. Apparently, this is the
+guard post of some sort of a halfling military structure.~
+25 ROOM_INDOORS|ROOM_NO_RECALL|ROOM_SAFE SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 2507
+DDIR_EAST
+~
+~
+0 -1 2511
+DDIR_SOUTH
+~
+~
+0 -1 2509
+DDIR_WEST
+~
+~
+0 -1 2505
+DDIR_UP
+~
+~
+0 -1 2517
+DDIR_DOWN
+~
+~
+0 -1 2502
+S
+#2509
+Inside the huge tree~
+You find yourself inside a small passageway within the huge tree. To your 
+south is the exit and to your north, you notice a huge room full of 
+halfling guards.~
+25 ROOM_INDOORS|ROOM_NO_RECALL|ROOM_SAFE|ROOM_DARK SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 2508
+DDIR_SOUTH
+~
+~
+0 -1 2510
+S
+#2510
+Before the gigantic tree.~
+This must be the biggest tree you have ever seen. The tree seems to 
+reach the heavens and it is so wide that you have the impression that you 
+are standing before a huge wall. Upon closer examination, you notice a 
+small opening on the tree trunk.~ 
+25 ROOM_INDOORS SECT_FIELD
+DDIR_NORTH
+~
+~
+0 -1 2509
+DDIR_EAST
+~
+~
+0 -1 2513
+S
+#2511
+Room in the huge tree~
+You find yourself in a medium size room which is illuminated by a strange
+flower that is sitting in the center of the room. You cannot help but
+ponder if this place is made by mortals, or by nature.~
+25 ROOM_INDOORS|ROOM_NO_RECALL|ROOM_SAFE SECT_INSIDE
+DDIR_WEST
+~
+~
+0 -1 2508
+E
+flower strange~
+This must be the single most beautiful thing you have ever seen, it looks
+awful lot like a rose except it seems to be made of glass, with rays of
+light flowing within it.~
+S
+#2512
+Dleving Road~
+Delving road runs east and south in this small borough of the Shire. you 
+can see a gigantic tree towars the north west, and to your south is a 
+huge gate.~
+25 ROOM_INDOORS SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 2518
+DDIR_SOUTH
+~
+~
+0 -1 2513
+S
+#2513
+Before a huge gate~
+You find yourself before a huge wooden gate. The exit of the gate is west 
+and beyong the gate you notice a huge tree. You feel a gust of cool wind 
+brushes you by, and when you look up, you could hardly see the skies, all 
+you could see is the leaves of the huge tree.~
+25 ROOM_INDOORS SECT_FIELD
+DDIR_NORTH
+~
+~
+0 -1 2512
+DDIR_WEST
+You see a huge wooden gate before you.~
+wooden gate west~
+EX_ISDOOR|EX_CLOSED -1 2510
+S
+#2514
+Throne Room~
+A huge wooden throne is located to your north, and behind the throne is a 
+huge banner with the symbol of a lion on it. A huge crystal floats above 
+the thorne, illuminating the throne room softly. Besides that huge 
+crystal, everything in this room seems so normal; normal but practical.~
+25 ROOM_INDOORS|ROOM_NO_RECALL|ROOM_SAFE SECT_INSIDE
+DDIR_SOUTH
+~
+~
+0 -1 2515
+S
+#2515
+Before the Throne Room~
+You find yourself standing in a heavily guarded room. This room seems 
+to be much cleaner than the other rooms and. To your south is the 
+stairway which leads down and to your north is a huge wooden door.~
+25 ROOM_INDOORS|ROOM_NO_RECALL|ROOM_SAFE SECT_INSIDE
+DDIR_SOUTH
+~
+~
+0 -1 2516
+S
+#2516
+Stairway~
+This stairway looks so natural that you could not help pondering if it 
+was made by the halflings, or if it was the work of nature. The stairway 
+leads north to a heavily guarded room and down to a gigantic room.~
+25 ROOM_INDOORS|ROOM_NO_RECALL|ROOM_SAFE SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 2515
+DDIR_DOWN
+~
+~
+0 -1 2506
+S
+#2517
+Stairway~
+This stairway looks so natural that you could not help pondering if it
+was made by the halflings, or if it was the work of nature. The stairway
+leads west to a wide tree limb, and down to a guard post.~
+25 ROOM_INDOORS|ROOM_NO_RECALL|ROOM_SAFE SECT_INSIDE
+DDIR_EAST
+~
+~
+0 -1 2519
+DDIR_DOWN
+~ 
+~ 
+0 -1 2508
+S 
+#2518
+Delving Road~
+Delving Lane runs east and west in this small borough of the Shire. There
+is a small house to the far west. You can see a huge tree toward the north 
+west. The road continues west.~
+25 ROOM_INDOORS SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 1134
+DDIR_WEST
+~
+~
+0 -1 2512
+S
+#2519
+On a wide tree limb~
+Hiding behind the thick leaves of this gigantic tree is a small look out 
+tower. From here you can see the whole of Shire and even the city walls of 
+Midgaard. To your west is a stairway.~
+25 ROOM_NO_RECALL|ROOM_SAFE SECT_FOREST
+DDIR_WEST
+~
+~
+0 -1 2517
+S
+#0
+
+#RESETS
+D 0 2513  DIR_WEST DOOR_CLOSED ; the gate before the huge tree
+M 0 2505   1 2508		; Adwak
+M 0 2500  99 2508		; halfling guard in guard post
+M 0 2500  99 2508		; halfling guard in guard post
+M 0 2500  99 2508		; halfling guard in guard post
+M 0 2508   1 2506		; 
+M 0 2500  99 2506		; halfling guard in huge room
+M 0 2500  99 2506		; halfling guard in huge room 
+M 0 2500  99 2506		; halfling guard in huge room 
+M 0 2507   1 2515		;
+M 0 2500  99 2515		; halfling guard before throne room 
+M 0 2500  99 2515		; halfling guard before throne room
+M 0 2500  99 2515               ; halfling guard before throne room
+M 0 2504   1 2514		; King Hratkrag in the throne room
+M 0 2509   1 2514		; Cloudia in the throne room
+M 0 2500  99 2514               ; halfling guard in throne room
+M 0 2500  99 2514		; halfling guard in throne room
+M 0 2500  99 2514		; halfling guard in throne room
+M 0 2500  99 2514		; halfling guard in throne room
+M 0 2501   1 2511		; Ronoel in training room
+M 0 2502   2 2519		; Scout in look out tower
+M 0 2502   2 2519		; Scout in look out tower
+M 0 2503   1 2509		; ethereal mob in entrance
+M 0 2506   1 2505		;
+M 0 2510   1 2500               ; morgue keeper
+M 0 2511   1 2501               ; magic keeper
+G 1 2506 999
+G 1 2507 999
+G 1 2508 999
+M 0 2512   1 2503               ; arms keeper
+G 1 2502 999
+G 1 2503 999
+G 1 2504 999
+G 1 2505 999
+M 0 2513   1 2504               ; grocer keeper
+G 1 2500 999
+G 1 2501 999
+
+S
+
+#SHOPS
+2510 ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING
+ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING 40 30 0 23 ; morgue
+2511 ITEM_TYPE_SCROLL ITEM_TYPE_POTION ITEM_TYPE_NOTHING
+ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING 40 30 0 23 ; magic shop
+2512 ITEM_TYPE_ARMOR ITEM_TYPE_WEAPON ITEM_TYPE_NOTHING
+ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING 40 30 0 23 ; arms shop
+2513 ITEM_TYPE_FOOD ITEM_TYPE_DRINK_CON ITEM_TYPE_NOTHING
+ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING 40 30 0 23 ; grocer shop
+
+0
+
+
+
+
+#SPECIALS
+S
+
+
+
+
+#$
+

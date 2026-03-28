@@ -1,0 +1,1484 @@
+#AREA The Tunnels~
+
+#AUTHORS Emperor~
+
+#HELPS
+-1 EMPEROR~
+Areas by
+   __          ___  __  __    ___  __  
+  /__\/\/\    / _ \/__\/__\  /___\/__\ 
+ /_\ /    \  / /_)/_\ / \// //  // \// 
+//__/ /\/\ \/ ___//__/ _  \/ \_// _  \ 
+\__/\/    \/\/   \__/\/ \_/\___/\/ \_/ 
+
+ (A) Original Creations     (B) Revisions
+
+
+Updated October 10th, 1998.
+
+{a}EMPORIG
+{b}EMPREVI
+~
+-1 EMPORIG~
+The following areas have been created by Emperor:
+
+  (A) Savant Village   
+  (B) Moon City        
+  (C) The Tunnels     
+  (D) The Netherworld (coming soon!)
+
+
+{-}EMPEROR
+{a}SAVANT
+{b}MOONCITY
+{c}TUNNELS
+{d}NETHERWORLD
+~
+-1 EMPREVI~
+The following areas have been revised by Emperor:
+
+  (A) Arachnos
+  (B) In the Air
+  (C) Magic Zone
+  (D) City of Eternity
+  (E) Alchemist's Workshop
+  (F) Raptor Island
+
+
+{-}EMPEROR
+{a}ARACHNOS
+{b}'IN THE AIR'
+{c}'MAGIC ZONE'
+{d}'CITY OF ETERNITY'
+{e}ALCHEMIST
+{f}'RAPTOR ISLAND'
+~
+-1 'THE TUNNELS' 'DWARF HQ' DWARFHQ TUNNELS~
+THE TUNNELS
+The Tunnels are the deep rock caves and caverns inhabited by the dwarves
+of the main vein of dwarven lineage. As a result, it has been named the
+Dwarven Headquarters by commoners of the Realm. 
+
+It is said that the tunnels provide dwarves with a secret network of
+tunnels to select locations, use mining, trade, and sometimes stealthy
+attack. It is also rumored that the tunnels contain a secret prison of
+racial enemies, mainly orcs.
+
+created by Emperor, 1997
+
+current version, 1.3
+
+
+
+{-} EMPEROR
+~
+0 $~
+
+#RANGES 0 99 0 99
+
+#FLAGS AFLAG_NODEBUG
+
+#MOBILES
+#1901
+dwarf dwarven guardian~
+The dwarven guardian~
+A short, bearded man stands here, blocking the path.
+~
+You see before you a racial zealot with a cursed glance.
+~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_BODY|ACT_RACE|ACT_UNDEAD
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_SANCTUARY|AFF_PROTECT_EVIL|AFF_TONGUES 0 S
+99 BODY_HEAD BODY_LEG 1d10+19500 1d90+100
+292510 RACE_DWARF
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if race($n) == 4
+   if armystatus($n) == 0  
+      say Greetings $n, the army awaits you.
+      say Do you wish to enter?
+   else
+      if armystatus($n) == 1
+         say Greetings Lord $n, your fellow warriors await you.
+         say Do you wish to enter?
+      else
+         if armystatus($n) == 2
+            say Greetings $n, hope the retired life treats you well.
+            say Do you wish to enter?
+         else
+            say Greetings $n, the army awaits you.
+            say Do you wish to enter?
+         endif
+      endif
+   endif
+else
+   say Sorry $n, dwarves only
+   mpecho The dwarven guardian utters the words, 'frawd'.
+   mpechoat $n You disappear suddenly!
+   mptransfer $n 9755
+   mpecho $n disappears suddenly!
+endif
+~
+>speech_prog yes~
+if race($n) == 4
+   nod
+   mpecho The dwarven guardian unlocks the tunnel door. 
+   mpechoaround $n slides down into the caves!
+   mpechoat $n You slide down the smooth tunnel!
+   mptransfer $n 1903
+   mpecho The dwarven guardian locks the tunnel door.
+else
+endif
+~
+|
+#1902
+dwarven soldier~
+The dwarven soldier~
+A dwarven soldier walks here, fearless and dedicated.
+~
+The soldier is short and stocky, and has a pointed head. He grunts with
+aggression and seems willing to die for his race.
+~
+ACT_STAY_AREA|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_SANCTUARY|AFF_TONGUES 0 S
+35 BODY_HEAD BODY_LEG 1d10+680 1d10+28
+292510 RACE_DWARF
+POS_STANDING POS_STANDING SEX_MALE
+#1903
+giant millipede~
+A giant millipede~
+A giant millipede slowly digs here.
+~
+The millipede has a concentric body that twists and moves through the dirt.
+~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_TONGUES 0 S
+35 BODY_TAIL BODY_TENTICLE 1d10+680 1d10+29
+10 RACE_DWARF
+POS_STANDING POS_STANDING SEX_MALE
+>rand_prog 15~
+mpecho The millipede slowly burrows deeper into the earth.
+~
+|
+#1904
+dwarven guard~
+The dwarven guard~
+A dwarven guard stands here, patrolling the headquarters.
+~
+The guard is short and stocky and has a pointed head. He grunts with
+aggression and seems willing to die for his race.
+~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_SANCTUARY|AFF_TONGUES 0 S
+35 BODY_HEAD BODY_LEG 1d10+680 1d10+29
+292510 RACE_DWARF
+POS_STANDING POS_STANDING SEX_MALE
+#1905
+dwarven warlord~
+The dwarven warlord~
+A dwarven warlord stands here, strong and inspiring.
+~
+The warlord is adorned with various medals, indicating his place of respect
+within the Army. 
+~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_SANCTUARY|AFF_TONGUES 0 S
+40 BODY_HEAD BODY_LEG 1d10+800 1d10+33
+292510 RACE_DWARF
+POS_STANDING POS_STANDING SEX_MALE
+#1906
+dark hooded dwarf~
+A dark hooded dwarf~
+A hooded dwarf stands here, casting spells for the Army.
+~
+The dwarf curses the Orcish race, wishing plagues upon them and muttering
+incantations of evil origin.
+~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_SANCTUARY|AFF_TONGUES 0 S
+90 BODY_HEAD BODY_LEG 1d10+8000 1d10+85
+292510 RACE_DWARF
+POS_STANDING POS_STANDING SEX_MALE
+>rand_prog 30~
+mpquiet on
+c 'sanctuary' $n
+c 'heal' $n
+c 'heal' $n
+mpquiet off
+mpecho The hooded dwarf utters the words, 'tlobdaed'.
+~
+|
+#1907
+white hooded dwarf~
+A white hooded dwarf~
+A hooded dwarf stands here, casting spells for the Army.
+~
+The dwarf praises the Dwarven empire, wishing victories for its warriors and
+casting blessings of spiritual origin.
+~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_SANCTUARY|AFF_TONGUES 0 S
+90 BODY_HEAD BODY_LEG 1d10+8000 1d10+85
+292510 RACE_DWARF
+POS_STANDING POS_STANDING SEX_FEMALE
+>rand_prog 30~
+mpquiet on
+c 'fly' $n
+c 'bless' $n
+c 'giant strength' $n
+mpquiet off
+mpecho The hooded dwarf utters the words, 'rorepme'.
+~
+|
+#1908
+elder dwarf~
+The elder dwarf~
+An elder dwarf stands here, respected and tried.
+~
+The elder dwarf looks surprisingly strong and agile for his age. He is a
+stoic person, consumed with the business of finally winning the feud with
+the Orcish race.
+~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_SANCTUARY|AFF_TONGUES 0 S
+90 BODY_HEAD BODY_LEG 1d10+8000 1d10+85
+292510 RACE_DWARF
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if armystatus($n) > 0
+   bow $n
+else
+   say This room is reserved for warriors and retirees.
+   say You may return when you have proven yourself worthy.
+   mpecho The elder utters the words, 'llaberif'.
+   mpechoaround $n The elder sends $n to fight for the race.
+   mpechoat $n The elder dwarf sends you to fight for the race.
+   mptransfer $n 1901
+endif
+~
+|
+#1909
+dwarven general~
+The dwarven general~
+A dwarven general stands here, plotting the war.
+~
+The elder dwarf looks surprisingly strong and agile for his age. He is a
+stoic person, consumed with the business of finally winning the feud with
+the Orcish race.
+~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_SANCTUARY|AFF_TONGUES 0 S
+70 BODY_HEAD BODY_LEG 1d10+3500 1d10+60
+292510 RACE_DWARF
+POS_STANDING POS_STANDING SEX_MALE
+#1910
+orcish slave~
+The orcish slave~
+An orcish slave sits here, squealing in its own filth.
+~
+The orc is a great contemptible gob of black spit.
+~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_TONGUES 0 S
+30 BODY_HEAD BODY_LEG 1d1+2500 1d1+40
+10984 RACE_ORC
+POS_SLEEPING POS_SLEEPING SEX_MALE
+#1911
+imprisoned orcish general~
+The imprisoned orcish general~
+An orcish general is chained to the wall here, cowering in fear.
+~
+The general sweats profusely as you look him over. Poorly fashioned medals
+line his torn clothing, indicating his high rank in the Orcish army. He
+grunts like a pig.
+~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_TONGUES 0 S
+90 BODY_HEAD BODY_LEG 1d10+7000 2d8+61
+292510 RACE_ORC
+POS_STANDING POS_STANDING SEX_MALE
+>rand_prog 5~
+mpecho The orcish general squeals in terror!
+mpecho The orcish general swears loudly.
+~
+>rand_prog 5~
+mpecho The orcish general struggles to break free!!
+mpasound You hear a loud growl.
+~
+>death_prog 100~
+say You will pay for this!
+say I swear by the Orcish Gods!!!!
+grunt
+~
+|
+#1912
+master dwarf~
+The master dwarf~
+A master dwarf stands here, respected and tried.
+~
+The master dwarf looks surprisingly strong and agile for her age. She is a
+stoic person, consumed with the business of finally winning the feud with
+the Orcish race.
+~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_TRAIN|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_SANCTUARY|AFF_TONGUES 0 S
+90 BODY_HEAD BODY_LEG 1d10+8000 1d10+85
+292510 RACE_DWARF
+POS_STANDING POS_STANDING SEX_FEMALE
+>rand_prog 15~
+mpecho The master dwarf looks you over...
+~
+|
+#1913
+great dwarf~
+The great dwarf~
+A great dwarf stands here, respected and tried.
+~
+The great dwarf looks surprisingly strong and agile for his age. He is a
+stoic person, consumed with the business of finally winning the feud with
+the Orcish race.
+~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_PRACTICE|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_SANCTUARY|AFF_TONGUES 0 S
+90 BODY_HEAD BODY_LEG 1d10+8000 1d10+85
+292510 RACE_DWARF
+POS_STANDING POS_STANDING SEX_MALE
+>rand_prog 15~
+mpecho The great dwarf contemplates your destiny...
+~
+|
+#1914
+mortician~
+The mortician~
+A darkened dwarf stands here amongst rotting corpses.
+~
+This frail old dwarf is surprisingly weak for her race. Her eyes, however,
+glow fervently - a deep hatred of all things Orcish and a wizened expression
+from a countless number of dead bodies.
+~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_SANCTUARY|AFF_TONGUES 0 S
+90 BODY_HEAD BODY_LEG 1d10+8000 1d10+85
+292510 RACE_DWARF
+POS_STANDING POS_STANDING SEX_FEMALE
+#1915
+supplier~
+The supplier~
+A dwarven supplier stands here.
+~
+The supplier diligently whittles some wood.
+~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_SANCTUARY|AFF_TONGUES 0 S
+90 BODY_HEAD BODY_LEG 1d10+8000 1d10+85
+292510 RACE_DWARF
+POS_STANDING POS_STANDING SEX_MALE
+#1916
+merchant~
+The merchant~
+A dwarven merchant stands here.
+~
+The merchant stares at you, firm yet trustworthy.
+~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_SANCTUARY|AFF_TONGUES 0 S
+90 BODY_HEAD BODY_LEG 1d10+8000 1d10+85
+292510 RACE_DWARF
+POS_STANDING POS_STANDING SEX_MALE
+#0
+#ROOMS
+#1900
+~
+~
+19 0 0
+S
+#1901      
+Before The Cave~
+A formless hole appears from nowhere, pulling you forward yet pushing you
+away. Though you stand outside, you can see nonetheless that it is an
+ancient geologic miracle: the combination of the finest quartz and the
+strongest granite.
+     There is a sign here.
+     There is a cracked boulder here.
+~
+19 ROOM_DARK|ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_EAST
+~
+~
+0 -1 17295
+DDIR_WEST
+~
+~
+0 -1 1902
+E
+sign~
+The sign:               
+     _____________________________
+     |                           |
+     |     GLORY BE THE DAY      |
+     |    THE DWARVEN LEGION     |
+     |    CONQUERS THE WORLD     |
+     |     OF DARK AND GOLD      |
+     |___________________________|
+                  ||
+                  ||
+              ____||____
+~
+E
+boulder~
+The boulder:
+                  _____________
+                 /             \
+                /  This area   /
+               /  was created  \
+              /    by Emperor   \
+             (                   )
+              \     1 9 9 7     / 
+               |_______________/  
+                
+~
+S              
+#1902
+The Entrance To The Cave~
+You stand before the center of the Earth, the mouth of a gaping tunnel which
+stretches deep, down into abyssal depths. Traversing the gorge would be a
+fateful task for the unskilled: the thought of being crushed by pressurized
+winds, impaled by outcroppings of rock, and incinerated by underground
+rivers of molten lava rules out the possibility.
+     A heavy tunnel door rests on the ground here.
+~
+19 ROOM_DARK|ROOM_INDOORS|ROOM_SAFE|ROOM_NO_RECALL SECT_INSIDE
+DDIR_EAST
+~
+~
+0 -1 1901
+E
+door~
+The door prevents you from entering the tunnel. It is said that the cavern
+extends clear down to the center of the Earth! You step back out of fear.
+~
+S
+#1903
+The Beginning of the Tunnel~
+You stand atop a solid granite path which extends far out into a vast
+network of underground tunnels and passageways. A string of bright torches
+guides you downward into a large cavern.
+~
+19 ROOM_DARK|ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_SOUTH
+~
+~
+0 -1 1904
+DDIR_UP
+~
+~
+0 -1 1902
+S
+#1904
+Deep Below the Surface~
+The carved path in which you walk is spacious and well-ventilated, obviously
+a tunnel built by dwarven skill. There are etched drawings on the walls,
+impressive and light with modest culture, and intricate symbols extolling
+the dwarven kingdom. The beauty of dwarven civilization is truly
+under-appreciated.
+~
+19 ROOM_DARK|ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 1903
+DDIR_SOUTH
+~
+~
+0 -1 1905
+S
+#1905
+Deep Below the Surface~
+The carved path in which you walk is spacious and well-ventilated, obviously
+a tunnel built by dwarven skill. There are etched drawings on the walls,
+impressive and light with modest culture, and intricate symbols extolling
+the dwarven kingdom. The beauty of dwarven civilization is truly
+under-appreciated.
+~
+19 ROOM_DARK|ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 1904
+DDIR_SOUTH
+~
+~
+0 -1 1906
+S
+#1906
+The Dwarven Vein~
+Incredibly, the granite rock beneath your feet is made of solid gold!
+Stretching onward into a vast network of busy chambers, the tunnel widens
+considerably. Open and powerful, the golden road immediately lends to your
+thoughts of the vainglorious nobility whose egos flood the annals of ancient
+dwarven history, and whose victories strike fear into young children
+everywhere.  
+~
+19 ROOM_DARK|ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 1905
+DDIR_SOUTH
+~
+~
+0 -1 1909
+DDIR_EAST
+~
+~
+0 -1 1907
+DDIR_WEST
+~
+~
+0 -1 1908
+S
+#1907
+The Hall of Warriors~
+You enter a room thick with wisdom and dense with honor. Maps, scrolls,
+writings, and war devices of all kinds flood the corners of the room. The
+room looks old and venerable as you peruse the ancient glyphs which cover
+the furniture and walls. 
+~
+19 ROOM_DARK|ROOM_INDOORS|ROOM_SAFE|ROOM_NOTE_BOARD SECT_INSIDE
+DDIR_WEST
+~
+~
+0 -1 1906
+E
+glyphs~
+The glyphs:
+
+            \__  __       \___/  _|
+          --  |  __/    /      |__ |__
+            /\__ |   _/ |        ||
+	
+       Translated, these glyphs demand 
+    the demise of all enemies of the dwarf
+~
+S
+#1908
+The Hall of Dwarven Power~
+You enter an enormous cave that slopes downward towards a center pit which
+burns with a blinding blue fire. Natural benches line the stone floor, above
+which hang ornate, colorful flags which proudly display the numerous clans
+prominent within the dwarven race.  
+~
+19 ROOM_DARK|ROOM_INDOORS|ROOM_SAFE|ROOM_NOTE_BOARD SECT_INN
+DDIR_EAST
+~
+~
+0 -1 1906
+S
+#1909 
+The Dwarven Vein~
+Stretching onward into a vast network of busy chambers, the tunnel widens
+considerably. Open and powerful, the golden road immediately lends to your
+thoughts of the vainglorious nobility whose egos flood the annals of ancient
+dwarven history, and whose victories strike fear into young children 
+everywhere.  
+~
+19 ROOM_DARK|ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 1906
+DDIR_DOWN
+~
+~
+0 -1 1910
+S
+#1910
+The Dwarven Vein~
+Stretching onward into a vast network of busy chambers, the tunnel widens
+considerably. Open and powerful, the golden road immediately lends to your
+thoughts of the vainglorious nobility whose egos flood the annals of ancient
+dwarven history, and whose victories strike fear into young children  
+everywhere.  
+~
+19 ROOM_DARK|ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_UP
+~
+~
+0 -1 1909
+DDIR_EAST
+~
+~
+0 -1 1911
+DDIR_WEST
+~
+~
+0 -1 1912
+DDIR_SOUTH
+~
+~
+0 -1 1913
+S
+#1911
+The Room of Souls~
+You are horrified by the damp cave in which you now stand. Blood stains the
+walls, encasing the hollowed screams of your dying brethren and pumping
+vengeful blood throughout your able body.  
+~
+19 ROOM_DARK|ROOM_INDOORS|ROOM_NO_RECALL|ROOM_MORGUE SECT_INSIDE
+DDIR_WEST
+~
+~
+0 -1 1910
+S
+#1912
+The Trading Post~
+This circular cavern, which is best distinguished by large opal stones and
+solid ivory blocks, serves as a precious items store for members of the
+dwarven empire. An enormous wooden torch illuminates the room, as well as
+the merchandise, which has distinctively dwarven characteristics.
+~
+19 ROOM_DARK|ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_EAST
+~
+~
+0 -1 1910
+S
+#1913
+The Dwarven Vein~
+Stretching onward into a vast network of busy chambers, the tunnel widens
+considerably. Open and powerful, the golden road immediately lends to your
+thoughts of the vainglorious nobility whose egos flood the annals of ancient
+dwarven history, and whose victories strike fear into young children 
+everywhere.  
+~
+19 ROOM_DARK|ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 1910
+DDIR_SOUTH
+~
+~
+0 -1 1915
+DDIR_EAST
+~
+~
+0 -1 1914
+S
+#1914
+The Supply Exchange~
+Wooden planks act as a buffer along the perimeter of this small mart, giving
+the room a cozy air of humility and peace. The shop looks to be frequently
+visited.
+~
+19 ROOM_DARK|ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_WEST
+~
+~
+0 -1 1913
+S
+#1915 
+The Dwarven Vein~
+Stretching onward into a vast network of busy chambers, the tunnel widens
+considerably. Open and powerful, the golden road immediately lends to your
+thoughts of the vainglorious nobility whose egos flood the annals of ancient
+dwarven history, and whose victories strike fear into young children  
+everywhere.  
+~
+19 ROOM_DARK|ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 1913
+DDIR_SOUTH
+~
+~
+0 -1 1916
+S
+#1916
+The Dwarven Vein~
+Stretching onward into a vast network of busy chambers, the tunnel widens
+considerably. Open and powerful, the golden road immediately lends to your
+thoughts of the vainglorious nobility whose egos flood the annals of ancient
+dwarven history, and whose victories strike fear into young children 
+everywhere.  
+~
+19 ROOM_DARK|ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 1915
+DDIR_SOUTH
+~
+~
+0 -1 1919
+DDIR_EAST
+~
+~
+0 -1 1917
+DDIR_WEST
+~
+~
+0 -1 1918
+S
+#1917
+Residence of the Master Dwarf~
+You stand in a small, well-lit cavern, circular-shaped and filled with the
+sweat and blood of generations of dwarven culture. It is quaint yet
+intimidating - the home of a well respected and venerable member of the
+empire - and you do not look forward to the inevitable work which lies ahead. 
+~
+19 ROOM_DARK|ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_WEST
+~
+~
+0 -1 1916
+S
+#1918
+Residence of the Great Dwarf~
+Like the residence of the Master Dwarf, the room in which you now stand
+emanates a sense of great tradition and cultural energy.  
+~
+19 ROOM_DARK|ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_EAST
+~
+~
+0 -1 1916
+S
+#1919
+The Dwarven Vein~
+Stretching onward into a vast network of busy chambers, the tunnel widens
+considerably. Open and powerful, the golden road immediately lends to your
+thoughts of the vainglorious nobility whose egos flood the annals of ancient
+dwarven history, and whose victories strike fear into young children 
+everywhere.  
+~
+19 ROOM_DARK|ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 1916
+DDIR_DOWN
+~
+~
+0 -1 1920
+DDIR_UP
+~
+~
+0 -1 1921
+DDIR_SOUTH
+~
+~
+0 -1 1922
+S
+#1920
+The Altar of Dwarven Chaos~
+This dimly cut chamber of black pumice, whose walls are adorned with chaotic
+themes and fractal symbols, emanates power and exudes entropy.   
+~
+19 ROOM_DARK|ROOM_INDOORS|ROOM_SAFE|ROOM_ALTAR_C SECT_INSIDE
+DDIR_UP
+~
+~
+0 -1 1919
+S
+#1921
+The Altar of Dwarven Order~
+This carefully crafted chamber of gleaming ivory, whose walls are adorned
+with natural symbols and geometric icons, emanates power and exudes reason. 
+~
+19 ROOM_DARK|ROOM_INDOORS|ROOM_SAFE|ROOM_ALTAR_O SECT_INSIDE
+DDIR_DOWN
+~
+~
+0 -1 1919
+S
+#1922
+The Dwarven Vein~
+Stretching onward into a vast network of busy chambers, the tunnel widens
+considerably. Open and powerful, the golden road immediately lends to your
+thoughts of the vainglorious nobility whose egos flood the annals of ancient
+dwarven history, and whose victories strike fear into young children 
+everywhere.  
+~
+19 ROOM_DARK|ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 1919
+DDIR_SOUTH
+~
+~
+0 -1 1923
+S
+#1923
+The Dwarven Vein~
+Stretching onward into a vast network of busy chambers, the tunnel widens
+considerably. Open and powerful, the golden road immediately lends to your
+thoughts of the vainglorious nobility whose egos flood the annals of ancient
+dwarven history, and whose victories strike fear into young children 
+everywhere.  
+~
+19 ROOM_DARK|ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 1922
+DDIR_DOWN
+~
+~
+0 -1 1924
+DDIR_SOUTH
+~
+~
+0 -1 1931
+S
+#1924
+Entrance to the Dungeon~
+SQUEAL!!! You are blasted by the ugly roar of the pathetic pigs who muddle
+condemned here. You are awed by the unimaginable filth in which the
+imprisoned Orcish slaves live, repugnant and stark. The cave beckons your
+departure.
+~
+19 ROOM_DARK|ROOM_INDOORS|ROOM_SAFE SECT_INSIDE
+DDIR_UP
+~
+~
+0 -1 1923
+DDIR_WEST
+~
+~
+0 -1 1925
+DDIR_EAST
+~
+~
+0 -1 1927
+DDIR_SOUTH
+~
+~
+0 -1 1929
+S
+#1925
+The Deep Dungeon of Dwarven Fury~
+SQUEAL!!! You are blasted by the ugly roar of the pathetic pigs who muddle
+condemned here. You are awed by the unimaginable filth in which the
+imprisoned Orcish slaves live, repugnant and stark. The cave beckons your
+departure.
+~
+19 ROOM_DARK|ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_EAST
+~
+~
+0 -1 1924
+DDIR_WEST
+~
+~
+0 -1 1926
+S
+#1926
+A Dark Prison Cell~
+SQUEAL!!! You are blasted by the ugly roar of the pathetic pigs who muddle
+condemned here. You are awed by the unimaginable filth in which the
+imprisoned Orcish slaves live, repugnant and stark. The cave beckons your
+departure.
+~
+19 ROOM_DARK|ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_EAST
+~
+~
+0 -1 1925
+S
+#1927
+The Deep Dungeon of Dwarven Fury~
+SQUEAL!!! You are blasted by the ugly roar of the pathetic pigs who muddle
+condemned here. You are awed by the unimaginable filth in which the
+imprisoned Orcish slaves live, repugnant and stark. The cave beckons your
+departure.
+~
+19 ROOM_DARK|ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_WEST
+~
+~
+0 -1 1924
+DDIR_EAST
+~
+~
+0 -1 1928
+S
+#1928
+A Dark Prison Cell~
+SQUEAL!!! You are blasted by the ugly roar of the pathetic pigs who muddle
+condemned here. You are awed by the unimaginable filth in which the
+imprisoned Orcish slaves live, repugnant and stark. The cave beckons your
+departure.
+~
+19 ROOM_DARK|ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_WEST
+~
+~
+0 -1 1927
+S
+#1929
+The Deep Dungeon of Dwarven Fury~
+SQUEAL!!! You are blasted by the ugly roar of the pathetic pigs who muddle
+condemned here. You are awed by the unimaginable filth in which the
+imprisoned Orcish slaves live, repugnant and stark. The cave beckons your
+departure.
+~
+19 ROOM_DARK|ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 1924
+DDIR_SOUTH
+~
+~
+0 -1 1930
+S
+#1930
+An Enormous Prison Cell~
+SQUEAL!!! You are blasted by the ugly roar of the pathetic pigs who muddle
+condemned here. You are awed by the unimaginable filth in which the
+imprisoned Orcish slaves live, repugnant and stark. The cave beckons your
+departure.
+~
+19 ROOM_DARK|ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 1929
+S
+#1931
+The Dwarven Vein~
+Stretching onward into a vast network of busy chambers, the tunnel widens
+considerably. Open and powerful, the golden road immediately lends to your
+thoughts of the vainglorious nobility whose egos flood the annals of ancient
+dwarven history, and whose victories strike fear into young children
+everywhere.  
+~
+19 ROOM_DARK|ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 1923
+DDIR_SOUTH
+~
+~
+0 -1 1932
+S
+#1932
+The Dwarven Vein~
+Stretching onward into a vast network of busy chambers, the tunnel widens
+considerably. Open and powerful, the golden road immediately lends to your
+thoughts of the vainglorious nobility whose egos flood the annals of ancient
+dwarven history, and whose victories strike fear into young children 
+everywhere.  
+~
+19 ROOM_DARK|ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 1931
+DDIR_EAST
+~
+~
+0 -1 1933
+S
+#1933
+The Dwarven Vein~
+Stretching onward into a vast network of busy chambers, the tunnel widens
+considerably. Open and powerful, the golden road immediately lends to your
+thoughts of the vainglorious nobility whose egos flood the annals of ancient
+dwarven history, and whose victories strike fear into young children 
+everywhere.  
+~
+19 ROOM_DARK|ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_WEST
+~
+~
+0 -1 1932
+DDIR_EAST
+~
+~
+0 -1 1934
+S
+#1934
+The Eastern Shores~
+The path turns to sand, the bulky rock turns to smooth limestone, and you
+find yourself standing on the embankment of an enormous yet calm underground
+river. Old boats lie strewn about, covered in ancient dwarven markings, and
+your every sound echoes with the rhythmic cadence of crashing, salt-water waves.
+~
+19 ROOM_DARK|ROOM_INDOORS|ROOM_SAFE SECT_INSIDE
+DDIR_WEST
+~
+~
+0 -1 1933
+DDIR_EAST
+~
+~
+0 -1 1935
+S
+#1935
+The Secret Eastern River~
+The pungent smell of sediment and seaweed pervade the air. The dark water,
+whose depth you could never know, is rough and frigid.
+~
+19 ROOM_DARK|ROOM_INDOORS SECT_WATER_NOSWIM
+DDIR_WEST
+~
+~
+0 -1 1934
+DDIR_NORTH
+~
+~
+0 -1 1936
+S
+#1936
+The Secret Eastern River~
+The pungent smell of sediment and seaweed pervade the air. The dark water,
+whose depth you could never know, is rough and frigid.
+~
+19 ROOM_DARK|ROOM_INDOORS|ROOM_NO_RECALL SECT_WATER_NOSWIM
+DDIR_SOUTH
+~
+~
+0 -1 1935
+DDIR_EAST
+~
+~
+0 -1 9755
+DDIR_WEST
+~
+~
+0 -1 10967
+DDIR_NORTH
+~
+~
+0 -1 1937
+S
+#1937
+The Secret Eastern River~
+The pungent smell of sediment and seaweed pervade the air. The dark water,
+whose depth you could never know, is rough and frigid.
+~
+19 ROOM_DARK|ROOM_INDOORS|ROOM_NO_RECALL SECT_WATER_NOSWIM
+DDIR_SOUTH
+~
+~
+0 -1 1936
+DDIR_NORTH
+~
+~
+0 -1 1938
+S
+#1938
+The Secret Eastern River~
+The pungent smell of sediment and seaweed pervade the air. The dark water,
+whose depth you could never know, is rough and frigid.
+~
+19 ROOM_DARK|ROOM_INDOORS|ROOM_NO_RECALL SECT_WATER_NOSWIM
+DDIR_SOUTH
+~
+~
+0 -1 1937
+DDIR_EAST
+~
+~
+0 -1 06601
+DDIR_WEST
+~
+~
+0 -1 13158
+DDIR_NORTH
+~
+~
+0 -1 1939
+S
+#1939
+The Secret Eastern River~
+The pungent smell of sediment and seaweed pervade the air. The dark water,
+whose depth you could never know, is rough and frigid.
+~
+19 ROOM_DARK|ROOM_INDOORS|ROOM_NO_RECALL SECT_WATER_NOSWIM
+DDIR_SOUTH
+~
+~
+0 -1 1938
+DDIR_NORTH
+~
+~
+0 -1 1940
+S
+#1940
+The Secret Eastern River~
+The pungent smell of sediment and seaweed pervade the air. The dark water,
+whose depth you could never know, is rough and frigid.
+~
+19 ROOM_DARK|ROOM_INDOORS|ROOM_NO_RECALL SECT_WATER_NOSWIM
+DDIR_SOUTH
+~
+~
+0 -1 1939
+DDIR_WEST
+~
+~
+0 -1 12515
+DDIR_EAST
+~
+~
+0 -1 02001
+DDIR_NORTH
+~
+~
+0 -1 1941
+S
+#1941
+The Secret Eastern River~
+The pungent smell of sediment and seaweed pervade the air. The dark water,
+whose depth you could never know, is rough and frigid.
+~
+19 ROOM_DARK|ROOM_INDOORS|ROOM_NO_RECALL SECT_WATER_NOSWIM
+DDIR_SOUTH
+~
+~
+0 -1 1940
+DDIR_NORTH
+~
+~
+0 -1 1942
+S
+#1942
+The Secret Eastern River~
+The pungent smell of sediment and seaweed pervade the air. The dark water,
+whose depth you could never know, is rough and frigid.
+~
+19 ROOM_DARK|ROOM_INDOORS|ROOM_NO_RECALL SECT_WATER_NOSWIM
+DDIR_SOUTH
+~
+~
+0 -1 1941
+DDIR_WEST
+~
+~
+0 -1 1936
+DDIR_EAST
+~
+~
+0 -1 06500
+S
+#0
+#OBJECTS
+#1901
+grey scaled sash~
+a grey scaled sash~
+A gray piece of fabric is here, sunken into the ground.
+~
+~
+ITEM_TYPE_ARMOR ITEM_FLAG_LEVEL ITEM_WEAR_TAKE|ITEM_WEAR_ABOUT|ITEM_WEAR_WAIST
+12 0 0 0
+1 500000 70
+A
+APPLY_DAMROLL 2
+A
+APPLY_SAVING_SPELL -6
+#1902
+blue scaled necklace~
+a blue scaled necklace~
+A blue necklace lies here.
+~
+~
+ITEM_TYPE_ARMOR ITEM_FLAG_LEVEL ITEM_WEAR_TAKE|ITEM_WEAR_NECK
+12 0 0 0
+1 500000 70
+A
+APPLY_SAVING_SPELL -6
+A
+APPLY_DAMROLL 2
+#1903
+bottle white angel scotch~
+a bottle of white angel scotch~
+A bottle of white angel scotch sits here.
+~
+~
+ITEM_TYPE_DRINK_CON ITEM_FLAG_EVIL|ITEM_FLAG_LEVEL ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+30 30 7 0
+1 500 10
+#1904
+hunting potion~
+the hunting potion~
+A brown potion sits here.
+~
+~
+ITEM_TYPE_POTION ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+50 29 44 19
+1 110653 50
+#1905
+bloody head~
+a bloody head~
+A bloody head sits here, empty.
+~
+The head is UGLY!
+~
+ITEM_TYPE_CONTAINER ITEM_FLAG_LEVEL ITEM_WEAR_TAKE|ITEM_WEAR_HOLD 
+1100 1 -1 0
+1 18723 75
+#1906
+leg roast pig~
+a leg of roast pig~
+A leg of roasted meat sits here.
+~
+~
+ITEM_TYPE_FOOD ITEM_FLAG_LEVEL ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+25 0 0 0
+1 200 25
+#1907
+rocks~
+some rocks~
+Some recently mined rocks lie here.
+~ 
+~
+ITEM_TYPE_FURNITURE ITEM_FLAG_GLOW|ITEM_FLAG_LEVEL ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+0 0 0 0
+100 0 1
+#1908
+bottle red devil whiskey~
+a bottle of red Devil whiskey~
+A bottle of red whiskey sits here.
+~
+~
+ITEM_TYPE_DRINK_CON ITEM_FLAG_EVIL|ITEM_FLAG_LEVEL ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+30 30 7 0
+1 500 10
+#1909
+statue~
+a statue~
+A statue of a dwarven warrior stands here.
+~
+~
+ITEM_TYPE_FURNITURE ITEM_FLAG_GLOW|ITEM_FLAG_LEVEL 0
+0 0 0 0
+100 0 1
+#1910
+statue~
+a statue~
+A statue of a dwarven king stands here.
+~
+~
+ITEM_TYPE_FURNITURE ITEM_FLAG_GLOW|ITEM_FLAG_LEVEL 0
+0 0 0 0
+100 0 1
+#1911
+statue~
+a statue~
+A statue of a dwarven God stands here.
+~
+~
+ITEM_TYPE_FURNITURE ITEM_FLAG_GLOW|ITEM_FLAG_LEVEL 0
+0 0 0 0
+100 0 1
+#1912
+banner army~
+the banner of the Great Dwarven Army~
+A banner of red color sticks in the ground here.
+~
+~
+ITEM_TYPE_LIGHT ITEM_FLAG_DARK|ITEM_FLAG_INVENTORY|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 -1 0
+1 598 22
+#1913
+black flare~
+a black flare~
+A black flare sits here.
+~
+~
+ITEM_TYPE_STAFF 
+ITEM_FLAG_DARK|ITEM_FLAG_INVENTORY|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+35 5 5 74
+1 8989 28
+#1914
+golden speed potion~
+a golden potion of speed~
+A golden vial lies here.
+~
+~
+ITEM_TYPE_POTION ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+40 81 613 81
+1 10459 45
+#1915
+silver fly potion~
+a silver potion of fly~
+A silver vial lies here.
+~
+~
+ITEM_TYPE_POTION ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+30 56 -1 -1
+1 10459 40
+#1916
+golden scroll speed~
+a golden colored scroll of speed~
+A golden colored scroll lies here.
+~
+~
+ITEM_TYPE_SCROLL ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+33 81 613 81
+1 329183 40
+#1917
+blue scaled ring~
+a blue scaled ring~
+A blue ring lies here.
+~
+~
+ITEM_TYPE_ARMOR ITEM_FLAG_LEVEL ITEM_WEAR_TAKE|ITEM_WEAR_FINGER
+12 0 0 0
+1 500000 70
+A
+APPLY_SAVING_SPELL -6
+A
+APPLY_DAMROLL 2
+#1918
+altar~
+the altar~
+A black gold altar to Chaos is here.
+~
+~
+ITEM_TYPE_FURNITURE ITEM_FLAG_GLOW|ITEM_FLAG_LEVEL 0
+0 0 0 0
+100 0 1
+#1919
+altar~
+the altar~
+A white gold altar to Order is here.
+~
+~
+ITEM_TYPE_FURNITURE ITEM_FLAG_GLOW|ITEM_FLAG_LEVEL 0
+0 0 0 0
+100 0 1
+#1920
+red satchel~
+a red satchel~
+A red satchel sits here.
+~
+~
+ITEM_TYPE_CONTAINER ITEM_FLAG_LEVEL ITEM_WEAR_HOLD|ITEM_WEAR_TAKE
+900 1 -1 0
+1 35232 55
+#1921
+red boat~
+a red boat~
+A red boat lies here.
+~
+~
+ITEM_TYPE_BOAT ITEM_FLAG_LEVEL ITEM_WEAR_HOLD|ITEM_WEAR_TAKE
+0 0 0 0
+8 973 30
+#1922
+noteboard~
+a noteboard~
+A noteboard is here, staked in the ground.
+~
+~
+ITEM_TYPE_FURNITURE ITEM_FLAG_LEVEL 0
+0 0 0 0
+100 0 1
+#1923
+table~
+a large table~
+A large wooden table is here, covered with maps.
+~
+~
+ITEM_TYPE_FURNITURE ITEM_FLAG_LEVEL 0
+0 0 0 0
+100 0 1
+#0
+#SHOPS
+1915 ITEM_TYPE_LIGHT ITEM_TYPE_CONTAINER ITEM_TYPE_DRINK_CON ITEM_TYPE_BOAT
+ITEM_TYPE_NOTHING 80 110 0 23
+1916 ITEM_TYPE_SCROLL ITEM_TYPE_NOTHING ITEM_TYPE_STAFF ITEM_TYPE_POTION
+ITEM_TYPE_NOTHING 80 110 0 23
+0
+#RESETS
+M 0 1901 1 1902 ; guardian 
+M 0 1902 1 1925 ; soldier
+E 1 1912 1000 0 ; banner
+E 1 1913 1000 17 ; flare
+M 0 1902 1 1906 ; soldier
+E 1 1912 1000 0 ; banner
+M 0 1902 1 1919 ; soldier
+E 1 1912 1000 0 ; banner
+E 1 1913 1000 17 ; flare
+M 0 1903 1 1904 ; millipede
+M 0 1904 1 1934 ; guard
+E 1 1912 1000 0 ; banner
+M 0 1904 1 1922 ; guard
+M 0 1904 1 1923 ; guard
+M 0 1904 1 1931 ; guard
+M 0 1904 1 1932 ; guard
+M 0 1904 1 1933 ; guard
+M 0 1904 1 1909 ; guard
+E 1 1912 1000 0 ; banner
+E 1 1908 1000 17 ; bottle
+M 0 1904 1 1908 ; guard
+M 0 1904 1 1907 ; guard
+M 0 1905 1 1906 ; warlord
+M 0 1905 1 1933 ; warlord
+M 0 1902 1 1933 ; soldier
+M 0 1902 1 1935 ; soldier
+M 0 1902 1 1936 ; soldier
+E 1 1912 1000 0 ; banner
+M 0 1906 1 1924 ; dark
+E 1 1912 1000 0 ; banner
+M 0 1907 1 1919 ; white
+E 1 1912 1000 0 ; banner
+M 0 1908 1 1907 ; elder
+E 1 1912 1000 0 ; banner
+E 1 1908 1000 17 ; bottle
+M 0 1909 1 1907 ; general
+E 1 1912 1000 0 ; banner
+E 1 1906 1000 17 ; leg
+M 0 1910 1 1925 ; slave
+M 0 1910 1 1925 ; slave
+M 0 1910 1 1927 ; slave
+M 0 1910 1 1927 ; slave
+M 0 1910 1 1928 ; slave
+M 0 1910 1 1928 ; slave
+M 0 1910 1 1928 ; slave
+M 0 1910 1 1926 ; slave
+M 0 1910 1 1926 ; slave
+M 0 1910 1 1926 ; slave
+M 0 1910 1 1925 ; slave
+M 0 1910 1 1925 ; slave
+M 0 1910 1 1929 ; slave
+M 0 1910 1 1929 ; slave
+M 0 1911 1 1930 ; orcish general
+E 1 1901 1000 12 ; gray sash
+E 1 1902 1000 3 ; blue necklace
+E 1 1905 1000 17 ; bloody head
+E 1 1917 1000 1 ; blue ring
+M 0 1912 1 1917 ; master dwarf
+M 0 1913 1 1918 ; great dwarf
+M 0 1914 1 1911 ; mortician
+M 0 1915 1 1914 ; supplier
+G 1 1912 1000 ; banner
+G 1 1908 1000 ; bottle whiskey
+G 1 1903 1000 ; bottle scotch
+G 1 1920 1000 ; satchel
+G 1 1921 1000 ; boat
+M 0 1916 1 1912 ; merchant
+G 1 1904 1000 ; hunting potion
+G 1 1914 1000 ; speed potion
+G 1 1915 1000 ; fly potion
+G 1 1916 1000 ; speed scroll
+G 1 1913 1000 ; flare staff
+O 0 1909 1 1906 ; statue
+O 0 1910 1 1916 ; statue
+O 0 1911 1 1907 ; statue
+O 0 1907 1 1933 ; rocks
+O 0 1918 1 1920 ; chaos altar
+O 0 1919 1 1921 ; order altar
+O 0 1922 1 1908 ; noteboard
+O 0 1922 1 1907 ; noteboard
+O 0 1923 1 1907 ; table
+S
+#$

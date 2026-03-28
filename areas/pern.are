@@ -1,0 +1,3382 @@
+#AREA Pern~
+#AUTHORS Jaxom  ~
+
+
+#HELPS
+1 PERN~
+Pern is a world created by Anne McCaffrey where dragon riders roam the
+skies defending against an ancient enemy, Thread.  This area has been
+created using the ideas put forth in the Dragonriders of Pern series.
+It has two quests, one for a jewelled dagger which is level 60, and
+the other for dragonrider equipment at level 50.  F'lar is a good
+person to talk to about the the approaching danger and it is rumored
+that there is a secret passage in the lower caverns.  The Harpers of
+Pern are known to wear some fancy damage clothes at level 70.
+
+     (a) {150}Jaxom{100}
+
+Last updated January 4th, 1999
+{a}JAXOM
+~
+0 $~
+
+
+#RANGES 50 75 0 99
+#FLAGS AFLAG_NODEBUG
+#MOBILES
+#5600
+green dragon~
+a Green Dragon~
+A green dragon stands before you.~
+Although smaller than other dragons, she is still much bigger than you!~
+ACT_SENTINEL|ACT_BODY|ACT_RACE AFF_DETECT_INVIS 100 S
+65 BODY_CLAW BODY_HEAD|BODY_CLAW 10D10+2200 2D10+33
+50000 RACE_HUMAN
+POS_RESTING POS_STANDING SEX_FEMALE
+>all_greet_prog 0~
+if class($n) == 6
+ if iskiller($n) == 1
+  if quest(30, 1, $n) == 0
+    shout I have banished a filthy assassin!
+    mpmset $n quest 30 1 1
+  else
+    mptransfer $n 2899
+    mpat $n mpforce $n say I am a loser!
+    shout I have sent a backstabbing assassin to hell!
+  endif
+ endif
+endif
+~
+|
+#5601
+blue dragon~
+a Blue Dragon~
+A blue dragon relaxes in front of you.~
+This blue dragon looks at you with his glowing eyes whirling many colors.~
+ACT_SENTINEL|ACT_BODY|ACT_RACE AFF_DETECT_INVIS 200 S
+65 BODY_HEAD BODY_HEAD|BODY_CLAW 10D10+2200 2D10+33
+100000 RACE_HUMAN
+POS_RESTING POS_RESTING SEX_MALE
+>all_greet_prog 0~
+if class($n) == 6
+ if iskiller($n) == 1
+  if quest(30, 1, $n) == 0
+    shout I have banished a filthy assassin!
+    mpmset $n quest 30 1 1
+  else
+    mptransfer $n 2899
+    mpat $n mpforce $n say I am a loser!
+    shout I have sent a backstabbing assassin to hell!
+  endif
+ endif
+endif
+~
+|
+#5602
+brown dragon~
+a Brown Dragon~
+A brown dragon stands here.~
+The dragon in front of you has a dull brown skin and is about average in
+size for a dragon.  It just looks big to you.~
+ACT_SENTINEL|ACT_BODY|ACT_RACE AFF_DETECT_INVIS 300 S
+75 BODY_TAIL BODY_HEAD|BODY_TAIL 10D10+3350 2D10+42
+200000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 0~
+if class($n) == 6
+ if iskiller($n) == 1
+  if quest(30, 1, $n) == 0
+    shout I have banished a filthy assassin!
+    mpmset $n quest 30 1 1
+  else
+    mptransfer $n 2899
+    mpat $n mpforce $n say I am a loser!
+    shout I have sent a backstabbing assassin to hell!
+  endif
+ endif
+endif
+~
+|
+#5603
+bronze dragon~
+a Bronze Dragon~
+A large bronze dragon towers over you.~
+The bronze dragon is the largest of the male dragons.  With gleaming
+bronze skin, it is quite a sight.~
+ACT_SENTINEL|ACT_BODY|ACT_RACE AFF_DETECT_INVIS 400 S
+75 BODY_CLAW BODY_HEAD|BODY_TAIL|BODY_CLAW 10D10+3350 2D10+42
+500000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 0~
+if class($n) == 6
+ if iskiller($n) == 1
+  if quest(30, 1, $n) == 0
+    shout I have banished a filthy assassin!
+    mpmset $n quest 30 1 1
+  else
+    mptransfer $n 2899
+    mpat $n mpforce $n say I am a loser!
+    shout I have sent a backstabbing assassin to hell!
+  endif
+ endif
+endif
+~
+|
+#5604
+golden gold dragon~
+Gold Dragon~
+An enormous golden dragon lies here LOOKing at you.~
+This dragon is the queen of dragonkind.  It dwarves even the great bronze
+dragons in size.~
+ACT_SENTINEL|ACT_BODY|ACT_RACE AFF_DETECT_INVIS 400 S
+80 BODY_CLAW BODY_HEAD|BODY_TAIL|BODY_CLAW 10D10+3950 2D10+48
+1000000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_FEMALE
+X flygold.bmp~
+>all_greet_prog 0~
+if class($n) == 6
+ if iskiller($n) == 1
+  if quest(30, 1, $n) == 0
+    shout I have banished a filthy assassin!
+    mpmset $n quest 30 1 1
+  else
+    mptransfer $n 2899
+    mpat $n mpforce $n say I am a loser!
+    shout I have sent a backstabbing assassin to hell!
+  endif
+ endif
+endif
+~
+|
+#5605
+herdbeast herd animal beast~
+the Herdbeast~
+A large herd animal grazes here.~
+This animal looks very similar to a cow.~
+ACT_SENTINEL|ACT_BODY|ACT_RACE 0 0 S
+60 BODY_HORN BODY_HORN|BODY_HEAD 10D10+1550 2D10+29
+10000 RACE_DWARF
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 0~
+if class($n) == 6
+ if iskiller($n) == 1
+  if quest(30, 1, $n) == 0
+    shout I have banished a filthy assassin!
+    mpmset $n quest 30 1 1
+  else
+    mptransfer $n 2899
+    mpat $n mpforce $n say I am a loser!
+    shout I have sent a backstabbing assassin to hell!
+  endif
+ endif
+endif
+~
+>death_prog 60~
+if quest(4, 4, $n) == 1
+  mpechoat $n Your dragon pounces upon the Herdbeast eating hungrily.
+  mpquiet on
+  mppurge dragonet
+  if sex($n) == 1
+      mpmload 5621
+      mpforce teranth follow $n
+  else
+      mpmload 5622
+      mpforce remanth follow $n
+  endif
+  mpquiet off
+  mpmset $n quest 4 4 2
+  mpechoat $n You notice that your dragonet has grown over time.
+  mpechoat $n You also notice that $l skin has stretched
+  mpechoat $n and $j will need to be oiled.
+else
+  if quest(4, 4, $n) == 3
+    mpechoat $n Your dragon pounces upon the Herdbeast eating hungrily.
+    mpquiet on
+    mppurge dragon
+    mpmload 5623
+    mpforce mature follow $n
+    mpquiet off
+    mpmset $n quest 4 4 4
+    mpechoat $n You notice that your dragon has grown over time.
+    mpechoat $n You also notice that $l skin has stretched
+    mpechoat $n and $j will need to be oiled.
+  else
+    if quest(4, 4, $n) == 9
+      mpechoat $n Your dragon pounces upon the Herdbeast eating hungrily.
+      mpquiet on
+      mppurge dragon
+      mpmload 5624
+      mpforce mature follow $n
+      mpquiet off
+      mpmset $n quest 4 4 10
+      mpechoat $n You notice that your dragon has grown over time.
+      mpechoat $n You also notice that $l skin has stretched
+      mpechoat $n and $j will need to be oiled.
+    endif
+  endif
+endif
+~
+|
+#5606
+wherry large flightless bird~
+a Wherry~
+A large flightless bird stands here.~
+It largely resembles a turkey.~
+ACT_SENTINEL|ACT_BODY|ACT_RACE 0 0 S
+60 BODY_HEAD BODY_CLAW 10D10+1550 2D10+29
+10000 RACE_DWARF
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 0~
+if class($n) == 6
+ if iskiller($n) == 1
+  if quest(30, 1, $n) == 0
+    shout I have banished a filthy assassin!
+    mpmset $n quest 30 1 1
+  else
+    mptransfer $n 2899
+    mpat $n mpforce $n say I am a loser!
+    shout I have sent a backstabbing assassin to hell!
+  endif
+ endif
+endif
+~
+>death_prog 60~
+if quest(4, 4, $n) == 1
+  mpechoat $n Your dragon pounces upon the Herdbeast eating hungrily.
+  mpquiet on
+  mppurge dragonet
+  if sex($n) == 1
+      mpmload 5621
+      mpforce teranth follow $n
+  else
+      mpmload 5622
+      mpforce remanth follow $n
+  endif
+  mpquiet off
+  mpmset $n quest 4 4 2
+  mpechoat $n You notice that your dragonet has grown over time.
+  mpechoat $n You also notice that $l skin has stretched
+  mpechoat $n and $j will need to be oiled.
+else
+  if quest(4, 4, $n) == 3
+    mpechoat $n Your dragon pounces upon the Herdbeast eating hungrily.
+    mpquiet on
+    mppurge dragon
+    mpmload 5623
+    mpforce mature follow $n
+    mpquiet off
+    mpmset $n quest 4 4 4
+    mpechoat $n You notice that your dragon has grown over time.
+    mpechoat $n You also notice that $l skin has stretched
+    mpechoat $n and $j will need to be oiled.
+  else
+    if quest(4, 4, $n) == 9
+      mpechoat $n Your dragon pounces upon the Herdbeast eating hungrily.
+      mpquiet on
+      mppurge dragon
+      mpmload 5624
+      mpforce mature follow $n
+      mpquiet off
+      mpmset $n quest 4 4 10
+      mpechoat $n You notice that your dragon has grown over time.
+      mpechoat $n You also notice that $l skin has stretched
+      mpechoat $n and $j will need to be oiled.
+    endif
+  endif
+endif
+~
+|
+#5607
+tunnel snake~
+the Tunnel Snake~
+A large snake slithers here.~
+It looks like your ordinary brown snake.~
+ACT_SENTINEL|ACT_BODY|ACT_RACE 0 0 S
+70 BODY_HEAD BODY_HEAD 10D10+2750 2D10+37
+10000 RACE_DROW
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 0~
+if class($n) == 6
+ if iskiller($n) == 1
+  if quest(30, 1, $n) == 0
+    shout I have banished a filthy assassin!
+    mpmset $n quest 30 1 1
+  else
+    mptransfer $n 2899
+    mpat $n mpforce $n say I am a loser!
+    shout I have sent a backstabbing assassin to hell!
+  endif
+ endif
+endif
+~
+|
+#5608
+ruth white dragon~
+Ruth, the White dragon~
+Ruth stands here looking at you curiously~
+Ruth:    {170}_________,---------.____------.___
+        /_______    `--._______  `--.____ \\
+         /__.-' `-----.____    `--.____\\`_/_
+         ,'       ___      `---.___ ___//    `-.
+        /     _.-'   )'           ``---'     \  \
+       |     /       |           . '             |
+      /    /     /   |          '    ___  )   |  |
+      |   |     |  _/` _        ` _,' _ `/) '    |
+       \_  `--._\__`--'_\-___ _,-'   '-`  ___   _/
+         `---.____ `--.__-_  /_)____,  __/  ,`-'
+                  `------__>  `-------(/(/-'-\)\){300}~
+ACT_SENTINEL|ACT_BODY|ACT_RACE|ACT_SMART AFF_DETECT_INVIS|AFF_FLYING|AFF_SANCTUARY 500 S
+80 BODY_HEAD|BODY_CLAW BODY_HEAD|BODY_CLAW 10D10+5000 2D10+65
+1000000 RACE_ELF
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 0~
+if class($n) == 6
+ if iskiller($n) == 1
+  if quest(30, 1, $n) == 0
+    shout I have banished a filthy assassin!
+    mpmset $n quest 30 1 1
+  else
+    mptransfer $n 2899
+    mpat $n mpforce $n say I am a loser!
+    shout I have sent a backstabbing assassin to hell!
+  endif
+ endif
+endif
+~
+|
+#5609
+fandarel mastersmith~
+Fandarel the Mastersmith~
+Fandarel stands here ready to help you.~
+He is a large man.  He stands well over six feet and is covered in muscles.~
+ACT_SENTINEL|ACT_BODY|ACT_RACE|ACT_SMART|ACT_TRAIN|ACT_PRACTICE AFF_DETECT_INVIS 0 S
+95 BODY_HAND BODY_FOOT 10D10+10000 2D10+85
+1000000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 100~
+if quest(0, 3, $n) == 4
+  say F'lar and Lessa want me to reward you do they?
+  Say well this should suit admirably.
+  mpoload 5604
+  give i5604 $n
+  mpmset $n quest 0 3 5
+endif
+~
+>all_greet_prog 0~
+if class($n) == 6
+  if quest(30, 1, $n) == 0
+    shout I have banished a filthy assassin!
+    mpmset $n quest 30 1 1
+  else
+    mptransfer $n 2899
+    mpat $n mpforce $n say I am a loser!
+    shout I have sent a backstabbing assassin to hell!
+  endif
+endif
+~
+|
+#5610
+manora headwoman~
+Manora~
+The headwoman of the Weyr stands here.~
+She looks like headwomen anywhere.~
+ACT_SENTINEL|ACT_BODY|ACT_RACE|ACT_SMART AFF_DETECT_INVIS 0 S
+95 BODY_HAND BODY_FOOT 10D10+9000 2D10+80
+1000000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_FEMALE
+>greet_prog 100~
+if quest(4, 4, $n) == 8
+  say I hear your dragon does indeed look strong and healthy.
+  say Here are leathers that you will need when you fight thread.
+  mpquiet on
+  mpoload 5600
+  give dragonrider's $n
+  mpoload 5601
+  give dragonrider's $n
+  mpoload 5613
+  give dragonrider's $n
+  mpoload 5614
+  give dragonrider's $n
+  mpoload 5615
+  give dragonrider's $n
+  mpoload 5623
+  give dragonrider's $n
+  mpquiet off
+  mpmset $n quest 4 4 15
+else
+  if quest(4, 4, $n) == 8
+    say I hear your dragon does indeed look strong and healthy.
+    say Here are leathers that you will need when you fight thread.
+    mpquiet on
+    mpoload 5600
+    give dragonrider's $n
+    mpoload 5601
+    give dragonrider's $n
+    mpoload 5613
+    give dragonrider's $n
+    mpoload 5614
+    give dragonrider's $n
+    mpoload 5615
+    give dragonrider's $n
+    mpoload 5623
+    give dragonrider's $n
+    mpquiet off
+    mpmset $n quest 4 4 15
+  endif
+endif
+~
+>all_greet_prog 0~
+if class($n) == 6
+  if quest(30, 1, $n) == 0
+    shout I have banished a filthy assassin!
+    mpmset $n quest 30 1 1
+  else
+    mptransfer $n 2899
+    mpat $n mpforce $n say I am a loser!
+    shout I have sent a backstabbing assassin to hell!
+  endif
+endif
+~
+|
+#5611
+lessa weyrwoman~
+Lessa~
+The Weyrwoman stands here.~
+She is very short, but she exudes a confidence that you can see she is a
+leader.~
+ACT_SENTINEL|ACT_BODY|ACT_RACE|ACT_SMART AFF_DETECT_INVIS 0 S
+95 BODY_HAND BODY_FOOT 10D10+9000 2D10+80
+1000000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_FEMALE
+>all_greet_prog 0~
+if class($n) == 6
+ if iskiller($n) == 1
+  if quest(30, 1, $n) == 0
+    shout I have banished a filthy assassin!
+    mpmset $n quest 30 1 1
+  else
+    mptransfer $n 2899
+    mpat $n mpforce $n say I am a loser!
+    shout I have sent a backstabbing assassin to hell!
+  endif
+ endif
+endif
+~
+>speech_prog history story~
+if quest(8, 3, $n) == 3
+  say You want me to tell you how I became weyrleader?
+  say Very Well, Have a seat.
+  mpmset self quest 0 3 1
+endif
+~
+>rand_prog 40~
+if quest(8, 3, $r) == 3
+  if quest(0, 3, self) == 1
+    say I grew up in Ruatha hold as the daugher of a holder.
+    say until that tyrant Fax captured Ruatha by his
+    say treachery.
+    mpecho Lessa looks angry as she remembers what happened
+    mpmset self quest 0 3 2
+  else
+    if quest(0, 3, self) == 2
+      say I lived as a kitchen drudge awaiting my chance for 
+      say revenge, until F'lar came on a search for the rider
+      say of Benden's next queen.
+      mpecho Lessa's face brightens and she is silent for a moment.
+      mpmset self quest 0 3 3
+    else
+      if quest(0, 3, self) == 3
+        say When the newly hatched queen chose me, I became the
+        say Weyrwoman.  And Ramoth and I have been together ever
+        say since.
+        smile
+        mpmset self quest 0 3 0
+        mpmset $r quest 12 1 1
+      endif
+    endif
+  endif
+endif
+~
+>speech_prog p There is a Lord of Ruatha.~
+if quest(0, 3, $n) == 3
+  frown
+  say It will be as F'lar says.  I will relinquish my claim in 
+  say favor of his stronger one.  You have been a great help in a 
+  say time of need.  Go see Fandarel.
+  say He will reward you for your services.
+  mpmset $n quest 0 3 4
+endif
+~
+|
+#5612
+f'lar flar weyrleader~
+F'lar~
+The Weyrleader stands here.~
+He looks tall and lean, with a presence that you note immediately.~
+ACT_SENTINEL|ACT_BODY|ACT_RACE|ACT_SMART AFF_DETECT_INVIS 0 S
+95 BODY_HAND BODY_FOOT 10D10+9000 2D10+80
+1000000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>speech_prog history story~
+if quest(8, 3, $n) == 3
+  say You want me to tell you how I became weyrleader?
+  say Very Well, Have a seat.
+  mpmset self quest 0 3 1
+endif
+~
+>rand_prog 40~
+if quest(8, 3, $r) == 3
+  if quest(0, 3, self) == 1
+    say I grew up in this weyr as the son of a weyrleader.
+    say This did not give me any natural position so I was
+    say treated just as any other fosterling.  Manora was
+    say my foster mother.
+    mpecho F'lar sighs as he remembers times before the current pass.
+    mpmset self quest 0 3 2
+  else
+    if quest(0, 3, self) == 2
+      say A weyrleader is chosen because it is his dragon that
+      say flies the Queen.  I was lucky when I managed to impress
+      say my bronze dragon as they are the largest of the males.
+      mpecho F'lar pauses again with a smile on his face.
+      mpmset self quest 0 3 3
+    else
+      if quest(0, 3, self) == 3
+        say When the old queen died, a new queen was chosen and upon
+        say maturity she had her first mating flight.  I was lucky
+        say enough that my bronze won the chase.  So that is how I
+        say became the Weyrleader.
+        smile
+        mpmset self quest 0 3 0
+        mpmset $r quest 11 1 1
+      endif
+    endif
+  endif
+endif
+~
+>speech_prog p red star~
+if quest(0, 3, $n) == 0
+  say This is very grave news.
+  say Will you do something for me?  In this time of troubles, we 
+  say need to have absolute cooperation from all the Lord Holders.  
+  say The tyrant Fax is withholding his support.  Go tell Fax that I, 
+  say F'lar sent you, and return to me with his reply.
+  mpmset $n quest 0 3 1
+endif
+~
+>greet_prog 100~
+if quest(0, 3, $n) == 0
+say I understand that you have information for me?
+say What do you have to tell me?
+else
+  if quest(0, 3, $n) == 2
+    say I understand that Fax gave you some trouble?
+    say What did he say as he died?
+  else
+  endif
+endif
+if quest(4, 4, $n) == 5
+   say I hear you have raised a fine dragon, $n.  I think yo
+   say are ready to join a fighting wing as a dragonrider.
+   say Go see manora and she will outfit you with what you need.
+   mpmset $n quest 4 4 8
+else
+  if quest(4, 4, $n) == 11
+     say I hear you have raised a fine dragon, $n.  I think you 
+     say are ready to join a wing as a dragonrider.
+     say Go see manora and she will outfit you with what you need.
+     mpmset $n quest 4 4 8
+  else
+  endif
+endif
+~
+>all_greet_prog 0~
+if class($n) == 6
+  if quest(30, 1, $n) == 0
+    shout I have banished a filthy assassin!
+    mpmset $n quest 30 1 1
+  else
+    mptransfer $n 2899
+    mpat $n mpforce $n say I am a loser!
+    shout I have sent a backstabbing assassin to hell!
+  endif
+endif
+~
+>speech_prog p I die, but at least I have taken Ruatha with me!~
+if quest(0, 3, $n) == 2
+  say Hah!  He does not know that there is an heir!
+  say His son, which he thought died at birth, survived.  Lessa is 
+  say no longer the heir to Ruatha.  Fax's son will take that position
+  say Go tell Lessa, 'There is a Lord of Ruatha.'
+  mpmset $n quest 0 3 3
+endif
+~
+|
+#5613
+fax lord holder~
+Fax~
+The Lord Holder Fax stands here.~
+He looks short and muscular, with an evil gleam in his eye.~
+ACT_SENTINEL|ACT_BODY|ACT_RACE|ACT_SMART AFF_DETECT_INVIS -500 S
+80 BODY_HAND BODY_FOOT 10D10+5000 2D10+70
+1000000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 100~
+say Welcome to my hold!  Ruatha hold that is, for I have taken
+say over many holds.  
+wicked
+say And they say that you can only rule one hold!
+say I've shown them otherwise!
+~
+>all_greet_prog 0~
+if class($n) == 6
+  if quest(30, 1, $n) == 0
+    shout I have banished a filthy assassin!
+    mpmset $n quest 30 1 1
+  else
+    mptransfer $n 2899
+    mpat $n mpforce $n say I am a loser!
+    shout I have sent a backstabbing assassin to hell!
+  endif
+endif
+~
+>speech_prog history story~
+if quest(8, 3, $n) == 4
+  say You want me to tell you about the holds?
+  say Very Well, Have a seat.
+  mpmset self quest 0 3 1
+endif
+~
+>rand_prog 40~
+if quest(8, 3, $r) == 4
+  if quest(0, 3, self) == 1
+    say A Lord Holder is born to his position and grows
+    say to manhood knowing he will rule this land some day.
+    say Most holders only ever rule one hold.
+    mpecho Fax chuckles wickedly.
+    mpmset self quest 0 3 2
+  else
+    if quest(0, 3, self) == 2
+      say I however rule many holds.  This hold, Ruatha, I have
+      say most recently conquered and now rule as my own.  Maybe
+      say one day I will rule all of Pern!
+      mpecho Fax laughs as he becomes lost in his fantasy world.
+      mpmset self quest 0 3 0
+      mpmset $r quest 8 3 5
+    endif
+  endif
+endif
+~
+>speech_prog F'lar~
+if quest(0, 3, $n) == 1
+  say Here is what I think of that Weyrleader!
+  mpecho Fax draws his dagger and attacks!
+  mpkill $n
+endif
+~
+>death_prog 100~
+if quest(0, 3, $n) == 1
+  say 'I die, but at least I have taken Ruatha with me!'
+  mpmset $n quest 0 3 2
+endif
+~
+|
+#5614
+thread~
+the Thread~
+Thread falls from the sky!~
+It looks like silver rain.~
+ACT_SENTINEL|ACT_BODY|ACT_RACE|ACT_AGGRESSIVE 0 -500 S
+50 BODY_TENTICLE BODY_TENTICLE 10D10+1000 2D10+22
+10000 RACE_ORC
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 100~
+mpecho A silver rain falls from the east devouring all in its path.
+if quest(4, 4, $n) == 15
+  mpechoat $n You take your dragon up to meet it.
+endif
+~
+>all_greet_prog 0~
+if class($n) == 6
+  if quest(30, 1, $n) == 0
+    shout I have banished a filthy assassin!
+    mpmset $n quest 30 1 1
+  else
+    mptransfer $n 2899
+    mpat $n mpforce $n say I am a loser!
+    shout I have sent a backstabbing assassin to hell!
+  endif
+endif
+~
+|
+#5615
+watch-wher watch wher~
+the Watch-wher~
+An ugly dragonlike thing stands before you.~
+Much smaller than dragons, he is a fierce ugly guard!~
+ACT_SENTINEL|ACT_BODY|ACT_RACE AFF_DETECT_INVIS 100 S
+60 BODY_CLAW BODY_HEAD|BODY_CLAW 10D10+1550 2D10+29
+20000 RACE_HUMAN
+POS_RESTING POS_STANDING SEX_MALE
+>all_greet_prog 0~
+if class($n) == 6
+ if iskiller($n) == 1
+  if quest(30, 1, $n) == 0
+    shout I have banished a filthy assassin!
+    mpmset $n quest 30 1 1
+  else
+    mptransfer $n 2899
+    mpat $n mpforce $n say I am a loser!
+    shout I have sent a backstabbing assassin to hell!
+  endif
+ endif
+endif
+~
+|
+#5616
+dragonet baby dragon~
+a Dragonet~
+A baby dragon stands before you.~
+It is a baby dragon, he is a fierce little thing!~
+ACT_SENTINEL|ACT_BODY|ACT_RACE AFF_DETECT_INVIS 100 S
+50 BODY_CLAW BODY_HEAD|BODY_CLAW 10D10+1000 2D10+22
+20000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 0~
+if class($n) == 6
+ if iskiller($n) == 1
+  if quest(30, 1, $n) == 0
+    shout I have banished a filthy assassin!
+    mpmset $n quest 30 1 1
+  else
+    mptransfer $n 2899
+    mpat $n mpforce $n say I am a loser!
+    shout I have sent a backstabbing assassin to hell!
+  endif
+ endif
+endif
+~
+|
+#5617
+dragonet baby dragon~
+a Dragonet~
+A baby dragon stands before you.~
+It is a baby dragon, he is a fierce little thing!~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE AFF_DETECT_INVIS 100 S
+50 BODY_CLAW BODY_HEAD|BODY_CLAW 10D10+1250 2D10+32
+20000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 0~
+if class($n) == 6
+ if iskiller($n) == 1
+  if quest(30, 1, $n) == 0
+    shout I have banished a filthy assassin!
+    mpmset $n quest 30 1 1
+  else
+    mptransfer $n 2899
+    mpat $n mpforce $n say I am a loser!
+    shout I have sent a backstabbing assassin to hell!
+  endif
+ endif
+endif
+~
+>rand_prog 100~
+if isnpc($r)
+  if isfight($r)
+    mpkill $r
+  endif
+endif
+~
+|
+#5618
+egg small spotted~
+a Spotted Egg~
+A small spotted egg rests here apart from the rest.~
+It is smaller than all the other eggs by far and looks much more fragile.
+You get the urge to give it a pat.~
+ACT_SENTINEL|ACT_BODY|ACT_RACE 0 0 S
+1 BODY_TAIL 0 1D1+20 1D1+1
+10 RACE_HUMAN
+POS_RESTING POS_RESTING SEX_MALE
+>all_greet_prog 0~
+if class($n) == 6
+ if iskiller($n) == 1
+  if quest(30, 1, $n) == 0
+    shout I have banished a filthy assassin!
+    mpmset $n quest 30 1 1
+  else
+    mptransfer $n 2899
+    mpat $n mpforce $n say I am a loser!
+    shout I have sent a backstabbing assassin to hell!
+  endif
+ endif
+endif
+~
+>social_prog pat~
+if quest(4, 4, $n) == 0
+if ispc($n)
+    mpmload 5617
+    mpecho The egg cracks open and a small dragon gazes adoringly at you.
+    mpforce dragonet follow $n
+    if sex($n) == 1
+      mpmset 5617 sex 1
+      mpechoat $n **My name is Teranth, I love you.**
+      mpmset 5617 name teranth
+    else
+      mpechoat $n **My name is Remanth, I love you.**
+      mpmset 5617 name remanth
+    endif
+    mpechoat $n **I'm Hungry.  Let's go hunt.**
+    mpmset $n quest 4 4 1
+    mppurge $i
+  endif
+endif
+~
+|
+#5619
+masterharper harper~
+the Masterharper~
+The Masterharper of Pern stands here.~
+He looks tall and lean, with a presence that you note immediately.~
+ACT_SENTINEL|ACT_BODY|ACT_RACE|ACT_SMART AFF_DETECT_INVIS 0 S
+95 BODY_HAND BODY_FOOT 10D10+15000 2D10+100
+1000000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if quest(0, 3, $n) == 5
+  say Greetings, Dragonrider $n!
+endif
+if quest(8, 3, $n) == 0
+  if rand (50)
+    say I keep the history of Pern.  Tell me if you would like to hear it.
+  else
+    smile $n
+  endif
+else
+  if quest(8, 3, $n) == 3
+    if quest(11, 2, $n) == 3
+      say Now that you have talked to the Weyrleaders,
+      say you should talk to a Lord Holder.
+      mpmset $n quest 8 3 4
+    endif
+  else
+    if quest(8, 3, $n) == 5
+      say I think you have enough understanding of Pern
+      say to become a Harper now.
+      say Here is your Journeyman's Blues.
+      mpechoat $n The Masterharper gives you some clothes.
+      mpechoaround $n The Masterharper gives $n some clothes.
+      mpquiet on
+      mpoload 5616
+      give i5616 $n
+      mpoload 5617
+      give i5617 $n
+      mpoload 5618
+      give i5618 $n
+      mpoload 5619
+      give i5619 $n
+      mpoload 5620
+      give i5620 $n
+      mpoload 5621
+      give i5621 $n
+      mpoload 5622
+      give i5622 $n
+      mpquiet off
+      mpmset $n quest 8 3 6
+      mpmset $n long $n, Journeyman Harper of Pern is here.
+    endif
+  endif
+endif
+~
+>speech_prog reimpress~
+mpmset $n quest 4 4 0
+~
+>speech_prog p another pass~
+mpmset $n quest 0 3 0
+~
+>rand_prog 5~
+mpecho Robinton plays a complex melody on his instrument.
+~
+>speech_prog history story pern~
+say You would like to hear the history of pern?
+say Very well.  Pern is the third planet orbiting
+say the sun Rukbat.  There is another planet in
+say the system that has an erratic orbit called
+say the red star.  Every two hundred years or so,
+say the Red Star throws off an organism called
+say thread.  This thread falls onto the surface
+say of Pern devouring all organic life that it
+say touches.  The Dragonriders were created to
+say combat this aerial menace.  Riding say powerful
+say fire breathing dragons, they fly up in squads
+say called wings, and burn thread from the sky.
+say There you have it, the history of Pern as
+say passed down from Anne Mccaffrey.
+mpmset $n quest 8 3 1
+~
+>rand_prog 40~
+if quest(8, 3, $r) == 1
+  say You show a lot of interest in the history of Pern.
+  say Would you like to become a harper?
+  mpmset $r quest 8 3 2
+endif
+~
+>speech_prog yes ok sure yep yeah~
+if quest(8, 3, $n) == 2
+  say Excellent!  You may start by learning about the
+  say leaders of Pern.  I suggest you get the
+  say Weyrleaders stories first.
+  mpmset $n long $n, Apprentice Harper of Pern is here.
+  mpmset $n quest 8 3 3
+else
+  if quest(8, 3, $n) == 0
+    say You would like to hear the history of pern?
+    say Very well.  Pern is the third planet orbiting
+    say the sun Rukbat.  There is another planet in
+    say the system that has an erratic orbit called
+    say the red star.  Every two hundred years or so,
+    say the Red Star throws off an organism called
+    say thread.  This thread falls onto the surface
+    say of Pern devouring all organic life that it
+    say touches.  The Dragonriders were created to
+    say combat this aerial menace.  Riding say powerful
+    say fire breathing dragons, they fly up in squads
+    say called wings, and burn thread from the sky.
+    say There you have it, the history of Pern as
+    say passed down from Anne Mccaffrey.
+    mpmset $n quest 8 3 1
+  endif
+endif
+~
+|
+#5621
+teranth young bronze dragon~
+Teranth~
+Teranth, your young bronze dragon stands before you.~
+It is a young bronze dragon, he is a fierce little thing!~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE AFF_DETECT_INVIS|AFF_FLYING 100 S
+55 BODY_CLAW BODY_HEAD|BODY_CLAW 10D10+1550 2D10+39
+20000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 0~
+if class($n) == 6
+ if iskiller($n) == 1
+  if quest(30, 1, $n) == 0
+    shout I have banished a filthy assassin!
+    mpmset $n quest 30 1 1
+  else
+    mptransfer $n 2899
+    mpat $n mpforce $n say I am a loser!
+    shout I have sent a backstabbing assassin to hell!
+  endif
+ endif
+endif
+~
+>rand_prog 100~
+if isnpc($r)
+  if isfight($r)
+    mpkill $r
+  endif
+endif
+~
+>give_prog i5624~
+if quest(4, 4, $n) == 2
+  mpechoat $n Teranth arches his back a bit as you rub the
+  mpechoat $n oil into his dry cracked skin.
+  mpechoat $n **Thank you, $n**
+  mpechoat $n **I'm hungry.  Let's go hunt.**
+  mpmset $n quest 4 4 3
+endif
+~
+|
+#5622
+remanth young gold dragon~
+Remanth~
+Remanth, your young gold dragon stands before you.~
+She is a young gold dragon, she looks at you adoringly.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE AFF_DETECT_INVIS|AFF_FLYING 100 S
+55 BODY_CLAW BODY_HEAD|BODY_CLAW 10D10+1550 2D10+39
+20000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_FEMALE
+>all_greet_prog 0~
+if class($n) == 6
+  if quest(30, 1, $n) == 0
+    shout I have banished a filthy assassin!
+    mpmset $n quest 30 1 1
+  else
+    mptransfer $n 2899
+    mpat $n mpforce $n say I am a loser!
+    shout I have sent a backstabbing assassin to hell!
+  endif
+ endif
+endif
+~
+>rand_prog 100~
+if isnpc($r)
+  if isfight($r)
+    mpkill $r
+  endif
+endif
+~
+>give_prog i5624~
+if quest(4, 4, $n) == 2
+  mpechoat $n Remanth arches her back a bit as you rub the
+  mpechoat $n oil into her dry cracked skin.
+  mpechoat $n **Thank you, $n**
+  mpechoat $n **I'm hungry.  Let's go hunt.**
+  mpmset $n quest 4 4 9
+endif
+~
+|
+#5623
+teranth mature bronze dragon~
+Teranth~
+Teranth, your mature bronze dragon stands before you.~
+It is a mature bronze dragon, he is a fierce little thing!~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE AFF_DETECT_INVIS|AFF_FLYING 100 S
+60 BODY_CLAW BODY_HEAD|BODY_CLAW 10D10+1750 2D10+42
+20000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>give_prog i5624~
+if quest(4, 4, $n) == 4
+  mpechoat $n Teranth arches his back a bit as you rub the
+  mpechoat $n oil into his dry cracked skin.
+  mpechoat $n **Thank you, $n**
+  mpechoat $n **I am returning to my weyr, find me when you need me**
+  mpecho Teranth flys off to his weyr.
+  mpmset $n quest 4 4 5
+  mppurge $i
+endif
+~
+>greet_prog 100~
+if sex($n) == 1
+    if quest(4, 4, $n) == 15
+      mpechoat $n **Where are we going today?  Chakkor, Valdemar,
+      mpechoat $n Savant, or Troll?**
+    endif
+endif
+~
+>all_greet_prog 0~
+if class($n) == 6
+  if quest(30, 1, $n) == 0
+    shout I have banished a filthy assassin!
+    mpmset $n quest 30 1 1
+  else
+    mptransfer $n 2899
+    mpat $n mpforce $n say I am a loser!
+    shout I have sent a backstabbing assassin to hell!
+  endif
+endif
+~
+>speech_prog chakkor~
+if sex($n) == 1
+  if quest(4, 4, $n) == 15
+    mpechoat $n **Hop on.**
+    mpecho  You mount the dragon.  He quickly takes off and flies
+    mpecho  directly toward chakkor.  It is not long before you arrive.
+    mpecho  When you dismount, the dragon flies back to his weyr.
+    mptransfer $n 9703
+    mpforce $n look
+  endif
+endif
+~
+>speech_prog savant~
+if sex($n) == 1
+  if quest(4, 4, $n) == 15
+    mpechoat $n **Hop on.**
+    mpecho  You mount the dragon.  He quickly takes off and flies
+    mpecho  directly toward chakkor.  It is not long before you arrive.
+    mpecho  When you dismount, the dragon flies back to his weyr.
+    mptransfer $n 805
+    mpforce $n look
+  endif
+endif
+~
+>speech_prog troll~
+if sex($n) == 1
+  if quest(4, 4, $n) == 15
+    mpechoat $n **Hop on.**
+    mpecho  You mount the dragon.  He quickly takes off and flies
+    mpecho  directly toward chakkor.  It is not long before you arrive.
+    mpecho  When you dismount, the dragon flies back to his weyr.
+    mptransfer $n 15939
+    mpforce $n look
+  endif
+endif
+~
+>speech_prog valdemar~
+if sex($n) == 1
+  if quest(4, 4, $n) == 15
+    mpechoat $n **Hop on.**
+    mpecho  You mount the dragon.  He quickly takes off and flies
+    mpecho  directly toward chakkor.  It is not long before you arrive.
+    mpecho  When you dismount, the dragon flies back to his weyr.
+    mptransfer $n 14205
+    mpforce $n look
+  endif
+endif
+~
+>speech_prog fight thread~
+if quest(4, 4, $n) == 15
+  if actorhasobjnum(5606)
+    mpechoat $n **Hop on and lets go sear thread from the sky!**
+    mpmset $n quest 13 4 1
+    mptransfer $n 7699
+  else
+    mpechoat $n **Where are your flying straps?**
+  endif
+endif
+~
+>rand_prog 100~
+if isnpc($r)
+    if isfight($r)
+      mpkill $r
+    endif
+endif
+~
+|
+#5624
+remanth mature gold dragon~
+Remanth~
+Remanth, your mature gold dragon stands before you.~
+She is a mature gold dragon, she looks at you adoringly.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE AFF_DETECT_INVIS|AFF_FLYING 100 S
+60 BODY_CLAW BODY_HEAD|BODY_CLAW 10D10+1750 2D10+42
+20000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_FEMALE
+>speech_prog chakkor~
+if sex($n) == 2
+  if quest(4, 4, $n) == 15
+    mpechoat $n **Hop on.**
+    mpecho  You mount the dragon.  She quickly takes off and flies
+    mpecho  directly toward chakkor.  It is not long before you arrive.
+    mpecho  When you dismount, the dragon flies back to her weyr.
+    mptransfer $n 9703
+    mpforce $n look
+  endif
+endif
+~
+>speech_prog savant~
+if sex($n) == 2
+  if quest(4, 4, $n) == 15
+    mpechoat $n **Hop on.**
+    mpecho  You mount the dragon.  She quickly takes off and flies
+    mpecho  directly toward chakkor.  It is not long before you arrive.
+    mpecho  When you dismount, the dragon flies back to her weyr.
+    mptransfer $n 805
+    mpforce $n look
+  endif
+endif
+~
+>speech_prog valdemar~
+if sex($n) == 2
+  if quest(4, 4, $n) == 15
+    mpechoat $n **Hop on.**
+    mpecho  You mount the dragon.  She quickly takes off and flies
+    mpecho  directly toward chakkor.  It is not long before you arrive.
+    mpecho  When you dismount, the dragon flies back to her weyr.
+    mptransfer $n 14205
+    mpforce $n look
+  endif
+endif
+~
+>speech_prog troll~
+if sex($n) == 2
+  if quest(4, 4, $n) == 15
+    mpechoat $n **Hop on.**
+    mpecho  You mount the dragon.  She quickly takes off and flies
+    mpecho  directly toward chakkor.  It is not long before you arrive.
+    mpecho  When you dismount, the dragon flies back to her weyr.
+    mptransfer $n 15939
+    mpforce $n look
+  endif
+endif
+~
+>give_prog i5624~
+if quest(4, 4, $n) == 10
+  mpechoat $n Remanth arches her back a bit as you rub the
+  mpechoat $n oil into her dry cracked skin.
+  mpechoat $n **Thank you, $n**
+  mpechoat $n **I am returning to my weyr, find me when you need me**
+  mpecho Remanth flys off to his weyr.
+  mpmset $n quest 4 4 11
+  mppurge $i
+endif
+~
+>greet_prog 100~
+if sex($n) == 2
+    if quest(4, 4, $n) == 15
+      mpechoat $n **Where are we going today?  Chakkor, Valdemar,
+      mpechoat $n Savant, or Troll?**
+    endif
+endif
+~
+>all_greet_prog 0~
+if class($n) == 6
+  if quest(30, 1, $n) == 0
+    shout I have banished a filthy assassin!
+    mpmset $n quest 30 1 1
+  else
+    mptransfer $n 2899
+    mpat $n mpforce $n say I am a loser!
+    shout I have sent a backstabbing assassin to hell!
+  endif
+endif
+~
+>speech_prog fight thread~
+if quest(4, 4, $n) == 15
+  if actorhasobjnum(5606)
+    if actorhasobjnum(5609)
+      mpechoat $n **Hop on and lets go sear thread from the sky!**
+      mpmset $n quest 13 4 1
+      mptransfer $n 7699
+    else
+      mpechoat $n **Where is your agenothree tank?**
+    endif
+  else
+    mpechoat $n **Where are your flying straps?**
+  endif
+endif
+~
+>rand_prog 100~ 
+if isnpc($r)
+  if isfight($r)
+    mpkill $r
+  endif
+endif
+~
+|
+#5625
+dragonethereal~
+dragonethereal~
+dragonethereal~
+dragonethereal~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE AFF_ETHEREAL|AFF_DETECT_INVIS|AFF_FLYING 100 S
+1 BODY_CLAW BODY_HEAD|BODY_CLAW 10D10+1750 2D10+42
+200 RACE_DROW
+POS_STANDING POS_STANDING SEX_MALE
+>speech_prog home~
+if position($n) == 6
+  mpechoat $n **The fall is not over yet**
+else
+  mpmset $n quest 13 4 0
+  if sex($n) == 1
+    mptransfer $n 5666
+  else
+    mptransfer $n 5665
+  endif
+endif
+~
+>speech_prog between~
+mpechoat $n Your dragon takes you between.
+mptransfer $n 5691
+~
+>rand_prog 100~
+if quest(13, 4, $r) == 1
+  mpmload 5626
+else
+~
+|
+#5626
+thread~
+the Thread~
+Thread falls from the sky!~
+It looks like silver rain.~
+ACT_SENTINEL|ACT_BODY|ACT_RACE|ACT_AGGRESSIVE 0 0 S
+50 BODY_TENTICLE BODY_TENTICLE 10D7+1000 2D10+22
+10000 RACE_ORC
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 0~
+if class($n) == 6
+ if iskiller($n) == 1
+  if quest(30, 1, $n) == 0
+    shout I have banished a filthy assassin!
+    mpmset $n quest 30 1 1
+  else
+    mptransfer $n 2899
+    mpat $n mpforce $n say I am a loser!
+    shout I have sent a backstabbing assassin to hell!
+  endif
+ endif
+endif
+~
+>rand_prog 100~
+mpkill $r
+~
+>death_prog 100~
+mpmadd $n quest 13 4 1
+if quest(13, 4, $n) != 5
+  if quest(13, 4, $n) != 10
+    mpmload 5626
+    mpforce thread mpkill $n
+  else
+    if quest(13, 4, $n) == 5
+      mpechoat $n Your dragon takes you between as a clump of thread threatens you.
+      mptransfer $n 5691
+    else
+      if quest(13, 4, $n) == 10
+        mpechoat $n You have burned the last thread from the sky, so your dragon takes you home.
+        mpmset $n quest 13 4 0
+        if sex($n) == 1
+          mptransfer $n 5666
+        else
+          mptransfer $n 5665
+        endif
+      endif
+    endif
+  endif
+endif
+~
+|
+#5627
+betweenethereal~
+betweenethereal~
+betweenethereal~
+betweenethereal~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE AFF_ETHEREAL|AFF_DETECT_INVIS|AFF_FLYING 100 S
+1 BODY_CLAW BODY_HEAD|BODY_CLAW 10D10+1750 2D10+42
+200 RACE_DROW
+POS_STANDING POS_STANDING SEX_MALE
+>rand_prog 100~
+mpquiet on
+cast heal $r
+mpquiet off
+if rand (40)
+  mpechoat $n It seems to take forever before you come out of between.
+  mpmset $r quest 13 4 6
+  mptransfer $n 7699
+endif
+~
+|
+#0
+
+
+#OBJECTS
+#5600
+dragonrider's padded~
+a Dragonrider's helmet~
+A padded leather helmet lies on the ground.~
+It looks like it would keep the head warm, and maybe even stop a blow
+or two.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL|ITEM_FLAG_NOREMOVE|ITEM_FLAG_ANTI_EVIL|ITEM_FLAG_AUTO_ENGRAVE
+ITEM_WEAR_TAKE|ITEM_WEAR_HEAD
+15 0 0 0
+1 10000 50
+A
+APPLY_INT 1
+#5601
+dragonrider's padded~
+a Dragonrider's jacket~
+A padded leather jacket lies on the ground here.~
+It looks very warm.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL|ITEM_FLAG_NOREMOVE|ITEM_FLAG_ANTI_EVIL|ITEM_FLAG_AUTO_ENGRAVE
+ITEM_WEAR_TAKE|ITEM_WEAR_BODY
+15 0 0 0
+1 10000 50
+A
+APPLY_STR 1
+#5602
+numbweed~
+numbweed~
+A jar of numbweed lies here.~
+It smells disgusting!~
+ITEM_TYPE_POTION
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+50 SPELL_HEAL SPELL_HEAL SPELL_HEAL
+1 50000 50
+#5603
+glow basket~
+a glow basket~
+A glow basket lies here.~
+It glows with a soft gentle light.~
+ITEM_TYPE_LIGHT
+ITEM_FLAG_LEVEL|ITEM_FLAG_GLOW
+ITEM_WEAR_TAKE 
+0 0 -1 0
+1 10000 30
+A
+APPLY_AC -6
+A
+APPLY_SAVING_SPELL -4
+#5604
+jewelled dagger~
+a jewelled dagger~
+A jewelled dagger lies here.~
+It is finely wrought and looks very deadly.~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_LEVEL|ITEM_FLAG_NOREMOVE|ITEM_FLAG_ANTI_EVIL|ITEM_FLAG_ANTI_GOOD|ITEM_FLAG_AUTO_ENGRAVE
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 3 23 11
+5 1000000 60
+#5605
+pipes reed~
+reed pipes~
+Some reed pipes lie here.~
+They are made of reed held together with vine~
+ITEM_TYPE_STAFF
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+70 3 2 SPELL_HASTE
+5 10000 50
+#5606
+flying straps~
+flying straps~
+A set of flying straps lies here.~
+They are strips of leather sewn together.~
+ITEM_TYPE_STAFF
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+40 4 3 SPELL_FLY
+5 10000 50
+A
+APPLY_MOVE 50
+A
+APPLY_DEX 3
+#5607
+klah mug~
+a mug of klah~
+A mug of klah rests here.~
+It looks a lot like coffee.~
+ITEM_TYPE_DRINK_CON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+3 2 12 0
+1 50 5
+#5608
+fellis juice~
+some fellis juice~
+Some fellis juice lies on the ground.~
+It looks a lot like wine.~
+ITEM_TYPE_DRINK_CON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+3 2 2 0
+1 50 5
+#5609
+agenothree tank~
+a tank of agenothree~
+A tank of agenothree lies here.~
+It is a large metal cylinder with straps and a nozzle~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_ABOUT
+5 0 0 0
+10 100000 50
+A
+APPLY_DAMROLL 5
+A
+APPLY_HITROLL 5
+#5610
+star stone~
+the Star Stone~
+The Star Stone is here.~
+The star stone:
+  ________
+ / ______ \
+| /   {110}_{300}  \ |
+|(   {110}(_){300}  )|
+| \______/ |
+ \________/
+  \      /
+   \    /
+The Red Star moves into position.  Thread will soon fall!
+The Weyrleader should be told of this.~
+ITEM_TYPE_FURNITURE
+ITEM_FLAG_LEVEL
+0
+0 0 0 0
+1000 1 99
+#5611
+table large dining~
+a large dining table~
+A large dining table is in the center of this room.~
+It looks scared from many meals.~
+ITEM_TYPE_FURNITURE
+ITEM_FLAG_LEVEL
+0
+0 0 0 0
+1000 1 99
+#5612
+bed enormous~
+an enormous bed~
+An enormous bed dominates this room.~
+It is a huge bed, It is where Jaxom sleeps with his wife, Sharra.~
+ITEM_TYPE_FURNITURE
+ITEM_FLAG_LEVEL
+0
+0 0 0 0
+1000 1 99
+#5613
+dragonrider's boots padded~
+a pair of Dragonrider's boots~
+Padded leather boots lie on the ground here.~
+They look very warm.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL|ITEM_FLAG_NOREMOVE|ITEM_FLAG_ANTI_EVIL|ITEM_FLAG_AUTO_ENGRAVE
+ITEM_WEAR_TAKE|ITEM_WEAR_FEET
+15 0 0 0
+1 10000 50
+A
+APPLY_WIS 1
+#5614
+dragonrider's pants padded~
+a pair of Dragonrider's pants~
+Padded leather pants lie on the ground here.~
+They look very warm.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL|ITEM_FLAG_NOREMOVE|ITEM_FLAG_ANTI_EVIL|ITEM_FLAG_AUTO_ENGRAVE
+ITEM_WEAR_TAKE|ITEM_WEAR_LEGS
+15 0 0 0
+1 10000 50
+A
+APPLY_DEX 2
+#5615
+dragonrider's gloves padded~
+a pair of Dragonrider's gloves~
+A pair of padded leather gloves lie on the ground here.~
+They look very warm.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL|ITEM_FLAG_NOREMOVE|ITEM_FLAG_ANTI_EVIL|ITEM_FLAG_AUTO_ENGRAVE
+ITEM_WEAR_TAKE|ITEM_WEAR_HANDS
+15 0 0 0
+1 10000 50
+A
+APPLY_MANA 15
+#5616
+boots harper blue~
+a pair of Harper's boots~
+A pair of blue Harper's boots lie here~
+{140}They are made of leather and then dyed a vivid blue.{300}~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL|ITEM_FLAG_AUTO_ENGRAVE|ITEM_FLAG_ANTI_EVIL|ITEM_FLAG_ANTI_GOOD
+ITEM_WEAR_TAKE|ITEM_WEAR_FEET
+14 0 0 0
+4 100000 70
+A
+APPLY_DAMROLL 5
+A
+APPLY_HITROLL 3
+#5617
+gloves harper blue~
+a pair of Harper's gloves~
+A pair of blue Harper's gloves lie here~
+{140}They are made of leather and then dyed a vivid blue.{300}~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL|ITEM_FLAG_AUTO_ENGRAVE|ITEM_FLAG_ANTI_EVIL|ITEM_FLAG_ANTI_GOOD
+ITEM_WEAR_TAKE|ITEM_WEAR_HANDS
+14 0 0 0
+4 100000 70
+A
+APPLY_DAMROLL 5
+A
+APPLY_HITROLL 3
+#5618
+tunic harper blue~
+a Harper's Tunic~
+A blue Harper's Tunic lies here~
+{140}They are made of leather and then dyed a vivid blue.{300}~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL|ITEM_FLAG_AUTO_ENGRAVE|ITEM_FLAG_ANTI_EVIL|ITEM_FLAG_ANTI_GOOD
+ITEM_WEAR_TAKE|ITEM_WEAR_BODY
+14 0 0 0
+4 100000 70
+A
+APPLY_DAMROLL 5
+A
+APPLY_HITROLL 3
+#5619
+cloak harper blue~
+a Harper's Cloak~
+A blue Harper's cloak lies here~
+{140}They are made of leather and then dyed a vivid blue.{300}~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL|ITEM_FLAG_AUTO_ENGRAVE|ITEM_FLAG_ANTI_EVIL|ITEM_FLAG_ANTI_GOOD
+ITEM_WEAR_TAKE|ITEM_WEAR_NECK
+14 0 0 0
+4 100000 70
+A
+APPLY_DAMROLL 5
+A
+APPLY_HITROLL 3
+#5620
+pants harper blue~
+a pair of Harper's Pants~
+A pair of blue Harper's Pants lie here~
+{140}They are made of leather and then dyed a vivid blue.{300}~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL|ITEM_FLAG_AUTO_ENGRAVE|ITEM_FLAG_ANTI_EVIL|ITEM_FLAG_ANTI_GOOD
+ITEM_WEAR_TAKE|ITEM_WEAR_LEGS
+14 0 0 0
+4 100000 70
+A
+APPLY_DAMROLL 5
+A
+APPLY_HITROLL 3
+#5621
+sleeves harper blue~
+a pair of Harper's Sleeves~
+A pair of blue Harper's sleeves lie here~
+{140}They are made of leather and then dyed a vivid blue.{300}~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL|ITEM_FLAG_AUTO_ENGRAVE|ITEM_FLAG_ANTI_EVIL|ITEM_FLAG_ANTI_GOOD
+ITEM_WEAR_TAKE|ITEM_WEAR_ARMS
+14 0 0 0
+4 100000 70
+A
+APPLY_DAMROLL 5
+A
+APPLY_HITROLL 3
+#5622
+cap harper blue~
+a Harper's Cap~
+A blue Harper's Cap lie here~
+{140}They are made of leather and then dyed a vivid blue.{300}~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL|ITEM_FLAG_AUTO_ENGRAVE|ITEM_FLAG_ANTI_EVIL|ITEM_FLAG_ANTI_GOOD
+ITEM_WEAR_TAKE|ITEM_WEAR_HEAD
+14 0 0 0
+4 100000 70
+A
+APPLY_DAMROLL 5
+A
+APPLY_HITROLL 3
+#5623
+dragonrider's sleeves padded~
+a pair of Dragonrider's sleeves~
+A pair of padded leather sleeves lie on the ground here.~
+They look very warm.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL|ITEM_FLAG_NOREMOVE|ITEM_FLAG_ANTI_EVIL|ITEM_FLAG_AUTO_ENGRAVE
+ITEM_WEAR_TAKE|ITEM_WEAR_ARMS
+15 0 0 0
+1 10000 50
+A
+APPLY_CON 1
+#5624
+oil fish~
+fish oil~
+A jar of fish oil rests here.~
+It is a yellowish oil and doesn't smell all that great.~
+ITEM_TYPE_POTION
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+40 SPELL_PASS_DOOR -1 -1
+1 100 40
+#5625
+sign~
+a sign~
+A sign is here.~
+The sign:
+ ____________________________________________
+(                                            )
+(           {150}Area created by Jaxom{300}            )
+(                                            )
+(   {170}Ideas from Dragonriders of Pern Series{300}   )
+(             {170}by Anne McCaffrey{300}              )
+(____________________________________________)
+                    |    |
+                   \|    |/~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL
+0
+0 0 0 0
+1 1 1
+#0
+#ROOMS
+#5600
+Narrow Pass~
+You are in a narrow canyon with steep sides.  It looks to have been carved
+by a raging river that has long since disappeared.  There is a sign here.~
+56 ROOM_NO_MOB SECT_MOUNTAIN
+DDIR_NORTH
+Deep Canyon~
+~
+0 -1 5601
+DDIR_SOUTH
+Roads of Toril~
+~
+0 -1 4599
+S
+#5601
+Deep Canyon~
+You are in a narrow canyon with steep sides.  It looks to have been carved
+by a raging river that has long since disappeared. .  From the skys to
+the east, a silver rain begins to fall.  You recognise it as Thread!~
+56 0 SECT_MOUNTAIN
+DDIR_SOUTH
+Narrow Pass~
+~
+0 -1 5600
+DDIR_NORTH
+Deep Canyon~
+~
+0 -1 5602
+DDIR_EAST
+Narrow Pass~
+~
+0 -1 5669
+S
+#5602
+Deep Canyon~
+You are in a narrow canyon with steep sides.  It looks to have been carved
+by a raging river that has long since disappeared. .  From the skys to
+the east, a silver rain begins to fall.  You recognise it as Thread!~
+56 0 SECT_MOUNTAIN
+DDIR_NORTH
+Tunnel~
+~
+0 -1 5603
+DDIR_SOUTH
+Deep Canyon~
+~
+0 -1 5601
+S
+#5603
+Tunnel~
+A long tunnel runs north and south here.  The walls are very close together
+and the ceiling is very low.~
+56 ROOM_NO_MOB SECT_MOUNTAIN
+DDIR_NORTH
+Tunnel~
+~
+0 -1 5604
+DDIR_SOUTH
+Tunnel~
+~
+0 -1 5602
+S
+#5604
+Tunnel~
+A long tunnel runs north and south here.  The walls are very close
+together and the ceiling is very low.~
+56 ROOM_NO_MOB SECT_MOUNTAIN
+DDIR_NORTH
+Feeding Grounds~
+~
+0 -1 5605
+DDIR_SOUTH
+Tunnel~
+~
+0 -1 5603
+S
+#5605
+Feeding Grounds~
+You are in an enormous bowl shaped depression in the mountains.  There is a 
+large lake in the middle, and a number of caves dot the walls.~
+56 0 SECT_HILLS
+DDIR_NORTH
+Feeding Grounds~
+~
+0 -1 5610
+DDIR_SOUTH
+Tunnel~
+~
+0 -1 5604
+DDIR_EAST
+Feeding Grounds~
+~
+0 -1 5694
+DDIR_WEST
+Feeding Grounds~
+~
+0 -1 5606
+S
+#5606
+Feeding Grounds~
+You are in an enormous bowl shaped depression in the mountains.  There is a 
+large lake in the middle, and a number of caves dot the walls.~
+56 0 SECT_HILLS
+DDIR_NORTH
+Feeding Grounds~
+~
+0 -1 5609
+DDIR_EAST
+Feeding Grounds~
+~
+0 -1 5605
+DDIR_WEST
+Lower Caverns~
+~
+0 -1 5607
+S
+#5607
+Lower Caverns~
+This is a large complex of caverns that is full of women bustling about.
+To the east is a large kitchen.~
+56 ROOM_INDOORS|ROOM_NO_MOB SECT_INSIDE
+DDIR_WEST
+Kitchen~
+~
+0 -1 5608
+DDIR_EAST
+Feeding Grounds~
+~
+0 -1 5606
+S
+#5608
+Kitchen~
+A series of caverns forms this cooking area.  It looks as though it could
+easily feed hundreds of people.~
+56 ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+Storage Rooms~
+~
+0 -1 5695
+DDIR_EAST
+Lower Caverns~
+~
+0 -1 5607
+S
+#5609
+Feeding Grounds~
+You are in an enormous bowl shaped depression in the mountains.  There is a 
+large lake in the middle, and a number of caves dot the walls.~
+56 0 SECT_HILLS
+DDIR_NORTH
+Lake~
+~
+0 -1 5629
+DDIR_EAST
+Feeding Grounds~
+~
+0 -1 5610
+DDIR_SOUTH
+Feeding Grounds~
+~
+0 -1 5606
+S
+#5610
+Feeding Grounds~
+You are in an enormous bowl shaped depression in the mountains.  There is a 
+large lake in the middle, and a number of caves dot the walls.~
+56 0 SECT_HILLS
+DDIR_NORTH
+Feeding Grounds~
+~
+0 -1 5615
+DDIR_EAST
+Feeding Grounds~
+~
+0 -1 5611
+DDIR_SOUTH
+Feeding Grounds~
+~
+0 -1 5605
+DDIR_WEST
+Feeding Grounds~
+~
+0 -1 5609
+S
+#5611
+Feeding Grounds~
+You are in an enormous bowl shaped depression in the mountains.  There is a 
+large lake in the middle, and a number of caves dot the walls.~
+56 0 SECT_HILLS
+DDIR_NORTH
+Feeding Grounds~
+~
+0 -1 5614
+DDIR_EAST
+Feeding Grounds~
+~
+0 -1 5612
+DDIR_SOUTH
+Feeding Grounds~
+~
+0 -1 5694
+DDIR_WEST
+Feeding Grounds~
+~
+0 -1 5610
+S
+#5612
+Feeding Grounds~
+You are in an enormous bowl shaped depression in the mountains.  There is a 
+large lake in the middle, and a number of caves dot the walls.~
+56 0 SECT_HILLS
+DDIR_NORTH
+Feeding Grounds~
+~
+0 -1 5613
+DDIR_EAST
+Dragon's weyr~
+~
+0 -1 5662
+DDIR_SOUTH
+Dragon's weyr~
+~
+0 -1 5663
+DDIR_WEST
+Feeding Grounds~
+~
+0 -1 5611
+DDIR_UP
+Ledge~
+~
+0 -1 5659
+S
+#5613
+Feeding Grounds~
+You are in an enormous bowl shaped depression in the mountains..  There is a 
+large lake in the middle, and a number of caves dot the walls.~
+56 0 SECT_HILLS
+DDIR_NORTH
+Feeding Grounds~
+~
+0 -1 5618
+DDIR_WEST
+Feeding Grounds~
+~
+0 -1 5614
+DDIR_SOUTH
+Feeding Grounds~
+~
+0 -1 5612
+S
+#5614
+Feeding Grounds~
+You are in an enormous bowl shaped depression in the mountains.  There is a 
+large lake in the middle, and a number of caves dot the walls.~
+56 0 SECT_HILLS
+DDIR_NORTH
+Feeding Grounds~
+~
+0 -1 5617
+DDIR_WEST
+Feeding Grounds~
+~
+0 -1 5615
+DDIR_SOUTH
+Feeding Grounds~
+~
+0 -1 5611
+DDIR_EAST
+Feeding Grounds~
+~
+0 -1 5613
+S
+#5615
+Feeding Grounds~
+You are in an enormous bowl shaped depression in the mountains.  There is a 
+large lake in the middle, and a number of caves dot the walls.~
+56 0 SECT_HILLS
+DDIR_NORTH
+Feeding Grounds~
+~
+0 -1 5616
+DDIR_WEST
+Lake~
+~
+0 -1 5629
+DDIR_SOUTH
+Feeding Grounds~
+~
+0 -1 5610
+DDIR_EAST
+Feeding Grounds~
+~
+0 -1 5614
+S
+#5616
+Feeding Grounds~
+You are in an enormous bowl shaped depression in the mountains.  There is a 
+large lake in the middle, and a number of caves dot the walls.~
+56 0 SECT_HILLS
+DDIR_NORTH
+Feeding Grounds~
+~
+0 -1 5621
+DDIR_WEST
+Lake~
+~
+0 -1 5632
+DDIR_SOUTH
+Feeding Grounds~
+~
+0 -1 5615
+DDIR_EAST
+Feeding Grounds~
+~
+0 -1 5617
+S
+#5617
+Feeding Grounds~
+You are in an enormous bowl shaped depression in the mountains.  There is a 
+large lake in the middle, and a number of caves dot the walls.~
+56 0 SECT_HILLS
+DDIR_NORTH
+Feeding Grounds~
+~
+0 -1 5620
+DDIR_WEST
+Feeding Grounds~
+~
+0 -1 5616
+DDIR_SOUTH
+Feeding Grounds~
+~
+0 -1 5614
+DDIR_EAST
+Feeding Grounds~
+~
+0 -1 5618
+S
+#5618
+Feeding Grounds~
+You are in an enormous bowl shaped depression in the mountains.  There is a 
+large lake in the middle, and a number of caves dot the walls.~
+56 0 SECT_HILLS
+DDIR_NORTH
+Feeding Grounds~
+~
+0 -1 5619
+DDIR_WEST
+Feeding Grounds~
+~
+0 -1 5617
+DDIR_SOUTH
+Feeding Grounds~
+~
+0 -1 5613
+DDIR_EAST
+Hatching Grounds~
+~
+0 -1 5652
+DDIR_UP
+Ledge~
+~
+0 -1 5649
+S
+#5619
+Feeding Grounds~
+You are in an enormous bowl shaped depression in the mountains.  There is a
+large lake in the middle, and a number of caves dot the walls.~
+56 0 SECT_HILLS
+DDIR_NORTH
+Feeding Grounds~
+~
+0 -1 5625
+DDIR_WEST
+Feeding Grounds~
+~
+0 -1 5620
+DDIR_SOUTH
+Feeding Grounds~
+~
+0 -1 5618
+S
+#5620
+Feeding Grounds~
+You are in an enormous bowl shaped depression in the mountains.  There is a 
+large lake in the middle, and a number of caves dot the walls.~
+56 0 SECT_HILLS
+DDIR_NORTH
+Feeding Grounds~
+~
+0 -1 5624
+DDIR_WEST
+Feeding Grounds~
+~
+0 -1 5621
+DDIR_SOUTH
+Feeding Grounds~
+~
+0 -1 5617
+DDIR_EAST
+Feeding Grounds~
+~
+0 -1 5619
+S
+#5621
+Feeding Grounds~
+You are in an enormous bowl shaped depression in the mountains.  There is a 
+large lake in the middle, and a number of caves dot the walls.~
+56 0 SECT_HILLS
+DDIR_NORTH
+Feeding Grounds~
+~
+0 -1 5623
+DDIR_WEST
+Feeding Grounds~
+~
+0 -1 5622
+DDIR_SOUTH
+Feeding Grounds~
+~
+0 -1 5616
+DDIR_EAST
+Feeding Grounds~
+~
+0 -1 5620
+S
+#5622
+Feeding Grounds~
+You are in an enormous bowl shaped depression in the mountains.  There is a 
+large lake in the middle, and a number of caves dot the walls.~
+56 0 SECT_HILLS
+DDIR_SOUTH
+Lake~
+~
+0 -1 5632
+DDIR_EAST
+Feeding Grounds~
+~
+0 -1 5621
+DDIR_UP
+Ledge~
+~
+0 -1 5633
+S
+#5623
+Feeding Grounds~
+You are in an enormous bowl shaped depression in the mountains.  There is a 
+large lake in the middle, and a number of caves dot the walls.~
+56 0 SECT_HILLS
+DDIR_NORTH
+Feeding Grounds~
+~
+0 -1 5628
+DDIR_SOUTH
+Feeding Grounds~
+~
+0 -1 5621
+DDIR_EAST
+Feeding Grounds~
+~
+0 -1 5624
+S
+#5624
+Feeding Grounds~
+You are in an enormous bowl shaped depression in the mountains.  There is a 
+large lake in the middle, and a number of caves dot the walls.~
+56 0 SECT_HILLS
+DDIR_NORTH
+Feeding Grounds~
+~
+0 -1 5627
+DDIR_WEST
+Feeding Grounds~
+~
+0 -1 5623
+DDIR_SOUTH
+Feeding Grounds~
+~
+0 -1 5620
+DDIR_EAST
+Feeding Grounds~
+~
+0 -1 5625
+S
+#5625
+Feeding Grounds~
+You are in an enormous bowl shaped depression in the mountains.  There is a 
+large lake in the middle, and a number of caves dot the walls.~
+56 0 SECT_HILLS
+DDIR_NORTH
+Feeding Grounds~
+~
+0 -1 5626
+DDIR_WEST
+Feeding Grounds~
+~
+0 -1 5624
+DDIR_SOUTH
+Feeding Grounds~
+~
+0 -1 5619
+DDIR_EAST
+Dragon's weyr~
+~
+0 -1 5647
+DDIR_UP
+Ledge~
+~
+0 -1 5646
+S
+#5626
+Feeding Grounds~
+You are in an enormous bowl shaped depression in the mountains.  There is a 
+large lake in the middle, and a number of caves dot the walls.~
+56 0 SECT_HILLS
+DDIR_NORTH
+Dragon's weyr~
+~
+0 -1 5641
+DDIR_WEST
+Feeding Grounds~
+~
+0 -1 5627
+DDIR_SOUTH
+Feeding Grounds~
+~
+0 -1 5625
+DDIR_EAST
+Dragon's weyr~
+~
+0 -1 5645
+DDIR_UP
+Ledge~
+~
+0 -1 5642
+S
+#5627
+Feeding Grounds~
+You are in an enormous bowl shaped depression in the mountains.  There is a 
+large lake in the middle, and a number of caves dot the walls.~
+56 0 SECT_HILLS
+DDIR_NORTH
+Dragon's weyr~
+~
+0 -1 5638
+DDIR_WEST
+Feeding Grounds~
+~
+0 -1 5628
+DDIR_SOUTH
+Feeding Grounds~
+~
+0 -1 5624
+DDIR_EAST
+Feeding Grounds~
+~
+0 -1 5626
+DDIR_UP
+Ledge~
+~
+0 -1 5639
+S
+#5628
+Feeding Grounds~
+You are in an enormous bowl shaped depression in the mountains.  There is a 
+large lake in the middle, and a number of caves dot the walls.~
+56 0 SECT_HILLS
+DDIR_NORTH
+Dragon's weyr~
+~
+0 -1 5635
+DDIR_WEST
+Dragon's weyr~
+~
+0 -1 5696
+DDIR_SOUTH
+Feeding Grounds~
+~
+0 -1 5623
+DDIR_EAST
+Feeding Grounds~
+~
+0 -1 5627
+DDIR_UP
+Ledge~
+~
+0 -1 5636
+S
+#5629
+Lake~
+This is a large clear lake.  The water is a bit cold, and you occasionally
+see a dragon swimming in it.~
+56 0 SECT_WATER_SWIM
+DDIR_NORTH
+Lake~
+~
+0 -1 5632
+DDIR_SOUTH
+Feeding Grounds~
+~
+0 -1 5609
+DDIR_WEST
+Lake~
+~
+0 -1 5630
+DDIR_EAST
+Feeding Grounds~
+~
+0 -1 5615
+S
+#5630
+Lake~
+This is a large clear lake.  The water is a bit cold, and you occasionally
+see a dragon swimming in it.~
+56 0 SECT_WATER_SWIM
+DDIR_NORTH
+Lake~
+~
+0 -1 5631
+DDIR_EAST
+Lake~
+~
+0 -1 5629
+S
+#5631
+Lake~
+This is a large clear lake.  The water is a bit cold, and you occasionally
+see a dragon swimming in it.~
+56 0 SECT_WATER_SWIM
+DDIR_SOUTH
+Lake~
+~
+0 -1 5630
+DDIR_EAST
+Lake~
+~
+0 -1 5632
+S
+#5632
+Lake~
+This is a large clear lake.  The water is a bit cold, and you occasionally
+see a dragon swimming in it.~
+56 0 SECT_WATER_SWIM
+DDIR_NORTH
+Feeding Grounds~
+~
+0 -1 5622
+DDIR_SOUTH
+Lake~
+~
+0 -1 5629
+DDIR_WEST
+Lake~
+~
+0 -1 5631
+DDIR_EAST
+Feeding Grounds~
+~
+0 -1 5616
+S
+#5633
+Ledge~
+You are standing on a rocky ledge.  From here you can easily see all over the 
+bowl.~
+56 ROOM_NO_MOB SECT_MOUNTAIN
+DDIR_UP
+Star Stone~
+~
+0 -1 5634
+DDIR_DOWN
+Feeding Grounds~
+~
+0 -1 5622
+S
+#5634
+Star Stone~
+You are at a flat spot at the highest point of the cliffs.  In front of
+you is the Star Stone.  It is used to determine when the Red Star is
+approaching.~
+56 ROOM_SAFE SECT_MOUNTAIN
+DDIR_DOWN
+Ledge~
+~
+0 -1 5633
+E
+Star Stone~
+The star stone:
+  ________
+ / ______ \
+| /   {110}_{300}  \ |
+|(   {110}(_){300}  )|
+| \______/ |
+ \________/
+  \      /
+   \    /
+The Red Star moves into position.  Thread will soon fall!~
+
+S
+#5635
+Dragon's weyr~
+You enter a large cavern dug into the side of the cliff.  On one side of
+the cavern you see a cot and chest where a man might sleep.  To the other
+side is a large clear space, about the size of a dragon..~
+56 0 SECT_MOUNTAIN
+DDIR_SOUTH
+Feeding Grounds~
+~
+0 -1 5628
+S
+#5636
+Ledge~
+You are standing on a rocky ledge overlooking a large cave.  From here you
+can easily see all over the bowl.~
+56 ROOM_NO_MOB SECT_MOUNTAIN
+DDIR_NORTH
+Dragon's weyr~
+~
+0 -1 5637
+DDIR_DOWN
+Feeding Grounds~
+~
+0 -1 5628
+S
+#5637
+Dragon's weyr~
+You enter a large cavern dug into the side of the cliff.  On one side of the 
+cavern you see a cot and chest where a man might sleep.  To the other side
+is a large clear space, about the size of a dragon.~
+56 0 SECT_MOUNTAIN
+DDIR_SOUTH
+Ledge~
+~
+0 -1 5636
+S
+#5638
+Dragon's weyr~
+You enter a large cavern dug into the side of the cliff.  On one side of the 
+cavern you see a cot and chest where a man might sleep.  To the other side
+is a large clear space, about the size of a dragon.~
+56 0 SECT_MOUNTAIN
+DDIR_SOUTH
+Feeding Grounds~
+~
+0 -1 5627
+S
+#5639
+Ledge~
+You are standing on a rocky ledge overlooking a large cave.  From here you
+can easily see all over the bowl.~
+56 ROOM_NO_MOB SECT_MOUNTAIN
+DDIR_NORTH
+Dragon's weyr~
+~
+0 -1 5640
+DDIR_DOWN
+Feeding Grounds~
+~
+0 -1 5627
+S
+#5640
+Dragon's weyr~
+You enter a large cavern dug into the side of the cliff.  On one side of the 
+cavern you see a cot and chest where a man might sleep.  To the other side
+is a large clear space, about the size of a dragon.~
+56 0 SECT_MOUNTAIN
+DDIR_SOUTH
+Ledge~
+~
+0 -1 5639
+S
+#5641
+Dragon's weyr~
+You enter a large cavern dug into the side of the cliff.  On one side of the 
+cavern you see a cot and chest where a man might sleep.  To the other
+side is a large clear space, about the size of a dragon.~
+56 0 SECT_MOUNTAIN
+DDIR_SOUTH
+Feeding Grounds~
+~
+0 -1 5626
+S
+#5642
+Ledge~
+You are standing on a rocky ledge overlooking a large cave.  From here
+you can easily see all over the bowl.~
+56 ROOM_NO_MOB SECT_MOUNTAIN
+DDIR_NORTH
+Dragon's weyr~
+~
+0 -1 5643
+DDIR_EAST
+Dragon's weyr~
+~
+0 -1 5644
+
+DDIR_DOWN
+Feeding Grounds~
+~
+0 -1 5626
+S
+#5643
+Dragon's weyr~
+You enter a large cavern dug into the side of the cliff.  On one side of the 
+cavern you see a cot and chest where a man might sleep.  To the other side
+is a large clear space, about the size of a dragon.~
+56 0 SECT_MOUNTAIN
+DDIR_SOUTH
+Ledge~
+~
+0 -1 5642
+S
+#5644
+Dragon's weyr~
+You enter a large cavern dug into the side of the cliff.  On one side of the 
+cavern you see a cot and chest where a man might sleep.  To the other
+side is a large clear space, about the size of a dragon.~
+56 0 SECT_MOUNTAIN
+DDIR_WEST
+Ledge~
+~
+0 -1 5642
+S
+#5645
+Dragon's weyr~
+You enter a large cavern dug into the side of the cliff.  On one side of the 
+cavern you see a cot and chest where a man might sleep.  To the other side
+is a large clear space, about the size of a dragon.~
+56 0 SECT_MOUNTAIN
+DDIR_WEST
+Feeding Grounds~
+~
+0 -1 5626
+S
+#5646
+Ledge~
+You are standing on a rocky ledge overlooking a large cave.  From here
+you can easily see all over the bowl.~
+56 ROOM_NO_MOB SECT_MOUNTAIN
+DDIR_EAST
+Dragon's weyr~
+~
+0 -1 5648
+DDIR_DOWN
+Feeding Grounds~
+~
+0 -1 5625
+S
+#5647
+Dragon's weyr~
+You enter a large cavern dug into the side of the cliff.  On one side of the 
+cavern you see a cot and chest where a man might sleep.  To the other side
+is a large clear space, about the size of a dragon.~
+56 0 SECT_MOUNTAIN
+DDIR_WEST
+Feeding Grounds~
+~
+0 -1 5625
+S
+#5648
+Dragon's weyr~
+You enter a large cavern dug into the side of the cliff.  On one side of the 
+cavern you see a cot and chest where a man might sleep.  To the other side
+is a large clear space, about the size of a dragon.~
+56 0 SECT_MOUNTAIN
+DDIR_WEST
+Ledge~
+~
+0 -1 5646
+S
+#5649
+Ledge~
+You are standing on a rocky ledge overlooking a large cave.  From here
+you can easily see all over the bowl.~
+56 ROOM_NO_MOB SECT_MOUNTAIN
+DDIR_EAST
+Queen's weyr~
+~
+0 -1 5650
+
+DDIR_DOWN
+Feeding Grounds~
+~
+0 -1 5618
+S
+#5650
+Queen's weyr~
+You enter a large cavern dug into the side of the cliff.  On one side of
+the cavern is a large clear space, about the size of a dragon.  There is an
+entry to the north.~
+56 0 SECT_MOUNTAIN
+DDIR_WEST
+Ledge~
+~
+0 -1 5649
+DDIR_NORTH
+Weyrleader's Quarters~
+~
+0 -1 5651
+S
+#5651
+Weyrleader's Quarters~
+These are spacious quarters.  Not only do they contain sleeping quarters, but 
+they also include a meeting area scattered with maps of Pern.  On the
+table are several charts mapping areas of threadfall.~
+56 ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+Queen's weyr~
+~
+0 -1 5650
+S
+#5652
+Hatching Ground~
+The entrance to the hatching ground is a large vaulted opening leading
+onto the hot sands of the hatching ground.  The sands are surrounded by
+bleachers.~
+56 ROOM_NO_MOB SECT_INSIDE
+DDIR_WEST
+Feeding Grounds~
+~
+0 -1 5618
+DDIR_EAST
+Hatching Sands~
+~
+0 -1 5653
+S
+#5653
+Hatching Sands~
+This large cavern is covered in warm sand.  Large dragon eggs rest on
+the sand until they are ready to hatch and be impressed.~
+56 ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+Hatching Sands~
+~
+0 -1 5656
+DDIR_NORTH
+Hatching Sands~
+~
+0 -1 5654
+DDIR_SOUTH
+Hatching Sands~
+~
+0 -1 5658
+DDIR_WEST
+Hatching Ground~
+~
+0 -1 5652
+S
+#5654
+Hatching Sands~
+This large cavern is covered in warm sand.  Large dragon eggs rest on
+the sand until they are ready to hatch and be impressed.~
+56 ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+Hatching Sands~
+~
+0 -1 5655
+DDIR_SOUTH
+Hatching Sands~
+~
+0 -1 5653
+S
+#5655
+Hatching Sands~
+This large cavern is covered in warm sand.  Large dragon eggs rest on
+the sand until they are ready to hatch and be impressed.~
+56 ROOM_INDOORS SECT_INSIDE
+DDIR_WEST
+Hatching Sands~
+~
+0 -1 5654
+DDIR_SOUTH
+Hatching Sands~
+~
+0 -1 5656
+S
+#5656
+Hatching Sands~
+This large cavern is covered in warm sand.  Large dragon eggs rest on
+the sand until they are ready to hatch and be impressed.~
+56 ROOM_INDOORS SECT_INSIDE
+DDIR_WEST
+Hatching Sands~
+~
+0 -1 5653
+DDIR_NORTH
+Hatching Sands~
+~
+0 -1 5655
+DDIR_SOUTH
+Hatching Sands~
+~
+0 -1 5657
+S
+#5657
+Hatching Sands~
+This large cavern is covered in warm sand.  Large dragon eggs rest on
+the sand until they are ready to hatch and be impressed.~
+56 ROOM_INDOORS SECT_INSIDE
+DDIR_WEST
+Hatching Sands~
+~
+0 -1 5658
+DDIR_NORTH
+Hatching Sands~
+~
+0 -1 5656
+S
+#5658
+Hatching Sands~
+This large cavern is covered in warm sand.  Large dragon eggs rest on
+the sand until they are ready to hatch and be impressed.~
+56 ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+Hatching Sands~
+~
+0 -1 5657
+DDIR_NORTH
+Hatching Sands~
+~
+0 -1 5653
+S
+#5659
+Ledge~
+You are standing on a rocky ledge overlooking a large cave.  From here you
+can easily see all over the bowl.~
+56 ROOM_NO_MOB SECT_MOUNTAIN
+DDIR_EAST
+Dragon's weyr~
+~
+0 -1 5660
+DDIR_SOUTH
+Dragon's weyr~
+~
+0 -1 5661
+DDIR_DOWN
+Feeding Grounds~
+~
+0 -1 5612
+S
+#5660
+Dragon's weyr~
+You enter a large cavern dug into the side of the cliff.  On one side of the 
+cavern you see a cot and chest where a man might sleep.  To the other side
+is a large clear space, about the size of a dragon.~
+56 0 SECT_MOUNTAIN
+DDIR_WEST
+Ledge~
+~
+0 -1 5659
+S
+#5661
+Dragon's weyr~
+You enter a large cavern dug into the side of the cliff.  On one side of the 
+cavern you see a cot and chest where a man might sleep.  To the other
+side is a large clear space, about the size of a dragon.~
+56 0 SECT_MOUNTAIN
+DDIR_WEST
+Ledge~
+~
+0 -1 5659
+S
+#5662
+Dragon's weyr~
+You enter a large cavern dug into the side of the cliff.  On one side of the 
+cavern you see a cot and chest where a man might sleep.  To the other side
+is a large clear space, about the size of a dragon.~
+56 0 SECT_MOUNTAIN
+DDIR_WEST
+Feeding Grounds~
+~
+0 -1 5612
+S
+#5663
+Dragon's weyr~
+You enter a large cavern dug into the side of the cliff.  On one side of the 
+cavern you see a cot and chest where a man might sleep.  To the other
+side is a large clear space, about the size of a dragon.~
+56 0 SECT_MOUNTAIN
+DDIR_NORTH
+Feeding Grounds~
+~
+0 -1 5612
+S
+#5664
+Ledge~
+You are standing on a rocky ledge overlooking a large cave.  From here
+you can easily see all over the bowl.~
+56 ROOM_NO_MOB SECT_MOUNTAIN
+DDIR_EAST
+Dragon's weyr~
+~
+0 -1 5665
+DDIR_SOUTH
+Dragon's weyr~
+~
+0 -1 5666
+DDIR_DOWN
+Feeding Grounds~
+~
+0 -1 5694
+S
+#5665
+Dragon's weyr~
+You enter a large cavern dug into the side of the cliff.  On one side of the 
+cavern you see a cot and chest where a man might sleep.  To the other
+side is a large clear space, about the size of a dragon.~
+56 0 SECT_MOUNTAIN
+DDIR_WEST
+Ledge~
+~
+0 -1 5664
+S
+#5666
+Dragon's weyr~
+You enter a large cavern dug into the side of the cliff.  On one side of the 
+cavern you see a cot and chest where a man might sleep.  To the other
+side is a large clear space, about the size of a dragon.~
+56 0 SECT_MOUNTAIN
+DDIR_NORTH
+Ledge~
+~
+0 -1 5664
+S
+#5667
+Dragon's weyr~
+You enter a large cavern dug into the side of the cliff.  On one side of the 
+cavern you see a cot and chest where a man might sleep.  To the other side
+is a large clear space, about the size of a dragon.~
+56 0 SECT_MOUNTAIN
+DDIR_WEST
+Feeding Grounds~
+~
+0 -1 5694
+S
+#5668
+Dragon's weyr~
+You enter a large cavern dug into the side of the cliff.  On one side of the 
+cavern you see a cot and chest where a man might sleep.  To the other side
+is a large clear space, about the size of a dragon.~
+56 0 SECT_MOUNTAIN
+DDIR_NORTH
+Feeding Grounds~
+~
+0 -1 5694
+S
+#5669
+Narrow Pass~
+You are in a narrow canyon with steep sides.  It looks to have been carved by a 
+raging river that has long since disappeared.  From the skys to the east, a 
+silver rain begins to fall.  You recognise it as Thread!~
+56 0 SECT_MOUNTAIN
+DDIR_WEST
+Deep Canyon~
+~
+0 -1 5601
+DDIR_EAST
+Craft Hold~
+~
+0 -1 5671
+DDIR_SOUTH
+Craft Hold~
+~
+0 -1 5670
+DDIR_NORTH
+Ruatha Hold~
+~
+0 -1 5672
+S
+#5670
+Craft Hold~
+You approach a collection of small stone buildings.  There is activity in
+and about the building that seems to be related to some craft.~
+56 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+Narrow Pass~
+~
+0 -1 5669
+S
+#5671
+Craft Hold~
+You approach a collection of small stone buildings.  There is activity in
+and about the building that seems to be related to some craft.~
+56 ROOM_INDOORS SECT_INSIDE
+DDIR_WEST
+Narrow Pass~
+~
+0 -1 5669
+X ROBINTON.MID~
+S
+#5672
+Ruatha Hold~
+The entry to this hold is unusual.  It seems to be a large round metal door 
+built into the side of the cliff.  The door is very thick.~
+56 ROOM_NO_MOB SECT_CITY
+DDIR_NORTH
+Courtyard~
+door~
+EX_ISDOOR|EX_CLOSED -1 5673
+DDIR_SOUTH
+Narrow Pass~
+~
+0 -1 5669
+S
+#5673
+Courtyard~
+Craggy heights surround this courtyard.  You occasionally see dragons flying 
+overhead.~
+56 0 SECT_FIELD
+DDIR_SOUTH
+Ruatha Hold~
+door~
+EX_ISDOOR -1 5672
+DDIR_EAST
+Watch-wher's lair~
+~
+0 -1 5674
+DDIR_WEST
+Courtyard~
+~
+0 -1 5676
+DDIR_NORTH
+Courtyard~
+~
+0 -1 5680
+DDIR_UP
+Fire pits~
+~
+0 -1 5675
+S
+#5674
+Watch-wher's lair~
+This small cave houses the holds watch-wher.  It is barely big enough to
+fit the small dragonlike creature, much less anything else.~
+56 ROOM_INDOORS SECT_INSIDE
+DDIR_WEST
+Courtyard~
+~
+0 -1 5673
+S
+#5675
+Fire Pits~
+These pits above the hold are where are the firestone that dragons eat in
+order to breath fire is kept.  A dragon sits here watching the heights
+for Thread.~
+56 0 SECT_CITY
+DDIR_DOWN
+Courtyard~
+~
+0 -1 5673
+S
+#5676
+Courtyard~
+Craggy heights surround this courtyard.  You occasionally see dragons flying 
+overhead.~
+56 0 SECT_FIELD
+DDIR_EAST
+Courtyard~
+~
+0 -1 5673
+DDIR_NORTH
+Courtyard~
+~
+0 -1 5677
+S
+#5677
+Courtyard~
+Craggy heights surround this courtyard.  You occasionally see dragons flying 
+overhead.~
+56 0 SECT_FIELD
+DDIR_SOUTH
+Courtyard~
+~
+0 -1 5676
+DDIR_EAST
+Courtyard~
+~
+0 -1 5680
+DDIR_WEST
+Ruth's Stable~
+~
+0 -1 5678
+DDIR_NORTH
+Kitchen~
+~
+0 -1 5683
+S
+#5678
+Ruth's Stable~
+These stables are built into the cliff face, but they do not contain
+horses as one might think.  You see that the stalls have been opened up
+into one big stall which is big enough to house a small dragon.~
+56 ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+Courtyard~
+~
+0 -1 5677
+DDIR_WEST
+Ruth's Stable~
+~
+0 -1 5679
+S
+#5679
+Ruth's Stable~
+These stables are built into the cliff face, but they do not contain horses
+as one might think.  You see that the stalls have been opened up into
+one big stall which is big enough to house a small dragon.~
+56 ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+Ruth's Stable~
+~
+0 -1 5678
+S
+#5680
+Courtyard~
+Craggy heights surround this courtyard.  You occasionally see dragons flying
+ overhead.~
+56 0 SECT_FIELD
+DDIR_SOUTH
+Courtyard~
+~
+0 -1 5673
+DDIR_WEST
+Courtyard~
+~
+0 -1 5677
+DDIR_NORTH
+Great Hall~
+~
+0 -1 5681
+S
+#5681
+Great Hall~
+This is the main entry and gathering area for the hold.  From the trestle
+tables stacked against the walls, you would also guess that it is where
+meals are taken as well.~
+56 ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+Courtyard~
+~
+0 -1 5680
+DDIR_UP
+Women's Quarters~
+~
+0 -1 5682
+DDIR_NORTH
+Hallway~
+~
+0 -1 5692
+S
+#5682
+Women's Quarters~
+This is where the women of the hold live and spend most of there leisure
+time in gossip.  They are in a central and safer part of the hold.~
+56 ROOM_INDOORS SECT_INSIDE
+DDIR_DOWN
+Great Hall~
+~
+0 -1 5681
+S
+#5683
+Kitchen~
+This is the kitchen that feeds the entire hold.  Many serving women and
+cooks bustle about preparing a meal.  To the east is the cheeseroom.~
+56 ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+Courtyard~
+~
+0 -1 5677
+DDIR_WEST
+Cheeseroom~
+~
+0 -1 5684
+S
+#5684
+Cheeseroom~
+This is where the cheese is kept as the room implies.  It also contains
+other foodstuffs.~
+56 ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+Courtyard~
+~
+0 -1 5683
+S
+#5685
+Storage Rooms~
+You wander through a gathering of storage rooms cut out of the mountain.
+Some of the caverns are empty, while others are full of junk.~
+56 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+Old Passage~
+~
+0 -1 5687
+DDIR_EAST
+Hallway~
+~
+0 -1 5686
+S
+#5686
+Hallway~
+These corridors are brightly lit by glow baskets.  They run between the well
+used areas of the hold.~
+56 ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+Old Passage~
+~
+0 -1 5692
+DDIR_WEST
+Storage Rooms~
+~
+0 -1 5685
+S
+#5687
+Old Passage~
+These passages are rarely used and are unlit.  Dust coats the floor thickly
+and you notice trails in the dust.~
+56 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+Old Passage~
+~
+0 -1 5688
+DDIR_SOUTH
+Storeroom~
+~
+0 -1 5685
+S
+#5688
+Old Passage~
+These passages are rarely used and are unlit.  Dust coats the floor thickly
+and you notice trails in the dust.~
+56 ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+Old Passage~
+~
+0 -1 5689
+DDIR_SOUTH
+Storeroom~
+~
+0 -1 5687
+S
+#5689
+Old Passage~
+These passages are rarely used and are unlit.  Dust coats the floor thickly
+and you notice trails in the dust.~
+56 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+Old Passage~
+~
+0 -1 5690
+DDIR_WEST
+Storeroom~
+~
+0 -1 5688
+S
+#5690
+Old Passage~
+These passages are rarely used and are unlit.  Dust coats the floor thickly
+and you notice trails in the dust.~
+56 ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+Storeroom~
+~
+0 -1 5689
+S
+#5691
+Between~
+You are Between.  There is nothing to see here.  It is
+freezing cold, and totally {100}black{300}.~
+56 ROOM_DARK|ROOM_NO_RIP|ROOM_SAFE SECT_INSIDE
+S
+#5692
+Hallway~
+These corridors are brightly lit by glow baskets.  They run between the well
+used areas of the hold.~
+56 ROOM_INDOORS|ROOM_NO_MOB SECT_INSIDE
+DDIR_NORTH
+Lord Jaxom's Quarters~
+~
+0 -1 5693
+DDIR_WEST
+Hallway~
+~
+0 -1 5686
+DDIR_SOUTH
+Great Hall~
+~
+0 -1 5681
+S
+#5693
+Lord Jaxom's Quarters~
+These are the chambers of the Lord Holder of Ruatha.  They are spacious and
+amazingly nice considering they are buried deep underground.~
+56 ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+Hallway~
+~
+0 -1 5692
+S
+#5694
+Feeding Grounds~
+You are in an enormous bowl shaped depression in the mountains.  There is a
+large lake in the middle, and a number of caves dot the walls.~
+56 0 SECT_HILLS
+DDIR_NORTH
+Feeding Grounds~
+~
+0 -1 5611
+DDIR_WEST
+Feeding Grounds~
+~
+0 -1 5605
+DDIR_SOUTH
+Dragon's weyr~
+~
+0 -1 5668
+DDIR_EAST
+Dragon's weyr~
+~
+0 -1 5667
+DDIR_UP
+Ledge~
+~
+0 -1 5664
+S
+#5695
+Storage Rooms~
+You wander through a gathering of storage rooms cut out of the mountain.
+Some of the caverns are empty, while others are full of junk.~
+56 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+Kitchen~
+~
+0 -1 5608
+DDIR_EAST
+Dark Tunnel~
+~
+0 -1 5697
+S
+#5696
+Dragon's weyr~
+You enter a large cavern dug into the side of the cliff.  On one side of the
+cavern you see a cot and chest where a man might sleep.  To the other side
+is a large clear space, about the size of a dragon.~
+56 0 SECT_MOUNTAIN
+DDIR_EAST
+Feeding Grounds~
+~
+0 -1 5628
+S
+#5697
+Dark Tunnel~
+This tunnel is unlit and unused.  Dust coats the floor thickly and it looks
+as though it has not been travelled in centuries.  There has been a cave
+in to the north, but it looks like you may be able to squeeze through.~
+56 ROOM_INDOORS|ROOM_DARK SECT_INSIDE
+DDIR_WEST
+Storage Rooms~
+~
+0 -1 5695
+DDIR_NORTH
+Dark Tunnel~
+passage~
+EX_ISDOOR|EX_CLOSED|EX_HIDDEN|EX_LOCKED|EX_PICKPROOF -1 5698
+S
+#5698
+Dark Tunnel~
+This tunnel is unlit and unused.  Dust coats the floor thickly and it
+looks as though it has not been travelled in centuries.  There has been a
+cave in to the south, but it looks like you may be able to squeeze through.~
+56 ROOM_INDOORS|ROOM_DARK|ROOM_NO_RIP SECT_INSIDE
+DDIR_SOUTH
+Dark Tunnel~
+passage~
+EX_ISDOOR|EX_CLOSED|EX_HIDDEN|EX_LOCKED|EX_PICKPROOF -1 5697
+DDIR_WEST
+Hatching Sands~
+~
+0 -1 5699
+S
+#5699
+Hatching Sands~
+This large cavern is covered in warm sand.  Large dragon eggs rest on
+the sand  until they are ready to hatch and be impressed.~
+56 ROOM_INDOORS|ROOM_NO_RIP SECT_INSIDE
+DDIR_WEST
+Hatching Sands~
+~
+0 -1 5657
+DDIR_EAST
+Dark Tunnel~
+~
+0 -1 5698
+S
+#7699
+Dragon Back~
+You are astride your dragon in the middle of a fall of thread.  Above you
+it looks as though silver rain is falling from the sky.  The ground is a
+long way off below you.~
+56 ROOM_NO_RIP SECT_AIR
+S
+#0
+
+#RESETS
+M 0 5600 5 5696 ; green dragon in weyr
+M 0 5600 5 5638
+M 0 5600 5 5641
+M 0 5600 5 5645
+M 0 5600 5 5675
+M 0 5601 4 5647 ; blue dragon in weyr
+M 0 5601 4 5662
+M 0 5601 4 5663
+M 0 5601 4 5667
+M 0 5602 5 5668 ; brown dragon in weyr
+M 0 5602 5 5635
+M 0 5602 5 5637
+M 0 5602 5 5640
+M 0 5602 5 5643
+M 0 5603 7 5644 ; bronze dragon in weyr
+M 0 5603 7 5648
+M 0 5603 7 5650
+M 0 5603 7 5660
+M 0 5603 7 5661
+M 0 5624 7 5665 ; Remanth in weyr
+M 0 5623 7 5666 ; Teranth in weyr
+M 0 5604 1 5656  ; gold dragon in hatching ground
+M 0 5605 11 5628 ; herdbeasts in bowl
+M 0 5605 11 5624
+M 0 5605 11 5626
+M 0 5605 11 5621
+M 0 5605 11 5619
+M 0 5605 11 5617
+M 0 5605 11 5615
+M 0 5605 11 5613
+M 0 5605 11 5611
+M 0 5605 11 5609
+M 0 5605 11 5605
+M 0 5606 12 5627 ; wherries in bowl
+M 0 5606 12 5623
+M 0 5606 12 5625
+M 0 5606 12 5620
+M 0 5606 12 5622
+M 0 5606 12 5616
+M 0 5606 12 5618
+M 0 5606 12 5614
+M 0 5606 12 5610
+M 0 5606 12 5612
+M 0 5606 12 5606
+M 0 5606 12 5694
+M 0 5607 7 5690 ; tunnel snakes in tunnels
+M 0 5607 7 5689
+M 0 5607 7 5688
+M 0 5607 7 5687
+M 0 5607 7 5686
+M 0 5607 7 5685
+M 0 5608 1 5679 ; ruth in stable
+M 0 5609 1 5670 ; fandaral in craft hall
+G 1 5609 500
+M 0 5610 1 5607 ; manora in lower cavern
+G 1 5602 500
+G 1 5603 500
+G 1 5605 500
+G 1 5606 500
+G 1 5607 500
+G 1 5608 500
+G 1 5624 500
+M 0 5611 1 5684 ; lessa in cheese room
+M 0 5612 1 5651 ; f'lar in weyrleader quarters
+M 0 5613 1 5681 ; fax in great hall
+M 0 5614 3 5601 ; thread in pass
+M 0 5614 3 5602
+M 0 5614 3 5669
+M 0 5615 1 5674 ; watchweyr in lair
+M 0 5616 5 5653 ; dragonets in hatching sands
+M 0 5616 5 5654
+M 0 5616 5 5655
+M 0 5616 5 5657
+M 0 5616 5 5658
+M 0 5618 1 5699 ; egg in hatching sands
+M 0 5619 1 5671 ; ROBINTON IN CRAFT HOLD
+M 0 5625 1 7699 ; dragonethereal in dragon back
+M 0 5627 1 5691 ; betweenethereal in between
+O 0 5610 1 5634
+O 0 5611 1 5681
+O 0 5612 1 5693
+D 0 5697 DIR_NORTH 2
+D 0 5698 DIR_SOUTH 2
+S
+#SHOPS
+5610 ITEM_TYPE_POTION ITEM_TYPE_LIGHT ITEM_TYPE_STAFF ITEM_TYPE_DRINK_CON ITEM_TYPE_SCROLL 100  50  0 23
+5609 ITEM_TYPE_CONTAINER ITEM_TYPE_ARMOR ITEM_TYPE_WEAPON ITEM_TYPE_TREASURE ITEM_TYPE_NOTHING 100  50  0 23
+0
+
+#SPECIALS
+S
+#$

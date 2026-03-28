@@ -1,0 +1,3360 @@
+#AREA Rome~
+
+#AUTHORS Atari~
+
+#TEMPERATURE 30 40 5 5
+
+#HELPS
+-1 rome~
+A lively city full with all kinds of different people and things to do.
+Although there are rumors of a small group trying to kill the emperor,
+the atmosphere is still kind and you can go take a look at the Coliseum.
+~
+-1 romeupdate~
+area version in use is 1.45 final
+~
+-1 brutustells~
+{130}Brutus says Hey, Come here quick.
+{300}Brutus steps out of the shadows a little bit.
+{130}Brutus tells you 'Here's all you need to do. Go to Caesar and tell him'
+Brutus tells you 'I would like to talk to you in private for a moment.'
+Brutus tells you 'after he leads you away, wait for further instructions.'
+{300}As soon as he finishes his last words, Brutus steps back into the shadows.
+~
+0 $~
+
+#RANGES 17 27 0 99
+
+#MOBILES
+#29000
+roman citizen~
+a Roman~
+A citizen of rome is here.~
+The citizen standing in front of you is in the
+middle of his daily affairs. Whether it's making
+a food and water run or just out to socialize.
+~
+ACT_BODY|ACT_SENTINEL|ACT_STAY_AREA|ACT_IS_NPC
+0
+0 S
+30 BODY_HEAD BODY_HEAD 2d480+0 5d8+8
+10000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 15~
+smile $r
+~
+>death_prog 5~
+MPOLOAD 29000
+~
+|
+#29001
+roman kid~
+the Roman kid~
+A roman kid is here looking for treasure.~
+The kid scours the ground for dropped coins and
+other objects that catch his eye. Looks like
+he's been at it for a while.
+~
+ACT_IS_NPC|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS
+0 S
+30 BODY_HEAD BODY_HEAD 2d480+0 5d8+8
+10000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 10~
+mpecho The Roman kid searches the ground beneath your feet for coins.
+~
+>give_prog i29000~
+if sex($n) == 1
+   say WOW! Thanks Mister!
+   say I've been lookin' for one of these.
+   say Well, all I've got to give you is this thing.
+   say Hope it helps!
+   MPOLOAD 29001
+   drop i29001
+else
+if sex($n) == 2
+   say WOW! Thanks Lady!
+   say I've been lookin' for one of these.
+   say Well, all I've got to give you is this thing.
+   say Hope it helps!
+   MPOLOAD 29001
+   drop i29001
+endif
+endif
+~
+|
+#29002
+poor shopkeeper~
+a poor shopkeeper~
+A beat up old man stands here selling you things.~
+This shopkeeper has seen better days. His shop
+isn't doing so well and the guy looks like he
+needs a sale. Probably why he looked at you so
+eagerly when you entered the doors.
+~
+ACT_BODY|ACT_SENTINEL|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN
+0 S
+25 BODY_HEAD BODY_HEAD 1d1+439 3d6+9
+10000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 35~
+say Welcome $n.
+~
+|
+#29003
+poor citizen~
+a poor citizen~
+A poor citizen of the city walks about here.~
+The citizen pretty much keeps to himself and
+scavenges what he can from his resources. He
+doesn't live in the best area of the town, but
+he gets by.
+~
+ACT_BODY|ACT_SMART|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_TONGUES|AFF_UNDERSTAND
+0 S
+25 BODY_HEAD BODY_HEAD 1d1+439 3d6+9
+10000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 100~
+if actorhasobjnum(29002)
+   if quest(0,7,$n) == 0
+      say Looks like you bought some junk from that store.
+      say He'll never get any good items if he doesn't start
+      say turning a profit.
+      say Well, I guess the least I can do is fix it for you.
+      say I'll need some good glue if you can find some.
+      say Just bring it to me when you do.
+      mpmset $n quest 0 7 1
+   endif
+endif
+if actorhasobjnum(29003)
+   if quest(0,7,$n) == 2
+      say Looks like you found some glue.
+      say Give me the junk you bought and the glue.
+   endif
+endif
+~
+>give_prog I29002~
+if quest(0,7,$n) == 2
+   say Ok, now give me the glue.
+   MPMSET $n quest 0 7 3
+   break
+else
+   if quest(0,7,$n) == 3
+      say Ok, Here goes.
+      MPECHO The poor citizen glues a few of the pieces of the junk together and plays with it for a minute.
+      say Hey, good as new. Who woulda thought?
+      MPJUNK i29002
+      MPJUNK i29003
+      MPOLOAD 29004
+      give i29004 $n
+      MPMSET $n quest 0 7 4
+      break
+   endif
+endif
+~
+>give_prog I29003~
+if quest(0,7,$n) == 2
+   say Ok, now give me the junk.
+   MPMSET $n quest 0 7 3
+   break
+else
+if quest(0,7,$n) == 3
+   say Ok, Here goes.
+   MPECHO The poor citizen glues a few of the pieces of the junk together and plays with it for a minute.
+   say Hey, good as new. Who woulda thought?
+   MPJUNK i29002
+   MPJUNK i29003
+   MPOLOAD 29004
+   give i29004 $n
+   MPMSET $n quest 0 7 4
+   break
+endif
+endif
+~
+|
+#29004
+ethereal~
+Ethereal Mob~
+An ethereal mob is practicing echoing stuff.~
+The ethereal mob is echoing words to the room.
+~
+ACT_BODY|ACT_SENTINEL|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_ETHEREAL
+0 S
+25 BODY_HEAD BODY_HEAD 1d1+439 3d6+9
+10000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 100~
+if actorhasobjnum(29004)
+   if quest(0,7,$n) == 4
+      if quest(0,1,self) == 0
+         mpechoat $n You faintly hear someone nearby say 'murtnec' and the sliding of a wall.
+         mpmset $n quest 0 7 5
+         mpmset self quest 0 1 1
+      endif
+   endif
+endif
+~
+>rand_prog 20~
+if quest(0,1,self) == 1
+   mpmadd self quest 0 10 1
+   if quest(0,10,self) == 10
+      mpmset self quest 0 1 0
+      mpmset self quest 0 10 0
+   endif
+endif
+~
+|
+#29005
+ethereal~
+Ethereal Mob~
+An ethereal mob is reading lines from a script.~
+The ethereal mob holds the script to what brutus
+and Cassius say b4 they kill caesar.
+~
+ACT_BODY|ACT_SENTINEL|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_ETHEREAL
+0 S
+25 BODY_HEAD BODY_HEAD 1d1+439 3d6+9
+10000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>rand_prog 80~
+if pcsinroom (29006) == 1
+   if quest(0,10,self) < 1
+      mpmset self quest 0 10 1
+   break
+endif
+endif
+if quest(0,10,self) == 1
+  mpecho From behind the doorway you can hear what sounds like two men arguing.
+  mpmset self quest 0 10 2
+  break
+endif
+if quest(0,10,self) == 2
+  mpecho Man 1: 'I dunno..'
+  mpecho Man 2: 'You have to help! This is the only way we can rid'
+  mpecho Man 2: 'Rome of this tyranny.'
+  mpmset self quest 0 10 3
+  break
+endif
+if quest(0,10,self) == 3
+  mpecho Man 1: 'But are you sure the only way to do this is murder Caesar?!'
+  mpecho You tumble back as you hear the words murder Caesar.
+  mpmset self quest 0 10 4
+  break
+endif
+if quest(0,10,self) == 4
+  mpecho Man 2: 'What was that?'
+  mpecho Man 1: 'I don't know..'
+  mpecho Man 1: 'GUARDS, CHECK OUTSIDE.'
+  mpmset self quest 0 10 5
+  break
+endif
+if quest(0,10,self) == 5
+  mpecho Two guards emerge from the doorway and drag you into the room.
+  mpmset $r quest 9 1 1
+  mpforce $r east
+  mpmset self quest 0 10 0
+  break
+endif
+~
+|
+#29006
+cassius~
+Cassius~
+Cassius is standing next to a small table.~
+Cassius looks nervous about seeing you in here
+and it doesn't help that he's a little nervy
+about the plan he's helping undertake.
+~
+ACT_IS_NPC|ACT_BODY|ACT_RACE|ACT_SENTINEL|ACT_SMART
+AFF_DETECT_HIDDEN|AFF_DETECT_INVIS|AFF_UNDERSTAND|AFF_TONGUES
+0 S
+30 BODY_HAND BODY_HAND 2d480+0 5d8+8
+5000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 100~
+if quest(9,1,$n) == 1
+say Hrmm.. What to do with you..
+say You must have heard our conversation.
+say Therefore you must befriend us or join Caesar in
+say the pits of Hell.
+say Are you going to join us?
+else
+say INTRUDER! GET OUT!
+mptransfer $n 29005
+endif
+~
+>speech_prog yes~
+say Good!
+say My name is Cassius and this man is Brutus.
+mpecho Brutus Nods to you.
+say Now we must get you affiliated with Caesar.
+say You must earn his trust if you are to inflict
+say the killing blow on him.
+say Since Brutus knows him well, he will be able to
+say get you close enough to talk to him and hopefully
+say earn his friendship.
+say Brutus will tell Caesar you are coming.
+mpecho Brutus leaves the room and you are escorted out.
+mpmset $n quest 0 7 7
+mptransfer $n 29023
+~
+>speech_prog no~
+say Bah! To the pits with you then.
+mptransfer $n 29008
+~
+|
+#29007
+brutusmobone brutus~
+Brutus~
+Brutus is sitting at the table discussing plans.~
+Brutus sits at the table looking over plans and
+discussing them with his partner Cassius.
+~
+ACT_IS_NPC|ACT_BODY|ACT_RACE|ACT_SENTINEL|ACT_SMART
+AFF_DETECT_HIDDEN|AFF_DETECT_INVIS|AFF_UNDERSTAND|AFF_TONGUES
+0 S
+30 BODY_HAND BODY_HAND 2d480+0 5d8+8
+5000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+#29008
+caesar~
+Caesar~
+Caesar, emperor of Rome is here.~
+A dignified man garbed in pure white robes. He is
+obviously a man of high standards and authority.
+~
+ACT_IS_NPC|ACT_BODY|ACT_RACE|ACT_SENTINEL|ACT_SMART
+AFF_DETECT_HIDDEN|AFF_DETECT_INVIS|AFF_UNDERSTAND|AFF_TONGUES|AFF_SANCTUARY
+0 S
+40 BODY_FOOT BODY_FOOT 10d100+200 5d10+3
+20000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>speech_prog p Hey Caesar man, reset me.~
+say Sure dude.
+MPMSET $n quest 0 7 0
+say All done. Have fun.
+~
+>greet_prog 100~
+if quest(0,7,$n) == 7
+   say Welcome. I'm guessing you're the foreigner Brutus
+   say was talking about.
+   say Before you talk to me, you must defeat three beasts
+   say in the Coliseum just south of here. I enjoy a good
+   say fight, and if you do well, I expect to see you back
+   say here. I cannot be reduced to knowing anyone who
+   say cannot defend themselves.
+   say Now get going. I'll tell the arena master you're
+   say going to be there to fight.
+   mpecho The guards escort you out of the palace at a wave of Caesar's hand.
+   mpmset $n quest 0 7 8
+   mptransfer $n 29056
+else
+if quest(0,7,$n) == 10
+   say Ah, very good $n.
+   say I would never have guessed you could put on such
+   say a good show. You've definitely earned a bit of my
+   say time, my friend. Please come back so we can talk
+   say later.
+   say I believe Brutus said he wanted a word with you.
+   say He's should be around the palace somewhere.
+   mpmset $n quest 0 7 11
+else
+if quest(0,7,$n) == 12
+   say Welcome back $n.
+   say I've been waiting for you to return.
+   say There's a lot I'd like to talk to you about.
+endif
+endif
+endif
+~
+>speech_prog p I would like to talk to you in private for a moment.~
+if quest(0,7,$n) == 12
+   mpecho Caesar leads you down to a hallway and into a private room.
+   mptransfer $n 29107
+   mpgoto 29107
+   say Ok, we're alone.
+   say Now what did you want to talk about?
+   mpmset self quest 0 2 1
+endif
+~
+>rand_prog 80~
+if quest(0,2,self) == 1
+   mpecho Brutus shouts 'KILL HIM NOW!'
+   mpecho Caesar gives you a confused look.
+   tell $n You treacherous fool.
+   mpkill $n
+   mpmset self quest 0 2 0
+  else
+  if quest(7,1,self) == 1
+    if pcsinroom (29107) == 0
+      mpmset self quest 7 1 0
+      mpgoto 29060
+    endif
+  endif
+endif
+~
+>fight_prog 100~
+if quest(7,1,self) == 0
+   mpmset self quest 7 1 1
+endif
+~
+>death_prog 100~
+if quest(0,7,$n) == 12
+   say Et tu, $n?
+   say I endow you with my bloodied garments so you
+   say may not forget the injustice you have done
+   say to all of Rome.
+   mpquiet ON
+   cast 'giant strength' $n
+   mpquiet OFF
+   mpoload 29005
+   mpoload 29006
+   mpoload 29007
+   mpoload 29008
+   give i29005 $n
+   give i29006 $n
+   give i29007 $n
+   give i29008 $n
+   mpmload 29009
+   mpecho A guard arrives briskly.
+   mpmset $n quest 0 7 13
+endif
+~
+|
+#29009
+guard~
+A Guard~
+A Palace Guard is here.~
+The guard is shocked from what he sees, you
+standing next to the body of Caesar with a
+bloody weapon.
+~
+ACT_IS_NPC|ACT_BODY|ACT_RACE|ACT_SENTINEL|ACT_SMART
+AFF_DETECT_HIDDEN|AFF_DETECT_INVIS|AFF_UNDERSTAND|AFF_TONGUES
+0 S
+30 BODY_HEAD BODY_HEAD 2d480+0 5d8+8
+20000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>rand_prog 100~
+if quest(0,7,$n) == 13
+   mpecho The guard becomes instantly furious with what you've done.
+   shout $r has killed Caesar!
+   shout $J must never be allowed in the city again!
+   mpechoat $n You've been officially banned from the city.
+   mptransfer $r 9755
+   mppurge $i
+endif
+~
+|
+#29010
+roman cityguard~
+A Roman Cityguard~
+A Roman Cityguard stands here keeping the peace.~
+The cityguard knows what's going on. He keeps
+a keen eye over the city and occasionally checks
+his list for intruders that are banned from the
+city.
+~
+ACT_IS_NPC|ACT_BODY|ACT_RACE|ACT_SENTINEL|ACT_SMART
+AFF_UNDERSTAND|AFF_TONGUES
+0 S
+30 BODY_HEAD BODY_HEAD 2d480+0 5d8+8
+20000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 100~
+if quest(0,7,$n) == 13
+   say MURDERER! BONZAAAIIII!!
+   mpkill $n
+endif
+~
+|
+#29011
+master elementalist~
+The master elementalist~
+The master elementalist floats in a constant gust of wind.~
+This guy has absolute control over the elements.
+He knows exactly what's going on around him and how
+to change the environment near to whatever he is in
+the mood to have it do for him.
+~
+ACT_IS_NPC|ACT_BODY|ACT_RACE|ACT_SENTINEL|ACT_SMART|ACT_PRACTICE
+AFF_UNDERSTAND|AFF_TONGUES
+0 S
+30 BODY_HEAD BODY_HEAD 2d480+0 5d8+8
+20000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+#29012
+master ranger~
+The master ranger~
+The master ranger is here smacking pupils.~
+The master ranger stomps around his practice room
+glaring at people and correcting techniques with
+a quick backhand to the head and an even quicker
+demonstration on how to do the move.
+~
+ACT_IS_NPC|ACT_BODY|ACT_RACE|ACT_SENTINEL|ACT_SMART|ACT_PRACTICE
+AFF_UNDERSTAND|AFF_TONGUES
+0 S
+30 BODY_HEAD BODY_HEAD 2d480+0 5d8+8
+20000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+#29013
+master rogue~
+The master rogue~
+The master rogue is here stealing wallets.~
+The master rogue walks around the room training
+the new rogues to be full fledged thieves. He
+himself has quite a nice collection of wallets
+and coin purses hanging up on his wall.
+~
+ACT_IS_NPC|ACT_BODY|ACT_RACE|ACT_SENTINEL|ACT_SMART|ACT_PRACTICE
+AFF_UNDERSTAND|AFF_TONGUES
+0 S
+30 BODY_HEAD BODY_HEAD 2d480+0 5d8+8
+20000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+#29014
+master necromancer~
+The master necromancer~
+The master necromancer is here animating corpses.~
+The master necromancer solves his boredom by honing
+his necromancy skills by reanimating corpses to do
+his busy work around the shop and whatever else he
+wants them to do.
+~
+ACT_IS_NPC|ACT_BODY|ACT_RACE|ACT_SENTINEL|ACT_SMART|ACT_PRACTICE
+AFF_UNDERSTAND|AFF_TONGUES
+0 S
+30 BODY_HEAD BODY_HEAD 2d480+0 5d8+8
+20000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>SPEECH_PROG secret~
+say I see.. *dead people*...
+~
+>RAND_PROG 8~
+say Would you like to hear a... *secret*?..
+~
+|
+#29015
+master monk~
+The master monk~
+The master monk sits here meditating.~
+The master monk is on the ground in a yoga stance
+in a trancelike state on the ground, only breaking
+the trance to sometimes mutter a spell to help
+someone either in the room or far off somewhere with
+a farheal.
+~
+ACT_IS_NPC|ACT_BODY|ACT_RACE|ACT_SENTINEL|ACT_SMART|ACT_PRACTICE
+AFF_UNDERSTAND|AFF_TONGUES
+0 S
+30 BODY_HEAD BODY_HEAD 2d480+0 5d8+8
+20000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+#29016
+master assassin~
+The master assassin~
+The master assassin is practicing his knifing on unsuspecting people.~
+The master assassin moves stealthily around the room knifing
+and evading hunters at the same time. He seems to have
+exceptional control of his skills and if he were to
+leave this practice hall he'd be a formidable opponent. 
+~
+ACT_IS_NPC|ACT_BODY|ACT_RACE|ACT_SENTINEL|ACT_SMART|ACT_PRACTICE
+AFF_UNDERSTAND|AFF_TONGUES|AFF_STEALTH
+0 S
+30 BODY_HEAD BODY_HEAD 2d480+0 5d8+8
+20000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+#29017
+personal trainer~
+The personal trainer~
+The personal trainer is here pumping out reps with some weights.~
+The trainer shows people what to do with the different
+types of training here and how to further their 
+abilities. Whether they're working on dexterity, wisdom,
+strength or anything, he'll be able to help you out.
+~
+ACT_IS_NPC|ACT_BODY|ACT_RACE|ACT_SENTINEL|ACT_SMART|ACT_TRAIN
+AFF_UNDERSTAND|AFF_TONGUES
+0 S
+30 BODY_HEAD BODY_HEAD 2d480+0 5d8+8
+20000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+#29018
+arena master~
+The arena master~
+The arena master is here working on his paperwork.~
+The arena master is up to his ears in undone paperwork
+and order forms he needs to fill out to finish up his
+job. He looks pretty busy so if you're going to sign up,
+might wanna do it quick so you don't waste his time.
+~
+ACT_IS_NPC|ACT_BODY|ACT_RACE|ACT_SENTINEL|ACT_SMART|ACT_PRACTICE
+AFF_UNDERSTAND|AFF_TONGUES
+0 S
+30 BODY_HEAD BODY_HEAD 2d480+0 5d8+8
+20000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 100~
+if quest(0,7,$n) == 8
+   say Ah, you're the one Caesar told me about.
+   say The arena is through here.
+   mpechoat $n The arena master shows you to the prep room.
+   mpechoaround $n The arena master shows $n to the prep room.
+   mpmset $n quest 0 7 9
+   mptransfer $n 29105
+endif
+~
+|
+#29019
+tiger~
+The tiger~
+A large tiger lies in the corner of the room.~
+The huge tiger has a scar across it's side from fights
+with other people who have already been here. It has
+taken a beating, but the pain has only made it grow
+stronger.
+~
+ACT_IS_NPC|ACT_SENTINEL|ACT_AGGRESSIVE|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_INFRARED
+0 S
+95 BODY_HEAD BODY_TAIL|BODY_MOUTH 1d1+9999 9d9+50
+0 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 100~
+   rescale 29019 $n 100
+~
+>death_prog 100~
+   mpmset $n quest 0 7 10
+   mpecho Upon killing the tiger you are sent back to the arena master.
+   mptransfer $n 29087
+endif
+~
+|
+#29020
+spectator~
+A Coliseum Spectator~
+A spectator sits here cheering on fights.~
+The spectator sits on his seat yelling and screaming for
+his favorite fighters and taking bets on who he thinks
+is going to win the next match down in the pit.
+~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART
+AFF_UNDERSTAND|AFF_TONGUES
+0 S
+40 0 0 35d30+100 6d7+10
+10000 183890
+POS_STANDING POS_STANDING SEX_NEUTRAL
+#29021
+magic shop owner~
+The magic shop owner~
+The owner of the shop is here.~
+The owner of the magic shop is making a fairly generous
+living for selling these fairly useful potions and scrolls.
+He likes to serve the customer and he's happy to help you.
+~
+ACT_BODY|ACT_SENTINEL|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN
+0 S
+25 BODY_HEAD BODY_HEAD 1d1+439 3d6+9
+10000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+#29022
+dignitary~
+A foreign dignitary~
+A foreign dignitary is here.~
+The dignitary walks around the palace casually looking
+over his notes for his arguments occasionally and is
+just straight up takin it easy.
+~
+ACT_IS_NPC|ACT_BODY|ACT_RACE|ACT_SENTINEL|ACT_SMART
+AFF_DETECT_HIDDEN|AFF_DETECT_INVIS|AFF_UNDERSTAND|AFF_TONGUES
+0 S
+30 BODY_HEAD BODY_HEAD 2d480+0 5d8+8
+20000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+#29023
+master illusionist~
+The master illusionist~
+The master illusionist is here bending perception.~
+The master illusionist bends and twists your perception
+with a weird light show of a myriad of spells. His magic
+seems to take the room and spin it while all the objects
+near morph into somethin totally new.
+~
+ACT_IS_NPC|ACT_BODY|ACT_RACE|ACT_SENTINEL|ACT_SMART|ACT_PRACTICE
+AFF_UNDERSTAND|AFF_TONGUES
+0 S
+30 BODY_HEAD BODY_HEAD 2d480+0 5d8+8
+20000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+#29024
+palace maintenance man~
+the Palace Maintenance Man~
+The Palace Maintenance Man stands here trying fix a bust of Caesar.~
+The maintenance guy is struggling to put a bust of Caesar
+back together which fell off it's spot on the wall and
+smashed on the ground.
+~
+ACT_IS_NPC|ACT_BODY|ACT_RACE|ACT_SENTINEL|ACT_SMART
+AFF_UNDERSTAND|AFF_TONGUES
+0 S
+30 BODY_HEAD BODY_HEAD 2d480+0 5d8+8
+20000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 30~
+if quest(0,7,$n) == 1
+   mpechoat $n You accidentally bump into the maintenance guy and the bust he was gluing falls to the floor.
+   mpechoaround $n $n accidentally bumps into the maintenance guy and the bust he was gluing falls to the floor.
+   mpecho .   /\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+   mpecho .  <  CCC  RRRR  AAAA   SSSS   H  H   !!  >
+   mpecho .  <  C    R  R  A  A   Ssss   HHHH   !!  >
+   mpecho .  <  C    RRR   AAAA      S   H  H   !!  >
+   mpecho .  <  CCC  R  R  A  A   SSSS   H  H   !!  >
+   mpecho .   \/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/
+   say DoH!
+   grumble
+   say Get outta here you rotten kids! Here, fix it yourself! I quit!
+   mpoload 29003
+   give i29003 $n
+   mpmset $n quest 0 7 2
+   mpecho The maintenance guy stomps off.
+   mppurge $i
+endif
+~
+|
+#29025
+guard~
+A Guard~
+A Palace Guard is here.~
+The palace guard isn't a big guy, but he knows how to wield a
+weapon. He fits in just enough to not really be noticed too
+much, but under observation, he looks like a dangerous foe.
+~
+ACT_IS_NPC|ACT_BODY|ACT_RACE|ACT_SENTINEL|ACT_SMART
+AFF_DETECT_HIDDEN|AFF_DETECT_INVIS|AFF_UNDERSTAND|AFF_TONGUES
+0 S
+30 BODY_HEAD BODY_HEAD 2d480+0 5d8+8
+20000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 100~
+if quest(0,7,$n) == 13
+   say HEY! Get outta here $n!
+   mptransfer $r 9755
+endif
+~
+|
+#29026
+brutus ethereal~
+Brutus~
+An ethereal mob is reading lines from a script.~
+The ethereal mob holds the script to what Brutus
+just before you kill Caesar.
+~
+ACT_BODY|ACT_SENTINEL|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_ETHEREAL
+0 S
+25 BODY_HEAD BODY_HEAD 1d1+439 3d6+9
+10000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 100~
+if quest(0,7,$n) == 11
+mpmset $n quest 0 7 12
+mpforce $n help brutustells
+~
+|
+#0
+
+
+
+
+#OBJECTS
+#29000
+coin two headed~
+A two headed coin~
+A two headed coin is on the ground.~
+The two headed coin is kind of joke going
+around in Rome made by an absent-minded
+counterfeiter. People give them to each other
+for debts and payments even though they're
+obviously not valid currency. 
+~
+ITEM_TYPE_TREASURE
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 0 0
+1 1 1
+#29001
+torn gloves~
+some torn gloves~
+A pair of torn gloves are on the ground.~
+The gloves look pretty old and beaten up,
+but you feel endowed with a sense of experience
+when you put them on.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HANDS
+2 0 0 0
+1 20000 20
+A
+APPLY_WIS 2
+A
+APPLY_CON 2
+A
+APPLY_INT 2
+#29002
+broken junk object~
+a broken piece of equipment~
+A broken piece of something lies on the ground.~
+It's a chunk of a metal piece of equipment.
+Its original use and origins are unknown.
+Wherever it came from, it's been through a lot.
+~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 0 0
+2 20000 1
+#29003
+glue~
+a tube of glue~
+A small tube of glue.~
+It's a small half used tube of glue.
+~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 0 0
+2 20000 1
+#29004
+unknown item~
+an unknown item~
+A glued-together chunk of metal.~
+The fixed item is now just about as much of a mystery
+as it was when it was broken. The only new thing about
+it is the plaque on the bottom.
+~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 0 0
+1 5 8
+E
+plaque~
+On the plaque is engraved the letters 'MURTNEC'
+~
+P 1
+TRIG_UNKNOWN 100 murtnec
+OPROG_PLAYER_QUEST_IF 0 7 = 5 2 3
+P 2
+TRIG_VOID
+OPROG_IF OIF_USER_ROOM_NUM = 29005 4 3
+P 3
+TRIG_VOID
+OPROG_GOD_COMMAND
+mpechoat $ You say the word 'murtnec', but nothing happens.
+~
+P 4
+TRIG_VOID
+OPROG_GOD_COMMAND
+mpechoat $ As you say the word 'murtnec', the wall slides open and you
+mpechoat $ find yourself in a hallway right before a small room.
+mpechoat $ Two voices emanate from inside. Better stay here.
+mpechoaround $ $ says the word 'murtnec' and disappears behind a sliding wall.
+mpmset $ questr 29000 0 7 6
+mpgoto 29006
+~
+#29005
+bloody wristband~
+a bloody wristband~
+A bloody wristband is lying on the ground.~
+the wristband is slightly damaged and looks like they were
+stolen from a victim after a fight.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WRIST
+5 0 0 0
+2 20000 30
+A
+APPLY_DAMROLL 3
+A
+APPLY_HITROLL 3
+#29006
+bloody sleeves~
+some bloody sleeves~
+A pair of bloody sleeves is lying on the ground.~
+the sleeves have spots of blood on it and looks like
+it was stolen from a victim after a fight.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_ARMS
+5 0 0 0
+2 20000 30
+A
+APPLY_DAMROLL 3
+A
+APPLY_HITROLL 3
+#29007
+bloody light~
+a bloody light~
+A bloody light is lying on the ground.~
+The light has a slightly reddish tinge to it
+seeing that it has blood drying around it, you
+know why.~
+ITEM_TYPE_LIGHT
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 -1 0
+2 20000 30
+A
+APPLY_DAMROLL 3
+A
+APPLY_HITROLL 3
+#29008
+bloody gloves~
+some bloody gloves~
+Some bloody gloves are lying on the ground.~
+the gloves are badly slashed up and looks like they
+were stolen from a victim after a fight.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HANDS
+5 0 0 0
+2 20000 30
+A
+APPLY_DAMROLL 3
+A
+APPLY_HITROLL 3
+#29009
+recall scroll~
+a recall scroll~
+A recall scroll is on the ground.~
+The scroll is inscribed with the magic of 'recall'~
+ITEM_TYPE_SCROLL
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+10 42 -1 -1
+0 300 10
+#29010
+identify scroll~
+an identify scroll~
+A scroll of identify is on the ground.~
+The scroll is inscribed with the magic of 'identify'~
+ITEM_TYPE_SCROLL
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+10 53 -1 -1
+0 1000 10
+#29011
+heal potion~
+a heal potion~
+A heal potion is on the ground.~
+The potion is filled with the magic of 'heal'~
+ITEM_TYPE_POTION
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+25 28 -1 -1
+0 5000 10
+#29012
+northwest section fountain~
+northwest section of the fountain~
+The Northwest section of the fountain.~
+The fountain is full of crystal clear water that's cool
+and ready to be ingested by passing citizens.~
+ITEM_TYPE_FOUNTAIN
+ITEM_FLAG_LEVEL
+0
+0 0 0 0
+1 1 1
+#29013
+southwest section fountain~
+southwest section of the fountain~
+The Southwest section of the fountain.~
+The fountain is full of crystal clear water that's cool
+and ready to be ingested by passing citizens.~
+ITEM_TYPE_FOUNTAIN
+ITEM_FLAG_LEVEL
+0
+0 0 0 0
+1 1 1
+#29014
+southeast section fountain~
+southeast section of the fountain~
+The Southeast section of the fountain.~
+The fountain is full of crystal clear water that's cool
+and ready to be ingested by passing citizens.~
+ITEM_TYPE_FOUNTAIN
+ITEM_FLAG_LEVEL
+0
+0 0 0 0
+1 1 1
+#29015
+northeast section fountain~
+northeast section of the fountain~
+The Northeast section of the fountain.~
+The fountain is full of crystal clear water that's cool
+and ready to be ingested by passing citizens.~
+ITEM_TYPE_FOUNTAIN
+ITEM_FLAG_LEVEL
+0
+0 0 0 0
+1 1 1
+#29016
+fountain~
+small fountain~
+A small fountain.~
+The fountain is full of crystal clear water that's cool
+and ready to be ingested by passing citizens.~
+ITEM_TYPE_FOUNTAIN
+ITEM_FLAG_LEVEL
+0
+0 0 0 0
+1 1 1
+#29017
+fountain~
+small fountain~
+A small fountain.~
+The fountain is full of crystal clear water that's cool
+and ready to be ingested by passing citizens.~
+ITEM_TYPE_FOUNTAIN
+ITEM_FLAG_LEVEL
+0
+0 0 0 0
+1 1 1
+#29018
+lint~
+pocket lint~
+A piece of lint lies on the ground.~
+This piece of lint is abnormally large and well textured.
+engraved on the bottom is - [lintrevolution] Rome Faction~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 0 0
+1 5 8
+#0
+
+
+
+#ROOMS
+#29000
+The sewer tunnel~
+You've made your way into a small sewer tunnel lined with rats and various
+other rodents and insects. The smell down here is awful, and there's no
+telling what kind of diseases you could be afflicted by down here. Looks
+like your clothes are going to need a lot of washing after you get out
+of here.
+~
+290 ROOM_DARK|ROOM_NO_MOB SECT_INSIDE
+DDIR_UP
+~
+~
+0 -1 17490
+DDIR_SOUTH
+~
+~
+0 -1 29001
+S
+#29001
+The sewer tunnel~
+You're still trudging your way through the neglected sewer tunnel.
+It's dark and the smell is getting worse as you approach the middle
+where there isn't as much ventilation. Every now and then you see
+some graffiti up on the walls.
+~
+290 ROOM_DARK SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 29000
+DDIR_SOUTH
+~
+~
+0 -1 29002
+E
+graffiti~
+.       __  .    .   ___   ____ .      .   .  ____
+.      /  \ |\   |  /   ; |     |      |\ /| :    :
+.      |__| | \  |  :___  |__   |      | V | |    |
+.      |  | |  \ |      \ |     |      |   | |    |
+.      |  | |   \|  .___/ |____ |___;  |   | `----`
+.              _   __               __  __   __
+.       \ . / |_| |_           |_| |_   |_| |_
+.        V V  | | __|          | | |__  | \ |__
+~
+S
+#29002
+The sewer tunnel~
+Slowly making your way through the segments of tunnels, you
+almost trip and fall face first into the sewer water. Upon
+inspection, it looks like you tripped over a busted drainage
+pipe. Looks like it's been broken for years.
+~
+290 ROOM_DARK SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 29001
+DDIR_SOUTH
+~
+~
+0 -1 29003
+S
+#29003
+A bend in the tunnel~
+The tunnel makes a sharp bend to the east here. The sounds of
+rats in the water can be heard from all around and occasionally
+you feel one brush up against the top of your boot. Hopefully
+the tunnel ends soon.
+~
+290 ROOM_DARK SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 29002
+DDIR_EAST
+~
+~
+0 -1 29004
+S
+#29004
+The sewer tunnel~
+The tunnel bends again sharply to the south and you think you
+can see a bit of light coming from a grate up ahead. You step
+over a rat's carcass as you continue to make your way through
+the tunnels
+~
+290 ROOM_DARK SECT_INSIDE
+DDIR_WEST
+~
+~
+0 -1 29003
+DDIR_EAST
+~
+~
+8 -1 29005
+DDIR_SOUTH
+~
+~
+0 -1 29009
+S
+#29005
+A dark section of the tunnel~
+You almost didn't see this part of the tunnel from the main
+section because it's so dark here. Your light barely makes
+its way through to the bottom of the tunnel and you can see
+faint outlines of your feet through the murky water.
+~
+290 ROOM_DARK SECT_INSIDE
+DDIR_WEST
+~
+~
+0 -1 29004
+S
+#29006
+Behind the sliding wall~
+You're in a small hall right behind the sliding wall. There
+is an arched entrance to another room. You can see the
+shadows of two men discussing something fairly important.
+You lean against the wall hoping not to be seen.
+~
+290 ROOM_SAFE SECT_INSIDE
+DDIR_EAST
+~
+~
+0 -1 29007
+S
+#29007
+Inside the small room~
+In the middle of the room is a small table laden with plans
+and diagrams of the palace and bits of food and drink. It
+looks like they've been here a while talking over the ideas
+presented on the plans.
+~
+290 ROOM_SAFE SECT_INSIDE
+DDIR_WEST
+~
+~
+0 -1 29006
+S
+#29008
+A pit~
+You've been thrown in a pit that was made on one side of the
+room and left for dead. The skeletons and decomposing remains
+of a few other adventurers lay up against the walls. Let's hope
+you don't suffer the same fate.
+~
+290 ROOM_DARK SECT_INSIDE
+S
+#29009
+The sewer tunnel~
+The tunnel is getting lighter the closer you get to the grate
+to the south. You can see the shadows of people walking around
+the streets above on the floor directly under the grate. The
+air flow is getting a little better too.
+~
+290 ROOM_DARK SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 29004
+DDIR_SOUTH
+~
+~
+0 -1 29010
+S
+#29010
+The end of the tunnel~
+You've found your way to one end of the sewer tunnel. Light
+streams through the grate above and slightly illuminates the
+area of the tunnel you've found yourself in. It looks like you
+can open up the grate and climb up onto the street.
+~
+290 0 SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 29009
+DDIR_UP
+~
+grate~
+3 -1 29011
+S
+#29011
+Rome Commons~
+You're on the north side of the Rome Commons. A large open area
+full of traversing citizens and shops. In the middle of the
+commons you can see a large fountain with a statue of a diplomatic
+looking man in a toga at the top.
+~
+290 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 29047
+DDIR_SOUTH
+~
+~
+0 -1 29016
+DDIR_EAST
+~
+~
+0 -1 29012
+DDIR_WEST
+~
+~
+0 -1 29046
+DDIR_DOWN
+~
+grate~
+3 -1 29010
+S
+#29012
+Rome Commons~
+People pass by talking about the things they've done during the day
+and what they plan on doing during the evening. Kids with pets play
+in the streets and vendors try to sell you what the can. It's a
+pretty lively place to spend an afternoon.
+~
+290 0 SECT_CITY
+DDIR_WEST
+~
+~
+0 -1 29011
+DDIR_EAST
+~
+~
+0 -1 29013
+DDIR_SOUTH
+~
+~
+0 -1 29015
+S
+#29013
+Rome Commons~
+From the northeast corner of the commons you can see how big this
+place really is. The palace is to the east blocked off by a large
+iron fence, the Coliseum is directly south from the large
+fountain, and the residences look like they're off to the west.
+There's also a shady looking building to the north you almost
+didn't notice before.
+~
+290 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 29048
+DDIR_WEST
+~
+~
+0 -1 29012
+DDIR_SOUTH
+~
+~
+0 -1 29014
+S
+#29014
+Rome Commons~
+Walking along the east side of the commons you find yourself next
+to a distinguished looking magic shop. The displays behind the
+windows are lined with various scrolls and potions marked with
+sale signs. The commons extends to the south and west and the
+palace gates are directly southeast of you.
+~
+290 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 29013
+DDIR_WEST
+~
+~
+0 -1 29015
+DDIR_EAST
+~
+~
+0 -1 29049
+DDIR_SOUTH
+~
+~
+0 -1 29025
+S
+#29015
+Middle of the Commons~
+The music of several musicians playing in the area fill your
+ears as you pass by the townsfolk and peddlers. The commons
+are where it's at in Rome as it seems everybody is out here
+to do their shopping and communicating with one another.
+~
+290 0 SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 29014
+DDIR_WEST
+~
+~
+0 -1 29016
+DDIR_NORTH
+~
+~
+0 -1 29012
+DDIR_SOUTH
+~
+~
+0 -1 29024
+S
+#29016
+Middle of the Commons~
+Kids from around the area are playing games and running
+in and out of groups of adults while they try to tag
+one another. Occasionally somebody walks by to smile and
+nod at you.
+~
+290 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 29011
+DDIR_WEST
+~
+~
+0 -1 29017
+DDIR_EAST
+~
+~
+0 -1 29015
+DDIR_SOUTH
+~
+~
+0 -1 29023
+S
+#29017
+Middle of the Commons~
+A group of adults sit on the ground here conversing and
+joking with each other about the events of the past week
+and things that have happened in earlier years. Whoa! A
+ball just flew right by your head! Better watch out so
+you don't get hit next time.
+~
+290 0 SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 29016
+DDIR_WEST
+~
+~
+0 -1 29018
+DDIR_NORTH
+~
+~
+0 -1 29046
+DDIR_SOUTH
+~
+~
+0 -1 29022
+S
+#29018
+Middle of the Commons~
+The music of several musicians playing in the area fill your
+ears as you pass by the townsfolk and peddlers. The commons
+are where it's at in Rome as it seems everybody is out here
+to do their shopping and communicating with one another.
+~
+290 0 SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 29017
+DDIR_WEST
+~
+~
+0 -1 29019
+DDIR_NORTH
+~
+~
+0 -1 29045
+DDIR_SOUTH
+~
+~
+0 -1 29021
+S
+#29019
+Rome Commons~
+People pass by talking about the things they've done during the day
+and what they plan on doing during the evening. Kids with pets play
+in the streets and vendors try to sell you what the can. It's a
+pretty lively place to spend an afternoon.
+~
+290 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 29044
+DDIR_EAST
+~
+~
+0 -1 29018
+DDIR_SOUTH
+~
+~
+0 -1 29020
+S
+#29020
+Rome Commons~
+You're standing outside the Monk Practice Center where monks
+from all over Rome come to hone their skills and practice their
+inherent abilities. The center looks well maintained and many
+happy customers are entering and leaving.
+~
+290 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 29044
+DDIR_WEST
+~
+~
+8 -1 29053
+DDIR_SOUTH
+~
+~
+0 -1 29026
+DDIR_EAST
+~
+~
+0 -1 29021
+S
+#29021
+Middle of the Commons~
+Kids from around the area are playing games and running
+in and out of groups of adults while they try to tag
+one another. Occasionally somebody walks by to smile and
+nod at you.
+~
+290 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 29018
+DDIR_WEST
+~
+~
+0 -1 29020
+DDIR_EAST
+~
+~
+0 -1 29022
+DDIR_SOUTH
+~
+~
+0 -1 29027
+S
+#29022
+Northwest side of the fountain~
+You're standing next to the northwest side of the huge
+fountain in the middle of the commons. The large ivory
+fountain is easily three times as tall as you are and
+has the large figure of a diplomatic man standing on
+a platform above where the water comes out.
+~
+290 ROOM_SAFE SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 29017
+DDIR_WEST
+~
+~
+0 -1 29021
+DDIR_EAST
+~
+~
+0 -1 29023
+DDIR_SOUTH
+~
+~
+0 -1 29028
+S
+#29023
+Northeast side of the fountain~
+You're standing on the northeast side of the fountain now.
+From this side of the fountain you can see the kind face of
+the man figure on the top. He faces the palace with a scroll
+in one hand and outstretched arms. A small plaque adorns the
+bottom of the fountain here.
+~
+290 ROOM_SAFE SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 29016
+DDIR_WEST
+~
+~
+0 -1 29022
+DDIR_EAST
+~
+~
+0 -1 29024
+DDIR_SOUTH
+~
+~
+0 -1 29029
+E
+plaque~
+The plaque reads:
+.............................................
+.       In Loving Memory of Sir Anselmo     .
+.                                           .
+.     May this fountain always remind the   .
+.    Emperor to be Strong Willed Yet still  .
+.    accomplish the mission for the people  .
+.............................................
+~
+S
+#29024
+Middle of the Commons~
+A small family strolls by with their groceries as you
+stop to appreciate the Roman scenery. The people in
+the commons are all look like they're in a pretty good
+mood and act accordingly. You hear some boisterous
+cheering coming from the Coliseum to the south.
+~
+290 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 29015
+DDIR_EAST
+~
+~
+0 -1 29025
+DDIR_WEST
+~
+~
+0 -1 29023
+DDIR_SOUTH
+~
+~
+0 -1 29030
+S
+#29025
+Rome Commons~
+The palace stretches above you to the east and you can
+see the unfaltering Roman Cityguard guarding the gates
+against any kind of intruder. There are still people
+walking in and out of the palace so it looks like you
+may be able to get to see it after all.
+~
+290 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 29014
+DDIR_WEST
+~
+~
+0 -1 29024
+DDIR_SOUTH
+~
+~
+0 -1 29031
+DDIR_EAST
+~
+~
+0 -1 29056
+S
+#29026
+Rome Commons~
+People walk around the commons traversing back and forth
+from their houses, finish up on their shopping and meeting
+friends. The fountain lies directly to your east and you
+can see the various guilds along the west side.
+~
+290 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 29020
+DDIR_EAST
+~
+~
+0 -1 29027
+DDIR_SOUTH
+~
+~
+0 -1 29032
+S
+#29027
+Middle of the Commons~
+The music of several musicians playing in the area fill your
+ears as you pass by the townsfolk and peddlers. The commons
+are where it's at in Rome as it seems everybody is out here
+to do their shopping and communicating with one another.
+~
+290 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 29021
+DDIR_SOUTH
+~
+~
+0 -1 29033
+DDIR_EAST
+~
+~
+0 -1 29028
+DDIR_WEST
+~
+~
+0 -1 29026
+S
+#29028
+Southwest side of the fountain~
+You're on the back side of the fountain now. There's a few
+people here taking the opportunity to rest in the shade
+that the statue of the man provides while people simply
+walk around to avoid stepping over and on them.
+~
+290 ROOM_SAFE SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 29022
+DDIR_SOUTH
+~
+~
+0 -1 29034
+DDIR_WEST
+~
+~
+0 -1 29027
+DDIR_EAST
+~
+~
+0 -1 29029
+S
+#29029
+Southeast side of the fountain~
+The citizens clear out for a moment and you finally have a second
+by yourself in the commons. It gives you a second to look around
+at the different engineering wonders around the area.. But you
+only had a second before people started crowding back in again.
+~
+290 ROOM_SAFE SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 29023
+DDIR_SOUTH
+~
+~
+0 -1 29035
+DDIR_EAST
+~
+~
+0 -1 29030
+DDIR_WEST
+~
+~
+0 -1 29028
+S
+#29030
+Middle of the Commons~
+A group of adults sit on the ground here conversing and
+joking with each other about the events of the past week
+and things that have happened in earlier years. Whoa! A
+ball just flew right by your head! Better watch out so
+you don't get hit next time.
+~
+290 0 SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 29031
+DDIR_WEST
+~
+~
+0 -1 29029
+DDIR_NORTH
+~
+~
+0 -1 29024
+DDIR_SOUTH
+~
+~
+0 -1 29036
+S
+#29031
+Rome Commons~
+The palace stretches above you to the east and you can
+see the unfaltering Roman Cityguard guarding the gates
+against any kind of intruder. There are still people
+walking in and out of the palace so it looks like you
+may be able to get to see it after all.
+~
+290 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 29025
+DDIR_WEST
+~
+~
+0 -1 29030
+DDIR_SOUTH
+~
+~
+0 -1 29037
+DDIR_EAST
+~
+~
+0 -1 29057
+S
+#29032
+Rome Commons~
+Stopping suddenly, when you hear a scream to the left,
+you give a quick sideways glance in that direction to
+see what was up. In the doorway of the ranger practice
+center, a large gladiator stands above a pile of what
+was probably a ranger in training. Now there's a
+multi-class waiting to happen. 
+~
+290 0 SECT_CITY
+DDIR_SOUTH
+~
+~
+0 -1 29038
+DDIR_NORTH
+~
+~
+0 -1 29026
+DDIR_WEST
+~
+~
+0 -1 29052
+DDIR_EAST
+~
+~
+0 -1 29033
+S
+#29033
+Middle of the Commons~
+People still brush by you waving at others who obviously
+mean more to them than you do. Sometimes it seems rude,
+but most people around are very polite about how they
+conduct themselves around you.
+~
+290 0 SECT_CITY
+DDIR_SOUTH
+~
+~
+0 -1 29039
+DDIR_WEST
+~
+~
+0 -1 29032
+DDIR_NORTH
+~
+~
+0 -1 29027
+DDIR_EAST
+~
+~
+0 -1 29034
+S
+#29034
+Middle of the Commons~
+Kids from around the area are playing games and running
+in and out of groups of adults while they try to tag
+one another. Occasionally somebody walks by to smile and
+nod at you.
+~
+290 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 29028
+DDIR_WEST
+~
+~
+0 -1 29033
+DDIR_EAST
+~
+~
+0 -1 29035
+DDIR_SOUTH
+~
+~
+0 -1 29040
+S
+#29035
+Middle of the Commons~
+A small family strolls by with their groceries as you
+stop to appreciate the Roman scenery. The people in
+the commons are all look like they're in a pretty good
+mood and act accordingly. You hear some boisterous
+cheering coming from the Coliseum to the south.
+~
+290 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 29029
+DDIR_EAST
+~
+~
+0 -1 29036
+DDIR_WEST
+~
+~
+0 -1 29034
+DDIR_SOUTH
+~
+~
+0 -1 29041
+S
+#29036
+Middle of the Commons~
+The music of several musicians playing in the area fill your
+ears as you pass by the townsfolk and peddlers. The commons
+are where it's at in Rome as it seems everybody is out here
+to do their shopping and communicating with one another.
+~
+290 0 SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 29037
+DDIR_WEST
+~
+~
+0 -1 29035
+DDIR_NORTH
+~
+~
+0 -1 29030
+DDIR_SOUTH
+~
+~
+0 -1 29042
+S
+#29037
+Rome Commons~
+People pass by talking about the things they've done during the day
+and what they plan on doing during the evening. Kids with pets play
+in the streets and vendors try to sell you what the can. It's a
+pretty lively place to spend an afternoon.
+~
+290 0 SECT_CITY
+DDIR_WEST
+~
+~
+0 -1 29036
+DDIR_NORTH
+~
+~
+0 -1 29031
+DDIR_SOUTH
+~
+~
+0 -1 29043
+S
+#29038
+Rome Commons~
+You're standing outside a small gym that the people here use to
+train themselves up when they get the time. The flagstones used
+to pave the commons in this area are well rounded from the wear
+and tear they take from people entering and exiting the gym to
+the south.
+~
+290 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 29032
+DDIR_SOUTH
+~
+~
+0 -1 29051
+DDIR_EAST
+~
+~
+0 -1 29039
+S
+#29039
+Rome Commons~
+People walk around the commons traversing back and forth
+from their houses, finish up on their shopping and meeting
+friends. The fountain lies directly to your east and you
+can see the various guilds along the west side.
+~
+290 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 29033
+DDIR_EAST
+~
+~
+0 -1 29040
+DDIR_WEST
+~
+~
+0 -1 29038
+S
+#29040
+Rome Commons~
+You're walking directly between the Coliseum and the great
+fountain to the north. The road to the Coliseum is always
+open as there's always something going on there. Whether
+it's gladiator fights, public shows, or a public execution,
+people are always drawn there as a site of entertainment.
+~
+290 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 29034
+DDIR_SOUTH
+~
+~
+0 -1 29082
+DDIR_EAST
+~
+~
+0 -1 29041
+DDIR_WEST
+~
+~
+0 -1 29039
+S
+#29041
+Rome Commons~
+You're walking directly between the Coliseum and the great
+fountain to the north. The road to the Coliseum is always
+open as there's always something going on there. Whether
+it's gladiator fights, public shows, or a public execution,
+people are always drawn there as a site of entertainment.
+~
+290 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 29035
+DDIR_SOUTH
+~
+~
+0 -1 29083
+DDIR_EAST
+~
+~
+0 -1 29042
+DDIR_WEST
+~
+~
+0 -1 29040
+S
+#29042
+Rome Commons~
+The people here all seem to pass by the shop in front of you
+without any second thoughts. The items in the windows look
+broken and taken care of poorly from years of misuse and 
+neglect. The whole place has definitely seen better days.
+~
+290 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 29036
+DDIR_SOUTH
+~
+~
+0 -1 29108
+DDIR_WEST
+~
+~
+0 -1 29041
+DDIR_EAST
+~
+~
+0 -1 29043
+S
+#29043
+Rome Commons~
+An animated skeleton outside the door to the east waves at
+anyone who decides to walk by the Necromancer Practice Hall.
+The place looks kinda creepy, but after all, they are
+necromancers. They're into that kinda thing..
+~
+290 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 29037
+DDIR_EAST
+~
+~
+0 -1 29050
+DDIR_WEST
+~
+~
+0 -1 29042
+S
+#29044
+Rome Commons~
+The building to your west seems to shift and change with the winds
+but always looks to stay in the same place. A group of teenagers
+off a little further to the east just sit and watch it while they
+take puffs off some kind of pipe.
+~
+290 0 SECT_CITY
+DDIR_SOUTH
+~
+~
+0 -1 29019
+DDIR_EAST
+~
+~
+0 -1 29045
+DDIR_WEST
+~
+~
+0 -1 29054
+S
+#29045
+Rome Commons~
+The darkened building to the north looks quite imposing and
+almost dangerous. A man standing out to the front of it quickly
+gets snatched into the shadows and instantly runs off in another
+direction while a practicing assassin sits in the shadows and
+snickers to himself.
+~
+290 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 29055
+DDIR_SOUTH
+~
+~
+0 -1 29018
+DDIR_EAST
+~
+~
+0 -1 29046
+DDIR_WEST
+~
+~
+0 -1 29044
+S
+#29046
+Rome Commons~
+People walk around the commons traversing back and forth
+from their houses, finish up on their shopping and meeting
+friends. The fountain lies directly to your south and you
+can see the various guilds along the west side.
+~
+290 0 SECT_CITY
+DDIR_SOUTH
+~
+~
+0 -1 29017
+DDIR_EAST
+~
+~
+0 -1 29011
+DDIR_WEST
+~
+~
+0 -1 29045
+S
+#29047
+Elementalist Practice Hall~
+Each corner of the room has a small pit with a different element
+lying in each. The northwest pit contains fire where elementalists
+study and gain knowledge about their fire related spells, the
+southwest contains water, the southeast contains earth, the
+northeast contains nothing but air and so on.
+~
+290 ROOM_INDOORS|ROOM_ALLOW_ELE|ROOM_SAFE SECT_CITY
+DDIR_SOUTH
+~
+~
+0 -1 29011
+S
+#29048
+Rogue Practice Hall~
+The people walking around this practice hall have more wallets
+than they know what to do with. They trade and steal from
+each other just learning the ropes of the trade. You feel a bump
+on your back pocket and turn to find an inexperienced rogue trying
+to steal from you. You scare him off, but wait. There's another
+guy leaving with a wallet that looks a lot like yours.. Hrm..
+~
+290 ROOM_INDOORS|ROOM_ALLOW_ROG|ROOM_SAFE SECT_CITY
+DDIR_SOUTH
+~
+~
+0 -1 29013
+S
+#29049
+The Magic Shop~
+This place is lined with multitudes of potions in huge
+quantities. Unfortunately not all of them are for sale and this
+place doubles as a storage room for the owner. Either way, it
+looks like this guy has quite a bit of nice potions and scrolls
+to look through.
+~
+290 ROOM_INDOORS|ROOM_SAFE SECT_CITY
+DDIR_WEST
+~
+~
+0 -1 29014
+S
+#29050
+Necromancer Practice Hall~
+As you walk in the hall the skeleton does a little jig and
+resumes waving at the people outside. Guess the guy that
+owns this place is a little eccentric. Bugs fly around the
+room most likely coming the rows of open coffins still
+complete with corpses that lie in the room.
+~
+290 ROOM_DARK|ROOM_INDOORS|ROOM_ALLOW_NEC|ROOM_SAFE SECT_CITY
+DDIR_WEST
+~
+~
+0 -1 29043
+S
+#29051
+Training Hall~
+The small gym opens up to be a little more than what it
+looked like from the outside. Scholars are off to the
+right reading rare books from a couple rows of bookshelves
+and gladiators are busy sparring together just off to the
+left of that. There's quite a mix of activities here,
+satisfying almost anything you would like to work on.
+~
+290 ROOM_INDOORS|ROOM_SAFE SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 29038
+S
+#29052
+Ranger Practice Hall~
+The gladiator that twisted the guy into a pretzel outside
+is maliciously teaching the rest of his pupils how not to
+be THAT pathetic. Various other students are being tended
+to in the corner of the room from training injuries sustained
+from this heightened form of learning. Oh.. Sure enough, the
+pretzel guy outside is making his way to the monk practice
+hall. Heh heh.. Wussy..
+~
+290 ROOM_INDOORS|ROOM_ALLOW_RAN|ROOM_SAFE SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 29032
+S
+#29053
+Monk Practice Hall~
+The monks here are using a form of meditation to focus their
+abilities. However boring it may be, it seems to be effective
+as you just heard one guy who walked up just finish casting
+a spell called 'farheal'. Must have been around a while.
+~
+290 ROOM_INDOORS|ROOM_ALLOW_MON|ROOM_SAFE SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 29020
+S
+#29054
+Illusionist Practice Hall~
+The place you've just walked into is just about the most
+disorienting thing you've ever seen. Illusionists walk the
+walls which are made up of an infinite number of staircases
+and when they walk under another set of stairs, they come
+out of a whole different staircase on a different side of
+the room. Watch this for too long and you could get nauseous.
+~
+290 ROOM_INDOORS|ROOM_ALLOW_ILL|ROOM_SAFE SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 29044
+S
+#29055
+Assassin Practice Hall~
+An assassin teacher on the north end of the room is giving
+a knifing class and you can see various other assassins
+trying to stealth around the room as they practice their
+glance and spy abilities at the same time. Every once in a
+while a young assassin gives out a scared yip as one of
+the older assassin poke em in the back with a knife.
+~
+290 ROOM_INDOORS|ROOM_ALLOW_ASN|ROOM_SAFE SECT_CITY
+DDIR_SOUTH
+~
+~
+0 -1 29045
+S
+#29056
+Palace Gates~
+The guard looks you over and lets you pass by to see the
+palace. Various noble looking people walk in and out of
+the palace discussing different treaties and trading
+policies. Looks like the palace is a high class place.
+~
+290 0 SECT_CITY
+DDIR_WEST
+~
+~
+0 -1 29025
+DDIR_EAST
+~
+~
+0 -1 29058
+DDIR_SOUTH
+~
+~
+0 -1 29057
+S
+#29057
+Palace Gates~
+The guard looks you over and lets you pass by to see the
+palace. Various noble looking people walk in and out of
+the palace discussing different treaties and trading
+policies. Looks like the palace is a high class place.
+~
+290 0 SECT_CITY
+DDIR_WEST
+~
+~
+0 -1 29031
+DDIR_EAST
+~
+~
+0 -1 29061
+DDIR_NORTH
+~
+~
+0 -1 29056
+S
+#29058
+Center of the Palace~
+The center of the palace is a large open area lined along
+the outside walls with large pillars which hold the roof
+up. Caesar can be seen to the east talking with foreign
+dignitaries and several other important men. It's amazing
+he can keep this place that open.
+~
+290 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 29067
+DDIR_SOUTH
+~
+~
+0 -1 29061
+DDIR_EAST
+~
+~
+0 -1 29059
+DDIR_WEST
+~
+~
+0 -1 29056
+S
+#29059
+Center of the Palace~
+A group of expensively dressed men nearby talk about the different
+forms of government and which qualities are necessary for which
+type of leadership. The palace is full of these kinds of people
+who are most likely leaders and ambassadors to bordering countries.
+~
+290 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 29068
+DDIR_SOUTH
+~
+~
+0 -1 29062
+DDIR_EAST
+~
+~
+0 -1 29060
+DDIR_WEST
+~
+~
+0 -1 29058
+S
+#29060
+The Palace Throne~
+The palace throne looks like something that came straight out
+of a gold mine. The lavishly decorated throne is covered with
+a layer of gold and decorated with various jewels and rare stones
+from around the world. It's one of the most expensive looking
+pieces of furniture you've ever seen.
+~
+290 ROOM_INDOORS|ROOM_SAFE SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 29069
+DDIR_SOUTH
+~
+~
+0 -1 29063
+DDIR_WEST
+~
+~
+0 -1 29059
+S
+#29061
+Center of the Palace~
+A group of expensively dressed men nearby talk about the different
+forms of government and which qualities are necessary for which
+type of leadership. The palace is full of these kinds of people
+who are most likely leaders and ambassadors to bordering countries.
+~
+290 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 29058
+DDIR_SOUTH
+~
+~
+0 -1 29064
+DDIR_EAST
+~
+~
+0 -1 29062
+DDIR_WEST
+~
+~
+0 -1 29057
+S
+#29062
+Center of the Palace~
+The center of the palace is a large open area lined along
+the outside walls with large pillars which hold the roof
+up. Caesar can be seen to the east talking with foreign
+dignitaries and several other important men. It's amazing
+he can keep this place that open.
+~
+290 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 29059
+DDIR_SOUTH
+~
+~
+0 -1 29065
+DDIR_EAST
+~
+~
+0 -1 29063
+DDIR_WEST
+~
+~
+0 -1 29061
+S
+#29063
+Debate Table~
+Right next to the throne is a large table filled with chairs
+where people come to hold debates with the permission of Caesar.
+Right now there isn't anything going on, but with the amount of
+people around something will probably begin to start up in the 
+next few days. 
+~
+290 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 29060
+DDIR_SOUTH
+~
+~
+0 -1 29066
+DDIR_WEST
+~
+~
+0 -1 29062
+S
+#29064
+Southwest corner of the Palace~
+People mill about the palace waiting for each other to finish
+talking so they can have a word with one another without
+dismembering a speech that probably took more than five hours
+to put together. The whole place looks like it was made with
+exquisite craftsmanship and many hours of hard labor.
+~
+290 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 29061
+DDIR_EAST
+~
+~
+0 -1 29065
+S
+#29065
+South end of the Palace~
+The palace branches off to a small hallway down which several
+dignitaries stroll to get to their guest housing. Looking down
+the hallway, you see even more important looking people sitting
+around and enjoying themselves while they have a little bit of
+time off from their duties.
+~
+290 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 29062
+DDIR_SOUTH
+~
+~
+0 -1 29070
+DDIR_EAST
+~
+~
+0 -1 29066
+DDIR_WEST
+~
+~
+0 -1 29064
+S
+#29066
+Southeast corner of the Palace~
+You're just south of the debate table and right next to the spot
+that people from the debates throw their coats and other apparel
+right before they start a new argument. There's nothing here now
+except for an old coat someone forgot here after one of the
+debate sessions.
+~
+290 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 29063
+DDIR_WEST
+~
+~
+0 -1 29065
+S
+#29067
+Northwest corner of the Palace~
+People mill about the palace waiting for each other to finish
+talking so they can have a word with one another without
+dismembering a speech that probably took more than five hours
+to put together. The whole palace looks like it was made with
+exquisite craftsmanship and many hours of hard labor.
+~
+290 ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+~
+~
+0 -1 29068
+DDIR_SOUTH
+~
+~
+0 -1 29058
+S
+#29068
+North end of the Palace~
+The palace branches off to a small hallway down which several
+dignitaries stroll to get to their guest housing. Looking down
+the hallway, you see even more important looking people sitting
+around and enjoying themselves while they have a little bit of
+time off from their duties.
+~
+290 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 29076
+DDIR_SOUTH
+~
+~
+0 -1 29059
+DDIR_EAST
+~
+~
+0 -1 29069
+DDIR_WEST
+~
+~
+0 -1 29067
+S
+#29069
+Northeast Corner of the Palace~
+This corner of the palace houses the different guards that are
+on break from defending Caesar. They're still extremely close
+to the big man, but they take their time eating and taking
+small naps over here while their replacements take over their
+jobs for the next shift.
+~
+290 ROOM_INDOORS SECT_INSIDE
+DDIR_WEST
+~
+~
+0 -1 29068
+DDIR_SOUTH
+~
+~
+0 -1 29060
+S
+#29070
+South Hallway~
+Foreign dignitaries and ambassadors sit around to joke and
+take advantage of the little bit of free time they've acquired
+between meetings and debates on different policies and the
+trade and tariff plans that are discussed here daily.
+~
+290 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 29065
+DDIR_WEST
+~
+~
+0 -1 29071
+S
+#29071
+South Hallway~
+The dignitaries are kept under great security down here. Each room
+is locked during the daytime and guarded by a shift of guards that
+constantly wander up and down monitoring the hallway. Each door is
+securely locked and there is no way you'll be getting in any doors.
+~
+290 ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+~
+~
+0 -1 29070
+DDIR_WEST
+~
+~
+0 -1 29072
+S
+#29072
+South Hallway~
+The hallway makes a slight bend here to break the monotony of the
+long dull hallway. It would probably be easier to guard without the
+bend, but that would take away from the elegance and designing
+technicalities of this part of the palace.
+~
+290 ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+~
+~
+0 -1 29073
+DDIR_EAST
+~
+~
+0 -1 29071
+S
+#29073
+South Hallway~
+The hall bends back off to the west and from here you can see the
+end not too far off. Guards pass you by without any worries,
+knowing there isn't much danger of anyone breaking into these rooms.
+The locks on the doors are huge and won't give easily to tampering.
+~
+290 ROOM_INDOORS SECT_INSIDE
+DDIR_WEST
+~
+~
+0 -1 29074
+DDIR_NORTH
+~
+~
+0 -1 29072
+S
+#29074
+South Hallway~
+The dignitaries are kept under great security down here. Each room
+is locked during the daytime and guarded by a shift of guards that
+constantly wander up and down monitoring the hallway. Each door is
+securely locked and there is no way you'll be getting in any doors.
+~
+290 ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+~
+~
+0 -1 29073
+DDIR_WEST
+~
+~
+0 -1 29075
+S
+#29075
+End of the south hallway~
+The hallway abruptly ends and only leaves you with the decision to
+turn back around and head back into the main body of the palace.
+guards at the end give you a brief look and take you for another
+tourist looking his way around the palace.
+~
+290 ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+~
+~
+0 -1 29074
+S
+#29076
+North Hallway~
+Foreign dignitaries and ambassadors sit around to joke and
+take advantage of the little bit of free time they've acquired
+between meetings and debates on different policies and the
+trade and tariff plans that are discussed here daily.
+~
+290 ROOM_INDOORS SECT_INSIDE
+DDIR_WEST
+~
+~
+0 -1 29077
+DDIR_SOUTH
+~
+~
+0 -1 29068
+S
+#29077
+North Hallway~
+The dignitaries are kept under great security down here. Each room
+is locked during the daytime and guarded by a shift of guards that
+constantly wander up and down monitoring the hallway. Each door is
+securely locked and there is no way you'll be getting in any doors.
+~
+290 ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+~
+~
+0 -1 29076
+DDIR_WEST
+~
+~
+0 -1 29078
+S
+#29078
+North Hallway~
+The hallway makes a slight bend here to break the monotony of the
+long dull hallway. It would probably be easier to guard without the
+bend, but that would take away from the elegance and designing
+technicalities of this part of the palace.
+~
+290 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 29079
+DDIR_EAST
+~
+~
+0 -1 29077
+S
+#29079
+North Hallway~
+The hall bends back off to the west and from here you can see the
+end not too far off. Guards pass you by without any worries,
+knowing there isn't much danger of anyone breaking into these rooms.
+The locks on the doors are huge and won't give easily to tampering.
+~
+290 ROOM_INDOORS SECT_INSIDE
+DDIR_WEST
+~
+~
+0 -1 29080
+DDIR_SOUTH
+~
+~
+0 -1 29078
+S
+#29080
+North Hallway~
+The dignitaries are kept under great security down here. Each room
+is locked during the daytime and guarded by a shift of guards that
+constantly wander up and down monitoring the hallway. Each door is
+securely locked and there is no way you'll be getting in any doors.
+~
+290 ROOM_INDOORS SECT_INSIDE
+DDIR_WEST
+~
+~
+0 -1 29081
+DDIR_EAST
+~
+~
+0 -1 29079
+S
+#29081
+End of the north hallway~
+The hallway abruptly ends and only leaves you with the decision to
+turn back around and head back into the main body of the palace.
+guards at the end give you a brief look and take you for another
+tourist looking his way around the palace.
+~
+290 ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+~
+~
+0 -1 29080
+S
+#29082
+Coliseum Gates~
+The entrance to the Coliseum is flooded with people waiting to come
+in and see the fights. The people heading out have smiles on their
+faces, being satisfied with the days killings and sit around the
+fountain talking about the different fights.
+~
+290 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 29040
+DDIR_EAST
+~
+~
+0 -1 29083
+DDIR_SOUTH
+~
+~
+0 -1 29084
+S
+#29083
+Coliseum Gates~
+The entrance to the Coliseum is flooded with people waiting to come
+in and see the fights. The people heading out have smiles on their
+faces, being satisfied with the days killings and sit around the
+fountain talking about the different fights.
+~
+290 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 29041
+DDIR_WEST
+~
+~
+0 -1 29082
+DDIR_SOUTH
+~
+~
+0 -1 29085
+S
+#29084
+Coliseum~
+The seating area of the Coliseum stretches around the arena and
+completes a circle going all the way around the sandy pit in the
+middle used for the fights. People cheer wildly when a new fight
+starts and cheer even louder when something or someone dies.
+~
+290 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 29082
+DDIR_WEST
+~
+~
+0 -1 29104
+DDIR_EAST
+~
+~
+0 -1 29085
+S
+#29085
+Coliseum~
+Spectators walk to their seats and prepare themselves for a
+crazy day of killing and entertainment. The Coliseum is actually
+a family event center and even kids walk by to their seats to
+see the gladiators fight different animals to the death.
+~
+290 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 29083
+DDIR_WEST
+~
+~
+0 -1 29084
+DDIR_EAST
+~
+~
+0 -1 29086
+S
+#29086
+Coliseum~
+A stairway leads down in the corner of this room only marked by
+a sign saying 'Gladiator Registering Downstairs.' It must go to
+the arena masters office, the guy who organizes and focuses
+himself on setting up the fights and recruiting new gladiators.
+~
+290 ROOM_INDOORS SECT_INSIDE
+DDIR_DOWN
+~
+~
+0 -1 29087
+DDIR_WEST
+~
+~
+0 -1 29085
+DDIR_SOUTH
+~
+~
+0 -1 29088
+S
+#29087
+Arena Master's Office~
+The Arena Master keeps a small office full of miscellaneous
+paperwork and order forms for new monsters and beasts complete
+with catalogs that detail full color pictures of the various
+beings from around the realms.
+~
+290 ROOM_INDOORS SECT_INSIDE
+DDIR_UP
+~
+~
+0 -1 29086
+S
+#29088
+Coliseum~
+A scream echoes up from the arena floor as a gladiator gets
+swiped at by a hungry lion and gets pounced on in less than a
+second afterwards. The volume in the arena goes way up as the
+people cheer and boo depending on their bets.
+~
+290 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 29086
+DDIR_EAST
+~
+~
+0 -1 29089
+S
+#29089
+Coliseum~
+Spectators walk to their seats and prepare themselves for a
+crazy day of killing and entertainment. The Coliseum is actually
+a family event center and even kids walk by to their seats to
+see the gladiators fight different animals to the death.
+~
+290 ROOM_INDOORS SECT_INSIDE
+DDIR_WEST
+~
+~
+0 -1 29088
+DDIR_SOUTH
+~
+~
+0 -1 29090
+S
+#29090
+Coliseum~
+This place is actually pretty sweet. The fights in the arena
+provide enough excitement for a week and the announcer lets
+you know what fights are coming up in the next couple hours.
+As every new gladiator steps in, people start setting up bets
+immediately with each other.
+~
+290 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 29089
+DDIR_SOUTH
+~
+~
+0 -1 29091
+S
+#29091
+Coliseum~
+The seating area of the Coliseum stretches around the arena and
+completes a circle going all the way around the sandy pit in the
+middle used for the fights. People cheer wildly when a new fight
+starts and cheer even louder when something or someone dies.
+~
+290 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 29090
+DDIR_SOUTH
+~
+~
+0 -1 29092
+S
+#29092
+Coliseum~
+Spectators walk to their seats and prepare themselves for a
+crazy day of killing and entertainment. The Coliseum is actually
+a family event center and even kids walk by to their seats to
+see the gladiators fight different animals to the death.
+~
+290 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 29091
+DDIR_WEST
+~
+~
+0 -1 29093
+S
+#29093
+Coliseum~
+This place is actually pretty sweet. The fights in the arena
+provide enough excitement for a week and the announcer lets
+you know what fights are coming up in the next couple hours.
+As every new gladiator steps in, people start setting up bets
+immediately with each other.
+~
+290 ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+~
+~
+0 -1 29092
+DDIR_SOUTH
+~
+~
+0 -1 29094
+S
+#29094
+Coliseum~
+A scream echoes up from the arena floor as a gladiator gets
+swiped at by a hungry lion and gets pounced on in less than a
+second afterwards. The volume in the arena goes way up as the
+people cheer and boo depending on their bets.
+~
+290 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 29093
+DDIR_WEST
+~
+~
+0 -1 29095
+S
+#29095
+Coliseum~
+Spectators walk to their seats and prepare themselves for a
+crazy day of killing and entertainment. The Coliseum is actually
+a family event center and even kids walk by to their seats to
+see the gladiators fight different animals to the death.
+~
+290 ROOM_INDOORS SECT_INSIDE
+DDIR_WEST
+~
+~
+0 -1 29096
+DDIR_EAST
+~
+~
+0 -1 29094
+S
+#29096
+Coliseum~
+The seating area of the Coliseum stretches around the arena and
+completes a circle going all the way around the sandy pit in the
+middle used for the fights. People cheer wildly when a new fight
+starts and cheer even louder when something or someone dies.
+~
+290 ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+~
+~
+0 -1 29095
+DDIR_WEST
+~
+~
+0 -1 29097
+S
+#29097
+Coliseum~
+A scream echoes up from the arena floor as a gladiator gets
+swiped at by a hungry lion and gets pounced on in less than a
+second afterwards. The volume in the arena goes way up as the
+people cheer and boo depending on their bets.
+~
+290 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 29098
+DDIR_EAST
+~
+~
+0 -1 29096
+S
+#29098
+Coliseum~
+A spectator angrily throws down a wad of money when a gladiator
+in the pit quickly slays a large tiger and makes his way back
+out of the arena. This guy obviously made the wrong bet.
+~
+290 ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+~
+~
+0 -1 29097
+DDIR_WEST
+~
+~
+0 -1 29099
+S
+#29099
+Coliseum~
+The seating area of the Coliseum stretches around the arena and
+completes a circle going all the way around the sandy pit in the
+middle used for the fights. People cheer wildly when a new fight
+starts and cheer even louder when something or someone dies.
+~
+290 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 29100
+DDIR_EAST
+~
+~
+0 -1 29098
+S
+#29100
+Coliseum~
+This place is actually pretty sweet. The fights in the arena
+provide enough excitement for a week and the announcer lets
+you know what fights are coming up in the next couple hours.
+As every new gladiator steps in, people start setting up bets
+immediately with each other.
+~
+290 ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+~
+~
+0 -1 29099
+DDIR_NORTH
+~
+~
+0 -1 29101
+S
+#29101
+Coliseum~
+A scream echoes up from the arena floor as a gladiator gets
+swiped at by a hungry lion and gets pounced on in less than a
+second afterwards. The volume in the arena goes way up as the
+people cheer and boo depending on their bets.
+~
+290 ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+~
+~
+0 -1 29100
+DDIR_NORTH
+~
+~
+0 -1 29102
+S
+#29102
+Coliseum~
+The seating area of the Coliseum stretches around the arena and
+completes a circle going all the way around the sandy pit in the
+middle used for the fights. People cheer wildly when a new fight
+starts and cheer even louder when something or someone dies.
+~
+290 ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+~
+~
+0 -1 29101
+DDIR_EAST
+~
+~
+0 -1 29103
+S
+#29103
+Coliseum~
+A spectator angrily throws down a wad of money when a gladiator
+in the pit quickly slays a large tiger and makes his way back
+out of the arena. This guy obviously made the wrong bet.
+~
+290 ROOM_INDOORS SECT_INSIDE
+DDIR_WEST
+~
+~
+0 -1 29102
+DDIR_NORTH
+~
+~
+0 -1 29104
+S
+#29104
+Coliseum~
+Spectators walk to their seats and prepare themselves for a
+crazy day of killing and entertainment. The Coliseum is actually
+a family event center and even kids walk by to their seats to
+see the gladiators fight different animals to the death.
+~
+290 ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+~
+~
+0 -1 29103
+DDIR_EAST
+~
+~
+0 -1 29084
+S
+#29105
+Before the Arena~
+This is the preparation room used to spell yourself up
+and change out your different armors before you take on
+the beasts in the arena and (hopefully) emerge victorious.
+~
+290 ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_EAST
+~
+~
+0 -1 29106
+S
+#29106
+Arena~
+You are in the sand floor arena. Surrounded on all sides by
+spectators, people cheer wildly as you walk out and await
+your impending victory or possibly your impending defeat.
+~
+290 ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_WEST
+~
+~
+0 -1 29105
+S
+#29107
+Empty Section of Hallway~
+Caesar has led you to a remote section of empty hallway to
+continue on with your conversation. This hall is devoid of
+people and you don't remember seeing it when you first
+walked through the palace.
+~
+290 ROOM_INDOORS SECT_INSIDE
+S
+#29108
+Poor Man's Shop~
+The room is cluttered with junk and broken looking items
+that make funky noises when you try to turn them on and
+see what they could possibly be used for. Most of the
+stuff in here is straight garbage and it's a surprise
+this place is even a shop.
+~
+290 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 29042
+S
+#0
+
+#RESETS
+M 0 29000  36 29011
+M 0 29000  36 29012
+M 0 29000  36 29013
+M 0 29000  36 29014
+M 0 29000  36 29015
+M 0 29000  36 29016
+M 0 29000  36 29017
+M 0 29000  36 29018
+M 0 29000  36 29019
+M 0 29000  36 29020
+M 0 29000  36 29021
+M 0 29000  36 29024
+M 0 29000  36 29025
+M 0 29000  36 29026
+M 0 29000  36 29027
+M 0 29000  36 29030
+M 0 29000  36 29031
+M 0 29000  36 29032
+M 0 29000  36 29033
+M 0 29000  36 29034
+M 0 29000  36 29035
+M 0 29000  36 29036
+M 0 29000  36 29037
+M 0 29000  36 29038
+M 0 29000  36 29039
+M 0 29000  36 29040
+M 0 29000  36 29041
+M 0 29000  36 29042
+M 0 29000  36 29043
+M 0 29000  36 29044
+M 0 29000  36 29045
+M 0 29000  36 29046
+M 0 29001  1 29038
+M 0 29002  1 29108
+G 1 29002 1
+M 0 29003  1 29043
+M 0 29004  1 29004
+M 0 29005  1 29006
+M 0 29006  1 29007
+M 0 29007  1 29007
+M 0 29008  1 29060
+M 0 29025  21 29060
+M 0 29025  21 29060
+M 0 29025  21 29056
+M 0 29025  21 29057
+M 0 29025  21 29058
+M 0 29025  21 29059
+M 0 29025  21 29061
+M 0 29025  21 29062
+M 0 29025  21 29063
+M 0 29025  21 29064
+M 0 29025  21 29065
+M 0 29025  21 29066
+M 0 29025  21 29067
+M 0 29025  21 29068
+M 0 29025  21 29069
+M 0 29025  21 29070
+M 0 29025  21 29072
+M 0 29025  21 29074
+M 0 29025  21 29076
+M 0 29025  21 29078
+M 0 29025  21 29080
+M 0 29010  5 29020
+M 0 29010  5 29044
+M 0 29010  5 29017
+M 0 29010  5 29082
+M 0 29010  5 29083
+M 0 29011  1 29047
+M 0 29012  1 29052
+M 0 29013  1 29048
+M 0 29014  1 29050
+M 0 29015  1 29053
+M 0 29016  1 29055
+M 0 29023  1 29054
+M 0 29017  1 29051
+M 0 29018  1 29087
+M 0 29019  1 29106
+M 0 29020  20 29084
+M 0 29020  20 29085
+M 0 29020  20 29086
+M 0 29020  20 29088
+M 0 29020  20 29089
+M 0 29020  20 29090
+M 0 29020  20 29091
+M 0 29020  20 29092
+M 0 29020  20 29093
+M 0 29020  20 29094
+M 0 29020  20 29095
+M 0 29020  20 29096
+M 0 29020  20 29097
+M 0 29020  20 29098
+M 0 29020  20 29099
+M 0 29020  20 29100
+M 0 29020  20 29101
+M 0 29020  20 29102
+M 0 29020  20 29103
+M 0 29020  20 29104
+M 0 29021  1 29049
+G 1 29009 1
+G 1 29010 1
+G 1 29011 1
+M 0 29022  13 29067
+M 0 29022  13 29070
+M 0 29022  13 29071
+M 0 29022  13 29072
+M 0 29022  13 29073
+M 0 29022  13 29074
+M 0 29022  13 29075
+M 0 29022  13 29076
+M 0 29022  13 29077
+M 0 29022  13 29078
+M 0 29022  13 29079
+M 0 29022  13 29080
+M 0 29022  13 29081
+M 0 29024  1 29072
+O 0 29012  1 29022
+O 0 29013  1 29028
+O 0 29014  1 29029
+O 0 29015  1 29023
+O 0 29016  1 29082
+O 0 29017  1 29083
+M 0 29026  1 29077
+S
+
+
+
+
+#SHOPS
+29021 ITEM_TYPE_POTION ITEM_TYPE_SCROLL 0 0 0 100 80 0 23  ;Magic Store
+29002 ITEM_TYPE_TRASH ITEM_TYPE_TREASURE 0 0 0 100 80 0 23  ;Poor guy's shop
+0
+
+
+
+
+#SPECIALS
+S
+
+
+
+
+#$

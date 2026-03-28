@@ -1,0 +1,4078 @@
+#AREA City of Eternity~
+#AUTHORS Mazrim ~
+
+
+
+
+
+#HELPS
+-1 CITYETERNITY 'CITY OF ETERNITY'~
+CITY OF ETERNITY
+The City of Eternity, unlike the Magic Zone, is almost purely my work. When I
+say this, I mean that I borrowed very little from books and/or movies. In any
+case, there are few, if any references to Robert Jordan, David Eddings,
+L.E. Modesitt, or Mercedes Lackey (there is one reference to her Valdemar
+books). But they still rock. *grin* I hope that you enjoy the area!
+
+   - Mazrim Taim, M'Hael -<R.K. SUBANG>-
+
+   Sorry. Felt I needed a signature. Subang forever. *grin*
+
+   Revised by Emperor on July 2nd, 1998 and September 27th, 1998.
+
+
+		(A) The Story 
+		(-) Back
+
+
+{a}CITYETERNITY1
+~
+-1 CITYETERNITY1~
+THE STORY
+In times long past, there was a rather ordinary looking crossroads. Just your
+average, everyday dusty crossing. Then, late one misty night, just as the moon
+reached its peak in the star-dusted sky, thin tendrils of energy began to 
+appear. They reached out, and tapped into long-buried ley lines. The power 
+began to flow back to the strange, wierd light that began to glow in the night.
+
+Suddenly, the light stretched, becoming a fifteen foot high slash in the very
+fabric in time and space. A lone figure hurtled through the dimensional rift,
+bolts of some energy unknown to this world flew after him, turning some of the
+nearby rocks to slag. The figure leapt to its feet and spun around to face the
+rift. He (for the figure was a male of some race) began to intone a spell in
+a sonorous voice. The rift began to close rapidly. One of the things that had
+been pursuing the man lunged at its intended victim. The rift closed on
+the thing, slicing it in half. Even the intense crackling of mage-energies
+was drowned out by the shriek of pain, rage and despair of the thing. As
+the journeyman mage who had been sleeping nearby looked on in horrified
+awe, the figure raised his hand, unleashing a massive blast of power upon
+his enemy. The young mage started to back away, falling on his backside in
+the process.
+
+He knew only one thing. That power had *not* been any sort of magic.
+The newcomer spun around and spotted the young journeyman, who had a very
+frightened look on his face. The man began to howl with laughter. "What's so
+damned funny?!", the mage spluttered furiously. The man replied, "The look on
+your face! And it's just my luck...the first blind rift I make in over a 
+milleniium, and I land on my face in front of a mage..." The mage now saw
+the man's face clearly. He was definitely human, but he had the face of a 
+young man, with eyes that looked like they held the wisdom of the ages. 
+
+As the man looked at the mage curiously, he asked, "What are you doing in
+the middle of nowhere at this time of night, anyways?" "I'm seeking my
+fortune." "A noble goal, my young friend," replied the fellow. With a
+thoughtful look, he said, "May I come with you? I seek knowledge in all
+its forms...and I'm pretty good in a fight." Thus, the partnership between
+a mage known as the traveller known as Hunter came into being. Eventually
+they founded this great city, which even to this day sits upon a lake.
+
+Once the city and its many protections, mundane and magical, were in
+place, Lord Hunter left to build his Tower, where to this day, he works on
+many wonderful and amazing things.
+
+     (-) Back
+
+{-} CITYETERNITY
+~
+0 $~
+
+
+
+
+#RANGES 60 95 0 99
+#FLAGS AFLAG_NODEBUG
+#MOBILES
+#27360
+male eternal citizen~
+A male Eternal Citizen~
+A male citizen of the City of Eternity stands here contently.~
+This is an average, happy citizen of the City of Eternity.~
+ACT_STAY_AREA|ACT_WIMPY|ACT_BODY|ACT_RACE
+0
+200 S
+60 BODY_LEG|BODY_ARM BODY_HEAD|BODY_LEG|BODY_ARM 1d50+2500 2d10+45
+25000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 50~
+mpechoat $n $I smiles at you.
+say Welcome to our city, $n.
+~
+|
+#27361
+female eternal citizen~
+A female Eternal Citizen~
+A female citizen of the City of Eternity stands here contently.~
+This is an average, happy citizen of the City of Eternity.~
+ACT_STAY_AREA|ACT_WIMPY|ACT_BODY|ACT_RACE|ACT_SMART
+0
+200 S
+70 BODY_LEG|BODY_ARM BODY_HEAD|BODY_LEG|BODY_ARM 1d50+3700 3d10+45
+25000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_FEMALE
+>greet_prog 50~
+say Welcome to our city, $n.
+~
+|
+#27362
+evad bartender~
+Evad the Bartender~
+Evad the Bartender stands here behind the bar, ready to serve you.~
+Evad is a tall fellow, with black hair and a grin on his face.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER
+AFF_DETECT_INVIS|AFF_UNDERSTAND|AFF_TONGUES
+0 S
+95 0 0 1d1+15000 1d1+149
+0 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 50~
+say Welcome to our city, $n. 
+say Can I interest you in a beer?
+~
+>rand_prog 5~
+mpecho $I moves his fingertips against the side of his head.
+say Goht any beerz?
+~
+|
+#27363
+Nairb armorer~
+Nairb the Armorer~
+Nairb stands behind the counter, polishing a dagger.~
+Nairb is a rather tall man, and really quite muscular...he must work out.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER
+AFF_DETECT_INVIS|AFF_UNDERSTAND|AFF_TONGUES
+0 S
+95 0 0 1d1+15000 1d1+149
+0 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 50~
+say Welcome to our city, $n. 
+say Care to buy one of my fine weapons, or perhaps some armor?
+~
+>rand_prog 15~
+say Whoa Nellie!
+~
+|
+#27364
+Shyrl innkeeper~
+Shryl the Innkeeper~
+Shryl stands here, watching the guests come and go.~
+Shryl has a pleasant smile, and uses it often.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER
+AFF_DETECT_INVIS|AFF_UNDERSTAND|AFF_TONGUES
+0 S
+95 0 0 1d1+15000 1d1+149
+0 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_FEMALE
+>greet_prog 50~
+say Welcome to the Compass Rose, $n. 
+smile $n
+~
+|
+#27365
+Charles alchemist~
+Charles the Alchemist~
+Charles the Alchemist stands behind the counter, inscribing a scroll.~
+Charles is clean-shaven, and has a look of wisdom about him that is concealed
+by his mischievious grin.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER
+AFF_DETECT_INVIS|AFF_UNDERSTAND|AFF_TONGUES
+0 S
+95 0 0 1d1+15000 1d1+149
+0 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 50~
+say Welcome to our city, $n. 
+say Can I interest you in a potion for stamina?
+~
+>rand_prog 5~
+chuckle 
+mpecho $I grins mischieviously at you.
+beer $i
+say Would you like one?
+~
+>speech_prog yes~
+say Buy some then!
+~
+|
+#27366
+Jennifer petshopkeeper~
+Jennifer~
+Jennifer stands here, cuddling a wienerdog.~
+Jennifer loves animals, and that's probably why she owns this place... :)~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER
+AFF_DETECT_INVIS|AFF_UNDERSTAND|AFF_TONGUES
+0 S
+95 0 0 1d1+15000 1d1+149
+0 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_FEMALE
+#27367
+John shopkeeper~
+John the Salesman~
+John stands here, grinning.~
+John has an easy-going grin on his face.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER
+AFF_DETECT_INVIS|AFF_UNDERSTAND|AFF_TONGUES
+0 S
+95 0 0 1d1+15000 1d1+149
+0 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+#27368
+Marty mortician~
+Marty the Mortician~
+Marty the Mortician is here, peering into the scrying bowl.~
+Marty is a slightly shorter than average fellow, dressed in surprisingly 
+colorful clothing.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER
+AFF_DETECT_INVIS|AFF_UNDERSTAND|AFF_TONGUES
+0 S
+95 0 0 1d1+15000 1d1+149
+0 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+#27369
+illusionist guildmaster~
+The Illustionist Guildmaster~
+The Guildmaster levitates here in the center of a circle of power.~
+This man is truly the epitome of what an illusionist should be...he is truly
+a powerful mage, and not to be trifled with.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_PRACTICE|ACT_SMART|ACT_NO_ORDER
+AFF_DETECT_INVIS|AFF_UNDERSTAND|AFF_TONGUES
+0 S
+95 0 0 1d1+15000 1d1+149
+0 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+#27370
+necromancer guildmaster~
+The Necromancer Guildmaster~
+The Guildmaster stands here, looking at a book.~ 
+This man is legendary among necromancers, as he has instructed many, and is
+renowned for his knowledge and control of magical energies..~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_PRACTICE|ACT_SMART|ACT_NO_ORDER
+AFF_DETECT_INVIS|AFF_UNDERSTAND|AFF_TONGUES
+0 S
+95 0 0 1d1+15000 1d1+149
+0 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+#27371
+rogue guildmaster~
+Dustin the Guildmaster~
+Dustin the Guildmaster is sitting behind a desk, examining a ruby.~
+Your Guildmaster rather looks like a sharp lawyer...or maybe a car salesman.
+He has a distinctly arrogant grin.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_PRACTICE|ACT_SMART|ACT_NO_ORDER
+AFF_DETECT_INVIS|AFF_UNDERSTAND|AFF_TONGUES
+0 S
+95 0 0 1d1+15000 1d1+149
+0 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 75~
+grin $n
+say Welcome to the Rogue's Guild, $n.
+say What can I do you for?
+~
+>rand_prog 5~
+mpecho $I looks at you slyly.
+mpechoat $n Your purse feels a bit lighter.
+grin $n
+say Just kidding.
+mpechoat $n $I hands over most of the gold he took.
+say Well, there *is* a fee for being in my illustrious presence...
+snicker 
+~
+|
+#27372
+jodi monk guildmistress~
+Jodi the Guildmistress~
+Jodi the Guildmistress sits here, in a faint state of meditation.~
+Your Guildmistress is a lovely blonde who has a peaceful look about her. 
+She has a distinctly intelligent gleam in her ice blue eyes...~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_PRACTICE|ACT_SMART|ACT_NO_ORDER
+AFF_DETECT_INVIS|AFF_UNDERSTAND|AFF_TONGUES
+0 S
+95 0 0 1d1+15000 1d1+149
+0 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_FEMALE
+>greet_prog 100~
+smile $n
+if sex ($n) == 1
+  stare $n
+  laugh 
+endif
+~
+>rand_prog 22~
+say Here, this may help.
+cast 'cure critical' $r
+~
+|
+#27373
+sara ranger guildmistress~
+Sara the Guildmistress~
+Sara the Guildmistress is here, ready to help you learn fighting skills.~
+Sara is a tall woman dressed in brown riding leathers. Her emerald green eyes
+look you over measuringly. She is very attractive, with long, curly brown 
+hair,and while she looks friendly enough, you *definitely* don't want to
+annoy her...~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_PRACTICE|ACT_SMART|ACT_NO_ORDER
+AFF_DETECT_INVIS|AFF_UNDERSTAND|AFF_TONGUES
+0 S
+95 0 0 1d1+15000 1d1+149
+0 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_FEMALE
+>greet_prog 100~
+grin $n
+if sex ($n) == 1
+  wink $n
+  say Hey there, stud.
+endif
+~
+|
+#27374
+elementalist guildmistress~
+Elementalist Guildmistress~
+The Guildmistress stands here, contemplating water rising from the floor.~
+This woman is the preeminent elementalist in this part of the world...in fact,
+she helped to build this guildhall. She seems also to be particularly
+astute in the element of water.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_PRACTICE|ACT_SMART|ACT_NO_ORDER
+AFF_DETECT_INVIS|AFF_UNDERSTAND|AFF_TONGUES
+0 S
+95 0 0 1d1+15000 1d1+149
+0 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_FEMALE
+>greet_prog 100~
+smile $n
+say Why, hello there $n.
+~
+>speech_prog water~
+mpecho The Elementalist Guildmaster focuses on the shaft of water.
+mpecho The Elementalist Guildmaster splits off a small pillar.
+mpecho The Elementalist Guildmaster hands the pillar to you.
+mpoload 27371
+mpquiet on
+cast 'giant strength' $n
+mpquiet off
+give pillar $n
+smile 
+say This pillar will quench your thirst when you 'drink' from it
+say Enjoy!
+~
+|
+#27375
+assassin guildmaster~
+The Assassin Guildmaster~
+The Guildmaster stands here, keeping an eye on everyone at once.~
+The Guildmaster may act somewhat paranoid, but then, he didn't live this long
+by being careless. He is a skilled professional.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_PRACTICE|ACT_SMART|ACT_NO_ORDER
+AFF_DETECT_INVIS|AFF_UNDERSTAND|AFF_TONGUES
+0 S
+95 0 0 1d1+15000 1d1+149
+0 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+#27376
+trainer~
+The Trainer~
+A Trainer stands here, ready to help you improve yourself.~
+The trainer is strapping and strong.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_TRAIN|ACT_SMART|ACT_NO_ORDER
+AFF_DETECT_INVIS|AFF_UNDERSTAND|AFF_TONGUES
+0 S
+95 0 0 1d1+15000 1d1+149
+0 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+#27377
+insane citizen eternal~
+The insane Eternal citizen~
+An insane citizen of the City of Eternity is here, gibbering madly.~
+This is a completely mad citizen of this fair city...the years must be 
+getting to him.~
+ACT_STAY_AREA|ACT_WIMPY|ACT_BODY|ACT_RACE|ACT_SMART
+0
+200 S
+80 BODY_LEG|BODY_ARM BODY_HEAD|BODY_LEG|BODY_ARM 1d50+5100 4d10+70
+25000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 50~
+mpecho $I looks around wildly.
+say Pawns...we are all PAWNS!!!
+mpecho $I giggles insanely.
+~
+>rand_prog 10~
+giggle
+mpasound You hear the faint sound of an insane giggle.
+~
+|
+#27378
+eternal city defender~
+A Defender of the Eternal City~
+A Defender of the Eternal City looks out for trouble here.~
+This fellow is *not* someone you want to mess with, he's holding his weapon
+like he knows how to use it very well.~
+ACT_STAY_AREA|ACT_BODY|ACT_RACE
+AFF_SANCTUARY|AFF_HUNT
+400 S
+70 BODY_TORSO|BODY_LEG|BODY_ARM BODY_TORSO|BODY_LEG|BODY_ARM 2d50+5200 3d4+60
+50000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>speech_prog p I have a license to kill~
+if actorhasobjnum(27225)
+  nod $n
+  peace 
+else
+  mpecho $I laughs scornfully.
+  say I think not
+endif
+~
+|
+#27379
+weinerdog~
+The weinerdog~
+The weinerdog follows here, at his master's feet.~
+The weinerdog is a cute little fellow, partially because he more or less looks
+like a hotdog with legs.~
+ACT_WEAK|ACT_BODY|ACT_RACE|ACT_PET
+AFF_PASS_DOOR|AFF_STEALTH|AFF_CHARM
+0 S
+50 BODY_TORSO|BODY_LEG|BODY_TAIL BODY_MOUTH|BODY_TORSO|BODY_TAIL 2D50+1300 3D4+35
+0 RACE_DROW
+POS_STANDING POS_STANDING SEX_MALE
+#27380
+cold-drake~
+The cold-drake~
+A cold-drake trails here, after his master.~
+The cold-drake is hideous...you can't imagine why on earth anyone would buy
+one. It's appearance fills you with disgust and fear.~
+ACT_WEAK|ACT_BODY|ACT_RACE|ACT_PET
+AFF_PASS_DOOR|AFF_CHARM
+0 S
+70 BODY_TORSO|BODY_LEG|BODY_TAIL BODY_MOUTH|BODY_TORSO|BODY_TAIL 2D50+3500 3D4+55
+0 RACE_DROW
+POS_STANDING POS_STANDING SEX_MALE
+#27381
+fire-lizard~
+The fire-lizard~
+A small, charming winged lizard flies here around his master.~
+This little guy is really rather cute.~
+ACT_WEAK|ACT_BODY|ACT_RACE|ACT_PET
+AFF_FLYING|AFF_PASS_DOOR|AFF_CHARM
+0 S
+85 BODY_TORSO|BODY_LEG|BODY_WING|BODY_TAIL BODY_MOUTH|BODY_TORSO|BODY_WING|BODY_TAIL 2d50+6200 3D4+75
+0 RACE_DROW
+POS_STANDING POS_STANDING SEX_MALE
+#27382
+sir james~
+Sir James~
+Sir James stands here, looking like a gentleman.~
+This man has a devil-may-care look about him. He is well dressed and
+groomed. His complexion is nice and almost.. suave.~
+ACT_STAY_AREA|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_SANCTUARY
+500 S
+70 BODY_LEG|BODY_ARM BODY_TORSO|BODY_LEG|BODY_ARM 1d50+4500 3d4+60
+50000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if quest (0, 4, $n) == 0
+ tell $n The name's James. Sir James.
+ tell $n Pardon me, but I could use some help...
+else
+if quest (0, 4, $n) == 2
+ tell $n Hi $n
+ tell $n I hope your quest to fix the sundial is going ok
+else
+endif
+endif
+~
+>speech_prog help~
+if quest(0, 4, $n) > 0
+else
+ say Well, my sundial seems to be having a bit of trouble.  
+ say Some of the 'special features' aren't working *quite* right.
+ say Would you be so good as to take it to my friend for me?  
+ say I need it fixed and Sir Hugh is really quite good with gadgets.
+ mpmset $n quest 0 4 1
+endif
+~
+>speech_prog p special features~
+if quest (0, 4, $n) == 1
+ mpecho $I waves his hand in the air vaguely.
+ say Oh, the options are just little things that I use 
+ say from time to time in my line of work, that's all.
+ grin $n
+ say So will you help then?
+else
+endif
+~
+>speech_prog yes~
+if quest (0, 4, $n) == 1
+  if hasobjnum(27390)
+     mpquiet on 
+     remove sundial
+     cast 'giant strength' $n
+     mpquiet off
+     say Excellent!
+     give I27390 $n
+  else
+     say Excellent!
+     say Now, where *did* I put that blasted thing?
+     say Ah yes, now I remember!
+     mpecho $I pulls a sundial out of his pocket.
+     mpoload 27390
+     mpquiet on
+     cast 'giant strength' $n
+     mpquiet off
+     give I27390 $n
+  endif
+ say Oh yes, I almost forgot...  
+ say Take this parchment and use it to get into Hugh's Workshop.
+ say It's hidden of course... just look for the portal.
+ say Oh, by the way, should you lose this thing
+ say just come to me, and say 'parchment'.
+ say Thanks!
+ mpoload 27392
+ give I27392 $n
+ mpmset $n quest 0 4 2
+endif
+~
+>speech_prog parchment~
+if quest (0,4,$n) >= 2
+  nod $n
+  say Here you go.
+  mpoload 27392
+  mpquiet on
+  cast 'giant strength' $n
+  mpquiet off
+  give I27392 $n
+endif
+~
+>give_prog I27391~
+if quest (0,4,$n) == 3
+  nod $n
+  tell $n Thank you so very much.  
+  tell $n I appreciate your helping me out.
+  tell $n Hmm... Would you be interested in some extra work?
+  mpmset $n quest 0 4 4
+  mpjunk I27391
+endif
+~
+>speech_prog p more careful~
+if quest (0,4,$n) >= 3
+  mpecho $I looks slightly embarrased.
+  tell $n I try to follow his advice.
+  tell $n My line of work can be a bit rough though.
+  smile
+endif
+~
+>speech_prog work~
+if quest (0, 4, $n) == 4
+  tell $n Well, you have been quite a help...  
+  tell $n There's this secret ledger that I really need...
+  tell $n If you can get it for me, I'll make it worth your while.
+  tell $n If you are interested, just say: 'I will do it!'
+  mpmset $n quest 0 4 5
+endif
+~
+>speech_prog p I will do it!~
+if quest (0, 4, $n) == 5
+  mpmset $n quest 0 4 6
+  nod $n
+  tell $n OK! Now, the reason I need your help 
+  tell $n is because I can't get near the place 
+  tell $n of the fellow who has the ledger
+  tell $n There's just too many people there watching for me
+  tell $n However, *you* could probably slip past without difficulty
+else
+endif
+~
+>speech_prog difficulty~
+if quest (0, 4, $n) == 6
+  tell $n The person to look for goes by the name: Lethalis Darkmaster.
+  tell $n Darkmaster operates a rather seedy pub... 
+  tell $n Go to the back of the pub and sneak into the cellar.
+  tell $n There's a mercenary guard there...  
+else
+endif
+~
+>speech_prog guard~
+if quest (0, 4, $n) == 6
+  tell $n The guard *might* let you by if you ask about the cellar.
+  tell $n I wouldn't try him unless the Lord Hunter himself was with me.
+  tell $n Nonetheless, he's located in the cellar...
+else
+endif
+~
+>speech_prog cellar~
+if quest (0,4,$n) == 6
+  tell $n The cellar is a storage place for ale and beer 
+  tell $n It's not exactly what you would call high quality. 
+  tell $n Actually, I've tasted better wet socks and horse piss.
+  snicker
+  tell $n Anyways, you are looking for some sort of hidden entrance...  
+else
+endif
+~
+>speech_prog entrance~
+if quest (0, 4, $n) == 6
+  tell $n Be cautioned though. There are guards on the other side.  
+  tell $n Once you are past the guards, go up into the office.
+  tell $n Search his desk for the hidden ledger and bring it to me
+  tell $n Oh yeah, that reminds me, I almost forgot...
+else
+endif
+~
+>speech_prog forgot~ 
+if quest (0, 4, $n) == 6
+  tell $n Before you do anything more, go see Hugh
+  tell $n Tell him that you need some 'help'.  
+  tell $n He'll provide you with something 
+  tell $n you'll need for the task.
+  tell $n Anyways, once you have the ledger,
+  tell $n bring it back to me for your reward.
+  tell $n Good luck!
+  mpmset $n quest 0 4 7
+endif
+~
+>give_prog I27402~
+if quest (0,4,$n) == 7
+  gasp $n
+  say Dear Order, you've managed to get it!
+  say Thank you ever so much!  Here, take this for your help.
+  say It may prove useful in the future.
+  mpoload 27410
+  mpmset $n quest 0 4 8
+  mpquiet on
+  cast 'giant strength' $n
+  mpquiet off
+  give I27410 $n
+  tell $n Thanks again!
+else
+endif
+~
+|
+#27383
+mercenary guard~
+The Mercenary Guard~
+A Mercenary Guard stands here, ready for a fight.~
+When you were growing up, you heard fantastic stories of mercenary fighters 
+who could make the most hardened fighter turn tail by looking at him 
+cross-eyed.  But you never believed them. Until now. You wonder if he
+may be persuaded to let you into the CELLAR.~
+ACT_NO_ORDER|ACT_BODY|ACT_RACE|ACT_SENTINEL|ACT_SMART
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_INFRARED|AFF_SANCTUARY
+0 S
+130 BODY_ARM|BODY_LEG BODY_ARM|BODY_LEG 1d1+26999 1d1+139
+100000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+mpecho $I looks at you coolly, sizing you up.
+mpecho $I decides that you are not a threat.
+laugh $n
+say If you don't make trouble, I won't rearrange your organs.
+~
+>speech_prog cellar~
+mpecho $I looks at you carefully.
+say Sure, I can let you in if you make it worth my while...
+say As long as I don't let that so-called spy in...
+say There's not much in there anyways...  
+say Either cough up cash, or find something that I like.
+~
+>speech_prog p cash~
+groan
+say What are you, stupid?  Gold.  
+say Make it half a mill, and I'll let you in.
+~
+>bribe_prog 500000~
+mpecho $I counts the gold carefully, making sure it's real.
+nod
+say Ok, very well.  Here you go...
+mpecho $I opens the cellar.
+mpechoat $n You walk into the cellar.
+mpechoaround $n $n walks into the cellar.
+mpquiet on
+mptransfer $n 27475
+mpquiet off
+mpecho $I closes the cellar.
+~
+>give_prog I27377~
+mpecho $I looks at the shot carefully.
+mpecho $I holds it up to the light.
+shrug
+mpecho $I slams the shot!
+mpjunk I27377
+say AH!
+say That really hits the spot. You're an ok fellow. Thanks, man!
+say Well, if you really want in...all right... in you go.
+mpecho $I opens the cellar.
+mpechoat $n You walk into the cellar.
+mpechoaround $n $n walks into the cellar.
+mpquiet on
+mptransfer $n 27475
+mpquiet off
+mpecho $I closes the cellar.
+~
+>give_prog I27379~
+mpecho $I looks at the beer carefully.
+mpecho $I holds it up to the light.
+shrug
+emote downs the beer in one shot!
+mpjunk I27379
+say AH!
+say That really hits the spot. You're an ok fellow. Thanks, man!
+say Well, if you really want in...all right... in you go.
+mpecho $I opens the cellar.
+mpechoat $n You walk into the cellar.
+mpechoaround $n $n walks into the cellar.
+mpquiet on
+mptransfer $n 27475
+mpquiet off
+mpecho $I closes the cellar.
+~
+>give_prog I27408~
+mpecho $I looks at the shot carefully. 
+mpecho $I holds it up to the light.
+shrug
+say What the hell...
+mpecho $I slams the shot!
+mpjunk I27408
+say BLECK! YOU CALL THAT A SHOT?! GET THE HELL OUT OF HERE!
+mpecho $I spits out the drink, spraying $n in the face!
+mpechoaround $n $I picks $n up and THROWS them from the bar.
+mpechoat $n $I picks you up and THROWS you from the bar.
+mpechoat $n As you slam into the ground, you lose consciousness.
+mpquiet on
+mpforce $n sleep
+mpquiet off
+mptransfer $n 27483
+mpat 27483 mpecho A body flies out of the tavern!
+mpat 27483 mpecho The body rolls to a stop in the street.
+~
+>give_prog I27409~
+mpecho $I looks at the shot carefully. 
+mpecho $I holds it up to the light.
+shrug
+say What the hell...
+mpecho $I slams the shot!
+mpjunk I27409
+say BLECK! YOU CALL THAT A SHOT?! GET THE HELL OUT OF HERE!
+mpecho $I spits out the drink, spraying $n in the face!
+mpechoaround $n $I picks $n up and THROWS them from the bar.
+mpechoat $n $I picks you up and THROWS you from the bar.
+mpechoat $n As you slam into the ground, you lose consciousness.
+mpquiet on
+mpforce $n sleep
+mpquiet off
+mptransfer $n 27483
+mpat 27483 mpecho A body flies out of the tavern!
+mpat 27483 mpecho The body rolls to a stop in the street.
+~
+>rand_prog 10~
+growl
+say This blows. Eight hour shifts, and next to no breaks...
+say A good drink would taste great right about now.
+~
+|
+#27384
+statue armored~
+The Armored Statue~
+An Armored Statue stands at attention here.~
+The statue stands at eternal attention next to the gate. The armor that he 
+wears is unlike anything you have ever seen, smooth and flowing. There appear
+to be some kind of runes engraved in his armor. He is watching you...~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_SANCTUARY
+1000 S
+90 BODY_LEG|BODY_ARM BODY_TORSO|BODY_LEG|BODY_ARM 2d1000+20000 3d10+90
+50000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 50~
+mpechoat $n $I smiles at you.
+tell $n Welcome to the City of Eternity, $n.
+tell $n Enjoy your stay.
+~
+>give_prog I27387~
+if quest (0, 1, $o) == 0
+   mposet inducer quest 0 1 1
+   mpecho A blue flash flames through the sky!
+   mpecho The inducer releases it's spell.
+   sleep
+endif
+if quest (0, 1, $o) == 1
+   mpecho A blue flash flames through the sky!
+   mpecho The inducer releases it's spell.
+   mpjunk I27387
+   sleep
+endif
+~
+>fight_prog 25~
+if rand(20)
+ mpecho $I twists the magic protecting you, shattering them!
+ mpquiet on
+ cast 'dispel magic' $n
+ mpquiet off
+else
+ mpecho $I taps a nearby node and channels the power.
+ cast 'fireball' $n
+endif
+~
+>speech_prog p version~
+say This is version 4.0 of the City of Eternity 
+say coded by Mazrim Taim (winchell@cs.ucr.edu)
+say with help from Emperor 
+say Thanks for asking.
+~
+>death_prog 100~
+if rand(15)
+   mpasound An Armored Statue howls in rage and despair!
+   mpecho $I ruthlessly taps deep into a nearby node.
+   mpecho $I utters the words 'dujak zfroli'.
+   mpasound An Armored Statue calls down his Final Strike!
+   mpecho $I disintegrates in a blinding explosion.
+   mass fireball
+   mass fireball
+endif
+mpquiet on
+remove all
+drop all
+mpquiet off
+~
+|
+#27385
+Sir Hugh engineer~
+Sir Hugh~
+Sir Hugh, the brilliant engineer, stands here working on a project.~
+Sir Hugh seems to be a rather quiet, unassuming sort of fellow, but he has
+a definite gleam of genius in his eyes.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_RACE
+AFF_SANCTUARY
+500 S
+95 0 0 3d100+10000 3d4+86
+50000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>rand_prog 90~
+if quest (0, 4, $r) == 2
+  say Hello there, $r. James said he'd send someone along.
+  say The sundial is broken right?
+else
+endif
+~
+>speech_prog yes~
+if quest (0, 4, $n) == 2
+  nod
+  sigh
+  say I have fixed that blasted thing so many times...
+  say Well, no matter.  Let me see what I can do with it.
+  say Give it to me.
+endif
+~
+>give_prog I27390~
+if quest (0, 4, $n) == 2
+  say Hmm...
+  mpecho $I takes the sundial over to a workbench, and fiddles with it.
+  say Ah. Here's the problem... and this should about fix it.
+  mpjunk I27390
+  mpoload 27391
+  mpmset $n quest 0 4 3
+  mpquiet on
+  cast 'giant strength' $n
+  mpquiet off
+  give I27391 $n
+  say There you are.  
+  say Please give it back to James
+  say Be sure to tell him to be more careful in the future.
+else
+  mpecho $I looks quite puzzled.
+  say And just what was the purpose of giving me this?
+  give I27390 $n
+endif
+~
+>speech_prog equipment help~
+if quest (0,4,$n) >= 7
+  say Oho!  So James talked you into helping him, eh?  
+  say Well, in the event that you should need it, here's a sundial 
+  say similar to the one that James has.
+  say Just look at the sundial for a listing of special options. 
+  say This particular model will search for hidden compartments 
+  say and help open them. Really rather handy, in the proper situation.
+  mpoload 27406
+  mpquiet on
+  cast 'giant strength' $n
+  mpquiet off
+  give I27406 $n
+  say Hmm... I've also started working on something called an 'inducer'.
+endif
+~
+>speech_prog inducer~
+if quest (0,4,$n) >= 7 
+  nod
+  say You know how the guards at the gates can be a bit bothersome?
+  say Well, I found a way to...get them out of the way
+  smile
+  say I call it a 'sleep inducer'.  
+  say When you give it to them, and they just nod off. 
+  snicker
+  say Simply say 'sure' if you would like one
+endif
+~
+>speech_prog sure~
+if quest (0,4,$n) >= 7
+  say Ok, here you go.
+  mpquiet on
+  cast 'giant strength' $n
+  mpquiet off
+  mpoload 27387
+  mposet inducer quest 0 1 0
+  say Now remember, it only has two charges on it.  
+  say Come back to me and say 'another' if you need a replacement.
+  give inducer $n
+endif
+~
+>speech_prog another~
+if quest (0,4,$n) >= 7
+  if actorhasobjnum(27387)
+     poke $n
+     say You already have one.
+     snicker
+  else
+     nod $n
+     mpoload 27387
+     mposet inducer 0 1 0
+     give inducer $n
+     say There you go.
+  endif 
+endif 
+~ 
+| 
+#27386 
+ethereal doormandude~ 
+The Ethereal doorman dude~ 
+This guy will create a door for you...~ 
+~
+ACT_WEAK|ACT_NO_ORDER|ACT_BODY|ACT_RACE|ACT_UNDEAD|ACT_SENTINEL
+AFF_DETECT_INVIS|AFF_INFRARED|AFF_ETHEREAL 0 S 95 0 BODY_MOUTH 1d1+9999
+1d1+91 0 RACE_HUMAN POS_STANDING POS_STANDING SEX_NEUTRAL 
+>speech_prog p Open the door, and let me in!~ 
+if actorhasobjnum(27392) 
+  mpechoat $n .          *ACCESS APPROVED*
+  mpechoat $n .             *STAND BY*
+endif
+~
+|
+#27388
+large hideous rat~
+A large, hideous rat~
+A large, hideous rat scurries around here, scrounging for discarded food.~
+This is totally wrong. ***NO*** rat should be allowed to grow ***THIS BIG***.
+{110}KILL IT!!! KILL IT QUICK, BEFORE IT BREEDS ANY MORE OF THEM!!!{300} 
+You've never seen a rat this large. It's about the size of a large dog,
+and so incredibly UGLY that you have to supress your gag reflex. It's also
+emitting an unbelievably foul odor.~
+ACT_SCAVENGER|ACT_BODY|ACT_RACE AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_SNEAK|AFF_HUNT 0 S
+75 BODY_LEG|BODY_HEAD|BODY_TAIL BODY_MOUTH|BODY_HEAD|BODY_TORSO|BODY_CLAW|BODY_TAIL
+3D50+4700 3D4+64 
+60000 RACE_DROW
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if rand(20)
+ mpechoat $n $I stares at you with it's beady eyes.
+else
+if rand(30)
+ mpechoat $n You feel a chill as the rat stares at you coldly.
+endif
+endif
+~
+>fight_prog 15~
+mpecho $I lashes out at you with it's claws!
+mpquiet on
+cast 'poison' $n
+cast 'weaken' $n
+mpquiet off
+~
+|
+#27389
+man freelance guard~
+The freelance guard~
+A man in cheap armor stands here, with a bored expression on his face.~
+This man is hardly what you would call a reliable guard.  He smells like a
+cheap brewery, and his attention span seems to be quite short.  His eyes look
+like they are poached in bacon grease.~
+ACT_BODY|ACT_RACE|ACT_SENTINEL|ACT_SMART
+0 
+0
+S
+95 BODY_LEG|BODY_ARM BODY_LEG|BODY_ARM 3d50+9999 3d4+90
+0 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>death_prog 25~
+mpecho $I shouts 'GUARDS! KILL THIS BASTARD!'
+mpmload 27389
+mpecho Another guard comes rushing in to help!
+mpforce 27389 mpkill $n
+~
+|
+#27390
+sleazy bartender~
+The sleazy bartender~
+A sleazy looking bartender stands here, tending bar.~
+This man looks like the sort that would steal your socks, and then sell them
+back to you.  Not the sort to trust.~
+ACT_RACE|ACT_SENTINEL|ACT_SMART|ACT_NO_ORDER
+AFF_TONGUES
+-400
+S
+95 0 0 3d50+9999 3d4+100
+0 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+look $n
+~
+>rand_prog 17~
+mpecho $I washes a beer glass.
+~
+|
+#0
+
+
+
+
+#OBJECTS
+#27361
+large tome magic book spells~
+a large tome of magic spells~
+This book is heavy and incredibly old, yet seems to be new.~
+The tome is locked shut by some powerful binding spells, and has runes on it.~
+ITEM_TYPE_TREASURE
+ITEM_FLAG_GLOW|ITEM_FLAG_HUM|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 0 0
+15 100000 60
+E
+binding spells lock~
+The spells of binding are seamless, and instill a desire to not try to 
+break them.~
+E
+runes~
+The runes on the cover, as best you can make out, say:
+		      Tome of Greater Magicks~
+#27362
+cool frosty beer~
+a cool, frosty beer~
+A tall, cool beer sits here.~
+It looks like a beer. It smells like a beer. So why is the bloody thing 
+*GLOWING*?!?!~
+ITEM_TYPE_POTION
+ITEM_FLAG_GLOW|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+30 SPELL_DETECT_INVIS SPELL_DETECT_HIDDEN SPELL_INFRAVISION
+1 75000 60
+A
+APPLY_WIS -5
+#27363
+firebird scroll~
+a firebird scroll~
+A scroll which appears to have been written in flaming runes lies here.~
+There is a firebird embossed on the top of the scroll.~
+ITEM_TYPE_SCROLL
+ITEM_FLAG_GLOW|ITEM_FLAG_NOREMOVE|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+30 SPELL_FIREBALL SPELL_FIREBALL SPELL_FIREBALL
+1 90000 75
+E
+firebird~
+The firebird is throwing off sparks of flame...it looks like a flying 
+firework.~
+#27364
+carbonated soda~
+a carbonated soda~
+A bottle of bubbling liquid sits here.~
+This is a bottle of carbonated soda...the bubbles tickle your nose. :)~
+ITEM_TYPE_POTION
+ITEM_FLAG_GLOW|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+30 SPELL_HEAL SPELL_BLINDNESS -1
+1 100000 60
+#27365
+vial pure adrenaline~
+a vial of pure adrenaline~
+A small vial of pure adrenaline lies here.~
+This is almost entirely pure energy...in a liquid form!~
+ITEM_TYPE_POTION
+ITEM_FLAG_MAGIC|ITEM_FLAG_NODROP|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+30 SPELL_GIANT_STRENGTH SPELL_HASTE SPELL_CURE_LIGHT
+1 100000 60
+A
+APPLY_WIS -5
+#27366
+buzzing staff~
+a buzzing staff~
+A buzzing staff lies here on the ground.~
+This staff is vibrating *VERY* rapidly. There seems to be an inscription on 
+the base.~
+ITEM_TYPE_STAFF
+ITEM_FLAG_HUM|ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+30 5 5 SPELL_HASTE
+5 75000 60
+E
+inscription~
+Made in the City of Eternity.
+4 small shards of amber required. :)~
+A
+APPLY_WIS -6
+#27367
+scroll protection~
+a scroll of protection~
+A scroll lies here on the ground.~
+This scroll has a faint glow to it.~
+ITEM_TYPE_SCROLL
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+30 SPELL_PROTECTION_EVIL SPELL_SANCTUARY SPELL_FLY
+1 70000 60
+A
+APPLY_WIS -5
+#27368
+scroll defense~
+a scroll of defense~
+A scroll lies here on the ground.~
+This scroll is inscribed in gray runes.~
+ITEM_TYPE_SCROLL
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+30 SPELL_SHIELD SPELL_STONE_SKIN SPELL_MIRROR_IMAGE
+1 70000 60
+A
+APPLY_WIS -5
+#27369
+scroll recovery~
+a scroll of recovery~
+A scroll lies here on the ground.~
+This scroll is inscribed in bright green runes.~
+ITEM_TYPE_SCROLL
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+30 SPELL_CURE_LIGHT SPELL_CURE_SERIOUS SPELL_CURE_CRITICAL
+1 100000 60
+A
+APPLY_WIS -5
+#27370
+shaft water~
+a shaft of water~
+A shaft of water rises from the ground.~
+This shaft of water looks very cool and refreshing.~
+ITEM_TYPE_FOUNTAIN
+ITEM_FLAG_LEVEL
+0
+0 0 0 0
+1000 0 60
+#27371
+small pillar of water smallpillarofwater~
+a small pillar of water~
+A small pillar of water rises from the ground.~
+This pillar of water looks very cool and refreshing.~
+ITEM_TYPE_TREASURE
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+0 0 0 0
+25 50000 60
+P 1
+TRIG_COMMAND 100 drink
+OPROG_OBJECT_QUEST_IF 0 3 = 4 3 2
+P 2
+TRIG_VOID
+OPROG_GOD_COMMAND
+MPECHOAROUND $ $ drinks deeply from the small pillar of water.&
+MPECHOAT $ You drink deeply from the small pillar of water.&
+mpmset $ thirst 24&
+mpechoat $ You are no longer thirsty.~
+P 2
+TRIG_VOID
+OPROG_QUEST_ADD 0 3 1
+P 3 
+TRIG_VOID
+OPROG_GOD_COMMAND
+MPECHOAROUND $ $ drinks deeply from the small pillar of water.&
+MPECHOAT $ You drink deeply from the small pillar of water.&
+mpmset $ thirst 24&
+mpechoat $ You are no longer thirsty.~
+P 3
+TRIG_VOID
+OPROG_JUNK
+#27372
+ball of water~
+a ball of water~
+A strange-looking ball of water hovers above the ground.~
+This ball of water looks very cool and refreshing.~
+ITEM_TYPE_DRINK_CON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+20 20 LIQ_WATER NOT_POISONED
+1 500 60
+#27373
+flannel shirt~
+a warm flannel shirt~
+A plaid shirt lies here.~
+This shirt looks very comfortable...and quite warm.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_BODY
+15 0 0 0
+3 50000 60
+#27374
+suit duranium battlearmor~
+a suit of duranium battlearmor~
+A suit of some alloy lies here on the ground.~
+This armor is surprisingly lightweight and strong...~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_NOREMOVE|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_BODY
+12 0 0 0
+30 500000 70
+A
+APPLY_DAMROLL 5
+#27375
+duranium leggings~
+duranium leggings~
+A pair of metallic leggings lie here on the ground.~
+These leggings are remarkably lightweight and strong...~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_LEGS
+17 0 0 0
+10 500000 70
+#27376
+prime rib dinner~
+a prime rib dinner~
+A yummy prime rib dinner lies here waiting to be eaten.~
+The prime rib has been well-done.~
+ITEM_TYPE_FOOD
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+24 0 0 NOT_POISONED
+10 1000 50
+#27377
+shot tequila~
+a shot of tequila~
+A shot glass of tequila sits here, waiting to be drunk.~
+This is a shot glass of Jose Cuervo...who is not your friend. :)~
+ITEM_TYPE_DRINK_CON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+1 1 LIQ_FIREBRT NOT_POISONED
+1 50 5
+#27378
+bowl corn chowder~
+a bowl of clam chowder~
+A steaming bowl of clam chowder~
+A bowl of clam chowder sits here, steaming. It smells pretty good.~
+ITEM_TYPE_FOOD
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+5 0 0 NOT_POISONED
+5 15 5
+#27379
+pilsner~
+a pilsner of beer~
+A tall pilsner sits here.~
+It's a clear golden yellow.~
+ITEM_TYPE_DRINK_CON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+1 1 LIQ_BEER NOT_POISONED
+2 25 5
+#27380
+black tuxedo~
+a black tuxedo~
+A black tuxedo lies here on the ground.~
+This tux is of very high quality...and it even seems to have hidden pockets.~
+ITEM_TYPE_CONTAINER
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_ABOUT
+250 0 -1 0
+10 400000 70
+A
+APPLY_DEX 2
+A
+APPLY_AC -13
+#27381
+white dress shirt~
+a white dress shirt~
+A white dress shirt lies here on the ground.~
+This shirt is made of very fine material...it is of top quality.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_BODY
+17 0 0 0
+5 300000 70
+#27382
+pair black dress shoes~
+a pair of black dress shoes~
+A pair of shiny dress shoes gleam in the light.~
+These are very spiffy shoes...wait a second, what does this little tag say?~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_GLOW|ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_FEET
+16 0 0 0
+8 300000 70
+E
+tag~
+Made in the City of Eternity.~
+#27383
+black dress pants~
+some black dress pants~
+A pair of black dress pants lie here on the ground.~
+This is a very fine pair of dress pants.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_NOREMOVE|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_LEGS
+12 0 0 0
+10 300000 70
+A
+APPLY_HITROLL 8
+A
+APPLY_DEX 2
+#27384
+license kill~
+A license to kill~
+A piece of glowing parchment lies on the ground.~
+This document grants Sir James the right to be a killer in the City of Eternity,
+the Magic Zone, and the Tower of Time.~
+ITEM_TYPE_TREASURE
+ITEM_FLAG_GLOW|ITEM_FLAG_MAGIC|ITEM_FLAG_INVENTORY|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 0 0
+1 1000000 70
+#27385
+warm parka~
+a warm parka~
+A bulky parka lies here on the ground...it sure looks warm...~
+This is a down-filled parka.  It is lightweight yet warm.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_ABOUT
+16 0 0 0
+10 60000 70
+#27386
+duranium bracer~
+a duranium bracer~
+A bracer made from some shiny metal alloy lies here on the ground.~
+This bracer is surprisingly lightweight and strong...~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WRIST
+17 0 0 0
+10 500000 70
+#27387
+sleep inducer~
+a sleep inducer~
+A crystalline rod lies here on the ground.~
+The rod has a fine metal wire wrapped around its base. Colors of every hue
+drift inside the rod. There are two words engraved in the plating which   
+joins the handle and the crystal...~
+ITEM_TYPE_TREASURE
+ITEM_FLAG_GLOW|ITEM_FLAG_HUM|ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+0 0 0 0
+15 100000 80
+E
+words~
+The words engraved upon the handle are 'emetsova' and 'omcaze'.~
+#27388
+cuendillar battle armor heart stone~
+cuendillar battle armor~
+There is a suit of armor lying here...it seems incredibly durable...~
+This armor is extremely heavy, and seems to be able to withstand all that
+is thrown at it.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_BODY
+22 0 0 0
+150 1000000 90
+A
+APPLY_SAVING_SPELL -5
+A
+APPLY_DAMROLL -10
+#27389
+cuendillar leggings heart stone~
+cuendillar leggings~
+There are a pair of leggings lying here...they seem incredibly durable...~
+This leggings are extremely heavy, and seems to be able to withstand all 
+that is thrown at it.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_NOREMOVE|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_LEGS
+23 0 0 0
+150 1000000 90
+A
+APPLY_SAVING_SPELL 10
+A
+APPLY_HITROLL -6
+A
+APPLY_DAMROLL -6
+#27390
+sundial broken~
+a broken sundial~
+A high-quality sundial glows somewhat erratically.~
+This is really quite a nice sundial...hmmm...it doesn't seem to be quite 
+normal. The shielding is gone, so it doesn't work right, either.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WRIST
+15 0 0 0
+2 500000 80
+#27391
+sundial shielded working~
+a shielded sundial~
+A high quality sundial lies here.~
+This is really quite a nice sundial...hmmm...it doesn't seem to be quite 
+normal. It's not glowing...wait a second...what's this inscription say?~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WRIST
+12 0 0 0
+2 800000 85
+A
+APPLY_HITROLL 10
+E
+inscription~
+		     Made in the City of Eternity.~
+#27392
+piece parchment card~
+a piece of parchment~
+A card made of parchment lies here.~
+This card is brilliant white. There are some strange words written on the
+front.~
+ITEM_TYPE_TREASURE
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 0 0
+1 100000 60
+E
+words~
+._________________________________________________________
+/                                                         \
+|             Command for operation: 'tmofi'              |
+\_________________________________________________________/~
+P 1
+TRIG_UNKNOWN 100 tmofi
+OPROG_IF OIF_USER_ROOM_NUM = 27375 3 2
+P 2
+TRIG_VOID
+OPROG_ECHO You can't do that here.~
+P 3
+TRIG_VOID
+OPROG_ECHO You slide the card between the blocks near the portal.~
+P 3
+TRIG_VOID
+OPROG_GOD_COMMAND mpechoaround $ $ vanishes in a beam of light.~
+P 3
+TRIG_VOID
+OPROG_ECHO The blocks click and you disappear through the portal!~
+P 3
+TRIG_VOID
+OPROG_GOD_COMMAND mpgoto 27409~
+#27396
+large pile gold~
+a large pile of gold~
+A large pile of gold sits here.~
+This is gold...what did you expect to see?~
+ITEM_TYPE_MONEY
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+900000 0 0 0
+1 900000 1
+#27397
+huge pile gold~
+a *huge* pile of gold~
+A huge pile of gold sits here.~
+This is gold, what did you expect?~
+ITEM_TYPE_MONEY
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+500000 0 0 0
+1 500000 1
+#27398
+cold beer~
+a cold beer~
+A tall, cold beer sits here.~
+It looks like a beer. It smells like a beer. So why is the bloody thing 
+*GLOWING*?!?!~
+ITEM_TYPE_POTION
+ITEM_FLAG_GLOW|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+30 SPELL_PASS_DOOR SPELL_DETECT_EVIL SPELL_DETECT_MAGIC
+1 75000 60
+A
+APPLY_WIS -5
+#27399
+portable hole~
+A portable hole~
+A strange large glowing metal ring slowly spins in midair.~ 
+This is a strange metallic ring, warm to the touch, which has the strangest 
+colors swirling inside of it.~
+ITEM_TYPE_CONTAINER
+ITEM_FLAG_GLOW|ITEM_FLAG_HUM|ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+1000 0 -1 0
+1 400000 75
+#27400
+large lorken desk~
+A large lorken desk~
+A large, well-crafted desk made of black lorken sits here.~
+This desk, crafted of black lorken, is probably the finest that you have ever 
+seen in your life.  You hate to think of how much it cost, and how heavy it 
+is.~
+ITEM_TYPE_FURNITURE
+ITEM_FLAG_LEVEL
+0
+0 0 0 0
+1000 0 1
+#27401
+secret compartment~
+The secret compartment~
+~
+This compartment has been cleverly concealed in the floor under the desk.~
+ITEM_TYPE_CONTAINER
+ITEM_FLAG_LEVEL
+0
+100 1|8 27407 0
+1 0 20
+#27402
+secret ledger~
+A secret ledger~
+A large book with a lock on it lies here.~
+This ledger has some unrecognizable script on it, and has been both physically
+and magically locked.~
+ITEM_TYPE_TRASH
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 0 0
+10 1 1
+#27403
+painting target~
+A throwing dagger target~
+A throwing dagger target hangs on the wall facing the desk.~
+This target has had a lot of use.  The image of Sir James which is on it 
+is still very recognizable though.~
+ITEM_TYPE_CONTAINER
+ITEM_FLAG_LEVEL
+0
+100 8 27407 0
+100 0 20
+#27404
+fine jeweled throwing dagger~
+a fine jeweled throwing dagger~
+A beautifully crafted dagger lies here on the ground.~
+This dagger is crafted with a skill unlike anything that you have ever seen 
+before.  The balance is perfect for both throwing and close infighting.  The 
+blade is like a razor, and the hilt is of amazing workmanship.  The 
+pommelstone of this dagger is a blood-red ruby of perfect clarity.  You would 
+not be too surprised to learn that blood had been shed over this blade.~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 7 6 2
+5 250000 65
+#27405
+fountain~
+A fountain~
+An exquisite fountain spouts glowing, blue water here.~
+This fountain is one of the more interesting fountains that you have seen in 
+your travels.  It has been carefully shaped with magical power, and a sense 
+of peace and harmony radiate from it.  While the bluish glow in the water is 
+unusual, it somehow seems to fit in with the rest of this city.  In any case, 
+it doesn't seem to be bothering the birds that are drinking from it.~
+ITEM_TYPE_FOUNTAIN
+ITEM_FLAG_LEVEL
+0
+0 0 0 0
+5000 0 1
+#27406
+sundial shielded working~
+a shielded sundial~
+A high quality sundial lies here.~
+This is really quite a nice sundial...hmmm...it doesn't seem to be quite 
+normal. It's not glowing...wait a second... there seems to be an
+'inscription' on it as well as a listing of some 'options'.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WRIST
+12 0 0 0
+2 800000 85
+A
+APPLY_HITROLL 10
+E
+inscription~
+.             Made in the City of Eternity.~
+E
+options~
+When you press the stone with the word 'options' engraved on it, 
+mist rises from the sundial and two words form in the mist -- 
+'avem' and 'ulik'.
+~
+P 1
+TRIG_UNKNOWN 100 avem
+OPROG_IF OIF_WEAR_LOC = WEAR_NONE 3 2
+P 2
+TRIG_VOID
+OPROG_IF OIF_USER_ROOM_NUM = 27477 4 5
+P 3
+TRIG_VOID
+OPROG_ECHO You are not wearing the sundial.~
+P 4
+TRIG_VOID
+OPROG_ECHO The gems around the edge of the dial begin to glow.~
+P 4
+TRIG_VOID
+OPROG_ECHO Beams of golden light shoot from the gems, merging in the center.~
+P 4
+TRIG_VOID
+OPROG_ECHO The dial begins to glow, and a beam lances out, sweeping the room.~
+P 4
+TRIG_VOID
+OPROG_ECHO The beam indicates a secret compartment in the floor!~
+P 4
+TRIG_VOID
+OPROG_ECHO The glow stops.~
+P 5
+TRIG_VOID
+OPROG_ECHO The gems around the edge of the dial begin to glow.~
+P 5
+TRIG_VOID
+OPROG_ECHO Beams of golden light shoot from the gems, merging in the center.~
+P 5
+TRIG_VOID
+OPROG_ECHO The dial begins to glow, and a beam lances out, sweeping the room.~
+P 5
+TRIG_VOID
+OPROG_ECHO After a couple of minutes, the glow stops.~
+P 6
+TRIG_UNKNOWN 100 ulik
+OPROG_IF OIF_WEAR_LOC = WEAR_NONE 8 7
+P 7
+TRIG_VOID
+OPROG_IF OIF_USER_ROOM_NUM = 27477 9 10
+P 8
+TRIG_VOID
+OPROG_ECHO You are not wearing the sundial.~
+P 9
+TRIG_VOID
+OPROG_ECHO A glowing mist begins to form around the sundial.~
+P 9
+TRIG_VOID
+OPROG_ECHO A golden beam shoots out of the mist and sweeps the room.~
+P 9
+TRIG_VOID
+OPROG_ECHO Suddenly, the mist coalesces, and a key falls into your hand.~
+P 9
+TRIG_VOID
+OPROG_GOD_COMMAND mpoload 27407 ~
+P 10
+TRIG_VOID
+OPROG_ECHO A glowing mist begins to form around the sundial.~
+P 10
+TRIG_VOID
+OPROG_ECHO A golden beam shoots out of the mist and sweeps the room.~
+P 10
+TRIG_VOID
+OPROG_ECHO The mist dissapates.~
+#27407
+golden compartment key~
+a golden compartment key~
+A small, glowing key of gold lies here.~
+This key seems to be made of gold, but from some angles, it almost seems as
+if it were made of mist.~
+ITEM_TYPE_TREASURE
+ITEM_FLAG_MAGIC|ITEM_FLAG_GLOW|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 0 0
+1 1 1
+#27408
+shot cheap whiskey~
+a shot of cheap whiskey~
+A small, dirty shot glass of a brown liquid sits here.~
+This does not look like something that you would really want to drink.~
+ITEM_TYPE_DRINK_CON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+1 1 5 0
+1 5 5
+#27409
+mug troll sweat~
+a mug of Troll sweat~
+A large mug of a rather unpleasant smelling fluid sits here.~
+Judging by the smell, you have a pretty good idea where they got the name
+for this stuff.~
+ITEM_TYPE_DRINK_CON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+1 1 1 0
+3 25 5
+#27410
+crystal knowledge~
+The knowledge crystal~
+A glowing shard of crystal on a string lies here.~
+As you gaze upon this beautiful crystal, you can almost swear that you feel
+the secrets of the universe unfolding before you.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_GLOW|ITEM_FLAG_MAGIC|ITEM_FLAG_NOREMOVE|ITEM_FLAG_NODROP|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_NECK|ITEM_WEAR_ABOUT
+0 0 0 0
+1 100000 1
+A
+APPLY_WIS 1
+A
+APPLY_CON 1
+A
+APPLY_STR 1
+#0
+
+
+
+
+#ROOMS
+#27360
+Western Entrance to the City of Eternity~
+The western gates to the City of Eternity are here.~
+273 0 SECT_CITY
+DDIR_EAST
+City Gates~
+gate~
+EX_ISDOOR -1 27361
+DDIR_WEST
+The Zone lies this way.~
+~
+0 -1 27242
+E
+gate~
+The gate is covered with runes and decorative designs. It glows with the
+power of its magical protections.~
+S
+#27361
+Eternal Road~
+The road is well paved, and made of some sort of light gray rock. It has an
+orderly feel to it, and from time to time, you think you see a very faint 
+mist floating in the street in the corner of your eye. You can feel a faint 
+sensation of magical energy coming from the road.~
+273 0 SECT_CITY
+DDIR_NORTH
+The road winds on and on...will it never end?~
+~
+0 -1 27362
+DDIR_SOUTH
+The road winds on and on...will it never end?~
+~
+0 -1 27402
+DDIR_WEST
+City Gates~
+gate~
+EX_ISDOOR -1 27360
+E
+gate~
+The gate is covered with runes and decorative designs. It glows with the 
+power of its magical protections.~
+S
+#27362
+Eternal Road~
+The road is well paved, and made of some sort of light gray rock. It has an
+orderly feel to it, and from time to time, you think you see a very faint 
+mist floating in the street in the corner of your eye. You can feel a faint 
+sensation of magical energy coming from the road.~
+273 0 SECT_CITY
+DDIR_NORTH
+The road winds on and on...will it never end?~
+~
+0 -1 27363
+DDIR_SOUTH
+The road winds on and on...will it never end?~
+~
+0 -1 27361
+S
+#27363
+Eternal Road~
+The road is well paved, and made of some sort of light gray rock. It has an
+orderly feel to it, and from time to time, you think you see a very faint 
+mist floating in the street in the corner of your eye. You can feel a faint 
+sensation of magical energy coming from the road.~
+273 0 SECT_CITY
+DDIR_EAST
+The road winds on and on...will it never end?~
+~
+0 -1 27364
+DDIR_SOUTH
+The road winds on and on...will it never end?~
+~
+0 -1 27362
+S
+#27364
+Eternal Road~
+The road is well paved, and made of some sort of light gray rock. It has an
+orderly feel to it, and from time to time, you think you see a very faint 
+mist floating in the street in the corner of your eye. You can feel a faint 
+sensation of magical energy coming from the road.~
+273 0 SECT_CITY
+DDIR_NORTH
+The road winds on and on...will it never end?~
+~
+0 -1 27365
+DDIR_WEST
+The road winds on and on...will it never end?~
+~
+0 -1 27363
+S
+#27365
+Eternal Road~
+The road is well paved, and made of some sort of light gray rock. It has an
+orderly feel to it, and from time to time, you think you see a very faint 
+mist floating in the street in the corner of your eye. You can feel a faint 
+sensation of magical energy coming from the road.~
+273 0 SECT_CITY
+DDIR_EAST
+The road winds on and on...will it never end?~
+~
+0 -1 27366
+DDIR_SOUTH
+The road winds on and on...will it never end?~
+~
+0 -1 27364
+S
+#27366
+Eternal Road~
+The road is well paved, and made of some sort of light gray rock. It has an
+orderly feel to it, and from time to time, you think you see a very faint 
+mist floating in the street in the corner of your eye. You can feel a faint 
+sensation of magical energy coming from the road.~
+273 0 SECT_CITY
+DDIR_EAST
+The road winds on and on...will it never end?~
+~
+0 -1 27367
+DDIR_WEST
+The road winds on and on...will it never end?~
+~
+0 -1 27365
+S
+#27367
+Eternal Road~
+The road is well paved, and made of some sort of light gray rock. It has an
+orderly feel to it, and from time to time, you think you see a very faint 
+mist floating in the street in the corner of your eye. You can feel a faint 
+sensation of magical energy coming from the road.~
+273 0 SECT_CITY
+DDIR_SOUTH
+The road winds on and on...will it never end?~
+~
+0 -1 27368
+DDIR_WEST
+The road winds on and on...will it never end?~
+~
+0 -1 27366
+S
+#27368
+Eternal Road~
+The road is well paved, and made of some sort of light gray rock. It has an
+orderly feel to it, and from time to time, you think you see a very faint 
+mist floating in the street in the corner of your eye. You can feel a faint 
+sensation of magical energy coming from the road.~
+273 0 SECT_CITY
+DDIR_NORTH
+The road winds on and on...will it never end?~
+~
+0 -1 27367
+DDIR_EAST
+The road winds on and on...will it never end?~
+~
+0 -1 27369
+S
+#27369
+Eternal Road~
+The road is well paved, and made of some sort of light gray rock. It has an
+orderly feel to it, and from time to time, you think you see a very faint 
+mist floating in the street in the corner of your eye. You can feel a faint 
+sensation of magical energy coming from the road.~
+273 0 SECT_CITY
+DDIR_SOUTH
+The road winds on and on...will it never end?~
+~
+0 -1 27370
+DDIR_WEST
+The road winds on and on...will it never end?~
+~
+0 -1 27368
+S
+#27370
+Eternal Road~
+The road is well paved, and made of some sort of light gray rock. It has an
+orderly feel to it, and from time to time, you think you see a very faint 
+mist floating in the street in the corner of your eye. You can feel a faint 
+sensation of magical energy coming from the road.~
+273 0 SECT_CITY
+DDIR_NORTH
+The road winds on and on...will it never end?~
+~
+0 -1 27369
+DDIR_SOUTH
+The road winds on and on...will it never end?~
+~
+0 -1 27371
+S
+#27371
+Eternal Road~
+The road is well paved, and made of some sort of light gray rock. It has an
+orderly feel to it, and from time to time, you think you see a very faint 
+mist floating in the street in the corner of your eye. You can feel a faint 
+sensation of magical energy coming from the road.~
+273 0 SECT_CITY
+DDIR_NORTH
+The road winds on and on...will it never end?~
+~
+0 -1 27370
+DDIR_EAST
+You see a glowing fountain.~
+~
+0 -1 27372
+DDIR_SOUTH
+The road winds on and on...will it never end?~
+~
+0 -1 27394
+DDIR_WEST
+The Guild sector...~
+~
+0 -1 27449
+S
+#27372
+Center of Eternity~
+Here you see an elegant fountain.  For some reason, the water has a faint 
+blue-white glow to it, and you can sense a strong presence of power about
+this place.~
+273 ROOM_SAFE SECT_CITY
+DDIR_NORTH
+This street leads to the Residential District.~
+~
+0 -1 27411
+DDIR_EAST
+The Road continues to the east.~
+~
+0 -1 27373
+DDIR_SOUTH
+This street leads to the Residential District.~
+~
+0 -1 27416
+DDIR_WEST
+The Road continues to the west.~
+~
+0 -1 27371
+DDIR_UP
+The Road continues to the west.~
+~
+0 -1 19159
+S
+#27373
+Eternal Road~
+The road is well paved, and made of some sort of light gray rock. It has an
+orderly feel to it, and from time to time, you think you see a very faint 
+mist floating in the street in the corner of your eye. You can feel a faint 
+sensation of magical energy coming from the road.~
+273 0 SECT_CITY
+DDIR_NORTH
+The road winds on and on...will it never end?~
+~
+0 -1 27374
+DDIR_EAST
+A bustling marketplace.~
+~
+0 -1 27403
+DDIR_SOUTH
+The road winds on and on...will it never end?~
+~
+0 -1 27393
+DDIR_WEST
+You see a glowing fountain.~
+~
+0 -1 27372
+S
+#27374
+Eternal Road~
+The road is well paved, and made of some sort of light gray rock. It has an
+orderly feel to it, and from time to time, you think you see a very faint 
+mist floating in the street in the corner of your eye. You can feel a faint 
+sensation of magical energy coming from the road.~
+273 0 SECT_CITY
+DDIR_NORTH
+The road winds on and on...will it never end?~
+~
+0 -1 27375
+DDIR_SOUTH
+The road winds on and on...will it never end?~
+~
+0 -1 27373
+S
+#27375
+Eternal Road~
+The road is well paved, and made of some sort of light gray rock. It has an
+orderly feel to it, and from time to time, you think you see a very faint 
+mist floating in the street in the corner of your eye. You can feel a faint 
+sensation of magical energy coming from the road. 
+     There is a strange portal to the north here.~
+273 0 SECT_CITY
+DDIR_EAST
+The road winds on and on...will it never end?~
+~
+0 -1 27376
+DDIR_SOUTH
+The road winds on and on...will it never end?~
+~
+0 -1 27374
+E
+block~
+Upon closer inspection, you see that this is not a block, but rather two
+smaller blocks with a thin slot between them.~
+E
+portal~
+This doorway is barely visible, so closely does it fit into the wall. There
+does appear to be some sort of block projecting from the wall.~
+S
+#27376
+Eternal Road~
+The road is well paved, and made of some sort of light gray rock. It has an
+orderly feel to it, and from time to time, you think you see a very faint 
+mist floating in the street in the corner of your eye. You can feel a faint 
+sensation of magical energy coming from the road.~
+273 0 SECT_CITY
+DDIR_NORTH
+The road winds on and on...will it never end?~
+~
+0 -1 27377
+DDIR_WEST
+The road winds on and on...will it never end?~
+~
+0 -1 27375
+S
+#27377
+Eternal Road~
+The road is well paved, and made of some sort of light gray rock. It has an
+orderly feel to it, and from time to time, you think you see a very faint 
+mist floating in the street in the corner of your eye. You can feel a faint 
+sensation of magical energy coming from the road.~
+273 0 SECT_CITY
+DDIR_EAST
+The road winds on and on...will it never end?~
+~
+0 -1 27378
+DDIR_SOUTH
+The road winds on and on...will it never end?~
+~
+0 -1 27376
+S
+#27378
+Eternal Road~
+The road is well paved, and made of some sort of light gray rock. It has an
+orderly feel to it, and from time to time, you think you see a very faint 
+mist floating in the street in the corner of your eye. You can feel a faint 
+sensation of magical energy coming from the road.~
+273 0 SECT_CITY
+DDIR_EAST
+The road winds on and on...will it never end?~
+~
+0 -1 27379
+DDIR_WEST
+The road winds on and on...will it never end?~
+~
+0 -1 27377
+S
+#27379
+Eternal Road~
+The road is well paved, and made of some sort of light gray rock. It has an
+orderly feel to it, and from time to time, you think you see a very faint 
+mist floating in the street in the corner of your eye. You can feel a faint 
+sensation of magical energy coming from the road.~
+273 0 SECT_CITY
+DDIR_SOUTH
+The road winds on and on...will it never end?~
+~
+0 -1 27380
+DDIR_WEST
+The road winds on and on...will it never end?~
+~
+0 -1 27378
+S
+#27380
+Eternal Road~
+The road is well paved, and made of some sort of light gray rock. It has an
+orderly feel to it, and from time to time, you think you see a very faint 
+mist floating in the street in the corner of your eye. You can feel a faint 
+sensation of magical energy coming from the road.~
+273 0 SECT_CITY
+DDIR_NORTH
+The road winds on and on...will it never end?~
+~
+0 -1 27379
+DDIR_EAST
+The road winds on and on...will it never end?~
+~
+0 -1 27381
+S
+#27381
+Eternal Road~
+The road is well paved, and made of some sort of light gray rock. It has an
+orderly feel to it, and from time to time, you think you see a very faint 
+mist floating in the street in the corner of your eye. You can feel a faint 
+sensation of magical energy coming from the road.~
+273 0 SECT_CITY
+DDIR_SOUTH
+The road winds on and on...will it never end?~
+~
+0 -1 27382
+DDIR_WEST
+The road winds on and on...will it never end?~
+~
+0 -1 27380
+S
+#27382
+Eternal Road~
+The road is well paved, and made of some sort of light gray rock. It has an
+orderly feel to it, and from time to time, you think you see a very faint 
+mist floating in the street in the corner of your eye. You can feel a faint 
+sensation of magical energy coming from the road.~
+273 0 SECT_CITY
+DDIR_NORTH
+The road winds on and on...will it never end?~
+~
+0 -1 27381
+DDIR_SOUTH
+The road winds on and on...will it never end?~
+~
+0 -1 27383
+S
+#27383
+Eternal Road~
+The road is well paved, and made of some sort of light gray rock. It has an
+orderly feel to it, and from time to time, you think you see a very faint 
+mist floating in the street in the corner of your eye. You can feel a faint 
+sensation of magical energy coming from the road.~
+273 0 SECT_CITY
+DDIR_NORTH
+The road winds on and on...will it never end?~
+~
+0 -1 27382
+DDIR_EAST
+The Eastern Gate to the City of Eternity.~
+gate~
+EX_ISDOOR|EX_CLOSED -1 27384
+DDIR_SOUTH
+The road winds on and on...will it never end?~
+~
+0 -1 27385
+E
+gate~
+The gate is covered with runes and decorative designs. It glows with the 
+power of its magical protections.~
+S
+#27384
+Eastern Entrance to the City of Eternity~
+The east gates to the City of Eternity are here...~
+273 0 SECT_CITY
+DDIR_EAST
+The Zone lies this way.~
+~
+0 -1 27254
+DDIR_WEST
+The city gates~
+gate~
+EX_ISDOOR|EX_CLOSED -1 27383
+E
+gate~
+The gate is covered with runes and decorative designs. It glows with the
+power of its magical protections.~
+S
+#27385
+Eternal Road~
+The road is well paved, and made of some sort of light gray rock. It has an
+orderly feel to it, and from time to time, you think you see a very faint 
+mist floating in the street in the corner of your eye. You can feel a faint 
+sensation of magical energy coming from the road.~
+273 0 SECT_CITY
+DDIR_NORTH
+The road winds on and on...will it never end?~
+~
+0 -1 27383
+DDIR_SOUTH
+The road winds on and on...will it never end?~
+~
+0 -1 27386
+S
+#27386
+Eternal Road~
+The road is well paved, and made of some sort of light gray rock. It has an
+orderly feel to it, and from time to time, you think you see a very faint 
+mist floating in the street in the corner of your eye. You can feel a faint 
+sensation of magical energy coming from the road.~
+273 0 SECT_CITY
+DDIR_NORTH
+The road winds on and on...will it never end?~
+~
+0 -1 27385
+DDIR_WEST
+The road winds on and on...will it never end?~
+~
+0 -1 27387
+S
+#27387
+Eternal Road~
+The road is well paved, and made of some sort of light gray rock. It has an
+orderly feel to it, and from time to time, you think you see a very faint 
+mist floating in the street in the corner of your eye. You can feel a faint 
+sensation of magical energy coming from the road.~
+273 0 SECT_CITY
+DDIR_EAST
+The road winds on and on...will it never end?~
+~
+0 -1 27386
+DDIR_SOUTH
+The road winds on and on...will it never end?~
+~
+0 -1 27388
+S
+#27388
+Eternal Road~
+The road is well paved, and made of some sort of light gray rock. It has an
+orderly feel to it, and from time to time, you think you see a very faint 
+mist floating in the street in the corner of your eye. You can feel a faint 
+sensation of magical energy coming from the road.~
+273 0 SECT_CITY
+DDIR_NORTH
+The road winds on and on...will it never end?~
+~
+0 -1 27387
+DDIR_WEST
+The road winds on and on...will it never end?~
+~
+0 -1 27389
+S
+#27389
+Eternal Road~
+The road is well paved, and made of some sort of light gray rock. It has an
+orderly feel to it, and from time to time, you think you see a very faint 
+mist floating in the street in the corner of your eye. You can feel a faint 
+sensation of magical energy coming from the road.~
+273 0 SECT_CITY
+DDIR_EAST
+The road winds on and on...will it never end?~
+~
+0 -1 27388
+DDIR_WEST
+The road winds on and on...will it never end?~
+~
+0 -1 27390
+S
+#27390
+Eternal Road~
+The road is well paved, and made of some sort of light gray rock. It has an
+orderly feel to it, and from time to time, you think you see a very faint 
+mist floating in the street in the corner of your eye. You can feel a faint 
+sensation of magical energy coming from the road.~
+273 0 SECT_CITY
+DDIR_NORTH
+The road winds on and on...will it never end?~
+~
+0 -1 27391
+DDIR_EAST
+The road winds on and on...will it never end?~
+~
+0 -1 27389
+S
+#27391
+Eternal Road~
+The road is well paved, and made of some sort of light gray rock. It has an
+orderly feel to it, and from time to time, you think you see a very faint 
+mist floating in the street in the corner of your eye. You can feel a faint 
+sensation of magical energy coming from the road.~
+273 0 SECT_CITY
+DDIR_SOUTH
+The road winds on and on...will it never end?~
+~
+0 -1 27390
+DDIR_WEST
+The road winds on and on...will it never end?~
+~
+0 -1 27392
+S
+#27392
+Eternal Road~
+The road is well paved, and made of some sort of light gray rock. It has an
+orderly feel to it, and from time to time, you think you see a very faint 
+mist floating in the street in the corner of your eye. You can feel a faint 
+sensation of magical energy coming from the road.~
+273 0 SECT_CITY
+DDIR_NORTH
+The road winds on and on...will it never end?~
+~
+0 -1 27393
+DDIR_EAST
+The road winds on and on...will it never end?~
+~
+0 -1 27391
+S
+#27393
+Eternal Road~
+The road is well paved, and made of some sort of light gray rock. It has an
+orderly feel to it, and from time to time, you think you see a very faint 
+mist floating in the street in the corner of your eye. You can feel a faint 
+sensation of magical energy coming from the road.~
+273 0 SECT_CITY
+DDIR_NORTH
+The road winds on and on...will it never end?~
+~
+0 -1 27373
+DDIR_SOUTH
+The road winds on and on...will it never end?~
+~
+0 -1 27392
+S
+#27394
+Eternal Road~
+The road is well paved, and made of some sort of light gray rock. It has an
+orderly feel to it, and from time to time, you think you see a very faint 
+mist floating in the street in the corner of your eye. You can feel a faint 
+sensation of magical energy coming from the road.~
+273 0 SECT_CITY
+DDIR_NORTH
+The road winds on and on...will it never end?~
+~
+0 -1 27371
+DDIR_SOUTH
+The road winds on and on...will it never end?~
+~
+0 -1 27395
+S
+#27395
+Eternal Road~
+The road is well paved, and made of some sort of light gray rock. It has an
+orderly feel to it, and from time to time, you think you see a very faint 
+mist floating in the street in the corner of your eye. You can feel a faint 
+sensation of magical energy coming from the road.~
+273 0 SECT_CITY
+DDIR_NORTH
+The road winds on and on...will it never end?~
+~
+0 -1 27394
+DDIR_WEST
+The road winds on and on...will it never end?~
+~
+0 -1 27396
+S
+#27396
+Eternal Road~
+The road is well paved, and made of some sort of light gray rock. It has an
+orderly feel to it, and from time to time, you think you see a very faint 
+mist floating in the street in the corner of your eye. You can feel a faint 
+sensation of magical energy coming from the road.~
+273 0 SECT_CITY
+DDIR_EAST
+The road winds on and on...will it never end?~
+~
+0 -1 27395
+DDIR_SOUTH
+The road winds on and on...will it never end?~
+~
+0 -1 27397
+S
+#27397
+Eternal Road~
+The road is well paved, and made of some sort of light gray rock. It has an
+orderly feel to it, and from time to time, you think you see a very faint 
+mist floating in the street in the corner of your eye. You can feel a faint 
+sensation of magical energy coming from the road.~
+273 0 SECT_CITY
+DDIR_NORTH
+The road winds on and on...will it never end?~
+~
+0 -1 27396
+DDIR_WEST
+The road winds on and on...will it never end?~
+~
+0 -1 27398
+S
+#27398
+Eternal Road~
+The road is well paved, and made of some sort of light gray rock. It has an
+orderly feel to it, and from time to time, you think you see a very faint 
+mist floating in the street in the corner of your eye. You can feel a faint 
+sensation of magical energy coming from the road.~
+273 0 SECT_CITY
+DDIR_EAST
+The road winds on and on...will it never end?~
+~
+0 -1 27397
+DDIR_WEST
+The road winds on and on...will it never end?~
+~
+0 -1 27399
+S
+#27399
+Eternal Road~
+The road is well paved, and made of some sort of light gray rock. It has an
+orderly feel to it, and from time to time, you think you see a very faint 
+mist floating in the street in the corner of your eye. You can feel a faint 
+sensation of magical energy coming from the road. A small trickle of rainwater
+runs into a drainage grate.~
+273 0 SECT_CITY
+DDIR_NORTH
+The road winds on and on...will it never end?~
+~
+0 -1 27400
+DDIR_EAST
+The road winds on and on...will it never end?~
+~
+0 -1 27398
+DDIR_DOWN
+A drainage grate~
+drainage grate~
+EX_ISDOOR|EX_CLOSED|EX_HIDDEN -1 27484
+S
+#27400
+Eternal Road~
+The road is well paved, and made of some sort of light gray rock. It has an
+orderly feel to it, and from time to time, you think you see a very faint 
+mist floating in the street in the corner of your eye. You can feel a faint 
+sensation of magical energy coming from the road.~
+273 0 SECT_CITY
+DDIR_SOUTH
+The road winds on and on...will it never end?~
+~
+0 -1 27399
+DDIR_WEST
+The road winds on and on...will it never end?~
+~
+0 -1 27401
+S
+#27401
+Eternal Road~
+The road is well paved, and made of some sort of light gray rock. It has an
+orderly feel to it, and from time to time, you think you see a very faint 
+mist floating in the street in the corner of your eye. You can feel a faint 
+sensation of magical energy coming from the road.~
+273 0 SECT_CITY
+DDIR_NORTH
+The road winds on and on...will it never end?~
+~
+0 -1 27402
+DDIR_EAST
+The road winds on and on...will it never end?~
+~
+0 -1 27400
+S
+#27402
+Eternal Road~
+The road is well paved, and made of some sort of light gray rock. It has an
+orderly feel to it, and from time to time, you think you see a very faint 
+mist floating in the street in the corner of your eye. You can feel a faint 
+sensation of magical energy coming from the road.~
+273 0 SECT_CITY
+DDIR_NORTH
+The road winds on and on...will it never end?~
+~
+0 -1 27361
+DDIR_SOUTH
+The road winds on and on...will it never end?~
+~
+0 -1 27401
+S
+#27403
+Entrance to the Commercial District~
+This is a busy-looking marketplace, swarming with citizens of this glorious
+city running their errands. This place almost seems to have been designed to
+make people feel comfortable here, and want to shop.~
+273 0 SECT_CITY
+DDIR_NORTH
+Evad's Bar and Grill.~
+~
+0 -1 27408
+DDIR_EAST
+More of the Commercial District.~
+~
+0 -1 27404
+DDIR_WEST
+The Eternal Road lies this way...~
+~
+0 -1 27373
+DDIR_UP
+The inn is this way...~
+~
+0 -1 27461
+DDIR_DOWN
+The morgue is down here...~
+~
+0 -1 27410
+S
+#27404
+The Commercial District~
+This is a busy-looking marketplace, swarming with citizens of this glorious
+city running their errands. This place almost seems to have been designed to
+make people feel comfortable here, and want to shop.~
+273 0 SECT_CITY
+DDIR_NORTH
+The Magic Shop~
+~
+0 -1 27407
+DDIR_EAST
+The General Store~
+~
+0 -1 27406
+DDIR_SOUTH
+Armory~
+~
+0 -1 27405
+DDIR_WEST
+A bustling marketplace.~
+~
+0 -1 27403
+DDIR_UP
+Pet Shop~
+~
+0 -1 27469
+S
+#27405
+Armor/Weapons Shop~
+This shop has a smell of metal, leather, and oil to it...there are weapons 
+of many types mounted on the walls. There are also stuffed heads (or the
+equivalent, for some monsters) of many types on the walls.~
+273 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+A bustling marketplace.~
+~
+0 -1 27404
+S
+#27406
+General Store~
+This store has almost everything that you could need...~
+273 ROOM_INDOORS SECT_INSIDE
+DDIR_WEST
+A bustling marketplace.~
+~
+0 -1 27404
+S
+#27407
+Magic Shop~
+This store hums with arcane energies, and is filled with many mystical
+objects, some common, some rare. You smell many different things here,
+some of which smell wonderful, and some that are...well...not so wonderful.~
+273 ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+A bustling marketplace.~
+~
+0 -1 27404
+S
+#27408
+Evad's Bar & Grill~
+The bar is lit with amber lights, and the smell of alcohol and food permeates
+the building. You feel very much at home here. This is *definitely* a place
+where you can just sit back, relax, and enjoy the drink of your choice.~
+273 ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+A bustling marketplace.~
+~
+0 -1 27403
+S
+#27409
+Hugh's Workshop~
+This room is filled with all sorts of fascinating diagrams, tools, and other 
+such goodies. It is a strange, musty dwelling - though orderly and quite
+advanced in terms of architecture and appearance.~
+273 ROOM_INDOORS SECT_INSIDE
+DDIR_UP
+The City Fountain.~
+~
+0 -1 27372
+S
+#27410
+Morgue~
+There are drawers in the walls here...most of them empty at the moment. This
+room is well lit, especially over the tables which seem to be made of some
+sort of crystal. Strangely enough, there seems to be a scrying glass in the
+center of the room, which glows with an eerie blue light. The morgue itself 
+hums with magical energies...perhaps the mortician uses magic to recover 
+corpses? It's freezing in here...~
+273 ROOM_INDOORS|ROOM_MORGUE SECT_INSIDE
+DDIR_UP
+A bustling marketplace.~
+~
+0 -1 27403
+S
+#27411
+Residential Street~
+This street leads to the Northern Residential District.~
+273 0 SECT_CITY
+DDIR_NORTH
+The street continues on to the north.~
+~
+0 -1 27412
+DDIR_SOUTH
+The city fountain is to the south.~
+~
+0 -1 27372
+S
+#27412
+Residential Street~
+This street leads to the Northern Residential District.~
+273 0 SECT_CITY
+DDIR_NORTH
+The street continues on to the north.~
+~
+0 -1 27413
+DDIR_SOUTH
+The street continues on to the south.~
+~
+0 -1 27411
+S
+#27413
+Residential Street~
+This street leads to the Northern Residential District.~
+273 0 SECT_CITY
+DDIR_NORTH
+The street continues on to the north.~
+~
+0 -1 27414
+DDIR_SOUTH
+The street continues on to the south.~
+~
+0 -1 27412
+S
+#27414
+Residential Street~
+This street leads to the Northern Residential District.~
+273 0 SECT_CITY
+DDIR_NORTH
+The street continues on to the north.~
+~
+0 -1 27415
+DDIR_SOUTH
+The street continues on to the south.~
+~
+0 -1 27413
+S
+#27415
+Residential Street~
+This street leads to the Northern Residential District.~
+273 0 SECT_CITY
+DDIR_NORTH
+City Gates~
+gate~
+EX_ISDOOR|EX_CLOSED -1 27459
+DDIR_EAST
+The residential district...~
+~
+0 -1 27423
+DDIR_SOUTH
+The street continues on to the south.~
+~
+0 -1 27414
+DDIR_WEST
+The residential district...~
+~
+0 -1 27422
+E
+gate~
+The gate is covered with runes and decorative designs. It glows with the 
+power of its magical protections.~
+S
+#27416
+Residential Street~
+This street leads to the Southern Residential District.~
+273 0 SECT_CITY
+DDIR_NORTH
+The fountain is to the north.~
+~
+0 -1 27372
+DDIR_SOUTH
+The street continues on to the south.~
+~
+0 -1 27417
+S
+#27417
+Residential Street~
+This street leads to the Southern Resdential District.~
+273 0 SECT_CITY
+DDIR_NORTH
+The street continues on to the north.~
+~
+0 -1 27416
+DDIR_SOUTH
+The street continues on to the south.~
+~
+0 -1 27418
+S
+#27418
+Residential Street~
+This street leads to the Southern Resdential District.~
+273 0 SECT_CITY
+DDIR_NORTH
+The street continues on to the north.~
+~
+0 -1 27417
+DDIR_SOUTH
+The street continues on to the south.~
+~
+0 -1 27419
+S
+#27419
+Residential Street~
+This street leads to the Southern Residential District.~
+273 0 SECT_CITY
+DDIR_NORTH
+The street continues on to the north.~
+~
+0 -1 27418
+DDIR_SOUTH
+The street continues on to the south.~
+~
+0 -1 27420
+S
+#27420
+Residential Street~
+This street leads to the Southern Residential District.~
+273 0 SECT_CITY
+DDIR_NORTH
+The street continues on to the north.~
+~
+0 -1 27419
+DDIR_EAST
+The residential district.~
+~
+0 -1 27437
+DDIR_SOUTH
+City gates~
+gate~
+EX_ISDOOR|EX_CLOSED -1 27460
+DDIR_WEST
+The residential district.~
+~
+0 -1 27436
+E
+gate~
+The gate is covered with runes and decorative designs. It glows with the 
+power of its magical protections.~
+S
+#27421
+Northern Residential District~
+This is where the citizens live.~
+273 0 SECT_CITY
+DDIR_NORTH
+A house.~
+door~
+EX_ISDOOR -1 27426
+DDIR_EAST
+The Northern Residential District.~
+~
+0 -1 27422
+DDIR_SOUTH
+A house.~
+door~
+EX_ISDOOR -1 27431
+DDIR_WEST
+A house.~
+door~
+EX_ISDOOR -1 27425
+S
+#27422
+Northern Residential District~
+This is where the citizens live.~
+273 0 SECT_CITY
+DDIR_NORTH
+A house.~
+door~
+EX_ISDOOR -1 27427
+DDIR_EAST
+Nothing special here.~
+~
+0 -1 27415
+DDIR_SOUTH
+A house.~
+door~
+EX_ISDOOR -1 27432
+DDIR_WEST
+The Northern Residential District.~
+~
+0 -1 27421
+S
+#27423
+Northern Residential District~
+This is where the citizens live.~
+273 0 SECT_CITY
+DDIR_NORTH
+A house.~
+door~
+EX_ISDOOR -1 27428
+DDIR_EAST
+The Northern Residential District.~
+~
+0 -1 27424
+DDIR_SOUTH
+A house.~
+door~
+EX_ISDOOR -1 27433
+DDIR_WEST
+Nothing special here.~
+~
+0 -1 27415
+S
+#27424
+Northern Residential Section~
+This is where the citizens live.~
+273 0 SECT_CITY
+DDIR_NORTH
+A house.~
+door~
+EX_ISDOOR -1 27429
+DDIR_EAST
+A house.~
+door~
+EX_ISDOOR -1 27430
+DDIR_SOUTH
+A house.~
+door~
+EX_ISDOOR -1 27434
+DDIR_WEST
+The Northern Residential District.~
+~
+0 -1 27423
+S
+#27425
+An Eternal Citizen's Home~
+This is the home of a citizen of the City of Eternity.~
+273 ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+The Residential District.~
+door~
+EX_ISDOOR -1 27421
+S
+#27426
+An Eternal Citizen's Home~
+This is the home of a citizen of the City of Eternity.~
+273 ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+The Residential District.~
+door~
+EX_ISDOOR -1 27421
+S
+#27427
+An Eternal Citizen's Home~
+This is the home of a citizen of the City of Eternity.~
+273 ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+The Residential District.~
+door~
+EX_ISDOOR -1 27422
+S
+#27428
+An Eternal Citizen's Home~
+This is the home of a citizen of the City of Eternity.~
+273 ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+The Residential District.~
+door~
+EX_ISDOOR -1 27423
+S
+#27429
+An Eternal Citizen's Home~
+This is the home of a citizen of the City of Eternity.~
+273 ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+The Residential District.~
+door~
+EX_ISDOOR -1 27424
+S
+#27430
+An Eternal Citizen's Home~
+This is the home of a citizen of the City of Eternity.~
+273 ROOM_INDOORS SECT_INSIDE
+DDIR_WEST
+The Residential District.~
+door~
+EX_ISDOOR -1 27424
+S
+#27431
+An Eternal Citizen's Home~
+This is the home of a citizen of the City of Eternity.~
+273 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+The Residential District.~
+door~
+EX_ISDOOR -1 27421
+S
+#27432
+An Eternal Citizen's Home~
+This is the home of a citizen of the City of Eternity.~
+273 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+The Residential District.~
+door~
+EX_ISDOOR -1 27422
+S
+#27433
+An Eternal Citizen's Home~
+This is the home of a citizen of the City of Eternity.~
+273 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+The Residential District.~
+door~
+EX_ISDOOR -1 27423
+S
+#27434
+An Eternal Citizen's Home~
+This is the home of a citizen of the City of Eternity.~
+273 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+The Residential District.~
+door~
+EX_ISDOOR -1 27424
+S
+#27435
+Southern Residential District~
+This is where the citizens live.~
+273 0 SECT_CITY
+DDIR_NORTH
+A house.~
+door~
+EX_ISDOOR -1 27440
+DDIR_EAST
+The Southern Residential District.~
+~
+0 -1 27436
+DDIR_SOUTH
+A house.~
+door~
+EX_ISDOOR -1 27445
+DDIR_WEST
+A house.~
+door~
+EX_ISDOOR -1 27439
+S
+#27436
+Southern Residential District~
+This is where the citizens live.~
+273 0 SECT_CITY
+DDIR_NORTH
+A house.~
+door~
+EX_ISDOOR -1 27441
+DDIR_EAST
+Nothing special here.~
+~
+0 -1 27420
+DDIR_SOUTH
+A house.~
+door~
+EX_ISDOOR -1 27446
+DDIR_WEST
+The Southern Residential District.~
+~
+0 -1 27435
+S
+#27437
+Southern Residential District~
+This is where the citizens live.~
+273 0 SECT_CITY
+DDIR_NORTH
+A house.~
+door~
+EX_ISDOOR -1 27442
+DDIR_EAST
+The Southern Residential District.~
+~
+0 -1 27438
+DDIR_SOUTH
+A house.~
+door~
+EX_ISDOOR -1 27447
+DDIR_WEST
+Nothing special here.~
+~
+0 -1 27420
+S
+#27438
+Southern Residential District~
+This is where the citizens live.~
+273 0 SECT_CITY
+DDIR_NORTH
+A house.~
+door~
+EX_ISDOOR -1 27443
+DDIR_EAST
+A house.~
+door~
+EX_ISDOOR -1 27444
+DDIR_SOUTH
+A house.~
+door~
+EX_ISDOOR -1 27448
+DDIR_WEST
+The Southern Residential District.~
+~
+0 -1 27437
+S
+#27439
+An Eternal Citizen's Home~
+This is the home of a citizen of the City of Eternity.~
+273 ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+The Residential District.~
+door~
+EX_ISDOOR -1 27435
+S
+#27440
+An Eternal Citizen's Home~
+This is the home of a citizen of the City of Eternity.~
+273 ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+The Residential District.~
+door~
+EX_ISDOOR -1 27435
+S
+#27441
+An Eternal Citizen's Home~
+This is the home of a citizen of the City of Eternity.~
+273 ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+The Residential District.~
+door~
+EX_ISDOOR -1 27436
+S
+#27442
+An Eternal Citizen's Home~
+This is the home of a citizen of the City of Eternity.~
+273 ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+The Residential District.~
+door~
+EX_ISDOOR -1 27437
+S
+#27443
+An Eternal Citizen's Home~
+This is the home of a citizen of the City of Eternity.~
+273 ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+The Residential District.~
+door~
+EX_ISDOOR -1 27438
+S
+#27444
+An Eternal Citizen's Home~
+This is the home of a citizen of the City of Eternity.~
+273 ROOM_INDOORS SECT_INSIDE
+DDIR_WEST
+The Residential District.~
+door~
+EX_ISDOOR -1 27438
+S
+#27445
+An Eternal Citizen's Home~
+This is the home of a citizen of the City of Eternity.~
+273 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+The Residential District.~
+door~
+EX_ISDOOR -1 27435
+S
+#27446
+An Eternal Citizen's Home~
+This is the home of a citizen of the City of Eternity.~
+273 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+The Residential District.~
+door~
+EX_ISDOOR -1 27436
+S
+#27447
+An Eternal Citizen's Home~
+This is the home of a citizen of the City of Eternity.~
+273 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+The Residential District.~
+door~
+EX_ISDOOR -1 27437
+S
+#27448
+An Eternal Citizen's Home~
+This is the home of a citizen of the City of Eternity.~
+273 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+The Residential District.~
+door~
+EX_ISDOOR -1 27438
+S
+#27449
+Guild sector~
+This is where the guildhalls are located.~
+273 0 SECT_CITY
+DDIR_NORTH
+Entrance to rogues' guild.~
+~
+0 -1 27453
+DDIR_EAST
+The Eternal Road winds on and on...~
+~
+0 -1 27371
+DDIR_SOUTH
+Entrance to rangers' guild.~
+~
+0 -1 27455
+DDIR_WEST
+The Guild Sector.~
+~
+0 -1 27450
+DDIR_UP
+Entrance to assassins' guild.~
+~
+0 -1 27457
+DDIR_DOWN
+Training hall.~
+~
+0 -1 27458
+S
+#27450
+Guild sector~
+This is where the guildhalls are located.~
+273 0 SECT_CITY
+DDIR_NORTH
+Entrance to necromancers' guild.~
+~
+0 -1 27452
+DDIR_EAST
+The Guild Sector.~
+~
+0 -1 27449
+DDIR_SOUTH
+Entrance to monks' guild.~
+~
+0 -1 27454
+DDIR_WEST
+Entrance to illusionists' guild.~
+~
+0 -1 27451
+DDIR_UP
+Entrance to elementalists' guild.~
+~
+0 -1 27456
+S
+#27451
+Entrance to illusionist guildhall.~
+This is a pleasant looking reception hall.~
+273 ROOM_INDOORS|ROOM_NO_MOB SECT_INSIDE
+DDIR_EAST
+The Guild Sector.~
+~
+0 -1 27450
+DDIR_UP
+This is where the guildhall is...~
+~
+0 -1 27462
+S
+#27452
+Entrance to necromancer guildhall.~
+This is a pleasant looking reception hall.~
+273 ROOM_INDOORS|ROOM_NO_MOB SECT_INSIDE
+DDIR_SOUTH
+The Guild Sector.~
+~
+0 -1 27450
+DDIR_UP
+This is where the guildhall is...~
+~
+0 -1 27463
+S
+#27453
+Entrance to rogue guildhall.~
+This is a pleasant looking reception hall.~
+273 ROOM_INDOORS|ROOM_NO_MOB SECT_INSIDE
+DDIR_SOUTH
+The Guild Sector.~
+~
+0 -1 27449
+DDIR_UP
+This is where the guildhall is...~
+~
+0 -1 27464
+S
+#27454
+Entrance to monk guildhall.~
+This is a pleasant looking reception hall.~
+273 ROOM_INDOORS|ROOM_NO_MOB SECT_INSIDE
+DDIR_NORTH
+The Guild Sector.~
+~
+0 -1 27450
+DDIR_UP
+This is where the guildhall is...~
+~
+0 -1 27465
+S
+#27455
+Entrance to ranger guildhall.~
+This is a pleasant looking reception hall.~
+273 ROOM_INDOORS|ROOM_NO_MOB SECT_INSIDE
+DDIR_NORTH
+The Guild Sector.~
+~
+0 -1 27449
+DDIR_UP
+This is where the guildhall is...~
+~
+0 -1 27466
+S
+#27456
+Entrance to elementalist guildhall.~
+This is a pleasant looking reception hall.~
+273 ROOM_INDOORS|ROOM_NO_MOB SECT_INSIDE
+DDIR_UP
+This is where the guildhall is...~
+~
+0 -1 27467
+DDIR_DOWN
+The Guild Sector.~
+~
+0 -1 27450
+S
+#27457
+Entrance to assassin guildhall.~
+This is a pleasant looking reception hall.~
+273 ROOM_INDOORS|ROOM_NO_MOB SECT_INSIDE
+DDIR_UP
+This is where the guildhall is...~
+~
+0 -1 27468
+DDIR_DOWN
+The Guild Sector.~
+~
+0 -1 27449
+S
+#27458
+Training hall~
+This is the training hall.~
+273 ROOM_INDOORS|ROOM_SAFE SECT_INSIDE
+DDIR_UP
+The Guild Sector.~
+~
+0 -1 27449
+S
+#27459
+Northern Entrance to the City of Eternity~
+The northern gates to the City of Eternity are here...~
+273 0 SECT_CITY
+DDIR_NORTH
+The Zone lies this way, beyond the northern entrance.~
+~
+0 -1 27243
+DDIR_SOUTH
+City Gates~
+gate~
+EX_ISDOOR|EX_CLOSED -1 27415
+E
+gate~
+The gate is covered with runes and decorative designs. It glows with the
+power of its magical protections.~
+S
+#27460
+Southern Entrance to the City of Eternity~
+The southern gates to the City of Eternity are here...~
+273 0 SECT_CITY
+DDIR_NORTH
+City Gates~
+gate~
+EX_ISDOOR|EX_CLOSED -1 27420
+DDIR_SOUTH
+The Zone lies this way, beyond the southern entrance...~
+~
+0 -1 27264
+E
+gate~
+The gate is covered with runes and decorative designs. It glows with the
+power of its magical protections.~
+S
+#27461
+The Compass Rose~
+This is a cozy inn...~
+273 ROOM_INDOORS|ROOM_SAFE SECT_INN
+DDIR_DOWN
+The Commercial District.~
+~
+0 -1 27403
+S
+#27462
+Illusionists' Guildhall~
+There is a faintly glowing mist which hovers just above the floor here. The 
+mist seems to be coming from the glowing magic circle on the floor, in which
+your guildmaster seems to be sitting. The walls seem to be covered with 
+mystic diagrams and illusions of other places.~
+273 ROOM_INDOORS|ROOM_SAFE|ROOM_ALLOW_ILL SECT_INSIDE
+DDIR_DOWN
+The entrance to the guildhall...~
+~
+0 -1 27451
+S
+#27463
+Necromancers' Guild~
+There is a power circle in the center of the floor that your guildmaster is 
+looking at carefully. The shelves in here are filled with books on the 
+secrets of necromancy.~
+273 ROOM_INDOORS|ROOM_SAFE|ROOM_ALLOW_ILL|ROOM_ALLOW_RAN SECT_INSIDE
+DDIR_DOWN
+The entrance to the guildhall...~
+~
+0 -1 27452
+S
+#27464
+Rogues' Guild~
+This room is filled with tools of the trade, and many sheets of notes dealing
+with resale values and locations of many items adorn the walls here.~
+273 ROOM_INDOORS|ROOM_SAFE|ROOM_ALLOW_ILL|ROOM_ALLOW_ELE SECT_INSIDE
+DDIR_DOWN
+The entrance to the guildhall...~
+~
+0 -1 27453
+S
+#27465
+Halls of Healing~
+The walls of this room are covered with charts and diagrams regarding anatomy
+and spiritual icons. You feel quite at home here, surrounded by the familiar
+scents of medicines and incense.~
+273 ROOM_INDOORS|ROOM_SAFE|ROOM_ALLOW_ELE|ROOM_ALLOW_RAN SECT_INSIDE
+DDIR_DOWN
+The entrance to the guildhall...~
+~
+0 -1 27454
+S
+#27466
+Ranger Guildhall~
+As you look around, you see pells to aid in practicing your combat skills,
+and other miscellaneous items for aid in tracking, detection, and other such
+skills.~
+273 ROOM_INDOORS|ROOM_SAFE|ROOM_ALLOW_RAN SECT_INSIDE
+DDIR_DOWN
+The entrance to the guildhall...~
+~
+0 -1 27455
+S
+#27467
+Elementalist Guildhall~
+This room has been constructed and reinforced with the forces of nature. 
+There is a ball of fire here, lighting the room, and a shaft of water 
+rising from the stone floor. A faint breeze keeps the room a comfortable 
+temperature...~
+273 ROOM_INDOORS|ROOM_SAFE|ROOM_ALLOW_ELE SECT_INSIDE
+DDIR_DOWN
+The entrance to the guildhall...~
+~
+0 -1 27456
+S
+#27468
+Assassin Guildhall~
+This room has been dedicated to the training of such skills as throwing and
+moving undetected. There are several targets in a corner, liberally feathered
+with arrows.~
+273 ROOM_INDOORS|ROOM_SAFE|ROOM_ALLOW_ILL|ROOM_ALLOW_ELE|ROOM_ALLOW_RAN SECT_INSIDE
+DDIR_DOWN
+The entrance to the guildhall...~
+~
+0 -1 27457
+S
+#27469
+Pet Store~
+This is a pet store, smelling of...well...pets... :)~
+273 ROOM_INDOORS|ROOM_PET_SHOP SECT_INSIDE
+DDIR_DOWN
+A bustling marketplace.~
+~
+0 -1 27404
+S
+#27470
+petshop backroom~
+You don't belong here.~
+273 ROOM_NO_MOB|ROOM_INDOORS SECT_INSIDE
+S
+#27471
+Loading Room Alpha~
+This is Loading Room Alpha...for citizen mob loading...how the hell 
+did you get in here?~
+273 ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_NORTH
+Portal to Northwestern Residential District.~
+~
+0 -1 27421
+DDIR_EAST
+Portal to Northeastern Residential District.~
+~
+0 -1 27424
+DDIR_SOUTH
+Portal to Southwestern Residential District.~
+~
+0 -1 27435
+DDIR_WEST
+Portal to Southeastern Residential District.~
+~
+0 -1 27438
+DDIR_UP
+Portal to Northern Residential Street.~
+~
+0 -1 27412
+DDIR_DOWN
+Portal to Southern Residential Street.~
+~
+0 -1 27417
+S
+#27472
+Loading Room Beta~
+This is Loading Room Beta...for defender mob loading...how the hell did you
+get in here?~
+273 ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_NORTH
+Portal to Eternal Road, northwestern quadrant.~
+~
+0 -1 27365
+DDIR_EAST
+Portal to Eternal Road, northeastern quadrant.~
+~
+0 -1 27379
+DDIR_SOUTH
+Portal to Eternal Road, southwestern quadrant.~
+~
+0 -1 27399
+DDIR_WEST
+Portal to Eternal Road, southeastern quadrant.~
+~
+0 -1 27388
+DDIR_UP
+Portal to Northern Residential Street.~
+~
+0 -1 27412
+DDIR_DOWN
+Portal to Southern Residential Street.~
+~
+0 -1 27417
+S
+#27473
+A small, seedy tavern~
+This tavern is definitely on the cramped side.  The ceiling is low, and the 
+place is lit by some small, dim lanterns and mage lights.  The smell of cheap
+liquor, smoke, greasy food, and cheap perfume.  Of all the bars, taverns, pubs,
+and flophouses you have been in, this one is very close to the bottom of the 
+list. It's amazing that a city as wonderful as this could have 
+such a...a...sewer of society in it.~
+273 ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+A dim area. . .~
+~
+0 -1 27474
+DDIR_SOUTH
+An unsavory place...~
+~
+0 -1 27483
+S
+#27474
+The back of the tavern~
+There are not as many people here, and the light is bad.  The funny thing is, 
+that you would think that the *further* from the door, the more people there 
+would be.  The furniture is in better condition, yet the only people here are 
+drunks, for the most part.  Wait!  Was that a movement in the corner?~
+273 ROOM_INDOORS SECT_INSIDE
+DDIR_WEST
+A noisy bar. . .~
+~
+0 -1 27473
+S
+#27475
+A dark cellar~
+You are standing in a dark, crowded cellar.  There are casks of ale and jugs
+of liquor piled high in here.  Crates of assorted items line the walls, and the
+entire place smells of wood, some dust, alcohol, and other, less pleasant, 
+smells.  You do not like the thought of trying to make a light in here to 
+dispel the gloom.  The faint dripping you hear is probably water. But it 
+*could* be alcohol, and lighting *that* could be more than a little 
+unpleasant.~
+273 ROOM_INDOORS|ROOM_DARK|ROOM_NO_RECALL SECT_INSIDE
+DDIR_EAST
+Nothing special there.~
+~
+EX_CLOSED|EX_HIDDEN -1 27476
+S
+#27476
+A secret passageway~
+This passage is wide enough for two people to walk through side-by-side, 
+although it does seem to bottleneck at a couple of points.  Not many people 
+pass through here, to judge by the dust that lines the edges of the walkway.  
+The lighting in here is not good, but it is still a far sight better than what
+is in the cellar.~
+273 ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_NORTH
+A narrow passage...~
+~
+0 -1 27479
+DDIR_WEST
+A dimly lit cellar...~
+~
+2 -1 27475
+S
+#27477
+Lethalis Darkmaster's Study~
+The study which you have sought is strangely incongruent with the decor of the
+rest of this part of town.  This room looks like it has been teleported right 
+out of a palace.  Opulent is the word that comes to mind as you gaze upon the 
+rich paintings and tapestries that hang in this room.  The room is splendidly 
+well-lit.  One painting in particular catches your eye.~
+273 ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_SOUTH
+A tight passage.~
+~
+EX_CLOSED -1 27479
+DDIR_DOWN
+A trapdoor~
+trapdoor~
+EX_CLOSED|EX_HIDDEN -1 27478
+E
+painting~
+This isn't a painting. . .not exactly.  It appears to be a customized throwing
+knife target. The image that graces this target is none other than your friend,
+Sir James!  A fancy dagger--with a richly jewelled hilt, and a pommelstone to 
+kill for--protrudes from between James' eyes. Hmm. . .no wonder James couldn't
+get in here, not if he wanted to come out alive, and in one piece.~
+S
+#27478
+A shadowy alley~
+This is a dark alley, scarcely six feet wide.  What is not plunged in darkness
+is shadowed. The really peculiar thing about the situation is the fact that no
+one on the street seems to even notice that this alley even exists.  Assorted 
+litter clutters the alley, making silent movement next to impossible.  There 
+almost seems to be some sort of hole in one of the larger piles in the back.~
+273 0 SECT_CITY
+DDIR_WEST
+An unsavory place. . .~
+~
+0 -1 27482
+E
+hole~
+Nah...what you thought was a hole just seems to be a small clearing in all the
+junk that fills this alley.  The wall does look a little strange, but then, so
+does most of this area of town.~
+S
+#27479
+A tight passage~
+There's hardly enough room for you to manuever in here.  There is a pervasive 
+stench of decay coming from somewhere.  A large rat skitters out from 
+underfoot, and you catch sight of what has got to be the *BIGGEST* rat tail 
+that you have ever seen in your life disappearing into a hole in the wall.  
+Hey! Is that a light that you see up ahead?~
+273 0 SECT_CITY
+DDIR_NORTH
+A well lit room.~
+~
+2 -1 27477
+DDIR_SOUTH
+A dim, dusty passage.~
+~
+0 -1 27476
+S
+#27480
+Entrance to the underside of the City of Eternity~
+You are in a dimly lit area.  While other parts of the City of Eternity seem to
+be crowned in shining light, this place seems to be cloaked in shadows, and the
+light is dim indeed. Other, darker places come to mind--the Darkside in fallen
+Thalos; the famed Sharthea which lies in ruins; Death Alley in that place of 
+Order, Mount Kolvir--and even though this place has a ways to go before it 
+reaches that level of decay, things certainly are heading that way.~
+273 0 SECT_CITY
+DDIR_NORTH
+An unsavory place. . .~
+~
+0 -1 27483
+DDIR_EAST
+An unsavory place. . .~
+~
+0 -1 27482
+DDIR_SOUTH
+A small tube~
+strange cover~
+EX_CLOSED -1 27489
+DDIR_WEST
+An unsavory place. . .~
+~
+0 -1 27481
+S
+#27481
+The underside of the City of Eternity~
+You see an entirely different side of the City.  Where the citizens in the rest
+of the city live in peace, harmony, and happiness, the people here live in 
+fear, and by their wits. The sounds and smells of rowdy pleasure assail your 
+senses.  You see beggars and pickpockets, thieves and whores moving around, 
+trying to eke out a meager existence.  The occasional mutter about the 'damned
+better half' reaches your ears.~
+273 0 SECT_CITY
+DDIR_EAST
+An unsavory place. . .~
+~
+0 -1 27480
+S
+#27482
+The underside of the City of Eternity~
+You see an entirely different side of the City.  Where the citizens in the rest
+of the city live in peace, harmony, and happiness, the people here live in 
+fear, and by their wits. The sounds and smells of rowdy pleasure assail your 
+senses.  You see beggars and pickpockets, thieves and whores moving around, 
+trying to eke out a meager existence.  There is a dark alley off to the east.~
+273 0 SECT_CITY
+DDIR_EAST
+A dark alley~
+~
+0 -1 27478
+DDIR_WEST
+An unsavory place. . .~
+~
+0 -1 27480
+S
+#27483
+The underside of the City of Eternity~
+You see an entirely different side of the City.  Where the citizens in the rest
+of the city live in peace, harmony, and happiness, the people here live in 
+fear, and by their wits. The sounds and smells of rowdy pleasure assail your 
+senses.  You see beggars and pickpockets, thieves and whores moving around, 
+trying to eke out a meager existence.  A bar is to the north, and there are 
+numerous drunks passed out in the gutter.~
+273 0 SECT_CITY
+DDIR_NORTH
+A noisy, unpleasant dive.~
+~
+0 -1 27473
+DDIR_SOUTH
+An unsavory place. . .~
+~
+0 -1 27480
+S
+#27484
+A damp drainage conduit~
+You are crouching in a dark, damp drainage conduit.  Considering the fact that
+it is collecting runoff from the gutter, it is surprisingly clean. . .perhaps 
+it's the result of some creative casting of spells. . .or more likely, it's the
+product of some careful, brilliant engineering by Lord Hunter.  Considering the
+fact that the rumors say he has lived for millennia, it wouldn't surprise you 
+a great deal that he knew how to build truly good drainage.~
+273 ROOM_DARK SECT_UNUSED
+DDIR_NORTH
+A damp drainage conduit~
+~
+0 -1 27485
+DDIR_UP
+The Eternal Road~
+drainage grate~
+EX_ISDOOR|EX_CLOSED -1 27399
+E
+drainage grate~
+This grate is carefully constructed to be very subtle and well-hidden, yet fully functional.~
+S
+#27485
+A damp drainage conduit~
+You are crouching in a dark, damp drainage conduit.  Considering the fact that
+it is collecting runoff from the gutter, it is surprisingly clean. . .perhaps 
+it's the result of some creative casting of spells. . .or more likely, it's the
+product of some careful, brilliant engineering by Lord Hunter.  Considering the
+fact that the rumors say he has lived for millennia, it wouldn't surprise you 
+a great deal that he knew how to build truly good drainage.~
+273 ROOM_DARK SECT_UNUSED
+DDIR_EAST
+A damp drainage conduit~
+~
+0 -1 27486
+DDIR_SOUTH
+A damp drainage conduit~
+~
+0 -1 27484
+S
+#27486
+A damp drainage conduit~
+You are crouching in a dark, damp drainage conduit.  Considering the fact that
+it is collecting runoff from the gutter, it is surprisingly clean. . .perhaps 
+it's the result of some creative casting of spells. . .or more likely, it's the
+product of some careful, brilliant engineering by Lord Hunter.  Considering the
+fact that the rumors say he has lived for millennia, it wouldn't surprise you 
+a great deal that he knew how to build truly good drainage.~
+273 ROOM_DARK SECT_UNUSED
+DDIR_NORTH
+A damp drainage conduit~
+~
+0 -1 27487
+DDIR_WEST
+A damp drainage conduit~
+~
+0 -1 27485
+S
+#27487
+A damp drainage conduit~
+You are crouching in a dark, damp drainage conduit.  Considering the fact that
+it is collecting runoff from the gutter, it is surprisingly clean. . .perhaps 
+it's the result of some creative casting of spells. . .or more likely, it's the
+product of some careful, brilliant engineering by Lord Hunter.  Considering the
+fact that the rumors say he has lived for millennia, it wouldn't surprise you 
+a great deal that he knew how to build truly good drainage.~
+273 ROOM_DARK SECT_UNUSED
+DDIR_SOUTH
+A damp drainage conduit~
+~
+0 -1 27486
+DDIR_WEST
+A damp drainage conduit~
+~
+0 -1 27488
+S
+#27488
+A damp drainage conduit~
+You are crouching in a dark, damp drainage conduit.  Considering the fact that 
+it is collecting runoff from the gutter, it is surprisingly clean. . .perhaps 
+it's the result of some creative casting of spells. . .or more likely, it's the
+product of some careful, brilliant engineering by Lord Hunter.  Considering the
+fact that the rumors say he has lived for millennia, it wouldn't surprise you 
+a great deal that he knew how to build truly good drainage. A small grate 
+covers a tube leading off to the side.~
+273 ROOM_DARK SECT_UNUSED
+DDIR_NORTH
+~
+small grate~
+EX_ISDOOR|EX_CLOSED|EX_HIDDEN -1 27489
+DDIR_EAST
+A damp drainage conduit~
+~
+0 -1 27487
+E
+tube~
+This tube looks like it is big enough to let a person pass through it, and you 
+see light on the other side, through a translucent cover.~
+S
+#27489
+A short tube~
+You are crawling in a small access tube.  It seems to be meant for maintenance
+purposes. At one end, there is a small metal grate, secured from the inside.  
+On the other end, there is a cover made of some strange, translucent material.
+Whatever this stuff is, it is exceptionally durable.  A small date that 
+appears to be embedded in the middle of the stuff claims that this cover was 
+made about two thousand years ago, yet it looks like it was made just 
+yesterday.  There is something else that you notice about the grate, now that 
+you see it from this side. . .no water is getting through it!~
+273 0 SECT_UNUSED
+DDIR_NORTH
+An unsavory place. . .~
+strange cover~
+EX_ISDOOR|EX_CLOSED -1 27480
+DDIR_SOUTH
+A damp drainage conduit~
+small grate~
+EX_CLOSED -1 27488
+S
+#0
+
+
+
+
+#RESETS
+O 0 27405 1 27372   ; fountain in center of eternity
+O 0 27400 1 27477   ; lorken desk in Lethalis Darkmaster's study
+O 0 27403 1 27477   ; target in Lethalis Darkmaster's Study
+P 1 27404 50 27403   ; dagger in target
+O 0 27401 1 27477   ; secret compartment in Lethalis Darkmaster's study
+P 1 27402 1 27401   ; secret ledger in secret compartment
+M 0 27362   1 27408 ;       Evad the Bartender in Evad's Bar & Grill       
+G 1 27376 999       ;       a prime rib dinner
+G 1 27377 999       ;        a shot of tequila
+G 1 27378 999       ;   a bowl of clam chowder
+G 1 27379 999       ;a pilsner of Bhud Lite(tm)
+G 1 27372 999       ; a ball of water
+M 0 27363   1 27405 ;        Nairb the Armorer in Armor/Weapons Shop       
+G 1 27374 999       ;a suit of duranium battle
+G 1 27375 999       ;        duranium leggings
+M 0 27364   1 27461 ;      Shryl the Innkeeper in The Compass Rose         
+M 0 27365   1 27407 ;    Charles the Alchemist in Magic Shop      '         
+G 1 27362 999       ;a cold, frosty BEER
+G 1 27363 999       ;        a firebird scroll
+G 1 27364 999       ; a carbonated soda
+G 1 27365 999       ;a vial of PURE adrenaline
+G 1 27366 999       ;          a buzzing staff
+G 1 27367 999       ;   a scroll of Protection
+G 1 27368 999       ;      a scroll of Defense
+G 1 27369 999       ;     a scroll of Recovery
+G 1 27398 999	  ;a cold BEER
+M 0 27366   1 27469 ;                 Jennifer in Pet Store                
+M 0 27379  10 27470 ;              a weinerdog in petshop backroom         
+M 0 27380  10 27470 ;             a cold-drake in petshop backroom         
+M 0 27381  10 27470 ;            a fire-lizard in petshop backroom         
+M 0 27367   1 27406 ;        John the Salesman in General Store            
+G 1 27399 999       ;a portable hole
+M 0 27368   1 27410 ;      Marty the mortician in Morgue                   
+M 0 27369   1 27462 ; Illustionist Guildmaster in Illusionists' Guildhall  
+M 0 27370   1 27463 ;  Necromancer Guildmaster in Necromancers' Guild      
+M 0 27371   1 27464 ;   Dustin the Guildmaster in Rogues' Guild            
+M 0 27372   1 27465 ;   Jodi the Guildmistress in Halls of Healing         
+M 0 27373   1 27466 ;   Sara the Guildmistress in Ranger Guildhall         
+M 0 27374   1 27467 ;Elementalist Guildmistres in Elementalist Guildhall   
+M 0 27375   1 27468 ;     Assassin Guildmaster in Assassin Guildhall       
+M 0 27376   1 27458 ;              The Trainer in Training hall            
+O 0 27370   1 27467 ;         a shaft of water in Elementalist Guildhall   
+M 0 27377   1 27391 ;An insane Eternal citizen in Eternal Road             
+G 1 27361   1       ;a large tome of magic spe
+M 0 27382   1 27366 ;               Sir James the Spy in Eternal Road         
+E 1 27380  1 12 ;equip james spy's black tuxedo
+E 1 27381  1 5 ;equip james spy's white dress shirt 
+E 1 27382  1 ITEM_WEAR_BODY ;equip james spy's dress shoes 
+E 1 27383  1 7 ;equip james spy's black dress pants
+E 1 27384  1 17 ;equip james spy's License to K
+E 1 27390  1 14 ;equip james spy's broken sundial
+M 0 27385   1 27409 ;                        Q in Q's Workshop 
+M 0 27386   1 27375 ;The Ethereal doorman dude in Eternal Road             
+M 0 27360  15 27471 ;   A male Eternal Citizen in Loading Room Alpha       
+E 1 27373 15 5 ;equip a warm flannel shirt     
+M 0 27360  15 27471 ;   A male Eternal Citizen in Loading Room Alpha       
+E 1 27373 15 5 ;equip a warm flannel shirt     
+M 0 27360  15 27471 ;   A male Eternal Citizen in Loading Room Alpha       
+E 1 27373 15 5 ;equip a warm flannel shirt     
+M 0 27360  15 27471 ;   A male Eternal Citizen in Loading Room Alpha       
+E 1 27373 15 5 ;equip a warm flannel shirt     
+M 0 27360  15 27471 ;   A male Eternal Citizen in Loading Room Alpha       
+E 1 27373 15 5 ;equip a warm flannel shirt     
+M 0 27360  15 27471 ;   A male Eternal Citizen in Loading Room Alpha       
+E 1 27373 15 5 ;equip a warm flannel shirt     
+M 0 27360  15 27471 ;   A male Eternal Citizen in Loading Room Alpha       
+E 1 27373 15 5 ;equip a warm flannel shirt     
+M 0 27360  15 27471 ;   A male Eternal Citizen in Loading Room Alpha       
+E 1 27373 15 5 ;equip a warm flannel shirt     
+M 0 27360  15 27471 ;   A male Eternal Citizen in Loading Room Alpha       
+E 1 27373 15 5 ;equip a warm flannel shirt     
+M 0 27360  15 27471 ;   A male Eternal Citizen in Loading Room Alpha       
+E 1 27373 15 5 ;equip a warm flannel shirt     
+M 0 27360  15 27471 ;   A male Eternal Citizen in Loading Room Alpha       
+E 1 27373 15 5 ;equip a warm flannel shirt     
+M 0 27360  15 27471 ;   A male Eternal Citizen in Loading Room Alpha       
+E 1 27373 15 5 ;equip a warm flannel shirt     
+M 0 27360  15 27471 ;   A male Eternal Citizen in Loading Room Alpha       
+E 1 27373 15 5 ;equip a warm flannel shirt     
+M 0 27360  15 27471 ;   A male Eternal Citizen in Loading Room Alpha       
+E 1 27373 15 5 ;equip a warm flannel shirt     
+M 0 27360  15 27471 ;   A male Eternal Citizen in Loading Room Alpha       
+E 1 27373 15 5 ;equip a warm flannel shirt     
+M 0 27360  15 27471 ;   A male Eternal Citizen in Loading Room Alpha       
+E 1 27373 15 5 ;equip a warm flannel shirt     
+M 0 27360  15 27471 ;   A male Eternal Citizen in Loading Room Alpha       
+E 1 27373 15 5 ;equip a warm flannel shirt     
+M 0 27360  15 27471 ;   A male Eternal Citizen in Loading Room Alpha       
+E 1 27373 15 5 ;equip a warm flannel shirt     
+M 0 27361  15 27471 ; A female Eternal Citizen in Loading Room Alpha       
+E 1 27385 15 12 ;equip a warm parka             
+M 0 27361  15 27471 ; A female Eternal Citizen in Loading Room Alpha       
+E 1 27385 15 12 ;equip a warm parka             
+M 0 27361  15 27471 ; A female Eternal Citizen in Loading Room Alpha       
+E 1 27385 15 12 ;equip a warm parka             
+M 0 27361  15 27471 ; A female Eternal Citizen in Loading Room Alpha       
+E 1 27385 15 12 ;equip a warm parka             
+M 0 27361  15 27471 ; A female Eternal Citizen in Loading Room Alpha       
+E 1 27385 15 12 ;equip a warm parka             
+M 0 27361  15 27471 ; A female Eternal Citizen in Loading Room Alpha       
+E 1 27385 15 12 ;equip a warm parka             
+M 0 27361  15 27471 ; A female Eternal Citizen in Loading Room Alpha       
+E 1 27385 15 12 ;equip a warm parka             
+M 0 27361  15 27471 ; A female Eternal Citizen in Loading Room Alpha       
+E 1 27385 15 12 ;equip a warm parka             
+M 0 27361  15 27471 ; A female Eternal Citizen in Loading Room Alpha       
+E 1 27385 15 12 ;equip a warm parka             
+M 0 27361  15 27471 ; A female Eternal Citizen in Loading Room Alpha       
+E 1 27385 15 12 ;equip a warm parka             
+M 0 27361  15 27471 ; A female Eternal Citizen in Loading Room Alpha       
+E 1 27385 15 12 ;equip a warm parka             
+M 0 27361  15 27471 ; A female Eternal Citizen in Loading Room Alpha       
+E 1 27385 15 12 ;equip a warm parka             
+M 0 27361  15 27471 ; A female Eternal Citizen in Loading Room Alpha       
+E 1 27385 15 12 ;equip a warm parka             
+M 0 27361  15 27471 ; A female Eternal Citizen in Loading Room Alpha       
+E 1 27385 15 12 ;equip a warm parka             
+M 0 27361  15 27471 ; A female Eternal Citizen in Loading Room Alpha       
+E 1 27385 15 12 ;equip a warm parka             
+M 0 27378  10 27472 ;Defender of the Eternal C in Loading Room Beta        
+E 1 27374 10 5 ;equip a suit of duranium battle
+E 1 27375 10 7 ;equip duranium leggings        
+E 1 27386 20 14 ;equip a duranium bracer        
+E 1 27386 20 15 ;equip a duranium bracer        
+G 1 27396  18       ;    a large pile of gold
+M 0 27378  10 27472 ;Defender of the Eternal C in Loading Room Beta        
+E 1 27374 10 5 ;equip a suit of duranium battle
+E 1 27375 10 7 ;equip duranium leggings        
+E 1 27386 20 14 ;equip a duranium bracer        
+E 1 27386 20 15 ;equip a duranium bracer        
+G 1 27396  18       ;    a large pile of gold
+M 0 27378  10 27472 ;Defender of the Eternal C in Loading Room Beta        
+E 1 27374 10 5 ;equip a suit of duranium battle
+E 1 27375 10 7 ;equip duranium leggings        
+E 1 27386 20 14 ;equip a duranium bracer        
+E 1 27386 20 15 ;equip a duranium bracer        
+G 1 27396  18       ;    a large pile of gold
+M 0 27378  10 27472 ;Defender of the Eternal C in Loading Room Beta        
+E 1 27374 10 5 ;equip a suit of duranium battle
+E 1 27375 10 7 ;equip duranium leggings        
+E 1 27386 20 14 ;equip a duranium bracer        
+E 1 27386 20 15 ;equip a duranium bracer        
+G 1 27396  18       ;    a large pile of gold
+M 0 27378  10 27472 ;Defender of the Eternal C in Loading Room Beta        
+E 1 27374 10 5 ;equip a suit of duranium battle
+E 1 27375 10 7 ;equip duranium leggings        
+E 1 27386 20 14 ;equip a duranium bracer        
+E 1 27386 20 15 ;equip a duranium bracer        
+G 1 27396  18       ;    a large pile of gold
+M 0 27378  10 27472 ;Defender of the Eternal C in Loading Room Beta        
+E 1 27374 10 5 ;equip a suit of duranium battle
+E 1 27375 10 7 ;equip duranium leggings        
+E 1 27386 20 14 ;equip a duranium bracer        
+E 1 27386 20 15 ;equip a duranium bracer        
+G 1 27396  18       ;    a large pile of gold
+M 0 27378  10 27472 ;Defender of the Eternal C in Loading Room Beta        
+E 1 27374 10 5 ;equip a suit of duranium battle
+E 1 27375 10 7 ;equip duranium leggings        
+E 1 27386 20 14 ;equip a duranium bracer        
+E 1 27386 20 15 ;equip a duranium bracer        
+G 1 27396  18       ;    a large pile of gold
+M 0 27378  10 27472 ;Defender of the Eternal C in Loading Room Beta        
+E 1 27374 10 5 ;equip a suit of duranium battle
+E 1 27375 10 7 ;equip duranium leggings        
+E 1 27386 20 14 ;equip a duranium bracer        
+E 1 27386 20 15 ;equip a duranium bracer        
+G 1 27396  18       ;    a large pile of gold
+M 0 27378  10 27472 ;Defender of the Eternal C in Loading Room Beta        
+E 1 27374 10 5 ;equip a suit of duranium battle
+E 1 27375 10 7 ;equip duranium leggings        
+E 1 27386 20 14 ;equip a duranium bracer        
+E 1 27386 20 15 ;equip a duranium bracer        
+G 1 27396  18       ;    a large pile of gold
+M 0 27378  10 27472 ;Defender of the Eternal C in Loading Room Beta        
+E 1 27374 10 5 ;equip a suit of duranium battle
+E 1 27375 10 7 ;equip duranium leggings        
+E 1 27386 20 14 ;equip a duranium bracer        
+E 1 27386 20 15 ;equip a duranium bracer        
+G 1 27396  18       ;    a large pile of gold
+M 0 27384   8 27360 ;        an Armored Statue in Western Entrance to the C
+E 1 27388  4 5 ;equip cuendillar battle armor  
+G 1 27397  32       ;    a *huge* pile of gold
+G 1 27397  32       ;    a *huge* pile of gold
+G 1 27397  32       ;    a *huge* pile of gold
+G 1 27397  32       ;    a *huge* pile of gold
+G 1 27396  18       ;    a large pile of gold
+M 0 27384   8 27360 ;        an Armored Statue in Western Entrance to the C
+E 1 27389  4 7 ;equip cuendillar leggings      
+G 1 27397  32       ;    a *huge* pile of gold
+G 1 27397  32       ;    a *huge* pile of gold
+G 1 27397  32       ;    a *huge* pile of gold
+G 1 27397  32       ;    a *huge* pile of gold
+G 1 27396  18       ;    a large pile of gold
+M 0 27384   8 27384 ;        an Armored Statue in Eastern Entrance to the C
+E 1 27388  4 5 ;equip cuendillar battle armor  
+G 1 27397  32       ;    a *huge* pile of gold
+G 1 27397  32       ;    a *huge* pile of gold
+G 1 27397  32       ;    a *huge* pile of gold
+G 1 27397  32       ;    a *huge* pile of gold
+G 1 27396  18       ;    a large pile of gold
+M 0 27384   8 27384 ;        an Armored Statue in Eastern Entrance to the C
+E 1 27389  4 7 ;equip cuendillar leggings      
+G 1 27397  32       ;    a *huge* pile of gold
+G 1 27397  32       ;    a *huge* pile of gold
+G 1 27397  32       ;    a *huge* pile of gold
+G 1 27397  32       ;    a *huge* pile of gold
+G 1 27396  18       ;    a large pile of gold
+M 0 27384   8 27459 ;        an Armored Statue in Northern Entrance to the 
+E 1 27388  4 5 ;equip cuendillar battle armor  
+G 1 27397  32       ;    a *huge* pile of gold
+G 1 27397  32       ;    a *huge* pile of gold
+G 1 27397  32       ;    a *huge* pile of gold
+G 1 27397  32       ;    a *huge* pile of gold
+G 1 27396  18       ;    a large pile of gold
+M 0 27384   8 27459 ;        an Armored Statue in Northern Entrance to the 
+E 1 27389  4 7 ;equip cuendillar leggings      
+G 1 27397  32       ;    a *huge* pile of gold
+G 1 27397  32       ;    a *huge* pile of gold
+G 1 27397  32       ;    a *huge* pile of gold
+G 1 27397  32       ;    a *huge* pile of gold
+G 1 27396  18       ;    a large pile of gold
+M 0 27384   8 27460 ;        an Armored Statue in Southern Entrance to the 
+E 1 27388  4 5 ;equip cuendillar battle armor  
+G 1 27397  32       ;    a *huge* pile of gold
+G 1 27397  32       ;    a *huge* pile of gold
+G 1 27397  32       ;    a *huge* pile of gold
+G 1 27397  32       ;    a *huge* pile of gold
+G 1 27396  18       ;    a large pile of gold
+M 0 27384   8 27460 ;        an Armored Statue in Southern Entrance to the 
+E 1 27389  4 7 ;equip cuendillar leggings      
+G 1 27397  32       ;    a *huge* pile of gold
+G 1 27397  32       ;    a *huge* pile of gold
+G 1 27397  32       ;    a *huge* pile of gold
+G 1 27397  32       ;    a *huge* pile of gold
+G 1 27396  18       ;    a large pile of gold
+M 0 27383 1 27474   ; a mercernary guard in back of a tavern
+M 0 27388 8 27485   ; a large hideous rat in a damp drainage conduit
+M 0 27388 8 27485   ; a large hideous rat in a damp drainage conduit
+M 0 27388 8 27486   ; a large hideous rat in a damp drainage conduit
+M 0 27388 8 27486   ; a large hideous rat in a damp drainage conduit
+M 0 27388 8 27487   ; a large hideous rat in a damp drainage conduit
+M 0 27388 8 27487   ; a large hideous rat in a damp drainage conduit
+M 0 27388 8 27488   ; a large hideous rat in a damp drainage conduit
+M 0 27388 8 27488   ; a large hideous rat in a damp drainage conduit
+M 0 27389 2 27473  ; a freelance guard in a Dark Cellar
+M 0 27389 2 27473  ; a freelance guard in a Dark Cellar
+M 0 27390 1 27473  ; a sleazy bartender in a cheap tavern
+G 1 27408 999	; a shot of cheap whiskey
+G 1 27409 999	; a mug of Troll Sweat
+D 0 27361 DIR_WEST DOOR_CLOSED ;door in Eternal Road             
+D 0 27383 DIR_EAST DOOR_CLOSED ;door in Eternal Road             
+D 0 27415 DIR_NORTH DOOR_CLOSED ;door in Residential Street       
+D 0 27420 DIR_SOUTH DOOR_CLOSED ;door in Residential Street       
+D 0 27425 DIR_EAST DOOR_OPEN ;door in An Eternal Citizen's Home
+D 0 27426 DIR_SOUTH DOOR_OPEN ;door in An Eternal Citizen's Home
+D 0 27427 DIR_SOUTH DOOR_OPEN ;door in An Eternal Citizen's Home
+D 0 27428 DIR_SOUTH DOOR_OPEN ;door in An Eternal Citizen's Home
+D 0 27429 DIR_SOUTH DOOR_OPEN ;door in An Eternal Citizen's Home
+D 0 27430 DIR_WEST DOOR_OPEN ;door in An Eternal Citizen's Home
+D 0 27431 DIR_NORTH DOOR_OPEN ;door in An Eternal Citizen's Home
+D 0 27432 DIR_NORTH DOOR_OPEN ;door in An Eternal Citizen's Home
+D 0 27433 DIR_NORTH DOOR_OPEN ;door in An Eternal Citizen's Home
+D 0 27434 DIR_NORTH DOOR_OPEN ;door in An Eternal Citizen's Home
+D 0 27439 DIR_EAST DOOR_OPEN ;door in An Eternal Citizen's Home
+D 0 27440 DIR_SOUTH DOOR_OPEN ;door in An Eternal Citizen's Home
+D 0 27441 DIR_SOUTH DOOR_OPEN ;door in An Eternal Citizen's Home
+D 0 27442 DIR_SOUTH DOOR_OPEN ;door in An Eternal Citizen's Home
+D 0 27443 DIR_SOUTH DOOR_OPEN ;door in An Eternal Citizen's Home
+D 0 27444 DIR_WEST DOOR_OPEN ;door in An Eternal Citizen's Home
+D 0 27445 DIR_NORTH DOOR_OPEN ;door in An Eternal Citizen's Home
+D 0 27446 DIR_NORTH DOOR_OPEN ;door in An Eternal Citizen's Home
+D 0 27447 DIR_NORTH DOOR_OPEN ;door in An Eternal Citizen's Home
+D 0 27448 DIR_NORTH DOOR_OPEN ;door in An Eternal Citizen's Home
+D 0 27479 DIR_NORTH DOOR_CLOSED ; door in tight passage
+D 0 27484 DIR_UP DOOR_CLOSED ; drainage grate in damp drainage conduit
+D 0 27488 DIR_NORTH DOOR_CLOSED ; small grate in damp drainage conduit
+D 0 27489 DIR_NORTH DOOR_CLOSED ; strange cover in small tube
+S
+
+
+
+
+#SHOPS
+27362 ITEM_TYPE_FOOD ITEM_TYPE_DRINK_CON ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING
+     ITEM_TYPE_NOTHING 50  150  0 23 ;Evad the Bartender
+27363 ITEM_TYPE_ARMOR ITEM_TYPE_WEAPON ITEM_TYPE_AMMO ITEM_TYPE_NOTHING
+     ITEM_TYPE_NOTHING 50  150  0 23 ;Nairb the Armorer
+27365 ITEM_TYPE_SCROLL ITEM_TYPE_STAFF ITEM_TYPE_POTION ITEM_TYPE_PILL
+     ITEM_TYPE_WAND 50  150  0 23 ;Charles the Alchemist
+27367 ITEM_TYPE_LIGHT ITEM_TYPE_CONTAINER ITEM_TYPE_TREASURE ITEM_TYPE_BOAT
+     ITEM_TYPE_FURNITURE 50  150  0 23 ;John the Salesman
+27390 ITEM_TYPE_FOOD ITEM_TYPE_DRINK_CON ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING
+     ITEM_TYPE_NOTHING 50 150 0 23 ;sleazy bartender
+0
+
+
+
+
+#SPECIALS
+M 27378 spec_guard
+S
+
+
+
+
+#$
+

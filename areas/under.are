@@ -1,0 +1,2978 @@
+#AREA The Underworld~
+
+#AUTHORS EddY   ~
+
+#HELPS
+-1 THE_UNDERWORLD_CHANGES~
+03.29.09 - Spelling and grammar corrections. (Order)
+03.29.09 - Removed some mprogs that referred to nonexistant items. (Order)
+~
+0 $~
+
+#RANGES 30 95 0 99
+
+#FLAGS AFLAG_NODEBUG
+
+#MOBILES
+#18900
+gatekeeper underworld~
+the gatekeeper of the Underworld~
+The Underworld's gatekeeper stands here.~
+He has powerful muscles and a strange expression on his face.  You may
+want to be careful with this man.  The decision is his whether to kill 
+you or let you in.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER|ACT_RACE
+AFF_SANCTUARY|AFF_UNDERSTAND|AFF_TONGUES
+0 S
+90 0 0 0d0+20000 1d10+80
+109816 RACE_ELF
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 100~
+look $n
+if ispc($n)
+  if class($n) == 6
+  or class($n) == 2
+    smile $n
+  else
+    shout Be gone $n!
+    mpforce $n scream
+    mptransfer $n 9755
+  endif
+endif
+~
+>speech_prog p let me in!~
+say Welcome to the Underworld!
+say Have a nice day.
+mptransfer $n 18901
+mpat 18901 mpforce $n look
+~
+>speech_prog p let us in!~
+say Welcome to the Underworld!
+say Have a nice day.
+mptransfer pcs 18901
+mpat 18901 mpforce all look
+~
+>fight_prog 20~
+kick 
+~
+|
+#18901
+bishop stinking~
+the stinking bishop~
+A horrible smelling bishop stands here waiting for his next victim.~
+The bishop looks like an immigrant from Hell.~
+ACT_SENTINEL|ACT_AGGRESSIVE|ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_INVISIBLE|AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_SANCTUARY|AFF_INFRARED
+10 S
+40 BODY_TORSO BODY_HEAD|BODY_LEG 1d50+1000 2d5+23
+60034 RACE_DWARF
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>fight_prog 20~
+cast 'fireball' $n
+~
+|
+#18902
+skeleton marble~
+the marble skeleton~
+A marble skeleton is here.~
+The skeleton cracks his jaw. You shiver uncontrollably.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_SANCTUARY|AFF_CURSE|AFF_UNDERSTAND|AFF_TONGUES
+-10 S
+95 BODY_CLAW BODY_CLAW 10d10+9000 2d10+80
+269236 RACE_DWARF
+POS_RESTING POS_RESTING SEX_NEUTRAL
+>fight_prog 20~
+kick 
+~
+>all_greet_prog 100~
+if ispc($n)
+  stand 
+  scream 
+  shout Prepare to DIE!!!
+  mpforce $n scream
+  mpkill $n
+endif
+~
+|
+#18903
+sewer mad~
+the mad sewer~
+An old, mad sewer is here.~
+The sewer is an old looking human. He appears to be meditating.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_SANCTUARY|AFF_INFRARED|AFF_UNDERSTAND|AFF_TONGUES
+100 S
+95 BODY_TORSO BODY_HEAD|BODY_ARM 10d100+10000 2d5+80
+217691 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 100~
+if ispc($n)
+  emote opens his eyes and looks at you intently.
+  if actorhasobjnum(18918)
+    bow $n
+  endif
+~
+>rand_prog 3~
+yawn 
+~
+>fight_prog 20~
+if rand(50)
+  cast 'energy drain' $n
+  cackle 
+else
+  emote concentrates.
+  mass acid
+endif
+~
+>death_prog 100~
+shout AAARRRRRRRGGGGGHHHHH!!!!!!
+~
+>rand_prog 1~
+mpjunk all
+~
+>speech_prog p make robe~
+if hasobjnum(18909)
+  if hasobjnum(18910)
+    if hasobjnum(18911)
+      mpjunk all
+      emote concentrates deeply.
+      emote begins sewing the items you have given him.
+      mpoload 18900
+      give robe $n
+      sigh 
+      say That is the best I can do with those supplies.
+    else
+      say You must give me the proper materials.
+    endif
+  else
+    say You must give me the proper materials.
+  endif
+else
+  say You must give me the proper materials.
+endif
+~
+|
+#18904
+hermit ashen~
+the ashen hermit~
+An ashen-faced hermit is here.~
+This man is very hungry.  He prays that someone will give him some food.
+The rogues and pirates have taken all of his food and possessions.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_SANCTUARY|AFF_INFRARED|AFF_UNDERSTAND|AFF_TONGUES
+30 S
+80 BODY_TORSO BODY_HEAD|BODY_LEG|BODY_HAND 10d50+4800 9d3+50
+242305 RACE_HUMAN
+POS_RESTING POS_RESTING SEX_MALE
+>greet_prog 60~
+look $n
+say Hello traveler, can you give me some food?
+sigh 
+~
+>rand_prog 2~
+say I am so hungry.
+cry 
+mpjunk all
+~
+>give_prog I18919~
+emote eats a loaf brown bread.
+burp 
+smile 
+say Thank you so much.
+bow $n
+emote gets an ashen belt from a bag.
+mpoload 18906
+give belt $n
+say Keep this belt.  It will bring you luck.
+smile
+say Do you think you help me?
+say I've lost my talisman.
+say Can you find it for me?
+sigh 
+say Without my talisman the Gods can't hear my prayers.
+cry 
+mpjunk all
+~
+>give_prog I18920~
+smile $n
+say Thank you traveler.
+say I have something for you.
+emote rummages in his bag.
+emote gets the Shawl of the Wise from a bag.
+mpoload 18905
+give shawl $n
+emote gets an old cowl from a bag.
+mpoload 18907
+give cowl $n
+say I hope these things bring you a lot of luck.
+smile 
+mpjunk all
+~
+|
+#18905
+pirate old~
+the old pirate~
+An old pirate is standing here.~
+The pirate is smoking his pipe.~
+ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_SANCTUARY|AFF_INFRARED|AFF_UNDERSTAND|AFF_HUNT|AFF_TONGUES
+-10 S
+71 BODY_TORSO BODY_HEAD|BODY_LEG 10d100+3000 2d10+40
+126551 RACE_ELF
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 100~
+if ispc($n)
+  if class($n)==CLASS_ASSASSIN
+  or class($n)==CLASS_ROGUE
+    nod $n
+  else
+    emote shouts 'Banzai!!!'
+    mpkill $n
+  endif
+endif
+~
+>fight_prog 30~
+kick 
+~
+>rand_prog 2~
+emote draws deeply on his pipe.
+~
+|
+#18906
+spider man~
+the spiderman~
+A spiderman is standing here.~
+The spiderman looks like a blending of spider and human.~
+ACT_AGGRESSIVE|ACT_STAY_AREA|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_SANCTUARY|AFF_INFRARED|AFF_STEALTH|AFF_HUNT
+-10 S
+70 BODY_TORSO BODY_EYE|BODY_CLAW 10d100+3000 5d5+40
+1 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_NEUTRAL
+#18907
+assassin old~
+the old assassin~
+An old assassin is here, selling weapons~
+The assassin is very old, and he is tired to assassinate, now he selling weapons.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_SANCTUARY|AFF_INFRARED|AFF_UNDERSTAND|AFF_TONGUES
+-10 S
+95 0 0 20d100+9000 4d5+70
+347647 RACE_ELF
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+say Welcome to my store
+say Tools of the trade.  You need 'em?  I got 'em.
+wink $n
+~
+|
+#18908
+rogue old~
+the old rogue~
+An old rogue is here, selling armor.~
+The rogue is very old, and he is tired to stealing, now he selling armor.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_SANCTUARY|AFF_INFRARED|AFF_UNDERSTAND|AFF_TONGUES
+-10 S
+95 0 0 20d100+9000 4d5+70
+245231 RACE_ELF
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+say Buy something or get out!
+~
+|
+#18909
+magician charlatan~
+the charlatan magician~
+The charlatan magician is here.~
+The magician is an old gnome necromancer.  His soul belongs to the Underworld.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_SANCTUARY|AFF_INFRARED|AFF_UNDERSTAND|AFF_TONGUES
+-10 S
+95 0 0 20d100+9000 4d5+70
+220132 RACE_GNOME
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 50~
+look $n
+say Welcome to my nasty shop.
+sigh
+~
+|
+#18910
+trader~
+the trader~
+A trader is here selling miscellaneous items.~
+The trader thinks he is a very important figure in the Underworld.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_SANCTUARY|AFF_INFRARED|AFF_UNDERSTAND|AFF_TONGUES
+-10 S
+95 0 0 20d100+9000 4d5+70
+350610 RACE_ELF
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 50~
+say Hello stranger.
+say May I help you?
+look $n
+~
+>speech_prog p yes~
+say I sell things to you.
+say You buy things from me.
+say I can't help you much more than that.
+~
+|
+#18911
+boy young~
+the young boy~
+A young boy stands here.~
+The young boy appears to be on some sort of an errand.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER|ACT_RACE
+AFF_INVISIBLE|AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_SANCTUARY|AFF_INFRARED|AFF_UNDERSTAND|AFF_STEALTH|AFF_TONGUES
+-10 S
+95 0 0 20d100+9000 4d5+70
+199845 RACE_ELF
+POS_STANDING POS_STANDING SEX_MALE
+#18912
+assassin worker~
+the worker~
+An Assassin Workshop worker is here.~
+The worker is bored.  Perhaps a demonstration will help pass the time.~
+ACT_SCAVENGER|ACT_WIMPY|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_UNDERSTAND|AFF_STEALTH|AFF_CLEAR|AFF_HUNT|AFF_TONGUES
+0 S
+60 BODY_TORSO BODY_HEAD|BODY_HAND 2d250+1700 2d5+45
+134451 RACE_ELF
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 100~
+if ispc($n)
+  mpforce $n shout Help! An Assassin Workshop worker is trying to assassinate me!
+  mpkill $n
+endif
+~
+>fight_prog 20~
+knife $n
+~
+|
+#18913
+assassin young~
+the young assassin~
+A young assassin is here studying the art of murder.~
+This assassin is very young but he tries hard.~
+ACT_SCAVENGER|ACT_BODY|ACT_RACE
+0
+0 S
+35 BODY_TORSO BODY_HEAD|BODY_LEG|BODY_HAND 2d10+620 2d5+25
+35090 RACE_ELF
+POS_STANDING POS_STANDING SEX_MALE
+#18914
+assassin young~
+the young assassin~
+A young assassin is here studying the art of murder.~
+This assassin is very young but she tries hard.~
+ACT_SCAVENGER|ACT_BODY|ACT_RACE
+0
+0 S
+33 BODY_TORSO BODY_HEAD|BODY_LEG|BODY_HAND 2d10+560 2d5+24
+38211 RACE_ELF
+POS_STANDING POS_STANDING SEX_FEMALE
+#18915
+teacher assassin~
+the assassin's teacher~
+The assassin's teacher is here.~
+The assassin's teacher is here to teach young assassins to murder.~
+ACT_SCAVENGER|ACT_BODY|ACT_RACE
+0
+0 S
+40 BODY_TORSO BODY_HEAD|BODY_LEG|BODY_HAND 2d20+770 3d3+25
+42536 RACE_ELF
+POS_STANDING POS_STANDING SEX_MALE
+#18916
+rogue young~
+the young rogue~
+A young rogue is here learning to steal.~
+The rogue is very young but he wants to steal like his elders.~
+ACT_SCAVENGER|ACT_BODY|ACT_RACE
+0
+0 S
+35 BODY_TORSO BODY_HEAD|BODY_HAND 2d10+650 2d5+25
+39697 RACE_DROW
+POS_STANDING POS_STANDING SEX_MALE
+#18917
+rogue young~
+the young rogue~
+A young rogue is here learning to steal.~
+The rogue is very young but she wants to steal like her elders.~
+ACT_SCAVENGER|ACT_BODY|ACT_RACE
+0
+0 S
+33 BODY_TORSO BODY_HEAD|BODY_HAND 2d10+600 2d5+24
+34184 RACE_DROW
+POS_STANDING POS_STANDING SEX_FEMALE
+#18918
+teacher rogue~
+the rogue's teacher~
+The rogue's teacher is here.~
+The rogue's teacher is here teaching young rogues to steal.~
+ACT_SCAVENGER|ACT_BODY|ACT_RACE
+0
+0 S
+40 BODY_TORSO BODY_HEAD|BODY_LEG|BODY_HAND 2d20+770 3d3+25
+58271 RACE_DROW
+POS_STANDING POS_STANDING SEX_MALE
+#18919
+king underworld~
+the King of the Underworld~
+The King of the Underworld sits here upon his throne.~
+The King, a rather large Drow Elf, sits upon his throne attending to
+the business of the Underworld.~
+ACT_SENTINEL|ACT_SCAVENGER|ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_SANCTUARY|AFF_INFRARED|AFF_UNDERSTAND|AFF_TONGUES
+0 S
+101 BODY_TORSO BODY_HEAD 20d100+12000 5d2+80
+390414 RACE_DROW
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 100~
+if ispc($n)
+  say Welcome to the Underworld.
+  mpforce $n hand king
+  pat $n
+endif
+~
+>fight_prog 10~
+cast fireball $r
+~
+>death_prog 100~
+shout $n is a traitor to the Underworld!
+~
+|
+#18920
+guard rogue~
+the rogue guard~
+A rogue guard stands here protecting the King from intruders.~
+The guard is a very strong Drow.  He is fearless and happy to serve the King.~
+ACT_SENTINEL|ACT_SCAVENGER|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_INFRARED|AFF_UNDERSTAND|AFF_TONGUES
+0 S
+60 BODY_TORSO BODY_HEAD|BODY_LEG|BODY_HAND 1d1+3000 2d20+40
+100000 RACE_DROW
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 50~
+if ispc($n)
+  look $n
+  grunt $n
+endif
+~
+>fight_prog 20~
+kick $n
+~
+>death_prog 50~
+puke $n
+~
+|
+#18921
+resident assassin~
+the resident~
+An Underworld resident is relaxing here.~
+This resident, apparently an  assassin, is friendly now.~
+ACT_SENTINEL|ACT_SCAVENGER|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_TONGUES
+0 S
+90 BODY_TORSO BODY_HEAD|BODY_LEG|BODY_HAND 10d100+7000 2d10+65
+213715 RACE_DWARF
+POS_STANDING POS_STANDING SEX_FEMALE
+>all_greet_prog 80~
+if ispc($n)
+  say Welcome stranger, may I help you?
+endif
+smile $n
+~
+>speech_prog yes~
+grin 
+say Hehe... ok...
+wink $n
+mpkill $n
+~
+>fight_prog 15~
+knife $n
+~
+|
+#18922
+resident rogue~
+the resident~
+An Underworld resident is relaxing here.~
+This resident, apparently a rogue, is friendly now.~
+ACT_SENTINEL|ACT_SCAVENGER|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_TONGUES
+0 S
+90 BODY_TORSO BODY_HEAD|BODY_LEG|BODY_HAND 10d100+7000 2d10+65
+304083 RACE_DWARF
+POS_STANDING POS_STANDING SEX_FEMALE
+>all_greet_prog 80~
+if ispc($n)
+  say Welcome stranger, may I help you?
+endif
+smile $n
+~
+>speech_prog yes~
+grin 
+say Hehe... ok...
+wink $n
+mpkill $n
+~
+>fight_prog 15~
+kick $n
+~
+|
+#18923
+lookout~
+the lookout~
+A lookout stands here watching for intruders.~
+The lookout is a young rogue.  Who better than a rogue to spot intruders.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_WEAK|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_SANCTUARY|AFF_INFRARED|AFF_UNDERSTAND|AFF_HIDE|AFF_TONGUES
+0 S
+95 BODY_TORSO BODY_HEAD|BODY_HAND 2d1000+15000 10d2+85
+324969 RACE_DROW
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 50~
+if ispc($n)
+  say Welcome $n to the Underworld.
+  grunt $n
+  grin $n
+endif
+~
+>fight_prog 20~
+kick $n
+~
+>death_prog 100~
+shout I'm too young to die!
+~
+|
+#18924
+trainer~
+the trainer~
+A trainer is here waiting to instruct young assassins.~
+~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_TRAIN|ACT_WEAK|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_SANCTUARY|AFF_INFRARED
+0 S
+95 BODY_TORSO BODY_HEAD|BODY_HAND 2d1000+9000 10d2+85
+214910 RACE_DROW
+POS_STANDING POS_STANDING SEX_MALE
+#18925
+guildmaster master~
+the guildmaster~
+A guildmaster is waiting here to help young assassins practice.~
+~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_PRACTICE|ACT_WEAK|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_SANCTUARY|AFF_INFRARED
+0 S
+95 BODY_TORSO BODY_HEAD|BODY_HAND 2d1000+9000 10d2+85
+355382 RACE_DROW
+POS_STANDING POS_STANDING SEX_MALE
+#18926
+eater steel~
+the Steel Eater~
+The Steel Eater is here.  He is doing exactly what you expect him to do...~
+The Steel Eater is the gardener of this underworld garden.~
+ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_SANCTUARY|AFF_INFRARED|AFF_UNDERSTAND|AFF_STEALTH|AFF_CLEAR|AFF_HUNT|AFF_TONGUES
+0 S
+80 BODY_TORSO BODY_HEAD|BODY_LEG|BODY_HAND 5d100+4900 5d5+68
+160004 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>rand_prog 5~
+emote eats some steel.
+~
+>fight_prog 10~
+kick $n
+~
+>death_prog 100~
+if hasobjnum(18946)
+  emote has eaten his last bit of steel.
+  mpjunk i18946
+else
+  mpquiet on
+  remove all
+  mpjunk all
+  mpquiet off
+  mpecho All of the Steel Eater's equipment decays.
+endif
+~
+|
+#18927
+eater~
+the corpse eater~
+A corpse eater is standing here waiting for more corpses to eat.~
+The corpses eater is very fat.  Food must be plentiful.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_TRAIN|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_SANCTUARY|AFF_INFRARED
+0 S
+95 BODY_TORSO BODY_HEAD|BODY_HAND 2d1000+9000 10d2+85
+339161 RACE_DROW
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+grin $n
+~
+>rand_prog 5~
+  emote eats one more corpse... Nom Nom Nom...
+  burp
+~
+|
+#18929
+weaver~
+the weaver~
+A weaver is standing here.~
+The weaver works diligently at his trade.  Perhaps he has made something useful.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_SANCTUARY|AFF_INFRARED|AFF_UNDERSTAND|AFF_TONGUES
+-10 S
+71 BODY_TORSO BODY_HEAD|BODY_LEG 10d100+3000 2d10+40
+126771 RACE_ELF
+POS_STANDING POS_STANDING SEX_MALE
+#18930
+trainer~
+the trainer~
+A trainer is here preparing to train young rogues.~
+~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_TRAIN|ACT_WEAK|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_SANCTUARY|AFF_INFRARED
+0 S
+95 BODY_TORSO BODY_HEAD|BODY_HAND 2d1000+9000 10d2+85
+255511 RACE_DROW
+POS_STANDING POS_STANDING SEX_MALE
+#18931
+guildmaster master~
+the guildmaster~
+A guildmaster is here.  He is patiently waiting for young rogues
+to help practice their skills.~
+~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_PRACTICE|ACT_WEAK|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_SANCTUARY|AFF_INFRARED
+0 S
+95 BODY_TORSO BODY_HEAD|BODY_HAND 2d1000+9000 10d2+85
+355382 RACE_DROW
+POS_STANDING POS_STANDING SEX_MALE
+#0
+
+#OBJECTS
+#18900
+robe strength~
+the Robe of Strength~
+A white magic robe is laying here.~
+This robe is rumored to have strong magical powers that will aid in your survival.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_GLOW|ITEM_FLAG_HUM|ITEM_FLAG_MAGIC|ITEM_FLAG_ANTI_EVIL|ITEM_FLAG_NOREMOVE|ITEM_FLAG_LEVEL|ITEM_FLAG_AUTO_ENGRAVE
+ITEM_WEAR_TAKE|ITEM_WEAR_ABOUT
+15 0 0 0
+5 438872 90
+A
+APPLY_HIT 75
+A
+APPLY_DEX 3
+A
+APPLY_STR 3
+P 1
+TRIG_HIT 50
+OPROG_IF OIF_WEAR_LOC ! WEAR_NONE 2 0
+P 2
+TRIG_VOID
+OPROG_IF OIF_USER_PERCENT_HITPT < 95 3 0
+P 3
+TRIG_VOID
+OPROG_APPLY 13 20
+#18901
+bone sharp~
+a sharp bone~
+A dark, sharp bone lies here.~
+The bone is extremely sharp.~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_NODROP|ITEM_FLAG_ANTI_GOOD|ITEM_FLAG_ANTI_EVIL|ITEM_FLAG_NOREMOVE|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 10 5 WEAPON_PIERCE
+10 1000000 48
+C
+whack~
+FLAG_CLASS_ILLUSIONIST|FLAG_CLASS_ELEMENTALIST|FLAG_CLASS_ROGUE|FLAG_CLASS_RANGER|FLAG_CLASS_NECROMANCER|FLAG_CLASS_MONK|FLAG_CLASS_ASSASSIN|FLAG_CLASS_MONSTER
+#18902
+bone shimmering~
+a shimmering bone~
+A bone lies here, shimmering brightly.~
+The bone's light is too strong for you look at directly.~
+ITEM_TYPE_LIGHT
+ITEM_FLAG_GLOW|ITEM_FLAG_HUM|ITEM_FLAG_MAGIC|ITEM_FLAG_NODROP|ITEM_FLAG_ANTI_GOOD|ITEM_FLAG_ANTI_EVIL|ITEM_FLAG_NOREMOVE|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+0 0 -1 0
+5 993422 72
+A
+APPLY_DAMROLL 7
+A
+APPLY_HITROLL 7
+#18903
+shield bone~
+a bone shield~
+A shield made of bones lies here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_NODROP|ITEM_FLAG_ANTI_GOOD|ITEM_FLAG_ANTI_EVIL|ITEM_FLAG_NOREMOVE|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_SHIELD
+15 0 0 0
+30 993422 76
+A
+APPLY_DAMROLL 2
+A
+APPLY_HITROLL 2
+#18904
+band bone~
+a bone's band~
+A band made from bones lies here.~
+A rather primitive looking band has been fashioned from the bone of an
+unidentified animal.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_NODROP|ITEM_FLAG_ANTI_GOOD|ITEM_FLAG_ANTI_EVIL|ITEM_FLAG_NOREMOVE|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_FINGER|ITEM_WEAR_NECK
+5 0 0 0
+1 1010000 79
+A
+APPLY_DAMROLL 8
+A
+APPLY_HITROLL 6
+#18905
+shawl wise~
+the Shawl of the Wise~
+A beautiful shawl has been left here.~
+The shawl looks amazingly lifelike.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_GLOW|ITEM_FLAG_HUM|ITEM_FLAG_MAGIC|ITEM_FLAG_NODROP|ITEM_FLAG_ANTI_EVIL|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_FINGER|ITEM_WEAR_NECK
+0 0 0 0
+10 99001 25
+A
+APPLY_INT 2
+A
+APPLY_WIS 2
+A
+APPLY_CON 2
+#18906
+belt ashen~
+an ashen belt~
+An ashen belt lies on the ground.~
+Other than its ashen color it looks much like other belts.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_NODROP|ITEM_FLAG_ANTI_GOOD|ITEM_FLAG_ANTI_EVIL|ITEM_FLAG_NOREMOVE|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WAIST
+15 0 0 0
+10 120000 78
+A
+APPLY_HITROLL 2
+A
+APPLY_DAMROLL 2
+A
+APPLY_MANA 100
+#18907
+cowl old~
+an old cowl~
+An old cowl is here.~
+The cowl looks very old.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_HUM|ITEM_FLAG_MAGIC|ITEM_FLAG_ANTI_EVIL|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HEAD
+15 0 0 0
+5 800000 65
+A
+APPLY_INT 1
+A
+APPLY_WIS 1
+#18908
+boots stinking~
+Stinking Boots~
+A pair of boots sit here stinking profusely.~
+A very nasty smell is coming from somewhere in or on the boots.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_FEET
+5 0 0 0
+25 1 30
+A
+APPLY_DAMROLL 4
+A
+APPLY_INT -2
+#18909
+suit strength~
+a Suit of Strength~
+A white magic suit lies here~
+Maybe someone can help you make better use of this suit.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_ABOUT
+15 0 0 0
+1 1 71
+A
+APPLY_HIT -70
+A
+APPLY_DEX 3
+#18910
+yarn spool~
+a spool of magic yarn~
+A spool of magic yarn is here.~
+The spool of yarn glows with a faint golden light.~
+ITEM_TYPE_TREASURE
+ITEM_FLAG_GLOW|ITEM_FLAG_HUM|ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+0 0 0 0
+5 999999 1
+P 1
+TRIG_HIT 3
+OPROG_ECHO
+The white aura about the spool of magic yarn fades.~
+P 1
+TRIG_VOID
+OPROG_JUNK
+#18911
+needle~
+a humming needle~
+A needle lies here and emits a soft humming sound. Hmmmm.....~
+The needle is very strong and sharp.~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_GLOW|ITEM_FLAG_HUM|ITEM_FLAG_ANTI_EVIL|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 5 4 WEAPON_PIERCE
+1 10000 30
+#18912
+egg broken~
+a broken egg~
+A broken egg has been left here.~
+The egg looks a little broken.~
+ITEM_TYPE_CONTAINER
+ITEM_FLAG_GLOW|ITEM_FLAG_ANTI_EVIL|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+500 CONT_CLOSEABLE -1 0
+1 5000 27
+#18913
+chest shivering~
+a shivering chest~
+A chest has been left here.~
+The chest has a lid.~
+ITEM_TYPE_CONTAINER
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+1000 CONT_CLOSEABLE -1 0
+10 10000 60
+#18914
+knuckles stinking~
+a stinking knuckless~
+A knuckles has been left here, smells like in hell.~
+A knuckles is very slush.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_ANTI_GOOD|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_ARMS
+6 0 0 0
+10 10000 30
+A
+APPLY_DAMROLL 3
+A
+APPLY_HIT -20
+#18915
+sleeves stinking~
+a stinking sleeves~
+A stinking sleeves is laying here.~
+Sleeves looks like a sleeves, but has very nasty smell.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_NODROP|ITEM_FLAG_ANTI_GOOD|ITEM_FLAG_ANTI_EVIL|ITEM_FLAG_NOREMOVE|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HANDS
+15 0 0 0
+10 10000 35
+A
+APPLY_HIT -30
+#18916
+ring stinking~
+a stinking ring~
+A ring is here, smells like in hell.~
+A ring looks like a ring, but has very nasty smell, better run away from
+here.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_NODROP|ITEM_FLAG_ANTI_GOOD|ITEM_FLAG_ANTI_EVIL|ITEM_FLAG_NOREMOVE|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_FINGER
+10 0 0 0
+10 10000 30
+A
+APPLY_DAMROLL 3
+A
+APPLY_HITROLL 3
+#18917
+bracelet stinking~
+a stinking bracelet~
+A bracelet is here, smells like in hell.~
+A bracelet looks like a bracelet, but has very nasty smell, better run away
+from here.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_NODROP|ITEM_FLAG_ANTI_GOOD|ITEM_FLAG_ANTI_EVIL|ITEM_FLAG_NOREMOVE|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WRIST
+10 0 0 0
+10 10000 30
+A
+APPLY_DAMROLL 3
+A
+APPLY_HITROLL 3
+#18919
+loaf bread brown~
+a loaf of brown bread~
+A loaf brown bread is laying here.~
+A loaf of brown bred is very tough.~
+ITEM_TYPE_FOOD
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+24 0 0 NOT_POISONED
+1 10 1
+#18920
+talisman hermit~
+a hermit's talisman~
+A talisman is laying here.~
+A talisman looks like a tooth with the rope. It may belong to hermit.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_GLOW|ITEM_FLAG_HUM|ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_NECK|ITEM_WEAR_WRIST
+5 0 0 0
+2 100000 60
+A
+APPLY_HITROLL 5
+A
+APPLY_SAVING_SPELL -6
+A
+APPLY_DAMROLL -1
+#18921
+shortsword assassin~
+an assassin's shortsword~
+A shortsword has been left here.~
+an assassin's shortsword looks like a good murdering weapon.~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_MAGIC|ITEM_FLAG_ANTI_GOOD|ITEM_FLAG_ANTI_EVIL|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 5 5 WEAPON_STAB
+5 222000 59
+A
+APPLY_DAMROLL 5
+A
+APPLY_HITROLL 2
+C
+whack~
+FLAG_CLASS_ILLUSIONIST|FLAG_CLASS_ELEMENTALIST|FLAG_CLASS_ROGUE|FLAG_CLASS_RANGER
+#18922
+candle stearin~
+a stearin candle~
+A candle has been left here.~
+~
+ITEM_TYPE_LIGHT
+ITEM_FLAG_LEVEL|ITEM_FLAG_AUTO_ENGRAVE
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+0 0 1 0
+10 100000 5
+#18923
+crown underworld~
+the crown of the Underworld~
+The shine crown is laying here.~
+the crown is very shine, on the crown you can find an inscription:
+          ---<<< THE CROWN OF THE UNDERWORLD >>>---~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_GLOW|ITEM_FLAG_HUM|ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HEAD|ITEM_WEAR_HOLD
+17 0 0 0
+4 10000000 95
+A
+APPLY_STR 1
+A
+APPLY_DEX 1
+#18924
+fountain~
+the fountain~
+A fountain is here, you hear a ripple of water.~
+The fountain looks like a fountain, nothing special. Water in the fountain 
+rippling.~
+ITEM_TYPE_FOUNTAIN
+ITEM_FLAG_GLOW|ITEM_FLAG_EVIL|ITEM_FLAG_LEVEL
+0
+0 0 0 0
+2000 0 1
+#18925
+gloves steel~
+a steel gloves~
+A steel gloves is laying here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_GLOW|ITEM_FLAG_HUM|ITEM_FLAG_INVIS|ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_ARMS
+15 0 0 0
+3 333000 90
+A
+APPLY_DAMROLL 5
+#18926
+shield steel~
+a steel shield~
+A stell shield has been left here.~
+A shield is very huge, and very heavy.~
+ITEM_TYPE_CONTAINER
+ITEM_FLAG_MAGIC|ITEM_FLAG_ANTI_EVIL|ITEM_FLAG_NOREMOVE|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_SHIELD
+500 0 0 0
+40 1000000 90
+A
+APPLY_AC -15
+#18927
+potion sanctuary~
+a sanctuary potion~
+A sanctuary potion has been left here.~
+~
+ITEM_TYPE_POTION
+ITEM_FLAG_NOREMOVE|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+30 SPELL_SANCTUARY SPELL_NONE SPELL_NONE
+1 500000 57
+#18928
+earthquake staff~
+a staff of earthquake~
+A staff is laying here.~
+~
+ITEM_TYPE_STAFF
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+2 5 5 SPELL_EARTHQUAKE
+1 1000 30
+#18929
+invis hidden scroll detect~
+a scroll of detect hidden and detect invis~
+A scroll is laying here.~
+~
+ITEM_TYPE_SCROLL
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+25 SPELL_DETECT_INVIS SPELL_DETECT_HIDDEN SPELL_NONE
+1 30000 30
+#18930
+recall scroll~
+a scroll of recall~
+A scroll is laying here.~
+~
+ITEM_TYPE_SCROLL
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+1 SPELL_WORD_OF_RECALL SPELL_NONE SPELL_NONE
+1 1 1
+#18931
+scroll heal~
+a scroll of heal~
+A scroll is laying here.~
+~
+ITEM_TYPE_SCROLL
+ITEM_FLAG_MAGIC|ITEM_FLAG_NOREMOVE|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+25 SPELL_HEAL SPELL_NONE SPELL_NONE
+1 10000 25
+#18932
+scroll invis~
+a scroll of invis~
+A scroll is laying here.~
+~
+ITEM_TYPE_SCROLL
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+30 SPELL_INVIS SPELL_NONE SPELL_NONE
+1 10000 25
+#18933
+heal pill~
+a heal pill~
+A pill is laying here.~
+~
+ITEM_TYPE_PILL
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+25 SPELL_HEAL SPELL_NONE SPELL_NONE
+1 1000 25
+#18934
+scroll identify~
+a scroll of identify~
+A scroll is laying here.~
+~
+ITEM_TYPE_SCROLL
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+1 SPELL_IDENTIFY SPELL_NONE SPELL_NONE
+1 1 1
+#18935
+scroll stability~
+a scroll of stability~
+A scroll is laying here.~
+~
+ITEM_TYPE_SCROLL
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+15 SPELL_STABILITY SPELL_NONE SPELL_NONE
+1 1000 30
+#18936
+potion stability~
+a potion of stability~
+A potion is laying here.~
+~
+ITEM_TYPE_POTION
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+15 SPELL_STABILITY SPELL_NONE SPELL_NONE
+1 1000 30
+#18937
+pill stability~
+a pill of stability~
+A pill is laying here.~
+~
+ITEM_TYPE_PILL
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+15 SPELL_STABILITY SPELL_NONE SPELL_NONE
+1 2000 30
+#18938
+bracelet barb~
+a barb bracelet~
+A very sharp bracelet is laying here.~
+A bracelet has been made from very sharp bits of steel.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_GLOW|ITEM_FLAG_MAGIC|ITEM_FLAG_NOREMOVE|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WRIST|ITEM_WEAR_HOLD
+11 0 0 0
+2 100000 36
+A
+APPLY_HITROLL 2
+A
+APPLY_DAMROLL 3
+P 1
+TRIG_HIT 50
+OPROG_IF OIF_USER_CLASS ! CLASS_ASSASSIN 2 0
+P 2
+TRIG_VOID
+OPROG_IF OIF_WEAR_LOC ! WEAR_NONE 3 0
+P 3
+TRIG_VOID
+OPROG_GOD_COMMAND
+RECHO A barb bracelet crumbles.~
+P 3
+TRIG_VOID
+OPROG_JUNK
+#18939
+ring barb~
+a barb ring~
+A very sharp ring is laying here.~
+A ring has been made from very sharp bits of steel.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_GLOW|ITEM_FLAG_MAGIC|ITEM_FLAG_NOREMOVE|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_FINGER|ITEM_WEAR_HOLD
+5 0 0 0
+2 100000 36
+A
+APPLY_DAMROLL 4
+A
+APPLY_HITROLL 4
+P 1
+TRIG_HIT 50
+OPROG_IF OIF_USER_CLASS ! CLASS_ASSASSIN 2 0
+P 2
+TRIG_VOID
+OPROG_IF OIF_WEAR_LOC ! WEAR_NONE 3 0
+P 3
+TRIG_VOID
+OPROG_GOD_COMMAND
+RECHO A barb ring crumbles.~
+P 3
+TRIG_VOID
+OPROG_JUNK
+#18940
+leggings barb~
+a barb leggings~
+A very sharp leggings is laying here.~
+Leggings have been made from very sharp bits of steel.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_GLOW|ITEM_FLAG_MAGIC|ITEM_FLAG_NOREMOVE|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_LEGS
+7 0 0 0
+7 100000 36
+A
+APPLY_DAMROLL 4
+A
+APPLY_HITROLL 4
+P 1
+TRIG_HIT 50
+OPROG_IF OIF_USER_CLASS ! CLASS_ASSASSIN 2 0
+P 2
+TRIG_VOID
+OPROG_IF OIF_WEAR_LOC ! WEAR_NONE 3 0
+P 3
+TRIG_VOID
+OPROG_GOD_COMMAND
+RECHO A barb leggings crumbles.~
+P 3
+TRIG_VOID
+OPROG_JUNK
+#18941
+belt barb~
+a barb belt~
+A very sharp belt is laying here.~
+A belt has been made from very sharp bits of steal.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_GLOW|ITEM_FLAG_MAGIC|ITEM_FLAG_NOREMOVE|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WAIST
+11 0 0 0
+7 100000 36
+A
+APPLY_DAMROLL 4
+A
+APPLY_WIS -3
+A
+APPLY_INT -3
+P 1
+TRIG_HIT 50
+OPROG_IF OIF_USER_CLASS ! CLASS_ASSASSIN 2 0
+P 2
+TRIG_VOID
+OPROG_IF OIF_WEAR_LOC ! WEAR_NONE 3 0
+P 3
+TRIG_VOID
+OPROG_GOD_COMMAND
+RECHO A barb belt crumbles.~
+P 3
+TRIG_VOID
+OPROG_JUNK
+#18942
+dirk bump~
+a bump dirk~
+A dirk is laying here.~
+A dir has a long, thin blade.~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_GLOW|ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 5 5 WEAPON_STAB
+9 122000 41
+A
+APPLY_STR 1
+A
+APPLY_DAMROLL 2
+C
+whack~
+FLAG_CLASS_ILLUSIONIST|FLAG_CLASS_ELEMENTALIST|FLAG_CLASS_ROGUE|FLAG_CLASS_RANGER
+#18943
+sleeves bump~
+a bump sleeves~
+A sleeves is laying here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_GLOW|ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HANDS|ITEM_WEAR_ARMS
+6 0 0 0
+5 122000 41
+A
+APPLY_HITROLL -1
+A
+APPLY_DAMROLL 5
+#18944
+beer bottle~
+a bottle of beer~
+A bottle of beer has been left here.~
+~
+ITEM_TYPE_DRINK_CON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+10 10 LIQ_BEER NOT_POISONED
+5 60 1
+#18945
+~
+~
+There is a sign stands here.~
+~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL
+0
+0 0 0 0
+2000 1 1
+#18946
+tube glue rubber~
+a tube of rubber glue~
+A tube of rubber glue has been left here.~
+~
+ITEM_TYPE_TRASH
+ITEM_FLAG_GLOW|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+0 0 0 0
+1 10 1
+#18947
+suit antimagic~
+the suit~
+A suit is laying here.~
+On the suit you can see the note:
+
+                           ---< NO MAGIC >---~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_GLOW|ITEM_FLAG_HUM|ITEM_FLAG_INVIS|ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL|ITEM_FLAG_AUTO_ENGRAVE
+ITEM_WEAR_TAKE|ITEM_WEAR_BODY
+0 0 0 0
+1 1000000 36
+A
+APPLY_SAVING_SPELL -4
+#18948
+scroll stone skin~
+a scroll of stone skin~
+A scroll is laying here.~
+~
+ITEM_TYPE_SCROLL
+ITEM_FLAG_NOREMOVE|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+30 SPELL_STONE_SKIN SPELL_NONE SPELL_NONE
+1 10000 25
+#18949
+potion stone skin~
+a potion of stone skin~
+A potion is laying here.~
+~
+ITEM_TYPE_POTION
+ITEM_FLAG_NOREMOVE|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+30 SPELL_STONE_SKIN SPELL_NONE SPELL_NONE
+1 10000 25
+#0
+
+#ROOMS
+#18900
+The Entrance to the Underworld~
+You are in front of entrance to the Underworld. Be careful, this place is not 
+for delicate peoples.~
+189 ROOM_NO_MOB SECT_INSIDE
+DDIR_WEST
+You see the Roads of the Realm.~
+~
+0 -1 17175
+E
+sign~
+The sign:                   
+
+                       {033}  {300}
+          {007}                           {300}
+          {007} WELCOME TO THE UNDERWORLD {300}
+          {007}                           {300}
+                       {033}  {300}
+                       {033}  {300}
+                   {020}...{300}{030}_{300}{033}  {300}{030}_{300}{020}...{300}~
+S
+#18901
+By the Exit of the Underworld~
+To the west you see the exit from the Underworld. Be happy you
+can leave this nasty world ALIVE!~
+189 ROOM_NO_MOB SECT_INSIDE
+DDIR_EAST
+~
+~
+0 -1 18982
+DDIR_WEST
+~
+~
+0 -1 18900
+S
+#18902
+The Swamp in the Underworld~
+Oh no... You are stuck in the swamp... what a nice aroma...~
+189 ROOM_DARK|ROOM_NO_MOB SECT_WATER_SWIM
+DDIR_EAST
+~
+~
+0 -1 18903
+S
+#18903
+A Dark Cave in the Underworld~
+It is too dark to see much.  You do hear footsteps off in the darkness.~
+189 ROOM_DARK SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 18904
+DDIR_EAST
+~
+~
+0 -1 18903
+DDIR_SOUTH
+~
+~
+0 -1 18907
+DDIR_WEST
+~
+~
+0 -1 18902
+S
+#18904
+A Dark Cave in the Underworld~
+It is too dark to see much.  You do hear footsteps off in the darkness.~
+189 ROOM_DARK SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 18904
+DDIR_EAST
+~
+~
+0 -1 18904
+DDIR_SOUTH
+~
+~
+0 -1 18903
+DDIR_WEST
+~
+~
+0 -1 18903
+S
+#18905
+A Dark Cave in the Underworld~
+It is too dark to see much.  You do hear footsteps off in the darkness.~
+189 ROOM_DARK SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 18906
+DDIR_EAST
+~
+~
+0 -1 18922
+DDIR_SOUTH
+~
+~
+0 -1 18908
+DDIR_WEST
+~
+~
+0 -1 18905
+S
+#18906
+The Weaver's Workshop~
+This is the Weaver's Workshop, what's wrong with that?~
+189 ROOM_DARK SECT_INSIDE
+DDIR_SOUTH
+You see a Dark Cave.~
+~
+0 -1 18905
+S
+#18907
+A Dark Cave in the Underworld~
+It is too dark to see much.  You do hear footsteps off in the darkness.~
+189 ROOM_DARK SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 18903
+DDIR_EAST
+~
+~
+0 -1 18908
+DDIR_SOUTH
+~
+~
+0 -1 18910
+DDIR_WEST
+~
+~
+0 -1 18920
+S
+#18908
+A Dark Cave in the Underworld~
+It is too dark to see much.  You do hear footsteps off in the darkness.~
+189 ROOM_DARK SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 18904
+DDIR_EAST
+~
+~
+0 -1 18905
+DDIR_SOUTH
+~
+~
+0 -1 18911
+DDIR_WEST
+~
+~
+0 -1 18908
+S
+#18909
+A Dark Cave in the Underworld~
+It is too dark to see much.  You do hear footsteps off in the darkness.~
+189 ROOM_DARK SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 18905
+DDIR_EAST
+~
+~
+0 -1 18909
+DDIR_SOUTH
+~
+~
+0 -1 18912
+DDIR_WEST
+~
+~
+0 -1 18909
+S
+#18910
+A Dark Cave in the Underworld~
+It is too dark to see much.  You do hear footsteps off in the darkness.~
+189 ROOM_DARK SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 18910
+DDIR_EAST
+~
+~
+0 -1 18911
+DDIR_SOUTH
+~
+~
+0 -1 18912
+DDIR_WEST
+~
+~
+0 -1 18982
+S
+#18911
+A Dark Cave in the Underworld~
+It is too dark to see much.  You do hear footsteps off in the darkness.~
+189 ROOM_DARK SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 18909
+DDIR_EAST
+~
+~
+0 -1 18911
+DDIR_SOUTH
+~
+~
+0 -1 18925
+DDIR_WEST
+~
+~
+0 -1 18907
+S
+#18912
+A Dark Cave in the Underworld~
+It is too dark to see much.  You do hear footsteps off in the darkness.~
+189 ROOM_DARK SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 18912
+DDIR_EAST
+~
+~
+0 -1 18913
+DDIR_SOUTH
+~
+~
+0 -1 18912
+DDIR_WEST
+~
+~
+0 -1 18908
+S
+#18913
+The Center of the Underworld~
+You can relax here. It is the safest room in the Underworld.~
+189 ROOM_NO_MOB|ROOM_SAFE SECT_INN
+DDIR_NORTH
+~
+~
+0 -1 18986
+DDIR_EAST
+~
+~
+0 -1 18914
+DDIR_SOUTH
+~
+~
+0 -1 18987
+DDIR_WEST
+~
+~
+0 -1 18912
+S
+#18914
+The West Side of the Marketplace~
+You are in the marketplace of the Underworld. Here you see many traders
+selling and buying stuff.~
+189 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 18915
+DDIR_EAST
+~
+~
+0 -1 18918
+DDIR_SOUTH
+~
+~
+0 -1 18916
+DDIR_WEST
+~
+~
+0 -1 18913
+DDIR_DOWN
+~
+~
+0 -1 18983
+S
+#18915
+The Weapon Shop~
+You are in the weapon shop.  There are weapons to suit every taste.~
+189 0 SECT_INSIDE
+DDIR_SOUTH
+~
+~
+0 -1 18914
+S
+#18916
+The Armor Shop~
+You are in the armor shop.  Armor of all types await your inspection.~
+189 0 SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 18914
+S
+#18917
+The Magic Shop~
+You are in the magic shop.  Scrolls and potions for the discriminating buyer.~
+189 0 SECT_INSIDE
+DDIR_SOUTH
+~
+~
+0 -1 18918
+S
+#18918
+The East Side of the Market-place~
+You are in the marketplace of the Underworld.  Perhaps one of the traders has
+something you need.~
+189 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 18917
+DDIR_EAST
+~
+~
+0 -1 18985
+DDIR_SOUTH
+~
+~
+0 -1 18919
+DDIR_WEST
+~
+~
+0 -1 18914
+DDIR_DOWN
+~
+~
+0 -1 18980
+S
+#18919
+The General Store~
+You are in the general store.  It is stocked with goods of all types.~
+189 0 SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 18918
+S
+#18920
+A Dark Cave in the Underworld~
+It is too dark to see much.  You do hear footsteps off in the darkness.~
+189 ROOM_DARK SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 18920
+DDIR_EAST
+~
+~
+0 -1 18920
+DDIR_SOUTH
+~
+~
+0 -1 18924
+DDIR_WEST
+~
+~
+0 -1 18910
+DDIR_DOWN
+~
+~
+0 -1 18942
+S
+#18921
+A Dark Cave in the Underworld~
+It is too dark to see much.  You do hear footsteps off in the darkness.~
+189 ROOM_DARK SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 18911
+DDIR_EAST
+~
+~
+0 -1 18921
+DDIR_SOUTH
+~
+~
+0 -1 18912
+DDIR_WEST
+~
+~
+0 -1 18923
+S
+#18922
+A Dark Cave in the Underworld~
+It is too dark to see much.  You do hear footsteps off in the darkness.~
+189 ROOM_DARK SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 18912
+DDIR_EAST
+~
+~
+0 -1 18922
+DDIR_SOUTH
+~
+~
+0 -1 18924
+DDIR_WEST
+~
+~
+0 -1 18921
+S
+#18923
+A Dark Cave in the Underworld~
+It is too dark to see much.  You do hear footsteps off in the darkness.~
+189 ROOM_DARK SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 18923
+DDIR_EAST
+~
+~
+0 -1 18925
+DDIR_SOUTH
+~
+~
+0 -1 18923
+DDIR_WEST
+~
+~
+0 -1 18923
+S
+#18924
+A Dark Cave in the Underworld~
+It is too dark to see much.  You do hear footsteps off in the darkness.~
+189 ROOM_DARK SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 18922
+DDIR_EAST
+~
+~
+0 -1 18924
+DDIR_SOUTH
+~
+~
+0 -1 18923
+DDIR_WEST
+~
+~
+0 -1 18923
+S
+#18925
+A Dark Cave in the Underworld~
+It is too dark to see much.  You do hear footsteps off in the darkness.~
+189 ROOM_DARK SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 18922
+DDIR_EAST
+~
+~
+0 -1 18925
+DDIR_SOUTH
+~
+~
+0 -1 18926
+DDIR_WEST
+~
+~
+0 -1 18924
+S
+#18926
+The Entrance to the Assassin's Workshop~
+This room is very strange.  All walls are painted red.  It might be
+a good idea to stay away from this place...~
+189 ROOM_NO_MOB SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 18925
+DDIR_SOUTH
+~
+~
+0 -1 18927
+S
+#18927
+The Center of the Assassin's Workshop~
+You are in the center room of the assassin's workshop.  Workers busily go 
+about the business of the day.  That business is, of course, killing people.
+Who knows, maybe you'll be next?~
+189 0 SECT_CITY
+DDIR_NORTH
+There is the EXIT.~
+~
+0 -1 18926
+DDIR_EAST
+~
+~
+0 -1 18977
+DDIR_SOUTH
+~
+~
+0 -1 18928
+DDIR_WEST
+~
+~
+0 -1 18976
+S
+#18928
+The Southern End of the Assassin's Workshop~
+You are standing in the southern end of the assassin's workshop. This room has
+a strange smell.~
+189 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 18927
+S
+#18929
+The Bone's Cave~
+Bones of different shapes and sizes litter the floor.~
+189 ROOM_DARK SECT_INSIDE
+DDIR_SOUTH
+~
+~
+0 -1 18931
+S
+#18930
+The Bone's Cave~
+Bones of different shapes and sizes litter the floor.~
+189 ROOM_DARK SECT_INSIDE
+DDIR_EAST
+~
+~
+0 -1 18931
+S
+#18931
+The Center of the Bone's Cave~
+You are in the center of the bone's cave.  Bones of different shapes and
+sizes litter the floor.~
+189 ROOM_DARK SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 18929
+DDIR_EAST
+~
+~
+0 -1 18932
+DDIR_SOUTH
+~
+~
+0 -1 18933
+DDIR_WEST
+~
+~
+0 -1 18930
+DDIR_UP
+~
+~
+0 -1 18936
+S
+#18932
+The Bone's Cave~
+Bones of different shapes and sizes litter the floor.~
+189 ROOM_DARK SECT_INSIDE
+DDIR_WEST
+~
+~
+0 -1 18931
+S
+#18933
+The Bone's Cave~
+Bones of different shapes and sizes litter the floor.~
+189 ROOM_DARK SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 18931
+DDIR_SOUTH
+~
+~
+0 -1 18978
+S
+#18934
+The Web Cave~
+The walls, ceiling and even the floor of this room are covered with thick webs.~
+189 ROOM_DARK SECT_INSIDE
+DDIR_EAST
+~
+~
+0 -1 18970
+DDIR_SOUTH
+~
+~
+0 -1 18936
+DDIR_WEST
+~
+~
+0 -1 18969
+S
+#18935
+The Web Cave~
+The walls, ceiling and even the floor of this room are covered with thick webs.~
+189 ROOM_DARK SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 18969
+DDIR_EAST
+~
+~
+0 -1 18936
+DDIR_SOUTH
+~
+~
+0 -1 18972
+S
+#18936
+The Center of the Web Cave~
+The walls, ceiling and even the floor of this room are covered with thick webs.~
+189 ROOM_DARK|ROOM_NO_MOB SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 18934
+DDIR_EAST
+~
+~
+0 -1 18970
+DDIR_SOUTH
+~
+~
+0 -1 18936
+DDIR_WEST
+~
+~
+0 -1 18935
+DDIR_UP
+~
+~
+0 -1 18942
+DDIR_DOWN
+~
+~
+0 -1 18931
+S
+#18937
+The Web Cave~
+The walls, ceiling and even the floor of this room are covered with thick webs.~
+189 ROOM_DARK SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 18970
+DDIR_SOUTH
+~
+~
+0 -1 18973
+DDIR_WEST
+~
+~
+0 -1 18936
+S
+#18938
+The Web Cave~
+The walls, ceiling and even the floor of this room are covered with thick webs.~
+189 ROOM_DARK SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 18936
+DDIR_EAST
+~
+~
+0 -1 18973
+DDIR_WEST
+~
+~
+0 -1 18972
+S
+#18939
+The Pirate's Cave~
+This room shows signs of recent use.  You should prepare to be ambushed.~
+189 ROOM_DARK SECT_INSIDE
+DDIR_EAST
+~
+~
+0 -1 18940
+DDIR_SOUTH
+~
+~
+0 -1 18942
+DDIR_WEST
+~
+~
+0 -1 18971
+S
+#18940
+The Pirate's Cave~
+This room shows signs of recent use.  You should prepare to be ambushed.~
+189 ROOM_DARK SECT_INSIDE
+DDIR_SOUTH
+~
+~
+0 -1 18943
+DDIR_WEST
+~
+~
+0 -1 18939
+S
+#18941
+The Pirate's Cave~
+This room shows signs of recent use.  You should prepare to be ambushed.~
+189 ROOM_DARK SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 18971
+DDIR_EAST
+~
+~
+0 -1 18942
+DDIR_SOUTH
+~
+~
+0 -1 18974
+S
+#18942
+The Center of the Pirate's Cave~
+This room shows signs of recent use.  You should prepare to be ambushed.~
+189 ROOM_DARK|ROOM_NO_MOB SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 18939
+DDIR_EAST
+~
+~
+0 -1 18943
+DDIR_SOUTH
+~
+~
+0 -1 18944
+DDIR_WEST
+~
+~
+0 -1 18941
+DDIR_UP
+~
+~
+0 -1 18920
+DDIR_DOWN
+~
+~
+0 -1 18936
+S
+#18943
+The Pirate's Cave~
+This room shows signs of recent use.  You should prepare to be ambushed.~
+189 ROOM_DARK SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 18940
+DDIR_SOUTH
+~
+~
+0 -1 18975
+DDIR_WEST
+~
+~
+0 -1 18942
+S
+#18944
+The Pirate's Cave~
+This room shows signs of recent use.  You should prepare to be ambushed.~
+189 ROOM_DARK SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 18942
+DDIR_EAST
+~
+~
+0 -1 18975
+DDIR_WEST
+~
+~
+0 -1 18974
+S
+#18945
+An Entrance to the Golden Garden~
+You feel at ease here.  In the distance you hear a bird singing. This
+garden belongs to the King of the Underworld.  You stand amongst numerous
+golden trees.~
+189 ROOM_NO_MOB SECT_FOREST
+DDIR_EAST
+~
+~
+0 -1 18946
+DDIR_DOWN
+~
+~
+0 -1 18985
+S
+#18946
+Golden Garden~
+You feel at ease here.  In the distance you hear a bird singing. This
+garden belongs to the King of the Underworld.  You stand amongst numerous
+golden trees.~
+189 0 SECT_FOREST
+DDIR_EAST
+~
+~
+0 -1 18950
+DDIR_WEST
+~
+~
+0 -1 18945
+S
+#18947
+Golden Garden~
+You feel at ease here.  In the distance you hear a bird singing. This
+garden belongs to the King of the Underworld.  You stand amongst numerous
+golden trees.~
+189 0 SECT_FOREST
+DDIR_EAST
+~
+~
+0 -1 18948
+DDIR_SOUTH
+~
+~
+0 -1 18950
+S
+#18948
+Golden Garden~
+You feel at ease here.  In the distance you hear a bird singing. This
+garden belongs to the King of the Underworld.  You stand amongst numerous
+golden trees.~
+189 0 SECT_FOREST
+DDIR_EAST
+~
+~
+0 -1 18949
+DDIR_WEST
+~
+~
+0 -1 18947
+S
+#18949
+Golden Garden~
+You feel at ease here.  In the distance you hear a bird singing. This
+garden belongs to the King of the Underworld.  You stand amongst numerous
+golden trees.~
+189 0 SECT_FOREST
+DDIR_SOUTH
+~
+~
+0 -1 18951
+DDIR_WEST
+~
+~
+0 -1 18948
+S
+#18950
+Golden Garden~
+You feel at ease here.  In the distance you hear a bird singing. This
+garden belongs to the King of the Underworld.  You stand amongst numerous
+golden trees.~
+189 0 SECT_FOREST
+DDIR_NORTH
+~
+~
+0 -1 18947
+DDIR_SOUTH
+~
+~
+0 -1 18952
+DDIR_WEST
+~
+~
+0 -1 18946
+S
+#18951
+Golden Garden~
+You feel at ease here.  In the distance you hear a bird singing. This
+garden belongs to the King of the Underworld.  You stand amongst numerous
+golden trees.~
+189 ROOM_NO_MOB SECT_FOREST
+DDIR_NORTH
+~
+~
+0 -1 18949
+DDIR_SOUTH
+~
+~
+0 -1 18954
+S
+#18952
+Golden Garden~
+You feel at ease here.  In the distance you hear a bird singing. This
+garden belongs to the King of the Underworld.  You stand amongst numerous
+golden trees.~
+189 0 SECT_FOREST
+DDIR_NORTH
+~
+~
+0 -1 18950
+DDIR_EAST
+~
+~
+0 -1 18953
+S
+#18953
+Golden Garden~
+You feel at ease here.  In the distance you hear a bird singing. This
+garden belongs to the King of the Underworld.  You stand amongst numerous
+golden trees.~
+189 0 SECT_FOREST
+DDIR_EAST
+~
+~
+0 -1 18954
+DDIR_WEST
+~
+~
+0 -1 18952
+S
+#18954
+Golden Garden~
+You feel at ease here.  In the distance you hear a bird singing. This
+garden belongs to the King of the Underworld.  You stand amongst numerous
+golden trees.~
+189 0 SECT_FOREST
+DDIR_NORTH
+~
+~
+0 -1 18951
+DDIR_WEST
+~
+~
+0 -1 18953
+S
+#18955
+The North-West Corner of the Underground Garden~
+You don't feel safe in this place.  This gloomy garden doesn't look like the best
+place to be walking.  It would be best to stay alert.  Trees made of clay are
+standing here.~
+189 0 SECT_FIELD
+DDIR_NORTH
+~
+~
+0 -1 18978
+DDIR_EAST
+~
+~
+0 -1 18956
+DDIR_SOUTH
+~
+~
+0 -1 18959
+S
+#18956
+The North Corner of the Underground Garden~
+You don't feel safe in this place.  This gloomy garden doesn't look like the best
+place to be walking.  It would be best to stay alert.  Trees made of clay are
+standing here.~
+189 0 SECT_FIELD
+DDIR_EAST
+~
+~
+0 -1 18957
+DDIR_SOUTH
+~
+~
+0 -1 18960
+DDIR_WEST
+~
+~
+0 -1 18955
+S
+#18957
+The North Corner of the Underground Garden~
+You don't feel safe in this place.  This gloomy garden doesn't look like the best
+place to be walking.  It would be best to stay alert.  Trees made of clay are
+standing here.~
+189 0 SECT_FIELD
+DDIR_EAST
+~
+~
+0 -1 18958
+DDIR_SOUTH
+~
+~
+0 -1 18961
+DDIR_WEST
+~
+~
+0 -1 18956
+S
+#18958
+The North-East Corner of the Underground Garden~
+You don't feel safe in this place.  This gloomy garden doesn't look like the best
+place to be walking.  It would be best to stay alert.  Trees made of clay are
+standing here.~
+189 0 SECT_FIELD
+DDIR_SOUTH
+~
+~
+0 -1 18962
+DDIR_WEST
+~
+~
+0 -1 18957
+S
+#18959
+The West Corner of the Underground Garden~
+You don't feel safe in this place.  This gloomy garden doesn't look like the best
+place to be walking.  It would be best to stay alert.  Trees made of clay are
+standing here.~
+189 0 SECT_FIELD
+DDIR_NORTH
+~
+~
+0 -1 18955
+DDIR_EAST
+~
+~
+0 -1 18960
+DDIR_SOUTH
+~
+~
+0 -1 18963
+S
+#18960
+The Center of the Underground Garden~
+You don't feel safe in this place.  This gloomy garden doesn't look like the best
+place to be walking.  It would be best to stay alert.  Trees made of clay are
+standing here.~
+189 0 SECT_FIELD
+DDIR_NORTH
+~
+~
+0 -1 18956
+DDIR_EAST
+~
+~
+0 -1 18961
+DDIR_SOUTH
+~
+~
+0 -1 18964
+DDIR_WEST
+~
+~
+0 -1 18959
+S
+#18961
+The Hermit's Hut~
+The hut is very small and full of holes.  Doors lead outside in every direction.~
+189 ROOM_NO_MOB SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 18957
+DDIR_EAST
+~
+~
+0 -1 18962
+DDIR_SOUTH
+~
+~
+0 -1 18965
+DDIR_WEST
+~
+~
+0 -1 18960
+S
+#18962
+The East Corner of the Underground Garden~
+You don't feel safe in this place.  This gloomy garden doesn't look like the best
+place to be walking.  It would be best to stay alert.  Trees made of clay are
+standing here.~
+189 0 SECT_FIELD
+DDIR_NORTH
+~
+~
+0 -1 18958
+DDIR_SOUTH
+~
+~
+0 -1 18966
+DDIR_WEST
+~
+~
+0 -1 18961
+S
+#18963
+The South-West Corner of the Underground Garden~
+You don't feel safe in this place.  This gloomy garden doesn't look like the best
+place to be walking.  It would be best to stay alert.  Trees made of clay are
+standing here.~
+189 0 SECT_FIELD
+DDIR_NORTH
+~
+~
+0 -1 18959
+DDIR_EAST
+~
+~
+0 -1 18964
+S
+#18964
+The South Corner of the Underground Garden~
+You don't feel safe in this place.  This gloomy garden doesn't look like the best
+place to be walking.  It would be best to stay alert.  Trees made of clay are
+standing here.~
+189 0 SECT_FIELD
+DDIR_NORTH
+~
+~
+0 -1 18960
+DDIR_EAST
+~
+~
+0 -1 18965
+DDIR_WEST
+~
+~
+0 -1 18963
+S
+#18965
+The South Corner of the Underground Garden~
+You don't feel safe in this place.  This gloomy garden doesn't look like the best
+place to be walking.  It would be best to stay alert.  Trees made of clay are
+standing here.~
+189 0 SECT_FIELD
+DDIR_NORTH
+~
+~
+0 -1 18961
+DDIR_EAST
+~
+~
+0 -1 18966
+DDIR_WEST
+~
+~
+0 -1 18964
+S
+#18966
+The South-East Corner of the Underground Garden~
+You don't feel safe in this place.  This gloomy garden doesn't look like the best
+place to be walking.  It would be best to stay alert.  Trees made of clay are
+standing here.~
+189 0 SECT_FIELD
+DDIR_NORTH
+~
+~
+0 -1 18962
+DDIR_WEST
+~
+~
+0 -1 18965
+S
+#18967
+A Dark Cave in the Underworld~
+~
+189 ROOM_NO_MOB|ROOM_SAFE|ROOM_NO_RECALL SECT_INN
+DDIR_NORTH
+~
+~
+0 -1 18984
+DDIR_EAST
+~
+~
+0 -1 18968
+DDIR_SOUTH
+~
+~
+0 -1 18983
+DDIR_WEST
+~
+~
+0 -1 18913
+DDIR_UP
+~
+~
+0 -1 18900
+DDIR_DOWN
+~
+~
+0 -1 18980
+S
+#18968
+A Dark Cave in the Underworld~
+~
+189 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 18929
+DDIR_EAST
+~
+~
+0 -1 18969
+DDIR_SOUTH
+~
+~
+0 -1 18944
+DDIR_WEST
+~
+~
+0 -1 18967
+DDIR_UP
+~
+~
+0 -1 18951
+DDIR_DOWN
+~
+~
+0 -1 18961
+S
+#18969
+The Web Cave~
+The walls, ceiling and even the floor of this room are covered with thick webs.~
+189 ROOM_DARK SECT_INSIDE
+DDIR_EAST
+~
+~
+0 -1 18934
+DDIR_SOUTH
+~
+~
+0 -1 18935
+S
+#18970
+The Web Cave~
+The walls, ceiling and even the floor of this room are covered with thick webs.~
+189 ROOM_DARK SECT_INSIDE
+DDIR_SOUTH
+~
+~
+0 -1 18973
+DDIR_WEST
+~
+~
+0 -1 18934
+S
+#18971
+The Pirate's Cave~
+You are standing in the room, where pirates waiting for their victims.~
+189 ROOM_DARK SECT_INSIDE
+DDIR_EAST
+~
+~
+0 -1 18939
+DDIR_SOUTH
+~
+~
+0 -1 18941
+S
+#18972
+The Web Cave~
+You are standing in the room, all walls on the room are covered by the thick 
+web.~
+189 ROOM_DARK SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 18935
+DDIR_EAST
+~
+~
+0 -1 18938
+S
+#18973
+The Web Cave~
+You are standing in the room, all walls on the room are covered by the thick 
+web.~
+189 ROOM_DARK SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 18937
+DDIR_WEST
+~
+~
+0 -1 18938
+S
+#18974
+The Pirate's Cave~
+This room shows signs of recent use.  You should prepare to be ambushed.~
+189 ROOM_DARK SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 18941
+DDIR_EAST
+~
+~
+0 -1 18944
+S
+#18975
+The Pirate's Cave~
+This room shows signs of recent use.  You should prepare to be ambushed.~
+189 ROOM_DARK SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 18943
+DDIR_WEST
+~
+~
+0 -1 18944
+S
+#18976
+The West End of the Assassin's Workshop~
+You are standing in the west end of the assassin's workshop.  Workers
+busily go about the business of the day.  That business is, of course,
+killing people.  Who knows, maybe you'll be next?~
+189 0 SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 18927
+S
+#18977
+The East End of the Assassin's Workshop~
+You are standing in the east end of the assassin's workshop.  Workers
+busily go about the business of the day.  That business is, of course,
+killing people.  Who knows, maybe you'll be next?~
+189 0 SECT_CITY
+DDIR_WEST
+~
+~
+0 -1 18927
+S
+#18978
+An Entrance to the Underground Garden~
+This room sits between the Bone's Cave to the north and what appears
+to be a large garden to the south.~
+189 ROOM_NO_MOB SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 18933
+DDIR_SOUTH
+~
+~
+0 -1 18955
+S
+#18979
+The Training Room for Rogues~
+This is a training room.  Rogues can train here.  Others are not allowed
+to enter.~
+189 ROOM_SAFE|ROOM_ALLOW_ILL|ROOM_ALLOW_ELE SECT_INSIDE
+DDIR_SOUTH
+~
+~
+0 -1 18980
+S
+#18980
+The School of the Underworld~
+This is a school for rogues and assassins. Young thieves and murderers can
+study here.~
+189 ROOM_SAFE SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 18979
+DDIR_SOUTH
+~
+~
+0 -1 18981
+DDIR_WEST
+~
+~
+0 -1 18989
+DDIR_UP
+~
+~
+0 -1 18918
+S
+#18981
+The Training Room for Assassins~
+This is a training room.  Assassins can train here.  Others are not
+allowed to enter.~
+189 ROOM_SAFE|ROOM_ALLOW_ILL|ROOM_ALLOW_ELE|ROOM_ALLOW_RAN SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 18980
+S
+#18982
+The Lookout's Room~
+This room is used by the guards to watch for intruders.~
+189 ROOM_NO_MOB SECT_INSIDE
+DDIR_EAST
+You see a Cave.~
+~
+0 -1 18910
+DDIR_WEST
+~
+~
+0 -1 18901
+S
+#18983
+The Morgue of the Underworld~
+This room is for those who did not live up to expectations.~
+189 ROOM_MORGUE SECT_INSIDE
+DDIR_UP
+~
+~
+0 -1 18914
+DDIR_DOWN
+~
+door~
+EX_ISDOOR|EX_CLOSED|EX_LOCKED|EX_HIDDEN|EX_PICKPROOF -1 18992
+S
+#18984
+Pet Room~
+You are in the Pet Room. The pets of corpse eaters roam around freely. This 
+room is extremely hot.~
+189 0 SECT_LAVA
+DDIR_EAST
+~
+door~
+EX_ISDOOR|EX_CLOSED|EX_LOCKED|EX_HIDDEN|EX_PICKPROOF -1 18992
+S
+#18985
+The Throne Room~
+In this room stands the throne of the King of the Underworld.~
+189 0 SECT_INSIDE
+DDIR_WEST
+~
+~
+0 -1 18918
+DDIR_UP
+~
+~
+0 -1 18945
+S
+#18986
+Resident's house~
+This is a resident's house. An Underworld resident dwells here.~
+189 0 SECT_INSIDE
+DDIR_SOUTH
+~
+~
+0 -1 18913
+S
+#18987
+Resident's house~
+This is a resident's house. An Underworld resident dwells here.~
+189 0 SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 18913
+S
+#18988
+The Room of Death~
+This is a room of death.  If you are here you will surely die.  The
+corpse eaters put people here.  People they plan to eat.  Sadly, in
+order for a corpse eater to eat you you must be a corpse.~
+189 ROOM_DARK|ROOM_NO_MOB|ROOM_NO_RECALL|ROOM_BLOCK SECT_LAVA
+S
+#18989
+The School of the Underworld~
+This is a school for rogues and assassins. Young thieves and murderers
+can study here.~
+189 ROOM_SAFE SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 18990
+DDIR_EAST
+~
+~
+0 -1 18980
+DDIR_SOUTH
+~
+~
+0 -1 18991
+S
+#18990
+The Guild for Rogues~
+This is a guild for rogues. Young thieves can practice their skills here.~
+189 ROOM_SAFE|ROOM_ALLOW_ILL|ROOM_ALLOW_ELE SECT_INSIDE
+DDIR_SOUTH
+~
+~
+0 -1 18989
+S
+#18991
+The Guild for Assassins~
+This is a guild for assassins. Young murderers can practice their skills here.~
+189 ROOM_SAFE|ROOM_ALLOW_ILL|ROOM_ALLOW_ELE|ROOM_ALLOW_RAN SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 18989
+S
+#0
+
+#RESETS
+M 0 18900   1 18900 ;the gatekeeper of underwo in The Entrance to the Under
+M 0 18901   1 18902 ;      the stinking bishop in The Swamp in the Underwor
+E 1 18908 500 ITEM_WEAR_BODY ;equip a stinking boots         
+E 1 18914 500 10 ;equip a stinking knuckless     
+E 1 18915 500 9 ;equip a stinking sleeves       
+E 1 18916 500 ITEM_WEAR_TAKE ;equip a stinking ring          
+E 1 18917 500 15 ;equip a stinking bracelet      
+M 0 18902   1 18929 ;      the marble skeleton in The Bone's Cave          
+E 1 18901 500 ITEM_WEAR_HEAD ;equip a sharp bone             
+E 1 18902 500 0 ;equip a shimmering bone        
+E 1 18903 500 11 ;equip a bone's shield          
+E 1 18904 500 3 ;equip a bone's band            
+M 0 18903   1 18951 ;           the mad sewner in Golden Garden            
+M 0 18904   1 18961 ;         the ashen hermit in The Hermit's Hut         
+M 0 18905   1 18944 ;           the old pirate in The Pirate's Cave        
+G 1 18911 500       ;         a humming needle
+G 1 18920 500       ;      a hermit's talisman
+M 0 18906   1 18934 ;            the spiderman in The Web Cave             
+G 1 18910 500       ;  the spool of magic yarn
+M 0 18907   1 18915 ;         the old assassin in The Weapon Shop          
+G 1 18942 500       ;              a bump dirk
+M 0 18908   1 18916 ;            the old rogue in The Armor Shop           
+G 1 18943 500       ;           a bump sleeves
+M 0 18909   1 18917 ;   the charlatan magician in The Magic Shop           
+G 1 18927 999       ;       a sanctuary potion
+G 1 18928 500       ;    a staff of earthquake
+G 1 18930 999       ;       a scroll of recall
+G 1 18934 999       ;     a scroll of identify
+M 0 18910   1 18919 ;       the general trader in The General Store        
+G 1 18912 500       ;             a broken egg
+G 1 18913 500       ;        a shivering chest
+G 1 18919 500       ;    a loaf of brown bread
+G 1 18944 500       ;         a bottle of beer
+G 1 18946  10       ;    a tube of rubber glue
+G 1 18922  10       ;         a stearin candle
+M 0 18911   1 18968 ;            the young boy in The Dark Cave in the Unde
+G 1 18933 500       ;              a heal pill
+G 1 18931 500       ;         a scroll of heal
+G 1 18932 500       ;        a scroll of invis
+G 1 18935 999       ;    a scroll of stability
+G 1 18936 999       ;    a potion of stability
+G 1 18937 999       ;      a pill of stability
+G 1 18948 999       ;   a scroll of stone skin
+G 1 18949 999       ;   a potion of stone skin
+M 0 18912   4 18928 ;      the worker assassin in The Southern Corner of th
+E 1 18921 500 ITEM_WEAR_HEAD ;equip an assassin's shortsword 
+M 0 18912   4 18977 ;      the worker assassin in The East Corner of the As
+E 1 18921 500 ITEM_WEAR_HEAD ;equip an assassin's shortsword 
+M 0 18912   4 18976 ;      the worker assassin in A West Corner of the Assa
+E 1 18921 500 ITEM_WEAR_HEAD ;equip an assassin's shortsword 
+M 0 18914 500 18903 ;       the young assassin in The Dark Cave in the Unde
+M 0 18913 500 18905 ;       the young assassin in The Dark Cave in the Unde
+M 0 18914 500 18908 ;       the young assassin in The Dark Cave in the Unde
+M 0 18913 500 18910 ;       the young assassin in The Dark Cave in the Unde
+M 0 18914 500 18912 ;       the young assassin in The Dark Cave in the Unde
+M 0 18913 500 18921 ;       the young assassin in The Dark Cave in the Unde
+M 0 18914 500 18923 ;       the young assassin in The Dark Cave in the Unde
+M 0 18913 500 18925 ;       the young assassin in The Dark Cave in the Unde
+M 0 18914 500 18950 ;       the young assassin in Golden Garden            
+M 0 18913 500 18949 ;       the young assassin in Golden Garden            
+M 0 18914 500 18959 ;       the young assassin in The West Corner of the Un
+M 0 18913 500 18962 ;       the young assassin in The East Corner of the Un
+M 0 18915 200 18911 ;   the assassin's teacher in The Dark Cave in the Unde
+M 0 18915 200 18960 ;   the assassin's teacher in The Center of the Undergr
+M 0 18916 500 18904 ;          the young rogue in The Dark Cave in the Unde
+M 0 18917 500 18924 ;          the young rogue in The Dark Cave in the Unde
+M 0 18916 500 18941 ;          the young rogue in The Pirate's Cave        
+M 0 18917 500 18943 ;          the young rogue in The Pirate's Cave        
+M 0 18916 500 18963 ;          the young rogue in The South-West Corner of 
+M 0 18917 500 18966 ;          the young rogue in The South-East Corner of 
+M 0 18916 500 18958 ;          the young rogue in The North-East Corner of 
+M 0 18917 500 18955 ;          the young rogue in The North-West Corner of 
+M 0 18918 200 18912 ;      the rogue's teacher in The Dark Cave in the Unde
+M 0 18918 200 18960 ;      the rogue's teacher in The Center of the Undergr
+M 0 18919   1 18985 ;   King of the Underworld in The Throne Room          
+E 1 18923 200 6 ;equip the crown of the Underwor
+M 0 18920  10 18985 ;          the rogue guard in The Throne Room          
+M 0 18920  10 18985 ;          the rogue guard in The Throne Room          
+M 0 18921   5 18986 ;    the assassin resident in Resident's house         
+E 1 18925 500 10 ;equip a steel gloves           
+M 0 18922   5 18987 ;       the rogue resident in Resident's house         
+E 1 18926 500 11 ;equip a steel shield           
+M 0 18923   1 18982 ;              the lookout in The Lookout's Room        
+M 0 18924   1 18981 ;              the trainer in The Training Room for Ass
+M 0 18930   1 18979 ;              the trainer in The Training Room for Rog
+M 0 18931   1 18990 ;          the guildmaster in The Guild for Rogues     
+M 0 18925   1 18991 ;          the guildmaster in The Guild for Assassins  
+M 0 18926   1 18960 ;          the steel eater in The Center of the Undergr
+E 1 18938 500 14 ;equip a barb bracelet          
+E 1 18939 500 ITEM_WEAR_TAKE ;equip a barb ring              
+E 1 18940 500 7 ;equip a barb leggings          
+E 1 18941 500 13 ;equip a barb belt              
+M 0 18927   1 18983 ;        the corpses eater in The Morgue of the Underwo
+M 0 18929   1 18906 ;               the weaver in The Weaving Workshop     
+G 1 18909 100       ;       a suit of strength
+O 0 18945   1 18900 ;                          in The Entrance to the Under
+O 0 18924   1 18913 ;             the fountain in The Center of the Underwo
+S
+
+#SHOPS
+18907 ITEM_TYPE_WEAPON ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING
+     ITEM_TYPE_NOTHING 100  50  0 23 ;the old assassin
+18908 ITEM_TYPE_ARMOR ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING
+     ITEM_TYPE_NOTHING 100  50  0 23 ;the old rogue
+18909 ITEM_TYPE_SCROLL ITEM_TYPE_STAFF ITEM_TYPE_POTION ITEM_TYPE_PILL
+     ITEM_TYPE_WAND 100  50  0 23 ;the charlatan magician
+18910 ITEM_TYPE_FOOD ITEM_TYPE_LIGHT ITEM_TYPE_CONTAINER ITEM_TYPE_DRINK_CON
+     ITEM_TYPE_TREASURE 100  50  0 23 ;the general trader
+18911 ITEM_TYPE_SCROLL ITEM_TYPE_PILL ITEM_TYPE_POTION ITEM_TYPE_STAFF
+     ITEM_TYPE_ARMOR 100  50  0 23 ;the young boy
+18927 ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING
+     ITEM_TYPE_NOTHING 100  50  0 23 ;the corpses eater
+0
+
+#SPECIALS
+M 18916 spec_thief
+M 18917 spec_thief
+M 18918 spec_thief
+M 18922 spec_thief
+S
+
+#$

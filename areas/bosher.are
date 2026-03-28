@@ -1,0 +1,1782 @@
+#AREA Bosher's House~
+
+#AUTHORS Basher ~
+
+#HELPS
+0 $~
+
+#RANGES 75 95 75 99
+
+#FLAGS AFLAG_NOTELEPORT
+
+#MOBILES
+#10200
+guard elite bosher~
+Bosher's Elite Guard~
+One of Bosher's Elite Guards is standing here waiting to  respond to any violent actions to him, or someone else.~
+You see one of Bosher's Elite Guards standing here.~
+ACT_SENTINEL|ACT_SCAVENGER|ACT_AGGRESSIVE|ACT_SMART
+AFF_DETECT_EVIL|AFF_DETECT_INVIS|AFF_DETECT_MAGIC|AFF_DETECT_HIDDEN|AFF_SANCTUARY|AFF_INFRARED|AFF_PROTECT_EVIL|AFF_PASS_DOOR|AFF_CLEAR|AFF_HUNT
+0 S
+75 0 0 5d1+4295 1d1+60
+30000 525271
+POS_STANDING POS_STANDING SEX_MALE
+#10201
+kid boy bosher~
+Bosher's Little Boy~
+One of Bosher's little brats is here running around causing his mother and nursemaid lots of trouble.~
+You see one of Bosher's Little Boys.~
+ACT_SCAVENGER|8|ACT_PRACTICE|ACT_SMART
+AFF_DETECT_INVIS|AFF_SANCTUARY|AFF_INFRARED|AFF_PROTECT_EVIL
+-500 S
+55 0 0 1d1+3238 1d1+39
+0 315851
+POS_STANDING POS_STANDING SEX_MALE
+#10202
+maid nurse nursemaid bosher~
+the Nursemaid~
+The Nursemaid is standing here watching over all of  the kids.~
+You see a Nursemaid.~
+ACT_SENTINEL|16|ACT_TRAIN|ACT_SMART
+AFF_INVISIBLE|AFF_DETECT_EVIL|AFF_DETECT_INVIS|AFF_DETECT_MAGIC|AFF_DETECT_HIDDEN|AFF_SANCTUARY|AFF_INFRARED|AFF_PROTECT_EVIL
+0 S
+70 0 0 1d1+3500 1d1+60
+10000 468961
+POS_RESTING POS_RESTING SEX_FEMALE
+#10203
+wife bosher woman~
+Bosher's Wife~
+Bosher's wife is sitting here watching her kids play with the nursemaids.~
+You see Bosher's Wife.~
+ACT_SENTINEL|ACT_AGGRESSIVE|ACT_PRACTICE
+AFF_INVISIBLE|AFF_DETECT_EVIL|AFF_DETECT_INVIS|AFF_DETECT_MAGIC|AFF_DETECT_HIDDEN|AFF_SANCTUARY|AFF_PROTECT_EVIL|AFF_PASS_DOOR
+1000 S
+85 0 0 1d1+5200 1d1+80
+40000 646617
+POS_RESTING POS_RESTING SEX_FEMALE
+#10204
+concubine bosher it~
+A Concubine~
+A Concubine stands here waiting to fulfil Bosher's every whim.~
+You see a Concubine.~
+16|ACT_SMART
+AFF_DETECT_EVIL|AFF_DETECT_INVIS|AFF_DETECT_MAGIC|AFF_DETECT_HIDDEN|AFF_SANCTUARY|AFF_INFRARED|AFF_PROTECT_EVIL|AFF_TONGUES
+500 S
+65 0 0 1d1+2349 1d1+60
+1000 415376
+POS_STANDING POS_STANDING SEX_FEMALE
+>greet_prog 30~
+if sex($n) == 1
+  tell $n Hey there $n.  Think I can make your stay a little better?
+  fondle $n
+endif~
+|
+#10205
+bosher jr junior boy kid~
+Bosher Jr.~
+Bosher Jr. is standing here guarding the door.~
+You see Bosher's first born kid.~
+ACT_SENTINEL|ACT_SCAVENGER|ACT_AGGRESSIVE|ACT_SMART
+AFF_DETECT_EVIL|AFF_DETECT_INVIS|AFF_DETECT_MAGIC|AFF_DETECT_HIDDEN|AFF_SANCTUARY|AFF_PROTECT_EVIL
+1000 S
+80 0 0 1d1+4500 1d1+70
+40000 584441
+POS_STANDING POS_STANDING SEX_MALE
+#10206
+bosherette bosher she~
+Bosherette~
+Bosherette is standing here guarding the door.~
+You see Bosherette standing here.~
+ACT_SENTINEL|ACT_SCAVENGER|ACT_AGGRESSIVE|ACT_PRACTICE|ACT_SMART
+AFF_DETECT_EVIL|AFF_DETECT_INVIS|AFF_DETECT_MAGIC|AFF_DETECT_HIDDEN|AFF_SANCTUARY|AFF_INFRARED|AFF_PROTECT_EVIL
+1000 S
+80 0 0 1d1+4600 1d1+70
+50000 584441
+POS_STANDING POS_STANDING SEX_FEMALE
+#10207
+ghost bosher father~
+Ghost of Bosher's Father~
+The Ghost of Bosher's Father stands here looking very pissed off!~
+You see the Ghost of Bosher's Father.~
+ACT_SENTINEL|ACT_SCAVENGER|ACT_AGGRESSIVE
+AFF_INVISIBLE|AFF_DETECT_EVIL|AFF_DETECT_MAGIC|AFF_DETECT_HIDDEN|AFF_SANCTUARY|AFF_PROTECT_EVIL
+-1000 S
+85 0 0 1d1+5321 1d1+75
+15 646617
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>death_prog 100~
+if actorhasobjnum(30900)
+or actorhasobjnum(30966)
+or actorhasobjnum(30967)
+or actorhasobjnum(30968)
+or actorhasobjnum(30969)
+  if quest(30,1,$n) == 0
+    mpmset $n quest 30 1 1
+    mpoload 30914
+    mpforce $n HELP GUILDTOKEN
+    mpquiet on
+    c 'giant strength' $n
+    give i30914 $n
+    mpquiet off
+  endif
+endif~
+|
+#10208
+bosher~
+Bosher~
+Bosher is waiting here to make your acquaintance.~
+You see Bosher standing here.  He's big, mean, and you better be careful.~
+ACT_SENTINEL|ACT_SCAVENGER|ACT_AGGRESSIVE|ACT_WIMPY|ACT_SMART|ACT_NO_ORDER
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_SANCTUARY|AFF_UNDERSTAND|AFF_PROTECT_EVIL|AFF_SNEAK|AFF_PASS_DOOR|AFF_CLEAR|AFF_HUNT|AFF_TONGUES
+0 S
+99 0 0 1d1+24999 1d1+150
+100000 838032
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+tell $n So, you made it this far.  Think you can take me?~
+>speech_prog yes~
+cackle
+say Do your best, $n!
+~
+>fight_prog 50~
+if rand(10)
+  cackle
+else
+  if rand(10)
+    dance $n
+  else
+    if rand(10)
+      french $n
+    else
+      if rand(10)
+        renandstimpy
+      else
+        if rand(10)
+          hug $n
+        else
+          punch $n
+        endif
+      endif
+    endif
+  endif
+endif
+if rand(25)
+  mass "faerie fire"
+else
+  if rand(30)
+    cast "fireball"
+  else
+    if rand(30)
+      mass "acid blast"
+    else
+      cast "earthquake"
+    endif
+  endif
+endif~
+>death_prog 100~
+hug $n
+say $n.  I love you ... man!~
+|
+#10209
+maid bosher~
+Maid~
+The Maid is walking around cleaning up the house.~
+You see a Maid.~
+ACT_SCAVENGER|8|ACT_PRACTICE
+AFF_INVISIBLE|AFF_SANCTUARY|AFF_PROTECT_EVIL|AFF_SNEAK|AFF_STEALTH
+0 S
+70 0 0 1d1+3600 1d1+55
+0 468961
+POS_STANDING POS_STANDING SEX_FEMALE
+#10210
+rat bosher~
+a Rat~
+A Rat sits here.~
+You see a Rat.~
+ACT_SCAVENGER|8|ACT_AGGRESSIVE
+AFF_DETECT_EVIL|AFF_DETECT_INVIS|AFF_DETECT_MAGIC|AFF_DETECT_HIDDEN|AFF_SANCTUARY|AFF_INFRARED|AFF_PROTECT_EVIL
+-500 S
+35 0 0 1d1+1600 1d1+30
+0 144081
+POS_STANDING POS_STANDING SEX_NEUTRAL
+#10211
+girl bosher servant~
+A Servant Girl~
+The Servant Girl is running errands for the master of the house.~
+You see a Servant Girl.~
+ACT_SCAVENGER|ACT_AGGRESSIVE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_SANCTUARY|AFF_INFRARED|AFF_PROTECT_EVIL
+0 S
+70 0 0 1d1+4000 1d1+55
+0 468961
+POS_STANDING POS_STANDING SEX_FEMALE
+#10212
+boy kid bosher servant~
+a Servant Boy~
+The Servant Boy is walking around doing the errands of  his master.~
+You see a Servant Boy.~
+ACT_SCAVENGER|ACT_AGGRESSIVE
+AFF_DETECT_EVIL|AFF_DETECT_INVIS|AFF_DETECT_MAGIC|AFF_DETECT_HIDDEN|AFF_SANCTUARY|AFF_PROTECT_EVIL|AFF_SNEAK|AFF_STEALTH
+0 S
+70 0 0 1d1+4000 1d1+55
+0 468961
+POS_STANDING POS_STANDING SEX_MALE
+#10213
+captain guard bosher elite~
+Bosher's Elite Guard Captain~
+Bosher's Elite Guard Captain is standing here ordering his  guards around.  He doesn't look that friendly.~
+You see the Captain of Bosher's Elite Guards.~
+ACT_SENTINEL|ACT_SCAVENGER|ACT_AGGRESSIVE
+AFF_INVISIBLE|AFF_DETECT_INVIS|AFF_DETECT_MAGIC|AFF_DETECT_HIDDEN|AFF_SANCTUARY|AFF_INFRARED|AFF_UNDERSTAND|AFF_PROTECT_EVIL|AFF_SNEAK|AFF_FLYING|AFF_PASS_DOOR|AFF_STEALTH|AFF_TONGUES
+500 S
+85 0 0 1d1+5000 1d1+85
+50000 646617
+POS_STANDING POS_STANDING SEX_MALE
+#10214
+girl kid bosher~
+Bosher's Little Girl~
+One of Bosher's Little Girls is running around creating havoc for the nursemaids and her mother.~
+You see one of Bosher's Little Girls.~
+ACT_SCAVENGER|8
+AFF_INVISIBLE|AFF_DETECT_EVIL|AFF_DETECT_INVIS|AFF_DETECT_MAGIC|AFF_DETECT_HIDDEN|AFF_SANCTUARY|AFF_INFRARED|AFF_PROTECT_EVIL
+500 S
+45 0 0 1d1+1000 1d1+30
+0 225719
+POS_STANDING POS_STANDING SEX_FEMALE
+#10215
+eunuch bosher~
+the Eunuch~
+The Eunuch stands here guarding all of the Concubines.~
+You see a Eunuch.~
+ACT_SENTINEL|ACT_SCAVENGER|ACT_AGGRESSIVE
+AFF_INVISIBLE|AFF_DETECT_EVIL|AFF_DETECT_INVIS|AFF_DETECT_MAGIC|AFF_DETECT_HIDDEN|AFF_SANCTUARY|AFF_INFRARED|AFF_PROTECT_EVIL
+1000 S
+75 0 0 1d1+3900 1d1+85
+0 525271
+POS_STANDING POS_STANDING SEX_NEUTRAL
+#0
+
+
+
+
+#OBJECTS
+#10200
+sword bosher~
+bosher's sword~
+A VERY large sword is floating here above your head.~
+The sword looks incredibly heavy and powerful.~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_INVIS|ITEM_FLAG_MAGIC|ITEM_FLAG_BLESS|ITEM_FLAG_ANTI_GOOD|ITEM_FLAG_NOREMOVE|ITEM_FLAG_LEVEL|ITEM_FLAG_AUTO_ENGRAVE
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 10 9 WEAPON_SLASH
+25 0 95
+A
+APPLY_AC 10
+A
+APPLY_DAMROLL 4
+A
+APPLY_HITROLL 4
+#10201
+lead armor bosher suit~
+a large suit of magical lead plate armor~
+A large suit of lead plate armor sits here waiting to be used.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_GLOW|ITEM_FLAG_ANTI_GOOD|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_BODY
+13 0 0 0
+75 0 85
+A APPLY_DAMROLL 7
+#10202
+lead armor gauntlets bosher~
+a pair of magical lead plate gauntlets~
+A pair of lead plate gauntlets sits here waiting to be used.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_GLOW|ITEM_FLAG_ANTI_GOOD|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HANDS
+13 0 0 0
+75 0 85
+A APPLY_DAMROLL 7
+#10203
+lead armor sleeves bosher~
+a pair of magical lead plate sleeves~
+A pair of lead plate sleeves sits here waiting to be used.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_GLOW|ITEM_FLAG_ANTI_GOOD|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_ARMS
+17 0 0 0
+75 0 85
+A APPLY_HITROLL 8
+A APPLY_HIT -100
+#10204
+lead cloak bosher~
+one of Bosher's invincible magical cloaks~
+One of Bosher's cloaks lies here in a pile of lead.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_GLOW|ITEM_FLAG_ANTI_GOOD|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_NECK
+17 0 0 0
+75 0 85
+A APPLY_HIT 45
+#10205
+lead armor belt bosher~
+a large magical lead plate belt~
+A large magical lead plate belt sits here waiting to be used.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_GLOW|ITEM_FLAG_ANTI_GOOD|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WAIST
+14 0 0 0
+75 0 85
+A APPLY_CON 5
+#10206
+lead armor boots bosher~
+a large pair of magical lead plate boots~
+A large pair of magical lead plate boots sits here begging to be worn.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_GLOW|ITEM_FLAG_ANTI_GOOD|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_FEET
+14 0 0 0
+75 0 85
+A APPLY_DEX 5
+A APPLY_MOVE 75
+#10207
+lead armor leggings bosher~
+a pair of magical plate leggings~
+A pair of lead plate leggings sits here waiting to be used.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_GLOW|ITEM_FLAG_ANTI_GOOD|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_LEGS
+17 0 0 0
+75 0 85
+A APPLY_DAMROLL 6
+A APPLY_HIT -75
+#10208
+lead armor shield bosher~
+a large intricately made magical shield~
+A large magical lead shield lies here gathering dust.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_GLOW|ITEM_FLAG_ANTI_GOOD|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_SHIELD
+15 0 0 0
+75 0 90
+A APPLY_DAMROLL 9
+A APPLY_HITROLL -15
+#10209
+lead armor helmet bosher~
+a large magical lead helmet~
+A large magical lead helmet lies here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_GLOW|ITEM_FLAG_ANTI_GOOD|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HEAD
+17 0 0 0
+75 0 85
+A APPLY_WIS 3
+A APPLY_INT 3
+#10210
+ring lead bosher mana~
+bosher's Ring~
+One of Bosher's rings lies here.~
+This is Bosher's ring!~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_GLOW|ITEM_FLAG_ANTI_GOOD|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_FINGER
+17 0 0 0
+75 0 85
+A APPLY_MANA 60
+#10211
+ring lead bosher hitpoints~
+bosher's Ring~
+One of Bosher's rings lies here.~
+This is Bosher's ring!~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_GLOW|ITEM_FLAG_ANTI_GOOD|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_FINGER
+17 0 0 0
+75 0 85
+A APPLY_HIT 45
+#10212
+ring lead bosher move~
+bosher's Ring~
+One of Bosher's rings lies here.~
+This is Bosher's ring!~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_GLOW|ITEM_FLAG_ANTI_GOOD|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_FINGER
+14 0 0 0
+75 0 85
+A APPLY_MOVE 125
+A APPLY_HITROLL 5
+#10213
+lead armor robe bosher~
+a magical lead robe~
+A large pile of lead sits here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_GLOW|ITEM_FLAG_ANTI_GOOD|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_ABOUT
+14 0 0 0
+75 0 85
+A APPLY_HITROLL 5
+A APPLY_DAMROLL 5
+#10214
+lead armor bracer bosher~
+a large lead magical bracer~
+A large magical lead bracer lies here in a pile of metal~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_GLOW|ITEM_FLAG_ANTI_GOOD|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WRIST
+17 0 0 0
+75 0 85
+A APPLY_STR 3
+A APPLY_DAMROLL 3
+#10215
+lead flame bosher~
+a large flame~
+Bosher's large flame burns violently here.~
+~
+ITEM_TYPE_LIGHT
+ITEM_FLAG_MAGIC|ITEM_FLAG_GLOW|ITEM_FLAG_ANTI_GOOD|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+50 0 -1 0
+75 0 85
+A
+APPLY_DAMROLL 5
+A
+APPLY_HITROLL 10
+#10216
+wand lead bosher~
+bosher's lead wand~
+A lead wand is floating here above everyone's head.~
+~
+ITEM_TYPE_WAND
+ITEM_FLAG_GLOW|ITEM_FLAG_HUM|ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+30 10 10 SPELL_DISPEL_MAGIC
+30 0 85
+#10217
+book spell~
+a spell book~
+A spell book is lying here on the floor.~
+~
+ITEM_TYPE_SCROLL
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+30 SPELL_SANCTUARY SPELL_DEMON SPELL_RIP
+1 0 85
+#10218
+bowl lead~
+a large lead bowl~
+A seemingly light lead bowl floats 2 inches above the ground.~
+~
+ITEM_TYPE_CONTAINER
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+1000 13 0 0
+10 0 85
+#10219
+wand~
+a wand~
+A normal looking wand lies here.~
+~
+ITEM_TYPE_WAND
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+30 10 10 SPELL_STONE_SKIN
+3 0 85
+#10220
+sword bastard~
+a bastard sword~
+A bastard sword is here waiting for his owner.~
+~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_DARK|ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL|ITEM_FLAG_AUTO_ENGRAVE
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 8 7 WEAPON_SLASH
+20 0 75
+A
+APPLY_AC 12
+A
+APPLY_DAMROLL 6
+#10221
+dagger magical red~
+a magical red dagger~
+A magical red dagger is lying here.~
+~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_MAGIC|ITEM_FLAG_BLESS|ITEM_FLAG_LEVEL|ITEM_FLAG_AUTO_ENGRAVE
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 8 7 WEAPON_STAB
+15 0 85
+A
+APPLY_AC 15
+A
+APPLY_DEX 2
+#10222
+arrow fire~
+a fire arrow~
+An arrow lies here on fire, but not burning.~
+~
+ITEM_TYPE_AMMO
+ITEM_FLAG_GLOW|ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+4 15 20 5
+10 15000 75
+#10223
+bow large~
+a large bow~
+A large bow is resting here against the wall.~
+~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+4 10 4 12
+12 0 75
+#10224
+staff~
+a staff~
+A staff is resting here against the wall.~
+~
+ITEM_TYPE_STAFF
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+20 5 5 SPELL_HEAL
+1 0 75
+#10225
+cup water~
+a cup of water~
+A cup of water sits here on the floor.~
+~
+ITEM_TYPE_DRINK_CON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+100 100 LIQ_WATER NOT_POISONED
+7 0 75
+#10226
+key jeweled jewel~
+a jeweled key~
+A large jeweled key is lying here.~
+~
+ITEM_TYPE_KEY
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+0 0 0 0
+50 10000 1
+#10227
+potion brown~
+a brown potion~
+A brown potion sits here.~
+~
+ITEM_TYPE_POTION
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+30 SPELL_DISPEL_EVIL SPELL_HEAL SPELL_HEAL
+10 10000 75
+#10228
+potion red~
+a yellow potion~
+A yellow potion sits here.~
+~
+ITEM_TYPE_POTION
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+30 SPELL_CURSE SPELL_SHIELD SPELL_CURE_CRITICAL
+5 10000 75
+#10229
+potion green~
+a green potion~
+A green potion sits here.~
+~
+ITEM_TYPE_POTION
+ITEM_FLAG_GLOW|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+30 SPELL_FLY SPELL_PASS_DOOR SPELL_DISPEL_MAGIC
+5 10000 75
+#10230
+potion purple~
+a purple potion~
+A purple potion lies here.~
+~
+ITEM_TYPE_POTION
+ITEM_FLAG_HUM|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+30 SPELL_TONGUES SPELL_UNDERSTAND SPELL_CREATE_SPRING
+5 10000 75
+#10231
+potion black~
+a black potion~
+A black potion sits here.~
+~
+ITEM_TYPE_POTION
+ITEM_FLAG_BLESS|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+30 SPELL_DETECT_EVIL SPELL_DETECT_INVIS SPELL_DETECT_MAGIC
+5 10000 75
+#10232
+staff laughing~
+a laughing staff~
+A laughing staff sits here laughing at you!~
+~
+ITEM_TYPE_STAFF
+ITEM_FLAG_GLOW|ITEM_FLAG_HUM|ITEM_FLAG_MAGIC|ITEM_FLAG_BLESS|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+30 3 3 SPELL_SLEEP
+15 0 85
+#10233
+chicken leg~
+a chicken leg~
+A large chicken leg lies here.~
+~
+ITEM_TYPE_FOOD
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+1 0 0 NOT_POISONED
+4 0 1
+#10235
+scroll faded~
+a faded scroll~
+A faded scroll lies here rotting.~
+~
+ITEM_TYPE_SCROLL
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+60 SPELL_DEMON SPELL_BLOCK_AREA SPELL_CREATE_FOOD
+3 10000 75
+#10236
+scroll faded~
+a faded scroll~
+A faded scroll lies here rotting.~
+~
+ITEM_TYPE_SCROLL
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+30 SPELL_HARM SPELL_HARM SPELL_NONE
+3 10000 75
+#10237
+staff twisted~
+a twisted staff~
+A twisted staff is here resting against the wall.~
+~
+ITEM_TYPE_STAFF
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+20 5 5 SPELL_HARM
+15 0 75
+#10238
+staff~
+a staff~
+A staff is here resting against the wall.~
+~
+ITEM_TYPE_STAFF
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+20 5 5 SPELL_TELEPORT
+15 0 75
+#0
+
+
+
+
+#ROOMS
+#10200
+A Closet~
+You have entered a small closet that looks abandoned.~
+102 ROOM_NO_MOB|ROOM_INDOORS|ROOM_SAFE SECT_INSIDE
+DDIR_NORTH
+~
+door~
+EX_ISDOOR|EX_CLOSED|EX_LOCKED|EX_HIDDEN|EX_PICKPROOF -1 10262
+DDIR_EAST
+~
+~
+0 -1 10201
+S
+#10201
+The entrance to Bosher's house.~
+You are inside Bosher's house, better not let him find you here!~
+102 ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 10263
+DDIR_SOUTH
+~
+~
+0 -1 17718
+DDIR_WEST
+You see the armor repair shop.~
+~
+0 -1 10200
+S
+#10202
+End of dusty hallway.~
+This appears to be the end of this hallway, standing at the bottom of the
+steps is a large iron door that has RIP written on it.~
+102 ROOM_INDOORS SECT_CITY
+DDIR_SOUTH
+~
+~
+0 -1 10205
+DDIR_DOWN
+Door~
+door~
+EX_ISDOOR|EX_CLOSED|EX_LOCKED 10226 10264
+S
+#10203
+A large intricately made door.~
+As you walk in you notice the large door that is at the top of the stairs,
+then you notice that there are a few of Bosher's Elite Guards making sure no
+one gets in that door.~
+102 ROOM_INDOORS SECT_CITY
+DDIR_SOUTH
+~
+~
+0 -1 10206
+DDIR_UP
+Door~
+door~
+EX_ISDOOR|EX_CLOSED|EX_LOCKED 10226 10266
+S
+#10204
+A dusty hallway.~
+You think that the hallway is nearing its end.~
+102 ROOM_INDOORS SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 10205
+DDIR_SOUTH
+~
+~
+0 -1 10208
+S
+#10205
+A dusty hallway.~
+Your almost sure that this hallway is coming to an end.~
+102 ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 10202
+DDIR_WEST
+~
+~
+0 -1 10204
+S
+#10206
+Bosher's Harem.~
+As you walk in you think, "Don't most harems have a Eunuch?"  You suddenly
+realize that there's a really big guy looking at you.  You don't think he's
+thinking about your safety.~
+102 ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 10203
+DDIR_EAST
+~
+~
+0 -1 10207
+S
+#10207
+Bosher's Harem.~
+WOW!  You feel as if you have just entered heaven, everywhere you look there are
+women!~
+102 ROOM_INDOORS SECT_CITY
+DDIR_SOUTH
+~
+~
+0 -1 10209
+DDIR_WEST
+~
+~
+0 -1 10206
+S
+#10208
+A dusty hallway.~
+You think its about time to leave this hallway.~
+102 ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 10204
+DDIR_SOUTH
+~
+~
+0 -1 10210
+S
+#10209
+Bosher's Harem.~
+WOW!  You feel as if you have just entered heaven, everywhere you look there are
+women!~
+102 ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 10207
+DDIR_SOUTH
+~
+~
+0 -1 10211
+S
+#10210
+A dusty hallway.~
+You notice that the dust is getting thicker as you continue walking.~
+102 ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 10208
+DDIR_SOUTH
+~
+~
+0 -1 10212
+S
+#10211
+Bosher's Harem.~
+WOW!  You feel as if you have just entered heaven, everywhere you look there are
+women!~
+102 ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 10209
+DDIR_SOUTH
+~
+~
+0 -1 10213
+S
+#10212
+A dusty hallway.~
+You think to yourself, they sure do need to hire a housekeeper.~
+102 ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 10210
+DDIR_SOUTH
+~
+~
+0 -1 10214
+S
+#10213
+Bosher's Harem.~
+WOW!  You feel as if you have just entered heaven, everywhere you look there are
+women!~
+102 ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 10211
+DDIR_SOUTH
+~
+~
+0 -1 10215
+S
+#10214
+A dusty hallway.~
+This hallway doesn't appear to be used that much.~
+102 ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 10212
+DDIR_SOUTH
+~
+~
+0 -1 10216
+S
+#10215
+Bosher's Harem.~
+WOW!  You feel as if you have just entered heaven, everywhere you look there are
+women!~
+102 ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 10213
+DDIR_SOUTH
+~
+door~
+EX_ISDOOR|EX_CLOSED|EX_LOCKED 10226 10217
+S
+#10216
+A well guarded door.~
+Boy are you in for it, Bosher's daughter, Bosherette, is standing here
+guarding this door with a few of Bosher's Elite Guards, and they don't look
+that happy, in fact they look pretty pissed!~
+102 ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 10214
+DDIR_SOUTH
+~
+~
+0 -1 10218
+S
+#10217
+A well guarded door.~
+You have stumbled into a big mess, what looks like Bosher's son, Bosher Jr.,
+is here with a few of Bosher's Elite Guards, looking really pissed off!!!!!~
+102 ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+door~
+EX_ISDOOR|EX_CLOSED|EX_LOCKED 10226 10215
+DDIR_SOUTH
+~
+~
+0 -1 10219
+S
+#10218
+A long hallway.~
+This appears to be part of a long hallway.~
+102 ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 10216
+DDIR_SOUTH
+~
+~
+0 -1 10220
+S
+#10219
+A long hallway.~
+This appears to be part of a long hallway.~
+102 ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 10217
+DDIR_SOUTH
+~
+~
+0 -1 10221
+S
+#10220
+A long hallway.~
+This appears to be part of a long hallway.~
+102 ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 10218
+DDIR_SOUTH
+~
+~
+0 -1 10222
+S
+#10221
+A long hallway.~
+This appears to be part of a long hallway.~
+102 ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 10219
+DDIR_SOUTH
+~
+~
+0 -1 10223
+S
+#10222
+A long hallway.~
+This appears to be part of a long hallway.~
+102 ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 10220
+DDIR_SOUTH
+~
+~
+0 -1 10224
+S
+#10223
+A long hallway.~
+This appears to be part of a long hallway.~
+102 ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 10221
+DDIR_SOUTH
+~
+~
+0 -1 10225
+S
+#10224
+A guarded door.~
+You have come upon some more of Bosher's Elite Guards, but this time there are
+more of them.~
+102 ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 10222
+DDIR_SOUTH
+~
+~
+0 -1 10226
+S
+#10225
+A long hallway.~
+This appears to be part of a long hallway.~
+102 ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 10223
+DDIR_SOUTH
+~
+~
+0 -1 10227
+S
+#10226
+A long hallway.~
+This appears to be part of a long hallway.~
+102 ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 10224
+DDIR_SOUTH
+~
+~
+0 -1 10228
+S
+#10227
+A long hallway.~
+This appears to be part of a long hallway.~
+102 ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 10225
+DDIR_SOUTH
+~
+door~
+EX_ISDOOR|EX_CLOSED|EX_LOCKED 10226 10229
+S
+#10228
+A long hallway.~
+This appears to be part of a long hallway.~
+102 ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 10226
+DDIR_SOUTH
+~
+~
+0 -1 10230
+S
+#10229
+A guarded door.~
+You have come upon some more of Bosher's Elite Guards, but this time there are
+more of them.~
+102 ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+door~
+EX_ISDOOR|EX_CLOSED|EX_LOCKED 10226 10227
+DDIR_SOUTH
+~
+~
+0 -1 10231
+S
+#10230
+A long hallway.~
+This appears to be part of a long hallway.~
+102 ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 10228
+DDIR_SOUTH
+~
+~
+0 -1 10232
+S
+#10231
+A long hallway.~
+This appears to be part of a long hallway.~
+102 ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 10229
+DDIR_SOUTH
+~
+~
+0 -1 10233
+S
+#10232
+A long hallway.~
+This appears to be part of a long hallway.~
+102 ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 10230
+DDIR_SOUTH
+~
+~
+0 -1 10234
+S
+#10233
+A long hallway.~
+This appears to be part of a long hallway.~
+102 ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 10231
+DDIR_SOUTH
+~
+~
+0 -1 10237
+S
+#10234
+A long hallway.~
+This appears to be part of a long hallway.~
+102 ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 10232
+DDIR_EAST
+~
+~
+0 -1 10235
+DDIR_SOUTH
+~
+~
+0 -1 10239
+S
+#10235
+A long hallway.~
+This appears to be part of a long hallway.~
+102 ROOM_INDOORS SECT_CITY
+DDIR_SOUTH
+~
+~
+0 -1 10240
+DDIR_WEST
+~
+~
+0 -1 10234
+S
+#10236
+A long hallway.~
+This appears to be part of a long hallway.~
+102 ROOM_INDOORS SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 10237
+DDIR_SOUTH
+~
+~
+0 -1 10241
+S
+#10237
+A long hallway.~
+This appears to be part of a long hallway.~
+102 ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 10233
+DDIR_SOUTH
+~
+~
+0 -1 10242
+DDIR_WEST
+~
+~
+0 -1 10236
+S
+#10238
+Playpen.~
+You walk in and find Bosher's wife and her nursemaids sitting here watching
+Bosher's little brats, and they don't look happy that you've wakened the
+kids!~
+102 ROOM_INDOORS SECT_CITY
+DDIR_DOWN
+Door~
+door~
+EX_ISDOOR|EX_CLOSED 10226 10244
+S
+#10239
+A long hallway.~
+This appears to be part of a long hallway.~
+102 ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 10234
+DDIR_EAST
+~
+~
+0 -1 10240
+S
+#10240
+A long hallway.~
+This appears to be part of a long hallway.~
+102 ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 10235
+DDIR_SOUTH
+~
+door~
+EX_ISDOOR|EX_CLOSED|EX_LOCKED 10226 10249
+DDIR_WEST
+~
+~
+0 -1 10239
+S
+#10241
+A long hallway.~
+This appears to be part of a long hallway.~
+102 ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 10236
+DDIR_EAST
+~
+~
+0 -1 10242
+DDIR_SOUTH
+~
+door~
+EX_ISDOOR|EX_CLOSED|EX_LOCKED 10226 10250
+S
+#10242
+A long hallway.~
+This appears to be part of a long hallway.~
+102 ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 10237
+DDIR_WEST
+~
+~
+0 -1 10241
+S
+#10243
+Storage closet.~
+You are now in Bosher's personal storage closet.  This room doesn't appear to
+be used at all though.~
+102 ROOM_INDOORS SECT_CITY
+DDIR_DOWN
+Door~
+door~
+EX_ISDOOR|EX_CLOSED 10226 10255
+S
+#10244
+A long hallway.~
+This appears to be part of a long hallway.~
+102 ROOM_INDOORS SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 10245
+DDIR_UP
+Door~
+door~
+EX_ISDOOR|EX_CLOSED 10226 10238
+S
+#10245
+A long hallway.~
+This appears to be part of a long hallway.~
+102 ROOM_INDOORS SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 10246
+DDIR_WEST
+~
+~
+0 -1 10244
+S
+#10246
+A long hallway.~
+This appears to be part of a long hallway.~
+102 ROOM_INDOORS SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 10247
+DDIR_WEST
+~
+~
+0 -1 10245
+S
+#10247
+A long hallway.~
+This appears to be part of a long hallway.~
+102 ROOM_INDOORS SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 10248
+DDIR_WEST
+~
+~
+0 -1 10246
+S
+#10248
+A long hallway.~
+This appears to be part of a long hallway.~
+102 ROOM_INDOORS SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 10249
+DDIR_WEST
+~
+~
+0 -1 10247
+S
+#10249
+A room full of Bosher's Elite Guard.~
+As you walk in you notice that this room is already occupied by a small group
+of Bosher's Elite Guard, and they don't look happy that you are here.~
+102 ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+door~
+EX_ISDOOR|EX_CLOSED|EX_LOCKED 10226 10240
+DDIR_EAST
+~
+~
+0 -1 10250
+DDIR_SOUTH
+~
+~
+0 -1 10256
+DDIR_WEST
+~
+~
+0 -1 10248
+S
+#10250
+A room full of Bosher's Elite Guard.~
+As you walk in you notice that this room is already occupied by a small group
+of Bosher's Elite Guard, and they don't look happy that you are here.~
+102 ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+door~
+EX_ISDOOR|EX_CLOSED|EX_LOCKED 10226 10241
+DDIR_EAST
+~
+~
+0 -1 10251
+DDIR_SOUTH
+~
+~
+0 -1 10257
+DDIR_WEST
+~
+~
+0 -1 10249
+S
+#10251
+A long hallway.~
+This appears to be part of a long hallway.~
+102 ROOM_INDOORS SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 10252
+DDIR_WEST
+~
+~
+0 -1 10250
+S
+#10252
+A long hallway.~
+This appears to be part of a long hallway.~
+102 ROOM_INDOORS SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 10253
+DDIR_WEST
+~
+~
+0 -1 10251
+S
+#10253
+A long hallway.~
+This appears to be part of a long hallway.~
+102 ROOM_INDOORS SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 10254
+DDIR_WEST
+~
+~
+0 -1 10252
+S
+#10254
+A long hallway.~
+This appears to be part of a long hallway.~
+102 ROOM_INDOORS SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 10255
+DDIR_WEST
+~
+~
+0 -1 10253
+S
+#10255
+End of the hallway.~
+This is the end of the hallway, you notice a door leading up.~
+102 ROOM_INDOORS SECT_CITY
+DDIR_WEST
+~
+~
+0 -1 10254
+DDIR_UP
+Door~
+door~
+EX_ISDOOR|EX_CLOSED 10226 10243
+S
+#10256
+A long hallway.~
+This appears to be a somewhat long hallway.~
+102 ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 10249
+DDIR_EAST
+~
+~
+0 -1 10257
+DDIR_SOUTH
+~
+~
+0 -1 10258
+S
+#10257
+A long hallway.~
+This appears to be a somewhat long hallway.~
+102 ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 10250
+DDIR_SOUTH
+~
+~
+0 -1 10259
+DDIR_WEST
+~
+~
+0 -1 10256
+S
+#10258
+A long hallway.~
+This appears to be a somewhat long hallway.~
+102 ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 10256
+DDIR_EAST
+~
+~
+0 -1 10259
+DDIR_SOUTH
+~
+~
+0 -1 10260
+S
+#10259
+A long hallway.~
+This appears to be a somewhat long hallway.~
+102 ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 10257
+DDIR_SOUTH
+~
+~
+0 -1 10261
+DDIR_WEST
+~
+~
+0 -1 10258
+S
+#10260
+A long hallway.~
+This appears to be a somewhat long hallway.~
+102 ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 10258
+DDIR_EAST
+~
+~
+0 -1 10261
+DDIR_SOUTH
+~
+~
+0 -1 10262
+S
+#10261
+A long hallway.~
+This appears to be a somewhat long hallway.~
+102 ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 10259
+DDIR_SOUTH
+~
+~
+0 -1 10263
+DDIR_WEST
+~
+~
+0 -1 10260
+S
+#10262
+A long hallway.~
+This appears to be a somewhat long hallway.~
+102 ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 10260
+DDIR_EAST
+~
+~
+0 -1 10263
+DDIR_SOUTH
+~
+~
+0 -1 10200
+S
+#10263
+A long hallway.~
+This appears to be a somewhat long hallway.~
+102 ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 10261
+DDIR_SOUTH
+~
+~
+0 -1 10201
+DDIR_WEST
+~
+~
+0 -1 10262
+S
+#10264
+The Crypt.~
+You walk into darkness.~
+102 ROOM_DARK|ROOM_INDOORS SECT_CITY
+DDIR_UP
+Door~
+door~
+EX_ISDOOR|EX_CLOSED|EX_LOCKED 10226 10202
+S
+#10265
+Bosher's Ex-Bedroom.~
+You've entered a room full of heat, and the odor of singed flesh.  Maybe 
+this is why Bosher moved to a new room.  There is a doorway leading down.~
+102 ROOM_NO_MOB|ROOM_INDOORS|ROOM_NO_RECALL SECT_LAVA
+DDIR_DOWN
+You see a room in Bosher's house.~
+~
+0 -1 10201
+S
+#10266
+Bosher's bedroom.~
+You walk in and you see this giant like human standing here holding a
+humongous sword, you don't think this guy will be very easy to kill.~
+102 ROOM_INDOORS SECT_CITY
+DDIR_DOWN
+Door~
+door~
+EX_ISDOOR|EX_CLOSED|EX_LOCKED 10226 10203
+S
+#0
+
+
+
+
+#RESETS
+D 0 10264 DIR_UP DOOR_CLOSED_LOCKED ;door in The Crypt.               
+D 0 10202 DIR_DOWN DOOR_CLOSED_LOCKED ;door in End of dusty hallway.    
+D 0 10266 DIR_DOWN DOOR_CLOSED_LOCKED ;door in Bosher's bedroom.        
+D 0 10203 DIR_UP DOOR_CLOSED_LOCKED ;door in A large intricately made 
+D 0 10215 DIR_SOUTH DOOR_CLOSED_LOCKED ;door in Bosher's Harem.          
+D 0 10217 DIR_NORTH DOOR_CLOSED_LOCKED ;door in A well guarded door.     
+D 0 10227 DIR_SOUTH DOOR_CLOSED_LOCKED ;door in A long hallway.          
+D 0 10229 DIR_NORTH DOOR_CLOSED_LOCKED ;door in A guarded door.          
+D 0 10241 DIR_SOUTH DOOR_CLOSED_LOCKED ;door in A long hallway.          
+D 0 10250 DIR_NORTH DOOR_CLOSED_LOCKED ;door in A room full of Bosher's E
+D 0 10240 DIR_SOUTH DOOR_CLOSED_LOCKED ;door in A long hallway.          
+D 0 10249 DIR_NORTH DOOR_CLOSED_LOCKED ;door in A room full of Bosher's E
+M 0 10200  30 10249 ;     Bosher's Elite Guard in A room full of Bosher's E
+M 1 10200  30 10249 ;     Bosher's Elite Guard in A room full of Bosher's E
+M 1 10200  30 10249 ;     Bosher's Elite Guard in A room full of Bosher's E
+M 0 10200  30 10250 ;     Bosher's Elite Guard in A room full of Bosher's E
+G 1 10226   1       ;            a jeweled key
+M 0 10200  30 10250 ;     Bosher's Elite Guard in A room full of Bosher's E
+M 0 10200  30 10250 ;     Bosher's Elite Guard in A room full of Bosher's E
+M 0 10200  30 10229 ;     Bosher's Elite Guard in A guarded door.          
+M 1 10200  30 10229 ;     Bosher's Elite Guard in A guarded door.          
+M 1 10200  30 10229 ;     Bosher's Elite Guard in A guarded door.          
+M 1 10200  30 10229 ;     Bosher's Elite Guard in A guarded door.          
+M 1 10200  30 10229 ;     Bosher's Elite Guard in A guarded door.          
+M 0 10200  30 10224 ;     Bosher's Elite Guard in A guarded door.          
+M 1 10200  30 10224 ;     Bosher's Elite Guard in A guarded door.          
+M 1 10200  30 10224 ;     Bosher's Elite Guard in A guarded door.          
+M 1 10200  30 10224 ;     Bosher's Elite Guard in A guarded door.          
+M 1 10200  30 10224 ;     Bosher's Elite Guard in A guarded door.          
+M 0 10200  30 10217 ;     Bosher's Elite Guard in A well guarded door.     
+M 1 10200  30 10217 ;     Bosher's Elite Guard in A well guarded door.     
+M 1 10200  30 10217 ;     Bosher's Elite Guard in A well guarded door.     
+M 0 10200  30 10216 ;     Bosher's Elite Guard in A well guarded door.     
+M 1 10200  30 10216 ;     Bosher's Elite Guard in A well guarded door.     
+M 1 10200  30 10216 ;     Bosher's Elite Guard in A well guarded door.     
+M 0 10200  30 10203 ;     Bosher's Elite Guard in A large intricately made 
+M 1 10200  30 10203 ;     Bosher's Elite Guard in A large intricately made 
+M 1 10200  30 10203 ;     Bosher's Elite Guard in A large intricately made 
+M 1 10200  30 10203 ;     Bosher's Elite Guard in A large intricately made 
+M 1 10200  30 10203 ;     Bosher's Elite Guard in A large intricately made 
+M 0 10201   3 10238 ;      Bosher's Little Boy in Playpen.                 
+G 1 10233   3       ;            a chicken leg
+M 0 10201   3 10238 ;      Bosher's Little Boy in Playpen.                 
+G 1 10233   3       ;            a chicken leg
+M 0 10201   3 10238 ;      Bosher's Little Boy in Playpen.                 
+G 1 10233   3       ;            a chicken leg
+M 0 10214   3 10238 ;     Bosher's Little Girl in Playpen.                 
+G 1 10225   3       ;           a cup of water
+M 0 10214   3 10238 ;     Bosher's Little Girl in Playpen.                 
+G 1 10225   3       ;           a cup of water
+M 0 10214   3 10238 ;     Bosher's Little Girl in Playpen.                 
+G 1 10225   3       ;           a cup of water
+M 0 10202   2 10238 ;            the Nursemaid in Playpen.                 
+G 1 10217   2       ;             a spell book
+M 0 10202   2 10238 ;            the Nursemaid in Playpen.                 
+G 1 10217   2       ;             a spell book
+M 0 10203   1 10238 ;            Bosher's Wife in Playpen.                 
+E 1 10232  1 17 ;equip a laughing staff         
+G 1 10218   1       ;        a large lead bowl
+M 0 10204  15 10215 ;              A Concubine in Bosher's Harem.          
+M 0 10204  15 10215 ;              A Concubine in Bosher's Harem.          
+G 1 10227   5       ;           a brown potion
+M 0 10204  15 10213 ;              A Concubine in Bosher's Harem.          
+G 1 10228   5       ;          a yellow potion
+M 0 10204  15 10213 ;              A Concubine in Bosher's Harem.          
+M 0 10204  15 10211 ;              A Concubine in Bosher's Harem.          
+M 0 10204  15 10211 ;              A Concubine in Bosher's Harem.          
+G 1 10229   5       ;           a green potion
+M 0 10204  15 10209 ;              A Concubine in Bosher's Harem.          
+G 1 10230   5       ;          a purple potion
+M 0 10204  15 10209 ;              A Concubine in Bosher's Harem.          
+M 0 10204  15 10207 ;              A Concubine in Bosher's Harem.          
+G 1 10231   5       ;           a black potion
+M 0 10204  15 10207 ;              A Concubine in Bosher's Harem.          
+M 0 10204  15 10206 ;              A Concubine in Bosher's Harem.          
+M 0 10204  15 10206 ;              A Concubine in Bosher's Harem.          
+M 0 10215   1 10206 ;               the Eunuch in Bosher's Harem.          
+E 1 10238  1 17 ;equip a staff                  
+M 0 10205   1 10217 ;               Bosher Jr. in A well guarded door.     
+E 1 10220  1 ITEM_WEAR_HEAD ;equip a bastard sword          
+E 1 10224  1 17 ;equip a staff                  
+E 1 10212  1 ITEM_WEAR_TAKE ;equip bosher's Ring            
+M 0 10206   1 10216 ;               Bosherette in A well guarded door.     
+E 1 10221  1 ITEM_WEAR_HEAD ;equip a magical red dagger     
+E 1 10237  1 17 ;equip a twisted staff          
+E 1 10210  1 ITEM_WEAR_TAKE ;equip bosher's Ring            
+M 0 10207   1 10264 ; Ghost of Bosher's Father in The Crypt.               
+G 1 10235   1       ;           a faded scroll
+G 1 10236   1       ;           a faded scroll
+M 0 10208   1 10266 ;                   Bosher in Bosher's bedroom.        
+E 1 10215  1 0 ;equip a large flame            
+E 1 10211  1 ITEM_WEAR_TAKE ;equip bosher's Ring            
+E 1 10204  1 3 ;equip one of Bosher's invincibl
+E 1 10201  1 5 ;equip a large suit of magical l
+E 1 10209  1 6 ;equip a large magical lead helm
+E 1 10207  1 7 ;equip a pair of magical plate l
+E 1 10206  1 ITEM_WEAR_BODY ;equip a large pair of magical l
+E 1 10202  1 9 ;equip a pair of magical lead pl
+E 1 10203  1 10 ;equip a pair of magical lead pl
+E 1 10208  1 11 ;equip a large intricately made 
+E 1 10213  1 12 ;equip a magical lead robe      
+E 1 10205  1 13 ;equip a large magical lead plat
+E 1 10214  1 14 ;equip a large lead magical brac
+E 1 10200  1 ITEM_WEAR_HEAD ;equip bosher's sword           
+E 1 10216  1 17 ;equip bosher's lead wand       
+M 0 10209   3 10262 ;                     Maid in A long hallway.          
+M 0 10209   3 10253 ;                     Maid in A long hallway.          
+M 0 10209   3 10247 ;                     Maid in A long hallway.          
+M 0 10210  10 10243 ;                    a Rat in Storage closet.          
+M 0 10211   4 10220 ;           A Servant Girl in A long hallway.          
+M 0 10211   4 10223 ;           A Servant Girl in A long hallway.          
+M 0 10211   4 10230 ;           A Servant Girl in A long hallway.          
+M 0 10211   4 10233 ;           A Servant Girl in A long hallway.          
+M 0 10212   8 10215 ;            a Servant Boy in Bosher's Harem.          
+M 0 10212   8 10221 ;            a Servant Boy in A long hallway.          
+M 0 10212   8 10218 ;            a Servant Boy in A long hallway.          
+M 0 10212   8 10226 ;            a Servant Boy in A long hallway.          
+M 0 10212   8 10231 ;            a Servant Boy in A long hallway.          
+M 0 10212   8 10244 ;            a Servant Boy in A long hallway.          
+M 0 10212   8 10255 ;            a Servant Boy in End of the hallway.      
+M 0 10212   8 10261 ;            a Servant Boy in A long hallway.          
+M 0 10213   1 10203 ;Bosher's Elite Guard Capt in A large intricately made 
+G 1 10222  10       ;             a fire arrow
+G 1 10222  10       ;             a fire arrow
+G 1 10222  10       ;             a fire arrow
+G 1 10222  10       ;             a fire arrow
+G 1 10222  10       ;             a fire arrow
+E 1 10223  1 ITEM_WEAR_HEAD ;equip a large bow              
+E 1 10219  1 17 ;equip a wand                   
+S
+
+
+
+
+#SHOPS
+0
+
+
+
+
+#SPECIALS
+S
+
+
+
+
+#$

@@ -1,0 +1,3772 @@
+#AREA Xanth~
+#AUTHORS Jaxom  ~
+
+
+
+
+
+#HELPS
+-1 XANTH~
+The land of Xanth is one full of magic.  There is an old law that says
+that each person must have a magical talent in order to be there, otherwise
+they will be exiled.  You may find that the Xanth resembles a certain
+mundane peninsula, even though it lies south of Ethshar on the continent
+of Toril.
+
+(a) Jaxom
+
+Last updated May 13, 1998
+{a}JAXOM
+~
+0 $~
+
+
+
+
+#RANGES 20 50 1 50
+#FLAGS AFLAG_NODEBUG|AFLAG_NOTELEPORT
+#MOBILES
+#28100
+trentmob king~
+King Trent~
+King Trent stands here.~
+He is a middle aged man that stands tall and sure of himself.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_UNDERSTAND|AFF_TONGUES
+500 S
+50 BODY_HAND BODY_HAND 10d10+1000 1d10+30
+92051 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if class($n) == 6
+  say You may not enter Xanth without a magic talent!
+  mptransfer $n 28100
+else
+  if class($n) == 3
+    say You may not enter Xanth without a magic talent!
+    mptransfer $n 28100
+  else
+    if class($n) == 2
+      say You may not enter Xanth without a magic talent!
+      mptransfer $n 28100
+    else
+      if quest(0, 5, $n) == 0
+        say Welcome to Xanth, $n
+        say I have been looking for someone like you.
+        say I am trying to discover the source of magic in Xanth.
+        say Will you help me?
+      else
+        say What news have you, $n?
+      endif
+    endif
+  endif
+endif
+~
+>speech_prog yes ok sure~
+if quest(0, 5, $n) == 0
+  smile 
+  say Wonderful!
+  say I suggest you start with a visit to Good Magician Humphrey
+  mpmset $n quest 0 5 1
+else
+  say huh?
+  say Yes what?
+endif
+~
+>speech_prog privacy~
+if quest(0, 5, $n) == 11
+  say Very well, we shall have to give him the shieldstone
+  say that helps to protect Xanth from invaders.
+  say Go to the border guard and tell him
+  say 'Trent needs the shieldstone.'
+  mpmset $n quest 0 5 12
+endif
+~
+>give_prog i28103~
+if quest(0, 5, $n) == 13
+  say Thank you, $n
+  say I have modified the stone for use for the Demon.
+  say You had better take this to your Demon now.
+  mpquiet on
+  mpjunk all
+  mpoload 28103
+  mpquiet off
+  give shieldstone $n
+  mpmset $n quest 0 5 14
+else
+  say Where did you get that?
+  say That is vital for the defence of Xanth!
+endif
+~
+>speech_prog source demon~
+if quest(0, 5, $n) == 15
+  say You have done well in the quest I set for you.
+  say Take this as your reward.
+  mpquiet on
+  mpoload 28106
+  give xanthite $n
+  mpoload 28107
+  give xanthite $n
+  mpoload 28108
+  give xanthite $n
+  mpoload 28109
+  give xanthite $n
+  mpoload 28110
+  give xanthite $n
+  mpoload 28111
+  give xanthite $n
+  mpoload 28112
+  give xanthite $n
+  drop all
+  mpquiet off
+  mpechoat $n King Trent gives you a set of Xanthite armor.
+  mpmset $n quest 0 5 16
+else
+  say What about it?
+endif
+~
+>rand_prog 30~
+mpquiet on
+if rand(25)
+  cast 'sanctuary' $n
+else
+  if rand(25)
+    cast 'giant strength' $n
+  else
+    if rand(25)
+      cast bless $n
+    else
+      cast heal $n
+    endif
+  endif
+endif
+mpquiet off
+~
+|
+#28101
+humphreymob good magician~
+Humphrey~
+Good Magician Humphrey is here.~
+He is short and old and looks rather like a gnome.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_UNDERSTAND|AFF_TONGUES
+1000 S
+50 BODY_HAND BODY_HAND 10d10+1000 1d10+30
+91017 RACE_GNOME
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if quest(0, 5, $n) == 6
+  mpat 28183 connect 4 -1
+  say Well? What do you want?
+else
+  if quest(5, 3, $n) == 2
+    say You have gotten past my obstacles, what do you want?
+  else
+    say You don't belong here!  Go away.
+    mptransfer $n 28100
+  endif
+endif
+~
+>speech_prog source magic~
+if quest(0, 5, $n) == 6
+  mpechoat $n Without thought the gnomelike magician begins to speak.
+  say The source of magic in Xanth lies deep below the surface.
+  say You may find an entrance near the Region of Madness.
+  say Oh yes, you may need this.
+  mpoload 28100
+  mpquiet on
+  cast 'giant strength' $n
+  mpquiet off
+  give moss $n
+  mpmset $n quest 0 5 7
+  say Now leave me alone!
+  mpechoat $n Humphrey waves his hand and you find yourself somewhere else.
+  mptransfer $n 28161
+endif
+~
+>speech_prog help~
+if quest(5, 3, $n) == 2
+  mpmset $n quest 5 3 3
+  mpoload 28113
+  give i28113 $n
+  mpoload 28114
+  give i28114 $n
+  mpoload 28115
+  give i28115 $n
+  mpoload 28116
+  give i28116 $n
+  say There!  If that doesn't help you nothing will!
+  say No go away!
+  mptransfer $n 28100
+endif
+~
+|
+#28102
+X(A/N)th demon~
+the Demon X(A/N)th~
+The Demon X(A/N)th broods here.~
+He is enormous and looks to be made of stone.  He exudes magic
+out of every pore.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_SANCTUARY|AFF_UNDERSTAND|AFF_TONGUES
+-500 S
+50 BODY_HAND BODY_HAND 10d10+1500 1d10+30
+92642 RACE_DROW
+POS_SLEEPING POS_SLEEPING SEX_NEUTRAL
+>speech_prog source~
+if quest(0, 5, $n) == 9
+  say Of course I am the source of magic.
+  say Now tell me why I should not kill you for disturbing me!
+  mpmset $n quest 0 5 10
+endif
+~
+>rand_prog 100~
+if quest(0, 5, $r) == 8
+  shout Why have you awoken me?
+  mpmset $r quest 0 5 9
+else
+ if quest(0, 5, $r) == 10
+  if rand(10)
+   say You can give me no reason?  Then perish in the void!
+   mpmset $r quest 0 5 7
+   mpquiet on
+   cast astral $r
+   mpquiet off
+   mptransfer $r 28146
+   mpat $r mpforce $r recall set
+ else
+  mpkill $r
+ endif
+endif
+~
+>speech_prog privacy~
+if quest(0, 5, $n) == 10
+  say Come back when you can ensure my privacy
+  say and I will let you live.  Now begone!
+  mpmset $n quest 0 5 11
+  mptransfer all 28114
+endif
+~
+>fight_prog 40~
+say You dare to fight me?!?!
+cast 'acid blast' $r
+cast 'acid blast' $n
+~
+>death_prog 100~
+say Get out of my land!
+mptransfer all 28100
+~
+>give_prog i28103~
+if quest(0, 5, $n) == 14
+  say You have proved resourceful indeed, but I would
+  say have you know that I can provide myself with anything
+  say I need including privacy.  Take this anyway for I have
+  say no need of it.
+  say Now begone!
+  mpquiet on
+  mpjunk all
+  mpoload 28117
+  mpquiet off
+  give shieldstone $n
+  mpmset $n quest 0 5 15
+  mptransfer all 28114
+else
+  say What am I to do with this? Go away!
+  give shieldstone $n
+  mptransfer all 28120
+endif
+~
+|
+#28103
+brain coral~
+the Brain Coral~
+The Brain Coral lies here under the liquid.~
+It looks rather like a brain made of coral.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_UNDERSTAND|AFF_TONGUES
+-500 S
+95 0 0 10d10+10000 1d10+100
+100000 RACE_DROW
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>all_greet_prog 100~
+if quest(0, 5, $n) == 7
+  mpechoat $n Your quest leads to your doom.  Do not continue!
+  rescale 28103 $n 110
+else
+  if quest(0, 5, $n) == 14
+    connect 1 28178
+    mpmset self quest 5 1 1
+    say You may pass.
+  endif
+endif
+~
+>rand_prog 20~
+if quest(5, 1, self) == 1
+  connect 1 -1
+  mpmset self quest 5 1 0
+endif
+if quest(0, 5, $r) == 7
+  say You must kill me if you would continue.
+endif
+~
+>death_prog 100~
+if quest(0, 5, $n) == 7
+  connect 1 28178
+  mpmset $n quest 0 5 8
+  mpmset self quest 5 1 1
+endif
+~
+|
+#28104
+manticore~
+the Manticore~
+The Manticore is here.~
+He has the body of a lion, the head of a man, and the tail of a wyvern.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_UNDERSTAND|AFF_TONGUES
+0 S
+95 BODY_FOOT BODY_FOOT 10d10+10000 1d10+100
+100000 RACE_DROW
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if quest(0, 5, $n) == 5
+  say Greetings slug!
+  say You will have to get by me if you want to see the gnome.
+  rescale 28104 $n 110
+endif
+~
+>death_prog 100~
+if quest(0, 5, $n) == 5
+  mpmset $n quest 0 5 6
+  connect 4 28184
+endif
+~
+|
+#28105
+ouroboros water dragon~
+the Ouroboros~
+An enormous water dragon coils around the castle here.~
+It is a long water dragon with black and white scales that holds its
+tail in its teeth.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_UNDERSTAND|AFF_TONGUES
+0 S
+50 BODY_MOUTH BODY_TAIL 10d10+1000 1d10+30
+100000 RACE_DROW
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if quest(0, 5, $n) == 0
+  if quest(5, 3, $n) < 3
+    mpechoat $n You take a step back as you realize the moat is filled with firewater.
+    mptransfer $n 7677
+  endif
+else
+  if quest(0, 5, $n) > 7
+    if quest(5, 3, $n) < 3
+      mpechoat $n You take a step back as you realize the moat is filled with firewater.
+      mptransfer $n 7677
+    endif
+  endif
+endif
+~
+>rand_prog 40~
+connect 3 -1
+if quest(0, 5, $r) == 1
+  mpechoat $r You step onto the back of the water dragon, and start
+  mpechoat $r walking as the loops of the dragon in front of you rise
+  mpechoat $r and the bit you are on starts to submerge.
+  mpmset $r quest 0 5 2
+  if rand(30)
+    mpechoat $r The water dragon's coils pulse and you are thrown clear.
+    mpmset $r quest 0 5 1
+    mpforce $r east
+  endif
+else
+  if quest(0, 5, $r) == 2
+    mpechoat $r You look up as you walk along the coil and see that
+    mpechoat $r you are two rows of coils into the moat; about halfway.
+    mpmset $r quest 0 5 3
+    if rand(30)
+      mpechoat $r The water dragon's coils pulse and you are thrown clear.
+      mpmset $r quest 0 5 1
+      mpforce $r east
+    endif
+  else
+    if quest(0, 5, $r) == 3
+      mpechoat $r All of a sudden you look up and find yourself on the
+      mpechoat $r innermost coil.  You can hop off onto a narrow ledge.
+      connect 3 28181
+      mpmset $r quest 0 5 4
+    else
+      if quest(0, 5, $r) == 4
+        mpechoat $r The water dragon's coils pulse and you are thrown clear.
+        mpmset $r quest 0 5 1
+        mpforce $r east
+      else
+        if rand(30)
+          mpechoat $r The water dragon's coils pulse and you are thrown clear.
+          mpforce $r east
+        endif
+      endif
+    endif
+  endif
+endif
+~
+|
+#28106
+zombie guardian~
+a guardian zombie~
+A zombie shambles here.~
+It is a dead man that has been animated.  Its flesh is rotting and
+pieces of it fall off occasionally.~
+ACT_SMART|ACT_BODY|ACT_RACE|ACT_UNDEAD
+AFF_UNDERSTAND
+0 S
+50 BODY_HAND BODY_HAND 1d1+1039 1d1+32
+10000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_NEUTRAL
+#28107
+spearmint plant mint green~
+a spearmint~
+A green plant is here smelling of mint.~
+It is a small plant with green leaves.  It smells like spearmint!~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+0
+0 S
+30 0 0 1d1+479 1d1+21
+1000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>rand_prog 15~
+mpechoat $r The spearmint launches a spear at you as you get too close.
+mpkill $r
+~
+|
+#28108
+peppermint plant mint reddish~
+a peppermint~
+A reddish plant is here smelling of mint.~
+It is a small plant with reddish leaves. It smells of peppermint!~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+0
+0 S
+30 0 0 1d1+479 1d1+21
+1000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>rand_prog 10~
+mpechoat $r You are enveloped in a cloud of pepper.
+mpforce $r sneeze
+~
+|
+#28109
+tangle tree willow~
+a tangle tree~
+A tree that looks like a weeping willow is here.~
+This tree looks just like a weeping willow, though when you look
+closer you see that a large knot in the trunk looks rather like
+a mouth with teeth.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+0
+-200 S
+50 0 0 10d10+1000 1d10+30
+10000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>rand_prog 35~
+mpechoat $r The tangle tree attempts to grab you as you pass under it.
+mpkill $r
+~
+|
+#28110
+gapdragon dragon~
+the Gap Dragon~
+The Gap Dragon charges down the chasm at you!~
+He is a large green dragon that looks well fed.~
+ACT_AGGRESSIVE|ACT_SMART|ACT_BODY|ACT_RACE
+0
+-100 S
+60 BODY_TAIL BODY_TAIL 10d10+3000 1d10+50
+100000 RACE_DROW
+POS_STANDING POS_STANDING SEX_MALE
+#28111
+centaur~
+a centaur~
+A centaur runs here.~
+He has the upper torso of a man, and the lower body of a horse.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_UNDERSTAND|AFF_TONGUES
+200 S
+40 BODY_FOOT BODY_FOOT 1d1+631 1d1+26
+10000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+#28112
+ogrefenogre fen~
+an ogre-fen-ogre.~
+An ogre hulks here.~
+It is a large humanoid that is known for enormous strength.~
+ACT_SENTINEL|ACT_AGGRESSIVE|ACT_SMART|ACT_BODY|ACT_RACE
+0
+-400 S
+50 BODY_HAND BODY_HAND 1d1+1039 1d1+32
+10000 RACE_OGRE
+POS_STANDING POS_STANDING SEX_MALE
+#28113
+curse fiend man~
+a curse fiend~
+A man stand here, colorfully dressed.~
+This man looks like any you might meet, though he is well dressed.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_UNDERSTAND|AFF_TONGUES
+-500 S
+40 BODY_HAND BODY_HAND 10d10+600 1d10+25
+10000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+#28114
+borderguard guard~
+a border guard~
+A border guard stands here, watching for undesirables.~
+He is a bored looking man doing a job.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_UNDERSTAND|AFF_TONGUES
+0 S
+50 BODY_HAND BODY_HAND 1d1+6431 1d10+100
+10000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if class($n) == 6
+  say You may not enter Xanth without a magic talent!
+  mptransfer $n 28100
+else
+  if class($n) == 3
+    say You may not enter Xanth without a magic talent!
+    mptransfer $n 28100
+  else
+    if class($n) == 2
+      say You may not enter Xanth without a magic talent!
+      mptransfer $n 28100
+    else
+      if rand(20)
+        say Welcome to Xanth, $n
+      endif
+    endif
+  endif
+endif
+~
+>speech_prog p Trent needs the shieldstone.~
+if quest(0, 5, $n) == 12
+  if sex($n) == 1
+    say Yes sir!
+  else
+    say Yes ma'am!
+  endif
+  mpoload 28103
+  give shieldstone $n
+  mpmset $n quest 0 5 13
+else
+  say Tell him to get it himself!
+endif
+~
+|
+#28115
+north villager man~
+a north villager~
+A man from north village is here.~
+He looks like a normal citizen of Xanth.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_UNDERSTAND|AFF_TONGUES
+0 S
+30 BODY_HAND BODY_HAND 1d1+479 1d1+21
+10000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+#28116
+gargoyle widemouthed bigmouth~
+Bigmouth~
+A widemouthed gargoyle perches here.~
+It is a stone gargoyle that perches here acting as a water spout.
+The gargoyle's mouth looks enormous.  If it were to open its mouth
+all the way, you could probably fit inside it even.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_UNDERSTAND|AFF_TONGUES
+0 S
+50 0 0 10d10+1000 1d10+30
+95447 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>all_greet_prog 100~
+if quest(0, 5, $n) == 4
+  mpechoat $n The gargoyle tries to speak to you around the
+  mpechoat $n water that is coming out of its mouth.
+  say Whath thu oou wath, thinkreath?
+endif
+~
+>speech_prog open~
+mpechoat $n The gargoyle opens as mouth as wide as it can, and
+mpechoat $n you see a tunnel leading into the castle inside.
+connect 3 28183
+mpmset $n quest 0 5 5
+~
+>rand_prog 30~
+connect 3 -1
+if quest(0, 5, $r) == 5
+  mpecho The gargoyle closes it mouth until the water barely escapes.
+  mpmset $r quest 0 5 4
+endif
+~
+|
+#28117
+nicklepede~
+a nicklepede~
+A nicklepede scuttles here.~
+It is a small silver looking insect with hundreds of legs.~
+ACT_AGGRESSIVE|ACT_SMART|ACT_BODY|ACT_RACE
+0
+-100 S
+30 BODY_CLAW BODY_CLAW 1d1+479 1d1+21
+1000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+#28118
+behemothmob~
+a behemoth~
+A behemoth lies here half submerged.~
+It is an enormous creature made mostly of mouth it seems.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_UNDERSTAND|AFF_TONGUES
+0 S
+50 BODY_HAND BODY_HAND 10d10+1000 1d10+30
+10000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>speech_prog open~
+mpecho The behemoth opens its mouth revealing a tunnel.
+connect 3 28168
+~
+>rand_prog 30~
+connect 3 -1
+mpecho The behemoth closes its mouth
+~
+|
+#28119
+screechingharpy harpy~
+a screeching harpy~
+A screeching harpy flaps here.~
+She has the torso and head of a woman, and the limbs of a vulture.~
+ACT_SENTINEL|ACT_AGGRESSIVE|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_FLYING
+-500 S
+40 BODY_CLAW BODY_HAND 10d10+600 1d10+25
+10000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_FEMALE
+>death_prog 100~
+if class($n) == 4
+  mpoload 28131
+endif
+~
+|
+#28120
+sweatgnats gnats swarm~
+a swarm of gnats~
+A swarm of gnats flies here.~
+The look just like normal gnats.  Are you feeling hot too?~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_FLYING
+0 S
+30 0 0 1d1+479 1d1+21
+1000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>rand_prog 10~
+mpechoat $r You start to sweat as you are enveloped by a cloud of sweat gnats.
+if inroom($r) == 28162
+  cast hallucinate $r
+endif
+~
+|
+#28121
+needle cactus~
+a needle cactus~
+A needle cactus is here.~
+It is a green cactus with long needle like spines.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+0
+0 S
+40 0 0 10d10+600 1d10+25
+1000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>rand_prog 15~
+mpechoat $r The needle cactus launches a volley of needles at you.
+mpkill $r
+~
+|
+#28122
+justintree tree~
+Justin Tree~
+An unusual tree stands here.~
+He has bark the color of flesh and his leaves are shaped like hands.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+0
+500 S
+50 0 0 10d10+1000 1d10+30
+1000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>rand_prog 30~
+mpquiet on
+if rand(25)
+  cast 'sanctuary' $n
+else
+  if rand(25)
+    cast 'giant strength' $n
+  else
+    if rand(25)
+      cast bless $n
+    else
+      cast heal $n
+    endif
+  endif
+endif
+mpquiet off
+~
+>all_greet_prog 100~
+if class($n) == 6
+  say You should not be here!
+  mptransfer $n 28100
+else
+  if class($n) == 3
+    say You should not be here!
+    mptransfer $n 28100
+  else
+    if class($n) == 2
+      say You should not be here!
+      mptransfer $n 28100
+    else
+      if rand(20)
+        say Hello $n
+      endif
+    endif
+  endif
+endif
+~
+|
+#28123
+seaserpent serpent zombie~
+a zombie sea serpant~
+A zombie sea serpant swims here.~
+It looks like any other sea serpent that has been dead for
+a while, except that it is moving.~
+ACT_SENTINEL|ACT_AGGRESSIVE|ACT_SMART|ACT_BODY|ACT_RACE|ACT_UNDEAD
+0
+0 S
+40 0 0 1d1+631 1d1+26
+1000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_NEUTRAL
+#28124
+spellmender~
+the spellmender~
+The spellmender stands here.~
+She is a woman with a talent for making potions.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+0
+0 S
+1 0 0 1d1+34 1d1+17
+22 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_FEMALE
+#28125
+equipper village~
+the equiper~
+The village equipper stands here.~
+He is a north villager that sells stuff.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+0
+0 S
+1 0 0 1d1+34 1d1+18
+26 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+#28126
+rolandmob elder~
+Roland~
+The village elder stands here.~
+He is an aging man but still very capable.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_TRAIN|ACT_PRACTICE|ACT_SMART|ACT_BODY|ACT_RACE
+0
+500 S
+50 0 0 10d10+2000 1d10+50
+1000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>rand_prog 30~
+mpquiet on
+if rand(25)
+  cast 'sanctuary' $n
+else
+  if rand(25)
+    cast 'giant strength' $n
+  else
+    if rand(25)
+      cast bless $n
+    else
+      cast heal $n
+    endif
+  endif
+endif
+mpquiet off
+~
+>speech_prog p I forgot the source~
+mpmset $n quest 0 5 0
+~
+|
+#28127
+vortexethereal~
+vortexethereal~
+Vortexethereal~
+This mob transfers you to the lake edge.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_ETHEREAL
+0 S
+1 0 0 1d1+39 1d1+19
+24 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_FEMALE
+>rand_prog 30~
+mpechoat $r The vortex pulls you down no matter how much you struggle.
+mpquiet on
+mpforce $r sleep
+mptransfer $r 28172
+mpquiet off
+~
+|
+#28128
+xanthethereal~
+xanthethereal~
+Xanthethereal~
+This mob transfers you out of xanth if you arent a mage.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_ETHEREAL
+0 S
+1 0 0 1d1+33 1d1+16
+22 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_FEMALE
+>rand_prog 30~
+mpquiet on
+if rand(25)
+  cast 'sanctuary' $n
+else
+  if rand(25)
+    cast 'giant strength' $n
+  else
+    if rand(25)
+      cast bless $n
+    else
+      cast heal $n
+    endif
+  endif
+endif
+mpquiet off
+~
+>all_greet_prog 100~
+if class($n) == 6
+  mpechoat $n A guard of the king comes and drags you out to mundania.
+  mptransfer $n 28100
+else
+  if class($n) == 3
+    mpechoat $n A guard of the king comes and drags you out to mundania.
+    mptransfer $n 28100
+  else
+    if class($n) == 2
+      mpechoat $n A guard of the king comes and drags you out to mundania.
+      mptransfer $n 28100
+    endif
+  endif
+endif
+~
+|
+#28129
+midasfly fly golden~
+a midas fly~
+A golden fly lands on you.~
+It is a small fly normal in all respects except for the
+fact that it is made of pure gold.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_FLYING
+0 S
+30 0 0 1d1+479 1d1+21
+1000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>death_prog 50~
+mpquiet on
+cast 'remove curse' $n
+cast 'remove curse' $n
+cast 'remove curse' $n
+cast 'remove curse' $n
+cast 'remove curse' $n
+cast 'remove curse' $n
+cast 'remove curse' $n
+cast 'remove curse' $n
+cast 'remove curse' $n
+cast 'remove curse' $n
+mpforce $n remove brace
+mpforce $n give brace midasfly
+if hasobj(bracer)
+  mpjunk bracer
+  mpoload 28127
+  give bracer $n
+  mpforce $n wear bracer
+else
+  if hasobj(bracelet)
+    mpjunk bracelet
+    mpoload 28128
+    give bracelet $n
+    mpforce $n wear bracelet
+  else
+    mpforce $n remove ring
+    mpforce $n give ring midasfly
+    if hasobj(ring)
+      mpjunk ring
+      mpoload 28129
+      give ring $n
+      mpforce $n wear ring
+    endif
+  endif
+  mpquiet off
+endif
+~
+|
+#28130
+needle cactus~
+a needle cactus~
+A needle cactus is here.~
+It is a green cactus with long needle like spines.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+0
+0 S
+40 0 0 10d10+600 1d10+25
+1000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>greet_prog 100~
+connect 4 -1
+mpechoat $n The needle cactus launches a volley of needles at you as you come in range.
+mpkill $n
+~
+>all_greet_prog 100~
+connect 4 -1
+~
+>fight_prog 15~
+mpechoat $r The needle cactus launches a volley of needles at you.
+mpmadd $n currhp -20
+~
+>death_prog 100~
+if quest(5, 3, $n) == 1
+  mpmset $n quest 5 3 2
+  connect 4 28184
+endif
+~
+|
+#28131
+basilisk~
+a basilisk~
+A basilisk glares at you.~
+It is a small lizard with six legs and a horn on its snout.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+0
+0 S
+40 0 0 10d10+600 1d10+25
+1000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>all_greet_prog 100~
+mpquiet on
+get basilisk
+mpjunk all
+if quest(5, 3, $n) != 1
+  connect 3 -1
+endif
+mpquiet off
+~
+>fight_prog 40~
+if actorhasobjnum(28132)
+  if quest(5, 3, $n) == 0
+mpechoat $n The basilisk sees itself in your mirror and is turned to stone.
+    mpquiet on
+    connect 3 7680
+    mpoload 28133
+    drop i28133
+    mpmset $n quest 5 3 1
+    mpquiet off
+    mppurge $i
+  else
+    mpechoat $n The basilisk refuses to look at your mirror.
+  endif
+else
+  mpechoat $n The basilisk glares at you and you are turned to stone!
+  mpquiet on
+  slay $n
+  mposet corpse long A stone statue of $n is here.
+  mpoadd corpse name statue
+  mposet corpse desc It is an exact likeness of $n.
+  mpquiet off
+endif
+~
+|
+#28132
+firewaterethereal~
+firewaterethereal~
+firewaterethereal~
+This mob connects the room out of the lava moat.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_ETHEREAL
+0 S
+1 0 0 1d1+33 1d1+16
+22 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_FEMALE
+>rand_prog 50~
+mpquiet on
+connect 3 7678
+mpquiet off
+~
+>all_greet_prog 100~
+mpquiet on
+connect 3 -1
+mpquiet off
+~
+|
+#0
+
+
+
+
+#OBJECTS
+#28100
+phosphorescent moss~
+phosphorescent moss~
+Phosphorescent moss grows here.~
+It is a green moss that seems to give off a gentle glow.~
+ITEM_TYPE_LIGHT
+ITEM_FLAG_MAGIC|ITEM_FLAG_ANTI_EVIL|ITEM_FLAG_NOREMOVE|ITEM_FLAG_LEVEL|ITEM_FLAG_NODROP
+ITEM_WEAR_TAKE
+0 0 -1 0
+2 10000 25
+A
+APPLY_SAVING_SPELL -3
+A
+APPLY_AC -10
+#28101
+mint spear~
+a mint spear~
+A mint's spear lies on the ground here.~
+It is a wooden spear that looks like it has grown naturally.~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 3 11 WEAPON_PIERCE
+10 3000 35
+#28102
+centaurs bow~
+a Centaur's Bow~
+A Centaur's Bow lies on the ground here.~
+It is finely crafted of a dark wood.~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+1 3 9 WEAPON_POUND
+10 3000 25
+#28103
+shieldstone~
+the shieldstone~
+The shieldstone lies on the ground here.~
+It is a normal looking stone with a small shield engraved
+on its surface.~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 0 0
+10 1000 20
+#28104
+bone dagger~
+a bone dagger~
+A dagger made of bone lies here.~
+It is a dagger made from bone.~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 3 9 WEAPON_POUND
+1 300 25
+#28105
+throne~
+a throne~
+A throne sits upon a dais.~
+It is a large wooden chain draped in expensive fabrics.~
+ITEM_TYPE_FURNITURE
+ITEM_FLAG_LEVEL
+0
+0 0 0 0
+10 10 56
+#28106
+xanthite robe~
+a xanthite robe~
+A robe lies on the ground here.~
+It is made of the precious magical metal xanthite.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_ANTI_GOOD|ITEM_FLAG_ANTI_EVIL|ITEM_FLAG_NOREMOVE|ITEM_FLAG_LEVEL|ITEM_FLAG_NODROP
+ITEM_WEAR_TAKE|ITEM_WEAR_ABOUT
+13 0 0 0
+5 50000 29
+A
+APPLY_HIT 10
+A
+APPLY_DAMROLL -5
+#28107
+xanthite tunic~
+a xanthite tunic~
+A tunic lies on the ground here.~
+It is made of the precious magical metal xanthite.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_ANTI_GOOD|ITEM_FLAG_ANTI_EVIL|ITEM_FLAG_NOREMOVE|ITEM_FLAG_LEVEL|ITEM_FLAG_NODROP
+ITEM_WEAR_TAKE|ITEM_WEAR_BODY
+13 0 0 0
+5 50000 29
+A
+APPLY_HIT 10
+A
+APPLY_DAMROLL -5
+#28108
+xanthite shoes~
+a xanthite shoes~
+A pair of shoes lies on the ground here.~
+It is made of the precious magical metal xanthite.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_ANTI_GOOD|ITEM_FLAG_ANTI_EVIL|ITEM_FLAG_NOREMOVE|ITEM_FLAG_LEVEL|ITEM_FLAG_NODROP
+ITEM_WEAR_TAKE|ITEM_WEAR_FEET
+13 0 0 0
+5 50000 29
+A
+APPLY_HIT 10
+A
+APPLY_DAMROLL -5
+#28109
+xanthite sleeves~
+a xanthite sleeves~
+A pair of sleeves lies on the ground here.~
+It is made of the precious magical metal xanthite.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_ANTI_GOOD|ITEM_FLAG_ANTI_EVIL|ITEM_FLAG_NOREMOVE|ITEM_FLAG_LEVEL|ITEM_FLAG_NODROP
+ITEM_WEAR_TAKE|ITEM_WEAR_ARMS
+13 0 0 0
+5 50000 29
+A
+APPLY_HIT 10
+A
+APPLY_DAMROLL -5
+#28110
+xanthite breeches~
+a xanthite breeches~
+A pair of breeches lies on the ground here.~
+It is made of the precious magical metal xanthite.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_ANTI_GOOD|ITEM_FLAG_ANTI_EVIL|ITEM_FLAG_NOREMOVE|ITEM_FLAG_LEVEL|ITEM_FLAG_NODROP
+ITEM_WEAR_TAKE|ITEM_WEAR_LEGS
+13 0 0 0
+5 50000 29
+A
+APPLY_HIT 10
+A
+APPLY_DAMROLL -5
+#28111
+xanthite coif~
+a xanthite coif~
+A coif lies on the ground here.~
+It is made of the precious magical metal xanthite.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_ANTI_GOOD|ITEM_FLAG_ANTI_EVIL|ITEM_FLAG_NOREMOVE|ITEM_FLAG_LEVEL|ITEM_FLAG_NODROP
+ITEM_WEAR_TAKE|ITEM_WEAR_HEAD
+13 0 0 0
+5 50000 29
+A
+APPLY_HIT 10
+A
+APPLY_DAMROLL -5
+#28112
+xanthite gloves~
+a xanthite gloves~
+A pair of gloves lies on the ground here.~
+It is made of the precious magical metal xanthite.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_ANTI_GOOD|ITEM_FLAG_ANTI_EVIL|ITEM_FLAG_NOREMOVE|ITEM_FLAG_LEVEL|ITEM_FLAG_NODROP
+ITEM_WEAR_TAKE|ITEM_WEAR_HANDS
+13 0 0 0
+5 50000 29
+A
+APPLY_HIT 10
+A
+APPLY_DAMROLL -5
+#28113
+xanthite belt~
+a xanthite belt~
+A belt lies on the ground here.~
+It is made of the precious magical metal xanthite.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_ANTI_GOOD|ITEM_FLAG_ANTI_EVIL|ITEM_FLAG_NOREMOVE|ITEM_FLAG_LEVEL|ITEM_FLAG_NODROP
+ITEM_WEAR_TAKE|ITEM_WEAR_WAIST
+13 0 0 0
+5 50000 29
+A
+APPLY_HIT 10
+A
+APPLY_DAMROLL -5
+#28114
+xanthite ring~
+a xanthite ring~
+A ring lies on the ground here.~
+It is made of the precious magical metal xanthite.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_ANTI_GOOD|ITEM_FLAG_ANTI_EVIL|ITEM_FLAG_NOREMOVE|ITEM_FLAG_LEVEL|ITEM_FLAG_NODROP
+ITEM_WEAR_TAKE|ITEM_WEAR_FINGER
+13 0 0 0
+5 50000 29
+A
+APPLY_HIT 10
+A
+APPLY_DAMROLL -5
+#28115
+xanthite bracer~
+a xanthite bracer~
+A bracer lies on the ground here.~
+It is made of the precious magical metal xanthite.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_ANTI_GOOD|ITEM_FLAG_ANTI_EVIL|ITEM_FLAG_NOREMOVE|ITEM_FLAG_LEVEL|ITEM_FLAG_NODROP
+ITEM_WEAR_TAKE|ITEM_WEAR_WRIST
+13 0 0 0
+5 50000 29
+A
+APPLY_HIT 10
+A
+APPLY_DAMROLL -5
+#28116
+xanthite cloak~
+a xanthite cloak~
+A cloak lies on the ground here.~
+It is made of the precious magical metal xanthite.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_ANTI_GOOD|ITEM_FLAG_ANTI_EVIL|ITEM_FLAG_NOREMOVE|ITEM_FLAG_LEVEL|ITEM_FLAG_NODROP
+ITEM_WEAR_TAKE|ITEM_WEAR_NECK
+13 0 0 0
+5 50000 29
+A
+APPLY_HIT 10
+A
+APPLY_DAMROLL -5
+#28117
+shieldstone~
+the shieldstone~
+The shieldstone lies on the ground here.~
+It is a normal looking stone with a small shield engraved
+on its surface.~
+ITEM_TYPE_TREASURE
+ITEM_FLAG_MAGIC|ITEM_FLAG_ANTI_EVIL|ITEM_FLAG_NOREMOVE|ITEM_FLAG_LEVEL|ITEM_FLAG_NODROP
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+0 0 0 0
+5 100000 25
+A
+APPLY_SAVING_SPELL -3
+A
+APPLY_AC -10
+#28118
+centaur arrow~
+a centaur's arrow~
+A centaur's arrow lies here.~
+It is a long wooden arrow.~
+ITEM_TYPE_AMMO
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+1 30 10 2
+1 100 25
+#28119
+passdoor staff~
+a staff of pass door~
+A staff lies on the ground here.~
+It is a wooden staff about 6ft long.~
+ITEM_TYPE_STAFF
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+60 3 3 SPELL_PASS_DOOR
+3 1000 25
+#28120
+enhanceobject scroll~
+an enhance scroll~
+A scroll of enhance object is here.~
+It is a roll of parchment with strange writings on it.~
+ITEM_TYPE_SCROLL
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+45 SPELL_ENHANCE_OBJECT SPELL_NONE SPELL_NONE
+1 10000 25
+#28121
+recall scroll~
+a recall scroll~
+A recall scroll lies abandoned on the ground here.~
+Well, it's a scroll, and if you recite it you recall.~
+ITEM_TYPE_SCROLL
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+1 SPELL_WORD_OF_RECALL SPELL_NONE SPELL_NONE
+1 10 1
+#28122
+protection good staff~
+a staff of protection from good~
+A staff lies here.~
+It is a shaft of wood about 8ft in length.~
+ITEM_TYPE_STAFF
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+60 3 3 SPELL_PROTECTION_GOOD
+3 10000 25
+#28123
+robe many pockets~
+a robe of many pockets~
+A robe lies crumpled here.~
+It is a large robe full of pockets.~
+ITEM_TYPE_CONTAINER
+ITEM_FLAG_INVENTORY|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_ABOUT
+400 0 -1 0
+1 10000 25
+#28124
+beerbarrel barrel tree~
+a beer barrel~
+A beer barrel tree grows here.~
+It is a tree whose trunk is full of beer.~
+ITEM_TYPE_DRINK_CON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+4 3 LIQ_BEER NOT_POISONED
+1 20 10
+#28125
+breadfruit loaf~
+a breadfruit~
+A loaf of bread lies abandoned on the ground.~
+It looks as though it has been freshly picked.~
+ITEM_TYPE_FOOD
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+24 0 0 NOT_POISONED
+1 10 10
+#28126
+reversewood wood chunk~
+reverse wood~
+A chunk of wood lies on the ground here.~
+It is a piece of wood.~
+ITEM_TYPE_TRASH
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+0 0 0 0
+1 50000 35
+A
+APPLY_SAVING_SPELL -4
+A
+APPLY_AC -10
+P 1
+TRIG_COMMAND 60 cast
+OPROG_IF OIF_RANDOM_PERCENT < 50 2 3
+P 2
+TRIG_VOID
+OPROG_ECHO Something prevents your spell from working correctly.~
+P 2
+TRIG_VOID
+OPROG_GOD_COMMAND cast hallucinate $~
+P 3
+TRIG_VOID
+OPROG_ECHO Something prevents your spell from working correctly.~
+P 3
+TRIG_VOID
+OPROG_GOD_COMMAND cast confusion $~
+#28127
+golden bracer~
+a golden bracer~
+A golden bracer is here.~
+It is a bracer made of gold.~
+ITEM_TYPE_TREASURE
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WRIST
+0 0 0 0
+5 100000 5
+#28128
+golden bracelet~
+a golden bracelet~
+A golden bracelet is here.~
+It is a bracelet made of gold.~
+ITEM_TYPE_TREASURE
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WRIST
+0 0 0 0
+5 100000 5
+#28129
+golden ring~
+a golden ring~
+A golden ring is here.~
+It is a ring made of gold.~
+ITEM_TYPE_TREASURE
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_FINGER
+0 0 0 0
+5 100000 5
+#28130
+reflective potion~
+a reflective potion~
+A potion lies on the ground here.~
+It is a very shiny fluid.  Light reflects off its surface.~
+ITEM_TYPE_POTION
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+41 SPELL_MIRROR_IMAGE SPELL_NONE SPELL_NONE
+1 10000 25
+#28131
+harpies voice harpy~
+a harpy's voice~
+A harpy's voice lies here lost.~
+It is very foul and something best not talked about.~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 0 0
+1 10 30
+#28132
+silver mirror~
+a silver mirror~
+A silver mirror is here.~
+It is a mirror made of silver.~
+ITEM_TYPE_TREASURE
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+0 0 0 0
+1 10000 5
+#28133
+statue basilisk~
+a statue of a basilisk~
+A statue of a basilisk is here.~
+It is a basilisk of stone.~
+ITEM_TYPE_TREASURE
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 0 0
+10 1000 5
+#0
+
+
+
+
+#ROOMS
+#7650
+Castle Grounds~
+You walk among the grounds around Castle Roogna.  You recognise many
+varieties of fruit trees, but there are many trees that you do not
+recognise.  Among the ones you do not recognise, seem to be bread and
+shoe trees!~
+76 0 SECT_FIELD
+DDIR_EAST
+~
+~
+0 -1 7651
+DDIR_SOUTH
+~
+~
+0 -1 7657
+DDIR_WEST
+~
+~
+0 -1 28199
+S
+#7651
+Castle Grounds~
+You walk among the grounds around Castle Roogna.  You recognise many
+varieties of fruit trees, but there are many trees that you do not
+recognise.  Among the ones you do not recognise, seem to be bread and
+shoe trees!~
+76 0 SECT_FIELD
+DDIR_EAST
+~
+~
+0 -1 7652
+DDIR_SOUTH
+~
+~
+0 -1 7656
+DDIR_WEST
+~
+~
+0 -1 7650
+S
+#7652
+Castle Grounds~
+You walk among the grounds around Castle Roogna.  You recognise many
+varieties of fruit trees, but there are many trees that you do not
+recognise.  Among the ones you do not recognise, seem to be bread and
+shoe trees!~
+76 0 SECT_FIELD
+DDIR_SOUTH
+~
+~
+0 -1 7653
+DDIR_WEST
+~
+~
+0 -1 7651
+S
+#7653
+Castle Grounds~
+You walk among the grounds around Castle Roogna.  You recognise many
+varieties of fruit trees, but there are many trees that you do not
+recognise.  Among the ones you do not recognise, seem to be bread and
+shoe trees!~
+76 0 SECT_FIELD
+DDIR_NORTH
+~
+~
+0 -1 7652
+DDIR_SOUTH
+~
+~
+0 -1 7654
+DDIR_WEST
+~
+~
+0 -1 7656
+S
+#7654
+Castle Grounds~
+You walk among the grounds around Castle Roogna.  You recognise many
+varieties of fruit trees, but there are many trees that you do not
+recognise.  Among the ones you do not recognise, seem to be bread and shoe
+trees!~
+76 0 SECT_FIELD
+DDIR_NORTH
+~
+~
+0 -1 7653
+DDIR_SOUTH
+~
+~
+0 -1 7674
+DDIR_WEST
+~
+~
+0 -1 7655
+S
+#7655
+Roogna Moat~
+This moat is a bit murky and has bits of flesh floating in it.  You
+can tell from the stink that they are long dead and wonder that no one has
+cleaned the moat, but then you see what those bits of flesh are coming from.~
+76 ROOM_NO_MOB SECT_WATER_SWIM
+DDIR_NORTH
+~
+~
+0 -1 7656
+DDIR_EAST
+~
+~
+0 -1 7654
+DDIR_SOUTH
+~
+~
+0 -1 7666
+S
+#7656
+Roogna Moat~
+This moat is a bit murky and has bits of flesh floating in it.  You
+can tell from the stink that they are long dead and wonder that no one
+has cleaned the moat, but then you see what those bits of flesh are
+coming from.~
+76 ROOM_NO_MOB SECT_WATER_SWIM
+DDIR_NORTH
+~
+~
+0 -1 7651
+DDIR_EAST
+~
+~
+0 -1 7653
+DDIR_SOUTH
+~
+~
+0 -1 7655
+DDIR_WEST
+~
+~
+0 -1 7657
+S
+#7657
+Roogna Moat~
+This moat is a bit murky and has bits of flesh floating in it.  You
+can tell from the stink that they are long dead and wonder that no one
+has cleaned the moat, but then you see what those bits of flesh are coming
+from.~
+76 ROOM_NO_MOB SECT_WATER_SWIM
+DDIR_NORTH
+~
+~
+0 -1 7650
+DDIR_EAST
+~
+~
+0 -1 7656
+DDIR_WEST
+~
+~
+0 -1 7658
+S
+#7658
+Roogna Moat~
+This moat is a bit murky and has bits of flesh floating in it.  You can
+tell from the stink that they are long dead and wonder that no one has
+cleaned the moat, but then you see what those bits of flesh are coming from.~
+76 ROOM_NO_MOB SECT_WATER_SWIM
+DDIR_NORTH
+~
+~
+0 -1 28199
+DDIR_EAST
+~
+~
+0 -1 7657
+DDIR_SOUTH
+~
+~
+0 -1 7659
+DDIR_WEST
+~
+~
+0 -1 28197
+S
+#7659
+Roogna Moat~
+This moat is a bit murky and has bits of flesh floating in it.  You can
+tell from the stink that they are long dead and wonder that no one has
+cleaned the moat, but then you see what those bits of flesh are coming from.~
+76 ROOM_NO_MOB SECT_WATER_SWIM
+DDIR_NORTH
+~
+~
+0 -1 7658
+DDIR_SOUTH
+~
+~
+0 -1 7660
+DDIR_WEST
+~
+~
+0 -1 28196
+S
+#7660
+Roogna Moat~
+This moat is a bit murky and has bits of flesh floating in it.  You
+can tell from the stink that they are long dead and wonder that no one
+has cleaned the moat, but then you see what those bits of flesh are coming
+from.~
+76 ROOM_NO_MOB SECT_WATER_SWIM
+DDIR_NORTH
+~
+~
+0 -1 7659
+DDIR_SOUTH
+~
+~
+0 -1 7661
+DDIR_WEST
+~
+~
+0 -1 28195
+S
+#7661
+Roogna Moat~
+This moat is a bit murky and has bits of flesh floating in it.  You
+can tell from the stink that they are long dead and wonder that no one
+has cleaned the moat, but then you see what those bits of flesh are coming
+from.~
+76 ROOM_NO_MOB SECT_WATER_SWIM
+DDIR_NORTH
+~
+~
+0 -1 7660
+DDIR_SOUTH
+~
+~
+0 -1 7662
+DDIR_WEST
+~
+~
+0 -1 28194
+S
+#7662
+Roogna Moat~
+This moat is a bit murky and has bits of flesh floating in it.  You can
+tell from the stink that they are long dead and wonder that no one has
+cleaned the moat, but then you see what those bits of flesh are coming from.~
+76 ROOM_NO_MOB SECT_WATER_SWIM
+DDIR_NORTH
+~
+~
+0 -1 7661
+DDIR_EAST
+~
+~
+0 -1 7663
+DDIR_SOUTH
+~
+~
+0 -1 28191
+DDIR_WEST
+~
+~
+0 -1 28193
+S
+#7663
+Roogna Moat~
+This moat is a bit murky and has bits of flesh floating in it.  You can
+tell from the stink that they are long dead and wonder that no one has
+cleaned the moat, but then you see what those bits of flesh are coming from.~
+76 ROOM_NO_MOB SECT_WATER_SWIM
+DDIR_EAST
+~
+~
+0 -1 7664
+DDIR_SOUTH
+~
+~
+0 -1 28190
+DDIR_WEST
+~
+~
+0 -1 7662
+S
+#7664
+Roogna Moat~
+This moat is a bit murky and has bits of flesh floating in it.  You can
+tell from the stink that they are long dead and wonder that no one has
+cleaned the moat, but then you see what those bits of flesh are coming
+from.~
+76 ROOM_NO_MOB SECT_WATER_SWIM
+DDIR_NORTH
+~
+~
+0 -1 7665
+DDIR_EAST
+~
+~
+0 -1 28187
+DDIR_SOUTH
+~
+~
+0 -1 28189
+DDIR_WEST
+~
+~
+0 -1 7663
+S
+#7665
+Roogna Moat~
+This moat is a bit murky and has bits of flesh floating in it.  You can
+tell from the stink that they are long dead and wonder that no one has
+cleaned the moat, but then you see what those bits of flesh are coming from.~
+76 ROOM_NO_MOB SECT_WATER_SWIM
+DDIR_NORTH
+~
+~
+0 -1 7666
+DDIR_EAST
+~
+~
+0 -1 28186
+DDIR_SOUTH
+~
+~
+0 -1 7664
+S
+#7666
+Castle Roogna's Drawbridge~
+You walk across the Drawbridge of Castle Roogna.  The boards look a bit
+rotten but they seem to hold your weight as you step on them.  Looking
+into the moat beneath you, it doesn't look like a pleasant place to swim.~
+76 ROOM_NO_MOB SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 7655
+DDIR_EAST
+~
+~
+0 -1 7674
+DDIR_SOUTH
+~
+~
+0 -1 7665
+DDIR_WEST
+~
+~
+0 -1 7667
+F 7675 2 10
+S
+#7667
+Castle Roogna Bailey~
+You are in a strip of land between the outer walls of the castle and
+the inner keep.  It is traditionally kept clear to allow troop movements
+in a battle.  As a result there are no permanent structures here.~
+76 0 SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 7666
+DDIR_WEST
+~
+~
+0 -1 7668
+S
+#7668
+Castle Roogna Audience Chamber~
+This is the throne room of Castle Roogna.  A large dais at one end
+dominates the room, and a magnificent red carpet runs down the center of
+the room up to the throne.~
+76 ROOM_NO_MOB|ROOM_INDOORS|ROOM_SAFE SECT_INSIDE
+DDIR_EAST
+~
+~
+0 -1 7667
+S
+#7669
+Northern Xanth~
+You are in the northern wilds of Xanth.  Fauna and flora about in amazing
+varieties.  You do not recognise much of the vegetation though, for it
+all seems to be made up of strange hybrids.~
+76 0 SECT_FOREST
+DDIR_NORTH
+~
+~
+0 -1 7670
+DDIR_SOUTH
+~
+~
+0 -1 28114
+S
+#7670
+Northern Xanth~
+You are in the northern wilds of Xanth.  Fauna and flora about in amazing
+varieties.  You do not recognise much of the vegetation though, for it all
+seems to be made up of strange hybrids.~
+76 0 SECT_FOREST
+DDIR_NORTH
+~
+~
+0 -1 7671
+DDIR_SOUTH
+~
+~
+0 -1 7669
+S
+#7671
+Northern Xanth~
+You are in the northern wilds of Xanth.  Fauna and flora about in amazing
+varieties.  You do not recognise much of the vegetation though, for it
+all seems to be made up of strange hybrids.~
+76 0 SECT_FOREST
+DDIR_NORTH
+~
+~
+0 -1 7672
+DDIR_SOUTH
+~
+~
+0 -1 7670
+S
+#7672
+Northern Xanth~
+You are in the northern wilds of Xanth.  Fauna and flora about in amazing
+varieties.  You do not recognise much of the vegetation though, for it all
+seems to be made up of strange hybrids.~
+76 0 SECT_FOREST
+DDIR_NORTH
+~
+~
+0 -1 7673
+DDIR_SOUTH
+~
+~
+0 -1 7671
+S
+#7673
+Northern Xanth~
+You are in the northern wilds of Xanth.  Fauna and flora about in amazing
+varieties.  You do not recognise much of the vegetation though, for it all
+seems to be made up of strange hybrids.~
+76 0 SECT_FOREST
+DDIR_NORTH
+~
+~
+0 -1 28119
+DDIR_SOUTH
+~
+~
+0 -1 7672
+S
+#7674
+Castle Grounds~
+You walk among the grounds around Castle Roogna.  You recognise many
+varieties of fruit trees, but there are many trees that you do not
+recognise.  Among the ones you do not recognise, seem to be bread and
+shoe trees!~
+76 0 SECT_FIELD
+DDIR_NORTH
+~
+~
+0 -1 7654
+DDIR_EAST
+~
+~
+0 -1 28161
+DDIR_SOUTH
+~
+~
+0 -1 28186
+DDIR_WEST
+~
+~
+0 -1 7666
+S
+#7675
+Roogna Moat~
+This moat is a bit murky and has bits of flesh floating in it.  You can
+tell from the stink that they are long dead and wonder that no one has
+cleaned the moat, but then you see what those bits of flesh are coming from.~
+76 ROOM_NO_MOB SECT_WATER_SWIM
+DDIR_NORTH
+~
+~
+0 -1 7655
+DDIR_SOUTH
+~
+~
+0 -1 7665
+S
+#7676
+Moat filled with firewater~
+You have reached the moat of a small castle in the middle of the wilderness.
+The moat seems to be filled with firewater, a sort of liquid fire.
+This must be the elusive Good Magician's Castle.~
+76 ROOM_NO_MOB|ROOM_NO_RECALL SECT_LAVA
+DDIR_EAST
+~
+~
+0 -1 7677
+S
+#7677
+Edge of a Small Moat~
+You have reached the edge of a moat of a small castle in the middle of
+the wilderness.  This must be the elusive Good Magician's Castle.~
+76 ROOM_NO_MOB|ROOM_NO_RECALL SECT_FIELD
+DDIR_EAST
+~
+~
+0 -1 28157
+DDIR_WEST
+~
+~
+0 -1 7676
+S
+#7678
+Ledge inside the Moat~
+There is a small ledge running around the inside of the moat between it
+and the castle wall.  You notice a climbing vine has managed to take hold
+rising up toward the parapet at one point.~
+76 ROOM_NO_MOB|ROOM_PRIVATE|ROOM_NO_RECALL SECT_CITY
+DDIR_WEST
+~
+~
+0 -1 7679
+S
+#7679
+Narrow passageway~
+You are on a narrow section of passage that seems to lead into the castle.
+There is enough light coming in from outside that you can see where you are
+going and you notice that the ground is littered with refuse as if a
+basilisk lived here.~
+76 ROOM_NO_MOB|ROOM_SOLITARY|ROOM_NO_RECALL SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 7678
+S
+#7680
+Guardian's Room~
+This room looks like a fancy entry hall with potted plants everywhere along
+the walls.  The only exit from this room seems to be a spiral
+staircase at the other end of the room ascending to the top level.~
+76 ROOM_NO_MOB|ROOM_INDOORS|ROOM_SOLITARY|ROOM_NO_RECALL SECT_INSIDE
+S
+#28100
+Mundania~
+This area is dreary and unmagical.  You see no sign of magical flora or
+fauna anywhere.  A strip of land narrows to the east while to the north
+is the main mass of Toril.~
+76 ROOM_NO_MOB|ROOM_SAFE SECT_FOREST
+DDIR_NORTH
+Roads of Toril~
+~
+0 -1 7629
+DDIR_EAST
+Isthmus~
+~
+0 -1 28101
+S
+#28101
+Isthmus~
+This is a narrow strip of land joining two larger landmasses.  One is a
+peninsula to the east and south, while the other is the continent of Toril
+to the west and north.  You see signs of magic toward the east.~
+76 ROOM_SAFE SECT_FIELD
+DDIR_EAST
+~
+~
+0 -1 28102
+DDIR_WEST
+~
+~
+0 -1 28100
+S
+#28102
+Guard Station~
+There is a small hut here at the top of a small rise overlooking the fields
+to the west.  It looks like a small military outpost designed to keep
+unwanted visitors out.~
+76 ROOM_SAFE SECT_FIELD
+DDIR_EAST
+~
+~
+0 -1 28103
+DDIR_WEST
+~
+~
+0 -1 28101
+S
+#28103
+Northern Xanth~
+You are in the northern wilds of Xanth.  Fauna and flora about in amazing
+varieties.  You do not recognise much of the vegetation though, for it
+all seems to be made up of strange hybrids.~
+76 0 SECT_FOREST
+DDIR_EAST
+~
+~
+0 -1 28104
+DDIR_SOUTH
+~
+~
+0 -1 28106
+DDIR_WEST
+~
+~
+0 -1 28102
+S
+#28104
+Northern Xanth~
+You are in the northern wilds of Xanth.  Fauna and flora about in amazing
+varieties.  You do not recognise much of the vegetation though, for it all
+seems to be made up of strange hybrids.~
+76 0 SECT_FOREST
+DDIR_EAST
+~
+~
+0 -1 28116
+DDIR_SOUTH
+~
+~
+0 -1 28105
+DDIR_WEST
+~
+~
+0 -1 28103
+S
+#28105
+Northern Xanth~
+You are in the northern wilds of Xanth.  Fauna and flora about in amazing
+varieties.  You do not recognise much of the vegetation though, for it
+all seems to be made up of strange hybrids.~
+76 0 SECT_FOREST
+DDIR_NORTH
+~
+~
+0 -1 28104
+DDIR_EAST
+~
+~
+0 -1 28118
+DDIR_SOUTH
+~
+~
+0 -1 28108
+DDIR_WEST
+~
+~
+0 -1 28106
+S
+#28106
+Northern Xanth~
+You are in the northern wilds of Xanth.  Fauna and flora about in amazing
+varieties.  You do not recognise much of the vegetation though, for it
+all seems to be made up of strange hybrids.~
+76 0 SECT_FOREST
+DDIR_NORTH
+~
+~
+0 -1 28103
+DDIR_EAST
+~
+~
+0 -1 28105
+DDIR_SOUTH
+~
+~
+0 -1 28107
+S
+#28107
+Northern Xanth~
+You are in the northern wilds of Xanth.  Fauna and flora about in amazing
+varieties.  You do not recognise much of the vegetation though, for it
+all seems to be made up of strange hybrids.~
+76 0 SECT_FOREST
+DDIR_NORTH
+~
+~
+0 -1 28106
+DDIR_EAST
+~
+~
+0 -1 28108
+S
+#28108
+Northern Xanth~
+You are in the northern wilds of Xanth.  Fauna and flora about in amazing
+varieties.  You do not recognise much of the vegetation though, for it all
+seems to be made up of strange hybrids.~
+76 0 SECT_FOREST
+DDIR_NORTH
+~
+~
+0 -1 28105
+DDIR_SOUTH
+~
+~
+0 -1 28120
+DDIR_WEST
+~
+~
+0 -1 28107
+S
+#28109
+Northern Xanth~
+You are in the northern wilds of Xanth.  Fauna and flora about in amazing
+varieties.  You do not recognise much of the vegetation though, for it all
+seems to be made up of strange hybrids.~
+76 0 SECT_FOREST
+DDIR_NORTH
+~
+~
+0 -1 28122
+DDIR_SOUTH
+~
+~
+0 -1 28110
+DDIR_WEST
+~
+~
+0 -1 28132
+S
+#28110
+Northern Xanth~
+You are in the northern wilds of Xanth.  Fauna and flora about in amazing
+varieties.  You do not recognise much of the vegetation though, for it all
+seems to be made up of strange hybrids.~
+76 0 SECT_FOREST
+DDIR_NORTH
+~
+~
+0 -1 28109
+DDIR_SOUTH
+~
+~
+0 -1 28139
+DDIR_WEST
+~
+~
+0 -1 28112
+S
+#28111
+Northern Xanth~
+You are in the northern wilds of Xanth.  Fauna and flora about in amazing
+varieties.  You do not recognise much of the vegetation though, for it all
+seems to be made up of strange hybrids.~
+76 0 SECT_FOREST
+DDIR_EAST
+~
+~
+0 -1 28133
+DDIR_SOUTH
+~
+~
+0 -1 28138
+S
+#28112
+Northern Xanth~
+You are in the northern wilds of Xanth.  Fauna and flora about in amazing
+varieties.  You do not recognise much of the vegetation though, for it all
+seems to be made up of strange hybrids.~
+76 0 SECT_FOREST
+DDIR_EAST
+~
+~
+0 -1 28113
+DDIR_SOUTH
+~
+~
+0 -1 28136
+S
+#28113
+Northern Xanth~
+You are in the northern wilds of Xanth.  Fauna and flora about in amazing
+varieties.  You do not recognise much of the vegetation though, for it all
+seems to be made up of strange hybrids.~
+76 0 SECT_FOREST
+DDIR_NORTH
+~
+~
+0 -1 28114
+DDIR_WEST
+~
+~
+0 -1 28112
+S
+#28114
+Northern Xanth~
+You are in the northern wilds of Xanth.  Fauna and flora about in amazing
+varieties.  You do not recognise much of the vegetation though, for it all
+seems to be made up of strange hybrids.~
+76 0 SECT_FOREST
+DDIR_NORTH
+~
+~
+0 -1 7669
+DDIR_SOUTH
+~
+~
+0 -1 28113
+DDIR_WEST
+~
+~
+0 -1 28115
+S
+#28115
+Northern Xanth~
+You are in the northern wilds of Xanth.  Fauna and flora about in amazing
+varieties.  You do not recognise much of the vegetation though, for it all
+seems to be made up of strange hybrids.~
+76 0 SECT_FOREST
+DDIR_NORTH
+~
+~
+0 -1 28142
+DDIR_EAST
+~
+~
+0 -1 28114
+S
+#28116
+Ogre-Fen-Ogre Swamp~
+The land around you has flattened out and water is now standing in open
+pools along your path.  You occasionally see trees that have been twisted
+like pretzels and wonder what could have done it.~
+76 0 SECT_FOREST
+DDIR_EAST
+~
+~
+0 -1 28117
+DDIR_SOUTH
+~
+~
+0 -1 28118
+DDIR_WEST
+~
+~
+0 -1 28104
+S
+#28117
+Ogre-Fen-Ogre Swamp~
+The land around you has flattened out and water is now standing in
+open pools along your path.  You occasionally see trees that have been
+twisted like pretzels and wonder what could have done it.~
+76 0 SECT_FOREST
+DDIR_SOUTH
+~
+~
+0 -1 28119
+DDIR_WEST
+~
+~
+0 -1 28116
+S
+#28118
+Ogre-Fen-Ogre Swamp~
+The land around you has flattened out and water is now standing in open
+pools along your path.  You occasionally see trees that have been
+twisted like pretzels and wonder what could have done it.~
+76 0 SECT_FOREST
+DDIR_NORTH
+~
+~
+0 -1 28116
+DDIR_EAST
+~
+~
+0 -1 28119
+DDIR_WEST
+~
+~
+0 -1 28105
+S
+#28119
+Ogre-Fen-Ogre Swamp~
+The land around you has flattened out and water is now standing in open
+pools along your path.  You occasionally see trees that have been twisted
+like pretzels and wonder what could have done it.~
+76 0 SECT_FOREST
+DDIR_NORTH
+~
+~
+0 -1 28116
+DDIR_SOUTH
+~
+~
+0 -1 7673
+DDIR_WEST
+~
+~
+0 -1 28118
+S
+#28120
+North Village~
+This is the largest village in northern Xanth.  A good number of the human
+population of the entire area live here.  It was once the center of
+government as well but that has recently moved further south.~
+76 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 28108
+DDIR_SOUTH
+~
+~
+0 -1 28121
+S
+#28121
+Center of North Village~
+This is the largest village in northern Xanth.  A good number of the human
+population of the entire area live here.  It was once the center of
+government as well but that has recently moved further south.~
+76 ROOM_SAFE SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 28120
+DDIR_SOUTH
+~
+~
+0 -1 28122
+DDIR_WEST
+~
+~
+0 -1 28123
+S
+#28122
+North Village~
+This is the largest village in northern Xanth.  A good number of the human
+population of the entire area live here.  It was once the center of
+government as well but that has recently moved further south.~
+76 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 28121
+DDIR_SOUTH
+~
+~
+0 -1 28109
+DDIR_WEST
+~
+~
+0 -1 28126
+S
+#28123
+Path in North Village~
+This is the largest village in northern Xanth.  A good number of the human
+population of the entire area live here.  It was once the center of
+government as well but that has recently moved further south.~
+76 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 28125
+DDIR_EAST
+~
+~
+0 -1 28121
+DDIR_SOUTH
+~
+~
+0 -1 28126
+DDIR_WEST
+~
+~
+0 -1 28124
+S
+#28124
+Path in North Village~
+This is the largest village in northern Xanth.  A good number of the
+human population of the entire area live here.  It was once the center
+of government as well but that has recently moved further south.~
+76 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 28128
+DDIR_EAST
+~
+~
+0 -1 28123
+DDIR_SOUTH
+~
+~
+0 -1 28127
+S
+#28125
+Elder's House~
+This small house belongs to one of the village elders.  It is nicely
+appointed will all the latest magical furnishings and looks very comfortable.~
+76 ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+~
+~
+0 -1 28123
+S
+#28126
+Talent Shop~
+This small shop is one of the more frequented shops in North Village.
+It lies of the main north/south road of the village and always seems to
+have customers.~
+76 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 28123
+DDIR_EAST
+~
+~
+0 -1 28122
+S
+#28127
+Path in North Village~
+This is the largest village in northern Xanth.  A good number of the
+human population of the entire area live here.  It was once the center of
+government as well but that has recently moved further south.~
+76 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 28124
+DDIR_SOUTH
+~
+~
+0 -1 28129
+S
+#28128
+Village Shop~
+This is a ramshackle hut.  Items lay scattered on shelves and tables
+accumulating dust.  It doesn't look like anyone has bought anything here
+in years.~
+76 ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+~
+~
+0 -1 28124
+S
+#28129
+Lookout Rock~
+You climb a slight incline to the top of a large rock.  Arriving at its
+peak you find that it offers a clear view of all of the surrounding areas.
+To the south you see the flat plains where the centaurs roam while to the
+north is North Village.~
+76 0 SECT_HILLS
+DDIR_NORTH
+~
+~
+0 -1 28127
+S
+#28130
+Centaur's Range~
+You are in an area made up entirely of flat plains that at first appear to
+be uninhabited.  You change your mind quickly though, for while there are
+no fences as there would normally be in a cultivated area, you do see
+centaurs racing in the distance.~
+76 0 SECT_FIELD
+DDIR_EAST
+~
+~
+0 -1 28131
+S
+#28131
+Centaur's Range~
+You are in an area made up entirely of flat plains that at first appear
+to be uninhabited.  You change your mind quickly though, for while there
+are no fences as there would normally be in a cultivated area, you do see
+centaurs racing in the distance.~
+76 0 SECT_FIELD
+DDIR_NORTH
+~
+~
+0 -1 28132
+DDIR_EAST
+~
+~
+0 -1 28110
+DDIR_SOUTH
+~
+~
+0 -1 28133
+DDIR_WEST
+~
+~
+0 -1 28130
+S
+#28132
+Centaur's Range~
+You are in an area made up entirely of flat plains that at first appear to
+be uninhabited.  You change your mind quickly though, for while there are
+no fences as there would normally be in a cultivated area, you do see
+centaurs racing in the distance.~
+76 0 SECT_FIELD
+DDIR_EAST
+~
+~
+0 -1 28109
+DDIR_SOUTH
+~
+~
+0 -1 28131
+S
+#28133
+Centaur's Range~
+You are in an area made up entirely of flat plains that at first appear
+to be uninhabited.  You change your mind quickly though, for while there
+are no fences as there would normally be in a cultivated area, you do
+see centaurs racing in the distance.~
+76 0 SECT_FIELD
+DDIR_NORTH
+~
+~
+0 -1 28131
+DDIR_EAST
+~
+~
+0 -1 28139
+DDIR_SOUTH
+~
+~
+0 -1 28134
+DDIR_WEST
+~
+~
+0 -1 28111
+S
+#28134
+North Ridge~
+You are standing at the northern edge of an enormous chasm cutting across
+the center of Xanth.  You wonder that you have not heard of a landmark and
+obstacle to travel like this before.~
+76 0 SECT_FIELD
+DDIR_NORTH
+~
+~
+0 -1 28133
+DDIR_EAST
+~
+~
+0 -1 28135
+DDIR_WEST
+~
+~
+0 -1 28138
+DDIR_DOWN
+~
+~
+0 -1 28140
+S
+#28135
+North Ridge~
+You are standing at the northern edge of an enormous chasm cutting across
+the center of Xanth.  You wonder that you have not heard of a landmark and
+obstacle to travel like this before.~
+76 0 SECT_FIELD
+DDIR_NORTH
+~
+~
+0 -1 28139
+DDIR_EAST
+~
+~
+0 -1 28136
+DDIR_WEST
+~
+~
+0 -1 28134
+S
+#28136
+North Ridge~
+You are standing at the northern edge of an enormous chasm cutting across
+the center of Xanth.  You wonder that you have not heard of a landmark and
+obstacle to travel like this before.~
+76 0 SECT_FIELD
+DDIR_NORTH
+~
+~
+0 -1 28112
+DDIR_EAST
+~
+~
+0 -1 28137
+DDIR_WEST
+~
+~
+0 -1 28135
+S
+#28137
+North Ridge~
+You are standing at the northern edge of an enormous chasm cutting across
+the center of Xanth.  You wonder that you have not heard of a landmark and
+obstacle to travel like this before.~
+76 0 SECT_FIELD
+DDIR_WEST
+~
+~
+0 -1 28136
+S
+#28138
+North Ridge~
+You are standing at the northern edge of an enormous chasm cutting across
+the center of Xanth.  You wonder that you have not heard of a landmark and
+obstacle to travel like this before.~
+76 0 SECT_FIELD
+DDIR_NORTH
+~
+~
+0 -1 28111
+DDIR_EAST
+~
+~
+0 -1 28134
+S
+#28139
+Peaceful Pines~
+You are walking through a very peaceful and calm pine forest.  It looks as
+though it has never seen the bite of a loggers axe, and you understand why
+for who could violate a peace like this.~
+76 0 SECT_FOREST
+DDIR_NORTH
+~
+~
+0 -1 28110
+DDIR_SOUTH
+~
+~
+0 -1 28135
+DDIR_WEST
+~
+~
+0 -1 28133
+S
+#28140
+Path into the Chasm~
+You are on a steep and narrow path leading down to the bottom of the Gap
+Chasm.  The rocky trail is perilous and you are careful not to tumble down
+it into the chasm.~
+76 ROOM_NO_MOB SECT_HILLS
+DDIR_SOUTH
+~
+~
+0 -1 28148
+DDIR_UP
+~
+~
+0 -1 28134
+S
+#28141
+Path into the Chasm~
+You are on a steep and narrow path leading down to the bottom of the
+Gap Chasm.  The rocky trail is perilous and you are careful not to tumble
+down it into the chasm.~
+76 ROOM_NO_MOB SECT_HILLS
+DDIR_NORTH
+~
+~
+0 -1 28150
+DDIR_UP
+~
+~
+0 -1 28154
+S
+#28142
+Element of Earth~
+You have entered the element of earth.  Rocks jut out of the earth all
+around you as it seems the ground is constantly in motion.  To the north
+is a rocky shore jutting out into a small lake.  That must be water.~
+76 0 SECT_MOUNTAIN
+DDIR_NORTH
+~
+~
+0 -1 28143
+S
+#28143
+Element of Water~
+You have entered the element of water.  I hope you are not having trouble
+breathing.  The water here is pure and uncontaminated by anything.  The
+denizens of this element watch you curiously.  A wall of air to the north
+delineates the boundaries of air and water.~
+76 0 SECT_UNDER_WATER
+DDIR_NORTH
+~
+~
+0 -1 28144
+S
+#28144
+Element of Air~
+You are flying through the Element of Air.  You can not see any earth below
+you, but the denizens of the air above you watch you intently.  To the north
+you see a line of fire.~
+76 0 SECT_AIR
+DDIR_NORTH
+~
+~
+0 -1 28145
+S
+#28145
+Element of Fire~
+You have entered the element of fire.  Lava spouts from holes in the ground
+all around you and you wonder that anything could live in a place like this.  To the north a blackness seems to absorb all light.~
+76 0 SECT_LAVA
+DDIR_NORTH
+~
+~
+0 -1 28146
+S
+#28146
+Void~
+You have entered the void from which nothing escapes.  An absence of light
+here is so extreme you cant even see your hand two inches in front of
+your face.~
+76 ROOM_DARK|ROOM_NO_MOB SECT_ASTRAL
+S
+#28147
+Gap Chasm~
+You are at the bottom of an enormous canyon.  It runs east and west across
+the center of Xanth.  You know this was the only way across but why is
+there no sign of life down here?~
+76 0 SECT_MOUNTAIN
+DDIR_EAST
+~
+~
+0 -1 28148
+S
+#28148
+Gap Chasm~
+You are at the bottom of an enormous canyon.  It runs east and west across
+the center of Xanth.  You know this was the only way across but why is there
+no sign of life down here?~
+76 0 SECT_MOUNTAIN
+DDIR_NORTH
+~
+~
+0 -1 28140
+DDIR_EAST
+~
+~
+0 -1 28149
+DDIR_WEST
+~
+~
+0 -1 28147
+S
+#28149
+Gap Chasm~
+You are at the bottom of an enormous canyon.  It runs east and west across
+the center of Xanth.  You know this was the only way across but why is there
+no sign of life down here?~
+76 0 SECT_MOUNTAIN
+DDIR_EAST
+~
+~
+0 -1 28150
+DDIR_WEST
+~
+~
+0 -1 28148
+S
+#28150
+Gap Chasm~
+You are at the bottom of an enormous canyon.  It runs east and west across
+the center of Xanth.  You know this was the only way across but why is there
+no sign of life down here?~
+76 0 SECT_MOUNTAIN
+DDIR_EAST
+~
+~
+0 -1 28151
+DDIR_SOUTH
+~
+~
+0 -1 28141
+DDIR_WEST
+~
+~
+0 -1 28149
+S
+#28151
+Gap Chasm~
+You are at the bottom of an enormous canyon.  It runs east and west across
+the center of Xanth.  You know this was the only way across but why is there
+no sign of life down here?~
+76 0 SECT_MOUNTAIN
+DDIR_WEST
+~
+~
+0 -1 28150
+S
+#28152
+One-way Bridge~
+This is an invisible bridge crossing the Gap Chasm.  It is made up of mostly
+ropes so you would almost rather not see it.~
+76 ROOM_NO_MOB|ROOM_SOLITARY SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 28135
+F 28149 1 20
+S
+#28153
+South Ridge~
+You are standing at the southern edge of an enormous chasm cutting across
+the center of Xanth.  You wonder that you have not heard of a landmark
+and obstacle to travel like this before.~
+76 0 SECT_FIELD
+DDIR_EAST
+~
+~
+0 -1 28155
+DDIR_SOUTH
+~
+~
+0 -1 28161
+S
+#28154
+South Ridge~
+You are standing at the southern edge of an enormous chasm cutting
+across the center of Xanth.  You wonder that you have not heard of a
+landmark and obstacle to travel like this before.~
+76 0 SECT_FIELD
+DDIR_EAST
+~
+~
+0 -1 28174
+DDIR_DOWN
+~
+~
+0 -1 28141
+S
+#28155
+South Ridge~
+You are standing at the southern edge of an enormous chasm cutting across
+the center of Xanth.  You wonder that you have not heard of a landmark and
+obstacle to travel like this before.~
+76 0 SECT_FIELD
+DDIR_NORTH
+~
+door~
+EX_ISDOOR|EX_HIDDEN|EX_PICKPROOF -1 28152
+DDIR_WEST
+~
+~
+0 -1 28153
+S
+#28156
+Southern Wilderness~
+The jungle around you is thickly overgrown and deadly to those who are not
+aware of its dangers.  Trees close in on all side with vines hanging from
+them, and the brush is hard to get through.~
+76 0 SECT_FOREST
+DDIR_NORTH
+~
+~
+0 -1 28174
+DDIR_WEST
+~
+~
+0 -1 28157
+S
+#28157
+Southern Wilderness~
+The jungle around you is thickly overgrown and deadly to those who are not
+aware of its dangers.  Trees close in on all side with vines hanging from
+them, and the brush is hard to get through.~
+76 0 SECT_FOREST
+DDIR_EAST
+~
+~
+0 -1 28156
+DDIR_SOUTH
+~
+~
+0 -1 28158
+DDIR_WEST
+~
+~
+0 -1 28180
+S
+#28158
+Southern Wilderness~
+The jungle around you is thickly overgrown and deadly to those who are not
+aware of its dangers.  Trees close in on all side with vines hanging from
+them, and the brush is hard to get through.~
+76 0 SECT_FOREST
+DDIR_NORTH
+~
+~
+0 -1 28157
+DDIR_EAST
+~
+~
+0 -1 28185
+DDIR_WEST
+~
+~
+0 -1 28159
+S
+#28159
+Southern Wilderness~
+The jungle around you is thickly overgrown and deadly to those who are not
+aware of its dangers.  Trees close in on all side with vines hanging from
+them, and the brush is hard to get through.~
+76 0 SECT_FOREST
+DDIR_EAST
+~
+~
+0 -1 28158
+DDIR_WEST
+~
+~
+0 -1 28160
+S
+#28160
+Southern Wilderness~
+The jungle around you is thickly overgrown and deadly to those who are not
+aware of its dangers.  Trees close in on all side with vines hanging from
+them, and the brush is hard to get through.~
+76 0 SECT_FOREST
+DDIR_NORTH
+~
+~
+0 -1 28161
+DDIR_EAST
+~
+~
+0 -1 28159
+S
+#28161
+Southern Wilderness~
+The jungle around you is thickly overgrown and deadly to those who are not
+aware of its dangers.  Trees close in on all side with vines hanging from
+them, and the brush is hard to get through.~
+76 ROOM_NO_MOB SECT_FOREST
+DDIR_NORTH
+~
+~
+0 -1 28153
+DDIR_SOUTH
+~
+~
+0 -1 28160
+DDIR_WEST
+~
+~
+0 -1 7674
+S
+#28162
+Region of Madness~
+You have never seen a place as weird as this.  Trees are grown and
+twisted into weird shapes, and nothing seems to look as it should.~
+76 0 SECT_FOREST
+DDIR_NORTH
+~
+~
+0 -1 28185
+DDIR_SOUTH
+~
+~
+0 -1 28164
+DDIR_WEST
+~
+~
+0 -1 28163
+S
+#28163
+Region of Madness~
+You have never seen a place as weird as this.  Trees are grown and twisted
+into weird shapes, and nothing seems to look as it should.~
+76 0 SECT_FOREST
+DDIR_EAST
+~
+~
+0 -1 28165
+DDIR_SOUTH
+~
+~
+0 -1 28162
+S
+#28164
+Region of Madness~
+You have never seen a place as weird as this.  Trees are grown and twisted
+into weird shapes, and nothing seems to look as it should.~
+76 0 SECT_FOREST
+DDIR_NORTH
+~
+~
+0 -1 28165
+DDIR_WEST
+~
+~
+0 -1 28162
+S
+#28165
+Region of Madness~
+You have never seen a place as weird as this.  Trees are grown and twisted
+into weird shapes, and nothing seems to look as it should.~
+76 0 SECT_FOREST
+DDIR_NORTH
+~
+~
+0 -1 28163
+DDIR_EAST
+~
+~
+0 -1 28164
+DDIR_WEST
+~
+~
+0 -1 28166
+S
+#28166
+Lake Ogre-Chobee~
+This lake deep in the wilderness should be teeming with life, but for
+some reason it is barren.  The shore around the lake is likewise blasted
+of life.~
+76 0 SECT_WATER_SWIM
+DDIR_EAST
+~
+~
+0 -1 28165
+DDIR_DOWN
+~
+~
+0 -1 28167
+S
+#28167
+Under Lake Ogre-Chobee~
+You swim down into the murky water at the bottom of the lake.  You expect
+to see no more life in the water than you saw around it.  For the most
+part you are correct in your assumption.~
+76 0 SECT_UNDER_WATER
+DDIR_UP
+~
+~
+0 -1 28166
+S
+#28168
+Receiving Hall~
+This entry hall is well appointed and not at all what you would expect
+from a castle under the water.  For one thing, it is dry.  The walls are
+wood paneled and the floor is made of teak.~
+76 ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_SOUTH
+~
+~
+0 -1 28169
+DDIR_WEST
+~
+~
+0 -1 28170
+S
+#28169
+Vortex~
+You enter a swirling maelstrom of water.  You may have made a mistake but
+it is hard to tell as you are too busy trying to stay alive to think.~
+76 ROOM_NO_RECALL SECT_UNDER_WATER
+DDIR_NORTH
+~
+~
+0 -1 28168
+S
+#28170
+Auditorium~
+This is a large auditorium with a stage at one end.  The stage is almost
+as big as the seating area.  That doesn't make much sense to you.  The
+chairs are very comfortable.~
+76 ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_EAST
+~
+~
+0 -1 28168
+DDIR_WEST
+~
+~
+0 -1 28171
+S
+#28171
+Stage~
+This is a large wooden stage.  Here performers can act to their hearts
+content and only a few bored people in the audience have to watch.~
+76 ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_EAST
+~
+~
+0 -1 28170
+S
+#28172
+Edge of the Underground Lake~
+You have been washed up on the shore of an underground lake.  It is very
+dark here, and while there is a phosphorescent fungus on the walls, it is
+not enough for you to see by.  A small stream trickles into the lake from
+the east.~
+76 ROOM_DARK|ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_EAST
+~
+~
+0 -1 28173
+S
+#28173
+Small Stream~
+As you walk along the stream you notice glints off of the walls on either
+side of you.  Looking closer you find that they are deeply buried gemstones
+that have come to the surface where the water has eroded away the stone.~
+76 ROOM_DARK|ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_EAST
+~
+~
+0 -1 28175
+DDIR_WEST
+~
+~
+0 -1 28172
+S
+#28174
+Southern Wilderness~
+The jungle around you is thickly overgrown and deadly to those who are not
+aware of its dangers.  Trees close in on all side with vines hanging from
+them, and the brush is hard to get through.~
+76 0 SECT_FOREST
+DDIR_SOUTH
+~
+~
+0 -1 28156
+DDIR_WEST
+~
+~
+0 -1 28154
+S
+#28175
+Small Stream~
+As you walk along the stream you notice glints off of the walls on either
+side of you.  Looking closer you find that they are deeply buried
+gemstones that have come to the surface where the water has eroded away
+the stone.~
+76 ROOM_DARK|ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 28176
+DDIR_WEST
+~
+~
+0 -1 28173
+S
+#28176
+Small Stream~
+As you walk along the stream you notice glints off of the walls on either
+side of you.  Looking closer you find that they are deeply buried gemstones
+that have come to the surface where the water has eroded away the stone.~
+76 ROOM_DARK|ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_EAST
+~
+~
+0 -1 28177
+DDIR_SOUTH
+~
+~
+0 -1 28175
+S
+#28177
+Brain Coral's Pool~
+This is a large cavern which is mostly covered in water, or some other
+liquid.  A small ledge runs around the edge of the cavern towards a opening
+in the opposite wall.~
+76 ROOM_DARK|ROOM_NO_MOB|ROOM_INDOORS|ROOM_PRIVATE|ROOM_NO_RECALL SECT_INSIDE
+DDIR_WEST
+~
+~
+0 -1 28176
+S
+#28178
+Winding Tunnel~
+This is a winding tunnel heading downwards.  There are twists and turns
+every few feet and you much constantly watch both your head and feet for
+obstacles.  You are descending quickly.~
+76 ROOM_DARK|ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_WEST
+~
+~
+0 -1 28177
+DDIR_DOWN
+~
+~
+0 -1 28179
+S
+#28179
+Demon's Chamber~
+You have entered a room with an enormous face at on side of the cavern.
+Walking through the room you sense that you have reached the end of the
+road.  Dust coats the floor for nobody has tread these floors for centuries
+if ever.~
+76 ROOM_DARK|ROOM_NO_MOB|ROOM_INDOORS|ROOM_SOLITARY|ROOM_NO_RECALL SECT_INSIDE
+S
+#28180
+Small Moat~
+You have reached the moat of a small castle in the middle of the wilderness.
+This must be the elusive Good Magician's Castle.~
+76 ROOM_NO_MOB|ROOM_NO_RECALL SECT_WATER_SWIM
+DDIR_EAST
+~
+~
+0 -1 28157
+S
+#28181
+Ledge inside the Moat~
+There is a small ledge running around the inside of the moat between it
+and the castle wall.  You notice a climbing vine has managed to take hold
+rising up toward the parapet at one point.~
+76 ROOM_NO_MOB|ROOM_PRIVATE|ROOM_NO_RECALL SECT_CITY
+DDIR_UP
+~
+~
+0 -1 28182
+S
+#28182
+Parapet~
+You are on a narrow section of parapet that does not seem to go anywhere.
+The only feature you can see is a large stone gargoyle perched on a
+section of roof dribbling water out its mouth.~
+76 ROOM_NO_MOB|ROOM_SOLITARY|ROOM_NO_RECALL SECT_CITY
+DDIR_DOWN
+~
+~
+0 -1 28181
+S
+#28183
+Guardian's Room~
+This room looks more like a cage than an entry hall.  You wonder what
+you have gotten into.  The only exit from this room seems to be a spiral
+staircase at the other end of the room ascending to the top level.~
+76 ROOM_NO_MOB|ROOM_INDOORS|ROOM_SOLITARY|ROOM_NO_RECALL SECT_INSIDE
+S
+#28184
+Humphrey's Study~
+This room is so packed with books and other parafenalia that it appears
+tiny.  A large podium dominates the center of the room and a stool stands
+behind it.  You see no exits from this room besides the one you came
+through.~
+76 ROOM_NO_MOB|ROOM_INDOORS|ROOM_SOLITARY|ROOM_NO_RECALL SECT_INSIDE
+S
+#28185
+Region of Madness~
+You have never seen a place as weird as this.  Trees are grown and twisted
+into weird shapes, and nothing seems to look as it should.~
+76 0 SECT_FIELD
+DDIR_SOUTH
+~
+~
+0 -1 28162
+DDIR_WEST
+~
+~
+0 -1 28158
+S
+#28186
+Castle Grounds~
+You walk among the grounds around Castle Roogna.  You recognise many
+varieties of fruit trees, but there are many trees that you do not
+recognise.  Among the ones you do not recognise, seem to be bread and
+shoe trees!~
+76 0 SECT_FIELD
+DDIR_NORTH
+~
+~
+0 -1 7674
+DDIR_SOUTH
+~
+~
+0 -1 28187
+DDIR_WEST
+~
+~
+0 -1 7665
+S
+#28187
+Castle Grounds~
+You walk among the grounds around Castle Roogna.  You recognise many
+varieties of fruit trees, but there are many trees that you do not
+recognise.  Among the ones you do not recognise, seem to be bread
+and shoe trees!~
+76 0 SECT_FIELD
+DDIR_NORTH
+~
+~
+0 -1 28186
+DDIR_SOUTH
+~
+~
+0 -1 28188
+DDIR_WEST
+~
+~
+0 -1 7664
+S
+#28188
+Castle Grounds~
+You walk among the grounds around Castle Roogna.  You recognise many
+varieties of fruit trees, but there are many trees that you do not
+recognise.  Among the ones you do not recognise, seem to be bread and
+shoe trees!~
+76 0 SECT_FIELD
+DDIR_NORTH
+~
+~
+0 -1 28187
+DDIR_WEST
+~
+~
+0 -1 28189
+S
+#28189
+Castle Grounds~
+You walk among the grounds around Castle Roogna.  You recognise many
+varieties of fruit trees, but there are many trees that you do not
+recognise.  Among the ones you do not recognise, seem to be bread and
+shoe trees!~
+76 0 SECT_FIELD
+DDIR_NORTH
+~
+~
+0 -1 7664
+DDIR_EAST
+~
+~
+0 -1 28188
+DDIR_WEST
+~
+~
+0 -1 28190
+S
+#28190
+Castle Grounds~
+You walk among the grounds around Castle Roogna.  You recognise many
+varieties of fruit trees, but there are many trees that you do not
+recognise.  Among the ones you do not recognise, seem to be bread and
+shoe trees!~
+76 0 SECT_FIELD
+DDIR_NORTH
+~
+~
+0 -1 7663
+DDIR_EAST
+~
+~
+0 -1 28189
+DDIR_WEST
+~
+~
+0 -1 28191
+S
+#28191
+Castle Grounds~
+You walk among the grounds around Castle Roogna.  You recognise many
+varieties of fruit trees, but there are many trees that you do not
+recognise.  Among the ones you do not recognise, seem to be bread and
+shoe trees!~
+76 0 SECT_FIELD
+DDIR_NORTH
+~
+~
+0 -1 7662
+DDIR_EAST
+~
+~
+0 -1 28190
+DDIR_WEST
+~
+~
+0 -1 28192
+S
+#28192
+Castle Grounds~
+You walk among the grounds around Castle Roogna.  You recognise many
+varieties of fruit trees, but there are many trees that you do not
+recognise.  Among the ones you do not recognise, seem to be bread and shoe
+trees!~
+76 0 SECT_FIELD
+DDIR_NORTH
+~
+~
+0 -1 28193
+DDIR_EAST
+~
+~
+0 -1 28191
+S
+#28193
+Castle Grounds~
+You walk among the grounds around Castle Roogna.  You recognise many
+varieties of fruit trees, but there are many trees that you do not
+recognise.  Among the ones you do not recognise, seem to be bread and
+shoe trees!~
+76 0 SECT_FIELD
+DDIR_NORTH
+~
+~
+0 -1 28194
+DDIR_EAST
+~
+~
+0 -1 7662
+DDIR_SOUTH
+~
+~
+0 -1 28192
+S
+#28194
+Castle Grounds~
+You walk among the grounds around Castle Roogna.  You recognise
+many varieties of fruit trees, but there are many trees that you do
+not recognise.  Among the ones you do not recognise, seem to be bread
+and shoe trees!~
+76 0 SECT_FIELD
+DDIR_NORTH
+~
+~
+0 -1 28195
+DDIR_EAST
+~
+~
+0 -1 7661
+DDIR_SOUTH
+~
+~
+0 -1 28193
+S
+#28195
+Castle Grounds~
+You walk among the grounds around Castle Roogna.  You recognise many
+varieties of fruit trees, but there are many trees that you do not
+recognise.  Among the ones you do not recognise, seem to be bread and
+shoe trees!~
+76 0 SECT_FIELD
+DDIR_NORTH
+~
+~
+0 -1 28196
+DDIR_EAST
+~
+~
+0 -1 7660
+DDIR_SOUTH
+~
+~
+0 -1 28194
+S
+#28196
+Castle Grounds~
+You walk among the grounds around Castle Roogna.  You recognise many
+varieties of fruit trees, but there are many trees that you do not
+recognise.  Among the ones you do not recognise, seem to be bread
+and shoe trees!~
+76 0 SECT_FIELD
+DDIR_NORTH
+~
+~
+0 -1 28197
+DDIR_EAST
+~
+~
+0 -1 7659
+DDIR_SOUTH
+~
+~
+0 -1 28195
+S
+#28197
+Castle Grounds~
+You walk among the grounds around Castle Roogna.  You recognise many
+varieties of fruit trees, but there are many trees that you do not
+recognise.  Among the ones you do not recognise, seem to be bread and shoe
+trees!~
+76 0 SECT_FIELD
+DDIR_NORTH
+~
+~
+0 -1 28198
+DDIR_EAST
+~
+~
+0 -1 7658
+DDIR_SOUTH
+~
+~
+0 -1 28196
+S
+#28198
+Castle Grounds~
+You walk among the grounds around Castle Roogna.  You recognise many
+varieties of fruit trees, but there are many trees that you do not recognise.
+Among the ones you do not recognise, seem to be bread and shoe trees!~
+76 0 SECT_FIELD
+DDIR_EAST
+~
+~
+0 -1 28199
+DDIR_SOUTH
+~
+~
+0 -1 28197
+S
+#28199
+Castle Grounds~
+You walk among the grounds around Castle Roogna.  You recognise many
+varieties of fruit trees, but there are many trees that you do not
+recognise.  Among the ones you do not recognise, seem to be bread and shoe
+trees!~
+76 0 SECT_FIELD
+DDIR_EAST
+~
+~
+0 -1 7650
+DDIR_SOUTH
+~
+~
+0 -1 7658
+DDIR_WEST
+~
+~
+0 -1 28198
+S
+#0
+
+
+
+
+#RESETS
+M 0 28100   1  7668 ;               King Trent in Castle Roogna Audience Ch
+M 0 28101   1 28184 ;                 Humphrey in Humphrey's Study         
+M 0 28102   1 28179 ;       the Demon X(A/N)th in Demon's Chamber          
+M 0 28103   1 28177 ;          the Brain Coral in Brain Coral's Pool       
+M 0 28104   1 28183 ;            the Manticore in Guardian's Room          
+M 0 28105   1 28180 ;            the Ouroboros in Small Moat               
+M 0 28106  20 28186 ;        a guardian zombie in Castle Grounds           
+M 0 28106  20 28187 ;        a guardian zombie in Castle Grounds           
+M 0 28106  20 28188 ;        a guardian zombie in Castle Grounds           
+M 0 28106  20 28189 ;        a guardian zombie in Castle Grounds           
+M 0 28106  20 28190 ;        a guardian zombie in Castle Grounds           
+M 0 28106  20 28191 ;        a guardian zombie in Castle Grounds           
+M 0 28106  20 28192 ;        a guardian zombie in Castle Grounds           
+M 0 28106  20 28193 ;        a guardian zombie in Castle Grounds           
+M 0 28106  20 28194 ;        a guardian zombie in Castle Grounds           
+M 0 28106  20 28195 ;        a guardian zombie in Castle Grounds           
+M 0 28106  20 28196 ;        a guardian zombie in Castle Grounds           
+M 0 28106  20 28197 ;        a guardian zombie in Castle Grounds           
+M 0 28106  20 28198 ;        a guardian zombie in Castle Grounds           
+M 0 28106  20 28199 ;        a guardian zombie in Castle Grounds           
+M 0 28106  20  7650 ;        a guardian zombie in Castle Grounds           
+M 0 28106  20  7651 ;        a guardian zombie in Castle Grounds           
+M 0 28106  20  7652 ;        a guardian zombie in Castle Grounds           
+M 0 28106  20  7653 ;        a guardian zombie in Castle Grounds           
+M 0 28106  20  7654 ;        a guardian zombie in Castle Grounds           
+M 0 28106  20  7674 ;        a guardian zombie in Castle Grounds           
+M 0 28107   2 28103 ;              a spearmint in Northern Xanth           
+E 1 28101 500 ITEM_WEAR_HEAD ;equip a mint spear             
+M 0 28107   2  7670 ;              a spearmint in Northern Xanth           
+E 1 28101 500 ITEM_WEAR_HEAD ;equip a mint spear             
+M 0 28108   1 28108 ;             a peppermint in Northern Xanth           
+M 0 28109   5 28104 ;            a tangle tree in Northern Xanth           
+M 0 28109   5  7673 ;            a tangle tree in Northern Xanth           
+M 0 28109   5  7669 ;            a tangle tree in Northern Xanth           
+M 0 28109   5 28107 ;            a tangle tree in Northern Xanth           
+M 0 28109   5 28111 ;            a tangle tree in Northern Xanth           
+M 0 28110   1 28149 ;           the Gap Dragon in Gap Chasm                
+M 0 28111   4 28130 ;                a centaur in Centaur's Range          
+E 1 28102 500 ITEM_WEAR_HEAD ;equip a Centaur's Bow          
+M 0 28111   4 28131 ;                a centaur in Centaur's Range          
+G 1 28118 500       ;        a centaur's arrow
+M 0 28111   4 28132 ;                a centaur in Centaur's Range          
+E 1 28102 500 ITEM_WEAR_HEAD ;equip a Centaur's Bow          
+M 0 28111   4 28133 ;                a centaur in Centaur's Range          
+G 1 28118 500       ;        a centaur's arrow
+M 0 28112   4 28116 ;an ogre-fen-ogre is here. in Ogre-Fen-Ogre Swamp      
+M 0 28112   4 28117 ;an ogre-fen-ogre is here. in Ogre-Fen-Ogre Swamp      
+M 0 28112   4 28118 ;an ogre-fen-ogre is here. in Ogre-Fen-Ogre Swamp      
+M 0 28112   4 28119 ;an ogre-fen-ogre is here. in Ogre-Fen-Ogre Swamp      
+M 0 28113   3 28168 ;            a curse fiend in Receiving Hall           
+M 0 28113   3 28170 ;            a curse fiend in Auditorium               
+M 0 28113   3 28171 ;            a curse fiend in Stage                    
+M 0 28114   1 28102 ;           a border guard in Guard Station            
+M 0 28115   6 28120 ;         a north villager in North Village            
+M 0 28115   6 28122 ;         a north villager in North Village            
+M 0 28115   6 28123 ;         a north villager in Path in North Village    
+M 0 28115   6 28124 ;         a north villager in Path in North Village    
+M 0 28115   6 28127 ;         a north villager in Path in North Village    
+M 0 28115   6 28129 ;         a north villager in Lookout Rock             
+M 0 28116   1 28182 ;                 Bigmouth in Parapet                  
+M 0 28117   2 28147 ;             a nicklepede in Gap Chasm                
+M 0 28117   2 28151 ;             a nicklepede in Gap Chasm                
+M 0 28118   1 28167 ;               a behemoth in Under Lake Ogre-Chobee   
+M 0 28119   6 28106 ;       a screeching harpy in Northern Xanth           
+M 0 28119   6  7672 ;       a screeching harpy in Northern Xanth           
+E 1 28104 500 ITEM_WEAR_HEAD ;equip a bone dagger            
+M 0 28119   6 28138 ;       a screeching harpy in North Ridge              
+M 0 28119   6 28174 ;       a screeching harpy in Southern Wilderness      
+E 1 28104 500 ITEM_WEAR_HEAD ;equip a bone dagger            
+M 0 28119   6 28163 ;       a screeching harpy in Region of Madness        
+M 0 28119   6 28159 ;       a screeching harpy in Southern Wilderness      
+E 1 28104 500 ITEM_WEAR_HEAD ;equip a bone dagger            
+M 0 28119   6 28115 ;       a screeching harpy in Northern Xanth           
+M 0 28120   3 28105 ;         a swarm of gnats in Northern Xanth           
+M 0 28120   3 28154 ;         a swarm of gnats in South Ridge              
+M 0 28120   3 28162 ;         a swarm of gnats in Region of Madness        
+M 0 28121   5 28109 ;          a needle cactus in Northern Xanth           
+M 0 28121   5 28158 ;          a needle cactus in Southern Wilderness      
+M 0 28121   5 28160 ;          a needle cactus in Southern Wilderness      
+M 0 28121   5  7671 ;          a needle cactus in Northern Xanth           
+M 0 28121   5 28113 ;          a needle cactus in Northern Xanth           
+M 0 28122   1 28121 ;              Justin Tree in Center of North Village  
+M 0 28123  12  7655 ;     a zombie sea serpant in Roogna Moat              
+M 0 28123  12  7656 ;     a zombie sea serpant in Roogna Moat              
+M 0 28123  12  7657 ;     a zombie sea serpant in Roogna Moat              
+M 0 28123  12  7658 ;     a zombie sea serpant in Roogna Moat              
+M 0 28123  12  7659 ;     a zombie sea serpant in Roogna Moat              
+M 0 28123  12  7660 ;     a zombie sea serpant in Roogna Moat              
+M 0 28123  12  7661 ;     a zombie sea serpant in Roogna Moat              
+M 0 28123  12  7662 ;     a zombie sea serpant in Roogna Moat              
+M 0 28123  12  7663 ;     a zombie sea serpant in Roogna Moat              
+M 0 28123  12  7664 ;     a zombie sea serpant in Roogna Moat              
+M 0 28123  12  7665 ;     a zombie sea serpant in Roogna Moat              
+M 0 28123  12  7675 ;     a zombie sea serpant in Roogna Moat              
+M 0 28124   1 28126 ;          the spellmender in Talent Shop              
+G 1 28119 500       ;     a staff of pass door
+G 1 28120 500       ;        an enhance scroll
+G 1 28121 500       ;          a recall scroll
+G 1 28122 500       ;    a staff of protection from good
+M 0 28125   1 28128 ;              the equiper in Village Shop             
+G 1 28123 500       ;   a robe of many pockets
+G 1 28124 500       ;            a beer barrel
+G 1 28125 500       ;             a breadfruit
+G 1 28132 500       ;  silver mirror
+M 0 28126   1 28125 ;                   Roland in Elder's House            
+O 0 28105   1  7668 ;                 a throne in Castle Roogna Audience Ch
+M 0 28127   1 28169 ;           vortexethereal in Vortex                   
+M 0 28128 122 28103 ;            xanthethereal in Northern Xanth           
+M 0 28128 122 28104 ;            xanthethereal in Northern Xanth           
+M 0 28128 122 28116 ;            xanthethereal in Ogre-Fen-Ogre Swamp      
+M 0 28128 122 28119 ;            xanthethereal in Ogre-Fen-Ogre Swamp      
+M 0 28128 122 28120 ;            xanthethereal in North Village            
+M 0 28128 122 28121 ;            xanthethereal in Center of North Village  
+M 0 28128 122 28122 ;            xanthethereal in North Village            
+M 0 28128 122 28123 ;            xanthethereal in Path in North Village    
+M 0 28128 122 28124 ;            xanthethereal in Path in North Village    
+M 0 28128 122 28125 ;            xanthethereal in Elder's House            
+M 0 28128 122 28126 ;            xanthethereal in Talent Shop              
+M 0 28128 122 28127 ;            xanthethereal in Path in North Village    
+M 0 28128 122 28128 ;            xanthethereal in Village Shop             
+M 0 28128 122 28129 ;            xanthethereal in Lookout Rock             
+M 0 28128 122 28130 ;            xanthethereal in Centaur's Range          
+M 0 28128 122 28131 ;            xanthethereal in Centaur's Range          
+M 0 28128 122 28132 ;            xanthethereal in Centaur's Range          
+M 0 28128 122 28133 ;            xanthethereal in Centaur's Range          
+M 0 28128 122 28134 ;            xanthethereal in North Ridge              
+M 0 28128 122 28135 ;            xanthethereal in North Ridge              
+M 0 28128 122 28136 ;            xanthethereal in North Ridge              
+M 0 28128 122 28137 ;            xanthethereal in North Ridge              
+M 0 28128 122 28138 ;            xanthethereal in North Ridge              
+M 0 28128 122 28139 ;            xanthethereal in Peaceful Pines           
+M 0 28128 122 28140 ;            xanthethereal in Path into the Chasm      
+M 0 28128 122 28141 ;            xanthethereal in Path into the Chasm      
+M 0 28128 122 28142 ;            xanthethereal in Element of Earth         
+M 0 28128 122 28143 ;            xanthethereal in Element of Water         
+M 0 28128 122 28144 ;            xanthethereal in Element of Air           
+M 0 28128 122 28145 ;            xanthethereal in Element of Fire          
+M 0 28128 122 28146 ;            xanthethereal in Void                     
+M 0 28128 122 28147 ;            xanthethereal in Gap Chasm                
+M 0 28128 122 28152 ;            xanthethereal in One-way Bridge           
+M 0 28128 122 28153 ;            xanthethereal in South Ridge              
+M 0 28128 122 28156 ;            xanthethereal in Southern Wilderness      
+M 0 28128 122 28161 ;            xanthethereal in Southern Wilderness      
+M 0 28128 122 28162 ;            xanthethereal in Region of Madness        
+M 0 28128 122 28165 ;            xanthethereal in Region of Madness        
+M 0 28128 122 28166 ;            xanthethereal in Lake Ogre-Chobee         
+M 0 28128 122 28168 ;            xanthethereal in Receiving Hall           
+M 0 28128 122 28170 ;            xanthethereal in Auditorium               
+M 0 28128 122 28171 ;            xanthethereal in Stage                    
+M 0 28128 122 28172 ;            xanthethereal in Edge of the Underground L
+M 0 28128 122 28173 ;            xanthethereal in Small Stream             
+M 0 28128 122 28174 ;            xanthethereal in Southern Wilderness      
+M 0 28128 122 28175 ;            xanthethereal in Small Stream             
+M 0 28128 122 28176 ;            xanthethereal in Small Stream             
+M 0 28128 122 28178 ;            xanthethereal in Winding Tunnel           
+M 0 28128 122 28181 ;            xanthethereal in Ledge inside the Moat    
+M 0 28128 122 28185 ;            xanthethereal in Region of Madness        
+M 0 28128 122 28190 ;            xanthethereal in Castle Grounds           
+M 0 28128 122 28191 ;            xanthethereal in Castle Grounds           
+M 0 28128 122 28194 ;            xanthethereal in Castle Grounds           
+M 0 28128 122  7651 ;            xanthethereal in Castle Grounds           
+M 0 28128 122  7652 ;            xanthethereal in Castle Grounds           
+M 0 28128 122  7655 ;            xanthethereal in Roogna Moat              
+M 0 28128 122  7665 ;            xanthethereal in Roogna Moat              
+M 0 28128 122  7666 ;            xanthethereal in Castle Roogna's Drawbridg
+M 0 28128 122  7667 ;            xanthethereal in Castle Roogna Bailey     
+M 0 28128 122  7668 ;            xanthethereal in Castle Roogna Audience Ch
+M 0 28128 122  7669 ;            xanthethereal in Northern Xanth           
+M 0 28128 122  7673 ;            xanthethereal in Northern Xanth           
+M 0 28128 122  7674 ;            xanthethereal in Castle Grounds           
+M 0 28129   1 28164 ;              a midas fly in Region of Madness        
+M 0 28130   1 7680  ; needle cactus in guardians room
+M 0 28131   1 7679  ; basilisk in narrow passageway
+M 0 28132   1 7676  ; ethereal in lava moat
+O 0 28126 500 28165 ;             reverse wood in Region of Madness
+D 1 28155 DIR_NORTH DOOR_OPEN ;door in South Ridge              
+S
+
+
+
+
+#SHOPS
+28124 ITEM_TYPE_SCROLL ITEM_TYPE_WAND ITEM_TYPE_STAFF ITEM_TYPE_POTION
+     ITEM_TYPE_PILL 100  50  0 23 ;the spellmender
+28125 ITEM_TYPE_LIGHT ITEM_TYPE_FOOD ITEM_TYPE_CONTAINER ITEM_TYPE_DRINK_CON
+     ITEM_TYPE_BOAT 100  50  0 23 ;the equiper
+0
+
+
+
+
+#SPECIALS
+S
+
+
+
+
+#$

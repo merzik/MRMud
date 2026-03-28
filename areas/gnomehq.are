@@ -1,0 +1,1278 @@
+#AREA Imperial HQ~
+#AUTHORS SuperD~
+
+
+#HELPS
+-1 GNOMEHQ~
+This HQ is designed for all those Gnomes out there who wish to join the Gnome
+Army.  Inside you will find a safe haven for Gnomes only, as well as a healer
+and some equipment.
+  Last updated on March 4, 1998
+~
+
+-1 SUPERDAVE_FIREBALL~
+{300Master Davatar draws back his hands, pulling in massive amounts {300}
+{300}of energy!  The energy ball pulsates with fierce energy!!! {300}
+
+{130}Master Davatar yells 'SUPER HADOKEN!!!!!'
+
+{010}A {130}SUPER FIREBALL{10} strikes you for 253hp!!!!! {300}
+{010}A {130}SUPER FIREBALL{10} strikes you for 325hp!!!!! {300}
+{010}A {130}SUPER FIREBALL{10} strikes you for 350hp!!!!! {300}
+
+~
+-1 SUPERDAVE_SHORYUKEN~
+{300}Master Davatar bends down to one knee, and slowly draws his fist back. {300}
+{300}Suddenly, he leaps up and strikes you with his fist and knee!!!
+{130}Master Davatar yells {110}'SUPER SHO RYU KEN!!!!!!'  {300}
+
+{010}A {130}SUPER DRAGON PUNCH{110} SMACKS you for 385hp!!!!! {300}
+{010}A {130}SUPER DRAGON PUNCH{110} SMACKS you for 375hp!!!!! {300}
+{010}A {130}SUPER DRAGON PUNCH{110} STRIKES you for 333hp!!!!! {300}
+{010}A {130}SUPER DRAGON PUNCH{110} HITS you for 200hp!!!!! {300}
+{010}A {130}SUPER DRAGON PUNCH{110} KNEES you for 450hp!!!!! {300}
+~
+0 $~
+#RANGES 0 99 0 99
+#FLAGS AFLAG_NODEBUG|AFLAG_NOTELEPORT
+#MOBILES
+#700
+gnome soldier~
+A Gnome Soldier~
+A Gnome Soldier is here, standing Guard.
+~
+You see before you a powerful looking Soldier.
+Don't let his height fool you, he's pretty tough.
+~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_SANCTUARY|AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_INFRARED|AFF_UNDERSTAND|AFF_TONGUES|ACT_ONE_FIGHT
+1000 S
+80 BODY_TORSO BODY_LEG|BODY_ARM|BODY_HAND 10d100+5000 12d10+10
+100000 RACE_GNOME
+POS_STANDING POS_STANDING SEX_MALE
+>rand_prog 5~
+  yawn
+~
+|  
+#701
+lovely maiden~
+A Lovely Maiden~
+A lovely Gnome maiden is here.
+~
+You see one of the most beautiful maidens you've ever seen in your life!
+She is dressed all in white, quite fitting for a healer.
+You can see the letters 'MM' embroidered into her robes,
+and you get the urge to injure yourself just so she can heal you!
+~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_SANCTUARY|AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_INFRARED|AFF_UNDERSTAND|AFF_TONGUES
+1000 S
+150 BODY_TORSO BODY_LEG|BODY_ARM|BODY_HAND 8d100+20000 10d6+200
+100000 RACE_GNOME
+POS_STANDING POS_STANDING SEX_FEMALE
+>all_greet_prog 100~
+ tell $n Rest here if you need healies!
+~
+>rand_prog 100~
+if rand(10)
+  cast 'cure critical' $r
+  break
+endif
+if rand(10)
+  cast 'sanctuary' $r
+  break
+endif
+if rand(10)
+  cast 'shield' $r
+  break
+endif
+if rand(10)
+  cast 'armor' $r
+  break
+endif
+if rand(10)
+  cast 'refresh'
+  break
+endif
+if rand(10)
+  cast 'giant strength' $r
+  break
+endif
+if rand(10)
+  cast 'bless' $r
+  break
+endif
+if rand(10)
+  cast 'mirror image' $r
+  break
+endif
+if rand(10)
+  cast 'feast'
+  break
+endif
+if rand(10)
+  cast 'enhanced heal' $r
+  break
+endif
+if rand(10)
+  cast 'enhanced revive' $r
+  break
+endif
+~
+|
+#702
+master davatarmob~
+Master Davatar~
+Master Davatar, the Supreme Commander of the Gnome Army is here!
+~
+Before you stands a very formidable looking Gnome, MUCH large and taller
+than your average gnome.  He looks quite SUPER and handsome all dressed
+up in his mighty battle armor. He is unarmed, except for a pair of black
+hand guards and his red headband, which blows gently in wind.
+~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE|ACT_AGGRESSIVE
+AFF_SANCTUARY|AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_INFRARED|AFF_UNDERSTAND|AFF_TONGUES|ACT_AGGRESSIVE
+1000 S
+150 BODY_TORSO BODY_LEG|BODY_ARM|BODY_HAND 10d100+40000 1d500+1
+1000000 RACE_GNOME
+POS_STANDING POS_STANDING SEX_MALE
+>speech_prog p I CHALLENGE YOU, WEENIE!~
+tell $n You certainly are brave $n!  I hope this is a good fight!
+mpmset self quest 0 2 3 
+mpmset self quest 10 1 1
+mptransfer $n 714
+mpgoto 714
+mpkill $n
+~
+>rand_prog 50~
+if quest(10,1,1)
+ if quest(0,2,self) == 0
+  cast restore
+  mpgoto 713
+  mpmset self quest 10 1 0
+ else
+  mpmadd self quest 0 2 -1
+ endif
+endif
+~
+>fight_prog 99~
+if rand(50)
+   mpforce $n help SUPERDAVE_FIREBALL
+   mpquiet on
+   cast 'fireball' $n
+   cast 'fireball' $n
+   cast 'energy drain' $n
+   cast 'energy drain' $n
+   cast 'energy drain' $n
+   mpquiet off
+   mpkill $n
+   break
+endif
+if rand(25)
+   mpforce $n help SUPERDAVE_SHORYUKEN
+   mpquiet on
+   martial
+   martial
+   cast 'acid blast' $n
+   cast 'acid blast' $n
+   cast 'acid blast' $n
+   mpquiet off
+   mpkill $n
+   break
+endif
+if rand(5)
+   cast 'restore' $i
+   mpkill $n
+   break
+endif
+~
+>death_prog 100~
+mptransfer $n 700
+tell $n You are truely a mighty warrior!  I hope we can fight again!
+tell $n Go now, and challenge other warriors!
+mpmset self quest 0 30 0
+~
+|
+#703
+marshal travis knight~
+Travis~
+Knight Marshal Travis is here, training troops!
+~
+You see a rather large Gnome, dressed in comfortable clothing.  Perhaps he
+is so skilled that he doesn't need armor.
+~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE|ACT_TRAIN|ACT_PRACTICE
+AFF_SANCTUARY|AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_INFRARED|AFF_UNDERSTAND|AFF_TONGUES
+1000 S
+100 BODY_TORSO BODY_LEG|BODY_ARM|BODY_HAND 8d100+9000 10d10+100
+100000 RACE_GNOME
+POS_STANDING POS_STANDING SEX_MALE
+>rand_prog 33~
+if rand(5)
+ say You call yourself a Gnome, $r?  Why don't you train here with me!
+endif
+if rand(3)
+ mpecho Travis flexs his bulging muscles!
+endif
+~
+|
+#704
+maiden kathy~
+Maiden Kathy~
+Maiden Kathy is here, crafting weapons and armor.
+~
+You see before you a stern woman.  Sweat drips off her forehead as she
+hammers away at her anvil.  She glances at you and wonders what you want.
+Somehow she doesn't seem lost and confused.
+~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_SANCTUARY|AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_INFRARED|AFF_UNDERSTAND|AFF_TONGUES
+1000 S
+95 BODY_TORSO BODY_LEG|BODY_ARM|BODY_HAND 8d100+8000 10d6+100
+100000 RACE_GNOME
+POS_STANDING POS_STANDING SEX_FEMALE
+>rand_prog 100~
+if rand(10)
+  mpecho Kathy hammers away at the anvil.
+  break
+endif
+if rand(5)
+  mpecho Kathy glances up at you.
+  say You gonna buy something or what?
+  break
+endif
+~
+| 
+#705
+marc cooper~
+Marc the Cooper~
+Marc, the chicken cooper, stands here.
+~
+You see a tall bearded fellow, much taller than your average gnome.  He is
+patiently tending the chickens and other animals which feed the Gnome Army.
+He's quite famous for making his chicken pot pies, which are included in the
+standard army meal.
+~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_SANCTUARY|AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_INFRARED|AFF_UNDERSTAND|AFF_TONGUES
+1000 S
+95 BODY_TORSO BODY_LEG|BODY_ARM|BODY_HAND 8d100+8000 10d6+100
+100000 RACE_GNOME
+POS_STANDING POS_STANDING SEX_MALE
+>rand_prog 5~
+mpquiet on
+cast 'feast' 
+mpquiet off
+mpecho Marc cooks up a hearty meal for you all!
+~
+|
+#706
+Velheda~
+Velheda~
+Velheda the mortician stands here looking bored.
+~
+Velheda seems mighty bored, since hardly any gnomes come to claim their
+bodies.
+~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_SANCTUARY|AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_INFRARED|AFF_UNDERSTAND|AFF_TONGUES
+1000 S
+50 BODY_TORSO BODY_LEG|BODY_ARM|BODY_HAND 8d100+1000 10d6+10
+100000 RACE_GNOME
+POS_STANDING POS_STANDING SEX_FEMALE
+>rand_prog 50~
+if rand(20)
+ say PEDO!
+ break
+endif
+if rand(10)
+ emote raises her eyebrow at you.
+ break
+endif
+~
+|
+#707
+chai fei hung~
+Fei Hung~
+Captain Fei Hung stands here, surveying the area.
+~
+You see a very powerful looking soldier all dressed in light robes.  He is
+unarmed, but looks deadly nonetheless.  He is mostly bald, except for a long
+ponytail whichs hangs from the back of his head.  He notices you looking at
+him, and gives you a hard stare.  You've heard stories of his legendardy
+shadowless kick attack!
+~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_SANCTUARY|AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_INFRARED|AFF_UNDERSTAND|AFF_TONGUES
+1000 S
+95 BODY_TORSO BODY_LEG|BODY_ARM|BODY_HAND 8d100+9000 10d10+100
+100000 RACE_GNOME
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if ispc($n)
+   if race($n) == 5
+  if armystatus($n) == 1
+    if quest(0,1,$n) == 0
+      tell $n I see you are a veteran member!
+      tell $n You must go see the Commander at once!
+      tell $n He is to the room in the north.
+    else
+      tell $n Greetings $n. Welcome the HQ.
+    endif
+  else
+  tell $n So you wish to Join the Gnome Army eh?
+  tell $n If this is so, just say 'I want to join the army!'
+  endif
+   endif
+endif
+~
+>speech_prog P I want to join the army!~
+tell $n GREAT!  We could use a great warrior like you!
+tell $n In order for you to officially join, please type:
+tell $n " ARMY JOIN <your password> "
+tell $n Once you Join, go north and see the commander!
+tell $n If for any reason you wanna be a wimp and resign,
+tell $n Come here and type " ARMY RETIRE <your password>".
+~
+|  
+#708
+general shan~
+General Shan~
+General Shan is here, going over maps and battle plans.
+~
+Dressed all in glowing battle armor, General Shan looks like a force to be
+reckoned with.  His long flowing hair almost touches the floor.  He looks
+up from his maps for a moment as he notices you enter the room.
+~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_SANCTUARY|AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_INFRARED|AFF_UNDERSTAND|AFF_TONGUES
+1000 S
+150 BODY_TORSO BODY_LEG|BODY_ARM|BODY_HAND 8d1000+15000 10d10+500
+100000 RACE_GNOME
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if race($n) == 5
+   if quest(0,1,$n) == 0
+  say Welcome to the Gnome Army, $n.
+  say Here is your Official Army Insignia!
+  say To display your rank in the army, just type "RANKING".
+  say Do not lose it, for it is the only one you'll ever get.
+  say Go Now and vanquish our enemies!
+  mpmset $n quest 0 1 1
+  mpoload 708
+  give insignia $n
+   else
+  say Greetings $n.
+  wink $n
+   endif
+else 
+   mpforce $n say I CHALLENGE YOU, WEENIE!
+endif
+~
+>speech_prog p I CHALLENGE YOU, WEENIE!~
+tell $n So you are here to challenge the SUPREME COMMANDER EH?
+tell $n You sure are brave, I must say!
+tell $n To the Arena then!
+connect 0 714
+mpforce $n north
+connect 0 -1
+~   
+| 
+#709
+barrier~
+A magic guardian~
+You see a shimmering barrier surrounding this room!
+~
+What a nice barrier!
+~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_INFRARED|AFF_UNDERSTAND|AFF_TONGUES|AFF_ETHEREAL
+1000 S
+50 BODY_TORSO BODY_LEG|BODY_ARM|BODY_HAND 1d1+10000 10d10+10
+100000 RACE_GNOME
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if armystatus($n) == 1
+  tell $n If you want to see the leader, just say ENTER
+else
+  tell $n Only army personel are allowed in here.
+endif
+~
+>speech_prog enter~
+if armystatus($n) == 1
+   connect 0 713
+   mpforce $n north
+   connect 0 -1
+endif
+~
+>speech_prog version~
+ say version 1.6
+~
+|
+#710
+voice~
+A voice~
+A voice~
+A voice~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_INFRARED|AFF_UNDERSTAND|AFF_TONGUES
+1000 S
+100 BODY_TORSO BODY_LEG|BODY_ARM|BODY_HAND 2d1000+9000 10d30+100
+100000 RACE_GNOME
+POS_STANDING POS_STANDING SEX_MALE
+>speech_prog p I AM A SUPER GNOME!~
+if actorhasobjnum(708)
+  if sex($n) == 2
+      tell $n You are a General, M'Lady.
+      mpmset $n long Lady $n, a General of the Gnome Army is here.
+      mppurge self
+    else
+      tell $n You are a General, M'Lord.
+      mpmset $n long Lord $n, a General of the Gnome Army is here.
+      mppurge self
+  endif
+else
+mppurge self
+endif
+~
+>speech_prog p I AM A POWERFUL GNOME!~
+if actorhasobjnum(708)
+  if sex($n) == 2
+      tell $n You are a Grand Marshall, Arch Dutchess $n.
+      mpmset $n long Arch Dutchess $n, a Grand Marshal of the Gnome Army is here.
+      mppurge self
+  else
+      tell $n You are a Grand Marshall, Arch Duke $n.
+      mpmset $n long Arch Duke $n, a Grand Marshal of the Gnome Army is here.
+      mppurge self
+  endif
+else
+mppurge self
+endif 
+~
+>speech_prog p I AM A STRONG GNOME!~
+if actorhasobjnum(708)
+   if sex($n) == 2
+         tell $n You are a Marshall, Dutchess $n.
+         mpmset $n long Dutchess $n, a Marshal of the Gnome Army is here.
+         mppurge self
+   else
+         tell $n You are a Marshall, Duke $n.
+         mpmset $n long Duke $n, a Marshal of the Gnome Army is here.
+         mppurge self
+   endif
+else
+mppurge self
+endif 
+~
+>speech_prog p I AM A GREAT GNOME!~
+if actorhasobjnum(708)
+    if sex($n) == 2
+          tell $n You are a Captain, Grand Baroness $n.
+          mpmset $n long Grand Baroness $n, a Captain of the Gnome Army is here.
+          mppurge self
+    else
+          tell $n You are a Captain, Grand Baron $n.
+          mpmset $n long Grand Baron $n, a Captain of the Gnome Army is here.
+          mppurge self   
+    endif
+else
+mppurge self
+endif 
+~
+>speech_prog p I AM A TOUGH GNOME!~
+if actorhasobjnum(708)
+       if sex($n) == 2
+          tell $n You are a Lieutenant, Lord Baroness $n.
+          mpmset $n long Lord Baroness $n, a Lieutenant of the Gnome Army is here.
+          mppurge self       
+       else
+          tell $n You are a Lieutentant, Lord Baron $n.
+          mpmset $n long Lord Baron $n, a Lieutenant of the Gnome Army is here.
+          mppurge self 
+      endif
+       mppurge self
+endif  
+~
+>speech_prog p I AM A GOOD GNOME!~
+if actorhasobjnum(708)
+       if sex($n) == 2
+          tell $n You are a Seargent, Baroness $n.
+          mpmset $n long Baroness $n, a Seargent of the Gnome Army is here.
+       mppurge self
+       else
+          tell $n You are a Seargent, Baron $n.
+          mpmset $n long Baron $n, a Seargent of the Gnome Army is here.
+       mppurge self
+       endif
+       mppurge self
+endif
+~
+>speech_prog p I AM A GROWING GNOME!~
+if actorhasobjnum(708)
+       tell $n You are a Private, Emissary $n.
+       mpmset $n long Emissary $n, a Private of the Gnome Army is here.
+       mppurge self
+else
+mppurge self
+endif
+~
+>speech_prog p I AM A LITTLE GNOME!~
+if actorhasobjnum(708)
+       if sex($n) == 2
+           tell $n You are a Recruit, Squiress $n.
+           mpmset $n long Squiress $n, a Recruit of the Gnome Army is here.
+           mppurge self
+       else
+           tell $n You are a Recruit, Squire $n.
+           mpmset $n long Squire $n, a Recruit of the Gnome Army is here.
+           mppurge self     
+       endif
+else
+mppurge self
+endif
+~
+>speech_prog p I AM A NEWBIE GNOME!~
+if actorhasobjnum(708)
+           tell $n You are a Grunt, Page $n.
+           mpmset $n long Page $n, a Grunt of the Gnome Army is here.
+           mppurge self
+else
+mppurge self
+endif  
+~
+|
+#711
+elite guard soldier~
+An Elite Soldier~
+An Elite Gnome Soldier patrols this area.
+~
+Clad fully in armor, the Elite Gnome Soldier looks out for trouble.
+~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_SANCTUARY|AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_INFRARED|AFF_UNDERSTAND|AFF_TONGUES
+1000 S
+95 BODY_TORSO BODY_LEG|BODY_ARM|BODY_HAND 8d100+9000 10d10+100
+100000 RACE_GNOME
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if ispc($n)
+ if race($n) == 5
+   if actorhasobjnum(12302)
+     bow $n
+     mpmset $n long King $n of the GNOME EMPIRE is here!
+     shout LONG LIVE KING $n!!!!!!!!
+   else
+   if actorhasobjnum(12303)
+     bow $n
+     mpmset $n long Queen $n of the GNOME EMPIRE is here!
+     shout LONG LIVE QUEEN $n!!!!!!!
+   else
+   if actorhasobjnum(12322)
+     bow $n
+     mpmset $n long Princess $n of the GNOME EMPIRE is here!
+     shout ALL HAIL PRINCESS $n!!!!!  
+   else
+   if actorhasobjnum(12304)
+     bow $n
+     mpmset $n long Prince $n of the GNOME EMPIRE is here!
+     shout ALL HAIL PRINCE $n!!!!!
+   else
+   say Welcome to the Imperial HQ.
+   endif
+   endif
+   endif
+   endif
+ else
+tell $n How did you get in here???
+tell $n I guess you want to challenge our mighty leader! 
+tell $n SO BE IT!
+mpechoat $n A few guards arrive and escort you to a large office!
+mptransfer $n 713
+mpat 713 force $n say I CHALLENGE YOU, WEENIE!
+endif
+endif
+~
+|   
+#712
+gatekeeper~
+The Gatekeeper~
+The GateKeeper wonders whether to let you in or not.
+~
+He's just an above average soldier who's job is to let in Gnomes and kick out others.
+~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_INFRARED|AFF_UNDERSTAND|AFF_TONGUES
+1000 S
+60 BODY_TORSO BODY_LEG|BODY_ARM|BODY_HAND 8d100+1500 10d6+10
+100000 RACE_GNOME
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if ispc($n)
+tell $n Do you wish to enter the Gnome Army HQ?
+endif
+~
+>speech_prog p no~
+tell $n Go away then
+mpforce $n south
+~
+>speech_prog p yes~
+  if race($n) != 5
+ tell $n Are you SURE you want to go in there?
+  else
+ mpechoat $n The Gatekeeper opens the gate and lets you in. 
+ mptransfer $n 703
+  endif
+~
+>speech_prog p sure~
+  tell $n Ohhhhhhhkay, if you insist.
+  mpechoat $n The Gatekeeper opens the gate and lets you in.
+  mptransfer $n 703
+~
+|
+#714
+statuepitmob~
+The Super Statue~
+blah~
+blah~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_ETHEREAL|AFF_DETECT_INVIS|AFF_INFRARED|AFF_UNDERSTAND
+1000 S
+125 BODY_TORSO BODY_LEG|BODY_ARM|BODY_HAND 8d1000+15000 10d60+300
+100000 RACE_GNOME
+POS_STANDING POS_STANDING SEX_MALE
+
+>rand_prog 90~
+mpquiet on
+get all
+put all i704
+drop all
+mpquiet off
+if rand(20)
+  mpquiet on
+  cast 'cure critical' $r
+  mpquiet off
+  break
+endif
+if rand(2)
+  mpquiet on
+   cast 'feast'
+  mpquiet off
+  break
+endif
+if rand(5)
+  mpquiet on
+    cast 'restore' $r 300
+  mpquiet off
+  break
+endif
+if rand(5)
+  mpquiet on
+    cast 'energy shift' $r 300
+  mpquiet off
+  break
+endif
+if rand(15)
+  mpquiet on
+    cast 'shield' $r
+  mpquiet off
+  break
+endif
+if rand(15)
+  mpquiet on
+    cast 'bless' $r
+  mpquiet off
+  break
+endif
+if rand(10)
+  mpquiet on
+    cast 'enhanced heal' $r
+  mpquiet off
+  break
+endif
+if rand(10)
+  mpquiet on
+    cast 'enhanced revive' $r
+  mpquiet off
+  break
+endif
+if rand(1)
+  smile $r
+endif
+~
+|
+#0
+
+
+#OBJECTS
+#700
+large sign~
+a large sign.~
+A Large sign that you should look at is here!~
+The sign reads:
+.                       / \
+.   +-------------------------------------------+  
+.   |{177}                                           {300}|
+.   |{170}  GNOME ARMY HQ - ENTER AT YOUR OWN RISK!  {300}|
+.   |{177}                                           {300}|
+.   +-------------------------------------------+   
+.                       | |
+.                       | |~
+ITEM_TYPE_FURNITURE
+ITEM_FLAG_LEVEL
+0
+0 0 0 0 
+99 0 99
+#701
+sword~
+a Gnome Army Sword~
+A small sword has been dropped here.~
+A standard Gnome Army issue sword.~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 2 8 3 
+2 1000 13
+#702
+whip~
+a Gnome Army Whip~
+A short whip has been left here.~
+A standard Gnome Army issue whip.~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_WIELD|ITEM_WEAR_TAKE
+0 2 5 4 
+1 1000 10
+#703
+quarterstaff~
+a Gnome Army Quarterstaff~
+A short stick has been dropped here.~
+A standard Gnome Army Issue Quarterstaff~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_WIELD|ITEM_WEAR_TAKE
+0 3 4 8 
+3 1000 10
+#704
+statue~
+a magnificent statue.~
+(SUPER AURA) A Magnificent Statue is here.~
+Your jaw drops in awe as you gaze upon this Magnificent Statue!
+It glows brightly and stands 20 feet tall.  Whoever it was modelled after
+must be one heck of a guy!  You notice an inscription carved onto the base
+of the statue.  Its outstreched hands seem capable of carrying many items.~
+ITEM_TYPE_CONTAINER
+ITEM_FLAG_LEVEL
+0
+5000 0 -1 0 
+99 0 1000
+E
+inscription~
+Hello Gnomies, hope you like the new HQ!
+SD~
+#705
+shield~
+a Gnome Army Shield~
+A shield lays here on the ground.~
+A standard Gnome Army shield.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_SHIELD|ITEM_WEAR_TAKE
+8 0 0 0 
+3 300 16
+#706
+battle armor~
+a Gnome Battle Armor~
+A powerful set of armor has been left here.~
+A Suit of Heavy Gnome Battle Armor, for Gnomies only!~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL|ITEM_FLAG_GLOW|ITEM_FLAG_HUM|ITEM_FLAG_NOREMOVE
+ITEM_WEAR_BODY|ITEM_WEAR_TAKE
+10 0 0 0 
+20 50000 28
+P 1
+TRIG_HIT 100
+OPROG_IF OIF_USER_RACE = 5 2 4
+P 2
+TRIG_VOID
+OPROG_IF OIF_RANDOM_PERCENT < 15 3 10
+P 3
+TRIG_VOID
+OPROG_APPLY OAPPLY_HIT 20
+P 3
+TRIG_VOID
+OPROG_ECHO The Spirit of Gnome Heroes fills you!~
+P 4
+TRIG_VOID
+OPROG_ECHO The Armor shatters into many pieces!~
+P 4
+TRIG_VOID
+OPROG_APPLY OAPPLY_HIT -250
+P 4
+TRIG_VOID
+OPROG_JUNK
+A
+APPLY_DAMROLL 3
+#707
+speed potion~
+a Gnome Speed Potion~
+A small vibrating potion has been left here.~
+A special haste potion for gnomies.~
+10
+64|1|16384
+1|16384
+30 SPELL_HASTE SPELL_FLY SPELL_STONE_SKIN 
+0 5000 25
+#708
+insignia~
+a Gnome Army Insignia~
+Who's the idiot who dropped this!~
+A beautiful insignia of the Gnome Army.  Type 'ranking' to get your rank~
+8
+1|ITEM_FLAG_AUTO_ENGRAVE|ITEM_FLAG_INVENTORY|64|16384
+1|16384
+0 0 0 0 
+0 1 10
+A
+APPLY_DAMROLL 2
+P 1
+TRIG_UNKNOWN 100 ranking~
+OPROG_IF OIF_USER_RACE = 5 2 30
+P 2
+TRIG_VOID
+OPROG_IF OIF_WEAR_LOC ! WEAR_NONE 3 31
+P 3
+TRIG_VOID
+OPROG_IF OIF_USER_POSITION = POS_RESTING 4 32
+P 4
+TRIG_VOID
+OPROG_IF OIF_ARMYSTATUS = 1 5 33
+P 5
+TRIG_VOID
+OPROG_IF OIF_USER_LEVEL = 95 15 7
+P 7
+TRIG_VOID
+OPROG_IF OIF_USER_LEVEL > 92 16 8
+P 8
+TRIG_VOID
+OPROG_IF OIF_USER_LEVEL > 85 17 9
+P 9
+TRIG_VOID
+OPROG_IF OIF_USER_LEVEL > 75 18 10
+P 10
+TRIG_VOID
+OPROG_IF OIF_USER_LEVEL > 60 19 11
+P 11
+TRIG_VOID
+OPROG_IF OIF_USER_LEVEL > 45 20 12
+P 12
+TRIG_VOID
+OPROG_IF OIF_USER_LEVEL > 35 21 13
+P 13
+TRIG_VOID
+OPROG_IF OIF_USER_LEVEL > 25 22 14
+P 14
+TRIG_VOID
+OPROG_GOD_COMMAND
+mpmload 710 & say I AM A NEWBIE GNOME!~
+P 15
+TRIG_VOID
+OPROG_GOD_COMMAND
+mpmload 710 & say I AM A SUPER GNOME!~
+P 16
+TRIG_VOID
+OPROG_GOD_COMMAND
+mpmload 710 & say I AM A POWERFUL GNOME!~
+P 17
+TRIG_VOID
+OPROG_GOD_COMMAND
+mpmload 710 & say I AM A STRONG GNOME!~
+P 18
+TRIG_VOID
+OPROG_GOD_COMMAND
+mpmload 710 & say I AM A GREAT GNOME!~
+P 19
+TRIG_VOID
+OPROG_GOD_COMMAND
+mpmload 710 & say I AM A TOUGH GNOME!~
+P 20
+TRIG_VOID
+OPROG_GOD_COMMAND
+mpmload 710 & say I AM A GOOD GNOME!~
+P 21
+TRIG_VOID
+OPROG_GOD_COMMAND
+mpmload 710 & say I AM A GROWING GNOME!~
+P 22
+TRIG_VOID
+OPROG_GOD_COMMAND
+mpmload 710 & say I AM A LITTLE GNOME!~
+P 30
+TRIG_VOID
+OPROG_ECHO
+You must be a Gnome to wear this!~
+P 30
+TRIG_VOID
+OPROG_JUNK
+P 31
+TRIG_VOID
+OPROG_ECHO
+You need to wear the Insignia to use it.~
+P 32
+TRIG_VOID
+OPROG_ECHO
+You need to be resting to use the Insignia.~
+P 33
+TRIG_VOID
+OPROG_ECHO
+You aren't in the Army!~
+#709
+recall~
+a tiny scroll of recall~
+A tiny recall scroll is here.~
+Just a regular recall scroll~
+2 
+64|16384 
+1|16384
+1 SPELL_WORD_OF_RECALL -1 -1 
+0 10 1
+#710
+rations~
+some Army Rations~
+Some tasty looking food has been left here.~
+This is a filling meal, cooked by Marc the Cooper.~
+19 
+256|16384 
+1|16384
+48 0 0 0 
+1 10 1
+#711
+pouch~
+an Army Pouch~
+A small bag sits here.~
+The words 'gnome army issue' is written on this pouch.~
+15 
+16384 
+1|16384
+100 1 -1 0 
+1 100 10
+#712
+street fighting gloves~
+Street Fighting Gloves~
+A pair of Street Fighting Gloves.~
+These provide excellent heat protection for fireball throwing.~
+9
+4096|16384
+128
+17 8 10 1
+1 1 95
+#713
+tree~
+A nice Christmas Tree.~
+A nice Christmas Tree is here, full of presents.~
+This is super large tree, with many presents inside it!
+Maybe you should 'look in tree' or 'Examine Tree'~
+15
+ITEM_FLAG_LEVEL 0
+10000 0 -1 0
+1 1 1000
+#715
+speed scroll~
+a Gnome Speed Scroll~
+A small vibrating scroll has been left here.~
+A special haste scroll for gnomies.~
+2
+64|1|16384
+1|16384
+30 SPELL_HASTE SPELL_FLY SPELL_STONE_SKIN 
+0 5000 25
+
+#0
+
+#ROOMS
+#700
+A short road~
+You are standing on a short dusty path.  Up ahead you can see what looks like an
+encampment of some sort.  The road south leads back to the village.  It's
+really not too late to go back you know.
+~
+7 8 1
+D0
+More road.~
+~
+0 -1 701
+D2
+Back to the village.~
+~
+0 -1 1527
+S
+#701
+Aproaching the Gate~
+The road widens at this point.  To the north you can see a rather large gate.
+Sounds of metal clashing can be heard in that direction as well.  You sit
+down and think for a moment, fearing your safety.  You see what look to be
+gnome soldiers up ahead.
+~
+7 8 1
+D0
+At the Gate~
+~
+0 -1 702
+D2
+A short road.~
+~
+0 -1 700
+S
+#702
+At the Gate~
+You stand before the entrance to the Gnome Army HQ.  Several Gnome Guards
+stand here guarding the entrance to the encampment.  They all turn and
+look at you and smile. The leader of these soldiers approaches you.
+~
+0 8|1024 1
+D2
+A narrow road.~
+~
+0 -1 701
+S
+#703
+Inside the HQ.~
+You are now inside the Gnome Army Headquarters!  From here, you can see
+a huge glowing statue in the square to the north, and a large bunker
+beyond that.
+~
+7 8|8192 0
+D0
+A large square.~
+~
+0 -1 704
+D2
+The Exit.~
+~
+0 -1 702
+S
+#704
+The HQ Square.~
+You now stand within the center of the HQ.  A large statue stands right
+smack in the center of this room, covering you in a large shadow.  Exits
+lead in all directions from this point. To the north is what looks to be
+the barracks, and you can see some shops to the east and west as well.
+~
+7 8|1024|ROOM_ALTAR_N 12
+D0
+A large metal door closes off the barracks.~
+Door~
+3 -1 705
+D1
+A short hallway~
+~
+0 -1 710
+D2
+Near the Gate~
+~
+0 -1 703
+D3
+The Food court~
+~
+0 -1 707
+S
+#705
+Inside the Barracks~
+You stand within the barracks of the HQ.  Many soldiers are here, waiting
+for their chances to kill the enemy.  The room to the north glows with
+magical light, reeking of powerful magic.  You wonder if you're allowed to
+go any further in that direction.
+~
+7 8|8192 0
+D0
+The barrier room~
+~
+0 -1 706
+D2
+A large door~
+door~
+3 -1 704
+S
+#706
+The Barrier Room~
+You stand within a strange room with many magical runes embedded in the
+floor.  You can sense a powerful magical force in here. 
+~
+7 8|512 0
+D2
+The barracks~
+~
+0 -1 705
+S
+#707
+The Food Court~
+You are in the food court of the HQ.  The smell of heavenly cooking permeates
+this entire area.  Many sexy serving wenches saunter back and forth serving
+hearty portions of the delicious food. You can hear loud sounds coming from
+the north, and notice a shop to the south.
+~
+7 4|8|1024 0
+D0
+The Trainer~
+~
+0 -1 708
+D1
+Back to the square~
+~
+0 -1 704
+D2
+the blacksmiths~
+~
+0 -1 709
+S
+#708
+The Trainer~
+Many soldiers are training here, under the guidance of one powerful looking
+gnome.  Piles of weapons and armor are strewn about this room as well.
+~
+7 4|8|1024 0
+D2
+The Food Court~
+~
+0 -1 707
+S
+#709
+The Blacksmith~
+You instantly feel the heat as you enter the blacksmith's shop.  It's rather
+dark in here, with the only light supplied by the glowing embers of the huge
+furnace.  You can see the huge blacksmith slaving hard on the anvil.  As you
+approach, you are surprised to see that it's a woman!  She seems to be
+working hard on forging weapons and armor for the mighty gnome army.
+~
+7 4|8|1024 0
+D0
+Food Court~
+~
+0 -1 707
+S
+#710
+A short pathway.~
+You are standing in a short pathway.  To the west is HQ square.  You can
+hear magic spells being cast at the temple to the south, but the room north
+is strangely quiet and dim.
+~
+7 4|8 1
+D0
+The Morgue~
+~
+0 -1 711
+D2
+The Temple~
+~
+0 -1 712
+D3
+Back to the Square~
+~
+0 -1 704
+S
+#711
+The Morgue~
+You are in a dark and dusty room.  A bored mortician sits behind a dirty old
+desk in this rarely visited room.  
+~
+7 4|8|1024|131072 0
+D2
+Short pathway~
+~
+0 -1 710
+S
+#712
+The Temple~
+You are in the Holy temple of the HQ.  Many nurses are here tending to the
+sick and injured gnomies. However, there aren't really all that many
+patients, for how often is it that a gnome gets injured in combat?  A very
+lovely gnome glances at you as you enter.
+~
+7 4|8|1024 0
+D0
+Short pathway~
+~
+0 -1 710
+S
+#713
+The Officers Room~
+You stand within some sort of planning room.  Maps and charts are neatly
+tacked onto the walls of this office.  A very powerful looking gnome sits
+at a huge desk, and another stands to his side.
+~
+7 8|1024 0
+D2
+The Portal Room.~
+~
+1 -1 706
+S
+#714
+The Arena~
+You don't have time to look around!
+~
+7 8|8192|65536 0
+S
+#715
+testroom~
+This is for testing only!
+~
+7 8|8192 0
+S
+#0
+
+
+#RESETS
+O 0 700 1 701 ; large sign. to Aproaching the Gate
+M 0 700 5 702 ;A Gnome Soldier to A room
+M 0 712 1 702 ;The Gatekeeper to At the Gate
+M 0 711 1 703 ;An Elite Soldier to A room
+M 0 700 4 703 ;soldiers to a room
+M 0 700 4 702 ;A Gnome Soldier to A room
+O 0 704 1 704 ;(SUPER AURA) A magnificent statue is here.
+M 0 709 1 706 ;A barrier to barrier room
+D 0 704 0 1    ; door to hq close
+M 0 702 1 713 ;Davatar to A room
+E 1 712 1 9; gloves on davatar
+M 0 708 1 713 ;General Shane to A room
+M 0 705 1 707 ;Marc the Cooper to A room
+G 1 710 999 ;rations
+G 1 711 999; POUCH
+M 0 711 1 707 ;An Elite Soldier to A room
+M 0 703 1 708 ;Knight Marshal Travis to A room
+M 0 711 1 708 ;An Elite Soldier to A room
+M 0 700 4 708 ;A Gnome Soldier to A room
+M 0 700 4 708 ;A Gnome Soldier to A room
+M 0 700 4 708 ;A Gnome Soldier to A room
+M 0 704 1 709 ;Maiden Kathy to A room
+G 1 701 999; SWORD
+G 1 702 999; WHIP
+G 1 703 999; STAFF
+G 1 705 999; SHIELD
+G 1 706 999; ARMOR
+G 1 707 999; HASTE POTION
+G 1 709 999; RECALL
+G 1 715 999; haste scroll
+M 0 711 1 710 ;An Elite Soldier to A room
+M 0 701 1 712 ;A Lovely Maiden to A room
+M 0 706 1 711 ;velheda in the morgue
+M 0 707 1 705 ;captain fei hung
+M 0 711 1 705 ;Elite in barracks
+M 0 700 1 705 ;soldiers in barracks
+M 0 700 1 705 ;soldiers in barracks
+M 0 700 1 705 ;soldiers in barracks
+M 0 714 1 704 ;pitmob to square
+S
+
+
+#SHOPS
+704 9 5 2 10 26 100 10 0 23 ; kathy 
+705 19 15 0 0 0 100 10 0 23 ;marc  
+706 24 0 0 0 0 100 10 0 23 ;velheda   
+0
+
+
+#SPECIALS
+S
+
+
+#$

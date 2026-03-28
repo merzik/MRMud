@@ -1,0 +1,3871 @@
+#AREA GreyStone Village~
+#AUTHORS Prophecy~
+#RANGES 5 15 0 99
+#FLAGS AFLAG_NODEBUG|AFLAG_NOCASTLE|AFLAG_FREEQUIT
+
+
+#HELPS
+1 greystone~
+{120}GreyStone Village
+{020}-----------------
+{300}Greystone Village located outside the grand city of chakkor is reknown for
+its fine craftsmen and the Fameous Order of the Forest Runners. The Forest
+Runners are know for their long feud with an Occult who are bent on destroying
+the forests of the Realms. It is rumored that thier favorite weapons are
+stained with the blood of these defilers and have magical properties.
+
+Date Implemented:  7/19/03
+Date Updated    : 12/18/03
+~
+2 greystone_update~
+{120}Greystone Village Updates
+{020}-------------------------
+{300}12/14/04 - Fixed Spider to drop silk upon death at all times. By Prophecy
+         - Removed curse from Forest Pixie, too much spam in logs. By Prophecy
+~
+0 $~
+
+#MOBILES
+#33000
+gho gho'don~
+Gho'Don~
+Gho'don the armorer is here.~
+Gho'don is an older gentlemen. Appearing to be in his late fourties. He seems
+to be a wisened man. His arms and skin show the traits of his trade. Well
+built and tanned from being near the forge on a constant basis.
+~
+ACT_BODY|ACT_IS_NPC|ACT_NO_ORDER|ACT_RACE|ACT_SMART|ACT_SENTINEL
+AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_DETECT_INVIS|AFF_TONGUES
+0 S
+1 BODY_HEAD BODY_HAND 1d1+0 1d1+0
+0 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 99~
+  if ispc($n)
+  if actorhasobjnum(33049)
+    say You know I can help you turn that copper ring
+    say into something powerful!
+    say If you would be willing to help me?
+  endif
+endif
+~
+>rand_prog 15~
+say Can I interest you into buy a copper ring today?
+~
+>speech_prog help~
+say Why yes...
+say But I need a few items first!
+mpmset $n quest 2 8 1
+~
+>speech_prog items~
+if quest(2,8,$n) == 1
+say Yes, first I need the correct mold to reshape the ring!
+say Find me the correct mold and bring it back to me!
+endif
+mpmset $n quest 2 8 2
+~
+>give_prog I33050~
+mpjunk i33050
+if quest(2,8,$n) == 2
+say Excellent....
+say Now I need some magic dust to infuse with the ring!
+endif
+mpmset $n quest 2 8 3
+~
+>give_prog I33051~
+mpjunk i33051
+if quest(2,8,$n) == 3
+say Wonderful...
+say You have no idea how hard this is to retrieve...
+say Well I guess you do...!
+frown
+say There is one problem though!
+endif
+mpmset $n quest 2 8 4
+~
+>speech_prog problem~
+if quest(2,8,$n) == 4
+say The gem I needed for all of this is back at my house!
+endif
+mpmset $n quest 2 8 5
+~
+>speech_prog house~
+if quest(2,8,$n) == 5
+say Why, yes...
+say But I locked a terrifying monster in there!
+say Maybe your brave enough to get the gem for me?
+mpoload 33034
+give key $n
+say There is the key to the chest!
+say Good Luck!
+endif
+mpmset $n quest 2 8 6
+~
+>give_prog I33035~
+mpjunk i33035
+if quest(2,8,$n) == 6
+say Wonderful you did it...!
+say Now lets see here...!
+say All I need now is for you to give me the ring!
+endif
+mpmset $n quest 2 8 7
+~
+>give_prog I33049~
+mpjunk i33049
+if quest(2,8,$n) == 7
+say This will do fine!
+recho Gho'Don takes the Copper Ring and begins to melt it down!
+recho The ring begins to glow red and liquifies!
+recho Gho'Don pours the liquid copper into the mold....
+say Ahhh good it is working.
+recho Gho'Don grabs a pinch of Pixie Dust and adds it to the molten metal!
+recho CRACKLE.. FIZZLE... POP....
+recho Gho'Don breaks the mold and sets the stone in the red hot ring!
+recho Gho'Don dunks the ring in water...!
+recho SIZZLE....
+say Its done
+mpoload 33059
+give ring $n
+say Now be careful with it...! Its a rare artifact...!
+endif
+mpmset $n quest 2 8 8
+~
+|
+#33001
+marianna~
+Marianna~
+Marianna is here cleaning her shop.~
+As you take a close look at Marianna you can tell that she is a simple girl.
+Look old for her age. She is dressed in simple clothes, with long brown hair
+that falls down to her midback. She shows the signs of hard work. But she seems
+happy doing it.
+~
+ACT_SMART|ACT_SENTINEL|ACT_IS_NPC|ACT_RACE|ACT_NO_ORDER|ACT_BODY
+AFF_DETECT_INVIS|AFF_TONGUES|AFF_DETECT_HIDDEN|AFF_UNDERSTAND
+0 S
+1 BODY_HEAD BODY_HAND 1d1+0 1d1+0
+0 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_NEUTRAL
+#33002
+tiari~
+Tiari~
+Tiari is here trying to get your attention.~
+As you take a good look at Tiari, you can tell that she must not have to work
+hard at getting customers with her revealing clothing. Her young slender body
+invite attention from just about anyone.
+~
+ACT_NO_ORDER|ACT_BODY|ACT_SENTINEL|ACT_RACE|ACT_SMART|ACT_IS_NPC
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_TONGUES
+0 S
+1 BODY_HEAD BODY_HAND 1d1+0 1d1+0
+0 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_NEUTRAL
+#33003
+malikor~
+Malikor~
+Malikor the wise is here.~
+Malikor appears to be an almost ancient man. His long grey hair enhances the
+blue-grey in his eyes. His figure is sleek and withered.
+~
+ACT_SENTINEL|ACT_NO_ORDER|ACT_RACE|ACT_SMART|ACT_IS_NPC|ACT_BODY
+AFF_TONGUES|AFF_UNDERSTAND|AFF_DETECT_HIDDEN|AFF_DETECT_INVIS
+0 S
+1 BODY_HEAD BODY_HAND 1d1+0 1d1+0
+0 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+#33004
+per'tano forest master~
+Per'tano~
+Per'tano the forest master is here.~
+As you take a good look at Per'tano you can tell that he is much older than
+he appears. Taking an even closer you can notice that Per'tano has long
+pointy ears. Obviously he must be an elf.
+~
+ACT_SMART|ACT_RACE|ACT_NO_ORDER|ACT_BODY|ACT_SENTINEL|ACT_IS_NPC
+AFF_TONGUES|AFF_DETECT_HIDDEN|AFF_SANCTUARY|AFF_DETECT_INVIS|AFF_UNDERSTAND
+0 S
+1 BODY_HEAD BODY_HAND 1d1+29 1d1+4
+0 RACE_ELF
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>greet_prog 99~
+if actorhasobjnum(33062)
+  say Have you fulfilled your orders yet?
+endif
+~
+>rand_prog 15~
+if quest(3,9,$r) == 5
+  smile
+else
+  say Greetings Traveller...!
+  say Would you be interested in joining our order!
+  mpmset $n quest 3 9 0
+endif
+~
+>speech_prog order~
+if quest(3,9,$n) == 0
+  say Why yes the Order of the Forest Runners!
+  mpmset $n quest 3 9 1
+endif
+~
+>speech_prog p forest runners~
+if quest(3,9,$n) == 1
+  say Yes, we are an order dedicated to protecting the forests!
+  say Would you like me to sign you up?
+  mpmset $n quest 3 9 2
+endif
+~
+>speech_prog p sign me up~
+if quest(3,9,$n) == 2
+  say Excellent....
+  say You must complete a task first in order to be a member!
+  mpmset $n quest 3 9 3
+endif
+~
+>speech_prog task~
+if quest(3,9,$n) == 3
+  say Why yes...
+  say You can start by retrieving the most vital ORGAN on one of the Forest Defilers Bodies!
+  say Let me assign you your papers.
+  mpoload 33062
+  give i33062 $n
+  say There you go, now get hurry...
+  say The Spirits of the forest need your help!
+  mpmset $n quest 3 9 4
+endif
+~
+>give_prog I33061~
+mpjunk i33061
+if quest(3,9,$n) == 4
+  say The head is Excellent yes, but NOT an organ!
+  say Here is a reward for your troubles!
+  mpecho Per'tano hands you some gold!
+  mpmadd $n gold 5000
+else
+  if quest(3,9,$n) == 5
+    say Very Good Forest Runner!
+    say Your rewards have been doubled!
+    mpecho Per'tano hands your some gold!
+    mpmadd $n gold 10000
+  endif
+endif
+~
+>give_prog I33064~
+mpjunk i33064
+if quest(3,9,$n) == 4
+  say Good but still NOT an organ!
+  say Here is a reward for your troubles!
+  mpecho Per'tano hands you some gold!
+  mpmadd $n gold 10000
+else
+  if quest(3,9,$n) == 5
+    say Very Good Forest Runner!
+    say Your rewards have been doubled!
+    mpecho Per'tano hands your some gold!
+    mpmadd $n gold 20000
+  endif
+endif
+~
+>give_prog I33063~
+mpjunk i33063
+if quest(3,9,$n) == 4
+  say Excellent you have proven yourself worthy!
+  mpoload 33060
+  give i33060 $n
+  mpmset $n long (Forest Runner) $n is here watching over the forests
+  mpjunkperson $n i33062
+  mpmset $n quest 3 9 5
+else
+  if quest(3,9,$n) == 5
+    say Very Good Forest Runner!
+    say Your rewards have been doubled!
+    mpecho Per'tano hands your some gold!
+    mpmadd $n gold 150000
+  endif
+endif
+~
+|
+#33005
+librarian~
+Librarian~
+A gnomish librarian is here shushing everyone.~
+As you take a look at this old crone of a gnomish librarian. You can tell that
+she is quite ill-tempered.
+~
+ACT_RACE|ACT_SENTINEL|ACT_SMART|ACT_IS_NPC|ACT_BODY|ACT_NO_ORDER
+AFF_UNDERSTAND|AFF_TONGUES|AFF_DETECT_INVIS|AFF_DETECT_HIDDEN
+0 S
+1 BODY_HEAD BODY_HAND 1d1+13 1d1+1
+0 RACE_GNOME
+POS_STANDING POS_STANDING SEX_FEMALE
+#33006
+nidajo apothecary~
+Nidajo~
+Nidajo is here brewing up some potions.~
+Nidajo is a crazy old man, who loves his work way to much. He is a short lil
+halfling who's been withered and worn. Working as hard as he can. He doesn't
+even know his hat is smoking.
+~
+ACT_IS_NPC|ACT_SMART|ACT_RACE|ACT_NO_ORDER|ACT_BODY|ACT_SENTINEL
+AFF_DETECT_HIDDEN|AFF_DETECT_INVIS|AFF_UNDERSTAND|AFF_TONGUES
+0 S
+95 BODY_HEAD BODY_HAND 1d1+0 1d1+0
+0 RACE_HALFLING
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>greet_prog 100~
+if quest(1,8,$n) == 2
+say Have you brought the items I have asked for?
+else
+say Greetings Traveller!
+say May I be of some service today?
+endif
+~
+>rand_prog 20~
+say Maybe you can be of some Help to me?
+~
+>speech_prog help~
+say I am attempting to make a new candle.
+say One that will repel pests and insects.
+say But I don't have the Supplies.
+say Maybe you help me fetch them?
+mpmset $n quest 1 8 1
+~
+>speech_prog supplies~
+if quest(1,8,$n) == 1
+say Why yes, This is what I need!
+say Some form of wax for the candle.
+say Something that repels insects.
+say Some silk string to use as a wick.
+say And a mold of some sort.
+say And something to light the fire on my stove.
+say Fetch all of these items and return to me.
+endif
+mpmset $n quest 1 8 2
+~
+>speech_prog yes~
+if quest(1,8,$n) == 2
+say Excellent..!
+say Now give me what you found to get the fire going..!
+endif
+~
+>speech_prog no~
+if quest(1,8,$n) == 2
+say Well than hurry and fetch me those items.
+endif
+~
+>give_prog I33003~
+mpjunk i33003
+if quest(1,8,$n) == 2
+recho Nidajo takes the flint and Lights the fire on his stove!
+say Excellent, Now give me the clay mold!
+mpmset $n quest 1 8 3
+endif
+~
+>give_prog I33004~
+mpjunk i33004
+if quest(1,8,$n) == 3
+recho Nidajo takes the clay mold and sets it on the stove!
+say Good, now give me the wax!
+mpmset $n quest 1 8 4
+endif
+~
+>give_prog I33008~
+mpjunk i33008
+if quest(1,8,$n) == 4
+recho Places the candle in the mold and melts down the wax.
+say Wonderful, now I just need something that repels insects?
+mpmset $n quest 1 8 5
+endif
+~
+>give_prog I33006~
+mpjunk i33006
+if quest(1,8,$n) == 5
+recho Nidajo stirs the cedar shavings into the wax!
+say Good.. Now we just need a wick..!
+mpmset $n quest 1 8 6
+endif
+~
+>give_prog I33043~
+mpjunk i33043
+if quest(1,8,$n) == 6
+recho Nidajo dips the string into the wax!
+recho Nidajo takes the mold off the stove and lets it cool.
+recho Nidajo cracks the mold open!
+mpquiet on
+mpoload 33009
+mpquiet off
+recho A red brown candle appears from the mold!
+say There you go!
+say Now go and try it!
+give candle $n
+endif
+~
+>give_prog I33050~
+give circular $n
+say You might wanna try a better shaped mold.
+~
+|
+#33007
+master trainer~
+Master Trainer~
+The master trainer is here teaching you some new things.~
+The master trainer is a well built young man. You can see some of the finest
+weapons crafted strapped to him. Hanging from his belt is a few wands. He must
+be as wise as he is strong.
+~
+ACT_SENTINEL|ACT_TRAIN|ACT_PRACTICE|ACT_RACE|ACT_IS_NPC|ACT_NO_ORDER|ACT_BODY|ACT_SMART
+AFF_UNDERSTAND|AFF_DETECT_HIDDEN|AFF_DETECT_INVIS|AFF_TONGUES
+0 S
+1 BODY_HEAD BODY_HAND 1d1+1 1d1+1
+0 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+#33008
+boy~
+A small boy~
+You see a small boy playing here.~
+As you look at this small child, it seems almost innocent. All until he kicks
+you in the shin.
+~
+ACT_RACE|ACT_SMART|ACT_BODY
+AFF_UNDERSTAND|AFF_TONGUES
+0 S
+9 BODY_HEAD BODY_FOOT 1d50+25 1d9+1
+500 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+#33009
+girl~
+A small girl~
+You see a small girl playing with a doll here.~
+As you look at this small child, it seems almost innocent. All until he kicks
+you in the shin.
+~
+ACT_BODY|ACT_RACE|ACT_SMART
+AFF_UNDERSTAND|AFF_TONGUES
+0 S
+9 BODY_HEAD BODY_FOOT 1d50+10 1d6+2
+10 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_FEMALE
+#33010
+male villager~
+A male villager~
+You see a male villager working hard here.~
+As you take a close look at the male villager you can tell that he has been
+working hard all day. And could probably use a bath due to the sweat pouring
+down his brow.
+~
+ACT_SMART|ACT_BODY|ACT_RACE
+AFF_TONGUES|AFF_UNDERSTAND
+0 S
+13 BODY_HEAD BODY_HAND 5d28+50 1d10+7
+10 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+#33011
+female villager~
+A female villager~
+You see a female villager wandering around here.~
+As you take a close look at the female villager you can tell that she must have
+been shopping all day and running errands. Her dress seems to be covered in
+dust from walking around on the roads.
+~
+ACT_SMART|ACT_RACE|ACT_BODY
+AFF_TONGUES|AFF_UNDERSTAND
+0 S
+13 BODY_HEAD BODY_HAND 5d28+25 1d10+3
+20 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_FEMALE
+#33012
+village guard~
+A village guard~
+A village guard is here looking out for trouble.~
+As you look carefully at this guard you can tell that he is watching you
+very intently. Maybe you shouldn't bother him too much.
+~
+ACT_NO_ORDER|ACT_SENTINEL|ACT_BODY|ACT_SMART|ACT_RACE
+AFF_HUNT|AFF_DETECT_INVIS|AFF_UNDERSTAND|AFF_DETECT_HIDDEN|AFF_TONGUES
+0 S
+20 BODY_HEAD BODY_HAND 1d100+130 1d16+8
+500 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+#33013
+forest runner~
+A forest runner~
+A forest runner is here.~
+As you take a close look at the forest runner you can tell that he is obviously
+a person of high status around this town. You wonder how one could earn this
+position of status.
+~
+ACT_RACE|ACT_BODY|ACT_NO_ORDER|ACT_SMART
+AFF_UNDERSTAND|AFF_SANCTUARY|AFF_DETECT_HIDDEN|AFF_DETECT_INVIS|AFF_TONGUES
+0 S
+20 BODY_HEAD BODY_HAND 1d100+150 1d16+8
+1250 RACE_ELF
+POS_STANDING POS_STANDING SEX_MALE
+#33014
+big spider~
+A big spider~
+You see a big spider here waiting for its prey.~
+As you take a carefull look at this spider you can tell that he is awaiting
+his prey.
+~
+ACT_RACE|ACT_SMART|ACT_SENTINEL|ACT_BODY|ACT_NO_ORDER
+AFF_DETECT_HIDDEN|AFF_DETECT_INVIS|AFF_HIDE
+0 S
+15 BODY_HEAD BODY_MOUTH 1d1+199 4d5+3
+0 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>fight_prog 15~
+mpquiet on
+c 'poison' $n
+mpecho The spiders lashes out and bites you!
+mpquiet off
+~
+>death_prog 100~
+mpquiet on
+mpoload 33042
+mpquiet off
+drop silk
+~
+|
+#33015
+forest pixie~
+A forest pixie~
+A forest pixie is flying around here.~
+  {150}As you take a close careful look at this pixie you can tell that she has been
+wandering these wood for some time now. Maybe she is looking for something?
+~
+ACT_BODY|ACT_RACE|ACT_IS_NPC|ACT_SMART|ACT_NO_ORDER
+AFF_DETECT_INVIS|AFF_TONGUES|AFF_FLYING|AFF_UNDERSTAND|AFF_DETECT_HIDDEN|AFF_SANCTUARY
+1000 S
+15 BODY_HEAD BODY_WING 200d1+50 1d10+6
+1000 RACE_HALFLING
+POS_STANDING POS_STANDING SEX_FEMALE
+>greet_prog 75~
+say Oh... hello I didn't see you there!
+say What do you need...?
+~
+>speech_prog dust~
+say Oh you are wanting some of my magical dust?
+~
+>speech_prog yes~
+say Well I would be more than happy to give you some.
+say If you could do me a favor...!
+~
+>speech_prog favor~
+say Why yes...
+say I have been wanting some berry wine for sometime now.
+say If you could make me some I would greatly appreciate it.
+~
+>rand_prog 25~
+emote spreads some pixie dust around the forest!
+~
+>fight_prog 15~
+mpecho The Forest Pixie throws some dust on you!
+mpquiet on
+c 'faerie fire'
+c 'blindness'
+c 'color spray'
+mpquiet off
+~
+>give_prog I33055~
+say Terrific, now I can return to my homelands...
+say For the Celebration with a Gift...
+say Thank You very much....!
+mpoload 33051
+give dust $n
+mpecho The Small Pixie throws some dust on herself and disappears!
+mpquiet on
+purge self
+~
+|
+#33016
+troll~
+A troll~
+A terrifying troll is here.~
+As you look at this terrify Troll you can tell that he has no intentions of
+leaving this home.
+~
+ACT_NO_ORDER|ACT_IS_NPC|ACT_SCAVENGER|ACT_BODY|ACT_RACE|ACT_SENTINEL
+AFF_UNDERSTAND|AFF_HIDE|AFF_TONGUES|AFF_SANCTUARY
+-500 S
+13 BODY_HEAD BODY_MOUTH 180d1+20 2d6+3
+1000 RACE_OGRE
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 99~
+recho ROOOOOAAAAAAAARRRRRRRRR!
+if level($n) < 16
+mpoload 33056
+endif
+~
+>fight_prog 20~
+kick
+else
+if rand(13)
+trip
+endif
+~
+|
+#33017
+forest defiler~
+A forest defiler~
+A forest defiler is here corrupting the woods.~
+As you take a close look at the defiler you can tell that he has no intention
+of quiting his goal of destroying and defiling the surrounding forests.
+~
+ACT_NO_ORDER|ACT_IS_NPC|ACT_BODY|ACT_RACE|ACT_SMART
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_TONGUES
+-350 S
+15 BODY_HEAD BODY_HAND 180d1+5 2d6+3
+1000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 99~
+if quest(3,9,$n) == 5
+shout $n is an enemy of the Defilers!
+mpkill $n
+~
+>entry_prog 99~
+mpquiet on
+mpkill deer
+mpkill wolf
+mpkill pixie
+mpquiet off
+~
+>death_prog 100~
+if rand(15)
+mpoload 33064
+drop hand
+else
+if rand(35)
+mpoload 33063
+drop heart
+else
+if rand(50)
+mpoload 33061
+drop head
+endif
+endif
+endif
+~
+|
+#33018
+deer~
+A deer~
+A Forest deer is here foraging for some food.~
+You take a close look at this deer and you can tell that it is a quiet and
+gentle creature.
+~
+ACT_RACE|ACT_BODY|ACT_SMART|ACT_NO_ORDER|ACT_WEAK
+AFF_DETECT_HIDDEN
+0 S
+5 BODY_HEAD BODY_FOOT 99d1+1 2d3+2
+0 RACE_ELF
+POS_STANDING POS_STANDING SEX_NEUTRAL
+#33019
+wolf~
+A wolf~
+You see a wolf of the forest hunting here.~
+As you take a close look at this wolf you can tell that he isn't too friendly
+to strangers.
+~
+ACT_RACE|ACT_BODY|ACT_NO_ORDER|ACT_SMART|ACT_WEAK
+AFF_DETECT_HIDDEN
+0 S
+5 BODY_HEAD BODY_FOOT 99d1+1 2d3+4
+0 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_NEUTRAL
+#0
+
+
+
+#OBJECTS
+#33000
+stone pond~
+A Stone Pond~
+You see a stone pond here.~
+As you look at this naturally made stone pond. You can see the purest water you
+have ever seen pouring forth from the spring that created it.
+~
+ITEM_TYPE_FOUNTAIN
+ITEM_FLAG_LEVEL
+0
+0 0 0 0
+1 1 1
+#33001
+berry bush~
+Berry Bush~
+You see a Berry Bush here.~
+  {010}As you take a careful look at this berry bush. You can tell that its berries
+are plump and juicy! You can almost SQUEEZE the juice right out of them.
+~
+ITEM_TYPE_FURNITURE
+ITEM_FLAG_INVENTORY|ITEM_FLAG_LEVEL
+0
+0 0 0 0
+1 1 1
+#33002
+hole~
+A hole in the road~
+You see a Hole in the road here.~
+As you take a close careful look at the hole you can tell that it is merely a stone missing from the cobble stone road.
+~
+ITEM_TYPE_CONTAINER
+ITEM_FLAG_INVIS|ITEM_FLAG_INVENTORY|ITEM_FLAG_LEVEL
+0
+99 0 0 0
+1 1 1
+#33003
+stone~
+A loose stone~
+You see a loose stone here.~
+As you take a close careful look at the stone you can tell that it is a piece
+of flint. Maybe you can use this to start a fire.
+~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL|ITEM_FLAG_INVENTORY
+ITEM_WEAR_TAKE
+0 0 0 0
+2 1 1
+#33004
+cylinder mold~
+A Cylinder shaped Mold~
+You see a cylinder shaped mold here~
+As you take a close look at the mold it appears to be CYLINDER shaped. 
+You wonder what it could be a mold for?
+~
+ITEM_TYPE_CONTAINER
+ITEM_FLAG_LEVEL|ITEM_FLAG_INVENTORY
+ITEM_WEAR_TAKE
+20 0 0 0
+2 4 1
+#33005
+cedar tree~
+A Large Cedar Tree~
+You see a large Cedar Tree here.~
+As you look at this huge tree, you can tell that it must have been here for
+hundreds of years. You begin to wonder why no one ever knew of this place 
+before.
+~
+ITEM_TYPE_FURNITURE
+ITEM_FLAG_LEVEL
+0
+0 0 0 0
+1 1 1
+#33006
+cedar shavings~
+Cedar Shavings~
+You see some wood chips here~
+As you look close at these wood chips. You can tell from the scent that they
+must be made out of cedar.
+~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 0 0
+1 1 1
+#33007
+wood axe~
+Wood Axe~
+You see an Axe here~
+As you look at this wood axe you can tell that it would work good against some
+tree's.
+~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_LEVEL|ITEM_FLAG_INVENTORY
+ITEM_WEAR_WIELD|ITEM_WEAR_TAKE
+0 1 1 WEAPON_SLASH
+1 100 1
+P 1
+TRIG_UNKNOWN 100 chop
+OPROG_IF OIF_USER_ROOM_NUM = 33008 2 3
+P 2
+TRIG_VOID
+OPROG_IF OIF_WEAR_LOC = WEAR_WIELD 2 0
+P 2
+TRIG_VOID
+OPROG_ECHO
+CHOP! CHOP! CHOP! Some cedar chips fly off the tree!~
+P 2
+TRIG_VOID
+OPROG_ECHO
+You gather up some cedar chips!~
+P 2
+TRIG_VOID
+OPROG_GOD_COMMAND
+mpoload 33006~
+P 3
+TRIG_UNKNOWN 100 chop
+OPROG_IF OIF_USER_ROOM_NUM ! 33008 4 3
+P 4
+TRIG_VOID
+OPROG_IF OIF_WEAR_LOC = WEAR_WIELD 4 0
+P 4
+TRIG_VOID
+OPROG_ECHO
+CHOP! CHOP! CHOP! NOTHING!~
+#33008
+plain white candle~
+A plain white candle~
+You see a long piece of wax here~
+As you take a good look at this candle you can see nothing special about it.
+~
+ITEM_TYPE_LIGHT
+ITEM_FLAG_LEVEL|ITEM_FLAG_INVENTORY
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+0 0 12 0
+1 50 2
+#33009
+scented candle~
+A scented candle~
+You see a candle here~
+As you look at this magicaly scented candle you can tell that it has some
+soothing properties to it.
+~
+ITEM_TYPE_LIGHT
+ITEM_FLAG_LEVEL|ITEM_FLAG_INVENTORY
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+0 0 -1 0
+2 20000 10
+A
+APPLY_WIS 2
+A
+APPLY_CON 2
+A
+APPLY_INT 2
+P 1
+TRIG_TICK 15
+OPROG_IF OIF_WEAR_LOC ! WEAR_NONE 2 0
+P 2
+TRIG_VOID
+OPROG_ECHO
+The smell of spices fills the air!~
+P 2
+TRIG_VOID
+OPROG_APPLY OAPPLY_HIT 3
+#33011
+scroll recall~
+Scroll of Recall~
+You can see a well written scroll here~
+As you take a good look you can tell that this is just a basic scroll of recall.
+~
+ITEM_TYPE_SCROLL
+ITEM_FLAG_INVENTORY|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+5 SPELL_WORD_OF_RECALL SPELL_NONE SPELL_NONE
+1 75 5
+#33012
+scroll identify~
+Scroll of Identify~
+You see a basic scroll lying here~
+As you take a close look at this scroll you can tell that is just a basic scroll of identify.
+~
+ITEM_TYPE_SCROLL
+ITEM_FLAG_LEVEL|ITEM_FLAG_INVENTORY
+ITEM_WEAR_TAKE
+5 SPELL_IDENTIFY SPELL_NONE SPELL_NONE
+1 100 5
+#33013
+scroll detection~
+Scroll of Detection~
+You see a shimmering scroll here~
+As you take a good look at this shimmering scroll you can tell that it gives 
+the ability to see the unseen.
+~
+ITEM_TYPE_SCROLL
+ITEM_FLAG_LEVEL|ITEM_FLAG_INVENTORY
+ITEM_WEAR_TAKE
+5 SPELL_DETECT_HIDDEN SPELL_DETECT_INVIS SPELL_NONE
+1 300 5
+#33014
+potion detection~
+Potion of Detection~
+You see a shimmering potion here~
+As you take a good look at this shimmering potion you can tell that it gives 
+the ability to see the unseen.
+~
+ITEM_TYPE_POTION
+ITEM_FLAG_LEVEL|ITEM_FLAG_INVENTORY
+ITEM_WEAR_TAKE
+5 SPELL_DETECT_HIDDEN SPELL_DETECT_INVIS SPELL_NONE
+1 300 5
+#33015
+travellers potion~
+Travellers Potion~
+You see a clear potion lying here~
+As you look at this clear light weight potion you begin to feel as though you
+can fly.
+~
+ITEM_TYPE_POTION
+ITEM_FLAG_INVENTORY|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+5 SPELL_ENHANCED_REST SPELL_FLY SPELL_NONE
+1 400 5
+#33016
+travellers scroll~
+Travellers Scroll~
+You see a clear scroll lying here~
+As you look at this clear light weight scroll you begin to feel as though you
+can fly.
+~
+ITEM_TYPE_SCROLL
+ITEM_FLAG_INVENTORY|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+5 SPELL_ENHANCED_REST SPELL_FLY SPELL_NONE
+1 400 5
+#33017
+scroll passage~
+Scroll of Passage~
+You see a transparent scroll here~
+As you look at this scroll you tell that it removes your restrictions of 
+movement.
+~
+ITEM_TYPE_SCROLL
+ITEM_FLAG_INVENTORY|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+5 SPELL_PASS_DOOR SPELL_NONE SPELL_NONE
+1 500 5
+#33018
+potion passage~
+Potion of Passage~
+You see a transparent potion here~
+As you look at this potion you tell that it removes your restrictions of 
+movement.
+~
+ITEM_TYPE_POTION
+ITEM_FLAG_LEVEL|ITEM_FLAG_INVENTORY
+ITEM_WEAR_TAKE
+5 SPELL_PASS_DOOR SPELL_NONE SPELL_NONE
+1 500 5
+#33019
+tanned leather vest~
+Tanned Leather Vest~
+You see a leather vest lying here~
+As you take a good look at this leather vest you can tell that it would provide
+good protection for you.
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_INVENTORY|ITEM_FLAG_LEVEL
+ITEM_WEAR_BODY|ITEM_WEAR_TAKE
+4 0 0 0
+4 1000 5
+#33020
+tanned leather gloves~
+Tanned Leather Gloves~
+You see a set of leather gloves lying here~
+As you take a good look at these leather gloves you can tell that it would 
+provide good protection for you.
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_INVENTORY|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HANDS
+4 0 0 0
+4 250 5
+#33021
+tanned leather greaves~
+Tanned Leather Greaves~
+You see a set of leather greaves lying here~
+As you take a good look at these leather greaves you can tell that it would 
+provide good protection for you.
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL|ITEM_FLAG_INVENTORY
+ITEM_WEAR_TAKE|ITEM_WEAR_LEGS
+4 0 0 0
+4 500 5
+#33022
+tanned leather boots~
+Tanned Leather Boots~
+You see a set of leather boots lying here~
+As you take a good look at these leather boots you can tell that it would 
+provide good protection for you.
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL|ITEM_FLAG_INVENTORY
+ITEM_WEAR_TAKE|ITEM_WEAR_FEET
+4 0 0 0
+4 250 5
+#33023
+tanned leather sleeves~
+Tanned Leather Sleeves~
+You see a set of leather sleeves lying here~
+As you take a good look at these leather vambraces you can tell that it would 
+provide good protection for you.
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL|ITEM_FLAG_INVENTORY
+ITEM_WEAR_ARMS|ITEM_WEAR_TAKE
+4 0 0 0
+4 250 5
+#33024
+tanned leather belt~
+Tanned Leather Belt~
+You see a leather belt lying here~
+As you take a good look at this leather belt you can tell that it would provide
+good protection for you.
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_INVENTORY|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WAIST
+4 0 0 0
+4 250 5
+#33025
+tanned leather bracer~
+Tanned Leather Bracer~
+You see a leather bracer lying here~
+As you take a good look at this leather bracer you can tell that it would 
+provide good protection for you.
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL|ITEM_FLAG_INVENTORY
+ITEM_WEAR_TAKE|ITEM_WEAR_WRIST
+4 0 0 0
+4 250 5
+#33026
+treebranch branch twig~
+Treebranch~
+You see a small treebranch here.~
+   {020}As you examine the treebranch, you can tell that it has been stripped of its
+bark, and some strange carvings have been carved into the wood. Obviously it has
+been placed here for a purpose.
+~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL
+0
+0 0 0 0
+1 1 1
+#33027
+stick branch twig~
+Stick~
+You see a small stick here.~
+   {020}Yes its a stick...
+~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL
+0
+0 0 0 0
+1 1 1
+#33028
+sign wooden small~
+sign~
+You see a Small Wooden Sign here!~
+  {000}.                           {030}+--------------------------+
+                          |                          |
+                          |     {130}Western Avenue: West  {030}   |
+                          |     {130}Eastern Avenue: East     {030}|
+                          |     {130}Village Square: South    {030}|
+                          |                          |
+                          +--------------------------+
+                           | |                    | |
+  
+
+~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL
+0
+0 0 0 0
+1 1 1
+#33029
+bookshelf~
+Bookshelf~
+You see a Cedar Bookshelf here~
+As you take a good close look at this cedar bookshelf you can see several books
+and scrolls in it. Maybe you should do some reading.
+~
+ITEM_TYPE_CONTAINER
+ITEM_FLAG_LEVEL
+0
+20 0 0 0
+1 1 1
+#33030
+book cedar~
+Book: The Natural uses of Cedar~
+Book: The Natural uses of Cedar~
+  {030}-   {130}Cedar is a light weight and dimensionally stable wood that lies flat and 
+  stays straight, which means it resists the natural tendency to crack and
+  check as you might find in many other wood species.
+
+  {030}-   {130}Western Red Cedar is incredibly thermal coefficient, meaning even on hot
+  hot days it is cool to sit in.
+
+  {030}-   {130}Its bacterial and fungal resistance coupled with the fact that cedar is
+  80% the strength of Oak, makes it the most desirable wood to use for 
+  outdoor building materials.
+
+  {030}-   {130}Western Red Cedar fibers contain oils that act as natural preservatives
+  to help the wood resist rot and decay making it excellent furniture
+  material for moist and humid climates.
+
+  {030}-   {130}Among other things these naturally occuring organic compounds called
+  ( thujaplicins ) give off that distinct cedar aroma that is pleasent
+  to humans, but a detterent to insects, moths, and other wood pests. 
+  This is why cedar is a choice wood for bookshelves, dressers, and even
+  pet furniture.
+~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 0 0
+1 1 1
+#33031
+recipe book~
+Book: Real Life Recipe Book~
+You see a Real Life Recipe Book here~
+  {170}Ok you mudders out there you have found something that no one has done before
+in Mortal Realms. And that is added an item that contained a Real Life Recipe.
+This is a dish that my mother used to serve the family on a regular basis, and
+has given to me and my wife for our family. Its a good meal when added with
+some veggies. Give it a try sometime.
+
+{1330}              Beef Strogainoff
+
+  {030}Ingrediants:
+  {130} - 1lb of Hamburger
+ - 3 slices of Diced Bacon or 2 tablespoons of Bacon Bits
+ - 1/2 Cup of Diced Onion ( I Use a 1/4 cup )
+ - 1 1/2 tablespoons Flour
+ - 3/4 Teaspoon of Salt and a Dash of Pepper
+ - 1/4 Teaspoon of Paparika
+ - 1 Can of Cream of Mushroom Soup
+ - 1 Cup of Sour Cream
+ - 1/2 Cup of diced olives ( Optional )
+
+  {030}Directions:   {130}Brown ground beef in a skillet or frying pan, add onion and cook
+until tender, but not brown. Drain excess fat/grease. Stir in soup and add a
+half a can of water. Blend flour, salt, pepper, and paparika in the other
+half a can of water. Stir in and add bacon. Cook Slowly for 20 Minutes.
+Stirring frequently. ( Add Olives if olives are desired ). Stir in sour cream
+and heat thoroughly.
+
+This is best served on top of Egg Noodles ( a half of 16oz. bag usually feeds
+3 - 4 servings depending on appetite ). Fresh frozen pea's makes an excellent
+side dish with this meal.
+
+  {030}Note: For those who do not eat red meat or have special diets. The Ground 
+Beef can be substituted with Chicken or Pork. For those on diets. I find the
+Chicken version tastes better when the Cream of Mushroom is substituted with
+Cream of Broccoli. For Low Fat version the Sour Cream and soup can be
+substituted with fat free or low fat Sour Creams and Soups.
+~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 0 0
+1 1 1
+#33032
+table~
+Table~
+You see a long pine Table here~
+As you take a close look at the table you can see several books laying on top
+of it. In the center of the table is a large piece of PARCHMENT that seems to
+stand out from the rest of the clutter.
+~
+ITEM_TYPE_FURNITURE
+ITEM_FLAG_LEVEL
+0
+0 0 0 0
+800 1 1
+#33033
+chest~
+Chest~
+You see a locked chest over in the corner~
+  {070}As you begin to examine the chest you can tell that the lock on it is fairly
+rusted. But than again, a key may be necessary to open it.
+~
+ITEM_TYPE_CONTAINER
+ITEM_FLAG_LEVEL
+0
+10 13 1 0
+1 1 1
+#33034
+rusty key~
+Rusty Key~
+You see a rusty key here~
+As you take a close look at the rusty key you can tell by looking at its shape
+that it must belong to Gho'Don's Chest!
+~
+ITEM_TYPE_KEY
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+1 0 0 0
+1 1 1
+#33035
+gem opal~
+Opal Gem~
+You see a large opal gem here~
+  {070}As you take a good look at the gem, you can tell that it is a large pure opal.
+This must be of some good use to a blacksmith.
+~
+ITEM_TYPE_TREASURE
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 0 0
+3 5 1
+#33036
+clerks desk~
+Clerks Desk~
+You see the clerks desk here~
+As you take a good careful look at the clerks desk you can see several pieces
+of parchment. Looking at them you can tell that these are some form of dispatch
+papers.
+~
+ITEM_TYPE_FURNITURE
+ITEM_FLAG_LEVEL
+0
+0 0 0 0
+1 1 1
+#33037
+sign wooden small~
+sign~
+You see a Small Wooden Sign here!~
+  {000}.                           {030}+--------------------------+
+                          |                          |
+                          |     {130}Western Avenue: West  {030}   |
+                          |     {130}Eastern Avenue: East     {030}|
+                          |     {130}Village Square: North    {030}|
+                          |                          |
+                          +--------------------------+
+                           | |                    | |
+  
+
+~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL
+0
+0 0 0 0
+1 1 1
+#33038
+sign wooden small~
+sign~
+You see a Small Wooden Sign here!~
+  {000}.                         {030}+------------------------------+
+                        |                              |
+                        |     {130}Central Avenue    : West  {030}   |
+                        |     {130}Northern Boulevard: North    {030}|
+                        |     {130}Southern Boulevard: South    {030}|
+                        |                              |
+                        +------------------------------+
+                         | |                        | |
+  
+
+~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL
+0
+0 0 0 0
+1 1 1
+#33039
+forest runners belt~
+Forest Runners Belt~
+You see a Green Leather Belt here~
+  {120}As you take a good look at this belt you can tell that it is a perfect fit.
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WAIST
+4 0 0 0
+1 2000 10
+A
+APPLY_MOVE 5
+#33040
+forest runners tunic~
+Forest Runners Tunic~
+You see a green tunic laying here~
+As you take a close look at this tunic you can tell that it is a perfect fit.
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_BODY
+5 0 0 0
+3 2000 10
+A
+APPLY_MOVE 5
+#33041
+forest runners staff~
+Forest Runners Staff~
+You see a long stick laying on the ground here~
+As you take a close look at this stick you can see some runes engraved on it.
+~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_WIELD|ITEM_WEAR_TAKE
+0 3 5 WEAPON_POUND
+5 2000 10
+#33042
+spider silk~
+Spider Silk~
+You see some spidery silk here~
+As you look at the spider silk you can tell that it is pretty sticky. Be sure
+you don't get stuck.
+~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 0 0
+0 0 1
+P 1
+TRIG_UNKNOWN 100 spin
+OPROG_IF OIF_USER_ROOM_NUM = 33089 2 3
+P 2
+TRIG_VOID
+OPROG_ECHO
+You spin the spider silk into a silk string!~
+P 2
+TRIG_VOID
+OPROG_GOD_COMMAND
+mpoload 33043~
+P 2
+TRIG_VOID
+OPROG_JUNK
+#33043
+silk string~
+Silk String~
+You see some string laying here~
+As you look at this fine string you can tell that it maybe useful as a wick.
+~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 0 0
+1 1 1
+#33044
+spindle~
+Threading Spindle~
+You see a Threading Spindle here~
+You see that this threading spindle has been used quite often. Maybe if you had
+something to SPIN into thread or string you could use it.
+~
+ITEM_TYPE_FURNITURE
+ITEM_FLAG_LEVEL
+0
+0 0 0 0
+1 1 1
+#33045
+bottled water~
+Bottle of Water~
+You see a bottle of water here~
+As you take a good look at this container you can tell that it is filled with
+water.
+~
+ITEM_TYPE_DRINK_CON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+10 10 LIQ_WATER NOT_POISONED
+2 55 5
+#33046
+fried chicken~
+Fried Chicken~
+You see some steaming fried chicken here~
+As you take a good wiff of this chicken it begins to make you hungry!
+~
+ITEM_TYPE_FOOD
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+12 0 0 NOT_POISONED
+1 75 5
+#33047
+spinning book~
+Book: Spinning Thread and String~
+You see a book on the ground here~
+In order to spin certain fibers into thread or string one must have some form
+of fiber, cotton, silk, or the likes. And the use of a Spindle. You can use the
+spindle by using the SPIN command.
+~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 0 0
+1 1 1
+#33048
+conifer tree~
+A Large Conifer Tree~
+You see a large Conifer Tree here~
+As you look at this huge tree, you can tell that it must have been here for
+hundreds of years. You begin to wonder why no one ever knew of this place 
+before.
+~
+ITEM_TYPE_FURNITURE
+ITEM_FLAG_LEVEL
+0
+0 0 0 0
+1 1 1
+#33049
+plain copper ring~
+Plain Copper Ring~
+You see a small ring laying here~
+As you take a good look at this copper ring you can tell that it would provide
+good protection for you.
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL|ITEM_FLAG_INVENTORY
+ITEM_WEAR_TAKE|ITEM_WEAR_FINGER
+4 0 0 0
+4 250 5
+#33050
+circular mold~
+A Circular Shaped Mold~
+You see a circular shaped mold here~
+As you take a close look at the mold it appears to be Circular shaped. 
+You wonder what it could be a mold for?
+~
+ITEM_TYPE_CONTAINER
+ITEM_FLAG_LEVEL|ITEM_FLAG_INVENTORY
+ITEM_WEAR_TAKE
+20 0 0 0
+2 4 1
+#33051
+pixie dust~
+Magical Pixie Dust~
+You see a bag of something laying here~
+  {150}As you take a close careful look at this bag you can tell that it is filled
+with some   {170}GLOWING   {150}magical dust of some sort.
+~
+ITEM_TYPE_TRASH
+ITEM_FLAG_GLOW|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 0 0
+1 1 1
+#33052
+wine bottle~
+Empty Wine Bottle~
+You see an empty wine bottle here~
+As you look at this bottle you can tell that it is completely empty! Maybe you
+should TOPOFF with some water somewhere....
+~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 0 0
+1 20 1
+P 1
+TRIG_UNKNOWN 100 topoff
+OPROG_IF OIF_USER_ROOM_NUM = 33036 2 3
+P 2
+TRIG_VOID
+OPROG_ECHO
+You fill the Wine Bottle with some water!~
+P 2
+TRIG_VOID
+OPROG_GOD_COMMAND
+mpoload 33053~
+P 2
+TRIG_VOID
+OPROG_JUNK
+#33053
+wine bottle~
+Filled Wine Bottle~
+You see a filled wine bottle here~
+As you look at this bottle you can tell that it is full with water now. Now
+maybe you should find something like some berries for flavor!
+~
+ITEM_TYPE_DRINK_CON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+5 5 LIQ_WINE NOT_POISONED
+1 20 1
+P 1
+TRIG_UNKNOWN 100 squeeze
+OPROG_IF OIF_USER_ROOM_NUM = 33019 2 3
+P 2
+TRIG_VOID
+OPROG_ECHO
+You squeeze some berry juice into the wine!~
+P 2
+TRIG_VOID
+OPROG_GOD_COMMAND
+mpoload 33054~
+P 2
+TRIG_VOID
+OPROG_JUNK
+#33054
+wine mixture~
+Bottle of Wine Mixture~
+You see a filled bottle of wine mixture here~
+As you look at this bottle you can tell that it is full of berry juice and
+wine... Maybe you should trying MIXING it.
+~
+ITEM_TYPE_DRINK_CON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+5 5 LIQ_WINE POISONED
+1 20 1
+P 1
+TRIG_UNKNOWN 100 mix
+OPROG_IF OIF_WEAR_LOC = WEAR_NONE 2 0
+P 2
+TRIG_VOID
+OPROG_ECHO
+You swish the mixture around!~
+P 2
+TRIG_VOID
+OPROG_ECHO
+You create a Bottle of Berry Wine~
+P 2
+TRIG_VOID
+OPROG_GOD_COMMAND
+mpoload 33055~
+P 2
+TRIG_VOID
+OPROG_JUNK
+#33055
+bottle berry wine~
+Bottle of Berry Wine~
+You see a bottle of berry wine here~
+As you look at this bottle you can tell that it is full!
+~
+ITEM_TYPE_DRINK_CON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+5 5 LIQ_WINE NOT_POISONED
+1 20 1
+P 1
+TRIG_UNKNOWN 100 squeeze
+OPROG_IF OIF_USER_ROOM_NUM = 33019 2 3
+P 2
+TRIG_VOID
+OPROG_ECHO
+You squeeze some berry juice into the wine!~
+P 2
+TRIG_VOID
+OPROG_GOD_COMMAND
+mpoload 33054~
+P 2
+TRIG_VOID
+OPROG_JUNK
+#33056
+rotten tooth necklace~
+Rotten Tooth Necklace~
+You see a string of teeth here~
+As you take a careful look at this necklace you can tell that it is made out
+of the rotten teeth of children...
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_NECK|ITEM_WEAR_TAKE
+2 0 0 0
+3 10000 15
+A
+APPLY_HITROLL 3
+A
+APPLY_DAMROLL 2
+#33057
+scroll invisibility~
+Scroll of Invisibility~
+You see a translucent scroll here~
+As you take a good look at this translucent scroll you can tell that it gives 
+the ability to be unseen.
+~
+ITEM_TYPE_SCROLL
+ITEM_FLAG_LEVEL|ITEM_FLAG_INVENTORY
+ITEM_WEAR_TAKE
+5 SPELL_INVIS SPELL_NONE SPELL_NONE
+1 300 5
+#33058
+potion invisibility~
+potion of Invisibility~
+You see a translucent potion here~
+As you take a good look at this translucent potion you can tell that it gives 
+the ability to be unseen.
+~
+ITEM_TYPE_POTION
+ITEM_FLAG_LEVEL|ITEM_FLAG_INVENTORY
+ITEM_WEAR_TAKE
+5 SPELL_INVIS SPELL_NONE SPELL_NONE
+1 300 5
+#33059
+opal encrusted ring~
+Opal Encrusted Ring~
+You see an gem encrusted ring here~
+Made of the purest copper. The ring has shimmering glow emenating from the 
+opal gem thats inset in it. Maybe you should be careful with it.
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL|ITEM_FLAG_MAGIC|ITEM_FLAG_GLOW
+ITEM_WEAR_TAKE|ITEM_WEAR_FINGER
+4 0 0 0
+2 20000 10
+A
+APPLY_WIS 2
+A
+APPLY_CON 2
+A
+APPLY_INT 2
+P 1
+TRIG_TICK 15
+OPROG_IF OIF_WEAR_LOC ! WEAR_NONE 2 0
+P 2
+TRIG_VOID
+OPROG_ECHO
+The Sun Shimmers off your ring!~
+P 2
+TRIG_VOID
+OPROG_APPLY OAPPLY_MANA 3
+#33060
+blood stained scimitar~
+Blood Stained Scimitar~
+You see a bloody scimitar here~
+ {120}As you take a close look at this weapon you can tell that it is covered with
+some form of venomous blood.
+~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_AUTO_ENGRAVE|ITEM_FLAG_LEVEL
+ITEM_WEAR_WIELD|ITEM_WEAR_TAKE
+0 5 4 WEAPON_PIERCE
+4 1000 15
+P 1
+TRIG_DAMAGE 15
+OPROG_IF OIF_WEAR_LOC ! WEAR_NONE 2 0
+P 2
+TRIG_VOID
+OPROG_ECHO
+You scimitar glows green for a moment!~
+P 2
+TRIG_VOID
+OPROG_GOD_COMMAND
+c 'poison'~
+#33061
+head~
+Defiler's Head~
+You see the head of a defiler here~
+ {110}Yes its a decapitated head...!
+~
+ITEM_TYPE_TRASH
+ITEM_FLAG_AUTO_ENGRAVE|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 0 0
+1 1 1
+#33062
+orders~
+A set of task orders~
+You see some parchment laying here~
+ {020}Welcome Recruit...
+It has been rumored that an evil group has been slaying the creatures of the
+forest. In order to prove yourself you must return the head of a defiler in 
+order to recieve your next set of orders.
+~
+ITEM_TYPE_TRASH
+ITEM_FLAG_AUTO_ENGRAVE|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 0 0
+1 1 1
+#33063
+heart~
+Defiler's Heart~
+You see the heart of a defiler here~
+ {110}Yes its a severed heart...!
+~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL|ITEM_FLAG_AUTO_ENGRAVE
+ITEM_WEAR_TAKE
+0 0 0 0
+1 1 1
+#33064
+hand~
+Defiler's Hand~
+You see the hand of a defiler here~
+{110}Yes its a severed hand...!
+~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 0 0
+1 1 1
+#33065
+holy flask~
+Holy Flask~
+You see a shimmering flask here~
+{170}As you take a close and careful look at this flask you can tell that only a
+member of the clergy would know how to use it.
+~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_LEVEL|ITEM_FLAG_MAGIC
+ITEM_WEAR_WIELD|ITEM_WEAR_TAKE
+0 2 5 WEAPON_POUND
+2 10000 10
+A
+APPLY_AC -4
+C
+Holy Splash~
+0
+#33066
+iron dagger~
+Iron Dagger~
+You see a small iron dagger here~
+As you take a close careful look at this weapon you can tell that it would work
+well for someone not so honest.
+~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 2 5 WEAPON_PIERCE
+3 2000 5
+#33067
+iron hammer~
+Iron Hammer~
+You see a large Iron Hammer here~
+Admiring this hammer you can tell that it could be used for all sorts of things
+~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 2 5 WEAPON_CRUSH
+3 2000 5
+#33068
+orders~
+A set of task orders~
+You see some parchment laying here~
+ {020}Welcome Recruit...
+It has been rumored that an evil group has been slaying the creatures of the
+forest. In order to prove yourself you must return the heart of a defiler in 
+order to recieve your next set of orders.
+~
+ITEM_TYPE_TRASH
+ITEM_FLAG_AUTO_ENGRAVE|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 0 0
+1 1 1
+#33069
+orders~
+A set of task orders~
+You see some parchment laying here~
+ {020}Welcome Recruit...
+It has been rumored that an evil group has been slaying the creatures of the
+forest. In order to prove yourself you must return the hand of a defiler in 
+order to recieve your next set of orders.
+~
+ITEM_TYPE_TRASH
+ITEM_FLAG_AUTO_ENGRAVE|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 0 0
+1 1 1
+#0
+
+
+
+#ROOMS
+#33000
+Well Shaded Trail~
+  {020}As you wander down this well shaded trail, you can see the forest's canopy 
+high above you. Ferns, shrubs, and other foliage grow all around you. To 
+the south you can see that the path leads off into an eastern direction.
+~
+330 ROOM_NO_CASTLE SECT_FOREST
+DDIR_SOUTH
+~
+~
+EX_ISDOOR -1 33001
+DDIR_NORTH
+~
+~
+EX_ISDOOR -1 17230
+S
+#33001
+Well Shaded Trail~
+       {020}As you begin wander even further down the well shaded trail, off to your 
+left, you can see a distinct CARVING chiseled deep into a large tree's bark. 
+Obviously this is travelled on more than one might expect.
+~
+330 ROOM_NO_CASTLE SECT_FOREST
+DDIR_NORTH
+~
+~
+EX_ISDOOR -1 33000
+DDIR_SOUTH
+~
+~
+EX_ISDOOR -1 33002
+E
+carving~
+       {100}.       {300}         
+                         +--------------------+  
+                         |       South        |
+                         |         to         |
+                         | GreyStone Village  |
+                         +--------------------+
+
+~
+S
+#33002
+Well Shaded Trail~
+       {020}You wander down this well shaded trail, and all around you the tranquility 
+of the forest puts you in an almost euphoric state of mind. You can see birds 
+flying about, squirrals gathering food, and even a young deer grazing on some 
+of the foliage within the distance. To the south you see the trail veer to the east.
+~
+330 ROOM_NO_CASTLE SECT_FOREST
+DDIR_NORTH
+~
+~
+EX_ISDOOR -1 33001
+DDIR_SOUTH
+~
+~
+EX_ISDOOR -1 33003
+S
+#33003
+Well Shaded Trail~
+       {020}As you journey further down the well shaded trail, you have found 
+yourself at a bend. It obviously leads to the east. But you are unsure of how 
+far it actually continues. This may be a good time to turn back. But than again 
+who knows what adventure lay beyond.
+~
+330 ROOM_NO_CASTLE SECT_FOREST
+DDIR_NORTH
+~
+~
+EX_ISDOOR -1 33002
+DDIR_EAST
+~
+~
+EX_ISDOOR -1 33004
+S
+#33004
+Beneath the Forest Canopy~
+      {020}As you round the bend in the trail, you find yourself beneath a huge canopy 
+of conifer tree's. These tree's must reach hundreds of feet in height, and 
+their branches almost block out the sun completely. The trail you were once 
+following now becomes more obscure.
+~
+330 ROOM_NO_CASTLE SECT_FOREST
+DDIR_WEST
+~
+~
+EX_ISDOOR -1 33003
+DDIR_EAST
+~
+~
+EX_ISDOOR -1 33005
+DDIR_NORTH
+~
+~
+EX_ISDOOR -1 33026
+DDIR_SOUTH
+~
+~
+EX_ISDOOR -1 33024
+S
+#33005
+Beneath the Forest Canopy~
+      {020}As you slowly make your approach further into this grand forest of old 
+growth tree's. Its hard to tell exactly where you could be. Most of the 
+trail has seemed to be rather overgrown. A good woodsmen would probably 
+look for signs of travel.
+~
+330 ROOM_NO_CASTLE SECT_FOREST
+DDIR_NORTH
+~
+~
+EX_ISDOOR -1 33013
+DDIR_WEST
+~
+~
+EX_ISDOOR -1 33004
+DDIR_EAST
+~
+~
+EX_ISDOOR -1 33006
+DDIR_SOUTH
+~
+~
+EX_ISDOOR -1 33015
+S
+
+#33006
+Beneath the Forest Canopy~
+      {020}As you wander through this tremendous old growth forest, you begin to 
+look around and realized that you are now LOST.... Maybe if you look hard 
+enough you can find some sort of clues to give you a sense of direction.
+~
+330 ROOM_NO_CASTLE SECT_FOREST
+DDIR_NORTH
+~
+~
+EX_ISDOOR -1 33007
+DDIR_SOUTH
+~
+~
+EX_ISDOOR -1 33021
+DDIR_EAST
+~
+~
+EX_ISDOOR -1 33029
+DDIR_WEST
+~
+~
+EX_ISDOOR -1 33005
+S
+#33007
+Beneath the Forest Canopy~
+     {020}As you wander through this tremendous old growth forest, you begin to 
+look around and realized that you are now LOST.... Maybe if you look hard 
+enough you can find some sort of clues to give you a sense of direction.
+~
+330 ROOM_NO_CASTLE SECT_FOREST
+DDIR_WEST
+~
+~
+EX_ISDOOR -1 33013
+DDIR_SOUTH
+~
+~
+EX_ISDOOR -1 33006
+DDIR_NORTH
+~
+~
+EX_ISDOOR -1 33008
+DDIR_EAST
+~
+~
+EX_ISDOOR -1 33028
+S
+#33008
+Beneath the forest canopy~
+     {020}As you wander through this tremendous old growth forest, you begin to 
+look around and realized that you are now LOST.... Maybe if you look hard 
+enough you can find some sort of clues to give you a sense of direction.
+~
+330 ROOM_NO_CASTLE SECT_FOREST
+DDIR_NORTH
+~
+~
+EX_ISDOOR -1 33020
+DDIR_EAST
+~
+~
+EX_ISDOOR -1 33009
+DDIR_SOUTH
+~
+~
+EX_ISDOOR -1 33007
+DDIR_WEST
+~
+~
+EX_ISDOOR -1 33012
+S
+#33009
+Beneath the forest canopy~
+      {020}As you wander through this tremendous old growth forest, you begin to 
+look around and realized that you are now LOST.... Maybe if you look hard 
+enough you can find some sort of clues to give you a sense of direction.
+~
+330 ROOM_NO_CASTLE SECT_FOREST
+DDIR_NORTH
+~
+~
+EX_ISDOOR -1 33019
+DDIR_EAST
+~
+~
+EX_ISDOOR -1 33010
+DDIR_SOUTH
+~
+~
+EX_ISDOOR -1 33028
+DDIR_WEST
+~
+~
+EX_ISDOOR -1 33008
+S
+#33010
+Beneath the forest canopy~
+      {020}As you wander through this tremendous old growth forest, you begin to 
+look around and realized that you are now LOST.... Maybe if you look hard 
+enough you can find some sort of clues to give you a sense of direction.
+~
+330 ROOM_NO_CASTLE SECT_FOREST
+DDIR_NORTH
+~
+~
+EX_ISDOOR -1 33018
+DDIR_EAST
+~
+~
+EX_ISDOOR -1 33011
+DDIR_SOUTH
+~
+~
+EX_ISDOOR -1 33027
+DDIR_WEST
+~
+~
+EX_ISDOOR -1 33009
+S
+#33011
+Beneath the forest canopy~
+     {020}As you wander through this tremendous old growth forest, you begin to 
+look around and realized that you are now LOST.... Maybe if you look hard 
+enough you can find some sort of clues to give you a sense of direction.
+~
+330 ROOM_NO_CASTLE SECT_FOREST
+DDIR_NORTH
+~
+~
+EX_ISDOOR -1 33017
+DDIR_EAST
+~
+~
+EX_ISDOOR -1 33012
+DDIR_SOUTH
+~
+~
+EX_ISDOOR -1 33026
+DDIR_WEST
+~
+~
+EX_ISDOOR -1 33010
+S
+
+#33012
+Beneath the forest canopy~
+      {020}As you wander through this tremendous old growth forest, you begin to 
+look around and realized that you are now LOST.... Maybe if you look hard 
+enough you can find some sort of clues to give you a sense of direction.
+~
+330 ROOM_NO_CASTLE SECT_FOREST
+DDIR_NORTH
+~
+~
+EX_ISDOOR -1 33016
+DDIR_EAST
+~
+~
+EX_ISDOOR -1 33008
+DDIR_SOUTH
+~
+~
+EX_ISDOOR -1 33013
+DDIR_WEST
+~
+~
+EX_ISDOOR -1 33011
+S
+#33013
+Beneath the Forest Canopy~
+      {020}As you wander through this tremendous old growth forest, you begin to 
+look around and realized that you are now LOST.... Maybe if you look hard 
+enough you can find some sort of clues to give you a sense of direction.
+~
+330 ROOM_NO_CASTLE SECT_FOREST
+DDIR_SOUTH
+~
+~
+EX_ISDOOR -1 33005
+DDIR_EAST
+~
+~
+EX_ISDOOR -1 33007
+DDIR_NORTH
+~
+~
+EX_ISDOOR -1 33012
+DDIR_WEST
+~
+~
+EX_ISDOOR -1 33026
+S
+#33014
+Before the Village~
+      {020}As you continue on you can see a well sized village before you. It seems 
+to be a simple civilization. With the use short stone walls surrounding the 
+village and basic architecture used on the buildings.
+~
+330 ROOM_NO_CASTLE SECT_FOREST
+DDIR_WEST
+~
+~
+EX_ISDOOR -1 33025
+DDIR_EAST
+~
+~
+EX_ISDOOR -1 33031
+S
+#33015
+Beneath the forest canopy~
+      {020}As you wander through this tremendous old growth forest, you begin to 
+look around and realized that you are now LOST.... Maybe if you look hard 
+enough you can find some sort of clues to give you a sense of direction.
+~
+330 ROOM_NO_CASTLE SECT_FOREST
+DDIR_NORTH
+~
+~
+EX_ISDOOR -1 33005
+DDIR_EAST
+~
+~
+EX_ISDOOR -1 33021
+DDIR_SOUTH
+~
+~
+EX_ISDOOR -1 33016
+DDIR_WEST
+~
+~
+EX_ISDOOR -1 33024
+S
+#33016
+Beneath the forest canopy~
+      {020}As you wander through this tremendous old growth forest, you begin to 
+look around and realized that you are now LOST.... Maybe if you look hard 
+enough you can find some sort of clues to give you a sense of direction.
+~
+330 ROOM_NO_CASTLE SECT_FOREST
+DDIR_NORTH
+~
+~
+EX_ISDOOR -1 33015
+DDIR_EAST
+~
+~
+EX_ISDOOR -1 33020
+DDIR_SOUTH
+~
+~
+EX_ISDOOR -1 33012
+DDIR_WEST
+~
+~
+EX_ISDOOR -1 33017
+S
+#33017
+Beneath the forest canopy~
+      {020}As you wander through this tremendous old growth forest, you begin to 
+look around and realized that you are now LOST.... Maybe if you look hard 
+enough you can find some sort of clues to give you a sense of direction.
+~
+330 ROOM_NO_CASTLE SECT_FOREST
+DDIR_NORTH
+~
+~
+EX_ISDOOR -1 33024
+DDIR_EAST
+~
+~
+EX_ISDOOR -1 33016
+DDIR_SOUTH
+~
+~
+EX_ISDOOR -1 33011
+DDIR_WEST
+~
+~
+EX_ISDOOR -1 33018
+S
+
+#33018
+Beneath the forest canopy~
+      {020}As you wander through this tremendous old growth forest, you begin to 
+look around and realized that you are now LOST.... Maybe if you look hard 
+enough you can find some sort of clues to give you a sense of direction.
+~
+330 ROOM_NO_CASTLE SECT_FOREST
+DDIR_NORTH
+~
+~
+EX_ISDOOR -1 33023
+DDIR_EAST
+~
+~
+EX_ISDOOR -1 33017
+DDIR_SOUTH
+~
+~
+EX_ISDOOR -1 33010
+DDIR_WEST
+~
+~
+EX_ISDOOR -1 33019
+S
+#33019
+Beneath the forest canopy~
+      {020}As you wander through this tremendous old growth forest, you begin to 
+look around and realized that you are now LOST.... Maybe if you look hard 
+enough you can find some sort of clues to give you a sense of direction.
+~
+330 ROOM_NO_CASTLE SECT_FOREST
+DDIR_NORTH
+~
+~
+EX_ISDOOR -1 33022
+DDIR_EAST
+~
+~
+EX_ISDOOR -1 33018
+DDIR_SOUTH
+~
+~
+EX_ISDOOR -1 33009
+DDIR_WEST
+~
+~
+EX_ISDOOR -1 33020
+S
+#33020
+Beneath the forest canopy~
+      {020}As you wander through this tremendous old growth forest, you begin to 
+look around and realized that you are now LOST.... Maybe if you look hard 
+enough you can find some sort of clues to give you a sense of direction.
+~
+330 ROOM_NO_CASTLE SECT_FOREST
+DDIR_NORTH
+~
+~
+EX_ISDOOR -1 33021
+DDIR_EAST
+~
+~
+EX_ISDOOR -1 33019
+DDIR_SOUTH
+~
+~
+EX_ISDOOR -1 33008
+DDIR_WEST
+~
+~
+EX_ISDOOR -1 33016
+S
+#33021
+Beneath the Forest Canopy~
+      {020}As you wander through this tremendous old growth forest, you begin to 
+look around and realized that you are now LOST.... Maybe if you look hard 
+enough you can find some sort of clues to give you a sense of direction.
+~
+330 ROOM_NO_CASTLE SECT_FOREST
+DDIR_NORTH
+~
+~
+EX_ISDOOR -1 33006
+DDIR_EAST
+~
+~
+EX_ISDOOR -1 33022
+DDIR_SOUTH
+~
+~
+EX_ISDOOR -1 33020
+DDIR_WEST
+~
+~
+EX_ISDOOR -1 33015
+S
+#33022
+Beneath the Forest Canopy~
+      {020}As you wander through this tremendous old growth forest, you begin to 
+look around and realized that you are now LOST.... Maybe if you look hard 
+enough you can find some sort of clues to give you a sense of direction.
+~
+330 ROOM_NO_CASTLE SECT_FOREST
+DDIR_WEST
+~
+~
+EX_ISDOOR -1 33021
+DDIR_NORTH
+~
+~
+EX_ISDOOR -1 33029
+DDIR_EAST
+~
+~
+EX_ISDOOR -1 33023
+DDIR_SOUTH
+~
+~
+EX_ISDOOR -1 33019
+S
+#33023
+Beneath the forest canopy~
+     {020}As you wander through this tremendous old growth forest, you begin to 
+look around and realized that you are now LOST.... Maybe if you look hard 
+enough you can find some sort of clues to give you a sense of direction.
+~
+330 ROOM_NO_CASTLE SECT_FOREST
+DDIR_NORTH
+~
+~
+EX_ISDOOR -1 33030
+DDIR_EAST
+~
+~
+EX_ISDOOR -1 33024
+DDIR_SOUTH
+~
+~
+EX_ISDOOR -1 33018
+DDIR_WEST
+~
+~
+EX_ISDOOR -1 33022
+S
+
+#33024
+Beneath the forest canopy~
+      {020}As you wander through this tremendous old growth forest, you begin to 
+look around and realized that you are now LOST.... Maybe if you look hard 
+enough you can find some sort of clues to give you a sense of direction.
+~
+330 ROOM_NO_CASTLE SECT_FOREST
+DDIR_NORTH
+~
+~
+EX_ISDOOR -1 33004
+DDIR_EAST
+~
+~
+EX_ISDOOR -1 33015
+DDIR_SOUTH
+~
+~
+EX_ISDOOR -1 33017
+DDIR_WEST
+~
+~
+EX_ISDOOR -1 33023
+S
+#33025
+Opening in the Forest~
+      {020}As you have wandered around you have come to find an opening in forest. 
+In the far distance you can see what appears to be smoke. And where there 
+is smoke there is civilization.
+~
+330 ROOM_NO_CASTLE SECT_FOREST
+DDIR_WEST
+~
+~
+EX_ISDOOR -1 33030
+DDIR_EAST
+~
+~
+EX_ISDOOR -1 33014
+S
+#33026
+Beneath the forest canopy~
+      {020}As you wander through this tremendous old growth forest, you begin to 
+look around and realized that you are now LOST.... Maybe if you look hard 
+enough you can find some sort of clues to give you a sense of direction.
+~
+330 ROOM_NO_CASTLE SECT_FOREST
+DDIR_NORTH
+~
+~
+EX_ISDOOR -1 33011
+DDIR_EAST
+~
+~
+EX_ISDOOR -1 33013
+DDIR_SOUTH
+~
+~
+EX_ISDOOR -1 33004
+DDIR_WEST
+~
+~
+EX_ISDOOR -1 33027
+S
+#33027
+Beneath the Forest Canopy~
+      {020}As you wander through this tremendous old growth forest, you begin to 
+look around and realized that you are now LOST.... Maybe if you look hard 
+enough you can find some sort of clues to give you a sense of direction.
+~
+330 ROOM_NO_CASTLE SECT_FOREST
+DDIR_WEST
+~
+~
+EX_ISDOOR -1 33028
+DDIR_SOUTH
+~
+~
+EX_ISDOOR -1 33030
+DDIR_NORTH
+~
+~
+EX_ISDOOR -1 33010
+DDIR_EAST
+~
+~
+EX_ISDOOR -1 33026
+S
+#33028
+Beneath the Forest Canopy~
+      {020}As you wander through this tremendous old growth forest, you begin to 
+look around and realized that you are now LOST.... Maybe if you look hard 
+enough you can find some sort of clues to give you a sense of direction.
+~
+330 ROOM_NO_CASTLE SECT_FOREST
+DDIR_SOUTH
+~
+~
+EX_ISDOOR -1 33029
+DDIR_EAST
+~
+~
+EX_ISDOOR -1 33027
+DDIR_NORTH
+~
+~
+EX_ISDOOR -1 33009
+DDIR_WEST
+~
+~
+EX_ISDOOR -1 33007
+S
+#33029
+Beneath the Forest Canopy~
+     {020}As you wander through this tremendous old growth forest, you begin to 
+look around and realized that you are now LOST.... Maybe if you look hard 
+enough you can find some sort of clues to give you a sense of direction.
+~
+330 ROOM_NO_CASTLE SECT_FOREST
+DDIR_SOUTH
+~
+~
+EX_ISDOOR -1 33022
+DDIR_NORTH
+~
+~
+EX_ISDOOR -1 33028
+DDIR_EAST
+~
+~
+EX_ISDOOR -1 33030
+DDIR_WEST
+~
+~
+EX_ISDOOR -1 33006
+S
+
+#33030
+Beneath the Forest Canopy~
+      {020}As you wander through this tremendous old growth forest, you begin to 
+look around and realized that you are now LOST.... Maybe if you look hard 
+enough you can find some sort of clues to give you a sense of direction.
+~
+330 ROOM_NO_CASTLE SECT_FOREST
+DDIR_NORTH
+~
+~
+EX_ISDOOR -1 33027
+DDIR_EAST
+~
+~
+EX_ISDOOR -1 33025
+DDIR_SOUTH
+~
+~
+EX_ISDOOR -1 33023
+DDIR_WEST
+~
+~
+EX_ISDOOR -1 33029
+S
+#33031
+Before the Gates~
+As you come to the edge of the town you can see a set of gates to the east of 
+you. The town seems to be of a medium size, and surrounded by a well crafted 
+stone wall. You can see a cobble stone road leading to the east.
+~
+330 ROOM_NO_CASTLE SECT_CITY
+DDIR_EAST
+~
+~
+EX_ISDOOR -1 33032
+DDIR_WEST
+~
+~
+EX_ISDOOR -1 33014
+S
+#33032
+At the Gates of the Town~
+As you come before the basic iron gates, you can see the busy streets of the 
+village beyond. It seems to be a well maintained town with a quiet yet busy way
+of life. The cobble stone roads continues east.
+~
+330 ROOM_NO_CASTLE SECT_CITY
+DDIR_WEST
+~
+~
+EX_ISDOOR -1 33031
+DDIR_EAST
+You see a set of Iron Gates here
+~
+gates~
+EX_ISDOOR|EX_CLOSED -1 33033
+S
+#33033
+Main Entrance~
+As you enter the village, you can see the busy streets all around you. The 
+children are at play and the adults are hard at work. You can spot several 
+places of interest to the north and south of the village.
+~
+330 ROOM_NO_CASTLE SECT_CITY
+DDIR_WEST
+You see a set of Iron Gates here
+~
+gates~
+EX_ISDOOR|EX_CLOSED -1 33032
+DDIR_EAST
+~
+~
+EX_ISDOOR -1 33034
+DDIR_NORTH
+~
+~
+EX_ISDOOR -1 33042
+DDIR_SOUTH
+~
+~
+EX_ISDOOR -1 33043
+S
+#33034
+Cobble Stone Way~
+As you travel down the cobble stoned street you can see the towns center off
+to the east. Maybe that would be a good place to get your bearings and meet
+some new people.
+~
+330 ROOM_NO_CASTLE SECT_CITY
+DDIR_WEST
+~
+~
+EX_ISDOOR -1 33033
+DDIR_EAST
+~
+~
+EX_ISDOOR -1 33035
+S
+#33035
+Cobble Stone Way~
+The streets are restless as people wander all around taking care of their
+business and errands. It seems that you are not the only visitor to this
+small town.
+~
+330 ROOM_NO_CASTLE SECT_CITY
+DDIR_WEST
+~
+~
+EX_ISDOOR -1 33034
+DDIR_EAST
+~
+~
+EX_ISDOOR -1 33036
+S
+
+#33036
+Village Square~
+As you come to this beautiful square in the center of the village. You can see
+the great old growth tree's surrounding the village like giant protectors of 
+this beautiful town. You can see a small spring feeding into a stone pond here,
+the water seems to be completely pure and clean.
+~
+330 ROOM_SAFE|ROOM_NO_CASTLE SECT_CITY
+DDIR_WEST
+~
+~
+EX_ISDOOR -1 33035
+DDIR_EAST
+~
+~
+EX_ISDOOR -1 33037
+DDIR_NORTH
+~
+~
+EX_ISDOOR -1 33040
+DDIR_SOUTH
+~
+~
+EX_ISDOOR -1 33041
+S
+#33037
+Cobble Stone Way~
+Wandering through the town, you notice that this cobble stone road must be 
+travelled frequently. The stones are hard pressed into the soil and several
+of them have cracks or are broken.
+~
+330 ROOM_NO_CASTLE SECT_CITY
+DDIR_WEST
+~
+~
+EX_ISDOOR -1 33036
+DDIR_EAST
+~
+~
+EX_ISDOOR -1 33038
+S
+#33038
+Cobble Stone Way~
+Quiet serenity fills the air as you walk down this main road. A soft
+whispering wind brushes past your ears. You can almost hear the voices of the
+gods in the air.
+~
+330 ROOM_NO_CASTLE SECT_CITY
+DDIR_WEST
+~
+~
+EX_ISDOOR -1 33037
+DDIR_EAST
+~
+~
+EX_ISDOOR -1 33039
+S
+#33039
+Eastern Intersection~
+As you approach the most eastern stone wall, you can see the thinning forest
+to the east. Far off into the distance you can see walls of mountains leading
+to the ocean.
+~
+330 ROOM_NO_CASTLE SECT_CITY
+DDIR_WEST
+~
+~
+EX_ISDOOR -1 33038
+DDIR_NORTH
+~
+~
+EX_ISDOOR -1 33044
+DDIR_SOUTH
+~
+~
+EX_ISDOOR -1 33045
+S
+#33040
+Central Avenue~
+Wandering around the Central Avenue you can see the village square to the
+south. As it seems there is a mass gathering of people there.
+~
+330 ROOM_NO_CASTLE SECT_CITY
+DDIR_SOUTH
+~
+~
+EX_ISDOOR -1 33036
+DDIR_NORTH
+~
+~
+EX_ISDOOR -1 33047
+S
+#33041
+Central Avenue~
+Walking around you see a stone pond to the north of you. The sound of an
+underwater spring can be heard just slightly. The breeze lets up a bit as you
+can see the smiling faces of children running around playing.
+~
+330 ROOM_NO_CASTLE SECT_CITY
+DDIR_NORTH
+~
+~
+EX_ISDOOR -1 33036
+DDIR_SOUTH
+~
+~
+EX_ISDOOR -1 33050
+S
+
+#33042
+Western Avenue~
+Nearing the entrance to the town. You can see Cobble Stone Way just around
+the corner. The streets bustle with business, as the towns citizens make their
+way to perform their daily errands.
+~
+330 ROOM_NO_CASTLE SECT_CITY
+DDIR_SOUTH
+~
+~
+EX_ISDOOR -1 33033
+DDIR_NORTH
+~
+~
+EX_ISDOOR -1 33046
+S
+#33043
+Western Avenue~
+Strolling down the Western Avenue, you can tell that this section of town
+must be for the higher class denizens. The streets are better kept. And the
+cottages seem to be much larger in size.
+~
+330 ROOM_NO_CASTLE SECT_CITY
+DDIR_NORTH
+~
+~
+EX_ISDOOR -1 33033
+DDIR_SOUTH
+~
+~
+EX_ISDOOR -1 33051
+S
+#33044
+Eastern Avenue~
+Wandering down the Eastern Avenue, you can see the ocean into that far off
+east. Maybe one of these days you can take the time to explore that region
+of the country.
+~
+330 ROOM_NO_CASTLE SECT_CITY
+DDIR_SOUTH
+~
+~
+EX_ISDOOR -1 33039
+DDIR_NORTH
+~
+~
+EX_ISDOOR -1 33048
+S
+#33045
+Eastern Avenue~
+Travelling down this side of town you can tell that not much happens here.
+The streets and alleys seem quiet with the exception of the wind whistling
+past you. Maybe you should find a busier section of town.
+~
+330 ROOM_NO_CASTLE SECT_CITY
+DDIR_NORTH
+~
+~
+EX_ISDOOR -1 33039
+DDIR_SOUTH
+~
+~
+EX_ISDOOR -1 33049
+S
+#33046
+Western Avenue~
+As you begin to round the bend of this avenue. You start to get overcome by a
+strange sense of security. Almost as if someone or something is watching over
+this small town.
+~
+330 ROOM_NO_CASTLE SECT_CITY
+DDIR_SOUTH
+~
+~
+EX_ISDOOR -1 33042
+DDIR_WEST
+~
+~
+EX_ISDOOR -1 33052
+S
+#33047
+Central Avenue~
+Wandering up and down the Central Avenue. You can see shops and buildings all 
+around you. Small children are at play in the streets. And the town blusters 
+with life. You can see a shop to your right and left.
+~
+330 ROOM_NO_CASTLE SECT_CITY
+DDIR_SOUTH
+~
+~
+EX_ISDOOR -1 33040
+DDIR_NORTH
+~
+~
+EX_ISDOOR -1 33078
+DDIR_WEST
+~
+~
+EX_ISDOOR -1 33080
+DDIR_EAST
+~
+~
+EX_ISDOOR -1 33081
+S
+
+#33048
+Eastern Avenue~
+As you wander down the eastern avenue you can tell that this end of town is
+not as travelled as the others. Maybe its because there are less tree's at
+this end of the town.
+~
+330 ROOM_NO_CASTLE SECT_CITY
+DDIR_SOUTH
+~
+~
+EX_ISDOOR -1 33044
+DDIR_EAST
+~
+~
+EX_ISDOOR -1 33053
+S
+#33049
+Eastern Avenue~
+Travelling along the eastern avenue you can smell the distinct scent of cedar
+in the air. As you look beside yourself you realize that you are standing
+below an enormous Cedar Tree. It must be hundreds of years old.
+~
+330 ROOM_NO_CASTLE SECT_CITY
+DDIR_NORTH
+~
+~
+EX_ISDOOR -1 33045
+DDIR_EAST
+~
+~
+EX_ISDOOR -1 33054
+S
+#33050
+Central Avenue~
+As you wander up and down this avenue, you can see several shops off to your 
+left and right. The sounds of children at play and adult hard at work give you 
+a small sense of home. Maybe you should look into purchasing a home here in the
+future.
+~
+330 ROOM_NO_CASTLE SECT_CITY
+DDIR_NORTH
+~
+~
+EX_ISDOOR -1 33041
+DDIR_SOUTH
+~
+~
+EX_ISDOOR -1 33079
+DDIR_EAST
+~
+~
+EX_ISDOOR -1 33082
+DDIR_WEST
+~
+~
+EX_ISDOOR -1 33083
+S
+#33051
+Western Avenue~
+Strolling around this busy corner, you can see the huge canopy of the enormous
+conifer tree's to the west. As you peer into the forest you can see a deer
+peering back at you. You begin to wonder if there is a connection.
+~
+330 ROOM_NO_CASTLE SECT_CITY
+DDIR_NORTH
+~
+~
+EX_ISDOOR -1 33043
+DDIR_WEST
+~
+~
+EX_ISDOOR -1 33055
+S
+#33052
+Western Avenue~
+As take a quiet stroll down this avenue you can hear the birds chirping in the
+soft gentle breeze that blows through the old growth tree's to the west of you.
+~
+330 ROOM_NO_CASTLE SECT_CITY
+DDIR_EAST
+~
+~
+EX_ISDOOR -1 33046
+DDIR_NORTH
+~
+~
+EX_ISDOOR -1 33077
+S
+#33053
+Eastern Avenue~
+As you wander down this splendid avenue, you can see the grand old growth tree's 
+outside the eastern stone wall. The fresh smell of pine and fir fills the air 
+and gives you an almost sense of serenity.
+~
+330 ROOM_NO_CASTLE SECT_CITY
+DDIR_WEST
+~
+~
+EX_ISDOOR -1 33048
+DDIR_NORTH
+~
+~
+EX_ISDOOR -1 33067
+S
+
+#33054
+Eastern Avenue~
+As you pace yourself down the Eastern Avenue. You start to see off in the
+distance a great river leading its way to the huge ocean to the east. You
+begin to wonder what secrets lay beyond this small town.
+~
+330 ROOM_NO_CASTLE SECT_CITY
+DDIR_WEST
+~
+~
+EX_ISDOOR -1 33049
+DDIR_SOUTH
+~
+~
+EX_ISDOOR -1 33066
+S
+#33055
+Western Avenue~
+You step out for the day to take a quiet stroll. When all of a sudden from
+nowhere **KERPOWWW**. You look down to see a young child staring up at you.
+You pat the child on the head and send em on his way.
+~
+330 ROOM_NO_CASTLE SECT_CITY
+DDIR_EAST
+~
+~
+EX_ISDOOR -1 33051
+DDIR_SOUTH
+~
+~
+EX_ISDOOR -1 33056
+S
+#33056
+Western Avenue~
+As you wander down the avenue you can hear the sounds of song birds chirping
+not too far off from here. A cool refreshing breeze blows upon your face. And
+the pitter patter of little feet can be heard up the road.
+~
+330 ROOM_NO_CASTLE SECT_CITY
+DDIR_NORTH
+~
+~
+EX_ISDOOR -1 33055
+DDIR_SOUTH
+~
+~
+EX_ISDOOR -1 33057
+DDIR_WEST
+~
+~
+EX_ISDOOR -1 33090
+S
+#33057
+The corner of Southern Boulevard and Western Avenue~
+As you begin to round the corner of these small streets you can tell that this
+seems to be a more luxerious section of the town. The Cottages are much larger
+and in better shape than the rest. And the roads are better kept here.
+~
+330 ROOM_NO_CASTLE SECT_CITY
+DDIR_NORTH
+~
+~
+EX_ISDOOR -1 33056
+DDIR_EAST
+~
+~
+EX_ISDOOR -1 33058
+S
+#33058
+Southern Boulevard~
+As you wander across the Southern Boulevard you can see a set of mountains far
+off to the southern distance. You can see one of the stone built cottages to
+the south of you.
+~
+330 ROOM_NO_CASTLE SECT_CITY
+DDIR_WEST
+~
+~
+EX_ISDOOR -1 33057
+DDIR_EAST
+~
+~
+EX_ISDOOR -1 33059
+DDIR_SOUTH
+~
+~
+EX_ISDOOR -1 33092
+S
+#33059
+Southern Boulevard~
+Making your way closer to the center of the village. The smell of herbs and
+spices fill the air. You look to your north to find an Apothecary's Shop there.
+Grey smoke can be seen rising from its chimney.
+~
+330 ROOM_NO_CASTLE SECT_CITY
+DDIR_WEST
+~
+~
+EX_ISDOOR -1 33058
+DDIR_EAST
+~
+~
+EX_ISDOOR -1 33060
+DDIR_NORTH
+~
+~
+EX_ISDOOR -1 33099
+S
+
+#33060
+Southern Boulevard~
+Travelling with a steady pace you find yourself at peace. With the smells of
+cooking food, sounds of children at play, and the cool breeze on the back of
+your neck. You can't help but feel the towns serenity.
+~
+330 ROOM_NO_CASTLE SECT_CITY
+DDIR_WEST
+~
+~
+EX_ISDOOR -1 33059
+DDIR_EAST
+~
+~
+EX_ISDOOR -1 33061
+DDIR_SOUTH
+~
+~
+EX_ISDOOR -1 33093
+S
+#33061
+Southern Intersection~
+As you come to this southern intersection you can see the busy people and shops
+of central avenue to the the north of you. You begin to wonder which way you 
+should head next. Maybe you should just sit back, relax and enjoy the scenery
+here. You see streets leading to the east and west of you here.
+~
+330 ROOM_NO_CASTLE SECT_CITY
+DDIR_WEST
+~
+~
+EX_ISDOOR -1 33060
+DDIR_EAST
+~
+~
+EX_ISDOOR -1 33062
+DDIR_NORTH
+~
+~
+EX_ISDOOR -1 33079
+S
+#33062
+Southern Boulevard~
+Making your way across the Boulevard you can see that this side of town is no
+where in the state of condition the western side was. Alot of the houses have
+become overgrown and unkept. Many of these places seem abandoned.
+~
+330 ROOM_NO_CASTLE SECT_CITY
+DDIR_WEST
+~
+~
+EX_ISDOOR -1 33061
+DDIR_EAST
+~
+~
+EX_ISDOOR -1 33063
+DDIR_SOUTH
+~
+~
+EX_ISDOOR -1 33094
+S
+#33063
+Southern Boulevard~
+You make your way even further to the east to hear strange sounds coming from
+the old building to the north. A worn out Sign barely hangs above the door.
+maybe you should take a closer look at it.
+~
+330 ROOM_NO_CASTLE SECT_CITY
+DDIR_WEST
+~
+~
+EX_ISDOOR -1 33062
+DDIR_EAST
+~
+~
+EX_ISDOOR -1 33064
+DDIR_NORTH
+~
+~
+EX_ISDOOR -1 33098
+E
+sign~
+   {1330}Hall of Education and Combat
+~
+S
+#33064
+Southern Boulevard~
+     {030}This part of town seems to darken as the vegetation gets thicker here. Grass
+has taken over the cobble stone road. Thorn bushes have over grown the
+cottages. And the stone structure almost seem to be falling apart.
+~
+330 ROOM_NO_CASTLE SECT_FIELD
+DDIR_WEST
+~
+~
+EX_ISDOOR -1 33063
+DDIR_EAST
+~
+~
+EX_ISDOOR -1 33065
+DDIR_SOUTH
+~
+~
+EX_ISDOOR -1 33095
+S
+#33065
+The corner of Southern Boulevard and Eastern Avenue~
+     {030}You wander to the corner of town, to find that the stone wall has completely
+crumbled away. Even the cottages do not seem safe to enter.
+~
+330 ROOM_NO_CASTLE SECT_FIELD
+DDIR_WEST
+~
+~
+EX_ISDOOR -1 33064
+DDIR_NORTH
+~
+~
+EX_ISDOOR -1 33066
+S
+
+#33066
+Eastern Avenue~
+As you wander down this splendid avenue, you can see the grand old growth tree's
+outside the eastern stone wall. The fresh smell of pine and fir fills the air 
+and gives you an almost sense of serenity. You can see Southern Boulevard off to
+the south.
+~
+330 ROOM_NO_CASTLE SECT_CITY
+DDIR_NORTH
+~
+~
+EX_ISDOOR -1 33054
+DDIR_SOUTH
+~
+~
+EX_ISDOOR -1 33065
+DDIR_EAST
+~
+~
+EX_ISDOOR -1 33091
+S
+#33067
+Eastern Avenue~
+As you wander down this splendid avenue, you can see the grand old growth tree's 
+outside the eastern stone wall. The fresh smell of pine and fir fills the air 
+and gives you an sense of serenity. You can see Northern Boulevard off to
+the north.
+~
+330 ROOM_NO_CASTLE SECT_CITY
+DDIR_SOUTH
+~
+~
+EX_ISDOOR -1 33053
+DDIR_NORTH
+~
+~
+EX_ISDOOR -1 33068
+DDIR_EAST
+~
+~
+EX_ISDOOR -1 33089
+S
+#33068
+The corner of Northern Boulevard and Eastern Avenue~
+As you come to the corner of this beautiful streets you can see the town in all 
+its splendor. The walls of this town are well crafted out of stones gathered 
+from the forest. And the town is well shaded from the old growth pines and firs
+that surround it. You can see streets leading to the south and west of the town.
+~
+330 ROOM_NO_CASTLE SECT_CITY
+DDIR_SOUTH
+~
+~
+EX_ISDOOR -1 33067
+DDIR_WEST
+~
+~
+EX_ISDOOR -1 33069
+S
+#33069
+Northern Boulevard~
+Wandering along the Northern Boulevard you can feel the nice cool air of the
+well shaded forest blowing past your ears. To the north of you is a stone
+cottage, with its door cracked open just slightly.
+~
+330 ROOM_NO_CASTLE SECT_CITY
+DDIR_EAST
+~
+~
+EX_ISDOOR -1 33068
+DDIR_WEST
+~
+~
+EX_ISDOOR -1 33070
+DDIR_NORTH
+~
+~
+EX_ISDOOR -1 33087
+S
+#33070
+Northern Boulevard~
+After walk some distance more you have come to another point of interest. To
+the south of you is a large building. You can see a few people coming and
+going from this building. They appear to be dressed in a more scholary attire.
+~
+330 ROOM_NO_CASTLE SECT_CITY
+DDIR_EAST
+~
+~
+EX_ISDOOR -1 33069
+DDIR_WEST
+~
+~
+EX_ISDOOR -1 33071
+DDIR_SOUTH
+~
+~
+EX_ISDOOR -1 33097
+S
+#33071
+Northern Boulevard~
+Travelling down the boulevard you can tell by looking at the stone street that
+this section of town hardly gets used at all. Maybe you should continue on to
+a more active part of town. Or you could stop and visit the house that lays to
+the north of you.
+~
+330 ROOM_NO_CASTLE SECT_CITY
+DDIR_EAST
+~
+~
+EX_ISDOOR -1 33070
+DDIR_WEST
+~
+~
+EX_ISDOOR -1 33072
+DDIR_NORTH
+~
+~
+EX_ISDOOR -1 33086
+S
+
+#33072
+Northern Intersection~
+As you travel even further down the boulevard you have finely came across an
+intersection. You begin to wonder which direction you should take next. As you
+look to the south you can see a heavily travelled street.
+~
+330 ROOM_NO_CASTLE SECT_CITY
+DDIR_EAST
+~
+~
+EX_ISDOOR -1 33071
+DDIR_WEST
+~
+~
+EX_ISDOOR -1 33073
+DDIR_SOUTH
+~
+~
+EX_ISDOOR -1 33078
+S
+#33073
+Northern Boulevard~
+With the cobble stones beneath your feet. You can tell that most of the town
+has been built out of stone. And with fine engineering at that. This town must
+have taken years to build. Even the house to the north of you has been built
+out of grey stone.
+~
+330 ROOM_NO_CASTLE SECT_CITY
+DDIR_EAST
+~
+~
+EX_ISDOOR -1 33072
+DDIR_WEST
+~
+~
+EX_ISDOOR -1 33074
+DDIR_NORTH
+~
+~
+EX_ISDOOR -1 33085
+S
+#33074
+Northern Boulevard~
+As you wander further down the boulevard you begin to reach a busier section 
+of this small town. To the south of you, you can see some people dressed in 
+pine green uniforms entering and leaving a building. Maybe they will let you 
+in so you can check it out.
+~
+330 ROOM_NO_CASTLE SECT_CITY
+DDIR_EAST
+~
+~
+EX_ISDOOR -1 33073
+DDIR_WEST
+~
+~
+EX_ISDOOR -1 33075
+DDIR_SOUTH
+~
+~
+EX_ISDOOR -1 33096
+S
+#33075
+Northern Boulevard~
+Travelling down the Northern Boulevard, you can tell that this is a relatively
+inactive part of town. The Most you can see are some of the residents small
+cottages. And a few people making their way towards the heart of town.
+~
+330 ROOM_NO_CASTLE SECT_CITY
+DDIR_EAST
+~
+~
+EX_ISDOOR -1 33074
+DDIR_WEST
+~
+~
+EX_ISDOOR -1 33076
+DDIR_NORTH
+~
+~
+EX_ISDOOR -1 33084
+S
+#33076
+The corner of Northern Boulevard and Western Avenue~
+As you approach the corner of Northern Boulevard and Western Avenue. You can 
+see several small stone cottages in both directions. The cobble stone streets
+look to be in good shape. Obviously not many horses or wagons travel up in
+this section of town.
+~
+330 ROOM_NO_CASTLE SECT_CITY
+DDIR_EAST
+~
+~
+EX_ISDOOR -1 33075
+DDIR_SOUTH
+~
+~
+EX_ISDOOR -1 33077
+S
+#33077
+Western Avenue~
+Wandering down the western avenue you begin to look around. You can see to the
+west a larger stone cottage tucked beneath the branches of the huge forest
+canopy just barely inside the villages walls.
+~
+330 ROOM_NO_CASTLE SECT_CITY
+DDIR_NORTH
+~
+~
+EX_ISDOOR -1 33076
+DDIR_SOUTH
+~
+~
+EX_ISDOOR -1 33052
+DDIR_WEST
+~
+door~
+EX_ISDOOR|EX_CLOSED -1 33088
+S
+
+#33078
+Central Avenue~
+As you wander up and down this avenue, you can see several shops off to your 
+left and right. The sounds of children at play and adult hard at work give you 
+a small sense of home. Maybe you should look into purchasing a home here in the
+future. You can see the Northern Boulevard just a little ways off.
+~
+330 ROOM_NO_CASTLE SECT_CITY
+DDIR_NORTH
+~
+~
+EX_ISDOOR -1 33072
+DDIR_SOUTH
+~
+~
+EX_ISDOOR -1 33047
+S
+#33079
+Central Avenue~
+As you begin to come upon the southern part of the town you can tell that the
+forests canopy grows even higher at this end of town. Before you is a small
+intersection heading east and west.
+~
+330 ROOM_NO_CASTLE SECT_CITY
+DDIR_NORTH
+~
+~
+EX_ISDOOR -1 33050
+DDIR_SOUTH
+~
+~
+EX_ISDOOR -1 33061
+S
+#33080
+Gho'Don's Armory~
+As you enter this small but valuable shop. You can see armor of all sorts just 
+sitting around on the counter's and hanging on the walls collecting dust. It is 
+obvious that not many people shop around here for such items. Maybe you should browse around for something useful.
+~
+330 ROOM_SAFE|ROOM_NO_CASTLE|ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+~
+~
+EX_ISDOOR -1 33047
+S
+#33081
+Marianna's Goods~
+As you wander around this general store, you can see several items that would be
+useful in your travelling adventure's. maybe you should stock up on supplies for
+the road when you get ready to move on with your journey.
+~
+330 ROOM_SAFE|ROOM_NO_CASTLE|ROOM_INDOORS SECT_INSIDE
+DDIR_WEST
+~
+~
+0 -1 33047
+S
+#33082
+Malikor's Magics~
+You enter this strange and cluttered shop to see strange items laying all about.
+It is obvious the shop's keeper is not very well organized. But it is very 
+possible there maybe something here of value.
+~
+330 ROOM_NO_CASTLE|ROOM_INDOORS SECT_INSIDE
+DDIR_WEST
+~
+~
+EX_ISDOOR -1 33050
+S
+#33083
+Tiari's Crafts~
+As you enter this fine and splendid shop you can see a large variety of arms
+displayed on the shelves and walls. You start to wonder if there may be 
+something that can fit your needs here.
+~
+330 ROOM_NO_CASTLE|ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+~
+~
+EX_ISDOOR -1 33050
+S
+
+#33084
+Stone Built Cottage~
+    {070}As you enter this small but well crafted stone cottage, you can see 
+several items indicating that it is lived in. All around you is wooden 
+furniture, pots, pans. utensils, blankets and more. Maybe you should leave 
+before the owner decides to return.
+~
+330 ROOM_NO_CASTLE|ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+~
+~
+EX_ISDOOR -1 33075
+S
+#33085
+Stone Built Cottage~
+    {070}As you enter this small and clutter stone built cottage you can tell that it
+has not been very well kept. You begin to wonder just what type of person
+could stand living in a place like this.
+~
+330 ROOM_NO_CASTLE|ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+~
+~
+EX_ISDOOR -1 33073
+S
+#33086
+Stone Built Cottage~
+    {070}Upon entering the door, you can tell that who ever lives here must be well
+live fairly well off. You can see well crafted furniture arranged in a nice
+and neat manner. This is probably the home to one of the shopkeepers.
+~
+330 ROOM_NO_CASTLE|ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+~
+~
+EX_ISDOOR -1 33071
+S
+#33087
+Stone Built Cottage~
+    {070}As you explore around you can see that the door to this cottage has been left
+open a crack. You enter inside to find that the place has been abandoned.
+Whoever lived here must have moved out. Maybe the place will be up for sale
+soon.
+~
+330 ROOM_NO_CASTLE|ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+~
+~
+0 -1 33069
+S
+#33088
+Gho'Don's House~
+As you enter Gho'Don's home. You can tell that he lives pretty well off for
+your run of the mill shop keeper. Finely crafted furniture fills the home. As
+well of displays of his armor and weapons that he has crafted over the years.
+In the corner of his home you can see a locked chest.
+~
+330 ROOM_NO_CASTLE|ROOM_NO_RIP|ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+~
+~
+EX_ISDOOR -1 33077
+S
+#33089
+Marianna's House~
+As you enter Marianna's House you can tell that she is a simple girl. Her house
+does not have extravagent items or expensive taste to it. Several pieces of
+well used furniture are arranged throughout her home.
+~
+330 ROOM_NO_CASTLE|ROOM_NO_RIP|ROOM_INDOORS SECT_INSIDE
+DDIR_WEST
+~
+~
+EX_ISDOOR -1 33067
+S
+
+#33090
+Tiari's House~
+As you enter Tiari's home you can tell that she definatly enjoys the good life.
+You can see faboulus furniture placed in a decorative manner throughout the
+house.
+~
+330 ROOM_NO_CASTLE|ROOM_NO_RIP|ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+~
+~
+EX_ISDOOR -1 33056
+S
+#33091
+Malikor's House~
+As you enter Malikors home you find that there is nothing visible here. Maybe
+you leave before you find yourself in some sort of curse.
+~
+330 ROOM_NO_CASTLE|ROOM_NO_RIP|ROOM_INDOORS SECT_INSIDE
+DDIR_WEST
+~
+~
+EX_ISDOOR -1 33066
+S
+#33092
+Stone Built Cottage~
+    {070}As you enter this large cottage you can tell that whoever lives here must make
+a decent living. Nice furniture can be seen placed about. The walls are
+decorated with some lovely tapestries.
+~
+330 ROOM_NO_CASTLE|ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+~
+~
+EX_ISDOOR -1 33058
+S
+#33093
+Stone Built Cottage~
+    {070}This cottage doesn't seem to be quite as nice as its neighbor. It has a more
+homely appearence to it. You can see a few chests of tools laying about. It
+appears to be the home of a carpenter.
+~
+330 ROOM_NO_CASTLE|ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+~
+~
+EX_ISDOOR -1 33060
+S
+#33094
+Stone Built Cottage~
+    {070}This cottage seems to be abandoned. Maybe it due to the fact that it is located
+in the OLD part of town.
+~
+330 ROOM_NO_CASTLE|ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+~
+~
+EX_ISDOOR -1 33062
+S
+#33095
+Stone Built Cottage~
+    {070}You enter this cottage to find that it is completely torn up. Pieces of the 
+roof are falling in. The mortor on the walls crumble even at the slightest
+touch. Maybe you should leave before the building falls on you.
+~
+330 ROOM_NO_CASTLE|ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 33064
+S
+
+#33096
+Forest Runners Guild~
+As you enter this well organized building you can see several tables placed in
+an almost circular pattern at the buildings center. Off over at the other end 
+is what seems to be a bar and a clerks desk. You take a couple steps further
+inside to find that several eyes of people wearing green uniforms are watching
+you carefully. Maybe you should try saying hello or something.
+~
+330 ROOM_NO_CASTLE|ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+~
+~
+EX_ISDOOR -1 33074
+S
+#33097
+Town Library~
+As you enter this building you can tell that it has to be one of the older
+buildings in town. It has been crafted from a wide variety of conifer like
+woods. You can smell the bitter sweet scent of ceder in the air.
+~
+330 ROOM_SAFE|ROOM_NO_CASTLE|ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+~
+~
+EX_ISDOOR -1 33070
+E
+parchment~
+
+~
+S
+#33098
+Hall of Training~
+As you enter this grand hall you can see all forms of equipment and people
+here. PRACTICING their skills and TRAINING their abilities. Maybe you should
+take the time to join them.
+~
+330 ROOM_SAFE|ROOM_NO_CASTLE|ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+~
+~
+EX_ISDOOR -1 33063
+S
+#33099
+Apothecary's Clinic~
+As you enter the clinic you can see several pots of plants, beakers, and other
+organic stuff laying all about. Several Jars filled with pills, herbs, and
+tea's fill the room.
+~
+330 ROOM_NO_CASTLE|ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+~
+~
+EX_ISDOOR -1 33059
+S
+#0
+
+
+
+#SHOPS
+33000 ITEM_TYPE_AMMO ITEM_TYPE_ARMOR ITEM_TYPE_WEAPON ITEM_TYPE_TRASH
+      ITEM_TYPE_NOTHING 100 75 2 23
+33001 ITEM_TYPE_CONTAINER ITEM_TYPE_DRINK_CON ITEM_TYPE_FOOD ITEM_TYPE_LIGHT
+      ITEM_TYPE_TRASH 100 75 2 23
+33002 ITEM_TYPE_ARMOR ITEM_TYPE_TRASH ITEM_TYPE_TREASURE ITEM_TYPE_NOTHING
+      ITEM_TYPE_NOTHING 100 75 2 23
+33003 ITEM_TYPE_PILL ITEM_TYPE_POTION ITEM_TYPE_SCROLL ITEM_TYPE_STAFF
+      ITEM_TYPE_WAND 100 75 2 23
+0
+
+
+
+
+#RESETS
+M 1 33000 1 33080 ;Gho'Don loaded in room Gho'Don's Armory
+G 1 33007 100  ;Wood Axe in Gho'Don's inventory
+G 1 33019 100  ;Tanned Leather Vest in Gho'Don's inventory
+G 1 33020 100  ;Tanned Leather Gloves in Gho'Don's inventory
+G 1 33021 100  ;Tanned Leather Greaves in Gho'Don's inventory
+G 1 33022 100  ;Tanned Leather Boots in Gho'Don's inventory
+G 1 33023 100  ;Tanned Leather Sleeves in Gho'Don's inventory
+G 1 33024 100  ;Tanned Leather Belt in Gho'Don's inventory
+G 1 33025 100  ;Tanned Leather Bracer in Gho'Don's inventory
+G 1 33049 100  ;Plain Copper Ring in Gho'Don's inventory
+G 1 33065 100  ;Holy Flask in Gho'Don's inventory
+G 1 33066 100  ;Iron Dagger in Gho'Don's inventory
+G 1 33067 100  ;Iron Hammer in Gho'Don's inventory
+M 0 33001 100 33081 ;Marianna loaded in room Marianna's Goods
+G 1 33008 100  ;A plain white candle in Marianna's inventory
+G 1 33045 100  ;Bottle of Water in Marianna's inventory
+G 1 33046 100  ;Fried Chicken in Marianna's inventory
+G 1 33052 100  ;Empty Wine Bottle in Marianna's inventory
+M 0 33002 100 33083 ;Tiari loaded in room Tiari's Crafts
+G 1 33004 100  ;A Clay Pot in Tiari's inventory
+G 1 33050 100  ;A Circular Shaped Mold in Tiari's inventory
+M 0 33003 100 33082 ;Malikor loaded in room Malikor's Magics
+G 1 33011 100  ;Scroll of Recall in Malikor's inventory
+G 1 33012 100  ;Scroll of Identify in Malikor's inventory
+G 1 33013 100  ;Scroll of Detection in Malikor's inventory
+G 1 33014 100  ;Potion of Detection in Malikor's inventory
+G 1 33015 100  ;Travellers Potion in Malikor's inventory
+G 1 33016 100  ;Travellers Scroll in Malikor's inventory
+G 1 33017 100  ;Scroll of Passage in Malikor's inventory
+G 1 33018 100  ;Potion of Passage in Malikor's inventory
+G 1 33057 100  ;Scroll of Invisibility in Malikor's inventory
+G 1 33058 100  ;potion of Invisibility in Malikor's inventory
+M 0 33004 100 33096 ;Per'tano loaded in room Forest Runners Guild
+M 0 33005 100 33097 ;Librarian loaded in room Town Library
+M 0 33006 100 33099 ;Nidajo loaded in room Apothecary's Clinic
+M 0 33007 100 33098 ;Master Trainer loaded in room Hall of Training
+M 0 33011 100 33084 ;Female Villager loaded in room Stone Built Cottage
+M 0 33008 100 33075 ;Small Boy loaded in room Northern Boulevard
+M 0 33009 100 33075 ;Small Girl loaded in room Northern Boulevard
+M 0 33010 100 33085 ;Male Villager loaded in room Stone Built Cottage
+M 0 33008 100 33072 ;Small Boy loaded in room Northern Intersection
+M 0 33008 100 33072 ;Small Boy loaded in room Northern Intersection
+M 0 33010 100 33086 ;Male Villager loaded in room Stone Built Cottage
+M 0 33011 100 33086 ;Female Villager loaded in room Stone Built Cottage
+M 0 33009 100 33070 ;Small Girl loaded in room Northern Boulevard
+M 0 33011 100 33068 ;Female Villager loaded in room The corner of Northern Boulevard and Ea
+M 0 33008 100 33068 ;Small Boy loaded in room The corner of Northern Boulevard and Eastern
+M 0 33009 100 33077 ;Small Girl loaded in room Western Avenue
+M 0 33010 100 33067 ;Male Villager loaded in room Eastern Avenue
+M 0 33008 100 33067 ;Small Boy loaded in room Eastern Avenue
+M 0 33008 100 33046 ;Small Boy loaded in room Western Avenue
+M 0 33009 100 33046 ;Small Girl loaded in room Western Avenue
+M 0 33009 100 33046 ;Small Girl loaded in room Western Avenue
+M 0 33011 100 33047 ;Female Villager loaded in room Central Avenue
+M 0 33008 100 33048 ;Small Boy loaded in room Eastern Avenue
+M 0 33008 100 33048 ;Small Boy loaded in room Eastern Avenue
+M 0 33010 100 33042 ;Male Villager loaded in room Western Avenue
+M 0 33009 100 33040 ;Small Girl loaded in room Central Avenue
+M 0 33011 100 33044 ;Female Villager loaded in room Eastern Avenue
+M 0 33010 100 33034 ;Male Villager loaded in room Cobble Stone Way
+M 0 33011 100 33036 ;Female Villager loaded in room Village Square
+M 0 33009 100 33036 ;Small Girl loaded in room Village Square
+M 0 33008 100 33038 ;Small Boy loaded in room Cobble Stone Way
+M 0 33008 100 33051 ;Small Boy loaded in room Western Avenue
+M 0 33010 100 33051 ;Male Villager loaded in room Western Avenue
+M 0 33011 100 33050 ;Female Villager loaded in room Central Avenue
+M 0 33011 100 33050 ;Female Villager loaded in room Central Avenue
+M 0 33009 100 33066 ;Small Girl loaded in room Eastern Avenue
+M 0 33011 100 33066 ;Female Villager loaded in room Eastern Avenue
+M 0 33010 100 33056 ;Male Villager loaded in room Western Avenue
+M 0 33009 100 33056 ;Small Girl loaded in room Western Avenue
+M 0 33011 100 33058 ;Female Villager loaded in room Southern Boulevard
+M 0 33008 100 33058 ;Small Boy loaded in room Southern Boulevard
+M 0 33008 100 33058 ;Small Boy loaded in room Southern Boulevard
+M 0 33011 100 33092 ;Female Villager loaded in room Stone Built Cottage
+M 0 33010 100 33061 ;Male Villager loaded in room Southern Intersection
+M 0 33010 100 33093 ;Male Villager loaded in room Stone Built Cottage
+M 0 33011 100 33093 ;Female Villager loaded in room Stone Built Cottage
+M 0 33008 100 33062 ;Small Boy loaded in room Southern Boulevard
+M 0 33010 100 33062 ;Male Villager loaded in room Southern Boulevard
+M 0 33009 100 33049 ;Small Girl loaded in room Eastern Avenue
+M 0 33011 100 33049 ;Female Villager loaded in room Eastern Avenue
+M 0 33010 100 33074 ;Male Villager loaded in room Northern Boulevard
+M 0 33011 100 33071 ;Female Villager loaded in room Northern Boulevard
+M 0 33010 100 33069 ;Male Villager loaded in room Northern Boulevard
+M 0 33009 100 33053 ;Small Girl loaded in room Eastern Avenue
+M 0 33008 100 33053 ;Small Boy loaded in room Eastern Avenue
+M 0 33011 100 33039 ;Female Villager loaded in room Eastern Intersection
+M 0 33008 100 33045 ;Small Boy loaded in room Eastern Avenue
+M 0 33009 100 33054 ;Small Girl loaded in room Eastern Avenue
+M 0 33011 100 33094 ;Female Villager loaded in room Stone Built Cottage
+M 0 33008 100 33094 ;Small Boy loaded in room Stone Built Cottage
+M 0 33009 100 33059 ;Small Girl loaded in room Southern Boulevard
+M 0 33012 100 33033 ;Village Guard loaded in room Main Entrance
+M 0 33012 100 33033 ;Village Guard loaded in room Main Entrance
+M 0 33012 100 33076 ;Village Guard loaded in room The corner of Northern Boulevard and West
+M 0 33012 100 33068 ;Village Guard loaded in room The corner of Northern Boulevard and East
+M 0 33012 100 33039 ;Village Guard loaded in room Eastern Intersection
+M 0 33012 100 33072 ;Village Guard loaded in room Northern Intersection
+M 0 33012 100 33061 ;Village Guard loaded in room Southern Intersection
+M 0 33012 100 33057 ;Village Guard loaded in room The corner of Southern Boulevard and West
+M 0 33012 100 33032 ;Village Guard loaded in room At the Gates of the Town
+M 0 33013 100 33096 ;Forest Runner loaded in room Forest Runners Guild
+E 1 33039 100 WEAR_WAIST ;Equip with Forest Runners Belt
+E 1 33041 100 WEAR_WIELD ;Equip with Forest Runners Staff
+E 1 33040 100 WEAR_BODY ;Equip with Forest Runners Tunic
+M 0 33013 100 33074 ;Forest Runner loaded in room Northern Boulevard
+E 1 33039 100 WEAR_WAIST ;Equip with Forest Runners Belt
+E 1 33041 100 WEAR_WIELD ;Equip with Forest Runners Staff
+E 1 33040 100 WEAR_BODY ;Equip with Forest Runners Tunic
+M 0 33013 100 33070 ;Forest Runner loaded in room Northern Boulevard
+E 1 33039 100 WEAR_WAIST ;Equip with Forest Runners Belt
+E 1 33041 100 WEAR_WIELD ;Equip with Forest Runners Staff
+E 1 33040 100 WEAR_BODY ;Equip with Forest Runners Tunic
+M 0 33013 100 33039 ;Forest Runner loaded in room Eastern Intersection
+E 1 33039 100 WEAR_WAIST ;Equip with Forest Runners Belt
+E 1 33041 100 WEAR_WIELD ;Equip with Forest Runners Staff
+E 1 33040 100 WEAR_BODY ;Equip with Forest Runners Tunic
+M 0 33013 100 33033 ;Forest Runner loaded in room Main Entrance
+E 1 33039 100 WEAR_WAIST ;Equip with Forest Runners Belt
+E 1 33041 100 WEAR_WIELD ;Equip with Forest Runners Staff
+E 1 33040 100 WEAR_BODY ;Equip with Forest Runners Tunic
+M 0 33013 100 33059 ;Forest Runner loaded in room Southern Boulevard
+E 1 33039 100 WEAR_WAIST ;Equip with Forest Runners Belt
+E 1 33041 100 WEAR_WIELD ;Equip with Forest Runners Staff
+E 1 33040 100 WEAR_BODY ;Equip with Forest Runners Tunic
+M 0 33013 100 33063 ;Forest Runner loaded in room Southern Boulevard
+E 1 33039 100 WEAR_WAIST ;Equip with Forest Runners Belt
+E 1 33041 100 WEAR_WIELD ;Equip with Forest Runners Staff
+E 1 33040 100 WEAR_BODY ;Equip with Forest Runners Tunic
+M 0 33013 100 33061 ;Forest Runner loaded in room Southern Intersection
+E 1 33039 100 WEAR_WAIST ;Equip with Forest Runners Belt
+E 1 33041 100 WEAR_WIELD ;Equip with Forest Runners Staff
+E 1 33040 100 WEAR_BODY ;Equip with Forest Runners Tunic
+M 0 33014 100 33095 ;Big Spider loaded in room Stone Built Cottage
+M 0 33015 100 33016 ;Forest Pixie loaded in room Beneath the forest canopy
+M 0 33016 100 33088 ;Troll loaded in room Gho'Don's House
+M 0 33017 100 33030 ;Forest Defiler loaded in room Beneath the Forest Canopy
+M 0 33017 100 33028 ;Forest Defiler loaded in room Beneath the Forest Canopy
+M 0 33017 100 33008 ;Forest Defiler loaded in room Beneath the forest canopy
+M 0 33017 100 33006 ;Forest Defiler loaded in room Beneath the Forest Canopy
+M 0 33017 100 33020 ;Forest Defiler loaded in room Beneath the forest canopy
+M 0 33017 100 33015 ;Forest Defiler loaded in room Beneath the forest canopy
+M 0 33017 100 33013 ;Forest Defiler loaded in room Beneath the Forest Canopy
+M 0 33017 100 33011 ;Forest Defiler loaded in room Beneath the forest canopy
+M 0 33017 100 33004 ;Forest Defiler loaded in room Beneath the Forest Canopy
+M 0 33017 100 33017 ;Forest Defiler loaded in room Beneath the forest canopy
+M 0 33017 100 33010 ;Forest Defiler loaded in room Beneath the forest canopy
+M 0 33017 100 33023 ;Forest Defiler loaded in room Beneath the forest canopy
+M 0 33017 100 33019 ;Forest Defiler loaded in room Beneath the forest canopy
+M 0 33018 100 33027 ;Deer loaded in room Beneath the Forest Canopy
+M 0 33019 100 33009 ;Wolf loaded in room Beneath the forest canopy
+M 0 33018 100 33029 ;Deer loaded in room Beneath the Forest Canopy
+M 0 33019 100 33007 ;Wolf loaded in room Beneath the Forest Canopy
+M 0 33018 100 33021 ;Deer loaded in room Beneath the Forest Canopy
+M 0 33019 100 33016 ;Wolf loaded in room Beneath the forest canopy
+M 0 33018 100 33005 ;Deer loaded in room Beneath the Forest Canopy
+M 0 33019 100 33012 ;Wolf loaded in room Beneath the forest canopy
+M 0 33019 100 33026 ;Wolf loaded in room Beneath the forest canopy
+M 0 33018 100 33024 ;Deer loaded in room Beneath the forest canopy
+M 0 33019 100 33018 ;Wolf loaded in room Beneath the forest canopy
+M 0 33019 100 33022 ;Wolf loaded in room Beneath the Forest Canopy
+O 0 33026 100 33004 ;Treebranch loaded in room Beneath the Forest Canopy
+O 0 33026 100 33005 ;Treebranch loaded in room Before the Forest
+O 0 33026 100 33013 ;Treebranch loaded in room Beneath the Forest Canopy
+O 0 33026 100 33007 ;Treebranch loaded in room Beneath the Forest Canopy
+O 0 33026 100 33006 ;Treebranch loaded in room Beneath the Forest Canopy
+O 0 33026 100 33021 ;Treebranch loaded in room Beneath the Forest Canopy
+O 0 33026 100 33022 ;Treebranch loaded in room Beneath the Forest Canopy
+O 0 33026 100 33029 ;Treebranch loaded in room Beneath the Forest Canopy
+O 0 33026 100 33028 ;Treebranch loaded in room Beneath the Forest Canopy
+O 0 33026 100 33027 ;Treebranch loaded in room Beneath the Forest Canopy
+O 0 33026 100 33030 ;Treebranch loaded in room Beneath the Forest Canopy
+O 0 33027 100 33011 ;Stick loaded in room Beneath the forest canopy
+O 0 33027 100 33012 ;Stick loaded in room Beneath the forest canopy
+O 0 33027 100 33008 ;Stick loaded in room Beneath the forest canopy
+O 0 33027 100 33009 ;Stick loaded in room Beneath the forest canopy
+O 0 33027 100 33010 ;Stick loaded in room Beneath the forest canopy
+O 0 33027 100 33026 ;Stick loaded in room Beneath the forest canopy
+O 0 33027 100 33024 ;Stick loaded in room Beneath the forest canopy
+O 0 33027 100 33015 ;Stick loaded in room Beneath the forest canopy
+O 0 33027 100 33023 ;Stick loaded in room Beneath the forest canopy
+O 0 33027 100 33017 ;Stick loaded in room Beneath the forest canopy
+O 0 33027 100 33016 ;Stick loaded in room Beneath the forest canopy
+O 0 33027 100 33020 ;Stick loaded in room Beneath the forest canopy
+O 0 33027 100 33019 ;Stick loaded in room Beneath the forest canopy
+O 0 33027 100 33018 ;Stick loaded in room Beneath the forest canopy
+O 0 33028 100 33072 ;sign loaded in room Northern Intersection
+O 0 33029 100 33097 ;Bookshelf loaded in room Town Library
+P 1 33030 100 33029 ;Place Book: The Natural uses of Cedar in Bookshelf
+P 1 33031 100 33029 ;Place Sir Prophecys Real Life Recipe Book in Bookshelf
+P 1 33047 100 33029 ;Place Book: Spinning Thread and String in Bookshelf
+O 0 33033 100 33088 ;Chest loaded in room Gho'Don's House
+P 1 33035 100 33033 ;Place Steel Ore in Chest
+O 0 33036 100 33096 ;Clerks Desk loaded in room Forest Runners Guild
+O 0 33000 100 33036 ;A Stone Pond loaded in room Village Square
+O 0 33037 100 33061 ;sign loaded in room Southern Intersection
+O 0 33038 100 33039 ;sign loaded in room Eastern Intersection
+O 0 33005 100 33008 ;A Large Cedar Tree loaded in room Beneath the forest canopy
+O 0 33044 100 33089 ;Threading Spindle loaded in room Marianna's House
+O 0 33002 100 33049 ;A hole in the road loaded in room Eastern Avenue
+P 1 33003 100 33002 ;Place A loose cobble stone in A hole in the road
+O 0 33048 100 33011 ;A Large Conifer Tree loaded in room Beneath the forest canopy
+O 0 33048 100 33012 ;A Large Conifer Tree loaded in room Beneath the forest canopy
+O 0 33048 100 33009 ;A Large Conifer Tree loaded in room Beneath the forest canopy
+O 0 33048 100 33026 ;A Large Conifer Tree loaded in room Beneath the forest canopy
+O 0 33048 100 33013 ;A Large Conifer Tree loaded in room Beneath the Forest Canopy
+O 0 33048 100 33007 ;A Large Conifer Tree loaded in room Beneath the Forest Canopy
+O 0 33048 100 33028 ;A Large Conifer Tree loaded in room Beneath the Forest Canopy
+O 0 33048 100 33027 ;A Large Conifer Tree loaded in room Beneath the Forest Canopy
+O 0 33048 100 33004 ;A Large Conifer Tree loaded in room Beneath the Forest Canopy
+O 0 33048 100 33005 ;A Large Conifer Tree loaded in room Beneath the Forest Canopy
+O 0 33048 100 33006 ;A Large Conifer Tree loaded in room Beneath the Forest Canopy
+O 0 33048 100 33029 ;A Large Conifer Tree loaded in room Beneath the Forest Canopy
+O 0 33048 100 33030 ;A Large Conifer Tree loaded in room Beneath the Forest Canopy
+O 0 33048 100 33022 ;A Large Conifer Tree loaded in room Beneath the Forest Canopy
+O 0 33048 100 33023 ;A Large Conifer Tree loaded in room Beneath the forest canopy
+O 0 33048 100 33024 ;A Large Conifer Tree loaded in room Beneath the forest canopy
+O 0 33048 100 33015 ;A Large Conifer Tree loaded in room Beneath the forest canopy
+O 0 33048 100 33021 ;A Large Conifer Tree loaded in room Beneath the Forest Canopy
+O 0 33048 100 33018 ;A Large Conifer Tree loaded in room Beneath the forest canopy
+O 0 33048 100 33017 ;A Large Conifer Tree loaded in room Beneath the forest canopy
+O 0 33048 100 33016 ;A Large Conifer Tree loaded in room Beneath the forest canopy
+O 0 33048 100 33020 ;A Large Conifer Tree loaded in room Beneath the forest canopy
+O 0 33048 100 33010 ;A Large Conifer Tree loaded in room Beneath the forest canopy
+O 0 33001 100 33019 ;Berry Bush loaded in room Beneath the forest canopy
+S
+
+
+
+
+#$

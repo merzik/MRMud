@@ -1,0 +1,4030 @@
+#AREA Landover~
+#AUTHORS Jaxom  ~
+
+
+
+
+
+#HELPS
+-1 LANDOVER_CHANGES~
+12.25.04 - Changed line in mob 15021 from mpoload i15024 to
+           mpoload 15024 to stop bug message received when tarnished
+           equip quest was done. (Mag)
+12.25.04 - 36 spelling errors corrected. (Mag)
+~
+
+-1 LANDOVER_EXTERNALS~
+LANDOVER EXTERNALS
+There are external bmp files on some of the quest objects in
+the area, so take a look at em when you get the chance.~
+
+
+-1 LANDOVER~
+LANDOVER
+The magic kingdom of Landover is based on the series by Terry Brooks.
+Twenty years ago,  The king of Landover died leaving his son, Michael as
+his only heir.  Unfortunately for the kingdom, Michael did not want the
+kingdom.  He conspired with the then Court Wizard, Meeks, to help him get
+out of his kingdom, but he did not want to be penniless wherever he
+ended up, so they planned to sell the throne to the highest bidder.
+You enter the scene thirty-two kings later.
+.
+.      (A) Externals
+.      (B) Jaxom
+.
+Last updated July 30, 1998
+
+
+{a}LANDOVER_EXTERNALS
+{b}JAXOM
+~
+0 $~
+
+
+
+
+#RANGES 10 40 0 99
+#FLAGS AFLAG_NODEBUG|AFLAG_NOTELEPORT
+#MOBILES
+#15000
+rosen shopkeeper man~
+Rosen the Shopkeeper~
+Rosen the Shopkeeper sits at the counter.~
+He doesn't look like a guy that would own a store, but what do you know?~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_TONGUES|AFF_UNDERSTAND
+0 S
+1 BODY_HAND BODY_HAND 10d10+10000 1d10+90
+10000 RACE_HUMAN
+POS_RESTING POS_RESTING SEX_MALE
+>all_greet_prog 50~
+say Good afternoon,  can I interest you in anything?
+~
+>speech_prog yes~
+say Good, Good.
+smile 
+say I suggest you buy a wishbook to help determine 
+say what you would like to buy.
+mpforce $n list
+~
+>speech_prog challenge~
+mpmset $n quest 5 4 0
+say You had better go defend your kingdom then.
+~
+|
+#15001
+meeks old man~
+Meeks~
+An old man sits at the desk waiting for you.~
+He may look old, but you guess that you wouldn't want to tangle with him.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_TONGUES|AFF_UNDERSTAND
+0 S
+95 BODY_HAND BODY_HAND 10d10+8500 1d10+75
+10000 RACE_HUMAN
+POS_RESTING POS_RESTING SEX_MALE
+>all_greet_prog 50~
+if quest(0, 4, $n) == 0
+  mpechoat $n Meeks stands up and shakes your hand before sitting back down.
+  say What can I do for you?
+endif
+~
+>bribe_prog 100000~
+if iskiller($n)
+  say I am sorry but you are unsuitable for this purchase.
+  say Here is your money back.
+  mpmadd $n gold 100000
+else
+ if quest(0, 4, $n) == 0
+  mpjunk all
+  mpoload 15000
+  give i15000 $n
+  say You won't regret this purchase.  To go to Landover,
+  say just wear the medallion and think Landover.
+  say If you ever wish to leave Landover, just remove
+  say the medallion and think of home.
+  mpmset $n quest 0 4 1
+ else
+  say I am sorry but you are unsuitable for this purchase.
+  say Here is your money back.
+  mpmadd $n gold 100000
+ endif
+endif
+mpjunk all
+~
+>give_prog I15000~
+mpjunk all
+say I'm sorry that you did not like Landover.
+say Maybe you can come again?
+mpmset $n quest 0 4 0
+~
+>speech_prog landover~
+say You are interested in the special purchase called
+say Landover?  Just give me one hundred thousand gold
+say coins and the kingdom is yours.
+mpmset $n quest 0 4 0
+mpmset $n quest 5 4 0
+~
+|
+#15002
+themarkquestmob mark iron demon~
+The Mark~
+The Iron Mark charges you!~
+He is at least eight feet tall.  Serrated spines run the length
+of his limbs and back, and bright crimson eyes shine through his
+death's head helmet.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE|ACT_ONE_FIGHT
+AFF_DETECT_INVIS|AFF_PASS_DOOR|AFF_TONGUES
+-1000 S
+30 BODY_HEAD BODY_HAND|BODY_FOOT 10d10+500 1d10+20
+34297 RACE_DROW
+POS_STANDING POS_STANDING SEX_MALE
+>death_prog 100~
+if quest(0, 4, $n) == 10
+  mpecho The Mark screams as the death blow is dealt.
+  mpechoat $n Your head spins as the enormity of your situation sinks in.
+  mpechoat $n The medallion of the king of Landover has let you become the
+  mpechoat $n the Paladin and defeat the mark!  You know that from now on you
+  mpechoat $n will always have a part of the Paladin within you.
+  mpmset $n quest 0 4 11
+  mpquiet on
+  mpoload 15025
+  give i15025 $n
+  mpoload 15026
+  give i15026 $n
+  mpoload 15027
+  give i15027 $n
+  mpoload 15028
+  give i15028 $n
+  mpquiet off
+endif
+~
+|
+#15003
+parsnip kobold~
+Parsnip the Kobold~
+Parsnip the Kobold stands here waiting to serve dinner.~
+He looks like half monkey, half porcupine.  His ears are reminiscent
+of Dumbo and his toes are prehensile.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS
+0 S
+50 BODY_HEAD BODY_HAND|BODY_FOOT 10d10+1300 1d10+35
+100000 RACE_DROW
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 50~
+if actorhasobjnum(15000)
+  if quest(0, 4, $n) == 12
+    mpechoat $n Parsnip hisses at you happily.
+  endif
+else
+  if quest(0, 4, $n) == 0
+    if quest(13, 1, $n) == 1
+      mpechoat $n Parsnip hisses at you angrily.
+      mpkill $n
+    endif
+    mpechoat $n Parsnip hisses at you angrily.
+    mpmset $n quest 13 1 1
+    mptransfer $n 15075
+  endif
+endif
+~
+>speech_prog restart~
+mpmset $n quest 5 4 0
+snicker 
+~
+>rand_prog 10~
+mpecho Parsnip grins at you showing all his needle sharp teeth.
+~
+>rand_prog 20~
+mpecho Parsnip gestures trying to ask if you want something to eat.
+~
+|
+#15004
+kallendbor lord man~
+Lord Kallendbor~
+Lord Kallendbor stands here waiting to hear from the latest king.~
+He is an imposing figure. He stands almost seven feet tall and is
+well muscled.  You would hate to have to fight him.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_TONGUES
+0 S
+30 0 BODY_HAND|BODY_FOOT 10d10+450 1d10+20
+32892 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if quest(0, 4, $n) == 2
+  say You are welcome, $n, but I will not support a weak king.
+else
+  if quest(0, 4, $n) > 3
+    if sex ($n) == 1
+      say Welcome, High Lord $n
+    else
+      say Welcome, High Lady $n
+    endif
+  else
+    nod $n
+  endif
+endif
+~
+>speech_prog fisticuffs~
+if quest(0, 4, $n) == 2
+  say You challenge me at fisticuffs to determine if I
+  say will bow to you?   I accept.  Defend yourself!
+  mpkill $n
+endif
+~
+>death_prog 100~
+if quest(0, 4, $n) == 2
+  mpecho Kallendbor falls to the ground unconscious.
+  mpecho Kallendbor regains consciousness and shakes his head as
+  mpecho he gets to his feet.
+  say You have defeated me in fair combat.
+  say You will have my support.
+  mpmset $n quest 0 4 4
+  mpecho Kallendbor leaves to gather the support of his vassals.
+  mppurge $i
+endif
+~
+|
+#15005
+crow~
+a Crow~
+A Crow stands on a branch watching you.~
+It has glossy black feathers crested in white.  It waits to see 
+what you will do next.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_TONGUES
+0 S
+30 BODY_HEAD BODY_CLAW 10d10+450 1d10+20
+10000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_FEMALE
+>speech_prog Nightshade~
+mpecho The crows eyes blink and suddenly turn blood-red.
+mpecho The crow begins to change.  It seems to expand against the gloom,
+mpecho shimmering with an aura of crimson light, its shadow rising up 
+mpecho like a wraith set free.  The crimson aura dies away and the crow
+mpecho is gone.  Nightshade now stands before you.
+mpmload 15006
+if quest(0, 4, $n) != 6
+  mpforce nightshade mpkill $n
+endif
+mppurge $i
+~
+>rand_prog 100~
+if quest(0, 4, $r) == 8
+  mpecho The Crow shimmers as it turns into Nightshade.
+  mpecho Nightshade tells you 'I will keep my promise, but you will pay
+  mpecho for not slaying Strabo while you had the chance!'
+  mpecho Nightshade turns back into a crow and flies away.
+  mpmset $r quest 0 4 9
+  mppurge $i
+endif
+~
+|
+#15006
+nightshade witch~
+Nightshade~
+Nightshade stands here looking at you.~
+She is tall and sharp-featured, her skin white and flawless, her hair 
+raven black except for a single streak of white that runs down its center.
+She is neither old nor young, but somewhere in between.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_TONGUES
+-500 S
+30 BODY_HEAD 0 10d10+450 1d10+20
+10000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_FEMALE
+>rand_prog 100~
+if quest(0, 4, $r)== 6
+  mpechoat $r Nightshade's face twists in anger and it looks as though you
+  mpechoat $r have just become a corpse.
+  shout You want me to bow down to you?
+  mpechoat $r Nightshade's face suddenly relaxes and she smiles at you.
+  say There is a way I would consider paying homage to you.
+  say The dragon, Strabo, has been troubling me lately.
+  say Take care of him and I will pledge my allegiance to you.
+  mpoload 15004
+  give dust $r
+  say Use this dust on him, it will give you a slim
+  say chance to succeed.
+  cackle 
+  mpmset $r quest 0 4 7
+  mpecho Nightshade turns back into a crow and flies away.
+  mppurge $i
+else
+  mpoload 15004
+  mpkill $r
+endif
+~
+|
+#15007
+river master~
+The River master~
+The River Master is here waiting to hear your speech.~
+He is a lean figure with a slim silver diadem about his forehead.
+His skin is of a silver cast, almost scaled, but his hair is black and
+thick about the nape of his neck and forearms.  He has the look of 
+something carved out of wood.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_TONGUES
+0 S
+40 BODY_HEAD BODY_HAND 10d10+600 1d10+30
+10000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if quest(0, 4, $n) == 5
+  say I understand that you have conned Kallendbor into
+  say following you He is a wimp.  I will not be so easy
+  say to cozen.
+else
+  if quest(0, 4, $n) > 11
+    if sex ($n) == 1
+      say Good to see you again, Son.
+    else
+      say Good to see you again, Daughter.
+    endif
+  else
+    nod $n
+  endif
+endif
+~
+>speech_prog daughter marriage.~
+if quest(0, 4, $n) == 5
+  if sex ($n) == 1
+    say You have discovered that they way to get to me is
+    say through my daughter.  Very well, You may wed my
+    say daughter if you can win the support of both
+    say Nightshade and Strabo.
+    mpecho The River Master smiles triumphantly.
+    mpmset $n quest 0 4 6
+  endif
+endif
+~
+>speech_prog son marriage.~
+if quest(0, 4, $n) == 5
+  if sex ($n) != 1
+    say You have discovered that they way to get to me
+    say is through my son.  Very well, You may wed my son
+    say if you can win the support of both Nightshade and
+    say Strabo.
+    mpecho The River Master smiles triumphantly.
+    mpmset $n quest 0 4 6
+  endif
+endif
+~
+|
+#15008
+strabo dragon~
+Strabo~
+Strabo the Dragon eyes you hungrily.~
+He looks like most dragons, large, mean and hungry.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_FLYING|AFF_TONGUES
+0 S
+50 BODY_HEAD 0 10d10+1300 1d10+35
+92323 RACE_DROW
+POS_STANDING POS_STANDING SEX_MALE
+>death_prog 100~
+if class($n) == 4
+  if level($n) < 45
+    mpoload 15033
+  endif
+endif
+~
+>all_greet_prog 100~
+if quest(0, 4, $n) == 7
+  say What do you want with me play-king?
+  say I should roast you for daring to enter my domain.
+else
+  if quest(0, 4, $n) > 7
+    shout You will die, $n, for what you did to me!
+    mpecho The Dragon attacks!
+    mpkill $n
+  else
+    say You will die for entering my domain!
+    mpecho The Dragon attacks!
+    mpkill $n
+  endif
+endif
+~
+>give_prog i15004~
+if quest(0,4,$n)==7
+  mpechoat $n Strabo inhales in surprise as he sees what have given him.
+  mpechoat $n Unfortunately for him, this means he gets a full dose of the
+  mpechoat $n Io Dust. While he is under it's influence, you quickly persuade
+  mpechoat $n him to bow to you as king and even manage to talk him into
+  mpechoat $n taking you back to nightshade.
+  mpechoat $n You climb onto Strabo's back and before you know it you are at 
+  mpechoat $n Deep Fell. As Soon as you dismount, Strabo takes off and disappears
+  mpechoat $n into the east.
+  mpechoaround $n $n throws some dust into Strabo's face and then has a brief and
+  mpechoaround $n peculiar conversation with him. Afterwards, they seem to be best
+  mpechoaround $n friends and $n climbs onto Strabo's back and they fly into the
+  mpechoaround $n west. After a few moments, Strabo returns alone.
+  mpmset $n quest 0 4 8
+  mptransfer $n 15028
+  mpjunk i15004
+endif
+~
+|
+#15009
+questor thews wizard~
+Questor~
+Questor Thews, Court Wizard stands here.~
+He is very thin.  His eyebrows are large and bushy and when he looks
+at you he looks a bit like an owl.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE|ACT_PRACTICE|ACT_TRAIN
+AFF_DETECT_INVIS|AFF_TONGUES
+0 S
+40 BODY_HEAD BODY_HAND 10d10+600 1d10+30
+10000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if actorhasobjnum(15000)
+  if rand(10)
+    mpechoat $n Questor attempts to conjure a piece of fruit for you.
+    mpechoat $n Questor mumbles a few words and waves his hands about.
+    mpquiet on
+    cast 'control weather' worse
+    cast 'control weather' worse 
+    cast 'control weather' worse 
+    cast 'control weather' worse 
+    cast 'control weather' worse 
+    mpquiet off
+    mpechoat $n A piece of fruit doesn't appear, but it does start to rain.
+  else
+    if rand(10)
+      mpechoat $n Questor tries to cast a spell of protection on you.
+      mpechoat $n Questor mumbles a few words and waves his hands about.
+      mpquiet on
+      cast 'change sex' $n
+      mpquiet off
+      mpechoat $n Nothing happens.  Or did it?
+    endif
+  endif
+else
+  say I see you have gotten rid of your medallion
+  say thus relinquishing your rule of Landover.
+  say Very well.  Return to Meeks!
+  mpmset $n quest 0 4 0
+  mptransfer $n 15075
+  break
+endif
+if quest(0, 4, $n) == 1
+  if sex($n) == 1
+    say Welcome High Lord.  I am Your Court Wizard, and I
+  else
+    say Welcome High Lady.  I am Your Court Wizard, and I
+  endif
+  say am at your disposal.  You are the thirty-third in a
+  say long line of kings, so you will have to establish
+  say yourself before your crown is challenged.  There are
+  say many people that may back your claim, but I suggest
+  say you start with Lord Kallendbor in Ryhndweir.
+  mpmset $n quest 0 4 2
+else
+  if quest(0, 4, $n) == 4
+    say Congratulations on your defeat of Kallendbor.  You
+    say are well on your way towards becoming a king in fact
+    say as well as name.  The next person I suggest you talk
+    say to is the River Master in the lake country.
+    mpmset $n quest 0 4 5
+  else
+    if quest(0, 4, $n) == 6
+      say You have won a concession from the River Master.  It
+      say is hope though in truth the task seems daunting.  You
+      say had best go see Nightshade now.  She resides in Deep Fell.
+    else
+      if quest(0, 4, $n) == 7
+        say You survived your encounter with Nightshade, a victory
+        say in itself.  If you succeed in gaining control of Strabo,
+        say all the powerhouses in the kingdom will bow down to you.
+      else
+        if quest(0, 4, $n) == 9
+          say Good and Bad news has arrived since I last saw you.
+          say The good news is that the River Master has given his consent
+          if sex($n) == 1
+            say for his daughter to marry you.  The bad news is that the
+          else
+            say for his son to marry you.  The bad news is that the 
+          endif
+          say wedding will have to wait, for the Iron Mark has been seen in
+          say the kingdom.  It is rumored that when all the kingdom meets
+          say at the Heart for your coronation, The Mark will be there to 
+          say kill you.  If you manage to kill the mark, then you will gain
+          if sex($n) == 1
+            say both a kingdom and a wife
+          else
+            say both a kingdom and a husband
+          endif
+          mpmset $n quest 0 4 10
+        else
+          bow $n
+        endif
+      endif
+    endif
+  endif
+endif
+endif
+~
+>speech_prog landsview~
+say You may use the landsview to view parts of Landover
+say from this castle.  Just say the name of the place you
+say want to view and the landsview will do the rest.
+~
+>speech_prog p Deep Fell~
+if quest(0, 4, $n) == 12
+  mptransfer all 15028
+  mpat 15028 mpforce $n look
+endif
+~
+>speech_prog p Fire Springs~
+if quest(0, 4, $n) == 12
+  mptransfer all 15068
+  mpat 15068 mpforce $n look 
+endif
+~
+>speech_prog p Ryhndweir~
+if quest(0, 4, $n) == 12
+  mptransfer all 15061
+  mpat 15061 mpforce $n look
+endif
+~
+|
+#15010
+abernathy scribe terrier wheaten~
+Abernathy~
+Abernathy, the Court Scribe waits on your desire.~
+He is a soft-coated Wheaten Terrier.  A dog.  Although you notice
+that his hands are more like humans.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_TONGUES
+-500 S
+30 BODY_HEAD BODY_MOUTH 10d10+450 1d10+20
+10000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 80~
+if sex($n) == 1
+  say How may I serve you, High Lord?
+else
+  say How may I serve you, High Lady?
+endif
+~
+>rand_prog 20~
+if quest(0, 4, $r) == 2
+  say I understand that Lord Kallendbor is interested in fisticuffs.
+else
+  if quest(0, 4, $r) == 5
+    if sex($r) == 1
+      say I hear that the River Master has a daughter named
+      say Willow.  She is said to be a great beauty, and is
+      say of an age to marry.
+    else
+      say I hear that the River Master has a son named
+      say Birch.  He is said to be very handsome, and is of
+      say an age to marry.
+    endif
+  else
+    if quest(0, 4, $r) == 6
+      say I understand that Nightshade can take the shape of a crow.
+    else
+      if quest(0, 4, $r) < 12
+        say It is rumored that The Paladin has been seen in the kingdom.
+        smile 
+      endif
+    endif
+  endif
+endif
+~
+|
+#15011
+crag troll~
+a Crag Troll~
+A Crag Troll tries to figure a way to make you its slave.~
+It looks like any troll, ugly!~
+ACT_SENTINEL|ACT_BODY|ACT_RACE
+0
+0 S
+20 BODY_HEAD BODY_MOUTH|BODY_CLAW 5d10+260 1d10+13
+10000 RACE_ORC
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if actorhasobjnum(15000)
+else
+  if quest(13, 1, $n) == 0
+    mpmset $n quest 13 1 1
+    mpmset $n quest 0 4 0
+    growl $n
+    mptransfer $n 15075
+  else
+    if quest(13, 1, $n) == 1
+      growl $n
+      mpmset $n quest 0 4 0
+      mpkill $n
+    endif
+  endif
+endif
+~
+|
+#15012
+wump bog~
+a Bog Wump~
+A Bog Wump stalks you!~
+It is a variety of forest wight, a spiny, flesh-eating creature
+that burrows in marshy earth and paralyses its victims with
+its tongue.~
+ACT_SENTINEL|ACT_BODY|ACT_RACE
+0
+0 S
+25 BODY_HEAD BODY_MOUTH|BODY_CLAW 5d10+360 1d10+17
+10000 RACE_ORC
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if actorhasobjnum(15000)
+else
+  if quest(13, 1, $n) == 0
+    mpmset $n quest 13 1 1
+    mpmset $n quest 0 4 0
+    growl $n
+    mptransfer $n 15075
+  else
+    if quest(13, 1, $n) == 1
+      growl $n
+      mpmset $n quest 0 4 0
+      mpkill $n
+    endif
+  endif
+endif
+~
+|
+#15013
+dryad fairy~
+a Dryad~
+A dryad dances here.~
+It looks like many that are part fairy.  Small and elfin.~
+ACT_SENTINEL|ACT_BODY|ACT_RACE
+0
+0 S
+20 BODY_HEAD 0 5d10+260 1d10+13
+10000 RACE_ORC
+POS_STANDING POS_STANDING SEX_FEMALE
+>all_greet_prog 100~
+if actorhasobjnum(15000)
+else
+  if quest(13, 1, $n) == 0
+    mpmset $n quest 13 1 1
+    mpmset $n quest 0 4 0
+    growl $n
+    mptransfer $n 15075
+  else
+    if quest(13, 1, $n) == 1
+      growl $n
+      mpmset $n quest 0 4 0
+      mpkill $n
+    endif
+  endif
+endif
+~
+|
+#15014
+timberwolf wolf~
+a Timberwolf~
+A timberwolf stalks you.~
+It looks canine, just like any other wolf.~
+ACT_SENTINEL|ACT_BODY|ACT_RACE
+0
+0 S
+15 BODY_HEAD BODY_MOUTH|BODY_CLAW 5d10+180 1d10+11
+6399 RACE_ELF
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if actorhasobjnum(15000)
+else
+  if quest(13, 1, $n) == 0
+    mpmset $n quest 13 1 1
+    mpmset $n quest 0 4 0
+    growl $n
+    mptransfer $n 15075
+  else
+    if quest(13, 1, $n) == 1
+      growl $n
+      mpmset $n quest 0 4 0
+      mpkill $n
+    endif
+  endif
+endif
+~
+|
+#15015
+wight cave~
+a Cave Wight~
+A wight hunts for food, and you are it!~
+It has spindly arms and legs and sharp teeth.  Its wild hair
+almost makes you laugh, but its noxious smell almost makes
+you puke.~
+ACT_SENTINEL|ACT_BODY|ACT_RACE
+0
+0 S
+30 BODY_HEAD BODY_MOUTH|BODY_CLAW 5d10+460 1d10+17
+10000 RACE_ORC
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if actorhasobjnum(15000)
+else
+  if quest(13, 1, $n) == 0
+    mpmset $n quest 13 1 1
+    mpmset $n quest 0 4 0
+    growl $n
+    mptransfer $n 15075
+  else
+    if quest(13, 1, $n) == 1
+      growl $n
+      mpmset $n quest 0 4 0
+      mpkill $n
+    endif
+  endif
+endif
+~
+>death_prog 100~
+if class($n) == 4
+  if level($n) < 45
+    mpoload 15018
+  endif
+endif
+~
+|
+#15016
+heart~
+Heart~
+The heart~
+The heart~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_ETHEREAL
+0 S
+1 0 0 1d1+28 1d1+9
+1 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if quest(0, 4, $n) == 10
+  mpechoat $n All of the prominent figures in the kingdom have appeared
+  mpechoat $n for you coronation.  Unfortunately one of those figures is 
+  mpechoat $n the Iron Mark.  As The Mark spies you and couches his lance to
+  mpechoat $n charge, you grasp your medallion and begin to wish that the
+  mpechoat $n Paladin, champion of the king of Landover, that you have heard
+  mpechoat $n were here to protect you from this Demon that is charging you.
+  mpechoat $n All of a sudden you feel yourself enclosed in the armor of that
+  mpechoat $n that very Paladin.  You feel his strength and bloodlust course
+  mpechoat $n through you and you know that you will Win this battle!
+  mpmload 15002
+  rescale 15002 $n 100
+  mpforce $n shout I am the Paladin, and I will save Landover from the Mark!
+  mpforce themarkquestmob mpkill $n
+endif
+~
+>rand_prog 100~
+if quest(0, 4, $r) == 11
+  mpecho The guests return to the heart once The Mark is dead.
+  mpechoat $r The guests decide that you are most interested in is the River Master's
+  if sex($r) == 1
+    mpechoat $r daughter, Willow, for you have decided to add a wedding to the
+  else
+    mpechoat $r son, Birch, for you have decided to add a wedding to the
+  endif
+  mpechoat $r days list of events as well as a coronation.
+  if sex($r) == 1
+    mpmload 15018
+    mpforce willow follow $r
+  else
+    mpmload 15019
+    mpforce birch follow $r
+  endif
+  mpechoat $r Both the wedding and the coronation go without another hitch
+  mpechoat $r and your subjects sing your praises eternally.
+  if sex($r) == 1
+    mpmset $r long High Lord $n of Landover.
+  else
+    mpmset $r long High Lady $n of Landover.
+  endif
+  mpmset $r quest 0 4 12
+endif
+~
+|
+#15017
+thrall peasant man~
+a Thrall~
+A peasant man tills the field here.~
+He looks like your ordinary downtrodden peasant.~
+ACT_SENTINEL|ACT_BODY|ACT_RACE
+0
+0 S
+25 BODY_HEAD 0 5d10+360 1d10+17
+10000 RACE_ORC
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if actorhasobjnum(15000)
+else
+  if quest(13, 1, $n) == 0
+    mpmset $n quest 13 1 1
+    mpmset $n quest 0 4 0
+    growl $n
+    mptransfer $n 15075
+  else
+    if quest(13, 1, $n) == 1
+      growl $n
+      mpmset $n quest 0 4 0
+      mpkill $n
+    endif
+  endif
+endif
+~
+|
+#15018
+willow sylph~
+Willow the Sylph~
+Willow the Sylph swims here.~
+She is very beautiful if you can get over the fact that her skin is green.~
+ACT_SENTINEL|ACT_PET|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_TONGUES
+-500 S
+30 BODY_HEAD BODY_MOUTH 10d10+500 1d10+20
+30238 RACE_ELF
+POS_STANDING POS_STANDING SEX_FEMALE
+>rand_prog 5~
+kiss $r
+~
+|
+#15019
+birch fawn~
+Birch the Fawn~
+Birch the fawn swims here.~
+He is very handsome if you can get over the fact that his skin is green.~
+ACT_SENTINEL|ACT_PET|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_TONGUES
+-500 S
+30 BODY_HEAD BODY_MOUTH 10d10+500 1d10+20
+28111 RACE_ELF
+POS_STANDING POS_STANDING SEX_MALE
+>rand_prog 5~
+kiss $r
+~
+|
+#15020
+rydallmob king marnhull~
+Rydall~
+Rydall, King of Marnhull, is here.~
+He is an imposing figure completely decked out in plate armor.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_TONGUES
+0 S
+95 BODY_HEAD BODY_HAND|BODY_FOOT 10d10+8500 1d10+85
+65740 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>rand_prog 100~
+if quest(5, 4, $r) == 13
+  shout NO!  $r could not have defeated all my champions!  
+  shout Landover will be mine!
+  mpecho Rydall attacks!
+  rescale 15020 $r 130
+  mpkill $r
+  mpmset $r quest 5 4 14
+endif
+~
+>speech_prog accept challenge~
+emote nods knowingly.
+say I knew you would accept my challenge.  Five
+say champions chosen by me will appear here to challenge
+say you individually.  If you defeat them all, then I
+say will let you and your puny kingdom live.
+say Otherwise, both will die!
+~
+>death_prog 100~
+if quest(5, 4, $n) == 14
+  mpoload 15029
+  mpoload 15030
+  mpoload 15031
+  mpoload 15032
+  mpmset $n quest 5 4 15
+  mpechoat $n Once Rydall is dead, you lift his visor to get a look at him
+  mpechoat $n and gasp in astonishment, It is Lord Kallendbor!  You know
+  mpechoat $n that he never liked you but you never suspected him of treason!
+endif
+~
+|
+#15021
+giant stony~
+a Giant~
+A Giant with stony features is here.~
+He is large and seems to gain power from the earth.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS
+0 S
+95 BODY_HEAD BODY_HAND|BODY_FOOT 10d10+8500 1d10+85
+64239 RACE_DROW
+POS_STANDING POS_STANDING SEX_MALE
+>death_prog 100~
+if quest(5, 4, $n) == 3
+  @mpoload i15024
+  mpoload 15024
+  mpmset $n quest 5 4 4
+endif
+~
+|
+#15022
+paladin mirror~
+The Paladin~
+The Paladin stands here.~
+He is the spitting image of the Paladin that you summon
+with your medallion.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS
+0 S
+95 BODY_HEAD BODY_HAND|BODY_FOOT 10d10+8500 1d10+85
+90928 RACE_DROW
+POS_STANDING POS_STANDING SEX_MALE
+>death_prog 100~
+if quest(5, 4, $n) == 5
+  mpmset $n quest 5 4 6
+endif
+~
+|
+#15023
+golem metal~
+a Golem~
+A metal golem is here.~
+He is made completely out of metal and seems to be animated
+only by magic.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS
+0 S
+95 BODY_HEAD BODY_HAND|BODY_FOOT 10d10+8500 1d10+85
+62113 RACE_DROW
+POS_STANDING POS_STANDING SEX_MALE
+>death_prog 100~
+if quest(5, 4, $n) == 7
+  mpmset $n quest 5 4 8
+endif
+~
+|
+#15024
+wurm worm~
+a Wurm~
+A Wurm is here.~
+It is an enormous worm with many rows of teeth in its round mouth.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS
+0 S
+95 BODY_HEAD 0 10d10+8500 1d10+85
+59646 RACE_DROW
+POS_STANDING POS_STANDING SEX_MALE
+>death_prog 100~
+if quest(5, 4, $n) == 9
+  mpmset $n quest 5 4 10
+endif
+~
+|
+#15025
+ardsheal elemental~
+an Ardsheal~
+An Ardsheal elemental stands here.~
+It is a humanoid shape standing slightly taller than a man.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS
+0 S
+95 BODY_HEAD BODY_HAND|BODY_FOOT 10d10+8500 1d10+85
+94988 RACE_DROW
+POS_STANDING POS_STANDING SEX_MALE
+>death_prog 100~
+if quest(5, 4, $n) == 11
+  mpmset $n quest 5 4 12
+endif
+~
+|
+#15026
+darklingmob~
+a Darkling~
+A darkling is here grinning wickedly.~
+It is a small spindly thing that looks kind of spiderish.~
+ACT_SENTINEL|ACT_PET|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS
+0 S
+30 BODY_HEAD BODY_HAND|BODY_FOOT 10d10+1000 1d10+25
+33663 RACE_DROW
+POS_STANDING POS_STANDING SEX_MALE
+#15027
+g'home gnome~
+a G'home gnome~
+A G'home gnome is here.~
+It is a small dirty gnome which looks at your pouches greedily.
+The phrase, 'Go Home Gnome' immediately leaps to mind.~
+ACT_SCAVENGER|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_SNEAK
+0 S
+30 BODY_HEAD BODY_HAND|BODY_FOOT 10d10+800 1d10+20
+22511 RACE_GNOME
+POS_STANDING POS_STANDING SEX_MALE
+#15028
+sterlingmob~
+sterlingmob~
+Sterlingmob~
+Loads challengers.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_ETHEREAL
+0 S
+1 BODY_HEAD BODY_HAND|BODY_FOOT 1d1+35 1d10+5
+25 RACE_DROW
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 55~
+if quest(5, 4, $n) == 0
+  if quest(0, 4, $n) == 12
+    if quest(10, 3, self) == 0
+      mpmload 15020
+      mpmset self quest 10 3 1
+      mpecho Rydall throws down his gauntlet, before speaking to you.
+      mpforce rydallmob say I am Rydall, King of Marnhull and of all the lands
+      mpforce rydallmob say east beyond the fairy mists to the Great Impassable.  
+      mpforce rydallmob say I have come to seek your surrender, $n.  My army is set
+      mpforce rydallmob say  to sweep through Landover like a plague and destroy 
+      mpforce rydallmob say everything in its path.  You have no choice but to accept my
+      mpforce rydallmob say challenge.
+    endif
+  endif
+else
+  if quest(5, 4, $n) == 2
+    mpmload 15021
+    mpecho A stony giant approaches the gate calling for $n.
+    mpecho The giant attacks, swinging his club at your head!
+    rescale 15021 $n 80
+    mpforce stony mpkill $n
+    mpmset $n quest 5 4 3
+  endif
+else
+  if quest(5, 4, $n) == 4
+    mpmload 15022
+    mpecho You have to look twice when you see what looks like
+    mpecho the paladin coming towards the castle gate.
+    mpecho When you go out to meet him, he attacks!
+    rescale 15022 $n 90
+    mpforce paladin mpkill $n
+    mpmset $n quest 5 4 5
+  endif
+else
+  if quest(5, 4, $n) == 6
+    mpmload 15023
+    mpecho A man sized metal golem strides jerkily up to the gate.
+    mpecho It attacks you immediately!
+    rescale 15023 $n 100
+    mpforce golem mpkill $n
+    mpmset $n quest 5 4 7
+  endif
+else
+  if quest(5, 4, $n) == 8
+    mpmload 15024
+    mpecho The largest worm you have ever seen slithers up and attacks!
+    rescale 15024 $n 110
+    mpforce wurm mpkill $n
+    mpmset $n quest 5 4 9
+  endif
+else
+  if quest(5, 4, $n) == 10
+    mpmload 15025
+    mpecho A humanoid creature walks smoothly up to the gate.
+    mpecho The ardsheal finally locates you and attacks!
+    rescale 15025 $n 120
+    mpforce ardsheal mpkill $n
+    mpmset $n quest 5 4 11
+  endif
+endif
+~
+>speech_prog accept challenge~
+if quest(5, 4, $n) == 0
+  if quest(10,3, self) == 1
+    mpmset $n quest 5 4 2
+    mpmset self quest 10 3 2
+  endif
+endif
+~
+>rand_prog 55~
+if quest(5, 4, $r) == 12
+  mpmload 15020
+  mpecho Rydall rides up looking furious.
+  mpmset $r quest 5 4 13
+else
+  if quest(10, 3, self) == 1
+    mpmset self quest 10 3 0
+    mpecho Rydall rides off seeking someone to accept his challenge.
+    mppurge rydallmob
+  endif
+else
+  if quest(10, 3, self) ==2
+    mpmset self quest 10 3 0
+    mpecho Rydall rides off, happy that you have accepted his challenge.
+    mppurge rydallmob
+  endif
+else
+  if quest(5, 4, $r) == 14
+    mpmset self quest 10 3 0
+  endif
+endif
+~
+|
+#15029
+bunion kobold~
+Bunion the Kobold~
+Bunion the Kobold hides here.~
+He looks like half monkey, half porcupine.  His ears are reminiscent
+of Dumbo and his toes are prehensile.~
+ACT_SMART|ACT_BODY|ACT_RACE
+AFF_INVISIBLE|AFF_DETECT_INVIS|AFF_STEALTH
+0 S
+95 BODY_HEAD BODY_HAND|BODY_FOOT 10d10+8500 1d10+85
+100000 RACE_DROW
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+rescale 15029 $n 100
+if actorhasobjnum(15000)
+else
+  if quest(13, 1, $n) == 0
+    mpmset $n quest 13 1 1
+    mpmset $n quest 0 4 0
+    mpechoat $n Bunion hisses at you angrily.
+    mpechoaround $n Bunion hisses at $n.
+    mptransfer $n 15075
+  else
+    if quest(13, 1, $n) == 1
+      mpechoat $n Bunion hisses at you angrily.
+      mpmset $n quest 0 4 0
+      rescale 15029 $n 140
+      mpkill $n
+    endif
+  endif
+endif
+~
+>fight_prog 100~
+if quest(13, 1, $n) == 1
+  mpquiet on
+  cast acid $n
+  cast heal $i
+  cast heal $i
+  cast heal $i
+  mpquiet off
+endif
+~
+|
+#0
+
+
+
+
+#OBJECTS
+#15000
+medallion kings~
+king's Medallion~
+The king's medallion lies here.~
+It has a picture of a paladin in front of sterling silver with
+a rising sun.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_NODROP|ITEM_FLAG_NOREMOVE|ITEM_FLAG_LEVEL|ITEM_FLAG_AUTO_ENGRAVE
+ITEM_WEAR_TAKE|ITEM_WEAR_NECK
+5 0 0 0
+1 100000 5
+A
+APPLY_DAMROLL 1
+A
+APPLY_HITROLL 1
+A
+APPLY_DEX 1
+P 1
+TRIG_UNKNOWN 100 landover~
+OPROG_IF OIF_WEAR_LOC ! WEAR_NONE 2 0
+P 2
+TRIG_VOID
+OPROG_IF OIF_USER_ROOM_NUM = 15075 3 0
+P 3
+TRIG_VOID
+OPROG_GOD_COMMAND
+mpechoaround $ $ vanishes. &
+mpgoto 15001 &
+mpechoat $ You blink and find yourself somewhere else.~
+P 4
+TRIG_UNKNOWN 100 home~
+OPROG_IF OIF_USER_AREA = 15000 5 0
+P 5
+TRIG_VOID
+OPROG_IF OIF_USER_POSITION = POS_FIGHTING 0 6
+P 6
+TRIG_VOID
+OPROG_GOD_COMMAND
+mpechoaround $ $ vanishes. &
+mpgoto 15075 &
+look~
+P 6
+TRIG_VOID
+OPROG_ECHO
+You blink as you find yourself back at Meeks' Office.
+You give Meeks the King's Medallion.~
+P 6
+TRIG_VOID
+OPROG_JUNK
+#15001
+wine bottle~
+wine bottle~
+A wine bottle lies here.~
+It is a bottle of red wine.~
+ITEM_TYPE_DRINK_CON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+2 1 LIQ_WINE NOT_POISONED
+1 100 5
+#15002
+stew bowl~
+bowl of stew~
+A bowl of stew lies here.~
+It is stew.  You are not sure what meat is in it though.~
+ITEM_TYPE_FOOD
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+10 0 0 NOT_POISONED
+1 20 5
+#15003
+wishbook christmas catalog book~
+a Christmas Wishbook~
+A Christmas Wishbook lies here.~
+The following promo catches your eye:
+________________________________________
+{107}|                                                |
+|             {027}MAGIC KINGDOM FOR SALE{007}             |
+|                                                |
+|      {027}Landover{007} - island of enchantment and      |
+| adventure rescued from the mists of time, home |
+| of knights and knaves, of dragons and damsels, |
+| of wizards and warlocks. Magic mixes with iron,|
+| and chivalry is the code of life for the true  |
+| hero. Only one thread to this whole cloth is   |
+| lacking - you, to rule over all as             |
+|               {057}King and High Lord.{007}              |
+| Escape into your dreams, and be born again.    |
+|               {017}Price: $100,000{007}                  |
+|      {047}Personal interview with Meeks needed{007}      |
+|________________________________________________|{300}~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 0 0
+1 10 1
+#15004
+io dust pod~
+io dust~
+A pod of Io Dust lies here~
+It is a small seed pod full of dust.~
+ITEM_TYPE_WAND
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+35 2 2 SPELL_CHARM_PERSON
+1 1000 15
+#15005
+sterling silver shining boots~
+sterling boots~
+A pair of shining silver boots lies here~
+They are made of heavy plate and polished to a brilliant sheen.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_GLOW|ITEM_FLAG_MAGIC|ITEM_FLAG_ANTI_EVIL|ITEM_FLAG_LEVEL|ITEM_FLAG_AUTO_ENGRAVE
+ITEM_WEAR_TAKE|ITEM_WEAR_FEET
+4 0 0 0
+2 1000 15
+A
+APPLY_DAMROLL 2
+A
+APPLY_HITROLL 3
+#15006
+sterling silver shining gauntlets~
+sterling gauntlets~
+A pair of shining silver gauntlets lies here~
+They are made of heavy plate and polished to a brilliant sheen.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_GLOW|ITEM_FLAG_MAGIC|ITEM_FLAG_ANTI_EVIL|ITEM_FLAG_LEVEL|ITEM_FLAG_AUTO_ENGRAVE
+ITEM_WEAR_TAKE|ITEM_WEAR_HANDS
+4 0 0 0
+2 1000 15
+A
+APPLY_HITROLL 3
+A
+APPLY_DAMROLL 2
+X silgaunt.bmp~
+#15007
+sterling silver shining greaves~
+sterling greaves~
+A pair of shining silver greaves lies here~
+They are made of heavy plate and polished to a brilliant sheen.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_GLOW|ITEM_FLAG_MAGIC|ITEM_FLAG_ANTI_EVIL|ITEM_FLAG_LEVEL|ITEM_FLAG_AUTO_ENGRAVE
+ITEM_WEAR_TAKE|ITEM_WEAR_LEGS
+4 0 0 0
+2 1000 15
+A
+APPLY_DAMROLL 2
+A
+APPLY_HITROLL 3
+#15008
+sterling silver shining helmet~
+a sterling helmet~
+A shining silver helmet lies here~
+It is made of heavy plate and polished to a brilliant sheen.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_GLOW|ITEM_FLAG_MAGIC|ITEM_FLAG_ANTI_EVIL|ITEM_FLAG_LEVEL|ITEM_FLAG_AUTO_ENGRAVE
+ITEM_WEAR_TAKE|ITEM_WEAR_HEAD
+4 0 0 0
+2 1000 15
+A
+APPLY_HITROLL 3
+A
+APPLY_DAMROLL 2
+X silvhelm.bmp~
+#15009
+sterling silver shining armor~
+sterling armor~
+Shining silver armor lies here~
+It is made of heavy plate and polished to a brilliant sheen.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_GLOW|ITEM_FLAG_MAGIC|ITEM_FLAG_ANTI_EVIL|ITEM_FLAG_LEVEL|ITEM_FLAG_AUTO_ENGRAVE
+ITEM_WEAR_TAKE|ITEM_WEAR_BODY
+4 0 0 0
+2 1000 15
+A
+APPLY_HITROLL 3
+A
+APPLY_DAMROLL 2
+X silvbrst.bmp~
+#15010
+sterling silver shining arm guards~
+sterling arm guards~
+A pair of shining silver arm guards lies here~
+They are made of heavy plate and polished to a brilliant sheen.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_GLOW|ITEM_FLAG_MAGIC|ITEM_FLAG_ANTI_EVIL|ITEM_FLAG_LEVEL|ITEM_FLAG_AUTO_ENGRAVE
+ITEM_WEAR_TAKE|ITEM_WEAR_ARMS
+4 0 0 0
+2 1000 15
+A
+APPLY_DAMROLL 2
+A
+APPLY_HITROLL 3
+#15011
+sterling silver shining shield~
+a sterling shield~
+A shining silver shield lies here~
+It is made of heavy plate and polished to a brilliant sheen.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_GLOW|ITEM_FLAG_MAGIC|ITEM_FLAG_ANTI_EVIL|ITEM_FLAG_LEVEL|ITEM_FLAG_AUTO_ENGRAVE
+ITEM_WEAR_TAKE|ITEM_WEAR_SHIELD
+4 0 0 0
+2 1000 15
+A
+APPLY_DAMROLL 2
+A
+APPLY_HITROLL 3
+X shield.bmp~
+#15012
+sterling cloak shining silver~
+a sterling cloak~
+A shining silver cloak lies here~
+It is made of heavy plate and polished to a brilliant sheen.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_GLOW|ITEM_FLAG_MAGIC|ITEM_FLAG_ANTI_EVIL|ITEM_FLAG_LEVEL|ITEM_FLAG_AUTO_ENGRAVE
+ITEM_WEAR_TAKE|ITEM_WEAR_ABOUT
+4 0 0 0
+2 1000 15
+A
+APPLY_HITROLL 3
+A
+APPLY_DAMROLL 2
+#15013
+questor's ring~
+questor's ring~
+Questor's ring lies on the ground.~
+It is very old and worn, you don't know why you even picked it up in
+the first place.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_FINGER
+3 0 0 0
+2 1000 15
+A
+APPLY_MANA 30
+#15014
+tanglebox box~
+the Tanglebox~
+The Tanglebox is here.~
+It is a small box without any openings that you can see.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+8 0 0 0
+1 100000 20
+A
+APPLY_SAVING_SPELL -3
+#15015
+lectern silver~
+a silver lectern~
+A silver lectern rests here.~
+It's a lectern made of silver.~
+ITEM_TYPE_TREASURE
+ITEM_FLAG_GLOW|ITEM_FLAG_LEVEL
+0
+0 0 0 0
+30 100000 1
+#15016
+bed large canopied~
+a large canopied bed~
+A large canopied bed dominates the room.~
+It is made of oak and iron.~
+ITEM_TYPE_FURNITURE
+ITEM_FLAG_LEVEL
+0
+0 0 0 0
+1000 1 99
+#15017
+throne wooden~
+a wooden throne~
+A wooden throne sits atop the dais.~
+It is old and weathered.~
+ITEM_TYPE_FURNITURE
+ITEM_FLAG_LEVEL
+0
+0 0 0 0
+1000 1 99
+#15018
+wight's claw~
+a wight's claw~
+A wight's claw lies on the ground.~
+It is the claw of a cave weight.~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 5 5 WEAPON_PIERCE
+1 10 25
+#15019
+timber wolf's tooth~
+a timber wolf's tooth~
+A timber wolf's tooth lies on the ground here.~
+It is the canine tooth of a timber wolf of course~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 3 5 WEAPON_PIERCE
+1 10 15
+#15020
+questor's amulet~
+questor's amulet~
+Questor's amulet lies on the ground.~
+It is very old and worn, you don't know why you even picked it up in
+the first place.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_NECK
+3 0 0 0
+2 1000 15
+A
+APPLY_MANA 30
+#15021
+questor's bracer~
+questor's bracer~
+Questor's bracer lies on the ground.~
+It is very old and worn, you don't know why you even picked it up in
+the first place.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WRIST
+3 0 0 0
+2 1000 15
+A
+APPLY_MANA 30
+#15022
+abernathy's collar~
+abernathy's collar~
+Abernathy's collar lies here.~
+It is a dog collar.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_NECK
+3 0 0 0
+2 1000 20
+A
+APPLY_MOVE 40
+#15023
+darkling bottle~
+a darkling bottle~
+A darkling bottle lies here.~
+It is made of glass and has clowns painted on it.  You wonder
+what would happen if you were to PULL its cork.~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 0 0
+2 10000 30
+P 1
+TRIG_UNKNOWN 100 pull
+OPROG_IF OIF_USER_ALIGNMENT < 0 2 3
+P 2
+TRIG_VOID
+OPROG_GOD_COMMAND
+RECHO The darkling crawls out of the bottle laughing wickedly. &
+MPMLOAD 15026 &
+MPECHOAT $ The darkling tells you that your desire is its command. &
+MPFORCE darklingmob follow $~
+P 2
+TRIG_VOID
+OPROG_JUNK
+P 3
+TRIG_VOID
+OPROG_GOD_COMMAND
+RECHO The darkling crawls out of the bottle laughing wickedly. &
+MPMLOAD 15026 &
+MPECHOAT $ The darkling attacks when it sees that you look on it with disgust. &
+MPFORCE darklingmob mpkill $~
+P 3
+TRIG_VOID
+OPROG_JUNK
+#15024
+club iron bound~
+an iron-bound club~
+An iron-bound club lies on the ground.~
+It is an enormous tree trunk wrapped in iron bands.~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 3 10 WEAPON_POUND
+5 100 26
+#15025
+tarnished silver armor~
+tarnished armor~
+A suit of tarnished silver armor lies here.~
+It might once have been a beautiful piece of armor, 
+but now it is tarnished beyond repair.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_ANTI_GOOD|ITEM_FLAG_NOREMOVE|ITEM_FLAG_LEVEL|ITEM_FLAG_AUTO_ENGRAVE
+ITEM_WEAR_TAKE|ITEM_WEAR_BODY
+9 0 0 0
+2 10000 26
+A
+APPLY_DAMROLL 3
+A
+APPLY_HITROLL 3
+#15026
+tarnished silver sleeves~
+tarnished sleeves~
+A set of tarnished silver sleeves lies here.~
+It might once have been a beautiful piece of armor, 
+but now it is tarnished beyond repair.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_ANTI_GOOD|ITEM_FLAG_NOREMOVE|ITEM_FLAG_LEVEL|ITEM_FLAG_AUTO_ENGRAVE
+ITEM_WEAR_TAKE|ITEM_WEAR_ARMS
+9 0 0 0
+2 10000 26
+A
+APPLY_DAMROLL 3
+A
+APPLY_HITROLL 3
+#15027
+tarnished silver leg plates~
+tarnished leg plates~
+A set of tarnished silver leg plates lies here.~
+It might once have been a beautiful piece of armor, 
+but now it is tarnished beyond repair.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_ANTI_GOOD|ITEM_FLAG_NOREMOVE|ITEM_FLAG_LEVEL|ITEM_FLAG_AUTO_ENGRAVE
+ITEM_WEAR_TAKE|ITEM_WEAR_LEGS
+9 0 0 0
+2 10000 26
+A
+APPLY_DAMROLL 3
+A
+APPLY_HITROLL 3
+#15028
+tarnished silver gauntlets~
+tarnished gauntlets~
+A set of tarnished silver gauntlets lies here.~
+It might once have been a beautiful piece of armor, 
+but now it is tarnished beyond repair.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_ANTI_GOOD|ITEM_FLAG_NOREMOVE|ITEM_FLAG_LEVEL|ITEM_FLAG_AUTO_ENGRAVE
+ITEM_WEAR_TAKE|ITEM_WEAR_HANDS
+9 0 0 0
+2 10000 26
+A
+APPLY_DAMROLL 3
+A
+APPLY_HITROLL 3
+#15029
+tarnished silver boots~
+tarnished boots~
+A set of tarnished silver boots lies here.~
+It might once have been a beautiful piece of armor, 
+but now it is tarnished beyond repair.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_ANTI_GOOD|ITEM_FLAG_NOREMOVE|ITEM_FLAG_LEVEL|ITEM_FLAG_AUTO_ENGRAVE
+ITEM_WEAR_TAKE|ITEM_WEAR_FEET
+9 0 0 0
+2 10000 26
+A
+APPLY_DAMROLL 3
+A
+APPLY_HITROLL 3
+#15030
+tarnished silver bracer~
+a tarnished bracer~
+A tarnished silver bracer lies here.~
+It might once have been a beautiful piece of armor, 
+but now it is tarnished beyond repair.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_ANTI_GOOD|ITEM_FLAG_NOREMOVE|ITEM_FLAG_LEVEL|ITEM_FLAG_AUTO_ENGRAVE
+ITEM_WEAR_TAKE|ITEM_WEAR_WRIST
+9 0 0 0
+2 10000 26
+A
+APPLY_DAMROLL 3
+A
+APPLY_HITROLL 3
+#15031
+tarnished silver helm~
+a tarnished helm~
+A tarnished silver helm lies here.~
+It might once have been a beautiful piece of armor, 
+but now it is tarnished beyond repair.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_ANTI_GOOD|ITEM_FLAG_NOREMOVE|ITEM_FLAG_LEVEL|ITEM_FLAG_AUTO_ENGRAVE
+ITEM_WEAR_TAKE|ITEM_WEAR_HEAD
+9 0 0 0
+2 10000 26
+A
+APPLY_DAMROLL 3
+A
+APPLY_HITROLL 3
+#15032
+tarnished silver shield~
+a tarnished shield~
+A tarnished silver shield lies here.~
+It might once have been a beautiful piece of armor, 
+but now it is tarnished beyond repair.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_ANTI_GOOD|ITEM_FLAG_NOREMOVE|ITEM_FLAG_LEVEL|ITEM_FLAG_AUTO_ENGRAVE
+ITEM_WEAR_TAKE|ITEM_WEAR_SHIELD
+9 0 0 0
+2 10000 26
+A
+APPLY_DAMROLL 3
+A
+APPLY_HITROLL 3
+#15033
+strabo's head strabos~
+Strabo's head~
+Strabo's head lies here disconnected from the rest of him.~
+It is the head of a large and powerful dragon.  We he WAS large and powerful.~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 0 0
+1 1 30
+
+#0
+
+
+
+
+#ROOMS
+#15000
+Rosen's Store~
+You enter a small shop that caters to a wide range of needs.  It is
+situated on a well traveled section of road, and as such get many
+customers.  On the shelves lining the walls of the shop, you see almost
+any item that you can imagine, and many that you can't.  Stairs lead up
+from here.  A short man sits behind the counter reading something.~
+150 ROOM_INDOORS SECT_INSIDE
+DDIR_WEST
+Waterdeep Market~
+~
+0 -1 8030
+DDIR_UP
+Meeks' Office~
+~
+0 -1 15075
+S
+#15001
+Tunnel of Mist~
+You appear in a long tunnel of mist.  The mists are dark and opaque and you 
+cannot see into them.  The only way for you to go, is east towards a light at 
+the end of the tunnel.~
+150 ROOM_DARK|ROOM_NO_MOB|ROOM_NO_RECALL SECT_INSIDE
+DDIR_EAST
+Woods of Landover~
+~
+0 -1 15002
+S
+#15002
+Woods of Landover~
+These woods are deceptively tranquil.  The tinkling leaves of bonnie blues
+hide natural menaces that eye you from their hiding spots.  No matter
+how much you try to catch a glimpse of what is watching you, you never do.~
+150 ROOM_NO_RECALL SECT_FOREST
+DDIR_NORTH
+Woods of Landover~
+~
+0 -1 15003
+DDIR_EAST
+Woods of Landover~
+~
+0 -1 15013
+DDIR_SOUTH
+Woods of Landover~
+~
+0 -1 15018
+DDIR_WEST
+Fairy Mists~
+~
+0 -1 15002
+S
+#15003
+Woods of Landover~
+These woods are deceptively tranquil.  The tinkling leaves of bonnie blues
+hide natural menaces that eye you from their hiding spots.  No matter how
+much you try to catch a glimpse of what is watching you, you never do.~
+150 ROOM_NO_RECALL SECT_FOREST
+DDIR_NORTH
+Woods of Landover~
+~
+0 -1 15004
+DDIR_EAST
+The Heart~
+~
+0 -1 15026
+DDIR_SOUTH
+Woods of Landover~
+~
+0 -1 15002
+DDIR_WEST
+Fairy Mists~
+~
+0 -1 15003
+S
+#15004
+Woods of Landover~
+You walk among the bonnie blues finding it hard to believe that such a
+beautiful land could hide such ferocious dangers.  It is hard for you to
+concentrate on the fact that a monster could be hiding behind the next
+bush, considering you lunch.~
+150 ROOM_NO_RECALL SECT_FOREST
+DDIR_NORTH
+Fairy Mists~
+~
+0 -1 15004
+DDIR_EAST
+Woods of Landover~
+~
+0 -1 15005
+DDIR_SOUTH
+Woods of Landover~
+~
+0 -1 15003
+DDIR_WEST
+Fairy Mists~
+~
+0 -1 15004
+S
+#15005
+Woods of Landover~
+These woods are deceptively tranquil.  The tinkling leaves of bonnie blues
+hide natural menaces that eye you from their hiding spots.  No matter
+how much you try to catch a glimpse of what is watching you, you never do.~
+150 ROOM_NO_RECALL SECT_FOREST
+DDIR_NORTH
+Woods of Landover~
+~
+0 -1 15006
+DDIR_EAST
+Woods of Landover~
+~
+0 -1 15010
+DDIR_SOUTH
+The Heart~
+~
+0 -1 15026
+DDIR_WEST
+Woods of Landover~
+~
+0 -1 15004
+S
+#15006
+Woods of Landover~
+You walk among the bonnie blues finding it hard to believe that such a
+beautiful land could hide such ferocious dangers.  It is hard for you to
+concentrate on the fact that a monster could be hiding behind the next
+bush, considering you lunch.~
+150 ROOM_NO_RECALL SECT_FOREST
+DDIR_NORTH
+Deep Fell~
+~
+0 -1 15027
+DDIR_EAST
+Woods of Landover~
+~
+0 -1 15007
+DDIR_SOUTH
+Woods of Landover~
+~
+0 -1 15005
+DDIR_WEST
+Fairy Mists~
+~
+0 -1 15006
+S
+#15007
+Woods of Landover~
+These woods are deceptively tranquil.  The tinkling leaves of bonnie blues
+hide natural menaces that eye you from their hiding spots.  No matter how
+much you try to catch a glimpse of what is watching you, you never do.~
+150 ROOM_NO_RECALL SECT_FOREST
+DDIR_NORTH
+Woods of Landover~
+~
+0 -1 15008
+DDIR_EAST
+Greensward~
+~
+0 -1 15041
+DDIR_SOUTH
+Woods of Landover~
+~
+0 -1 15010
+DDIR_WEST
+Woods of Landover~
+~
+0 -1 15006
+S
+#15008
+Woods of Landover~
+You walk among the bonnie blues finding it hard to believe that such a
+beautiful land could hide such ferocious dangers.  It is hard for you to
+concentrate on the fact that a monster could be hiding behind the next
+bush, considering you lunch.~
+150 ROOM_NO_RECALL SECT_FOREST
+DDIR_NORTH
+Fairy Mists~
+~
+0 -1 15008
+DDIR_EAST
+Woods of Landover~
+~
+0 -1 15009
+DDIR_SOUTH
+Woods of Landover~
+~
+0 -1 15007
+DDIR_WEST
+Deep Fell~
+~
+0 -1 15027
+S
+#15009
+Woods of Landover~
+These woods are deceptively tranquil.  The tinkling leaves of bonnie blues
+hide natural menaces that eye you from their hiding spots.  No matter
+how much you try to catch a glimpse of what is watching you, you never do.~
+150 ROOM_NO_RECALL SECT_FOREST
+DDIR_NORTH
+Mines of Melchor~
+~
+0 -1 15029
+DDIR_EAST
+Greensward~
+~
+0 -1 15042
+DDIR_SOUTH
+Greensward~
+~
+0 -1 15041
+DDIR_WEST
+Woods of Landover~
+~
+0 -1 15008
+S
+#15010
+Woods of Landover~
+You walk among the bonnie blues finding it hard to believe that such a
+beautiful land could hide such ferocious dangers.  It is hard for you to
+concentrate on the fact that a monster could be hiding behind the next
+bush, considering you lunch.~
+150 ROOM_NO_RECALL SECT_FOREST
+DDIR_NORTH
+Woods of Landover~
+~
+0 -1 15007
+DDIR_EAST
+Greensward~
+~
+0 -1 15040
+DDIR_SOUTH
+Woods of Landover~
+~
+0 -1 15011
+DDIR_WEST
+Woods of Landover~
+~
+0 -1 15005
+S
+#15011
+Woods of Landover~
+These woods are deceptively tranquil.  The tinkling leaves of bonnie blues
+hide natural menaces that eye you from their hiding spots.  No matter
+how much you try to catch a glimpse of what is watching you, you never do.~
+150 ROOM_NO_RECALL SECT_FOREST
+DDIR_NORTH
+Woods of Landover~
+~
+0 -1 15010
+DDIR_EAST
+Greensward~
+~
+0 -1 15039
+DDIR_SOUTH
+Woods of Landover~
+~
+0 -1 15012
+DDIR_WEST
+The Heart~
+~
+0 -1 15026
+S
+#15012
+Woods of Landover~
+You walk among the bonnie blues finding it hard to believe that such a
+beautiful land could hide such ferocious dangers.  It is hard for you to
+concentrate on the fact that a monster could be hiding behind the next
+bush, considering you lunch.~
+150 ROOM_NO_RECALL SECT_FOREST
+DDIR_NORTH
+Woods of Landover~
+~
+0 -1 15011
+DDIR_EAST
+Greensward~
+~
+0 -1 15038
+DDIR_SOUTH
+Lake Sterling~
+~
+0 -1 15076
+DDIR_WEST
+Woods of Landover~
+~
+0 -1 15013
+S
+#15013
+Woods of Landover~
+These woods are deceptively tranquil.  The tinkling leaves of bonnie blues
+hide natural menaces that eye you from their hiding spots.  No matter
+how much you try to catch a glimpse of what is watching you, you never do.~
+150 ROOM_NO_RECALL SECT_FOREST
+DDIR_NORTH
+The Heart~
+~
+0 -1 15026
+DDIR_EAST
+Woods of Landover~
+~
+0 -1 15012
+DDIR_SOUTH
+Woods of Landover~
+~
+0 -1 15014
+DDIR_WEST
+Woods of Landover~
+~
+0 -1 15002
+S
+#15014
+Woods of Landover~
+You walk among the bonnie blues finding it hard to believe that such a
+beautiful land could hide such ferocious dangers.  It is hard for you to
+concentrate on the fact that a monster could be hiding behind the next
+bush, considering you lunch.~
+150 ROOM_NO_RECALL SECT_FOREST
+DDIR_NORTH
+Woods of Landover~
+~
+0 -1 15013
+DDIR_EAST
+Lake Sterling~
+~
+0 -1 15076
+DDIR_SOUTH
+Woods of Landover~
+~
+0 -1 15015
+DDIR_WEST
+Woods of Landover~
+~
+0 -1 15018
+S
+#15015
+Woods of Landover~
+These woods are deceptively tranquil.  The tinkling leaves of bonnie blues
+hide natural menaces that eye you from their hiding spots.  No matter
+how much you try to catch a glimpse of what is watching you, you never do.~
+150 ROOM_NO_RECALL SECT_FOREST
+DDIR_NORTH
+Woods of Landover~
+~
+0 -1 15014
+DDIR_EAST
+Woods of Landover~
+~
+0 -1 15016
+DDIR_SOUTH
+Fairy Mists~
+~
+0 -1 15015
+DDIR_WEST
+Fairy Mists~
+~
+0 -1 15015
+S
+#15016
+Woods of Landover~
+You walk among the bonnie blues finding it hard to believe that such a
+beautiful land could hide such ferocious dangers.  It is hard for you to
+concentrate on the fact that a monster could be hiding behind the next
+bush, considering you lunch.~
+150 ROOM_NO_RECALL SECT_FOREST
+DDIR_NORTH
+Lake Sterling~
+~
+0 -1 15076
+DDIR_EAST
+Woods of Landover~
+~
+0 -1 15020
+DDIR_SOUTH
+Woods of Landover~
+~
+0 -1 15017
+DDIR_WEST
+Woods of Landover~
+~
+0 -1 15015
+S
+#15017
+Woods of Landover~
+These woods are deceptively tranquil.  The tinkling leaves of bonnie blues
+hide natural menaces that eye you from their hiding spots.  No matter
+how much you try to catch a glimpse of what is watching you, you never do.~
+150 ROOM_NO_RECALL SECT_FOREST
+DDIR_NORTH
+Woods of Landover~
+~
+0 -1 15016
+DDIR_EAST
+Lake Country~
+~
+0 -1 15030
+DDIR_SOUTH
+Woods of Landover~
+~
+0 -1 15096
+DDIR_WEST
+Fairy Mists~
+~
+0 -1 15017
+S
+#15018
+Woods of Landover~
+You walk among the bonnie blues finding it hard to believe that such a
+beautiful land could hide such ferocious dangers.  It is hard for you to
+concentrate on the fact that a monster could be hiding behind the next
+bush, considering you lunch.~
+150 ROOM_NO_RECALL SECT_FOREST
+DDIR_NORTH
+Woods of Landover~
+~
+0 -1 15002
+DDIR_EAST
+Woods of Landover~
+~
+0 -1 15014
+DDIR_SOUTH
+Fairy Mists~
+~
+0 -1 15018
+DDIR_WEST
+Fairy Mists~
+~
+0 -1 15018
+S
+#15019
+Woods of Landover~
+These woods are deceptively tranquil.  The tinkling leaves of bonnie blues
+hide natural menaces that eye you from their hiding spots.  No matter
+how much you try to catch a glimpse of what is watching you, you never do.~
+150 ROOM_NO_RECALL SECT_FOREST
+DDIR_NORTH
+Greensward~
+~
+0 -1 15038
+DDIR_EAST
+Greensward~
+~
+0 -1 15051
+DDIR_SOUTH
+Woods of Landover~
+~
+0 -1 15020
+DDIR_WEST
+Lake Sterling~
+~
+0 -1 15076
+S
+#15020
+Woods of Landover~
+You walk among the bonnie blues finding it hard to believe that such a
+beautiful land could hide such ferocious dangers.  It is hard for you to
+concentrate on the fact that a monster could be hiding behind the next
+bush, considering you lunch.~
+150 ROOM_NO_RECALL SECT_FOREST
+DDIR_NORTH
+Woods of Landover~
+~
+0 -1 15019
+DDIR_EAST
+Woods of Landover~
+~
+0 -1 15021
+DDIR_SOUTH
+Lake Country~
+~
+0 -1 15030
+DDIR_WEST
+Woods of Landover~
+~
+0 -1 15016
+S
+#15021
+Woods of Landover~
+These woods are deceptively tranquil.  The tinkling leaves of bonnie
+blues hide natural menaces that eye you from their hiding spots.  No
+matter how much you try to catch a glimpse of what is watching you, you
+never do.~
+150 ROOM_NO_RECALL SECT_FOREST
+DDIR_NORTH
+Greensward~
+~
+0 -1 15051
+DDIR_EAST
+Lake Country~
+~
+0 -1 15033
+DDIR_SOUTH
+Lake Country~
+~
+0 -1 15031
+DDIR_WEST
+Woods of Landover~
+~
+0 -1 15021
+S
+#15022
+Woods of Landover~
+You walk among the bonnie blues finding it hard to believe that such a
+beautiful land could hide such ferocious dangers.  It is hard for you to
+concentrate on the fact that a monster could be hiding behind the next
+bush, considering you lunch.~
+150 ROOM_NO_RECALL SECT_FOREST
+DDIR_NORTH
+Greensward~
+~
+0 -1 15052
+DDIR_EAST
+Woods of Landover~
+~
+0 -1 15023
+DDIR_SOUTH
+Lake Country~
+~
+0 -1 15033
+DDIR_WEST
+Greensward~
+~
+0 -1 15051
+S
+#15023
+Woods of Landover~
+These woods are deceptively tranquil.  The tinkling leaves of bonnie
+blues hide natural menaces that eye you from their hiding spots.
+No matter how much you try to catch a glimpse of what is watching
+you, you never do.~
+150 ROOM_NO_RECALL SECT_FOREST
+DDIR_NORTH
+Greensward~
+~
+0 -1 15053
+DDIR_EAST
+Woods of Landover~
+~
+0 -1 15024
+DDIR_SOUTH
+Woods of Landover~
+~
+0 -1 15025
+DDIR_WEST
+Woods of Landover~
+~
+0 -1 15022
+S
+#15024
+Woods of Landover~
+You walk among the bonnie blues finding it hard to believe that such a
+beautiful land could hide such ferocious dangers.  It is hard for you to
+concentrate on the fact that a monster could be hiding behind the next
+bush, considering you lunch.~
+150 ROOM_NO_RECALL SECT_FOREST
+DDIR_NORTH
+Greensward~
+~
+0 -1 15054
+DDIR_EAST
+Woods of Landover~
+~
+0 -1 15087
+DDIR_SOUTH
+Fairy Mists~
+~
+0 -1 15024
+DDIR_WEST
+Woods of Landover~
+~
+0 -1 15023
+S
+#15025
+Woods of Landover~
+These woods are deceptively tranquil.  The tinkling leaves of bonnie
+blues hide natural menaces that eye you from their hiding spots.
+No matter how much you try to catch a glimpse of what is watching you, you
+never do.~
+150 ROOM_NO_RECALL SECT_FOREST
+DDIR_NORTH
+Woods of Landover~
+~
+0 -1 15023
+DDIR_EAST
+Fairy Mists~
+~
+0 -1 15025
+DDIR_SOUTH
+Lake Country~
+~
+0 -1 15034
+DDIR_WEST
+Lake Country~
+~
+0 -1 15033
+S
+#15026
+The Heart~
+This is the heart of landover.  It is where all the kings of landover are 
+crowned.  It is a small meadow in the woods, with a small raised wooden
+platform in the center.~
+150 ROOM_NO_RECALL SECT_FIELD
+DDIR_NORTH
+Woods of Landover~
+~
+0 -1 15005
+DDIR_EAST
+Woods of Landover~
+~
+0 -1 15011
+DDIR_SOUTH
+Woods of Landover~
+~
+0 -1 15013
+DDIR_WEST
+Woods of Landover~
+~
+0 -1 15003
+S
+#15027
+Deep Fell~
+This is a low marshy area that seems to absorb all light.  You feel 
+an evil presence as you enter and wonder that anything could live in a 
+place like this.~
+150 ROOM_DARK|ROOM_PRIVATE|ROOM_NO_RECALL SECT_INSIDE
+DDIR_EAST
+Woods of Landover~
+~
+0 -1 15008
+DDIR_SOUTH
+Woods of Landover~
+~
+0 -1 15006
+DDIR_DOWN
+Deep Fell~
+~
+0 -1 15028
+S
+#15028
+Deep Fell~
+This is a low marshy area that seems to absorb all light.  You feel 
+an evil presence as you enter and wonder that anything could live in a 
+place like this.~
+150 ROOM_DARK|ROOM_NO_MOB|ROOM_PRIVATE|ROOM_NO_RECALL SECT_INSIDE
+DDIR_UP
+Deep Fell~
+~
+0 -1 15027
+S
+#15029
+Mines of Melchor~
+These mines dig deep into the mountains that make up the valley of Landover.  
+They were dug by trolls, who sometimes use other intelligent races as slaves.~
+150 ROOM_DARK|ROOM_NO_RECALL SECT_INSIDE
+DDIR_NORTH
+Mines of Melchor~
+~
+0 -1 15097
+DDIR_SOUTH
+Woods of Landover~
+~
+0 -1 15009
+S
+#15030
+Lake Country~
+This area is low land lake country.  Low narrow streams drain into puddles
+and then on into lakes.  The trees here are healthier than those that
+you have seen elsewhere in the valley.~
+150 ROOM_NO_RECALL SECT_FOREST
+DDIR_NORTH
+Woods of Landover~
+~
+0 -1 15020
+DDIR_EAST
+Lake Country~
+~
+0 -1 15031
+DDIR_SOUTH
+Lake Country~
+~
+0 -1 15036
+DDIR_WEST
+Woods of Landover~
+~
+0 -1 15017
+S
+#15031
+Lake Country~
+This area is low land lake country.  Low narrow streams drain into puddles
+and then on into lakes.  The trees here are healthier than those that you
+have seen elsewhere in the valley.~
+150 ROOM_NO_RECALL SECT_FOREST
+DDIR_NORTH
+Woods of Landover~
+~
+0 -1 15021
+DDIR_EAST
+Lake Country~
+~
+0 -1 15032
+DDIR_SOUTH
+Lake Irrylyn~
+~
+0 -1 15037
+DDIR_WEST
+Lake Country~
+~
+0 -1 15030
+S
+#15032
+Lake Country~
+This area is low land lake country.  Low narrow streams drain into puddles
+and then on into lakes.  The trees here are healthier than those that
+you have seen elsewhere in the valley.~
+150 ROOM_NO_RECALL SECT_FOREST
+DDIR_NORTH
+Lake Country~
+~
+0 -1 15033
+DDIR_EAST
+Lake Country~
+~
+0 -1 15034
+DDIR_SOUTH
+Lake Country~
+~
+0 -1 15035
+DDIR_WEST
+Lake Country~
+~
+0 -1 15031
+S
+#15033
+Lake Country~
+This area is low land lake country.  Low narrow streams drain into
+puddles and then on into lakes.  The trees here are healthier than
+those that you have seen elsewhere in the valley.~
+150 ROOM_NO_RECALL SECT_FOREST
+DDIR_NORTH
+Woods of Landover~
+~
+0 -1 15022
+DDIR_EAST
+Woods of Landover~
+~
+0 -1 15025
+DDIR_SOUTH
+Lake Country~
+~
+0 -1 15032
+DDIR_WEST
+Woods of Landover~
+~
+0 -1 15021
+S
+#15034
+Lake Country~
+This area is low land lake country.  Low narrow streams drain into puddles
+and then on into lakes.  The trees here are healthier than those that
+you have seen elsewhere in the valley.~
+150 ROOM_NO_RECALL SECT_FOREST
+DDIR_NORTH
+Woods of Landover~
+~
+0 -1 15025
+DDIR_EAST
+Woods of Landover~
+~
+0 -1 15088
+DDIR_SOUTH
+Lake Country~
+~
+0 -1 15081
+DDIR_WEST
+Lake Country~
+~
+0 -1 15032
+S
+#15035
+Lake Country~
+This area is low land lake country.  Low narrow streams drain into
+puddles and then on into lakes.  The trees here are healthier than
+those that you have seen elsewhere in the valley.~
+150 ROOM_NO_RECALL SECT_FOREST
+DDIR_NORTH
+Lake Country~
+~
+0 -1 15032
+DDIR_EAST
+Lake Country~
+~
+0 -1 15081
+DDIR_SOUTH
+Lake Country~
+~
+0 -1 15079
+DDIR_WEST
+Lake Irrylyn~
+~
+0 -1 15037
+S
+#15036
+Lake Country~
+This area is low land lake country.  Low narrow streams drain into puddles
+and then on into lakes.  The trees here are healthier than those that you
+have seen elsewhere in the valley.~
+150 ROOM_NO_RECALL SECT_FOREST
+DDIR_NORTH
+Lake Country~
+~
+0 -1 15030
+DDIR_EAST
+Lake Irrylyn~
+~
+0 -1 15037
+DDIR_SOUTH
+Lake Country~
+~
+0 -1 15077
+DDIR_WEST
+Woods of Landover~
+~
+0 -1 15096
+S
+#15037
+Lake Irrylyn~
+This is a broad shallow lake from which dozens of streams drain.  The banks 
+are thick with cats tails and willow trees.  You feel the urge to take a 
+swim.~
+150 ROOM_NO_RECALL SECT_WATER_SWIM
+DDIR_NORTH
+Lake Country~
+~
+0 -1 15031
+DDIR_EAST
+Lake Country~
+~
+0 -1 15035
+DDIR_SOUTH
+Lake Country~
+~
+0 -1 15078
+DDIR_WEST
+Lake Country~
+~
+0 -1 15036
+S
+#15038
+Greensward~
+The greensward is a large grassy plain that covers the center of the 
+valley.  It is where most of the humans in Landover ,including all of 
+its lords, live.~
+150 ROOM_NO_RECALL SECT_FIELD
+DDIR_NORTH
+Greensward~
+~
+0 -1 15039
+DDIR_EAST
+Greensward~
+~
+0 -1 15050
+DDIR_SOUTH
+Woods of Landover~
+~
+0 -1 15019
+DDIR_WEST
+Woods of Landover~
+~
+0 -1 15012
+S
+#15039
+Greensward~
+The greensward is a large grassy plain that covers the center of the 
+valley.  It is where most of the humans in Landover ,including all of 
+its lords, live.~
+150 ROOM_NO_RECALL SECT_FIELD
+DDIR_NORTH
+Greensward~
+~
+0 -1 15040
+DDIR_EAST
+Greensward~
+~
+0 -1 15049
+DDIR_SOUTH
+Greensward~
+~
+0 -1 15038
+DDIR_WEST
+Woods of Landover~
+~
+0 -1 15011
+S
+#15040
+Greensward~
+The greensward is a large grassy plain that covers the center of the 
+valley.  It is where most of the humans in Landover ,including all of 
+its lords, live.~
+150 ROOM_NO_RECALL SECT_FIELD
+DDIR_NORTH
+Greensward~
+~
+0 -1 15040
+DDIR_EAST
+Greensward~
+~
+0 -1 15048
+DDIR_SOUTH
+Greensward~
+~
+0 -1 15039
+DDIR_WEST
+Woods of Landover~
+~
+0 -1 15010
+S
+#15041
+Greensward~
+The greensward is a large grassy plain that covers the center of the 
+valley.  It is where most of the humans in Landover ,including all of 
+its lords, live.~
+150 ROOM_NO_RECALL SECT_FIELD
+DDIR_NORTH
+Woods of Landover~
+~
+0 -1 15009
+DDIR_EAST
+Ryhndweir~
+~
+0 -1 15061
+DDIR_SOUTH
+Greensward~
+~
+0 -1 15039
+DDIR_WEST
+Woods of Landover~
+~
+0 -1 15007
+S
+#15042
+Greensward~
+The greensward is a large grassy plain that covers the center of the 
+valley.  It is where most of the humans in Landover ,including all of 
+its lords, live.~
+150 ROOM_NO_RECALL SECT_FIELD
+DDIR_NORTH
+Fairy Mists~
+~
+0 -1 15042
+DDIR_EAST
+Greensward~
+~
+0 -1 15043
+DDIR_SOUTH
+Ryhndweir~
+~
+0 -1 15061
+DDIR_WEST
+Woods of Landover~
+~
+0 -1 15009
+S
+#15043
+Greensward~
+The greensward is a large grassy plain that covers the center of the 
+valley.  It is where most of the humans in Landover ,including all of 
+its lords, live.~
+150 ROOM_NO_RECALL SECT_FIELD
+DDIR_NORTH
+Fairy Mists~
+~
+0 -1 15043
+DDIR_EAST
+Greensward~
+~
+0 -1 15044
+DDIR_SOUTH
+Greensward~
+~
+0 -1 15046
+DDIR_WEST
+Greensward~
+~
+0 -1 15042
+S
+#15044
+Greensward~
+The greensward is a large grassy plain that covers the center of the 
+valley.  It is where most of the humans in Landover ,including all of 
+its lords, live.~
+150 ROOM_NO_RECALL SECT_FIELD
+DDIR_NORTH
+Fairy Mists~
+~
+0 -1 15044
+DDIR_EAST
+Fairy Mists~
+~
+0 -1 15044
+DDIR_SOUTH
+Greensward~
+~
+0 -1 15045
+DDIR_WEST
+Greensward~
+~
+0 -1 15043
+S
+#15045
+Greensward~
+The greensward is a large grassy plain that covers the center of the 
+valley.  It is where most of the humans in Landover ,including all of 
+its lords, live.~
+150 ROOM_NO_RECALL SECT_FIELD
+DDIR_NORTH
+Greensward~
+~
+0 -1 15044
+DDIR_EAST
+Greensward~
+~
+0 -1 15060
+DDIR_SOUTH
+Greensward~
+~
+0 -1 15057
+DDIR_WEST
+Greensward~
+~
+0 -1 15046
+S
+#15046
+Greensward~
+The greensward is a large grassy plain that covers the center of the 
+valley.  It is where most of the humans in Landover ,including all of 
+its lords, live.~
+150 ROOM_NO_RECALL SECT_FIELD
+DDIR_NORTH
+Greensward~
+~
+0 -1 15043
+DDIR_EAST
+Greensward~
+~
+0 -1 15045
+DDIR_SOUTH
+Greensward~
+~
+0 -1 15047
+DDIR_WEST
+Ryhndweir~
+~
+0 -1 15061
+S
+#15047
+Greensward~
+The greensward is a large grassy plain that covers the center of the 
+valley.  It is where most of the humans in Landover ,including all of 
+its lords, live.~
+150 ROOM_NO_RECALL SECT_FIELD
+DDIR_NORTH
+Greensward~
+~
+0 -1 15046
+DDIR_EAST
+Greensward~
+~
+0 -1 15057
+DDIR_SOUTH
+Greensward~
+~
+0 -1 15059
+DDIR_WEST
+Greensward~
+~
+0 -1 15048
+S
+#15048
+Greensward~
+The greensward is a large grassy plain that covers the center of the 
+valley.  It is where most of the humans in Landover ,including all of 
+its lords, live.~
+150 ROOM_NO_RECALL SECT_FIELD
+DDIR_NORTH
+Ryhndweir~
+~
+0 -1 15061
+DDIR_EAST
+Greensward~
+~
+0 -1 15047
+DDIR_SOUTH
+Greensward~
+~
+0 -1 15049
+DDIR_WEST
+Greensward~
+~
+0 -1 15040
+S
+#15049
+Greensward~
+The greensward is a large grassy plain that covers the center of the 
+valley.  It is where most of the humans in Landover ,including all of 
+its lords, live.~
+150 ROOM_NO_RECALL SECT_FIELD
+DDIR_NORTH
+Greensward~
+~
+0 -1 15048
+DDIR_EAST
+Greensward~
+~
+0 -1 15059
+DDIR_SOUTH
+Greensward~
+~
+0 -1 15050
+DDIR_WEST
+Greensward~
+~
+0 -1 15039
+S
+#15050
+Greensward~
+The greensward is a large grassy plain that covers the center of the 
+valley.  It is where most of the humans in Landover ,including all of 
+its lords, live.~
+150 ROOM_NO_RECALL SECT_FIELD
+DDIR_NORTH
+Greensward~
+~
+0 -1 15049
+DDIR_EAST
+Greensward~
+~
+0 -1 15052
+DDIR_SOUTH
+Greensward~
+~
+0 -1 15051
+DDIR_WEST
+Greensward~
+~
+0 -1 15038
+S
+#15051
+Greensward~
+The greensward is a large grassy plain that covers the center of the 
+valley.  It is where most of the humans in Landover ,including all of 
+its lords, live.~
+150 ROOM_NO_RECALL SECT_FIELD
+DDIR_NORTH
+Greensward~
+~
+0 -1 15050
+DDIR_EAST
+Woods of Landover~
+~
+0 -1 15022
+DDIR_SOUTH
+Woods of Landover~
+~
+0 -1 15021
+DDIR_WEST
+Woods of Landover~
+~
+0 -1 15019
+S
+#15052
+Greensward~
+The greensward is a large grassy plain that covers the center of the 
+valley.  It is where most of the humans in Landover ,including all of 
+its lords, live.~
+150 ROOM_NO_RECALL SECT_FIELD
+DDIR_NORTH
+Greensward~
+~
+0 -1 15059
+DDIR_EAST
+Greensward~
+~
+0 -1 15053
+DDIR_SOUTH
+Woods of Landover~
+~
+0 -1 15022
+DDIR_WEST
+Greensward~
+~
+0 -1 15050
+S
+#15053
+Greensward~
+The greensward is a large grassy plain that covers the center of the 
+valley.  It is where most of the humans in Landover ,including all of 
+its lords, live.~
+150 ROOM_NO_RECALL SECT_FIELD
+DDIR_NORTH
+Greensward~
+~
+0 -1 15058
+DDIR_EAST
+Greensward~
+~
+0 -1 15054
+DDIR_SOUTH
+Woods of Landover~
+~
+0 -1 15023
+DDIR_WEST
+Greensward~
+~
+0 -1 15052
+S
+#15054
+Greensward~
+The greensward is a large grassy plain that covers the center of the 
+valley.  It is where most of the humans in Landover ,including all of 
+its lords, live.~
+150 ROOM_NO_RECALL SECT_FIELD
+DDIR_NORTH
+Greensward~
+~
+0 -1 15055
+DDIR_EAST
+Eastern Wastelands~
+~
+0 -1 15062
+DDIR_SOUTH
+Woods of Landover~
+~
+0 -1 15024
+DDIR_WEST
+Greensward~
+~
+0 -1 15053
+S
+#15055
+Greensward~
+The greensward is a large grassy plain that covers the center of the 
+valley.  It is where most of the humans in Landover ,including all of 
+its lords, live.~
+150 ROOM_NO_RECALL SECT_FIELD
+DDIR_NORTH
+Greensward~
+~
+0 -1 15056
+DDIR_EAST
+Eastern Wastelands~
+~
+0 -1 15063
+DDIR_SOUTH
+Greensward~
+~
+0 -1 15054
+DDIR_WEST
+Greensward~
+~
+0 -1 15058
+S
+#15056
+Greensward~
+The greensward is a large grassy plain that covers the center of the 
+valley.  It is where most of the humans in Landover ,including all of 
+its lords, live.~
+150 ROOM_NO_RECALL SECT_FIELD
+DDIR_NORTH
+Greensward~
+~
+0 -1 15060
+DDIR_EAST
+Eastern Wastelands~
+~
+0 -1 15064
+DDIR_SOUTH
+Greensward~
+~
+0 -1 15055
+DDIR_WEST
+Greensward~
+~
+0 -1 15057
+S
+#15057
+Greensward~
+The greensward is a large grassy plain that covers the center of the 
+valley.  It is where most of the humans in Landover ,including all of 
+its lords, live.~
+150 ROOM_NO_RECALL SECT_FIELD
+DDIR_NORTH
+Greensward~
+~
+0 -1 15045
+DDIR_EAST
+Greensward~
+~
+0 -1 15056
+DDIR_SOUTH
+Greensward~
+~
+0 -1 15058
+DDIR_WEST
+Greensward~
+~
+0 -1 15047
+S
+#15058
+Greensward~
+The greensward is a large grassy plain that covers the center of the 
+valley.  It is where most of the humans in Landover ,including all of 
+its lords, live.~
+150 ROOM_NO_RECALL SECT_FIELD
+DDIR_NORTH
+Greensward~
+~
+0 -1 15057
+DDIR_EAST
+Greensward~
+~
+0 -1 15055
+DDIR_SOUTH
+Greensward~
+~
+0 -1 15053
+DDIR_WEST
+Greensward~
+~
+0 -1 15059
+S
+#15059
+Greensward~
+The greensward is a large grassy plain that covers the center of the 
+valley.  It is where most of the humans in Landover ,including all of 
+its lords, live.~
+150 ROOM_NO_RECALL SECT_FIELD
+DDIR_NORTH
+Greensward~
+~
+0 -1 15047
+DDIR_EAST
+Greensward~
+~
+0 -1 15058
+DDIR_SOUTH
+Greensward~
+~
+0 -1 15052
+DDIR_WEST
+Greensward~
+~
+0 -1 15049
+S
+#15060
+Greensward~
+The greensward is a large grassy plain that covers the center of the 
+valley.  It is where most of the humans in Landover ,including all of 
+its lords, live.~
+150 ROOM_NO_RECALL SECT_FIELD
+DDIR_NORTH
+Fairy Mists~
+~
+0 -1 15060
+DDIR_EAST
+Eastern Wastelands~
+~
+0 -1 15065
+DDIR_SOUTH
+Greensward~
+~
+0 -1 15056
+DDIR_WEST
+Greensward~
+~
+0 -1 15045
+S
+#15061
+Ryhndweir~
+This is the castle and town of Ryhndweir.  The most powerful lord of the 
+greensward, Lord Kallendbor, lives here.~
+150 ROOM_NO_RECALL SECT_CITY
+DDIR_NORTH
+Greensward~
+~
+0 -1 15042
+DDIR_EAST
+Greensward~
+~
+0 -1 15046
+DDIR_SOUTH
+Greensward~
+~
+0 -1 15048
+DDIR_WEST
+Greensward~
+~
+0 -1 15041
+S
+#15062
+Eastern Wastelands~
+The wastelands have varied looks but they are all wastes.  This area 
+includes barren plains, desert sand, hills of saw grass, scrub and gnarled 
+short trees.  Other areas contain sucking swamp, quicksand and petrified 
+forests.~
+150 ROOM_NO_RECALL SECT_DESERT
+DDIR_NORTH
+Eastern Wastelands~
+~
+0 -1 15063
+DDIR_EAST
+Woods of Landover~
+~
+0 -1 15086
+DDIR_SOUTH
+Woods of Landover~
+~
+0 -1 15087
+DDIR_WEST
+Greensward~
+~
+0 -1 15054
+S
+#15063
+Eastern Wastelands~
+The wastelands have varied looks but they are all wastes.  This area 
+includes barren plains, desert sand, hills of saw grass, scrub and gnarled 
+short trees.  Other areas contain sucking swamp, quicksand and petrified 
+forests.~
+150 ROOM_NO_RECALL SECT_DESERT
+DDIR_NORTH
+Eastern Wastelands~
+~
+0 -1 15064
+DDIR_EAST
+Eastern Wastelands~
+~
+0 -1 15067
+DDIR_SOUTH
+Eastern Wastelands~
+~
+0 -1 15062
+DDIR_WEST
+Greensward~
+~
+0 -1 15055
+S
+#15064
+Eastern Wastelands~
+The wastelands have varied looks but they are all wastes.  This area 
+includes barren plains, desert sand, hills of saw grass, scrub and gnarled 
+short trees.  Other areas contain sucking swamp, quicksand and petrified 
+forests.~
+150 ROOM_NO_RECALL SECT_DESERT
+DDIR_NORTH
+Eastern Wastelands~
+~
+0 -1 15065
+DDIR_EAST
+Fire Springs~
+~
+0 -1 15068
+DDIR_SOUTH
+Eastern Wastelands~
+~
+0 -1 15063
+DDIR_WEST
+Greensward~
+~
+0 -1 15056
+S
+#15065
+Eastern Wastelands~
+The wastelands have varied looks but they are all wastes.  This area 
+includes barren plains, desert sand, hills of saw grass, scrub and gnarled 
+short trees.  Other areas contain sucking swamp, quicksand and petrified 
+forests.~
+150 ROOM_NO_RECALL SECT_DESERT
+DDIR_NORTH
+Fairy Mists~
+~
+0 -1 15065
+DDIR_EAST
+Eastern Wastelands~
+~
+0 -1 15066
+DDIR_SOUTH
+Eastern Wastelands~
+~
+0 -1 15066
+DDIR_WEST
+Greensward~
+~
+0 -1 15060
+S
+#15066
+Eastern Wastelands~
+The wastelands have varied looks but they are all wastes.  This area 
+includes barren plains, desert sand, hills of saw grass, scrub and gnarled 
+short trees.  Other areas contain sucking swamp, quicksand and petrified 
+forests.~
+150 ROOM_NO_RECALL SECT_DESERT
+DDIR_NORTH
+Woods of Landover~
+~
+0 -1 15082
+DDIR_EAST
+Woods of Landover~
+~
+0 -1 15083
+DDIR_SOUTH
+Fire Springs~
+~
+0 -1 15068
+DDIR_WEST
+Eastern Wastelands~
+~
+0 -1 15065
+S
+#15067
+Eastern Wastelands~
+The wastelands have varied looks but they are all wastes.  This area 
+includes barren plains, desert sand, hills of saw grass, scrub and gnarled 
+short trees.  Other areas contain sucking swamp, quicksand and petrified 
+forests.~
+150 ROOM_NO_RECALL SECT_DESERT
+DDIR_NORTH
+Fire Springs~
+~
+0 -1 15068
+DDIR_EAST
+Woods of Landover~
+~
+0 -1 15085
+DDIR_SOUTH
+Woods of Landover~
+~
+0 -1 15086
+DDIR_WEST
+Eastern Wastelands~
+~
+0 -1 15063
+S
+#15068
+Fire Springs~
+A broad, misshapen ravine sprawls before you, pitted with craters of all 
+sizes and shapes, their bowls filled with unidentifiable bluish liquid on 
+which yellowish flames dance and burn, casting flickers of light against a 
+shroud of mist.~
+150 ROOM_NO_MOB|ROOM_NO_RECALL SECT_DESERT
+DDIR_NORTH
+Eastern Wastelands~
+~
+0 -1 15066
+DDIR_EAST
+Woods of Landover~
+~
+0 -1 15084
+DDIR_SOUTH
+Eastern Wastelands~
+~
+0 -1 15067
+DDIR_WEST
+Eastern Wastelands~
+~
+0 -1 15064
+S
+#15069
+Sterling Silver~
+This castle is a maze of stone and wood and metal towers, parapets,
+causeways and walks that thrust into the sky like finger of a broken hand.
+She now has the look of a lifeless shell as a result of the Tarnish.~
+150 ROOM_NO_RECALL SECT_CITY
+DDIR_UP
+Great Hall~
+~
+0 -1 15070
+DDIR_DOWN
+Sterling Lake~
+~
+0 -1 15076
+S
+#15070
+Great Hall~
+The wooden supports and stays are polished and clean, the stone scrubbed,
+and the walls and floors covered in rugs and tapestries that retain some
+of their original color.~
+150 ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_NORTH
+King's Bedroom~
+~
+0 -1 15071
+DDIR_SOUTH
+Dining Hall~
+~
+0 -1 15072
+DDIR_UP
+Lands View~
+~
+0 -1 15074
+DDIR_DOWN
+Sterling Silver~
+~
+0 -1 15069
+S
+#15071
+King's Bedroom~
+This is a vast chamber of tapestries and silken hangings, of polished oak
+and heraldic stone sculptures.  A great canopied bed of oak and iron looks
+as though it might successfully double as a barge.~
+150 ROOM_INDOORS|ROOM_NO_RECALL|ROOM_SAFE SECT_INN
+DDIR_SOUTH
+Great Hall~
+~
+0 -1 15070
+S
+#15072
+Dining Hall~
+You enter a cavernous dining hall with a huge tressel table and high-backed 
+chairs cushioned in scarlet silk.  Chandeliers of tarnished silver hung from 
+the ceiling; despite the summer weather, a fire burns in the hearth at the
+far end of the hall.~
+150 ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_NORTH
+Great Hall~
+~
+0 -1 15070
+S
+#15074
+Landsview~
+You enter a small circular room.  The wall before you opens halfway around 
+from floor to ceiling into clouds of mist that swirl pas the towers of the 
+castle as they rise darkly against the coming night.  A silver guardrail on 
+stanchions curves at waist height across the opening.  A silver lectern is 
+fastened at its mid-point.~
+150 ROOM_NO_RECALL SECT_INSIDE
+DDIR_DOWN
+Great Hall~
+~
+0 -1 15070
+S
+#15075
+Meeks' Office~
+You are in a small cramped office.  Just about every inch of floor space is 
+covered with what looks to be old stock from the store below.  A desk is
+crammed into the corner and behind that desk sits an old man.~
+150 ROOM_INDOORS|ROOM_PRIVATE|ROOM_NO_RECALL SECT_INSIDE
+DDIR_DOWN
+Rosen's Store~
+~
+0 -1 15000
+S
+#15076
+Sterling Lake~
+The waters of the lake lap softly against a bank of marshy grasses.  Weeds
+grow in thick tufts where the shoreline has eroded and stagnant pools have 
+formed.  Frogs croak and insects hum, and the lake smells faintly of fish.~
+150 ROOM_NO_RECALL SECT_WATER_NOSWIM
+DDIR_NORTH
+Woods of Landover~
+~
+0 -1 15012
+DDIR_EAST
+Woods of Landover~
+~
+0 -1 15019
+DDIR_SOUTH
+Woods of Landover~
+~
+0 -1 15016
+DDIR_WEST
+Woods of Landover~
+~
+0 -1 15014
+DDIR_UP
+Sterling Silver~
+~
+0 -1 15069
+S
+#15077
+Lake Country~
+This area is low land lake country.  Low narrow streams drain into puddles
+and then on into lakes.  The trees here are healthier than those that you
+have seen elsewhere in the valley.~
+150 ROOM_NO_RECALL SECT_FOREST
+DDIR_NORTH
+Lake Country~
+~
+0 -1 15036
+DDIR_EAST
+Lake Country~
+~
+0 -1 15078
+DDIR_SOUTH
+Woods of Landover~
+~
+0 -1 15094
+DDIR_WEST
+Woods of Landover~
+~
+0 -1 15095
+S
+#15078
+Lake Country~
+This area is low land lake country.  Low narrow streams drain into puddles
+and then on into lakes.  The trees here are healthier than those that you
+have seen elsewhere in the valley.~
+150 ROOM_NO_RECALL SECT_FOREST
+DDIR_NORTH
+Lake Irrylyn~
+~
+0 -1 15037
+DDIR_EAST
+Lake Country~
+~
+0 -1 15079
+DDIR_SOUTH
+Woods of Landover~
+~
+0 -1 15093
+DDIR_WEST
+Woods of Landover~
+~
+0 -1 15077
+S
+#15079
+Lake Country~
+This area is low land lake country.  Low narrow streams drain into puddles
+and then on into lakes.  The trees here are healthier than those that you
+have seen elsewhere in the valley.~
+150 ROOM_NO_RECALL SECT_FOREST
+DDIR_NORTH
+Lake Country~
+~
+0 -1 15035
+DDIR_EAST
+Lake Country~
+~
+0 -1 15080
+DDIR_SOUTH
+Woods of Landover~
+~
+0 -1 15092
+DDIR_WEST
+Lake Country~
+~
+0 -1 15078
+S
+#15080
+Lake Country~
+This area is low land lake country.  Low narrow streams drain into puddles
+and then on into lakes.  The trees here are healthier than those that you
+have seen elsewhere in the valley.~
+150 ROOM_NO_RECALL SECT_FOREST
+DDIR_NORTH
+Lake Country~
+~
+0 -1 15081
+DDIR_EAST
+Lake Country~
+~
+0 -1 15090
+DDIR_SOUTH
+Woods of Landover~
+~
+0 -1 15091
+DDIR_WEST
+Lake Country~
+~
+0 -1 15079
+S
+#15081
+Lake Country~
+This area is low land lake country.  Low narrow streams drain into puddles
+and then on into lakes.  The trees here are healthier than those that
+you have seen elsewhere in the valley.~
+150 ROOM_NO_RECALL SECT_FOREST
+DDIR_NORTH
+Lake Country~
+~
+0 -1 15034
+DDIR_EAST
+Woods of Landover~
+~
+0 -1 15089
+DDIR_SOUTH
+Lake Country~
+~
+0 -1 15080
+DDIR_WEST
+Lake Country~
+~
+0 -1 15035
+S
+#15082
+Woods of Landover~
+These woods are deceptively tranquil.  The tinkling leaves of bonnie
+blues hide natural menaces that eye you from their hiding spots.  No
+matter how much you try to catch a glimpse of what is watching you, you
+never do.~
+150 ROOM_NO_RECALL SECT_FOREST
+DDIR_NORTH
+Fairy Mists~
+~
+0 -1 15082
+DDIR_EAST
+Fairy Mists~
+~
+0 -1 15082
+DDIR_SOUTH
+Eastern Wastelands~
+~
+0 -1 15066
+DDIR_WEST
+Fairy Mists~
+~
+0 -1 15082
+S
+#15083
+Woods of Landover~
+You walk among the bonnie blues finding it hard to believe that such a
+beautiful land could hide such ferocious dangers.  It is hard for you to
+concentrate on the fact that a monster could be hiding behind the next
+bush, considering you lunch.~
+150 ROOM_NO_RECALL SECT_FOREST
+DDIR_NORTH
+Fairy Mists~
+~
+0 -1 15083
+DDIR_EAST
+Fairy Mists~
+~
+0 -1 15083
+DDIR_SOUTH
+Woods of Landover~
+~
+0 -1 15084
+DDIR_WEST
+Eastern Wastelands~
+~
+0 -1 15018
+S
+#15084
+Woods of Landover~
+These woods are deceptively tranquil.  The tinkling leaves of bonnie
+blues hide natural menaces that eye you from their hiding spots.  No
+matter how much you try to catch a glimpse of what is watching you,
+you never do.~
+150 ROOM_NO_RECALL SECT_FOREST
+DDIR_NORTH
+Woods of Landover~
+~
+0 -1 15083
+DDIR_EAST
+Fairy Mists~
+~
+0 -1 15084
+DDIR_SOUTH
+Woods of Landover~
+~
+0 -1 15085
+DDIR_WEST
+Fire Springs~
+~
+0 -1 15068
+S
+#15085
+Woods of Landover~
+You walk among the bonnie blues finding it hard to believe that such a
+beautiful land could hide such ferocious dangers.  It is hard for you to
+concentrate on the fact that a monster could be hiding behind the next
+bush, considering you lunch.~
+150 ROOM_NO_RECALL SECT_FOREST
+DDIR_NORTH
+Woods of Landover~
+~
+0 -1 15084
+DDIR_EAST
+Fairy Mists~
+~
+0 -1 15085
+DDIR_SOUTH
+Fairy Mists~
+~
+0 -1 15085
+DDIR_WEST
+Eastern Wastelands~
+~
+0 -1 15067
+S
+#15086
+Woods of Landover~
+These woods are deceptively tranquil.  The tinkling leaves of bonnie blues
+hide natural menaces that eye you from their hiding spots.  No matter
+how much you try to catch a glimpse of what is watching you, you never do.~
+150 ROOM_NO_RECALL SECT_FOREST
+DDIR_NORTH
+Eastern Wastelands~
+~
+0 -1 15067
+DDIR_EAST
+Fairy Mists~
+~
+0 -1 15086
+DDIR_SOUTH
+Fairy Mists~
+~
+0 -1 15086
+DDIR_WEST
+Eastern Wastelands~
+~
+0 -1 15062
+S
+#15087
+Woods of Landover~
+You walk among the bonnie blues finding it hard to believe that such a
+beautiful land could hide such ferocious dangers.  It is hard for you to
+concentrate on the fact that a monster could be hiding behind the next
+bush, considering you lunch.~
+150 ROOM_NO_RECALL SECT_FOREST
+DDIR_NORTH
+Eastern Wastelands~
+~
+0 -1 15062
+DDIR_EAST
+Fairy Mists~
+~
+0 -1 15087
+DDIR_SOUTH
+Fairy Mists~
+~
+0 -1 15087
+DDIR_WEST
+Woods of Landover~
+~
+0 -1 15024
+S
+#15088
+Woods of Landover~
+These woods are deceptively tranquil.  The tinkling leaves of bonnie blues
+hide natural menaces that eye you from their hiding spots.  No matter
+how much you try to catch a glimpse of what is watching you, you never do.~
+150 ROOM_NO_RECALL SECT_FOREST
+DDIR_NORTH
+Fairy Mists~
+~
+0 -1 15088
+DDIR_EAST
+Fairy Mists~
+~
+0 -1 15088
+DDIR_SOUTH
+Woods of Landover~
+~
+0 -1 15089
+DDIR_WEST
+Lake Country~
+~
+0 -1 15034
+S
+#15089
+Woods of Landover~
+You walk among the bonnie blues finding it hard to believe that such a
+beautiful land could hide such ferocious dangers.  It is hard for you to
+concentrate on the fact that a monster could be hiding behind the next
+bush, considering you lunch.~
+150 ROOM_NO_RECALL SECT_FOREST
+DDIR_NORTH
+Woods of Landover~
+~
+0 -1 15088
+DDIR_EAST
+Fairy Mists~
+~
+0 -1 15089
+DDIR_SOUTH
+Woods of Landover~
+~
+0 -1 15090
+DDIR_WEST
+Lake Country~
+~
+0 -1 15081
+S
+#15090
+Woods of Landover~
+These woods are deceptively tranquil.  The tinkling leaves of bonnie
+blues hide natural menaces that eye you from their hiding spots.
+No matter how much you try to catch a glimpse of what is watching
+you, you never do.~
+150 ROOM_NO_RECALL SECT_FOREST
+DDIR_NORTH
+Woods of Landover~
+~
+0 -1 15089
+DDIR_EAST
+Fairy Mists~
+~
+0 -1 15090
+DDIR_SOUTH
+Fairy Mists~
+~
+0 -1 15090
+DDIR_WEST
+Lake Country~
+~
+0 -1 15080
+S
+#15091
+Woods of Landover~
+You walk among the bonnie blues finding it hard to believe that such a
+beautiful land could hide such ferocious dangers.  It is hard for you to
+concentrate on the fact that a monster could be hiding behind the next
+bush, considering you lunch.~
+150 ROOM_NO_RECALL SECT_FOREST
+DDIR_NORTH
+Lake Country~
+~
+0 -1 15080
+DDIR_EAST
+Fairy Mists~
+~
+0 -1 15091
+DDIR_SOUTH
+Fairy Mists~
+~
+0 -1 15091
+DDIR_WEST
+Woods of Landover~
+~
+0 -1 15092
+S
+#15092
+Woods of Landover~
+These woods are deceptively tranquil.  The tinkling leaves of bonnie
+blues hide natural menaces that eye you from their hiding spots.
+No matter how much you try to catch a glimpse of what is watching you,
+you never do.~
+150 ROOM_NO_RECALL SECT_FOREST
+DDIR_NORTH
+Lake Country~
+~
+0 -1 15079
+DDIR_EAST
+Woods of Landover~
+~
+0 -1 15091
+DDIR_SOUTH
+Fairy Mists~
+~
+0 -1 15092
+DDIR_WEST
+Woods of Landover~
+~
+0 -1 15093
+S
+#15093
+Woods of Landover~
+You walk among the bonnie blues finding it hard to believe that such a
+beautiful land could hide such ferocious dangers.  It is hard for you to
+concentrate on the fact that a monster could be hiding behind the next
+bush, considering you lunch.~
+150 ROOM_NO_RECALL SECT_FOREST
+DDIR_NORTH
+Lake Country~
+~
+0 -1 15078
+DDIR_EAST
+Woods of Landover~
+~
+0 -1 15092
+DDIR_SOUTH
+Fairy Mists~
+~
+0 -1 15093
+DDIR_WEST
+Woods of Landover~
+~
+0 -1 15094
+S
+#15094
+Woods of Landover~
+These woods are deceptively tranquil.  The tinkling leaves of bonnie
+blues hide natural menaces that eye you from their hiding spots.
+No matter how much you try to catch a glimpse of what is watching you,
+you never do.~
+150 ROOM_NO_RECALL SECT_FOREST
+DDIR_NORTH
+Lake Country~
+~
+0 -1 15077
+DDIR_EAST
+Woods of Landover~
+~
+0 -1 15093
+DDIR_SOUTH
+Fairy Mists~
+~
+0 -1 15094
+DDIR_WEST
+Fairy Mists~
+~
+0 -1 15094
+S
+#15095
+Woods of Landover~
+You walk among the bonnie blues finding it hard to believe that such a
+beautiful land could hide such ferocious dangers.  It is hard for you to
+concentrate on the fact that a monster could be hiding behind the next
+bush, considering you lunch.~
+150 ROOM_NO_RECALL SECT_FOREST
+DDIR_NORTH
+Woods of Landover~
+~
+0 -1 15096
+DDIR_EAST
+Lake Country~
+~
+0 -1 15077
+DDIR_SOUTH
+Fairy Mists~
+~
+0 -1 15095
+DDIR_WEST
+Fairy Mists~
+~
+0 -1 15095
+S
+#15096
+Woods of Landover~
+These woods are deceptively tranquil.  The tinkling leaves of bonnie
+blues hide natural menaces that eye you from their hiding spots.
+No matter how much you try to catch a glimpse of what is watching
+you, you never do.~
+150 ROOM_NO_RECALL SECT_FOREST
+DDIR_NORTH
+Woods of Landover~
+~
+0 -1 15017
+DDIR_EAST
+Lake Country~
+~
+0 -1 15036
+DDIR_SOUTH
+Woods of Landover~
+~
+0 -1 15095
+DDIR_WEST
+Fairy Mists~
+~
+0 -1 15096
+S
+#15097
+Mines of Melchor~
+These mines dig deep into the mountains that make up the valley of Landover.  
+They were dug by trolls, who sometimes use other intelligent races as slaves.~
+150 ROOM_DARK|ROOM_NO_RECALL SECT_INSIDE
+DDIR_SOUTH
+Mines of Melchor~
+~
+0 -1 15029
+DDIR_DOWN
+Mines of Melchor~
+~
+0 -1 15098
+S
+#15098
+Mines of Melchor~
+These mines dig deep into the mountains that make up the valley of Landover.  
+They were dug by trolls, who sometimes use other intelligent races as slaves.~
+150 ROOM_DARK|ROOM_NO_RECALL SECT_INSIDE
+DDIR_NORTH
+Mines of Melchor~
+~
+0 -1 15099
+DDIR_UP
+Mines of Melchor~
+~
+0 -1 15097
+S
+#15099
+Mines of Melchor~
+These mines dig deep into the mountains that make up the valley of Landover.  
+They were dug by trolls, who sometimes use other intelligent races as slaves.~
+150 ROOM_DARK|ROOM_NO_RECALL SECT_INSIDE
+DDIR_SOUTH
+Mines of Melchor~
+~
+0 -1 15098
+S
+#0
+
+
+
+
+#RESETS
+M 0 15000   1 15000 ;     Rosen the Shopkeeper in Rosen's Store            
+G 1 15003  10       ;     a Christmas Wishbook
+G 1 15014 500       ;            the Tanglebox
+M 0 15001   1 15075 ;                    Meeks in Meeks' Office            
+M 0 15003   1 15072 ;       Parsnip the Kobold in Dining Hall              
+G 1 15001 500       ;              wine bottle
+G 1 15002 500       ;             bowl of stew
+M 0 15004   1 15061 ;          Lord Kallendbor in Ryhndweir                
+M 0 15005   1 15028 ;                     Crow in Deep Fell                
+M 0 15007   1 15037 ;         The River master in Lake Irrylyn
+G 1 15005 500
+G 1 15006 500
+G 1 15007 500
+G 1 15008 500
+M 0 15008   1 15068 ;                   Strabo in Fire Springs             
+M 0 15009   1 15074 ;                  Questor in Landsview                
+E 1 15013 500 ITEM_WEAR_FINGER ;equip questor's ring           
+E 1 15020 500 ITEM_WEAR_NECK ;equip questor's amulet         
+E 1 15021 500 15 ;equip questor's bracer         
+M 0 15010   1 15070 ;                Abernathy in Great Hall               
+E 1 15022 500 ITEM_WEAR_NECK ;equip abernathy's collar       
+M 0 15011   4 15029 ;               Crag Troll in Mines of Melchor         
+M 0 15011   4 15097 ;               Crag Troll in Mines of Melchor         
+M 0 15011   4 15098 ;               Crag Troll in Mines of Melchor         
+M 0 15011   4 15099 ;               Crag Troll in Mines of Melchor         
+M 0 15012   6 15062 ;                 Bog Wump in Eastern Wastelands       
+M 0 15012   6 15063 ;                 Bog Wump in Eastern Wastelands       
+M 0 15012   6 15064 ;                 Bog Wump in Eastern Wastelands       
+M 0 15012   6 15065 ;                 Bog Wump in Eastern Wastelands       
+M 0 15012   6 15066 ;                 Bog Wump in Eastern Wastelands       
+M 0 15012   6 15067 ;                 Bog Wump in Eastern Wastelands       
+M 0 15013  12 15030 ;                    Dryad in Lake Country             
+M 0 15013  12 15031 ;                    Dryad in Lake Country             
+M 0 15013  12 15032 ;                    Dryad in Lake Country             
+M 0 15013  12 15033 ;                    Dryad in Lake Country             
+M 0 15013  12 15034 ;                    Dryad in Lake Country             
+M 0 15013  12 15035 ;                    Dryad in Lake Country             
+M 0 15013  12 15036 ;                    Dryad in Lake Country             
+M 0 15013  12 15077 ;                    Dryad in Lake Country             
+M 0 15013  12 15078 ;                    Dryad in Lake Country             
+M 0 15013  12 15079 ;                    Dryad in Lake Country             
+M 0 15013  12 15080 ;                    Dryad in Lake Country             
+M 0 15013  12 15081 ;                    Dryad in Lake Country             
+M 0 15014  19 15003 ;               Timberwolf in Woods of Landover        
+M 0 15014  19 15005 ;               Timberwolf in Woods of Landover        
+M 0 15014  19 15007 ;               Timberwolf in Woods of Landover        
+E 1 15019 500 ITEM_WEAR_HEAD ;equip a timber wolf's tooth    
+M 0 15014  19 15009 ;               Timberwolf in Woods of Landover        
+M 0 15014  19 15011 ;               Timberwolf in Woods of Landover        
+E 1 15019 500 ITEM_WEAR_HEAD ;equip a timber wolf's tooth    
+M 0 15014  19 15013 ;               Timberwolf in Woods of Landover        
+M 0 15014  19 15015 ;               Timberwolf in Woods of Landover        
+M 0 15014  19 15017 ;               Timberwolf in Woods of Landover        
+M 0 15014  19 15019 ;               Timberwolf in Woods of Landover        
+E 1 15019 500 ITEM_WEAR_HEAD ;equip a timber wolf's tooth    
+M 0 15014  19 15021 ;               Timberwolf in Woods of Landover        
+M 0 15014  19 15023 ;               Timberwolf in Woods of Landover        
+M 0 15014  19 15025 ;               Timberwolf in Woods of Landover        
+M 0 15014  19 15083 ;               Timberwolf in Woods of Landover        
+M 0 15014  19 15085 ;               Timberwolf in Woods of Landover        
+E 1 15019 500 ITEM_WEAR_HEAD ;equip a timber wolf's tooth    
+M 0 15014  19 15087 ;               Timberwolf in Woods of Landover        
+M 0 15014  19 15089 ;               Timberwolf in Woods of Landover        
+M 0 15014  19 15091 ;               Timberwolf in Woods of Landover        
+M 0 15014  19 15093 ;               Timberwolf in Woods of Landover        
+E 1 15019 500 ITEM_WEAR_HEAD ;equip a timber wolf's tooth    
+M 0 15014  19 15095 ;               Timberwolf in Woods of Landover        
+M 0 15015  19 15004 ;               Cave Wight in Woods of Landover        
+M 0 15015  19 15006 ;               Cave Wight in Woods of Landover        
+M 0 15015  19 15008 ;               Cave Wight in Woods of Landover        
+M 0 15015  19 15010 ;               Cave Wight in Woods of Landover        
+M 0 15015  19 15012 ;               Cave Wight in Woods of Landover        
+M 0 15015  19 15014 ;               Cave Wight in Woods of Landover        
+M 0 15015  19 15016 ;               Cave Wight in Woods of Landover        
+M 0 15015  19 15018 ;               Cave Wight in Woods of Landover        
+M 0 15015  19 15020 ;               Cave Wight in Woods of Landover        
+M 0 15015  19 15022 ;               Cave Wight in Woods of Landover        
+M 0 15015  19 15024 ;               Cave Wight in Woods of Landover        
+M 0 15015  19 15082 ;               Cave Wight in Woods of Landover        
+M 0 15015  19 15084 ;               Cave Wight in Woods of Landover        
+M 0 15015  19 15086 ;               Cave Wight in Woods of Landover        
+M 0 15015  19 15088 ;               Cave Wight in Woods of Landover        
+M 0 15015  19 15090 ;               Cave Wight in Woods of Landover        
+M 0 15015  19 15092 ;               Cave Wight in Woods of Landover        
+M 0 15015  19 15094 ;               Cave Wight in Woods of Landover        
+M 0 15015  19 15096 ;               Cave Wight in Woods of Landover        
+M 0 15016   1 15026 ;                    Heart in The Heart                
+M 0 15017  23 15038 ;                   Thrall in Greensward               
+M 0 15017  23 15039 ;                   Thrall in Greensward               
+M 0 15017  23 15040 ;                   Thrall in Greensward               
+M 0 15017  23 15041 ;                   Thrall in Greensward               
+M 0 15017  23 15042 ;                   Thrall in Greensward               
+M 0 15017  23 15043 ;                   Thrall in Greensward               
+M 0 15017  23 15044 ;                   Thrall in Greensward               
+M 0 15017  23 15045 ;                   Thrall in Greensward               
+M 0 15017  23 15046 ;                   Thrall in Greensward               
+M 0 15017  23 15047 ;                   Thrall in Greensward               
+M 0 15017  23 15048 ;                   Thrall in Greensward               
+M 0 15017  23 15049 ;                   Thrall in Greensward               
+M 0 15017  23 15050 ;                   Thrall in Greensward               
+M 0 15017  23 15051 ;                   Thrall in Greensward               
+M 0 15017  23 15052 ;                   Thrall in Greensward               
+M 0 15017  23 15053 ;                   Thrall in Greensward               
+M 0 15017  23 15054 ;                   Thrall in Greensward               
+M 0 15017  23 15055 ;                   Thrall in Greensward               
+M 0 15017  23 15056 ;                   Thrall in Greensward               
+M 0 15017  23 15057 ;                   Thrall in Greensward               
+M 0 15017  23 15058 ;                   Thrall in Greensward               
+M 0 15017  23 15059 ;                   Thrall in Greensward               
+M 0 15017  23 15060 ;                   Thrall in Greensward               
+M 0 15027   1 15009 ;           a G'home gnome in Woods of Landover        
+G 1 15023 500       ;        a darkling bottle
+M 0 15028   1 15069 ;              sterlingmob in Sterling Silver          
+M 0 15029   1 15038 ;        Bunion the Kobold in Greensward
+G 1 15009 500       ; sterling stuff
+G 1 15010 500
+G 1 15011 500
+G 1 15012 500
+O 0 15015   1 15074 ;         a silver lectern in Landsview                
+O 0 15016   1 15071 ;     a large canopied bed in King's Bedroom           
+O 0 15017   1 15026 ;          a wooden throne in The Heart                
+S
+
+
+
+
+#SHOPS
+15000 ITEM_TYPE_TRASH ITEM_TYPE_FOOD ITEM_TYPE_DRINK_CON ITEM_TYPE_ARMOR
+     ITEM_TYPE_NOTHING 100  50  0 23 ;Rosen the Shopkeeper
+15003 ITEM_TYPE_FOOD ITEM_TYPE_DRINK_CON ITEM_TYPE_WEAPON ITEM_TYPE_NOTHING
+     ITEM_TYPE_NOTHING 100  50  0 23 ;Parsnip the Kobold
+0
+
+
+
+
+#SPECIALS
+S
+
+
+
+
+#$

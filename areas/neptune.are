@@ -1,0 +1,4987 @@
+#AREA Neptune's Garden~
+#AUTHORS Grimace~
+
+
+
+
+
+#HELPS
+-1 NEPTUNE~
+{110}In my travels about the great eastern continent, I have encountered
+more than one society which embraces a theology centered around the
+ocean god Neptune.  Those that inhabit the region around Mt. Olympus
+say that there are gods who live high above the clouds on that peak,
+and these gods include Neptune and his siblings.  Piscyrean refugees
+live a spartan life of devotion to this ocean lord, and the marvelous
+undersea city of Atlantis bears the marks of both Neptune's mentorship 
+and his wrath.  Having infiltrated Atlantis and befriended a few of
+its citizens in hopes of finding a home for my clan and forging a lasting
+relationship therein, I found myself with a unique opportunity to 
+delve into the culture and beliefs of those whose lives depend entirely
+on the sea.  Their fears have not been lost on me, and I've grown to
+accept many of their chronicles as truth.  One intrepid explorer named
+Ysortus writes:
+
+"While mapping out the sea floor outside the dome, my party stumbled
+upon a deep rift in the earth, which extended as far above and below
+us as the instruments could detect.  Further exploration led to an 
+encounter with one of His Holiness' minions, and only I was left as
+my party turned and fled from whence we came.  I, too, turned my tail
+after the minion spoke of a mortal audience with our Maker, the idea
+of which is too terrible to imagine.  We shan't venture into the Abyss
+again."
+
+I am currently assembling a strong party to explore this forsaken realm
+deep in the Abyss, though I doubt that any mortal could penetrate very 
+far, confronted with the prospect of encountering a vengeful god, even
+if he be a demi-god. 
+
+                                        -Grimace{300} 5/97
+
+                                        (LAST UPDATE: 6/28/98)~
+-1 GRIMACE~
+{110}Grimace is a stocky dwarf who has spent most of his life exploring
+and mapping the realms, when not engaged in bloody combat in the name
+of his clan, race, or god.  His chronicles are incomplete, but offer
+the only reliable accounts of the regions known as Atlantis, Crater,
+Abyssal Depths, Piscyra and Neptune's Garden.  Should you track him
+down, feel free to ask reasonable questions of him, but realize that there
+is no substitute for personal exploration.  Happy hunting.{300}
+
+	(a) Atlantis
+	(b) Crater
+	(c) Abyssal Depths
+	(d) Piscyra
+	(e) Neptune's Garden
+
+{a}atlantis
+{b}crater
+{c}abyssal
+{d}piscyra
+{e}neptune
+~
+0 $~
+
+
+
+
+#RANGES 90 95 0 99
+#FLAGS AFLAG_NOTELEPORT
+#MOBILES
+#6700
+turquoise statue~
+A turquoise statue~
+A turquoise statue stands in the middle of the sculpture,
+arms crossed.~
+The statue is carved from the finest marble, polished to a blinding sheen.
+It stands perhaps fourteen hands high, and wears a complacent expression
+across its countenance.  It seems to be waiting for something.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_BODY
+AFF_SANCTUARY
+0 S
+95 BODY_HEAD BODY_HEAD 0d0+12000 0d0+200
+1 780605
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>give_prog I6706~
+mpecho The statue shimmers, and turns green.
+mpmload 6701
+mpjunk all
+mppurge self
+~
+>give_prog I6703~
+mpecho The statue hums for a minute, then disappears.
+mpmload 6709
+mpjunk all
+mppurge self
+~
+>give_prog I6707~
+mpecho The statue hums for a minute, then disappears.
+mpmload 6709
+mpjunk all
+mppurge self
+~
+>give_prog I6704~
+mpecho The statue hums for a minute, then disappears.
+mpmload 6709
+mpjunk all
+mppurge self
+~
+>give_prog I6708~
+mpecho The statue hums for a minute, then disappears.
+mpmload 6709
+mpjunk all
+mppurge self
+~
+>give_prog I6705~
+mpecho The statue hums for a minute, then disappears.
+mpmload 6709
+mpjunk all
+mppurge self
+~
+>give_prog I6709~
+mpecho The statue hums for a minute, then disappears.
+mpmload 6709
+mpjunk all
+mppurge self
+~
+|
+#6701
+green statue~
+A green statue~
+A green statue stands in the middle of the sculpture,
+arms crossed.~
+The statue is carved from the finest marble, polished to a blinding sheen.
+It stands perhaps fourteen hands high, and wears a complacent expression
+across its countenance.  It seems to be waiting for something.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_BODY
+AFF_SANCTUARY
+0 S
+95 BODY_HEAD BODY_HEAD 0d0+12000 0d0+200
+1 780605
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>give_prog I6706~
+mpecho The statue hums for a minute, then disappears.
+mpmload 6709
+mpjunk all
+mppurge self
+~
+>give_prog I6703~
+mpecho The statue shimmers, and turns yellow.
+mpmload 6702
+mpjunk all
+mppurge self
+~
+>give_prog I6707~
+mpecho The statue hums for a minute, then disappears.
+mpmload 6709
+mpjunk all
+mppurge self
+~
+>give_prog I6704~
+mpecho The statue hums for a minute, then disappears.
+mpmload 6709
+mpjunk all
+mppurge self
+~
+>give_prog I6708~
+mpecho The statue hums for a minute, then disappears.
+mpmload 6709
+mpjunk all
+mppurge self
+~
+>give_prog I6705~
+mpecho The statue hums for a minute, then disappears.
+mpmload 6709
+mpjunk all
+mppurge self
+~
+>give_prog I6709~
+mpecho The statue hums for a minute, then disappears.
+mpmload 6709
+mpjunk all
+mppurge self
+~
+|
+#6702
+yellow statue~
+A yellow statue~
+A yellow statue stands in the middle of the sculpture,
+arms crossed.~
+The statue is carved from the finest marble, polished to a blinding sheen.
+It stands perhaps fourteen hands high, and wears a complacent expression
+across its countenance.  It seems to be waiting for something.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_BODY
+AFF_SANCTUARY
+0 S
+95 BODY_HEAD BODY_HEAD 0d0+12000 0d0+200
+1 780605
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>give_prog I6706~
+mpecho The statue hums for a minute, then disappears.
+mpmload 6709
+mpjunk all
+mppurge self
+~
+>give_prog I6703~
+mpecho The statue hums for a minute, then disappears.
+mpmload 6709
+mpjunk all
+mppurge self
+~
+>give_prog I6707~
+mpecho The statue shimmers, and turns red.
+mpmload 6703
+mpjunk all
+mppurge self
+~
+>give_prog I6704~
+mpecho The statue hums for a minute, then disappears.
+mpmload 6709
+mpjunk all
+mppurge self
+~
+>give_prog I6708~
+mpecho The statue hums for a minute, then disappears.
+mpmload 6709
+mpjunk all
+mppurge self
+~
+>give_prog I6705~
+mpecho The statue hums for a minute, then disappears.
+mpmload 6709
+mpjunk all
+mppurge self
+~
+>give_prog I6709~
+mpecho The statue hums for a minute, then disappears.
+mpmload 6709
+mpjunk all
+mppurge self
+~
+|
+#6703
+red statue~
+A red statue~
+A red statue stands in the middle of the sculpture,
+arms crossed.~
+The statue is carved from the finest marble, polished to a blinding sheen.
+It stands perhaps fourteen hands high, and wears a complacent expression
+across its countenance.  It seems to be waiting for something.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_BODY
+AFF_SANCTUARY
+0 S
+95 BODY_HEAD BODY_HEAD 0d0+12000 0d0+200
+1 780605
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>give_prog I6706~
+mpecho The statue hums for a minute, then disappears.
+mpmload 6709
+mpjunk all
+mppurge self
+~
+>give_prog I6703~
+mpecho The statue hums for a minute, then disappears.
+mpmload 6709
+mpjunk all
+mppurge self
+~
+>give_prog I6707~
+mpecho The statue hums for a minute, then disappears.
+mpmload 6709
+mpjunk all
+mppurge self
+~
+>give_prog I6704~
+mpecho The statue shimmers, and turns violet.
+mpmload 6704
+mpjunk all
+mppurge self
+~
+>give_prog I6708~
+mpecho The statue hums for a minute, then disappears.
+mpmload 6709
+mpjunk all
+mppurge self
+~
+>give_prog I6705~
+mpecho The statue hums for a minute, then disappears.
+mpmload 6709
+mpjunk all
+mppurge self
+~
+>give_prog I6709~
+mpecho The statue hums for a minute, then disappears.
+mpmload 6709
+mpjunk all
+mppurge self
+~
+|
+#6704
+violet statue~
+A violet statue~
+A violet statue stands in the middle of the sculpture,
+arms crossed.~
+The statue is carved from the finest marble, polished to a blinding sheen.
+It stands perhaps fourteen hands high, and wears a complacent expression
+across its countenance.  It seems to be waiting for something.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_BODY
+AFF_SANCTUARY
+0 S
+95 BODY_HEAD BODY_HEAD 0d0+12000 0d0+200
+1 780605
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>give_prog I6706~
+mpecho The statue hums for a minute, then disappears.
+mpmload 6709
+mpjunk all
+mppurge self
+~
+>give_prog I6703~
+mpecho The statue hums for a minute, then disappears.
+mpmload 6709
+mpjunk all
+mppurge self
+~
+>give_prog I6707~
+mpecho The statue hums for a minute, then disappears.
+mpmload 6709
+mpjunk all
+mppurge self
+~
+>give_prog I6704~
+mpecho The statue hums for a minute, then disappears.
+mpmload 6709
+mpjunk all
+mppurge self
+~
+>give_prog I6708~
+mpecho The statue shimmers, and turns black.
+mpmload 6705
+mpjunk all
+mppurge self
+~
+>give_prog I6705~
+mpecho The statue hums for a minute, then disappears.
+mpmload 6709
+mpjunk all
+mppurge self
+~
+>give_prog I6709~
+mpecho The statue hums for a minute, then disappears.
+mpmload 6709
+mpjunk all
+mppurge self
+~
+|
+#6705
+black statue~
+A black statue~
+A black statue stands in the middle of the sculpture,
+arms crossed.~
+The statue is carved from the finest marble, polished to a blinding sheen.
+It stands perhaps fourteen hands high, and wears a complacent expression
+across its countenance.  It seems to be waiting for something.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_BODY
+AFF_SANCTUARY
+0 S
+95 BODY_HEAD BODY_HEAD 0d0+12000 0d0+200
+1 780605
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>give_prog I6706~
+mpecho The statue hums for a minute, then disappears.
+mpmload 6709
+mpjunk all
+mppurge self
+~
+>give_prog I6703~
+mpecho The statue hums for a minute, then disappears.
+mpmload 6709
+mpjunk all
+mppurge self
+~
+>give_prog I6707~
+mpecho The statue hums for a minute, then disappears.
+mpmload 6709
+mpjunk all
+mppurge self
+~
+>give_prog I6704~
+mpecho The statue hums for a minute, then disappears.
+mpmload 6709
+mpjunk all
+mppurge self
+~
+>give_prog I6708~
+mpecho The statue hums for a minute, then disappears.
+mpmload 6709
+mpjunk all
+mppurge self
+~
+>give_prog I6705~
+mpecho The statue shimmers, and turns white.
+mpmload 6706
+mpjunk all
+mppurge self
+~
+>give_prog I6709~
+mpecho The statue hums for a minute, then disappears.
+mpmload 6709
+mpjunk all
+mppurge self
+~
+|
+#6706
+white statue~
+A white statue~
+A white statue stands in the middle of the sculpture,
+arms crossed.~
+The statue is carved from the finest marble, polished to a blinding sheen.
+It stands perhaps fourteen hands high, and wears a complacent expression
+across its countenance.  It seems to be waiting for something.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_BODY
+AFF_SANCTUARY
+0 S
+95 BODY_HEAD BODY_HEAD 0d0+12000 0d0+200
+1 780605
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>give_prog I6706~
+mpecho The statue hums for a minute, then disappears.
+mpmload 6709
+mpjunk all
+mppurge self
+~
+>give_prog I6703~
+mpecho The statue hums for a minute, then disappears.
+mpmload 6709
+mpjunk all
+mppurge self
+~
+>give_prog I6707~
+mpecho The statue hums for a minute, then disappears.
+mpmload 6709
+mpjunk all
+mppurge self
+~
+>give_prog I6704~
+mpecho The statue hums for a minute, then disappears.
+mpmload 6709
+mpjunk all
+mppurge self
+~
+>give_prog I6708~
+mpecho The statue hums for a minute, then disappears.
+mpmload 6709
+mpjunk all
+mppurge self
+~
+>give_prog I6705~
+mpecho The statue hums for a minute, then disappears.
+mpmload 6709
+mpjunk all
+mppurge self
+~
+>give_prog I6709~
+mpecho The statue begins to glow brightly.
+mpecho You feel dizzy.
+mptransfer all 6784
+mpjunk all
+mppurge self
+~
+|
+#6707
+abyssal sentinel~
+The Abyssal Sentinel~
+The Abyssal Sentinel stands here, shimmering and flickering
+with a turquoise glow.~
+The sentinel stands about 18 hands high, towering over your party, a shining
+beacon of turquoise in the darkness of the abyss.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_BODY
+AFF_SANCTUARY
+0 S
+95 BODY_HEAD BODY_HEAD 0d0+12000 0d0+200
+1 780605
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+look $n
+if whichgod($n)==2
+  say Be gone, Chaos scum!
+  mptransfer $n 9755
+else
+  if whichgod($n)==0
+    mpechoat $n The Sentinel says, "Lord Neptune doesn't like visitors.  If you 
+    mpechoat $n must bother him, mind your step.
+    mpechoat $n Say 'pass' if you wish to continue."
+  else
+    if whichgod($n)==1
+      mpechoat $n The Sentinel says, "Lord Neptune always has time for 
+      mpechoat $n  the chosen sons and daughters of Order.  I'm sure he looks 
+      mpechoat $n  forward to meeting with you.
+      mpechoat $n  Say 'pass' when you're ready to proceed."
+    endif
+  endif
+endif
+~
+>speech_prog pass~
+if race($n)==7
+  mpechoat $n The Sentinel looks at your party skeptically, then nods his head.
+  mpechoaround $n The Sentinel looks at you skeptically, then nods his head at $n.
+  mptransfer 'all' 6701
+else
+  if race($n)==0
+    mpecho The Sentinel mumbles something about humans and shifts his weight.
+  else
+    if race($n)==3
+      mpecho The Sentinel mumbles something about the drow and picks his teeth with his sword.
+    else
+      if race($n)==2
+        mpecho The Sentinel mumbles something about elves and sneers nastily.
+      else
+        if race($n) == 6
+          mpecho The Sentinel mumbles something about orc and grins evilly.
+        else
+          if race($n)==1
+            mpecho The Sentinel mumbles something about halflings and laughs mercilessly.
+          else
+            if race($n)==5
+              mpecho The Sentinel mumbles something about the gnomes and cackles with glee.
+            else
+              if race($n)==4
+                mpecho The Sentinel mumbles something about dwarves and shrugs nonchalantly.
+              endif
+            endif
+          endif
+        endif
+      endif
+    endif
+  endif
+endif
+~
+|
+#6708
+ethereal braille mob~
+Ethereal braille mob~
+The Ethereal Braille mob~
+This mob transfers players from the end of the maze to the circular hall
+on the word 'enter'.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_BODY
+AFF_SANCTUARY|AFF_ETHEREAL
+0 S
+95 BODY_HEAD BODY_HEAD 0d0+12000 0d0+200
+1 780605
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>speech_prog enter~
+mptransfer $n 6751
+~
+|
+#6709
+neptune minion~
+Neptune's minion~
+Neptune's minion stands here, glistening with brine and flexing its long
+sharp claws.~
+The minion is rather tall, even with an ugly hunched back which projects
+its heavy lower jaw with its row of sharp fangs forward in a most unnatural
+arrangement.~
+ACT_SENTINEL|ACT_AGGRESSIVE|ACT_STAY_AREA|ACT_SMART|ACT_BODY
+AFF_SANCTUARY
+-1000 S
+95 BODY_CLAW BODY_CLAW 0d0+20000 0d0+150
+1 1810212
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>fight_prog 100~
+if rand(10)
+  mpecho The minion punctures your soft flesh and extracts your spleen
+  mpecho with the tip of its sharp talon.
+else
+if rand(20)
+  mpecho The minion rips its claw across your neck, leaving you with a
+  mpecho bloody pearl necklace.
+endif
+endif
+~
+|
+#6710
+ethereal sanctuary mob~
+Ethereal sanctuary mob~
+The ethereal sanctuary mob is here.~
+This mob has a rand_prog which mpmloads a nasty monster, making it
+imperative that the monk c 'sanctify' immediately.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_BODY
+AFF_SANCTUARY|AFF_ETHEREAL
+0 S
+95 BODY_HEAD BODY_HEAD 0d0+12000 0d0+200
+1 780605
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>all_greet_prog 100~
+mpmload 6730
+~
+|
+#6711
+brine beast~
+The Brine Beast~
+The brine beast reeks of rotting fish and is shrouded in a fine mist of
+seawater.~
+The brine beast reeks of rotting fish and is shrouded in a fine mist of
+seawater.  You notice a small kelp belt from which hangs a clamshell which
+rattles from the gold pieces kept inside.  We've got an enterprising brine
+beast here, it would seem.~
+ACT_SENTINEL|ACT_AGGRESSIVE|ACT_STAY_AREA|ACT_SMART|ACT_BODY
+AFF_SANCTUARY
+-1000 S
+150 BODY_CLAW BODY_CLAW 0d0+20000 0d0+200
+1 1810212
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>rand_prog 1~
+mppurge self
+~
+>bribe_prog 100000~
+grin $n
+mpoload 6703
+give i6703 $n
+mptransfer $n 6751
+mppurge self
+~
+|
+#6712
+abyssal gremlin~
+An Abyssal gremlin~
+An abyssal gremlin flaps its wings and gives you a wry smile.~
+The abyssal gremlin is very small and looks rather pathetic, though its
+knowing grin puts you ill at ease.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_BODY
+0
+-1000 S
+1 0 0 1d1+6 1d1+11
+1 10
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+scream 
+grin $n
+say goodbye
+wave $n
+mpjunk all
+mppurge self
+~
+|
+#6713
+acid sponge~
+The Acid Sponge~
+The walls are alive!~
+The enormous acid sponge flexes and coils, threatening to dissolve you at
+the slightest touch of the walls.  You'd best be moving.~
+ACT_SENTINEL|ACT_AGGRESSIVE|ACT_STAY_AREA|ACT_SMART|ACT_BODY
+AFF_SANCTUARY
+-1000 S
+150 0 0 0d0+20000 0d0+200
+1 1810212
+POS_STANDING POS_STANDING SEX_NEUTRAL
+#6714
+prialto~
+Prialto~
+A small man with a flowing grey beard and a turquoise-studded 
+cane stands here.~
+Prialto looks like an easy kill, but his confidence suggests that he has
+some tricks up his sleeve.  He has big sleeves too.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_BODY
+AFF_SANCTUARY
+1000 S
+1 0 0 1d1+39 1d1+16
+1 10
+POS_STANDING POS_STANDING SEX_MALE
+>rand_prog 4~
+mpecho Prialto brings the hilt of his cane close to his face
+mpecho and peers at it intently.
+say Bah!  I don't believe it!  I just got this thing polished up,
+say and those jokers picked out one of the rubies.  Hooligans!
+~
+>rand_prog 10~
+grumble 
+~
+>rand_prog 15~
+sigh 
+~
+>rand_prog 25~
+look $n
+~
+>give_prog I6734~
+say Ahhh, yes, that's it.  I hope you roughed them up a bit!
+mpecho Prialto carefully places the stone back into its place
+mpecho in the hilt of the cane, unaware of your treachery.
+mpjunk all
+mpoload 6701
+mpoload 6705
+give figurine $n
+mpecho Prialto raises his cane high into the sky.
+mpecho You feel different...
+mptransfer 'all' 6751
+~
+>fight_prog 100~
+say Ah, the folly of youth.
+mpmload 6709
+mpmload 6709
+mpmload 6709
+mpmload 6709
+mpjunk all
+mppurge self
+~
+|
+#6715
+Calcirron~
+Calcirron~
+The foul demon Calcirron stands here, filing down his teeth with a sharp
+blade.~
+Calcirron has taken the appearance of a large human with four horns jutting
+out of his head at skewed angles.  His mouth, when he opens it, glows with
+an eerie turquoise shine.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_BODY
+AFF_SANCTUARY
+0 S
+95 BODY_HAND BODY_HAND 0d0+12000 0d0+95
+1 780605
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 100~
+mpecho Calcirron squeals with delight, then runs off to hide...
+mpgorand 6770 6773 0 1
+mpecho Calcirron comes ripping into the room, glancing about nervously.
+~
+>fight_prog 20~
+mpechoat $n You hear Calcirron's voice in your head...
+mpforce $n say open sesame
+~
+>death_prog 100~
+mpecho You hear the rushing of water through pipes as the floor slides open.
+connect 5 6751
+~
+|
+#6716
+ethereal ele mob~
+Ethereal ele mob~
+Ethereal ele mob~
+This mob has a greet_prog for eles which checks to see if the ele is flying,
+then sends them to the torture chamber if they are not.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_BODY
+AFF_SANCTUARY|AFF_ETHEREAL
+0 S
+150 BODY_HEAD BODY_HEAD 0d0+22000 0d0+200
+1 1810212
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>all_greet_prog 100~
+mpechoat $n You watch as the rain runs through the floor.
+mpechoat $n You hear screams of agony rising from below.
+~
+|
+#6717
+greater evil~
+The greater evil~
+A formless swirl of turquoise light envelops you.~
+The greater evil is formless.~
+ACT_SENTINEL|ACT_AGGRESSIVE|ACT_STAY_AREA|ACT_SMART|ACT_BODY
+AFF_INVISIBLE
+0 S
+95 0 0 0d0+12000 0d0+80
+1 780605
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>death_prog 100~
+say it's over
+mpforce $n say it's over
+mpforce lesser say All is lost!
+mpforce lesser MPJUNK all
+mpforce lesser MPPURGE self
+~
+|
+#6718
+lesser evil~
+The lesser evil~
+A smaller formless swirl of turquoise light shifts around in the corner.~
+The smaller formless swirl is undoubtedly the lesser of two evils.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_BODY
+AFF_INVISIBLE
+0 S
+85 0 0 0d0+7000 0d0+75
+1 646617
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>speech_prog p it's over~
+scream 
+mpjunk all
+mppurge self
+~
+>death_prog 100~
+mpecho You hear a distant clanking sound as the floor of the pit slides open.
+connect 5 6751
+~
+|
+#6719
+rain beast~
+The Rain Beast~
+A large hulking beast stands here, enveloped by a dark raincloud.~
+Brine oozes from the Rain Beast's pores.~
+ACT_SENTINEL|ACT_AGGRESSIVE|ACT_STAY_AREA|ACT_SMART|ACT_BODY
+AFF_SANCTUARY
+-1000 S
+150 BODY_CLAW BODY_CLAW 0d0+20000 0d0+200
+1 1810212
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>death_prog 100~
+mpoload 6718
+~
+|
+#6720
+rain deacon~
+The Rain Deacon~
+The rain deacon stands here, gazing at you with her seductive sneer.~
+The rain deacon has a slight figure which is masked by flowing turquoise
+robes.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_BODY
+0
+1000 S
+25 0 0 0d0+500 0d0+40
+1 70135
+POS_STANDING POS_STANDING SEX_FEMALE
+>give_prog I6718~
+if class($n)==4
+  smile $n
+  mpoload 6709
+  give I6709 $n
+  mptransfer $n 6751
+else
+  tell $n Thou knowest not enough dark magic to enter Neptune's sanctuary.
+endif
+~
+|
+#6721
+Ethereal silence mob~
+Ethereal silence mob #1~
+Ethereal silence mob #1~
+This mob triggers on any speech, crushing you under the weight of the roof
+(and transferring you to the appropriate room).~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_BODY
+AFF_SANCTUARY|AFF_ETHEREAL
+0 S
+95 BODY_HEAD BODY_HEAD 0d0+12000 0d0+200
+1 780605
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>speech_prog ~
+mpecho The cracks in the roof suddenly spread, and
+mpecho the tunnel collapses, crushing you under the weight of
+mpecho a thousand gigatons of rock and water.
+mptransfer all 6795
+~
+|
+#6722
+ethereal silence mob~
+Ethereal silence mob #2~
+Ethereal silence mob #2 is here.~
+This mob transports you to the 9-lives dude.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_BODY
+AFF_SANCTUARY|AFF_ETHEREAL
+0 S
+95 BODY_HEAD BODY_HEAD 0d0+12000 0d0+200
+1 780605
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>all_greet_prog 100~
+mpecho *click*
+mptransfer $n 6787
+~
+|
+#6723
+nine lives minion9lives~
+The Minion of Nine Lives~
+A three-headed beast stands here, growling.~
+Some say this minion has nine lives.  Judging by his enormous claws and dour
+countenance, you'd guess that one would be more than enough.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_BODY
+AFF_SANCTUARY
+0 S
+120 BODY_HEAD BODY_HEAD 0d0+14000 0d0+133
+1 1179924
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>death_prog 100~
+if quest(20,4,$n) == 8
+  mpmset $n quest 20 4 0
+  mpecho The beast screams out in agony, then slides through
+  mpecho the floor, leaving a gaping hole, which swallows you whole.
+  mpecho The ceiling seals itself above your head.
+  mptransfer 'all' 6796
+else
+  if quest(20,4,$n) == 7
+    mpoload 6717
+    mpmset $n quest 20 4 8
+    say $n you are great, I have lost eight!
+  else
+    if quest(20,4,$n) == 6
+      mpoload 6716
+      mpmset $n quest 20 4 7
+      say Aaaaargh!  $n, seven must be your lucky number!
+    else
+      if quest(20,4,$n) == 5
+        mpoload 6715
+        mpmset $n quest 20 4 6
+        say Impossible! $n, you have won six times!
+      else
+        if quest(20,4,$n) == 4
+          mpoload 6714
+          mpmset $n quest 20 4 5
+          say Damn you $n!  I have lost five times to you!
+        else
+          if quest(20,4,$n) == 3
+            mpoload 6713
+            mpmset $n quest 20 4 4
+            say Four times eh $n?  Your luck will run out soon!
+          else
+            if quest(20,4,$n) == 2
+              mpoload 6712
+              mpmset $n quest 20 4 3
+              say $n, you are lucky to defeat me for the third time!
+            else
+              if quest(20,4,$n) == 1
+                mpoload 6711
+                mpmset $n quest 20 4 2
+                say $n, you are lucky to defeat me for the second time!
+              else
+                mpoload 6710
+                mpmset $n quest 20 4 1
+                say $n, you were lucky to defeat me once!
+              endif
+            endif
+          endif
+        endif
+      endif
+    endif
+  endif
+endif
+~
+>rand_prog 10~
+say Fools!  You cannot defeat me, for I have nine lives!
+~
+|
+#6724
+lord neptune~
+Lord Neptune~
+Lord Neptune sits here upon his mighty garden throne.~
+Lord Neptune has taken the form of a rather large human with a flowing grey
+beard and equally flowing turquoise robes.  He looks a bit annoyed at your
+intrusion, but seems willing to listen to your plight.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_BODY
+AFF_SANCTUARY
+0 S
+150 BODY_FOOT BODY_FOOT 0d0+22000 0d0+180
+1 1810212
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>greet_prog 100~
+say Greetings.  Are you here with an urgent request 
+say or just for a little adventure?
+~
+>speech_prog request~
+say Bah!  I have no time for urgent requests.  Be gone.
+mpecho Lord Neptune waves his hands lazily about his head.
+mpforce $n remove all
+mpforce $n drop all
+mpecho $n is swallowed up by a portal which is gone as suddenly
+mpecho as it appeared!
+mptransfer $n 6775
+~
+>speech_prog adventure~
+say Ah, well then, it is adventure that you shall find...
+mpecho Lord Neptune pauses for a moment, then
+mpecho looks up with a puzzled expression on his face.
+say But first...  perhaps you can help me with this puzzle 
+say that Lord Order gave me.  I can't seem to make heads 
+say or tails of it.  He always gets the best of me.  
+say Chess, backgammon, canasta, even checkers.  But not 
+say this time, damn it.  
+grumble 
+mpecho Lord Neptune stares off dreamily into the distance.
+~
+>speech_prog puzzle~
+mpecho Lord Neptune looks back at you with a start.
+say What's that?  You're still here?  Oh, right, the puzzle.
+say Ok, it goes like this:
+say ISPN HAGCHNAC FIGTE XON HFXO GP GABNA;
+say PAGY SOFGC CHASTEC GTIW BNFXO.
+say All he told me was that C = S
+say and, frankly, I'm stumped.  Figure it out for me,
+say and I'll find you some adventure.
+smile $n
+~
+>speech_prog p life prospers along the path of order; from chaos springs only death.~
+say Ahhh, yes.  A simple cryptogram.  Why didn't I think of that?
+grin 
+say I promised you adventure, and adventure it shall be.
+say Prepare yourselves...
+mpmset self quest 0 4 1
+~
+>rand_prog 70~
+if quest(0,4,self) == 1
+  mpecho Lord Neptune says, "Ready..."
+  mpmset self quest 0 4 2
+else
+if quest(0,4,self) == 2
+  mpecho Lord Neptune says, "Set..."
+  mpmset self quest 0 4 3
+else
+if quest(0,4,self) == 3  
+  wink 
+  mpecho Lord Neptune moves his hand in a slight gesture, and you are gone.
+  mptransfer all 6790
+  mpmset self quest 0 4 0
+endif
+endif
+endif
+~
+|
+#6725
+hellspawn~
+The Hellspawn~
+A flaming beast flexes mighty claws at you.~
+The Hellspawn has been abducted from one of the inner circles of Lord Chaos.  It is not a creature to be taken lightly.~
+ACT_SENTINEL|ACT_AGGRESSIVE|ACT_STAY_AREA|ACT_SMART|ACT_BODY
+AFF_INVISIBLE
+0 S
+80 BODY_CLAW BODY_CLAW 0d0+8000 0d0+180
+1 1810212
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>fight_prog 100~
+mpquiet ON
+cast 'mass acid'
+cast 'mass acid' 
+cast 'mass acid'
+cast 'acid blast' $n
+cast 'acid blast' $n
+cast 'acid blast' $n
+mpquiet OFF
+mpecho The Hellspawn utters the words, 'circle of pain'.
+~
+>death_prog 100~
+mpechoat $n The Hellspawn's equipment flies off his dying corpse and into your arms.
+mpechoaround $n The Hellspawn's equipment flies off his dying corpse!
+mpquiet ON
+mpoload 6719
+give i6719 $n
+mpoload 6722
+give i6722 $n
+mpoload 6723
+give i6723 $n
+mpquiet OFF
+growl $n
+mpmload 6735
+~
+|
+#6726
+chaotic mage~
+The Chaotic Mage~
+One of the mirrors has come alive!~
+You see only your own reflection.~
+ACT_SENTINEL|ACT_AGGRESSIVE|ACT_STAY_AREA|ACT_SMART|ACT_BODY
+AFF_INVISIBLE
+0 S
+80 BODY_CLAW BODY_CLAW 0d0+8000 0d0+180
+1 1810212
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>rand_prog 100~
+mpquiet ON
+cast mirror
+mpquiet OFF
+~
+>fight_prog 100~
+mpquiet ON
+cast 'curse' $r
+cast 'weaken' $r
+cast 'faerie fire' $r
+cast 'confusion' $r
+cast 'confusion' $r
+cast 'confusion' $r
+cast 'energy drain' $n
+cast 'energy drain' $n
+cast 'energy drain' $n
+mpquiet OFF
+mpecho The Chaotic Mage utters the words, 'mirror blast'.
+mpecho The Chaotic Mage utters the words, 'chaotic siphon'.
+~
+>death_prog 100~
+mpecho The Chaotic Mage shatters into a million pieces,
+mpecho sending bits of mirror everywhere!
+mpquiet ON
+mpoload 6724
+give i6724 $n
+mpoload 6727
+give i6727 $n
+mpoload 6728
+give i6728 $n
+mpquiet OFF
+mpmload 6735
+~
+|
+#6727
+helldruid druid~
+The Helldruid~
+A pious monk stands here in black robes with fiery red eyes.~
+The helldruid waits to hear your confessions, though he seems to relish
+the absolvement a little too much.~
+ACT_SENTINEL|ACT_AGGRESSIVE|ACT_STAY_AREA|ACT_SMART|ACT_BODY
+AFF_INVISIBLE
+0 S
+80 0 0 0d0+8000 0d0+180
+1 1810212
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>fight_prog 100~
+mpquiet ON
+cast 'dispel good' $n
+cast 'dispel good' $n
+cast 'dispel good' $n
+cast 'dispel good' $r
+cast 'dispel good' $r
+cast 'dispel good' $r
+cast 'dispel good' $r
+cast 'dispel good' $r
+cast 'dispel good' $r
+mpquiet OFF
+mpecho The Helldruid utters the words, 'chaotic blessing'.
+mpecho You feel the good draining from you, and, with it, your life.
+~
+>death_prog 100~
+mpecho The Helldruid folds his arms across his body in silent prayer.
+mpquiet ON
+mpoload 6726
+give i6726 $n
+mpoload 6730
+give i6730 $n
+mpoload 6731
+give i6731 $n
+mpoload 6732
+give i6732 $n
+mpoload 6733
+give i6733 $n
+mpquiet OFF
+mpmload 6735
+~
+|
+#6728
+antichaos ethereal mob~
+Neptune's holy servant~
+Ethereal antichaos mob~
+This mob just makes sure no chaos followers
+get in.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_BODY
+AFF_SANCTUARY|AFF_ETHEREAL
+0 S
+95 BODY_HEAD BODY_HEAD 0d0+12000 0d0+200
+1 780605
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>all_greet_prog 100~
+if whichgod($n)==2
+  mpecho Nice try... but we don't allow Chaos scum in here!
+  mptransfer $n 9755
+endif
+~
+|
+#6729
+ethereal elgarry~
+Ethereal elgarry~
+Ethereal elgarry~
+This mobs transfers eles back to the circular chamber~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_BODY
+AFF_SANCTUARY|AFF_ETHEREAL
+0 S
+95 BODY_HEAD BODY_HEAD 0d0+12000 0d0+200
+1 780605
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>all_greet_prog 100~
+mpecho You fall UP the chimney!  How very strange...
+mptransfer $n 6751
+~
+|
+#6730
+ethereal beastloader mob~
+Ethereal beastloader mob~
+The ethereal beastloader mob is here.~
+This mob mpmloads a nasty monster, making it imperative that the monk
+c 'sanctify' immediately.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_BODY
+AFF_SANCTUARY|AFF_ETHEREAL
+0 S
+95 BODY_HEAD BODY_HEAD 0d0+12000 0d0+200
+1 780605
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>rand_prog 20~
+mpmload 6711
+mpecho A brine beast arrives suddenly!
+mppurge self
+~
+|
+#6731
+ethereal garden mob~
+Ethereal garden mob~
+The ethereal garden mob is here.~
+This mob transfers players into the garden.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_BODY
+AFF_SANCTUARY|AFF_ETHEREAL
+0 S
+95 BODY_HEAD BODY_HEAD 0d0+12000 0d0+200
+1 780605
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>speech_prog headache~
+mpecho You hear the grinding of huge gates.
+mptransfer all 6788
+~
+|
+#6732
+ethereal dropper mob~
+Ethereal dropper mob~
+The ethereal dropper mob is here.~
+This mob forces players down into the whirlpool.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_BODY
+AFF_SANCTUARY|AFF_ETHEREAL
+0 S
+95 BODY_HEAD BODY_HEAD 0d0+12000 0d0+200
+1 780605
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>rand_prog 20~
+mpforce $n down
+~
+|
+#6733
+ethereal whirlpool mob~
+Ethereal whirlpool mob~
+The ethereal whirlpool mob is here.~
+This mob sends slow players back to chakkor.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_BODY
+AFF_SANCTUARY|AFF_ETHEREAL
+0 S
+95 BODY_HEAD BODY_HEAD 0d0+12000 0d0+200
+1 780605
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>rand_prog 60~
+mpechoat $n You are sucked into the whirlpool!
+mpechoaround $n $n is sucked into the whirlpool!
+mptransfer $n 9755
+~
+|
+#6734
+ethereal calcirron mob~
+Ethereal calcirron mob~
+The ethereal calcirron mob is here.~
+This mob transfers players into the torture chamber.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_BODY
+AFF_SANCTUARY|AFF_ETHEREAL
+0 S
+95 BODY_HEAD BODY_HEAD 0d0+12000 0d0+200
+1 780605
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>speech_prog p open sesame~
+mpechoat $n Suddenly the wall opens and you are pushed inside!
+mpechoaround $n Suddenly the wall opens and $n is pushed inside!
+mptransfer $n 6794
+~
+|
+#6735
+ethereal timing mob~
+Ethereal timing mob~
+The ethereal timing mob is here.~
+This mob transfers players through the last 3 rooms, with a short pause.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_BODY
+AFF_SANCTUARY|AFF_ETHEREAL
+0 S
+95 BODY_HEAD BODY_HEAD 0d0+12000 0d0+200
+1 780605
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>rand_prog 70~
+mpecho You feel disoriented.
+if inroom($r) == 6790
+   mptransfer all 6791
+else
+if inroom($r) == 6791
+   mptransfer all 6792
+else
+if inroom($r) == 6792
+   mptransfer all 9755
+endif
+endif
+endif
+mppurge self
+~
+|
+#6736
+abyss~
+The Abyss~
+This mob controls the passage of the abyss.~
+This isn't so much a mob as a rprog.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_INFRARED|AFF_ETHEREAL
+0 S
+150 BODY_EYE BODY_EYE 11d1111+9961 1d1+430
+111111 RACE_HALFLING
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>speech_prog p surface~
+if inroom($n)==6799
+  mpechoat $n You swim in a direction that appears to be upward.
+  mpechoaround $n $n swims up.
+  mptransfer $n 31295
+  mpgoto 31295
+  mpmset $n quest 6 1 1
+  mpgoto 6799
+else
+if inroom($n)==28897
+else
+  if quest(6,1,$n)==1
+    mpechoat $n You are trying to get your bearings.  Be patient.
+  else
+  if quest(6,1,$n)==0
+    mpechoat $n You switch directions...
+  endif
+  endif
+endif
+endif
+mpmset $n quest 6 1 1
+~
+>speech_prog p dive~
+if inroom($n)==6799
+  mpechoat $n Diving isn't an option right now.  Try 'DOWN' instead.
+else
+  if quest(6,1,$n)==0
+    mpechoat $n You're trying to get your bearings.  Be patient.
+  else
+  if quest(6,1,$n)==1
+    mpechoat $n You switch directions...
+  endif
+  endif
+mpmset $n quest 6 1 0
+endif
+~
+>rand_prog 75~
+if inroom($r)==6799
+else
+if inroom($r)==28897
+else
+if quest(6,1,$r)==0
+  mpechoat $r You swim in a direction that seems to be downward.
+  mpechoaround $r $r swims down.
+  if inroom($r)==31288
+    mptransfer $r 31289
+    mpgoto 31289
+    mpforce $r look
+    mpgoto 31288
+  else
+  if inroom($r)==31289
+    mptransfer $r 31290
+    mpgoto 31290
+    mpforce $r look
+    mpgoto 31289
+  else
+  if inroom($r)==31290
+    mptransfer $r 31291
+    mpgoto 31291
+    mpforce $r look
+    mpgoto 31290
+  else
+  if inroom($r)==31291
+    mptransfer $r 31292
+    mpgoto 31292
+    mpforce $r look
+    mpgoto 31291
+  else
+  if inroom($r)==31292
+    mptransfer $r 31293
+    mpgoto 31293
+    mpforce $r look
+    mpgoto 31292
+  else
+  if inroom($r)==31293
+    mptransfer $r 31294
+    mpgoto 31294
+    mpforce $r look
+    mpgoto 31293
+  else
+  if inroom($r)==31294
+    mptransfer $r 31295
+    mpgoto 31295
+    mpforce $r look
+    mpgoto 31294
+  else
+  if inroom($r)==31295
+    mptransfer $r 6799
+    mpgoto 6799
+    mpforce $r look
+    mpgoto 31295
+  endif
+  endif
+  endif
+  endif
+  endif
+  endif
+  endif
+  endif
+endif
+if quest(6,1,$r)==1
+  mpechoat $r You swim in a direction that seems to be upward.
+  mpechoaround $r $r swims up.
+  if inroom($r)==31288
+    mptransfer $r 28897
+    mpgoto 28897
+    mpforce $r look
+    mpgoto 31288
+  else
+  if inroom($r)==31289
+    mptransfer $r 31288
+    mpgoto 31288
+    mpforce $r look
+    mpgoto 31289
+  else
+  if inroom($r)==31290
+    mptransfer $r 31289
+    mpgoto 31289
+    mpforce $r look
+    mpgoto 31290
+  else
+  if inroom($r)==31291
+    mptransfer $r 31290
+    mpgoto 31290
+    mpforce $r look
+    mpgoto 31291
+  else
+  if inroom($r)==31292
+    mptransfer $r 31291
+    mpgoto 31291
+    mpforce $r look
+    mpgoto 31292
+  else
+  if inroom($r)==31293
+    mptransfer $r 31292
+    mpgoto 31292
+    mpforce $r look
+    mpgoto 31293
+  else
+  if inroom($r)==31294
+    mptransfer $r 31293
+    mpgoto 31293
+    mpforce $r look
+    mpgoto 31294
+  else
+  if inroom($r)==31295
+    mptransfer $r 31294
+    mpgoto 31294
+    mpforce $r look
+    mpgoto 31295
+  endif
+  endif
+  endif
+  endif
+  endif
+  endif
+  endif
+  endif
+endif
+endif
+endif
+~
+|
+#0
+
+
+
+
+#OBJECTS
+#6700
+small dune sand~
+a small sand dune~
+There is a small sand dune under your feet.
+Carved into the sand in a shaky hand are the words:
+"Lord Neptune rules the oceans."~
+~
+ITEM_TYPE_FURNITURE
+ITEM_FLAG_LEVEL
+ITEM_WEAR_WIELD
+0 1 6 11
+5 0 1
+#6701
+prialto cane~
+prialto's cane~
+A turquoise-studded cane lies here.~
+~
+ITEM_TYPE_LIGHT
+ITEM_FLAG_HUM|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+2 1 -1 11
+5 1000000 25
+#6702
+calcirron's blade~
+calcirron's blade~
+A short turquoise blade has been dropped here.~
+~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+3 6 6 WEAPON_PIERCE
+5 1000000 36
+#6703
+squid figurine~
+a squid figurine~
+A small figurine has been dropped here.~
+~
+ITEM_TYPE_TREASURE
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+0 1 6 11
+5 1 1
+#6704
+eel figurine~
+an eel figurine~
+A figurine has been dropped here.~
+~
+ITEM_TYPE_TREASURE
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+0 1 6 11
+5 1 1
+#6705
+seal figurine~
+a seal figurine~
+A small figurine has been dropped here.~
+~
+ITEM_TYPE_TREASURE
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+0 1 6 11
+5 1 1
+#6706
+shark figurine~
+a shark figurine~
+A small figurine has been dropped here.~
+~
+ITEM_TYPE_TREASURE
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+0 1 6 11
+5 1 1
+#6707
+man-o-war figurine~
+a man-o-war figurine~
+A small figurine has been dropped here.~
+~
+ITEM_TYPE_TREASURE
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+0 1 6 11
+5 1 1
+#6708
+lobster figurine~
+a lobster figurine~
+A small figurine has been dropped here.~
+~
+ITEM_TYPE_TREASURE
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+0 1 6 11
+5 1 1
+#6709
+clam figurine~
+a clam figurine~
+A small figurine has been dropped here.~
+~
+ITEM_TYPE_TREASURE
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+0 1 6 11
+5 1 1
+#6710
+glass harmonica~
+a glass harmonica~
+A set of about a dozen crystal goblets has been dropped here.~
+~
+ITEM_TYPE_TREASURE
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+0 1 6 11
+5 5000000 1
+P 1
+TRIG_TICK 100
+OPROG_OBJECT_QUEST_IF 0 12  = 800 2 3
+P 2
+TRIG_VOID
+OPROG_ECHO
+*zap*~
+P 2
+TRIG_VOID
+OPROG_GOD_COMMAND
+MPJUNK i6710~
+P 3
+TRIG_VOID
+OPROG_QUEST_ADD 0 12 1
+#6717
+silver turquoise neptune key~
+a turquoise and silver key~
+A shiny bit of turquoise and silver has been abandoned here.~
+~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 1 6 WEAPON_CRUSH
+5 5000000 1
+P 1
+TRIG_TICK 100
+OPROG_OBJECT_QUEST_IF 0 12  = 800 2 3
+P 2
+TRIG_VOID
+OPROG_ECHO
+*zap*~
+P 2
+TRIG_VOID
+OPROG_GOD_COMMAND
+MPJUNK i6711~
+P 3
+TRIG_VOID
+OPROG_QUEST_ADD 0 12 1
+#6712
+aragonite music box~
+an aragonite music box~
+A music box carved out of mother-of-pearl has been left here.~
+~
+ITEM_TYPE_CONTAINER
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+1400 CONT_CLOSEABLE 6 11
+5 5000000 94
+
+#6713
+turquoise ring~
+a ring of turquoise~
+A large ring of turquoise has been left here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_FINGER
+15 1 6 11
+5 10000000 58
+P 1
+TRIG_TICK 100
+OPROG_OBJECT_QUEST_IF 0 12  = 800 2 3
+P 2
+TRIG_VOID
+OPROG_ECHO
+*zap*~
+P 2
+TRIG_VOID
+OPROG_GOD_COMMAND
+MPJUNK i6713~
+P 3
+TRIG_VOID
+OPROG_QUEST_ADD 0 12 1
+#6714
+finely woven fishing net~
+a finely woven fishing net~
+A silken fishing net has been dropped here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_BODY
+0 1 6 11
+1 10000000 88
+A
+APPLY_HITROLL 9
+A
+APPLY_DAMROLL 4
+A
+APPLY_SAVING_SPELL -9
+P 1
+TRIG_TICK 100
+OPROG_OBJECT_QUEST_IF 0 12  = 8800 2 3
+P 2
+TRIG_VOID
+OPROG_ECHO
+The fishing net returns to its maker, leaving only a turquoise haze.~
+P 2
+TRIG_VOID
+OPROG_GOD_COMMAND
+MPJUNK i6714~
+P 3
+TRIG_VOID
+OPROG_QUEST_ADD 0 12 1
+#6715
+neptune carving lord~
+a carving of Lord Neptune~
+A small piece of marble has been dropped here.~
+~
+ITEM_TYPE_TREASURE
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 1 6 11
+5 10000000 1
+P 1
+TRIG_TICK 100
+OPROG_OBJECT_QUEST_IF 0 12  = 800 2 3
+P 2
+TRIG_VOID
+OPROG_ECHO
+*zap*~
+P 2
+TRIG_VOID
+OPROG_GOD_COMMAND
+MPJUNK i6715~
+P 3
+TRIG_VOID
+OPROG_QUEST_ADD 0 12 1
+#6716
+starfish broach~
+a starfish broach~
+A starfish-shaped broach has been dropped here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_NECK
+0 1 6 11
+5 10000000 88
+A
+APPLY_HITROLL 9
+A
+APPLY_DAMROLL 4
+A
+APPLY_SAVING_SPELL -9
+P 1
+TRIG_TICK 100
+OPROG_OBJECT_QUEST_IF 0 12  = 8800 2 3
+P 2
+TRIG_VOID
+OPROG_ECHO
+The starfish snaps awake and crawls away, leaving only a turquoise haze.~
+P 2
+TRIG_VOID
+OPROG_GOD_COMMAND
+MPJUNK i6716~
+P 3
+TRIG_VOID
+OPROG_QUEST_ADD 0 12 1
+#6711
+charred longbow bow~
+a charred longbow~
+A large charred bow has been abandoned here.~
+~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_GLOW|ITEM_FLAG_HUM|ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 3 3 WEAPON_WHIP
+5 1000000 89
+P 1
+TRIG_TICK 100
+OPROG_OBJECT_QUEST_IF 0 12  = 800 2 3
+P 2
+TRIG_VOID
+OPROG_ECHO
+*zap*~
+P 2
+TRIG_VOID
+OPROG_GOD_COMMAND
+MPJUNK i6711~
+P 3
+TRIG_VOID
+OPROG_QUEST_ADD 0 12 1
+P 4
+TRIG_UNKNOWN 100 neptune
+OPROG_GOD_COMMAND
+MPECHOAT $ The charred bow glows with a blinding turquoise light.&
+MPOLOAD 6747&
+MPJUNK i6711~
+#6718
+rain band~
+a rain band~
+A band of rain has been dropped here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_ABOUT
+0 1 6 11
+5 500000 1
+P 1
+TRIG_TICK 100
+OPROG_OBJECT_QUEST_IF 0 12  = 800 2 3
+P 2
+TRIG_VOID
+OPROG_ECHO
+*zap*~
+P 2
+TRIG_VOID
+OPROG_GOD_COMMAND
+MPJUNK i6718~
+P 3
+TRIG_VOID
+OPROG_QUEST_ADD 0 12 1
+#6719
+continental band~
+the Continental Band~
+A titanic stone band lies here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_ANTI_EVIL|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_ABOUT
+0 1 6 11
+5 5000000 94
+A
+APPLY_MANA -100
+A
+APPLY_HITROLL 7
+A
+APPLY_DAMROLL 9
+P 1
+TRIG_TICK 100
+OPROG_OBJECT_QUEST_IF 0 12  = 0 3 2
+P 3
+TRIG_VOID
+OPROG_ECHO
+You hear the grinding of continents as stone changes shape and form.~
+P 3
+TRIG_VOID
+OPROG_GOD_COMMAND
+MPOLOAD 6737&
+MPJUNK i6719
+~
+P 4
+TRIG_UNKNOWN 100 neptune
+OPROG_OBJECT_QUEST_IF 0 12 = 0 6 5
+P 5
+TRIG_VOID
+OPROG_ECHO Nothing happens.~
+P 6
+TRIG_VOID
+OPROG_QUEST_ADD 0 12 1
+P 6
+TRIG_VOID
+OPROG_GOD_COMMAND
+MPECHOAT $ The grinding ceases and the stone cools.~
+#6722
+oceanic boots~
+oceanic Boots~
+A pair of gargantuan stone boots lies here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_FEET
+0 1 6 11
+5 5000000 94
+A
+APPLY_MANA -180
+A
+APPLY_HITROLL 10
+A
+APPLY_DAMROLL 8
+P 1
+TRIG_TICK 100
+OPROG_OBJECT_QUEST_IF 0 12  = 0 3 2
+P 3
+TRIG_VOID
+OPROG_ECHO
+You hear the grinding of continents as stone changes shape and form.~
+P 3
+TRIG_VOID
+OPROG_GOD_COMMAND
+MPOLOAD 6740&
+MPJUNK i6722
+~
+P 4
+TRIG_UNKNOWN 100 neptune
+OPROG_OBJECT_QUEST_IF 0 12 = 0 6 5
+P 5
+TRIG_VOID
+OPROG_ECHO Nothing happens.~
+P 6
+TRIG_VOID
+OPROG_QUEST_ADD 0 12 1
+P 6
+TRIG_VOID
+OPROG_GOD_COMMAND
+MPECHOAT $ The grinding ceases and the stone cools.~
+#6723
+ring seas~
+the Ring of the Seas~
+A small watery ring lies here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_FINGER
+0 1 6 11
+5 5000000 94
+A
+APPLY_MANA -180
+A
+APPLY_HITROLL 10
+A
+APPLY_DAMROLL 7
+P 1
+TRIG_TICK 100
+OPROG_OBJECT_QUEST_IF 0 12  = 0 3 2
+P 3
+TRIG_VOID
+OPROG_GOD_COMMAND
+MPOLOAD 6743&
+MPECHOAT $ You hear the quiet gurgling of water.&
+MPJUNK i6723~
+P 4
+TRIG_UNKNOWN 100 neptune
+OPROG_OBJECT_QUEST_IF 0 12  = 0 6 5
+P 5
+TRIG_VOID
+OPROG_GOD_COMMAND
+MPECHOAT $ Nothing happens.~
+P 6
+TRIG_VOID
+OPROG_QUEST_ADD 0 12 1
+P 6
+TRIG_VOID
+OPROG_ECHO
+The water freezes in place.~
+#6724
+mirror band~
+the Mirror Band~
+You see your own reflection.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_ABOUT
+24 1 6 11
+5 5000000 94
+A
+APPLY_MANA -80
+A
+APPLY_HITROLL -8
+A
+APPLY_DAMROLL -8
+P 1
+TRIG_UNKNOWN 100 mirror-on
+OPROG_GOD_COMMAND
+MPMSET $ long You see your own reflection.~
+P 2
+TRIG_UNKNOWN 100 mirror-off
+OPROG_GOD_COMMAND
+MPMSET $ long NULL~
+#6726
+holy sash of the seas~
+the Holy Sash of the Seas~
+A watery sash has been dropped here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_ABOUT
+12 1 6 11
+5 5000000 94
+A
+APPLY_CON 1
+A
+APPLY_INT 1
+A
+APPLY_MANA 180
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_WEAR_LOC = WEAR_NONE 5 2
+P 2
+TRIG_VOID
+OPROG_OBJECT_QUEST_IF 0 12  = 1500 4 3
+P 3
+TRIG_VOID
+OPROG_QUEST_ADD 0 12 1
+P 4
+TRIG_VOID
+OPROG_GOD_COMMAND
+MPECHOAT $ You feel the power of Neptune coursing through you.&
+restore $~
+P 4
+TRIG_VOID
+OPROG_QUEST_ADD 0 12 -1500
+#6727
+crystal slippers~
+the Crystal Slippers~
+You see your own reflection.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_FEET
+24 1 6 11
+5 5000000 94
+A
+APPLY_MANA -80
+A
+APPLY_HITROLL -8
+A
+APPLY_DAMROLL -8
+P 1
+TRIG_HIT 1
+OPROG_GOD_COMMAND
+MPECHOAT $ Your slippers grow a new facet to replace one lost in battle.~
+#6728
+mirror ring~
+the Ring of Mirrors~
+You see your own reflection.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_FINGER
+24 1 6 11
+5 5000000 94
+A
+APPLY_MANA -80
+A
+APPLY_HITROLL -8
+A
+APPLY_DAMROLL -8
+P 1
+TRIG_HIT 1
+OPROG_OBJECT_QUEST_IF 0 12  = 0 2 3
+P 2
+TRIG_VOID
+OPROG_GOD_COMMAND
+MPECHOAT $ The Ring of Mirrors takes a hit and begins to crack...~
+P 2
+TRIG_VOID
+OPROG_QUEST_ADD 0 12 1
+P 3
+TRIG_VOID
+OPROG_OBJECT_QUEST_IF 0 12  = 1 4 5
+P 4
+TRIG_VOID
+OPROG_QUEST_ADD 0 12 1
+P 4
+TRIG_VOID
+OPROG_GOD_COMMAND
+MPECHOAT $ The Ring of Mirrors takes another hit and cracks spiral clockwise along the band.~
+P 5
+TRIG_VOID
+OPROG_QUEST_ADD 0 12 -2
+P 5
+TRIG_VOID
+OPROG_GOD_COMMAND
+MPECHOAT $ The Ring of Mirrors takes one final hit, then shatters into tiny pieces.  As you stare at your destroyed ring, you suddenly feel the power of Neptune course through you, and the pieces reassemble themselves.~
+#6729
+neptune's curse~
+Neptune's curse~
+A watery sash has been dropped here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_ABOUT
+0 1 6 11
+5 5000000 94
+A
+APPLY_CON -1
+A
+APPLY_INT -1
+#6730
+neptune's leggings~
+neptune's leggings~
+A pair of watery leggings has been abandoned here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_LEGS
+16 1 6 11
+5 5000000 94
+A
+APPLY_CON 1
+A
+APPLY_INT 1
+A
+APPLY_MANA 100
+#6731
+neptune's armbands~
+neptune's armbands~
+A pair of water armbands lies here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_ARMS
+12 1 6 11
+5 5000000 94
+A
+APPLY_CON 1
+A
+APPLY_INT 1
+A
+APPLY_MANA 180
+#6732
+neptune's boots~
+neptune's boots~
+A pair of water boots lies here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_FEET
+16 1 6 11
+5 5000000 94
+A
+APPLY_CON 1
+A
+APPLY_INT 1
+A
+APPLY_MANA 100
+#6733
+holy ring of the abyss~
+the Holy Ring of the Abyss~
+A briny ring has been left behind.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_FINGER
+16 1 6 11
+5 5000000 94
+A
+APPLY_CON 1
+A
+APPLY_INT 1
+A
+APPLY_MANA 100
+#6734
+glimmering ruby~
+a glimmering ruby~
+A glimmering ruby has been dropped here.~
+~
+ITEM_TYPE_TREASURE
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 0 0
+5 800000 1
+#6735
+lump clay~
+a lump of clay~
+A lump of clay is sitting here.~
+~
+ITEM_TYPE_TREASURE
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 0 0
+5 5 1
+P 1
+TRIG_COMMAND 100 forge
+OPROG_GOD_COMMAND
+MPECHOAT $ You take your time... and make a decent forgery!& MPOLOAD 6734&
+MPJUNK i6735~
+#6736
+golden pedestal~
+a golden pedestal~
+A golden pedestal dominates the center of the room.~
+~
+ITEM_TYPE_CONTAINER
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+10 13 6735 0
+8000 5 10
+#6737
+earthen band~
+an earthen band~
+A small earthy band lies here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_ANTI_EVIL|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_ABOUT
+0 1 6 11
+5 500000 94
+P 1
+TRIG_TICK 100
+OPROG_OBJECT_QUEST_IF 0 12  = 0 3 2
+P 3
+TRIG_VOID
+OPROG_GOD_COMMAND
+MPOLOAD 6738&
+MPECHOAT $ You hear the grinding of continents as stone changes shape and form.&
+MPJUNK i6737~
+P 4
+TRIG_UNKNOWN 100 neptune
+OPROG_OBJECT_QUEST_IF 0 12  = 0 6 5
+P 5
+TRIG_VOID
+OPROG_GOD_COMMAND
+MPECHOAT $ Nothing happens.~
+P 6
+TRIG_VOID
+OPROG_QUEST_ADD 0 12 1
+P 6
+TRIG_VOID
+OPROG_ECHO
+The grinding ceases and the stone cools.~
+#6738
+granite band~
+a granite band~
+A hard stone band lies here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_ANTI_EVIL|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_ABOUT
+0 1 6 11
+5 500000 94
+P 1
+TRIG_TICK 100
+OPROG_OBJECT_QUEST_IF 0 12  = 0 3 2
+P 3
+TRIG_VOID
+OPROG_GOD_COMMAND
+MPOLOAD 6739&
+MPECHOAT $ You hear the grinding of continents as stone changes shape and form.&
+MPJUNK i6738~
+P 4
+TRIG_UNKNOWN 100 neptune
+OPROG_OBJECT_QUEST_IF 0 12  = 0 6 5
+P 5
+TRIG_VOID
+OPROG_GOD_COMMAND
+MPECHOAT $ Nothing happens.~
+P 6
+TRIG_VOID
+OPROG_QUEST_ADD 0 12 1
+P 6
+TRIG_VOID
+OPROG_ECHO
+The grinding ceases and the stone cools.~
+#6739
+volcanic band~
+a volcanic band~
+A porous stone band lies here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_ANTI_EVIL|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_ABOUT
+0 1 6 11
+5 500000 94
+P 1
+TRIG_TICK 100
+OPROG_OBJECT_QUEST_IF 0 12  = 0 3 2
+P 3
+TRIG_VOID
+OPROG_GOD_COMMAND
+MPOLOAD 6719&
+MPECHOAT $ You hear the grinding of continents as stone changes shape and form.&
+MPJUNK i6739~
+P 4
+TRIG_UNKNOWN 100 neptune
+OPROG_OBJECT_QUEST_IF 0 12  = 0 6 5
+P 5
+TRIG_VOID
+OPROG_GOD_COMMAND
+MPECHOAT $ Nothing happens.~
+P 6
+TRIG_VOID
+OPROG_QUEST_ADD 0 12 1
+P 6
+TRIG_VOID
+OPROG_ECHO
+The grinding ceases and the stone cools.~
+#6740
+earthen boots~
+earthen boots~
+A pair of crumbly stone boots lies here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_FEET
+0 1 6 11
+5 500000 94
+P 1
+TRIG_TICK 100
+OPROG_OBJECT_QUEST_IF 0 12  = 0 3 2
+P 3
+TRIG_VOID
+OPROG_GOD_COMMAND
+MPOLOAD 6741&
+MPECHOAT $ You hear the grinding of continents as stone changes shape and form.&
+MPJUNK i6740~
+P 4
+TRIG_UNKNOWN 100 neptune
+OPROG_OBJECT_QUEST_IF 0 12  = 0 6 5
+P 5
+TRIG_VOID
+OPROG_GOD_COMMAND
+MPECHOAT $ Nothing happens.~
+P 6
+TRIG_VOID
+OPROG_QUEST_ADD 0 12 1
+P 6
+TRIG_VOID
+OPROG_ECHO
+The grinding ceases and the stone cools.~
+#6741
+granite boots~
+granite boots~
+A pair of hard stone boots lies here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_FEET
+0 1 6 11
+5 500000 94
+P 1
+TRIG_TICK 100
+OPROG_OBJECT_QUEST_IF 0 12  = 0 3 2
+P 3
+TRIG_VOID
+OPROG_GOD_COMMAND
+MPOLOAD 6742&
+MPECHOAT $ You hear the grinding of continents as stone changes shape and form.&
+MPJUNK i6741~
+P 4
+TRIG_UNKNOWN 100 neptune
+OPROG_OBJECT_QUEST_IF 0 12  = 0 6 5
+P 5
+TRIG_VOID
+OPROG_GOD_COMMAND
+MPECHOAT $ Nothing happens.~
+P 6
+TRIG_VOID
+OPROG_QUEST_ADD 0 12 1
+P 6
+TRIG_VOID
+OPROG_ECHO
+The grinding ceases and the stone cools.~
+#6742
+volcanic boots~
+volcanic boots~
+A pair of porous stone boots lies here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_FEET
+0 1 6 11
+5 500000 94
+P 1
+TRIG_TICK 100
+OPROG_OBJECT_QUEST_IF 0 12  = 0 3 2
+P 3
+TRIG_VOID
+OPROG_GOD_COMMAND
+MPOLOAD 6722&
+MPECHOAT $ You hear the grinding of continents as stone changes shape and form.&
+MPJUNK i6742~
+P 4
+TRIG_UNKNOWN 100 neptune
+OPROG_OBJECT_QUEST_IF 0 12  = 0 6 5
+P 5
+TRIG_VOID
+OPROG_GOD_COMMAND
+MPECHOAT $ Nothing happens.~
+P 6
+TRIG_VOID
+OPROG_QUEST_ADD 0 12 1
+P 6
+TRIG_VOID
+OPROG_ECHO
+The grinding ceases and the stone cools.~
+#6743
+ring good fortune~
+the Ring of Good Fortune~
+A small watery ring lies here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_FINGER
+0 1 6 11
+5 500000 94
+P 1
+TRIG_TICK 100
+OPROG_OBJECT_QUEST_IF 0 12  = 0 3 2
+P 3
+TRIG_VOID
+OPROG_GOD_COMMAND
+MPOLOAD 6744&
+MPECHOAT $ You hear the quiet gurgling of water.&
+MPJUNK i6743~
+P 4
+TRIG_UNKNOWN 100 neptune
+OPROG_OBJECT_QUEST_IF 0 12  = 0 6 5
+P 5
+TRIG_VOID
+OPROG_GOD_COMMAND
+MPECHOAT $ Nothing happens.~
+P 6
+TRIG_VOID
+OPROG_QUEST_ADD 0 12 1
+P 6
+TRIG_VOID
+OPROG_ECHO
+The water freezes in place.~
+#6744
+ring seas~
+the Ring of the Blessed Tidings~
+A small watery ring lies here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_FINGER
+0 1 6 11
+5 5000000 94
+P 1
+TRIG_TICK 100
+OPROG_OBJECT_QUEST_IF 0 12  = 0 3 2
+P 3
+TRIG_VOID
+OPROG_GOD_COMMAND
+MPOLOAD 6745&
+MPECHOAT $ You hear the quiet gurgling of water.&
+MPJUNK i6744~
+P 4
+TRIG_UNKNOWN 100 neptune
+OPROG_OBJECT_QUEST_IF 0 12  = 0 6 5
+P 5
+TRIG_VOID
+OPROG_GOD_COMMAND
+MPECHOAT $ Nothing happens.~
+P 6
+TRIG_VOID
+OPROG_QUEST_ADD 0 12 1
+P 6
+TRIG_VOID
+OPROG_ECHO
+The water freezes in place.~
+#6745
+ring seas~
+the Ring of the First Snow~
+A small watery ring lies here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_FINGER
+0 1 6 11
+5 5000000 94
+P 1
+TRIG_TICK 100
+OPROG_OBJECT_QUEST_IF 0 12  = 0 3 2
+P 3
+TRIG_VOID
+OPROG_GOD_COMMAND
+MPOLOAD 6723&
+MPECHOAT $ You hear the quiet gurgling of water.&
+MPJUNK i6745~
+P 4
+TRIG_UNKNOWN 100 neptune
+OPROG_OBJECT_QUEST_IF 0 12  = 0 6 5
+P 5
+TRIG_VOID
+OPROG_GOD_COMMAND
+MPECHOAT $ Nothing happens.~
+P 6
+TRIG_VOID
+OPROG_QUEST_ADD 0 12 1
+P 6
+TRIG_VOID
+OPROG_ECHO
+The water freezes in place.~
+#6746
+stone arrow~
+a stone arrow~
+A stone arrow has been left here.~
+~
+ITEM_TYPE_AMMO
+ITEM_FLAG_GLOW|ITEM_FLAG_HUM|ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+6746 70 5 5
+5 1 89
+#6747
+continental longbow bow~
+the Continental longbow~
+A large turquoise bow has been abandoned here.~
+~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_GLOW|ITEM_FLAG_HUM|ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+6746 7 10 WEAPON_WHIP
+5 500000 89
+E
+inscription~
+Type 'stone' for renewable arrows.~
+P 1
+TRIG_UNKNOWN 100 stone
+OPROG_GOD_COMMAND
+MPECHOAT $ A stone arrow materializes in your hand.&
+MPOLOAD 6746~
+#0
+
+
+
+
+#ROOMS
+#6700
+A Hole in the Darkness~
+The blackness of the abyss wraps you in a cold, empty cacoon.
+You can see only darkness in every direction, though you can feel
+that the walls of the abyss have closed in all around you, forming
+a small alcove.  As you bring your lantern close to the wall for
+inspection, you notice a strange rock to you left, and an indentation
+to your right.~
+67 ROOM_DARK|ROOM_NO_MOB|ROOM_NO_RECALL SECT_UNDER_WATER
+DDIR_DOWN
+~
+~
+0 -1 6809
+E
+indentation~
+|    |     |        |   |      |  |
+ra  |     | |   |  nmo    |  |   | |
+|     ||  nke   | |    | leas |  ||
+| | sil  |    |  |   | lro  |  |   |
+gn     |   |    |  |  |    |  ec  | 
+|  |   | |  |  |  |     |    | |   |~
+E
+strange rock~
+          ________________
+.   _____/                \__
+.  /                         |
+.  \  sudden need:  use dunes \
+.   \                          |
+.    -_____             _______/
+.          \___________/~
+S
+#6701
+In an Abyssal Cavern~
+You find yourself in a large cavern, shrouded in darkness in all
+directions.  It is difficult to tell even which way is up, and the
+ringing in your ears from the great depth is almost deafening.  The
+caverns seems to extend endlessly in every direction.~
+67 ROOM_DARK|ROOM_NO_RECALL SECT_UNDER_WATER
+DDIR_NORTH
+~
+~
+0 -1 6720
+DDIR_EAST
+~
+~
+0 -1 6720
+DDIR_SOUTH
+~
+~
+0 -1 6702
+DDIR_WEST
+~
+~
+0 -1 6720
+DDIR_UP
+~
+~
+0 -1 6720
+DDIR_DOWN
+~
+~
+0 -1 6720
+S
+#6702
+In an Abyssal Cavern~
+You find yourself in a large cavern, shrouded in darkness in all
+directions.  It is difficult to tell even which way is up, and the
+ringing in your ears from the great depth is almost deafening.  The
+caverns seems to extend endlessly in every direction.~
+67 ROOM_DARK|ROOM_NO_RECALL SECT_UNDER_WATER
+DDIR_NORTH
+~
+~
+0 -1 6720
+DDIR_EAST
+~
+~
+0 -1 6720
+DDIR_SOUTH
+~
+~
+0 -1 6720
+DDIR_WEST
+~
+~
+0 -1 6720
+DDIR_UP
+~
+~
+0 -1 6703
+DDIR_DOWN
+~
+~
+0 -1 6720
+S
+#6703
+In an Abyssal Cavern~
+You find yourself in a large cavern, shrouded in darkness in all
+directions.  It is difficult to tell even which way is up, and the
+ringing in your ears from the great depth is almost deafening.  The
+caverns seems to extend endlessly in every direction.~
+67 ROOM_DARK|ROOM_NO_RECALL SECT_UNDER_WATER
+DDIR_NORTH
+~
+~
+0 -1 6720
+DDIR_EAST
+~
+~
+0 -1 6720
+DDIR_SOUTH
+~
+~
+0 -1 6720
+DDIR_WEST
+~
+~
+0 -1 6720
+DDIR_UP
+~
+~
+0 -1 6720
+DDIR_DOWN
+~
+~
+0 -1 6704
+S
+#6704
+In an Abyssal Cavern~
+You find yourself in a large cavern, shrouded in darkness in all
+directions.  It is difficult to tell even which way is up, and the
+ringing in your ears from the great depth is almost deafening.  The
+caverns seems to extend endlessly in every direction.~
+67 ROOM_DARK|ROOM_NO_RECALL SECT_UNDER_WATER
+DDIR_NORTH
+~
+~
+0 -1 6720
+DDIR_EAST
+~
+~
+0 -1 6720
+DDIR_SOUTH
+~
+~
+0 -1 6720
+DDIR_WEST
+~
+~
+0 -1 6720
+DDIR_UP
+~
+~
+0 -1 6720
+DDIR_DOWN
+~
+~
+0 -1 6705
+S
+#6705
+In an Abyssal Cavern~
+You find yourself in a large cavern, shrouded in darkness in all
+directions.  It is difficult to tell even which way is up, and the
+ringing in your ears from the great depth is almost deafening.  The
+caverns seems to extend endlessly in every direction.~
+67 ROOM_DARK|ROOM_NO_RECALL SECT_UNDER_WATER
+DDIR_NORTH
+~
+~
+0 -1 6720
+DDIR_EAST
+~
+~
+0 -1 6706
+DDIR_SOUTH
+~
+~
+0 -1 6720
+DDIR_WEST
+~
+~
+0 -1 6720
+DDIR_UP
+~
+~
+0 -1 6720
+DDIR_DOWN
+~
+~
+0 -1 6720
+S
+#6706
+In an Abyssal Cavern~
+You find yourself in a large cavern, shrouded in darkness in all
+directions.  It is difficult to tell even which way is up, and the
+ringing in your ears from the great depth is almost deafening.  The
+caverns seems to extend endlessly in every direction.~
+67 ROOM_DARK|ROOM_NO_RECALL SECT_UNDER_WATER
+DDIR_NORTH
+~
+~
+0 -1 6707
+DDIR_EAST
+~
+~
+0 -1 6720
+DDIR_SOUTH
+~
+~
+0 -1 6720
+DDIR_WEST
+~
+~
+0 -1 6720
+DDIR_UP
+~
+~
+0 -1 6720
+DDIR_DOWN
+~
+~
+0 -1 6720
+S
+#6707
+In an Abyssal Cavern~
+You find yourself in a large cavern, shrouded in darkness in all
+directions.  It is difficult to tell even which way is up, and the
+ringing in your ears from the great depth is almost deafening.  The
+caverns seems to extend endlessly in every direction.~
+67 ROOM_DARK|ROOM_NO_RECALL SECT_UNDER_WATER
+DDIR_NORTH
+~
+~
+0 -1 6708
+DDIR_EAST
+~
+~
+0 -1 6720
+DDIR_SOUTH
+~
+~
+0 -1 6720
+DDIR_WEST
+~
+~
+0 -1 6720
+DDIR_UP
+~
+~
+0 -1 6720
+DDIR_DOWN
+~
+~
+0 -1 6810
+S
+#6810
+In an Abyssal Cavern~
+You find yourself in a large cavern, shrouded in darkness in all
+directions.  It is difficult to tell even which way is up, and the
+ringing in your ears from the great depth is almost deafening.  The
+caverns seems to extend endlessly in every direction.~
+68 ROOM_DARK|ROOM_NO_RECALL SECT_UNDER_WATER
+DDIR_NORTH
+~
+~
+0 -1 6720
+DDIR_EAST
+~
+~
+0 -1 6709
+DDIR_SOUTH
+~
+~
+0 -1 6720
+DDIR_WEST
+~
+~
+0 -1 6720
+DDIR_UP
+~
+~
+0 -1 6720
+DDIR_DOWN
+~
+~
+0 -1 6720
+S
+
+#6708
+In an Abyssal Cavern~
+You find yourself in a large cavern, shrouded in darkness in all
+directions.  It is difficult to tell even which way is up, and the
+ringing in your ears from the great depth is almost deafening.  The
+caverns seems to extend endlessly in every direction.~
+67 ROOM_DARK|ROOM_NO_RECALL SECT_UNDER_WATER
+DDIR_NORTH
+~
+~
+0 -1 6720
+DDIR_EAST
+~
+~
+0 -1 6709
+DDIR_SOUTH
+~
+~
+0 -1 6720
+DDIR_WEST
+~
+~
+0 -1 6720
+DDIR_UP
+~
+~
+0 -1 6720
+DDIR_DOWN
+~
+~
+0 -1 6720
+S
+#6709
+In an Abyssal Cavern~
+You find yourself in a large cavern, shrouded in darkness in all
+directions.  It is difficult to tell even which way is up, and the
+ringing in your ears from the great depth is almost deafening.  The
+caverns seems to extend endlessly in every direction.~
+67 ROOM_DARK|ROOM_NO_RECALL SECT_UNDER_WATER
+DDIR_NORTH
+~
+~
+0 -1 6720
+DDIR_EAST
+~
+~
+0 -1 6710
+DDIR_SOUTH
+~
+~
+0 -1 6720
+DDIR_WEST
+~
+~
+0 -1 6720
+DDIR_UP
+~
+~
+0 -1 6720
+DDIR_DOWN
+~
+~
+0 -1 6720
+S
+#6710
+In an Abyssal Cavern~
+You find yourself in a large cavern, shrouded in darkness in all
+directions.  It is difficult to tell even which way is up, and the
+ringing in your ears from the great depth is almost deafening.  The
+caverns seems to extend endlessly in every direction.~
+67 ROOM_DARK|ROOM_NO_RECALL SECT_UNDER_WATER
+DDIR_NORTH
+~
+~
+0 -1 6720
+DDIR_EAST
+~
+~
+0 -1 6720
+DDIR_SOUTH
+~
+~
+0 -1 6720
+DDIR_WEST
+~
+~
+0 -1 6720
+DDIR_UP
+~
+~
+0 -1 6720
+DDIR_DOWN
+~
+~
+0 -1 6711
+S
+#6711
+In an Abyssal Cavern~
+You find yourself in a large cavern, shrouded in darkness in all
+directions.  It is difficult to tell even which way is up, and the
+ringing in your ears from the great depth is almost deafening.  The
+caverns seems to extend endlessly in every direction.~
+67 ROOM_DARK|ROOM_NO_RECALL SECT_UNDER_WATER
+DDIR_NORTH
+~
+~
+0 -1 6720
+DDIR_EAST
+~
+~
+0 -1 6720
+DDIR_SOUTH
+~
+~
+0 -1 6720
+DDIR_WEST
+~
+~
+0 -1 6720
+DDIR_UP
+~
+~
+0 -1 6712
+DDIR_DOWN
+~
+~
+0 -1 6720
+S
+#6712
+In an Abyssal Cavern~
+You find yourself in a large cavern, shrouded in darkness in all
+directions.  It is difficult to tell even which way is up, and the
+ringing in your ears from the great depth is almost deafening.  The
+caverns seems to extend endlessly in every direction.~
+67 ROOM_DARK|ROOM_NO_RECALL SECT_UNDER_WATER
+DDIR_NORTH
+~
+~
+0 -1 6720
+DDIR_EAST
+~
+~
+0 -1 6720
+DDIR_SOUTH
+~
+~
+0 -1 6713
+DDIR_WEST
+~
+~
+0 -1 6720
+DDIR_UP
+~
+~
+0 -1 6720
+DDIR_DOWN
+~
+~
+0 -1 6720
+S
+#6713
+In an Abyssal Cavern~
+You find yourself in a large cavern, shrouded in darkness in all
+directions.  It is difficult to tell even which way is up, and the
+ringing in your ears from the great depth is almost deafening.  The
+caverns seems to extend endlessly in every direction.~
+67 ROOM_DARK|ROOM_NO_RECALL SECT_UNDER_WATER
+DDIR_NORTH
+~
+~
+0 -1 6720
+DDIR_EAST
+~
+~
+0 -1 6714
+DDIR_SOUTH
+~
+~
+0 -1 6720
+DDIR_WEST
+~
+~
+0 -1 6720
+DDIR_UP
+~
+~
+0 -1 6720
+DDIR_DOWN
+~
+~
+0 -1 6720
+S
+#6714
+In an Abyssal Cavern~
+You find yourself in a large cavern, shrouded in darkness in all
+directions.  It is difficult to tell even which way is up, and the
+ringing in your ears from the great depth is almost deafening.  The
+caverns seems to extend endlessly in every direction.~
+67 ROOM_DARK|ROOM_NO_RECALL SECT_UNDER_WATER
+DDIR_NORTH
+~
+~
+0 -1 6720
+DDIR_EAST
+~
+~
+0 -1 6720
+DDIR_SOUTH
+~
+~
+0 -1 6720
+DDIR_WEST
+~
+~
+0 -1 6720
+DDIR_UP
+~
+~
+0 -1 6720
+DDIR_DOWN
+~
+~
+0 -1 6715
+S
+#6715
+In an Abyssal Cavern~
+You find yourself in a large cavern, shrouded in darkness in all
+directions.  It is difficult to tell even which way is up, and the
+ringing in your ears from the great depth is almost deafening.  The
+caverns seems to extend endlessly in every direction.~
+67 ROOM_DARK|ROOM_NO_RECALL SECT_UNDER_WATER
+DDIR_NORTH
+~
+~
+0 -1 6720
+DDIR_EAST
+~
+~
+0 -1 6720
+DDIR_SOUTH
+~
+~
+0 -1 6720
+DDIR_WEST
+~
+~
+0 -1 6720
+DDIR_UP
+~
+~
+0 -1 6716
+DDIR_DOWN
+~
+~
+0 -1 6720
+S
+#6716
+In an Abyssal Cavern~
+You find yourself in a large cavern, shrouded in darkness in all
+directions.  It is difficult to tell even which way is up, and the
+ringing in your ears from the great depth is almost deafening.  The
+caverns seems to extend endlessly in every direction.~
+67 ROOM_DARK|ROOM_NO_RECALL SECT_UNDER_WATER
+DDIR_NORTH
+~
+~
+0 -1 6717
+DDIR_EAST
+~
+~
+0 -1 6720
+DDIR_SOUTH
+~
+~
+0 -1 6720
+DDIR_WEST
+~
+~
+0 -1 6720
+DDIR_UP
+~
+~
+0 -1 6720
+DDIR_DOWN
+~
+~
+0 -1 6720
+S
+#6717
+In an Abyssal Cavern~
+You find yourself in a large cavern, shrouded in darkness in all
+directions.  It is difficult to tell even which way is up, and the
+ringing in your ears from the great depth is almost deafening.  The
+caverns seems to extend endlessly in every direction.~
+67 ROOM_DARK|ROOM_NO_RECALL SECT_UNDER_WATER
+DDIR_NORTH
+~
+~
+0 -1 6720
+DDIR_EAST
+~
+~
+0 -1 6718
+DDIR_SOUTH
+~
+~
+0 -1 6720
+DDIR_WEST
+~
+~
+0 -1 6720
+DDIR_UP
+~
+~
+0 -1 6720
+DDIR_DOWN
+~
+~
+0 -1 6720
+S
+#6718
+In an Abyssal Cavern~
+You find yourself in a large cavern, shrouded in darkness in all
+directions.  It is difficult to tell even which way is up, and the
+ringing in your ears from the great depth is almost deafening.  The
+caverns seems to extend endlessly in every direction.~
+67 ROOM_DARK|ROOM_NO_RECALL SECT_UNDER_WATER
+DDIR_NORTH
+~
+~
+0 -1 6720
+DDIR_EAST
+~
+~
+0 -1 6720
+DDIR_SOUTH
+~
+~
+0 -1 6719
+DDIR_WEST
+~
+~
+0 -1 6720
+DDIR_UP
+~
+~
+0 -1 6720
+DDIR_DOWN
+~
+~
+0 -1 6720
+S
+#6719
+On the Other Side of the Cavern~
+You have made it to a wall in this seemingless endless expanse of
+oily black water, deep within the heart of the abyss.  The rock of
+the wall is smooth to the touch, except for a series of orderly
+bumps and ridges which you immediately recognize as elven braille.~
+67 ROOM_DARK|ROOM_NO_RECALL SECT_UNDER_WATER
+DDIR_NORTH
+~
+~
+0 -1 6718
+E
+bump ridge sign wall rock~
+The path to Lord Neptune is a long and arduous one.  His Greatness
+is easily annoyed by distraction and has created a series of tests
+to both discourage frivolous requests and to provide entertainment
+for the courtiers of his godly palace.  If you must call on His
+Greatness, then say 'enter' when you are ready to proceed.~
+S
+#6720
+In an Abyssal Cavern~
+You find yourself in a large cavern, shrouded in darkness in all
+directions.  It is difficult to tell even which way is up, and the
+ringing in your ears from the great depth is almost deafening.  The
+caverns seems to extend endlessly in every direction.~
+67 ROOM_DARK|ROOM_NO_RECALL SECT_UNDER_WATER
+DDIR_NORTH
+~
+~
+0 -1 6721
+DDIR_EAST
+~
+~
+0 -1 6726
+DDIR_SOUTH
+~
+~
+0 -1 6731
+DDIR_WEST
+~
+~
+0 -1 6736
+DDIR_UP
+~
+~
+0 -1 6741
+DDIR_DOWN
+~
+~
+0 -1 6746
+S
+#6721
+In an Abyssal Cavern~
+You find yourself in a large cavern, shrouded in darkness in all
+directions.  It is difficult to tell even which way is up, and the
+ringing in your ears from the great depth is almost deafening.  The
+caverns seems to extend endlessly in every direction.~
+67 ROOM_DARK|ROOM_NO_RECALL SECT_UNDER_WATER
+DDIR_NORTH
+~
+~
+0 -1 6722
+DDIR_EAST
+~
+~
+0 -1 6720
+DDIR_SOUTH
+~
+~
+0 -1 6720
+DDIR_WEST
+~
+~
+0 -1 6720
+DDIR_UP
+~
+~
+0 -1 6720
+DDIR_DOWN
+~
+~
+0 -1 6720
+S
+#6722
+In an Abyssal Cavern~
+You find yourself in a large cavern, shrouded in darkness in all
+directions.  It is difficult to tell even which way is up, and the
+ringing in your ears from the great depth is almost deafening.  The
+caverns seems to extend endlessly in every direction.~
+67 ROOM_DARK|ROOM_NO_RECALL SECT_UNDER_WATER
+DDIR_NORTH
+~
+~
+0 -1 6723
+DDIR_EAST
+~
+~
+0 -1 6720
+DDIR_SOUTH
+~
+~
+0 -1 6721
+DDIR_WEST
+~
+~
+0 -1 6720
+DDIR_UP
+~
+~
+0 -1 6720
+DDIR_DOWN
+~
+~
+0 -1 6720
+S
+#6723
+In an Abyssal Cavern~
+You find yourself in a large cavern, shrouded in darkness in all
+directions.  It is difficult to tell even which way is up, and the
+ringing in your ears from the great depth is almost deafening.  The
+caverns seems to extend endlessly in every direction.~
+67 ROOM_DARK|ROOM_NO_RECALL SECT_UNDER_WATER
+DDIR_NORTH
+~
+~
+0 -1 6724
+DDIR_EAST
+~
+~
+0 -1 6720
+DDIR_SOUTH
+~
+~
+0 -1 6722
+DDIR_WEST
+~
+~
+0 -1 6720
+DDIR_UP
+~
+~
+0 -1 6720
+DDIR_DOWN
+~
+~
+0 -1 6720
+S
+#6724
+In an Abyssal Cavern~
+You find yourself in a large cavern, shrouded in darkness in all
+directions.  It is difficult to tell even which way is up, and the
+ringing in your ears from the great depth is almost deafening.  The
+caverns seems to extend endlessly in every direction.~
+67 ROOM_DARK|ROOM_NO_RECALL SECT_UNDER_WATER
+DDIR_NORTH
+~
+~
+0 -1 6725
+DDIR_EAST
+~
+~
+0 -1 6720
+DDIR_SOUTH
+~
+~
+0 -1 6723
+DDIR_WEST
+~
+~
+0 -1 6720
+DDIR_UP
+~
+~
+0 -1 6720
+DDIR_DOWN
+~
+~
+0 -1 6720
+S
+#6725
+In an Abyssal Cavern~
+You find yourself in a large cavern, shrouded in darkness in all
+directions.  It is difficult to tell even which way is up, and the
+ringing in your ears from the great depth is almost deafening.  The
+caverns seems to extend endlessly in every direction.~
+67 ROOM_DARK|ROOM_NO_RECALL SECT_UNDER_WATER
+DDIR_NORTH
+~
+~
+0 -1 6720
+DDIR_EAST
+~
+~
+0 -1 6720
+DDIR_SOUTH
+~
+~
+0 -1 6724
+DDIR_WEST
+~
+~
+0 -1 6720
+DDIR_UP
+~
+~
+0 -1 6720
+DDIR_DOWN
+~
+~
+0 -1 6720
+S
+#6726
+In an Abyssal Cavern~
+You find yourself in a large cavern, shrouded in darkness in all
+directions.  It is difficult to tell even which way is up, and the
+ringing in your ears from the great depth is almost deafening.  The
+caverns seems to extend endlessly in every direction.~
+67 ROOM_DARK|ROOM_NO_RECALL SECT_UNDER_WATER
+DDIR_NORTH
+~
+~
+0 -1 6720
+DDIR_EAST
+~
+~
+0 -1 6727
+DDIR_SOUTH
+~
+~
+0 -1 6720
+DDIR_WEST
+~
+~
+0 -1 6720
+DDIR_UP
+~
+~
+0 -1 6720
+DDIR_DOWN
+~
+~
+0 -1 6720
+S
+#6727
+In an Abyssal Cavern~
+You find yourself in a large cavern, shrouded in darkness in all
+directions.  It is difficult to tell even which way is up, and the
+ringing in your ears from the great depth is almost deafening.  The
+caverns seems to extend endlessly in every direction.~
+67 ROOM_DARK|ROOM_NO_RECALL SECT_UNDER_WATER
+DDIR_NORTH
+~
+~
+0 -1 6720
+DDIR_EAST
+~
+~
+0 -1 6728
+DDIR_SOUTH
+~
+~
+0 -1 6720
+DDIR_WEST
+~
+~
+0 -1 6726
+DDIR_UP
+~
+~
+0 -1 6720
+DDIR_DOWN
+~
+~
+0 -1 6720
+S
+#6728
+In an Abyssal Cavern~
+You find yourself in a large cavern, shrouded in darkness in all
+directions.  It is difficult to tell even which way is up, and the
+ringing in your ears from the great depth is almost deafening.  The
+caverns seems to extend endlessly in every direction.~
+67 ROOM_DARK|ROOM_NO_RECALL SECT_UNDER_WATER
+DDIR_NORTH
+~
+~
+0 -1 6720
+DDIR_EAST
+~
+~
+0 -1 6729
+DDIR_SOUTH
+~
+~
+0 -1 6720
+DDIR_WEST
+~
+~
+0 -1 6727
+DDIR_UP
+~
+~
+0 -1 6720
+DDIR_DOWN
+~
+~
+0 -1 6720
+S
+#6729
+In an Abyssal Cavern~
+You find yourself in a large cavern, shrouded in darkness in all
+directions.  It is difficult to tell even which way is up, and the
+ringing in your ears from the great depth is almost deafening.  The
+caverns seems to extend endlessly in every direction.~
+67 ROOM_DARK|ROOM_NO_RECALL SECT_UNDER_WATER
+DDIR_NORTH
+~
+~
+0 -1 6720
+DDIR_EAST
+~
+~
+0 -1 6730
+DDIR_SOUTH
+~
+~
+0 -1 6720
+DDIR_WEST
+~
+~
+0 -1 6728
+DDIR_UP
+~
+~
+0 -1 6720
+DDIR_DOWN
+~
+~
+0 -1 6720
+S
+#6730
+In an Abyssal Cavern~
+You find yourself in a large cavern, shrouded in darkness in all
+directions.  It is difficult to tell even which way is up, and the
+ringing in your ears from the great depth is almost deafening.  The
+caverns seems to extend endlessly in every direction.~
+67 ROOM_DARK|ROOM_NO_RECALL SECT_UNDER_WATER
+DDIR_NORTH
+~
+~
+0 -1 6720
+DDIR_EAST
+~
+~
+0 -1 6720
+DDIR_SOUTH
+~
+~
+0 -1 6720
+DDIR_WEST
+~
+~
+0 -1 6729
+DDIR_UP
+~
+~
+0 -1 6720
+DDIR_DOWN
+~
+~
+0 -1 6720
+S
+#6731
+In an Abyssal Cavern~
+You find yourself in a large cavern, shrouded in darkness in all
+directions.  It is difficult to tell even which way is up, and the
+ringing in your ears from the great depth is almost deafening.  The
+caverns seems to extend endlessly in every direction.~
+67 ROOM_DARK|ROOM_NO_RECALL SECT_UNDER_WATER
+DDIR_NORTH
+~
+~
+0 -1 6720
+DDIR_EAST
+~
+~
+0 -1 6720
+DDIR_SOUTH
+~
+~
+0 -1 6732
+DDIR_WEST
+~
+~
+0 -1 6720
+DDIR_UP
+~
+~
+0 -1 6720
+DDIR_DOWN
+~
+~
+0 -1 6720
+S
+#6732
+In an Abyssal Cavern~
+You find yourself in a large cavern, shrouded in darkness in all
+directions.  It is difficult to tell even which way is up, and the
+ringing in your ears from the great depth is almost deafening.  The
+caverns seems to extend endlessly in every direction.~
+67 ROOM_DARK|ROOM_NO_RECALL SECT_UNDER_WATER
+DDIR_NORTH
+~
+~
+0 -1 6731
+DDIR_EAST
+~
+~
+0 -1 6720
+DDIR_SOUTH
+~
+~
+0 -1 6733
+DDIR_WEST
+~
+~
+0 -1 6720
+DDIR_UP
+~
+~
+0 -1 6720
+DDIR_DOWN
+~
+~
+0 -1 6720
+S
+#6733
+In an Abyssal Cavern~
+You find yourself in a large cavern, shrouded in darkness in all
+directions.  It is difficult to tell even which way is up, and the
+ringing in your ears from the great depth is almost deafening.  The
+caverns seems to extend endlessly in every direction.~
+67 ROOM_DARK|ROOM_NO_RECALL SECT_UNDER_WATER
+DDIR_NORTH
+~
+~
+0 -1 6732
+DDIR_EAST
+~
+~
+0 -1 6720
+DDIR_SOUTH
+~
+~
+0 -1 6734
+DDIR_WEST
+~
+~
+0 -1 6720
+DDIR_UP
+~
+~
+0 -1 6720
+DDIR_DOWN
+~
+~
+0 -1 6720
+S
+#6734
+In an Abyssal Cavern~
+You find yourself in a large cavern, shrouded in darkness in all
+directions.  It is difficult to tell even which way is up, and the
+ringing in your ears from the great depth is almost deafening.  The
+caverns seems to extend endlessly in every direction.~
+67 ROOM_DARK|ROOM_NO_RECALL SECT_UNDER_WATER
+DDIR_NORTH
+~
+~
+0 -1 6733
+DDIR_EAST
+~
+~
+0 -1 6720
+DDIR_SOUTH
+~
+~
+0 -1 6735
+DDIR_WEST
+~
+~
+0 -1 6720
+DDIR_UP
+~
+~
+0 -1 6720
+DDIR_DOWN
+~
+~
+0 -1 6720
+S
+#6735
+In an Abyssal Cavern~
+You find yourself in a large cavern, shrouded in darkness in all
+directions.  It is difficult to tell even which way is up, and the
+ringing in your ears from the great depth is almost deafening.  The
+caverns seems to extend endlessly in every direction.~
+67 ROOM_DARK|ROOM_NO_RECALL SECT_UNDER_WATER
+DDIR_NORTH
+~
+~
+0 -1 6734
+DDIR_EAST
+~
+~
+0 -1 6720
+DDIR_SOUTH
+~
+~
+0 -1 6720
+DDIR_WEST
+~
+~
+0 -1 6720
+DDIR_UP
+~
+~
+0 -1 6720
+DDIR_DOWN
+~
+~
+0 -1 6720
+S
+#6736
+In an Abyssal Cavern~
+You find yourself in a large cavern, shrouded in darkness in all
+directions.  It is difficult to tell even which way is up, and the
+ringing in your ears from the great depth is almost deafening.  The
+caverns seems to extend endlessly in every direction.~
+67 ROOM_DARK|ROOM_NO_RECALL SECT_UNDER_WATER
+DDIR_NORTH
+~
+~
+0 -1 6720
+DDIR_EAST
+~
+~
+0 -1 6720
+DDIR_SOUTH
+~
+~
+0 -1 6720
+DDIR_WEST
+~
+~
+0 -1 6737
+DDIR_UP
+~
+~
+0 -1 6720
+DDIR_DOWN
+~
+~
+0 -1 6720
+S
+#6737
+In an Abyssal Cavern~
+You find yourself in a large cavern, shrouded in darkness in all
+directions.  It is difficult to tell even which way is up, and the
+ringing in your ears from the great depth is almost deafening.  The
+caverns seems to extend endlessly in every direction.~
+67 ROOM_DARK|ROOM_NO_RECALL SECT_UNDER_WATER
+DDIR_NORTH
+~
+~
+0 -1 6720
+DDIR_EAST
+~
+~
+0 -1 6736
+DDIR_SOUTH
+~
+~
+0 -1 6720
+DDIR_WEST
+~
+~
+0 -1 6738
+DDIR_UP
+~
+~
+0 -1 6720
+DDIR_DOWN
+~
+~
+0 -1 6720
+S
+#6738
+In an Abyssal Cavern~
+You find yourself in a large cavern, shrouded in darkness in all
+directions.  It is difficult to tell even which way is up, and the
+ringing in your ears from the great depth is almost deafening.  The
+caverns seems to extend endlessly in every direction.~
+67 ROOM_DARK|ROOM_NO_RECALL SECT_UNDER_WATER
+DDIR_NORTH
+~
+~
+0 -1 6720
+DDIR_EAST
+~
+~
+0 -1 6737
+DDIR_SOUTH
+~
+~
+0 -1 6720
+DDIR_WEST
+~
+~
+0 -1 6739
+DDIR_UP
+~
+~
+0 -1 6720
+DDIR_DOWN
+~
+~
+0 -1 6720
+S
+#6739
+In an Abyssal Cavern~
+You find yourself in a large cavern, shrouded in darkness in all
+directions.  It is difficult to tell even which way is up, and the
+ringing in your ears from the great depth is almost deafening.  The
+caverns seems to extend endlessly in every direction.~
+67 ROOM_DARK|ROOM_NO_RECALL SECT_UNDER_WATER
+DDIR_NORTH
+~
+~
+0 -1 6720
+DDIR_EAST
+~
+~
+0 -1 6738
+DDIR_SOUTH
+~
+~
+0 -1 6720
+DDIR_WEST
+~
+~
+0 -1 6740
+DDIR_UP
+~
+~
+0 -1 6720
+DDIR_DOWN
+~
+~
+0 -1 6720
+S
+#6740
+In an Abyssal Cavern~
+You find yourself in a large cavern, shrouded in darkness in all
+directions.  It is difficult to tell even which way is up, and the
+ringing in your ears from the great depth is almost deafening.  The
+caverns seems to extend endlessly in every direction.~
+67 ROOM_DARK|ROOM_NO_RECALL SECT_UNDER_WATER
+DDIR_NORTH
+~
+~
+0 -1 6720
+DDIR_EAST
+~
+~
+0 -1 6739
+DDIR_SOUTH
+~
+~
+0 -1 6720
+DDIR_WEST
+~
+~
+0 -1 6720
+DDIR_UP
+~
+~
+0 -1 6720
+DDIR_DOWN
+~
+~
+0 -1 6720
+S
+#6741
+In an Abyssal Cavern~
+You find yourself in a large cavern, shrouded in darkness in all
+directions.  It is difficult to tell even which way is up, and the
+ringing in your ears from the great depth is almost deafening.  The
+caverns seems to extend endlessly in every direction.~
+67 ROOM_DARK|ROOM_NO_RECALL SECT_UNDER_WATER
+DDIR_NORTH
+~
+~
+0 -1 6720
+DDIR_EAST
+~
+~
+0 -1 6720
+DDIR_SOUTH
+~
+~
+0 -1 6720
+DDIR_WEST
+~
+~
+0 -1 6720
+DDIR_UP
+~
+~
+0 -1 6742
+DDIR_DOWN
+~
+~
+0 -1 6720
+S
+#6742
+In an Abyssal Cavern~
+You find yourself in a large cavern, shrouded in darkness in all
+directions.  It is difficult to tell even which way is up, and the
+ringing in your ears from the great depth is almost deafening.  The
+caverns seems to extend endlessly in every direction.~
+67 ROOM_DARK|ROOM_NO_RECALL SECT_UNDER_WATER
+DDIR_NORTH
+~
+~
+0 -1 6720
+DDIR_EAST
+~
+~
+0 -1 6720
+DDIR_SOUTH
+~
+~
+0 -1 6720
+DDIR_WEST
+~
+~
+0 -1 6720
+DDIR_UP
+~
+~
+0 -1 6743
+DDIR_DOWN
+~
+~
+0 -1 6741
+S
+#6743
+In an Abyssal Cavern~
+You find yourself in a large cavern, shrouded in darkness in all
+directions.  It is difficult to tell even which way is up, and the
+ringing in your ears from the great depth is almost deafening.  The
+caverns seems to extend endlessly in every direction.~
+67 ROOM_DARK|ROOM_NO_RECALL SECT_UNDER_WATER
+DDIR_NORTH
+~
+~
+0 -1 6720
+DDIR_EAST
+~
+~
+0 -1 6720
+DDIR_SOUTH
+~
+~
+0 -1 6720
+DDIR_WEST
+~
+~
+0 -1 6720
+DDIR_UP
+~
+~
+0 -1 6744
+DDIR_DOWN
+~
+~
+0 -1 6742
+S
+#6744
+In an Abyssal Cavern~
+You find yourself in a large cavern, shrouded in darkness in all
+directions.  It is difficult to tell even which way is up, and the
+ringing in your ears from the great depth is almost deafening.  The
+caverns seems to extend endlessly in every direction.~
+67 ROOM_DARK|ROOM_NO_RECALL SECT_UNDER_WATER
+DDIR_NORTH
+~
+~
+0 -1 6720
+DDIR_EAST
+~
+~
+0 -1 6720
+DDIR_SOUTH
+~
+~
+0 -1 6720
+DDIR_WEST
+~
+~
+0 -1 6720
+DDIR_UP
+~
+~
+0 -1 6745
+DDIR_DOWN
+~
+~
+0 -1 6743
+S
+#6745
+In an Abyssal Cavern~
+You find yourself in a large cavern, shrouded in darkness in all
+directions.  It is difficult to tell even which way is up, and the
+ringing in your ears from the great depth is almost deafening.  The
+caverns seems to extend endlessly in every direction.~
+67 ROOM_DARK|ROOM_NO_RECALL SECT_UNDER_WATER
+DDIR_NORTH
+~
+~
+0 -1 6720
+DDIR_EAST
+~
+~
+0 -1 6720
+DDIR_SOUTH
+~
+~
+0 -1 6720
+DDIR_WEST
+~
+~
+0 -1 6720
+DDIR_UP
+~
+~
+0 -1 6720
+DDIR_DOWN
+~
+~
+0 -1 6744
+S
+#6746
+In an Abyssal Cavern~
+You find yourself in a large cavern, shrouded in darkness in all
+directions.  It is difficult to tell even which way is up, and the
+ringing in your ears from the great depth is almost deafening.  The
+caverns seems to extend endlessly in every direction.~
+67 ROOM_DARK|ROOM_NO_RECALL SECT_UNDER_WATER
+DDIR_NORTH
+~
+~
+0 -1 6720
+DDIR_EAST
+~
+~
+0 -1 6720
+DDIR_SOUTH
+~
+~
+0 -1 6720
+DDIR_WEST
+~
+~
+0 -1 6720
+DDIR_UP
+~
+~
+0 -1 6720
+DDIR_DOWN
+~
+~
+0 -1 6747
+S
+#6747
+In an Abyssal Cavern~
+You find yourself in a large cavern, shrouded in darkness in all
+directions.  It is difficult to tell even which way is up, and the
+ringing in your ears from the great depth is almost deafening.  The
+caverns seems to extend endlessly in every direction.~
+67 ROOM_DARK|ROOM_NO_RECALL SECT_UNDER_WATER
+DDIR_NORTH
+~
+~
+0 -1 6720
+DDIR_EAST
+~
+~
+0 -1 6720
+DDIR_SOUTH
+~
+~
+0 -1 6720
+DDIR_WEST
+~
+~
+0 -1 6720
+DDIR_UP
+~
+~
+0 -1 6746
+DDIR_DOWN
+~
+~
+0 -1 6748
+S
+#6748
+In an Abyssal Cavern~
+You find yourself in a large cavern, shrouded in darkness in all
+directions.  It is difficult to tell even which way is up, and the
+ringing in your ears from the great depth is almost deafening.  The
+caverns seems to extend endlessly in every direction.~
+67 ROOM_DARK|ROOM_NO_RECALL SECT_UNDER_WATER
+DDIR_NORTH
+~
+~
+0 -1 6720
+DDIR_EAST
+~
+~
+0 -1 6720
+DDIR_SOUTH
+~
+~
+0 -1 6720
+DDIR_WEST
+~
+~
+0 -1 6720
+DDIR_UP
+~
+~
+0 -1 6747
+DDIR_DOWN
+~
+~
+0 -1 6749
+S
+#6749
+In an Abyssal Cavern~
+You find yourself in a large cavern, shrouded in darkness in all
+directions.  It is difficult to tell even which way is up, and the
+ringing in your ears from the great depth is almost deafening.  The
+caverns seems to extend endlessly in every direction.~
+67 ROOM_DARK|ROOM_NO_RECALL SECT_UNDER_WATER
+DDIR_NORTH
+~
+~
+0 -1 6720
+DDIR_EAST
+~
+~
+0 -1 6720
+DDIR_SOUTH
+~
+~
+0 -1 6720
+DDIR_WEST
+~
+~
+0 -1 6720
+DDIR_UP
+~
+~
+0 -1 6748
+DDIR_DOWN
+~
+~
+0 -1 6750
+S
+#6750
+In an Abyssal Cavern~
+You find yourself in a large cavern, shrouded in darkness in all
+directions.  It is difficult to tell even which way is up, and the
+ringing in your ears from the great depth is almost deafening.  The
+caverns seems to extend endlessly in every direction.~
+67 ROOM_DARK|ROOM_NO_RECALL SECT_UNDER_WATER
+DDIR_NORTH
+~
+~
+0 -1 6720
+DDIR_EAST
+~
+~
+0 -1 6720
+DDIR_SOUTH
+~
+~
+0 -1 6720
+DDIR_WEST
+~
+~
+0 -1 6720
+DDIR_UP
+~
+~
+0 -1 6749
+DDIR_DOWN
+~
+~
+0 -1 6720
+S
+#6751
+In a Circular Hallway~
+You are standing in a circularly-shaped hallway with walls of
+polished marble which shimmer and glow turquoise as if illuminated
+from within.  Four ornamented archways lead to seven hallways,
+which snake away into darkness, and a spiral stair in the middle
+of the room leads to what appears to be an altar high above your head.~
+67 ROOM_DARK|ROOM_NO_RECALL SECT_INSIDE
+DDIR_EAST
+~
+~
+0 -1 6754
+DDIR_SOUTH
+~
+~
+0 -1 6769
+DDIR_WEST
+~
+~
+0 -1 6753
+DDIR_UP
+~
+~
+0 -1 6752
+S
+#6752
+The Altar~
+High above the floor of the circular chamber is perched a white
+marble dais, streaked with turquoise, supporting your party in
+mid-air through uncertain means.  In the center of the dais is an
+ornate sculpture depicting various wonders of the sea.  A ring of
+porpoises creates a large flat circle in the middle of the decoration.~
+67 ROOM_DARK|ROOM_NO_RECALL SECT_INSIDE
+DDIR_DOWN
+~
+~
+0 -1 6751
+S
+#6753
+In an Alcove~
+You are standing in a small alcove off of the circular hallway.
+Ornately-carved archways lead off to the north, west and south,
+and you can feel a cold draft which reeks of brine.~
+67 ROOM_DARK|ROOM_NO_RECALL SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 6755
+DDIR_EAST
+~
+~
+0 -1 6751
+DDIR_SOUTH
+~
+~
+0 -1 6767
+DDIR_WEST
+~
+~
+0 -1 6763
+S
+#6754
+In an Alcove~
+You are standing in a small alcove off of the circular hallway.
+Ornately-carved archways lead off to the north, east and south,
+and you can hear the faint singing of a lonely whale echoing in
+from somewhere.~
+67 ROOM_DARK|ROOM_NO_RECALL SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 6774
+DDIR_EAST
+~
+~
+0 -1 6782
+DDIR_SOUTH
+~
+~
+0 -1 6777
+DDIR_WEST
+~
+~
+0 -1 6751
+S
+#6755
+The Entryway~
+You feel a strange feeling in the pit of your stomach as the archway
+behind you shimmers briefly and becomes a wall.  There is only one
+way to go from here.~
+67 ROOM_DARK|ROOM_NO_RECALL|ROOM_ALLOW_ELE|ROOM_ALLOW_RAN SECT_INSIDE
+DDIR_WEST
+~
+~
+0 -1 6756
+S
+#6756
+The Hall of Pain~
+You have entered a tight hallway with stone walls dripping with foul
+acid.  The fumes are almost unbearable, and you find yourself gasping
+for what little air is available. This room is filled with the stench
+of rotting clams, and suddenly it is obvious why...~
+67 ROOM_DARK|ROOM_NO_RECALL SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 6757
+S
+#6757
+The Hall of Pain~
+You have entered a tight hallway with stone walls dripping with foul
+acid.  The fumes are almost unbearable, and you find yourself gasping
+for what little air is available. This room is filled with the stench
+of rotting clams, and suddenly it is obvious why...~
+67 ROOM_DARK|ROOM_NO_RECALL SECT_INSIDE
+DDIR_WEST
+~
+~
+0 -1 6758
+S
+#6758
+The Hall of Pain~
+You have entered a tight hallway with stone walls dripping with foul
+acid.  The fumes are almost unbearable, and you find yourself gasping
+for what little air is available. This room is filled with the stench
+of rotting clams, and suddenly it is obvious why...~
+67 ROOM_DARK|ROOM_NO_RECALL SECT_INSIDE
+DDIR_SOUTH
+~
+~
+0 -1 6759
+S
+#6759
+The Hall of Pain~
+You have entered a tight hallway with stone walls dripping with foul
+acid.  The fumes are almost unbearable, and you find yourself gasping
+for what little air is available. This room is filled with the stench
+of rotting clams, and suddenly it is obvious why...~
+67 ROOM_DARK|ROOM_NO_RECALL SECT_INSIDE
+DDIR_EAST
+~
+~
+0 -1 6760
+S
+#6760
+The Hall of Pain~
+You have entered a tight hallway with stone walls dripping with foul
+acid.  The fumes are almost unbearable, and you find yourself gasping
+for what little air is available. This room is filled with the stench
+of rotting clams, and suddenly it is obvious why...~
+67 ROOM_DARK|ROOM_NO_RECALL SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 6761
+S
+#6761
+The Hall of Pain~
+You have entered a tight hallway with stone walls dripping with foul
+acid.  The fumes are almost unbearable, and you find yourself gasping
+for what little air is available. This room is filled with the stench
+of rotting clams, and suddenly it is obvious why...~
+67 ROOM_DARK|ROOM_NO_RECALL SECT_INSIDE
+DDIR_WEST
+~
+~
+0 -1 6762
+S
+#6762
+The Sanctuary of Ygmus~
+The hallway has dead-ended in In an Abyssal Cavern unlike the others.
+The walls are shimmering and flickering as if they are merely an illusion,
+though they are firm to the touch.  Suddenly, you hear the scraping of
+claws on marble somewhere beyond the walls, but all around you, and it's
+getting louder by the second... act fast!~
+67 ROOM_DARK|ROOM_NO_MOB|ROOM_NO_RECALL SECT_INSIDE
+S
+#6763
+The Entryway~
+You feel a strange feeling in the pit of your stomach as the archway
+behind you shimmers briefly and becomes a wall.  There is only one way
+to go from here.~
+67 ROOM_DARK|ROOM_NO_RECALL|ROOM_ALLOW_ILL|ROOM_ALLOW_ELE|ROOM_ALLOW_RAN SECT_INSIDE
+DDIR_WEST
+~
+~
+0 -1 6764
+S
+#6764
+The Cavern of the Splintered Arrow~
+You are standing at one end of a large dimly-lit cavern, alive with
+the ripe odor of decaying fish.  You can hear flapping coming from the
+west.~
+67 ROOM_NO_RECALL SECT_INSIDE
+DDIR_WEST
+~
+~
+0 -1 6765
+S
+#6765
+The Cavern of the Splintered Arrow~
+You are standing at the other end of the cavern, which smells more
+foul than the first.  The source of the stench appears to lie through a
+tiny shaft to the west.~
+67 ROOM_NO_RECALL SECT_INSIDE
+DDIR_EAST
+~
+~
+0 -1 6764
+DDIR_WEST
+~
+~
+0 -1 6766
+S
+#6766
+The Stinking Shaft~
+You barely squeeze through what appears to be some sort of ventilation
+shaft carved into the stone.  Appearances are not always what they seem,
+however, as you begin to realize when the shaft starts writhing all
+around you.~
+67 ROOM_DARK|ROOM_PRIVATE|ROOM_NO_RECALL SECT_INSIDE
+DDIR_EAST
+~
+~
+0 -1 6765
+DDIR_WEST
+~
+~
+0 -1 6751
+S
+#6767
+The Entryway~
+You feel a strange feeling in the pit of your stomach as the archway
+behind you shimmers briefly and becomes a wall.  There is only one way
+to go from here.
+Up.~
+67 ROOM_DARK|ROOM_NO_RECALL|ROOM_ALLOW_ILL|ROOM_ALLOW_ELE SECT_INSIDE
+DDIR_UP
+~
+~
+0 -1 6768
+S
+#6768
+Atop Prialto's Precipice~
+You have managed to scramble up this peculiar spike of rock jutting up
+from the entryway below, despite nearly gale-force winds blowing THROUGH
+the shimmering wall behind you.  There is no view, however, and you feel
+a bit cheated for all that exertion.~
+67 ROOM_DARK|ROOM_NO_MOB|ROOM_NO_RECALL SECT_INSIDE
+S
+#6769
+The Entryway~
+You feel a strange feeling in the pit of your stomach as the archway
+behind you shimmers briefly and becomes a wall.  There is only one way
+to go from here.~
+67 ROOM_DARK|ROOM_NO_RECALL|ROOM_ALLOW_RAN SECT_INSIDE
+DDIR_WEST
+~
+~
+0 -1 6770
+S
+#6770
+The Ramparts of Calcirron~
+You are standing in an enormous chamber with an extremely high vaulted
+ceiling.  It looks like this is some sort of training facility, though
+it is not obvious who would train here, or for what purpose.  There are
+obstacles strategically placed around the room, and gutted fish entrails
+are strewn across the floor throughout.~
+67 ROOM_DARK|ROOM_NO_RECALL|ROOM_BLOCK SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 6773
+DDIR_WEST
+~
+~
+0 -1 6771
+S
+#6771
+The Ramparts of Calcirron~
+You are standing in an enormous chamber with an extremely high vaulted
+ceiling.  It looks like this is some sort of training facility, though
+it is not obvious who would train here, or for what purpose.  There are
+obstacles strategically placed around the room, and gutted fish entrails
+are strewn across the floor throughout.~
+67 ROOM_DARK|ROOM_NO_RECALL|ROOM_BLOCK SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 6772
+DDIR_EAST
+~
+~
+0 -1 6770
+S
+#6772
+The Ramparts of Calcirron~
+You are standing in an enormous chamber with an extremely high vaulted
+ceiling.  It looks like this is some sort of training facility, though
+it is not obvious who would train here, or for what purpose.  There are
+obstacles strategically placed around the room, and gutted fish entrails
+are strewn across the floor throughout.~
+67 ROOM_DARK|ROOM_NO_RECALL|ROOM_BLOCK SECT_INSIDE
+DDIR_EAST
+~
+~
+0 -1 6773
+DDIR_SOUTH
+~
+~
+0 -1 6771
+S
+#6773
+The Ramparts of Calcirron~
+You are standing in an enormous chamber with an extremely high vaulted
+ceiling.  It looks like this is some sort of training facility, though
+it is not obvious who would train here, or for what purpose.  There are
+obstacles strategically placed around the room, and gutted fish entrails
+are strewn across the floor throughout.~
+67 ROOM_DARK|ROOM_NO_RECALL|ROOM_BLOCK SECT_INSIDE
+DDIR_SOUTH
+~
+~
+0 -1 6770
+DDIR_WEST
+~
+~
+0 -1 6772
+S
+#6774
+The Entryway~
+You feel a strange feeling in the pit of your stomach as the archway
+behind you shimmers briefly and becomes a wall.  There is only one way
+to go from here, though it would appear that just ahead of you, the
+rain has made footing rather treacherous.~
+67 ROOM_DARK|ROOM_NO_RECALL|ROOM_ALLOW_ELE SECT_INSIDE
+DDIR_WEST
+~
+~
+0 -1 6775
+S
+#6775
+The Rain Chamber~
+The air is so humid and thick in this circular hallway that it is
+literally raining.  Of course, the air is also thick with sea salt,
+so the rain which might otherwise feel refreshing is stinging your
+eyeballs and making you wish for a swift death.  Perhaps you'll find it.~
+67 ROOM_DARK|ROOM_NO_RECALL SECT_INSIDE
+DDIR_WEST
+~
+~
+0 -1 6776
+S
+#6776
+Elgarry's Hearth~
+You are standing in the center of a large stone fireplace.  Luckily
+the fire has been extinguished, and all that is left is a few smoking
+coals and some sodden, rain-soaked sludge which glues itself to your feet
+in a most unpleasing way.~
+67 ROOM_DARK|ROOM_NO_MOB|ROOM_NO_RECALL SECT_INSIDE
+S
+#6777
+The Entryway~
+You feel a strange feeling in the pit of your stomach as the archway
+behind you shimmers briefly and becomes a wall.  There is only one way
+to go from here.~
+67 ROOM_DARK|ROOM_NO_RECALL|ROOM_ALLOW_ILL|ROOM_ALLOW_RAN SECT_INSIDE
+DDIR_WEST
+~
+~
+0 -1 6778
+S
+#6778
+The Hall of Darkness~
+You are standing at one end of an arched hallway.  It is difficult to
+make out what is at the other end because no matter how brightly you try
+to illuminate the hallway, the walls seem to absorb most of the light
+anyhow.  Brine drips from the ceiling onto your head, then runs down
+your face and into your eyes and mouth, making you gag.  This would
+perhaps be a good time to call in some reinforcements, for the grinding
+sound coming from the west is putting you ill at ease.~
+67 ROOM_DARK SECT_INSIDE
+DDIR_WEST
+~
+~
+0 -1 6779
+S
+#6779
+The Hall of Darkness~
+The walls continue to absorb most of the light you try to cast into the
+darkness of the hallway, but you can make out a large shape coming at you,
+FAST.~
+67 ROOM_DARK|ROOM_NO_RECALL SECT_INSIDE
+DDIR_EAST
+~
+~
+0 -1 6778
+DDIR_WEST
+~
+~
+0 -1 6780
+S
+#6780
+The Hall of Darkness~
+The hall continues to the east and west, and it remains difficult to
+make out anything past the tip of your nose.  The brine has left an
+oily coating of salt on your skin which is slowly eating away at your
+flesh, driving its way toward your blood, where it will overpower your
+body and turn you back to the sea as salt and water inevitably do.~
+67 ROOM_DARK|ROOM_NO_RECALL SECT_INSIDE
+DDIR_EAST
+~
+~
+0 -1 6779
+DDIR_WEST
+~
+~
+0 -1 6781
+S
+#6781
+The Hall of Darkness~
+You have finally reached the end of the long hallway, though, admittedly,
+it shares much in common with the other end, including its stingy
+light-hoarding properties and the ever-present seawater now pouring
+in a steady stream through a crack in the ceiling.  Your clothes are
+soaked.~
+67 ROOM_DARK|ROOM_NO_RECALL SECT_INSIDE
+DDIR_EAST
+~
+~
+0 -1 6780
+S
+#6782
+The Entryway~
+You feel a strange feeling in the pit of your stomach as the archway
+behind you shimmers briefly and becomes a wall.  There is only one way
+to go from here.~
+67 ROOM_DARK|ROOM_NO_RECALL|ROOM_ALLOW_ILL SECT_INSIDE
+DDIR_DOWN
+~
+~
+0 -1 6783
+S
+#6783
+The Pit of Gesh'tall Ak~
+You have dropped into a shimmering pit which glows a fiery red, the
+source of which seems to lie beyond the flickering walls.  Escape from
+the pits is impossible, though, because despite the ephemeral nature of
+the shimmering, dancing walls, they are quite solid to the touch, and so
+smooth that they cannot be climbed.  It must be time to face the challenge,
+but make sure the lesser challenge is taken care of first, or the greater
+may yield no reward.~
+67 ROOM_DARK|ROOM_NO_MOB|ROOM_NO_RECALL SECT_INSIDE
+S
+#6784
+The Cave of Silence~
+You are walking through a long tunnel which looks freshly drained,
+judging from the seaweed strewn along the flagstone floor.  As you
+glance at the rough ceiling webbed with fine cracks, you recall that
+water is denser than air.~
+67 ROOM_DARK|ROOM_NO_RECALL SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 6785
+S
+#6785
+The Cave of Silence~
+You are walking through a long tunnel which looks freshly drained,
+judging from the seaweed strewn along the flagstone floor.  As you
+glance at the rough ceiling webbed with fine cracks, you recall that
+water is denser than air.~
+67 ROOM_DARK|ROOM_NO_RECALL SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 6786
+DDIR_SOUTH
+~
+~
+0 -1 6784
+S
+#6786
+The Cave of Silence~
+You are walking through a long tunnel which looks freshly drained,
+judging from the seaweed strewn along the flagstone floor.  As you
+glance at the rough ceiling webbed with fine cracks, you recall that
+water is denser than air.~
+67 ROOM_DARK|ROOM_NO_RECALL SECT_INSIDE
+DDIR_SOUTH
+~
+~
+0 -1 6785
+S
+#6787
+The Archminion's Chamber~
+You are standing in an entirely spherical room with no exits, and only
+gravity reminds you which way is up and which is down.  The walls are
+smooth, but seem to provide good traction, though they are also glistening
+from an even sheet of water entering through the wall above and exiting
+below your feet.~
+67 ROOM_DARK|ROOM_NO_RECALL SECT_INSIDE
+DDIR_UP
+~
+~
+0 -1 6793
+S
+#6788
+Neptune's Garden~
+You've made it!  You are standing in a garden which glows turquoise from
+deep within.  It is a garden in the sense that it resembles what a garden
+might look like if it were entirely submerged in seawater, but this does
+not lessen its beauty in any way.  Colorful anenomes wave their tentacles
+at you, while striped fish dart in and out of fragile sponges.
+Uniquely-shaped rocks have been placed in attractive patterns between the
+natural-looking but well-planned rows of cultivated sea cucumbers and
+crinoid fans.  You see that you are standing in a small enclosure at the
+very center of the garden, which you can now see stretches to the horizon
+in every direction.  Beyond the garden rise the towering turrets and
+ramparts of a great castle which shines turquoise and glows brighter than
+anything you have yet witnessed in your abyssal explorations.  It appears
+that you may have to be happy viewing the castle from afar, as visitors
+seem to be corralled toward a large daythrone just to your left.~
+67 ROOM_DARK|ROOM_NO_RECALL SECT_UNDER_WATER
+DDIR_WEST
+~
+~
+0 -1 6789
+S
+#6789
+Neptune's Throne~
+Here amidst the shrimp and the seahorses, Lord Neptune has constructed a
+mighty ornamental throne for receiving his occasional visitors.  While he
+is reknowned for his love of privacy and his poor temperment, he reluctantly
+shares this small part of his glorious kingdom with the few lucky souls
+who survive the rite of passage he has created for them.  Perhaps he is
+feeling generous or perhaps Lord Order has been admonishing him lately to
+be more generous with his time, but you are humbled by the flowing robes
+and even longer beard of the mortal form Lord Neptune has taken to so
+graciously appear before you today.~
+67 ROOM_DARK|ROOM_NO_RECALL SECT_UNDER_WATER
+DDIR_EAST
+~
+~
+0 -1 6788
+S
+#6790
+The Hellspawn's Chamber~
+You are standing in In an Abyssal Cavern which is engulfed in flame.
+It is a wonder you are not charred instantly, but it's good to have
+friends in high places.~
+67 ROOM_DARK|ROOM_NO_MOB|ROOM_NO_RECALL SECT_INSIDE
+S
+#6791
+The Chaotic Hall of Mirrors~
+You are surrounded by a vast army, all moving in a perfectly coreographed
+routine.  Suddenly you realize that your foe numbers only one as you ram
+your fist into one of about a hundred mirrors and facets, causing you great
+pain and eliciting a few quiet remarks from your chuckling party members
+at your expense.~
+67 ROOM_DARK|ROOM_NO_MOB|ROOM_NO_RECALL SECT_INSIDE
+S
+#6792
+The Dark Shrine~
+This small chamber is dominated by an effigy to Lord Chaos, charred black
+over the eons by excessive use of burnt offerings.  The altar below the
+effigy is blocky and bare, ornamented only by a series of strange grooves
+running down and away from the top surface.  What function could they have
+possibly served?~
+67 ROOM_DARK|ROOM_NO_MOB|ROOM_NO_RECALL SECT_INSIDE
+S
+#6793
+The Halcyon Sanctuary~
+You have literally passed through the ceiling of the spherical chamber
+below, to find yourself encapsulated in a bubble which allows you to view
+the raging currents and foul sea beasts flying all around your head.
+You are safe for the moment.~
+67 ROOM_DARK|ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_DOWN
+~
+~
+0 -1 6787
+S
+#6794
+Neptune's torture chamber~
+You are standing in a medium-sized room whose walls are dripping with
+brine.  Various implements of torture have been laid out with precision,
+and the bloody carcasses which are still hanging from the walls suggest
+that you may have met your end.~
+67 ROOM_DARK|ROOM_NO_MOB|ROOM_NO_RECALL SECT_INSIDE
+S
+#6795
+Crushed~
+You find that your body is thinner than waxed paper. 
+Not very comfortable at all.~
+67 ROOM_DARK|ROOM_NO_MOB|ROOM_NO_RECALL SECT_INSIDE
+S
+#6796
+Hovering above the whirlpool~
+You find yourself suspended in space, hovering above a raging whirlpool,
+with darkness all around.  You can feel the magical grip which is supporting
+you slowly slipping...~
+67 ROOM_DARK|ROOM_NO_RECALL SECT_INSIDE
+DDIR_DOWN
+~
+~
+0 -1 6797
+S
+#6797
+The whirlpool~
+You are swept into the current, which is dragging you down, down, down...
+
+You'd better act FAST!~
+67 ROOM_DARK|ROOM_NO_RECALL SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 6798
+S
+#6798
+The placid pool~
+You managed to escape a likely death, and now you find yourself within a
+stone's throw of your destination: Neptune's Garden.  Now would be a good
+time to make sure you prepare for the watery world within.  As you look
+closer, you see a pattern of shimmering light reflected on the surface
+of the pool.  There is also an inscription on the ceiling.~
+67 ROOM_DARK|ROOM_NO_MOB|ROOM_NO_RECALL SECT_INSIDE
+E
+inscription ceiling~
+'neptune' brings stability to all things.~
+E
+shimmering light pattern~
+Consider this:  There exists a word which both begins and ends with 'HE'.
+This same word has the construction 'ADAC' in the middle.  Speak this word,
+and you shall be delivered.~
+S
+#6799
+In the Abyss~
+The water is cold and black, and it numbs your mind as you extend 
+your hands into the murky water, feeling your way along the abyss.~
+67 ROOM_DARK|ROOM_NO_RECALL SECT_UNDER_WATER
+DDIR_SOUTH
+~
+~
+0 -1 31642
+DDIR_DOWN
+~
+~
+0 -1 6800
+S
+#6800
+In the Abyss~
+The water is cold and black, and it numbs your mind as you extend 
+your hands into the murky water, feeling your way along the abyss.~
+67 ROOM_DARK|ROOM_NO_RECALL SECT_UNDER_WATER
+DDIR_UP
+~
+~
+0 -1 6799
+DDIR_DOWN
+~
+~
+0 -1 6801
+S
+#6801
+In the Abyss~
+The water is cold and black, and it numbs your mind as you extend 
+your hands into the murky water, feeling your way along the abyss.~
+67 ROOM_DARK|ROOM_NO_RECALL SECT_UNDER_WATER
+DDIR_SOUTH
+~
+~
+0 -1 6802
+DDIR_UP
+~
+~
+0 -1 6804
+S
+#6802
+In the Abyss~
+The water is cold and black, and it numbs your mind as you extend 
+your hands into the murky water, feeling your way along the abyss.~
+67 ROOM_DARK|ROOM_NO_RECALL SECT_UNDER_WATER
+DDIR_NORTH
+~
+~
+0 -1 6801
+DDIR_DOWN
+~
+~
+0 -1 6803
+S
+#6803
+In the Abyss~
+The water is cold and black, and it numbs your mind as you extend 
+your hands into the murky water, feeling your way along the abyss.~
+67 ROOM_DARK|ROOM_NO_RECALL SECT_UNDER_WATER
+DDIR_UP
+~
+~
+0 -1 6802
+S
+#6804
+In the Abyss~
+The water is cold and black, and it numbs your mind as you extend 
+your hands into the murky water, feeling your way along the abyss.~
+67 ROOM_DARK|ROOM_NO_RECALL SECT_UNDER_WATER
+DDIR_UP
+~
+~
+0 -1 6799
+DDIR_DOWN
+~
+~
+0 -1 6805
+S
+#6805
+In the Abyss~
+The water is cold and black, and it numbs your mind as you extend 
+your hands into the murky water, feeling your way along the abyss.~
+67 ROOM_DARK|ROOM_NO_RECALL SECT_UNDER_WATER
+DDIR_SOUTH
+~
+~
+0 -1 6802
+DDIR_UP
+~
+~
+0 -1 6806
+S
+#6806
+In the Abyss~
+The water is cold and black, and it numbs your mind as you extend 
+your hands into the murky water, feeling your way along the abyss.~
+67 ROOM_DARK|ROOM_NO_RECALL SECT_UNDER_WATER
+DDIR_UP
+~
+~
+0 -1 6799
+DDIR_DOWN
+~
+~
+0 -1 6807
+S
+#6807
+In the Abyss~
+The water is cold and black, and it numbs your mind as you extend 
+your hands into the murky water, feeling your way along the abyss.~
+67 ROOM_DARK|ROOM_NO_RECALL SECT_UNDER_WATER
+DDIR_SOUTH
+~
+~
+0 -1 6802
+DDIR_UP
+~
+~
+0 -1 6808
+S
+#6808
+In the Abyss~
+The water is cold and black, and it numbs your mind as you extend 
+your hands into the murky water, feeling your way along the abyss.~
+67 ROOM_DARK|ROOM_NO_RECALL SECT_UNDER_WATER
+DDIR_UP
+~
+~
+0 -1 6799
+DDIR_DOWN
+~
+~
+0 -1 6809
+S
+#6809
+In the Abyss~
+The water is cold and black, and it numbs your mind as you extend 
+your hands into the murky water, feeling your way along the abyss.~
+67 ROOM_DARK|ROOM_NO_RECALL SECT_UNDER_WATER
+DDIR_SOUTH
+~
+~
+0 -1 6802
+DDIR_UP
+~
+~
+0 -1 6700
+S
+#0
+
+
+
+
+#RESETS
+O 1  6700 100  6701 ;        a small sand dune in In an Abyssal Cavern     
+M 1  6700   1  6752 ;       A turquoise statue in The Altar                
+M 1  6707   1  6700 ;     The Abyssal Sentinel in A Hole in the Darkness   
+M 1  6708   1  6719 ;     Ethereal braille mob in On the Other Side of the 
+M 1  6709   1  6756 ;         Neptune's minion in The Hall of Pain         
+M 1  6709   1  6757 ;         Neptune's minion in The Hall of Pain         
+M 1  6709   1  6758 ;         Neptune's minion in The Hall of Pain         
+M 1  6709   1  6759 ;         Neptune's minion in The Hall of Pain         
+M 1  6709   1  6760 ;         Neptune's minion in The Hall of Pain         
+M 1  6709   1  6761 ;         Neptune's minion in The Hall of Pain         
+M 1  6710   1  6762 ;   Ethereal sanctuary mob in The Sanctuary of Ygmus   
+M 1  6712   1  6765 ;       An Abyssal gremlin in The Cavern of the Splinte
+G 1  6704 100       ;          an eel figurine
+M 1  6713   1  6766 ;          The Acid Sponge in The Stinking Shaft       
+M 1  6714   1  6768 ;                  Prialto in Atop Prialto's Precipice 
+G 1  6701 100       ;           prialto's cane
+G 1  6705 100       ;          a seal figurine
+M 1  6715   1  6772 ;                Calcirron in The Ramparts of Calcirron
+G 1  6706 100       ;         a shark figurine
+M 1  6734   1  6770 ;   Ethereal calcirron mob in The Ramparts of Calcirron
+M 1  6734   1  6771 ;   Ethereal calcirron mob in The Ramparts of Calcirron
+M 1  6734   1  6772 ;   Ethereal calcirron mob in The Ramparts of Calcirron
+M 1  6734   1  6773 ;   Ethereal calcirron mob in The Ramparts of Calcirron
+M 1  6716   1  6775 ;         Ethereal ele mob in The Rain Chamber         
+M 1  6709   6  6794 ;         Neptune's minion in Neptune's torture chamber
+M 1  6709   6  6794 ;         Neptune's minion in Neptune's torture chamber
+M 1  6709   6  6794 ;         Neptune's minion in Neptune's torture chamber
+M 1  6709   6  6794 ;         Neptune's minion in Neptune's torture chamber
+M 1  6709   6  6794 ;         Neptune's minion in Neptune's torture chamber
+M 1  6709   6  6794 ;         Neptune's minion in Neptune's torture chamber
+M 1  6709   1  6794 ;         Neptune's minion in Neptune's torture chamber
+M 1  6729   1  6776 ;         Ethereal elgarry in Elgarry's Hearth         
+M 1  6717   1  6783 ;         The greater evil in The Pit of Gesh'tall Ak  
+M 1  6718   1  6783 ;          The lesser evil in The Pit of Gesh'tall Ak  
+G 1  6708 100       ;       a lobster figurine
+M 1  6719   1  6779 ;           The Rain Beast in The Hall of Darkness     
+M 1  6720   1  6780 ;          The Rain Deacon in The Hall of Darkness     
+M 1  6721   1  6784 ;  Ethereal silence mob #1 in The Cave of Silence      
+M 1  6721   1  6785 ;  Ethereal silence mob #1 in The Cave of Silence      
+M 1  6721   1  6786 ;  Ethereal silence mob #1 in The Cave of Silence      
+M 1  6722   1  6786 ;  Ethereal silence mob #2 in The Cave of Silence      
+M 1  6723   1  6787 ; The Minion of Nine Lives in The Archminion's Chamber 
+M 1  6724   1  6789 ;             Lord Neptune in Neptune's Throne         
+M 1  6725   1  6790 ;            The Hellspawn in The Hellspawn's Chamber  
+M 1  6726   1  6791 ;         The Chaotic Mage in The Chaotic Hall of Mirro
+M 1  6727   1  6792 ;            The Helldruid in The Dark Shrine          
+M 1  6728   1  6778 ;Ethereal antichaos mo in The Hall of Darkness     
+M 1  6728   1  6810 ;Ethereal antichaos mo in The Abyssal Cavern
+O 1  6707 100  6775 ;     a man-o-war figurine in The Rain Chamber
+M 1  6732   1  6796 ;     Ethereal dropper mob in Hovering above the whirlp
+M 1  6733   1  6797 ;   Ethereal whirlpool mob in The whirlpool            
+M 1  6731   1  6798 ;      Ethereal garden mob in The placid pool   
+M 1  6736  1  6799 ;      The Abyss mob       
+O 1  6736   1  6768 ;        a golden pedestal in Atop Prialto's Precipice 
+P 1  6735   1  6736 ;           a lump of clay in a golden pedestal        
+S
+
+
+
+
+#SHOPS
+0
+
+
+
+
+#SPECIALS
+S
+
+
+
+
+#$

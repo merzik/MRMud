@@ -1,0 +1,2924 @@
+#AREA VanEttan Lake~
+#AUTHORS Fudge~
+#RANGES 60 95 0 99
+
+#HELPS
+-1 VANETTAN_CHANGES~
+12.27.04 - 22 Spelling corrections. (Mag)
+12.27.04 - In hermit equip quest the hermit uses qbits 0,5.  In the final
+           fight he looks at qbits 0,3 to determine whether to load the equip.
+           I changed it to the correct bits.  The quest is now fixed. (Mag)
+12.27.04 - Made some grammar changes mainly to help readability.  Reformatted
+           some says to improve flow of conversation. (Mag)
+12.27.04 - Under certain circumstances Ssab would repop and create 2 Ssabs in
+           the room.  Changed resets to only allow 1. (Mag)
+12.28.04 - Modified Ssab's greet_prog to change depending on your quest
+           status. (Mag)
+~
+0 $~
+
+
+
+#MOBILES
+
+@updated says to correct for spelling, grammar and add some flavor  12/18/03
+#15800
+hermit man old~
+Old Hermit~
+An old hermit sits here looking out the window.~
+This man is one angry SOB, he doesn't like people barging into his home.
+~
+ACT_STAY_AREA|ACT_SENTINEL|ACT_SMART
+AFF_TONGUES|AFF_UNDERSTAND|AFF_SANCTUARY|AFF_DETECT_HIDDEN|AFF_DETECT_INVIS
+0 S
+95 BODY_TORSO|BODY_LEG|BODY_ARM|BODY_HEAD BODY_FOOT|BODY_HAND 20d20+16000 6d6+190
+10 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>fight_prog 100~
+if rand(75)
+ c 'lightning bolt' $n
+else
+ if rand(50) 
+  c 'acid blast' $n
+ else
+  if rand(50)
+   c 'gas breath' $n
+  endif
+ endif
+endif
+~
+>greet_prog 100~
+if quest (0,5,$n)==0
+ say Hello $n, can you help me with a small errand?
+ say You will be rewarded for it.
+else
+ if quest (0,5,$n)==2 
+  say Have you found a residence pass yet? 
+ endif
+endif
+~
+>speech_prog yes~
+if quest (0,5,$n)==0
+ say Good, I need a residence pass.
+ say I believe Steve either has one or knows where to get one.
+ say I will reward you when I get me one.
+ mpmset $n quest 0 5 1
+else
+  if quest (0,5,$n)==2
+   say Good, let me have it please.
+  endif
+endif
+~
+>give_prog i15819~
+if quest (0,5,$n)==2
+ @mpmset $n quest 0 3 3
+ mpmset $n quest 0 5 3
+ say Thank you, but I am going to have to kill you now.
+ say No one can know my true plan!
+ say Goodbye!
+ mpjunk i15819
+ mpkill $n
+endif
+~
+>death_prog 100~
+if quest (0,5,$n)==3
+ mpmset $n quest 0 5 4
+ mpoload 15800
+ mpoload 15801
+ mpoload 15802
+ mpoload 15803
+ mpoload 15804
+ mpoload 15805
+ drop all
+endif
+~
+>hitprcnt_prog 5~
+if quest (5,5,$n)==16
+ emote gasps for air.
+ say No, I am defeated.
+ say Ssab will finally get his peace.
+ say Some day I will return!
+ say When I do, he will be a dead fish!
+ shout I HATE YOU SSAB!
+ emote falls to the ground, lifeless.
+ mpecho The Hermit's body vanishes in a flash of red light.
+ mpmset $n quest 5 5 17
+ mppurge self
+endif
+~
+|
+
+@updated says to correct for spelling, grammar and add some flavor  12/18/03
+#15801
+duck ~
+The duck~
+A duck is here gracefully swimming around you.~
+This duck seems happy, so don't ruin its attitude... it might get mean.
+~
+ACT_SENTINEL|ACT_SCAVENGER|ACT_BODY|ACT_SMART
+AFF_TONGUES|AFF_UNDERSTAND 
+0 S
+80 BODY_HEAD|BODY_WING BODY_WING 0d0+4200 0d0+60
+100000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>greet_prog 80~
+ mpechoat $n The duck quacks as you enter the room.
+~
+>speech_prog p Ssab sent me to act against the fishermen.~
+ if quest (5,5,$n)==6
+  if rand(4)
+   say Good, good... I have been wanting to do this for a long time.
+   say You may return to him with my help only if you help me first.
+   say We ducks are sick of eating bread from the land-dwellers.
+   say I would like to taste meat.  A store on shore sells chicken.
+   say Please bring me some.
+   mpmset $n quest 5 5 7
+  endif
+ endif
+~
+>speech_prog p The plan is canceled.~
+ if quest (5,5,$n)==11
+  say Why?
+  say Did Ssab send this message?
+  say He must have.
+  emote ponders for a moment.
+  say Hmm... It must be the hermit.
+  say He is the only person strong enough to defeat Ssab.
+  say Thank you for your help.
+  say Tell Ssab the ducks agree.
+  mpmset $n quest 5 5 12
+ endif  
+~
+>give_prog i15808~
+ if quest (5,5,$n)==7
+  say Hmm... this looks good.  You brought me what I wanted.
+  emote takes a bite and concentrates on it for a minute.
+  emote becomes disgusted and spits out the chicken.
+  say Wow... I was expecting better.  That tasted very bad.
+  say Oh well, a promise is a promise.
+  say Go back to Ssab and tell him that we will join him.
+  mpmset $n quest 5 5 8
+ endif
+~
+|
+#15802
+father dad man~
+The Father~
+There is a man here watching his kids play in the sand.~
+{160}This man is relaxing as his kids play in the sand.
+~
+ACT_RACE|ACT_SENTINEL|ACT_SCAVENGER|ACT_STAY_AREA|ACT_BODY|ACT_SMART
+0 
+0 S
+70 BODY_HEAD|BODY_ARM|BODY_FOOT BODY_HAND 0d0+3100 0d0+57
+150000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 100~
+ say It is a lovely day to be at the beach now isn't it.
+~
+|
+#15803
+mother mom woman lady~
+The Mother~
+The Lady here must have fallen asleep while getting a sun tan.~
+This lady is sleeping while her husband watches the kids.
+~
+ACT_RACE|ACT_BODY|ACT_SENTINEL|ACT_STAY_AREA
+0 
+0 S
+70 BODY_LEG|BODY_ARM BODY_HAND 0d0+3000 0d0+56
+120000 RACE_HUMAN
+POS_SLEEPING POS_SLEEPING SEX_FEMALE
+#15804
+kid child ~
+The child~
+There is a child here playing in the sand.~
+This kid is having a lot of fun playing in the sand.
+~
+ACT_SENTINEL|ACT_SCAVENGER|ACT_STAY_AREA|ACT_BODY|ACT_RACE
+0 
+0 S
+65 BODY_LEG|BODY_ARM|BODY_HEAD BODY_HAND 0d0+2400 0d0+48
+0 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_NEUTRAL
+#15805
+chef sanders~
+The chef~
+Chef Sanders is here hoping you will buy something.~
+I make all the food around here... I like cookin'!
+~
+ACT_BODY|ACT_RACE|ACT_STAY_AREA|ACT_SENTINEL
+AFF_UNDERSTAND|AFF_DETECT_HIDDEN|AFF_DETECT_INVIS
+0 S
+95 BODY_TAIL|BODY_TORSO|BODY_FOOT|BODY_HAND|BODY_CLAW|BODY_HORN|BODY_TENTICLE|BODY_WING|BODY_ARM|BODY_HIP|BODY_EYE|BODY_MOUTH|BODY_HEAD|BODY_LEG BODY_HAND 0d0+30000 0d0+250
+500000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+#15806
+lady mysteria~
+Mysteria~
+Lady Mysteria stands here hoping you will buy her merchandise~
+Mysteria is famous for spells of many kinds.
+~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_BODY|ACT_RACE
+AFF_UNDERSTAND
+0 S
+95 BODY_WING|BODY_TAIL|BODY_HEAD|BODY_MOUTH|BODY_EYE|BODY_TORSO|BODY_HIP|BODY_LEG|BODY_HORN|BODY_TENTICLE|BODY_ARM|BODY_FOOT|BODY_HAND|BODY_CLAW BODY_HAND 0d0+30000 0d0+250
+1000000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_FEMALE
+
+@updated says to correct for spelling, grammar and add some flavor  12/18/03
+#15807
+steve ~
+The army man~
+Steve, the army man, is ready to train you.~
+Steve is here ready to help you train your abilities.
+~
+ACT_RACE|ACT_BODY|ACT_TRAIN|ACT_STAY_AREA|ACT_SENTINEL|ACT_SMART
+0 
+0 S
+95 BODY_LEG|BODY_TORSO|BODY_TAIL|BODY_HIP|BODY_TENTICLE|BODY_HORN|BODY_CLAW|BODY_HAND|BODY_FOOT|BODY_WING|BODY_MOUTH|BODY_HEAD|BODY_EYE|BODY_ARM BODY_HAND 0d0+30000 0d0+250
+1000000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>speech_prog p residence pass~
+if quest (0,5,$n)==1
+ say Yeah, I know something about them, I used to sell 
+ say them to citizens in the area so they could live in
+ say this fair city, but I no longer have any.  If you 
+ say go around and find some citizens, they might have 
+ say them, but will put up a fight in the process.
+ mpmset $n quest 0 5 2
+endif
+~
+>speech_prog p Who is the best fisherman?~
+if quest (5,5,$n)==9
+ say Why that is an easy question.
+ say The best fisherman in town has to be the hermit.
+ say He has to fish to keep himself fed.
+ say Although, he has been suspected of stealing chickens.
+ mpmset $n quest 5 5 10
+endif
+~
+|
+
+#15808
+heather ~
+Heather~
+Madam Heather is here to help you practice.~
+Heather is here to help you practice your new skills or spells
+~
+ACT_PRACTICE|ACT_BODY|ACT_STAY_AREA|ACT_SENTINEL|ACT_RACE
+0 
+0 S
+95 BODY_MOUTH|BODY_HAND|BODY_CLAW|BODY_HORN|BODY_TENTICLE|BODY_TAIL|BODY_WING|BODY_ARM|BODY_HEAD|BODY_EYE|BODY_TORSO|BODY_HIP|BODY_FOOT|BODY_LEG BODY_HAND 0d0+30000 0d0+250
+1000000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_FEMALE
+#15809
+citizen~
+The citizen~
+There is a citizen here walking around the streets.~
+This citizen is here to go shopping.
+~
+ACT_STAY_AREA|ACT_BODY|ACT_SENTINEL|ACT_RACE
+0 
+0 S
+60 BODY_HEAD|BODY_FOOT BODY_HAND 0d0+1700 0d0+45
+0 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>death_prog 10~
+ If quest (0,5,$n)==2
+  mpoload 15819
+ endif
+~
+|
+#15810
+small fish~
+The small fish~
+The small fish swims here happily.~
+This fish swims happily here ignoring your presence.  The fish is small and 
+has light yellow scales. It kind of resembles a yellow lake perch, but you 
+can't be sure.
+~
+ACT_NO_ORDER|ACT_STAY_AREA|ACT_SENTINEL|ACT_SMART
+AFF_TONGUES
+0 S
+65 BODY_TAIL|BODY_EYE|BODY_HEAD BODY_MOUTH 7d7+2300 4d4+35
+75000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>greet_prog 80~
+if rand(20)
+ say Hello, have you met our leader Ssab?
+ say He is a very good and strong leader of the
+ say fish of VanEttan Lake.
+endif
+ if quest (25,5,$n)==26
+  emote peers at you intently, as if it has seen you somewhere before.
+ endif
+  if rand(70)
+   if quest (25,5,$n)==26
+    emote recognizes you as the slayer of it's leader!
+    emote grows stronger from its rage!
+    rescale self $n 115
+    mpkill $n 
+   endif
+  endif
+~
+>death_prog 100~
+ if quest (25,5,$n)==26
+  emote sends out a cry of pain and realizes your strength.
+  say You are very strong, please leave us alone.
+  say We will no longer attack you if you do.
+  emote tries to smile but dies in the act.
+  mpmset $n quest 25 5 25
+ endif
+~
+|
+#15811
+ssab~
+Ssab~
+Ssab is resting here, peering at you with dignity.~
+Ssab is a very good fish.  Ssab seems to be very old, but that 
+doesn't make him any weaker.  This fish is the ruler of all the 
+fish in the lake.
+~
+ACT_RACE|ACT_BODY|ACT_NO_ORDER|ACT_SMART|ACT_STAY_AREA|ACT_SENTINEL
+AFF_SANCTUARY|AFF_DETECT_HIDDEN|AFF_DETECT_INVIS|AFF_DETECT_EVIL|AFF_UNDERSTAND|AFF_TONGUES
+0 S
+100 BODY_TAIL|BODY_EYE|BODY_HEAD BODY_MOUTH 5d100+10000 20d5+125
+100000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>greet_prog 100~
+ if quest (5,5,$n)<=6
+   say Hello $n, how may I help you?
+ endif
+ if quest (5,5,$n)==18
+   say We are forever grateful to you $n.
+ endif
+ if quest (5,5,$n)==17
+  say I will be forever grateful to you!
+  say You will be remembered by ducks and fish for eternity.
+  say Here is your reward.
+  mpoload 15821
+  mpoload 15822
+  mpoload 15823
+  give i15821 $n
+  give i15822 $n
+  say And I found this in the water the other day... 
+  say Thought you land-dwellers used it for something.
+  give i15823 $n
+  say May god bless your soul for the rest of eternity.
+  say Thank you.
+  mpmset $n quest 5 5 18
+ endif
+~
+>speech_prog leader~
+ if quest (5,5,$n)<=6
+  say Yes, I am the leader of this great lake.
+  say How did you get here anyway?
+  say I haven't seen a land-dweller in a long time.
+  say Oh, I have a favor to ask you!
+  emote pauses for a moment and ponders.
+  say I need you to help me.
+  say We must stop the fishermen from catching my subjects.
+  say Can you help me?
+ else
+  say Yes, I am the leader of this great lake.
+ endif
+~
+>speech_prog yes~
+ if quest (5,5,$n)<=6
+  gasp
+  say GREAT! I believe one of the ducks can help me with this also.
+  say Tell their leader I sent you to act against the fishermen.
+  say Return with news of the ducks, I hope they will help me.
+  mpmset $n quest 5 5 6
+  say Oh, and by the way, I can never tell out which duck is the leader.
+  say You will have to talk to all of them.
+  say Thank you very much.
+ else 
+  say yes what?
+  emote ponders your thoughts.
+ endif
+~
+>speech_prog p The ducks will join you.~
+ if quest (5,5,$n)==8
+  say Good, now we need to find the best fishermen in the area.
+  say Ask some land-dwellers who the best fisherman is.
+  say Maybe they will tell you.
+  say When you know who it is tell me their name.
+  say I will be waiting.
+  mpmset $n quest 5 5 9
+ endif
+~  
+>speech_prog p The Hermit~
+ if quest (5,5,$n)==10
+  gasp
+  say That is what I suspected.
+  say He and I have been enemies for a very long time.
+  say He used to be a duck a long time ago.
+  say He attacked my subjects for their meat.
+  say One day an illusionist saw these violent attacks.
+  say The illusionist promised to help me, and he did.
+  say He turned the hermit into a human so it would be harder
+  say for him to come into the water and attack my kingdom.
+  emote pauses for a second and cringes as he remembers the deaths.
+  say I cannot defeat him.
+  say The hermit, even though he is human, is still very strong,
+  say maybe even stronger than when he was a duck.
+  say Go tell the ducks that the plan is canceled.
+  say There is nothing we can do but pray.
+  mpmset $n quest 5 5 11
+ endif
+~
+>speech_prog p The ducks agree.~
+ if quest (5,5,$n)==12
+  say I figured they would.
+  sigh
+  say No one has ever been able to defeat the hermit.
+  say Hmm... I haven't seen your power.
+  say Do you think you can defeat him?
+  say Let's find out, ready?
+  mpmset $n quest 5 5 13
+~
+>speech_prog ready~
+ if quest (5,5,$n)==13
+  say Good, here goes nothing.
+  mpmset $n quest 5 5 14
+  mpkill $n
+ endif
+~
+>fight_prog 5~
+if quest (5,5,$n)==14
+ emote glows a bright, bright blue and becomes surrounded by light.
+ emote casts 'laehagem'.
+ restore self
+ say You are very good.
+ say Would you be interested in trying to defeat the hermit?
+ mpmset $n quest 5 5 15
+ mpquiet on
+ mpmload 15811
+ mpquiet off
+ mppurge self
+endif
+~
+>speech_prog p I am interested.~
+ if quest (5,5,$n)==15
+  say Great!
+  say I will reward you greatly when you have defeated him.
+  say Thank you very much!
+  mpmset $n quest 5 5 16
+ endif
+~
+>fight_prog 100~
+ if rand(75)
+  emote radiates an evil glow that causes you to become very sick.
+  mpquiet on
+  c 'poison' $n
+  c 'weaken' $n
+  mpquiet off
+ endif
+  if rand(30)
+   emote seems to glow a little and starts to feel better.
+   mpquiet on
+   c 'heal' 
+   c 'heal'
+   c 'heal'
+   mpquiet off
+  endif
+   if rand(40)
+    emote glows a burning red color and envelops you in underwater fire!
+    c 'flamestrike' $n
+    c 'fireball' $n
+   endif
+~
+>death_prog 60~
+ shout $n is a killer!
+ shout Kill $n if you see them anywhere in this kingdom!
+ mpmset $n quest 25 5 26
+ say You shall die as an enemy of fish everywhere!
+~
+|
+
+#0
+#OBJECTS
+
+@updated the short descrip, so that its an actual short descrip  12/18/03
+#15800
+hermit gloves~
+The Hermit's Gloves~
+Gloves from the hermit lay here on the ground.~
+These gloves were made by and belong to the hermit of VanEttan Lake.
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL|ITEM_FLAG_GLOW|ITEM_FLAG_HUM|ITEM_FLAG_INVIS
+ITEM_WEAR_HANDS|ITEM_WEAR_TAKE
+7 0 0 0
+20 10 78
+A
+APPLY_HITROLL 4
+A
+APPLY_DAMROLL 7
+A
+APPLY_SAVING_SPELL -1
+
+@updated the short descrip, so that its an actual short descrip  12/18/03
+#15801
+hermit hat~
+The Hermit's Hat~
+A hat from the hermit lays here on the ground.~
+This hat was made by and belongs to the hermit of VanEttan Lake.
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_HUM|ITEM_FLAG_INVIS|ITEM_FLAG_LEVEL|ITEM_FLAG_GLOW
+ITEM_WEAR_HEAD|ITEM_WEAR_TAKE
+5 0 0 0
+20 10 82
+A
+APPLY_SAVING_SPELL -1
+A
+APPLY_DAMROLL 6
+A
+APPLY_HITROLL 7
+
+@updated the short descrip, so that its an actual short descrip  12/18/03
+#15802
+hermit belt~
+The Hermit's Belt~
+A belt from the hermit lays here on the ground.~
+This belt was made by and belongs to the hermit of VanEttan Lake.
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL|ITEM_FLAG_INVIS|ITEM_FLAG_HUM|ITEM_FLAG_GLOW
+ITEM_WEAR_WAIST|ITEM_WEAR_TAKE
+18 0 0 0
+20 10 78
+A
+APPLY_SAVING_SPELL -1
+
+@updated the short descrip, so that its an actual short descrip  12/18/03
+#15803
+hermit pants~
+The Hermit's Pants~
+Pants from the hermit lay here on the ground.~
+These pants were made by and belong to the hermit of VanEttan Lake.
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL|ITEM_FLAG_INVIS|ITEM_FLAG_HUM|ITEM_FLAG_GLOW
+ITEM_WEAR_LEGS|ITEM_WEAR_TAKE
+17 0 0 0
+20 10 80
+A
+APPLY_SAVING_SPELL -5
+
+@updated the short descrip, so that its an actual short descrip  12/18/03
+#15804
+hermit bracer~
+The Hermit's Bracer~
+A small bracer from the hermit lays here on the ground.~
+This bracer was made by and belongs to the hermit of VanEttan Lake.
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_HUM|ITEM_FLAG_INVIS|ITEM_FLAG_LEVEL|ITEM_FLAG_GLOW
+ITEM_WEAR_WRIST|ITEM_WEAR_TAKE
+12 0 0 0
+20 10 84
+A
+APPLY_SAVING_SPELL -1
+A
+APPLY_MANA 100
+
+@updated the short descrip, so that its an actual short descrip  12/18/03
+#15805
+hermit bracer~
+The Hermit's Bracer~
+A small bracer from the hermit lays here on the ground.~
+This bracer was made by and belongs to the hermit of VanEttan Lake.
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_GLOW|ITEM_FLAG_HUM|ITEM_FLAG_LEVEL|ITEM_FLAG_INVIS
+ITEM_WEAR_WRIST|ITEM_WEAR_TAKE
+12 0 0 0
+20 10 76
+A
+APPLY_MANA 85
+A
+APPLY_SAVING_SPELL -1
+
+@updated the short descrip, so that its an actual short descrip  12/18/03
+#15806
+bbq barbecue chicken~
+A Barbecue Chicken Leg~
+A barbecue chicken leg was left here.~
+A good home cooked chicken leg.
+~
+ITEM_TYPE_FOOD
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+10 0 0 NOT_POISONED
+1 2000 1
+
+@updated the short descrip, so that its an actual short descrip  12/18/03
+#15807
+chicken~
+A Chicken Leg~
+A chicken leg is on the ground here.~
+A good home cooked chicken leg.
+~
+ITEM_TYPE_FOOD
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+8 0 0 NOT_POISONED
+1 1500 1
+
+@updated the short descrip, so that its an actual short descrip  12/18/03
+#15808
+whole chicken~
+A Whole Chicken~
+A whole cooked chicken was left here.~
+A good home cooked chicken.
+~
+ITEM_TYPE_FOOD
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+25 0 0 NOT_POISONED
+5 40000 1
+
+@updated the short descrip, so that its an actual short descrip  12/18/03
+#15809
+beer mug~
+A Mug of Beer~
+Someone left a beer mug here.~
+A mug of fresh brewed beer.
+~
+ITEM_TYPE_DRINK_CON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+1 1 LIQ_BEER NOT_POISONED
+1 5000 1
+
+@updated the short descrip, so that its an actual short descrip  12/18/03
+#15810
+potion cure mass~
+Potion of mass cure~
+A small vial of potion was left here.~
+A potion brewed for those that need a quick heal.
+~
+ITEM_TYPE_POTION
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+50 SPELL_CURE_CRITICAL SPELL_CURE_CRITICAL SPELL_CURE_CRITICAL
+1 90000 50
+
+@updated the short descrip, so that its an actual short descrip  12/18/03
+#15811
+scroll cure mass~
+scroll of mass cure~
+A scroll was left here.~
+A scroll written for those that need a quick heal.
+~
+ITEM_TYPE_SCROLL
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+50 SPELL_CURE_CRITICAL SPELL_CURE_CRITICAL SPELL_CURE_CRITICAL
+1 90000 50
+
+@updated the short descrip, so that its an actual short descrip  12/18/03
+#15812
+potion passdoor pass~
+Potion of pass door~
+A small glass vial of potion was left here~
+A potion brewed for those times when you lose your house key.
+~
+ITEM_TYPE_POTION
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+35 SPELL_PASS_DOOR SPELL_FLY SPELL_BURNING_HANDS
+1 15000 35
+
+@updated the short descrip, so that its an actual short descrip  12/18/03
+#15813
+scroll passdoor pass~
+Scroll of pass door~
+A scroll was left here.~
+A scroll written for those times when you lose your house key.
+~
+ITEM_TYPE_SCROLL
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+35 SPELL_PASS_DOOR SPELL_FLY SPELL_BURNING_HANDS
+1 15000 35
+
+@updated the short descrip, so that its an actual short descrip  12/18/03
+#15814
+staff fly~
+A staff of fly~
+You see a staff on the ground.~
+A staff for mountain climbers... it helps a lot.
+~
+ITEM_TYPE_STAFF
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+25 5 5 SPELL_FLY
+4 50000 25
+
+@updated the short descrip, so that its an actual short descrip  12/18/03
+#15815
+wand fly~
+A wand of fly~
+You see a tiny wand on the ground.~
+A wand for mountain climbers... it helps a lot.
+~
+ITEM_TYPE_WAND
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+40 5 5 SPELL_FLY
+4 50000 41
+
+@updated the short descrip, so that its an actual short descrip  12/18/03
+#15816
+staff haste~
+A staff of haste~
+There is a staff on the ground.~
+This staff is made for sprinters.
+~
+ITEM_TYPE_STAFF
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+25 5 5 SPELL_HASTE
+4 50000 25
+
+@updated the short descrip, so that its an actual short descrip  12/18/03
+#15817
+wand haste~
+A wand of haste~
+There is a wand on the ground.~
+This wand is made for sprinters.
+~
+ITEM_TYPE_WAND
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+40 5 5 SPELL_HASTE
+4 50000 41
+#15818
+fountain~
+The Fountain~
+A large elegant fountain is here.~
+This fountain is cool.
+~
+ITEM_TYPE_FOUNTAIN
+ITEM_FLAG_LEVEL
+0
+0 0 0 0
+9000 1 1
+
+@updated the short descrip, so that its an actual short descrip  12/18/03
+#15819
+pass residents~
+The Resident's Pass~
+Someone left a resident's pass on the ground here.~
+This pass is used to identify residents of the VanEttan Lake community.
+~
+ITEM_TYPE_TREASURE
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 0 0
+1 15000 1
+#15820
+Ssab's armor~
+Ssab's Armor~
+A shiny piece of armor with Ssab engraved on it is here.~
+This armor is very shiny, Ssab must have kept it clean.  It has a waxy,
+glowing coating on the outside so that it doesn't corrode in water.
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL|ITEM_FLAG_GLOW
+ITEM_WEAR_BODY|ITEM_WEAR_TAKE
+11 0 0 0
+5 20000 60
+A
+APPLY_WIS 3
+A
+APPLY_CON 3
+A
+APPLY_DEX 3
+#15821
+ssab's chest scale~
+Ssab's Chest Scale~
+A light-green fish scale rests here.~
+This scale looks very important.  It has a large symbol engraved
+into it.  The symbol looks as if it may be a family crest.
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_SHIELD|ITEM_WEAR_TAKE
+7 0 0 0
+5 20000 80
+A
+APPLY_DAMROLL 8
+A
+APPLY_HITROLL 5
+A
+APPLY_HIT -50
+#15822
+ssab's back scale~
+Ssab's Back Scale~
+A dark-green fish scale rests here.~
+This scale looks very important.  It has a large symbol engraved
+into it.  The symbol looks as if it may be a family crest.
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL|ITEM_FLAG_AUTO_ENGRAVE
+ITEM_WEAR_SHIELD|ITEM_WEAR_TAKE
+19 0 0 0
+5 20000 80
+A
+APPLY_HIT -50
+
+@removed "lint revolution" crap from long descrip   12/18/03
+#15823
+ball of lint~
+A Ball of Lint~
+A ball of pocket lint is lying here~
+This mighty ball of lint is extremely fine textured and is sopping 
+wet.  It looks as though it has been formed by nothing but the best
+lint in the world.
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_HOLD|ITEM_WEAR_TAKE
+0 0 0 0
+1 100 1
+#0
+
+#ROOMS
+#15800
+The Hermits House~
+This is where the hermit of VanEttan Lake lives. He doesn't see 
+people very often and he likes it that way.  The room is old and 
+dusty with an old couch and a dining area in the corner.  The 
+floor is padded with some deer skin rugs.
+~
+158 ROOM_NO_CASTLE|ROOM_NO_RIP|ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_DOWN
+~
+~
+0 -1 15851
+S
+#15801
+Room number 15801~
+This is where the hermit of VanEttan Lake lives.  He doesn't see 
+people that often and he likes in that way.  this room isn't even 
+in the game I believe.. If you have a rip to this room that is 
+pretty cool.
+~
+158 0 SECT_INSIDE
+DDIR_DOWN
+~
+~
+0 -1 15851
+S
+#15802
+An Underwater Clearing~
+This part of the lake is a little less appealing than the rest of the 
+lake. The sounds of kids playing in the water far away near shore echo 
+through the waters.  There might be more stuff further into the water.
+~
+158 ROOM_DARK SECT_UNDER_WATER
+DDIR_UP
+~
+~
+0 -1 15877
+DDIR_EAST
+~
+~
+0 -1 15803
+DDIR_WEST
+~
+~
+0 -1 15804
+DDIR_SOUTH
+~
+~
+0 -1 15812
+S
+#15803
+An Underwater Clearing~
+This part of the lake is a little less appealing than the rest of the 
+lake. The sounds of kids playing in the water far away near shore echo 
+through the waters.  There might be more stuff further into the water.
+~
+158 ROOM_DARK SECT_UNDER_WATER
+DDIR_NORTH
+~
+~
+0 -1 15814
+DDIR_EAST
+~
+~
+0 -1 15813
+DDIR_WEST
+~
+~
+0 -1 15815
+DDIR_SOUTH
+~
+~
+0 -1 15820
+S
+#15804
+An Underwater Clearing~
+This part of the lake is a little less appealing than the rest of the 
+lake. The sounds of kids playing in the water far away near shore echo 
+through the waters.  There might be more stuff further into the water.
+~
+158 ROOM_DARK SECT_UNDER_WATER
+DDIR_NORTH
+~
+~
+0 -1 15810
+DDIR_EAST
+~
+~
+0 -1 15817
+DDIR_WEST
+~
+~
+0 -1 15813
+DDIR_SOUTH
+~
+~
+0 -1 15814
+S
+#15805
+Loud Drive Intersection~
+This is a common place for people that live in the area to hang 
+out.  A large fountain adorns this area.  a couple benches are 
+lined against the side of the fountain.
+~
+158 ROOM_SAFE|ROOM_NO_MOB SECT_CITY
+DDIR_WEST
+~
+~
+0 -1 15893
+DDIR_SOUTH
+~
+~
+0 -1 15897
+DDIR_NORTH
+~
+~
+0 -1 15894
+DDIR_EAST
+~
+~
+0 -1 15859
+S
+#15806
+Practice Grounds~
+You can practice your new skills here.  There are many people here 
+learning to do many different things.  The walls are lined with 
+equipment and practicing dummies. 
+~
+158 0 SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 15899
+S
+#15807
+Training Grounds~
+You can train your abilities here.  Steve is here to make your body 
+stronger in whatever you desire.  there is weight lifting machines 
+as well as many books in here.
+~
+158 0 SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 15898
+S
+#15808
+MagicsR'Us~
+We sell potions, staffs, wands, and scrolls for low prices, always. 
+The walls have many shelves lined with magical equipment.  The floor 
+is made of solid marble and the cashier seems to be floating behind 
+the counter watching to see if you are interested in any merchandise.
+~
+158 0 SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 15895
+S
+#15809
+Chef Sander's Chicken Palace~
+It is the chef himself with a crew of master waiters and cooks to help 
+with your order.  There is a magic glowing sign above the chef's head 
+that says what food they have for sale.  The room is colored in red and 
+white and seems a little less clean than expected.
+~
+158 0 SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 15896
+S
+#15810
+An Underwater Clearing~
+This part of the lake is a little less appealing than the rest of the 
+lake. The sounds of kids playing in the water far away near shore echo 
+through the waters.  There might be more stuff further into the water.
+~
+158 ROOM_DARK SECT_UNDER_WATER
+DDIR_NORTH
+~
+~
+0 -1 15813
+DDIR_EAST
+~
+~
+0 -1 15802
+DDIR_WEST
+~
+~
+0 -1 15814
+DDIR_SOUTH
+~
+~
+0 -1 15803
+S
+#15811
+An Underwater Clearing~
+This part of the lake is a little less appealing than the rest of the 
+lake. The sounds of kids playing in the water far away near shore echo 
+through the waters.  There might be more stuff further into the water.
+~
+158 ROOM_DARK SECT_UNDER_WATER
+DDIR_NORTH
+~
+~
+0 -1 15802
+DDIR_EAST
+~
+~
+0 -1 15812
+DDIR_WEST
+~
+~
+0 -1 15802
+DDIR_SOUTH
+~
+~
+0 -1 15815
+S
+#15812
+An Underwater Clearing~
+This part of the lake is a little less appealing than the rest of the 
+lake. The sounds of kids playing in the water far away near shore echo 
+through the waters.  There might be more stuff further into the water.
+~
+158 ROOM_DARK SECT_UNDER_WATER
+DDIR_NORTH
+~
+~
+0 -1 15810
+DDIR_EAST
+~
+~
+0 -1 15813
+DDIR_WEST
+~
+~
+0 -1 15819
+DDIR_SOUTH
+~
+~
+0 -1 15816
+S
+#15813
+An Underwater Clearing~
+This part of the lake is a little less appealing than the rest of the 
+lake. The sounds of kids playing in the water far away near shore echo 
+through the waters.  There might be more stuff further into the water.
+~
+158 ROOM_DARK SECT_UNDER_WATER
+DDIR_NORTH
+~
+~
+0 -1 15810
+DDIR_EAST
+~
+~
+0 -1 15813
+DDIR_WEST
+~
+~
+0 -1 15816
+DDIR_SOUTH
+~
+~
+0 -1 15814
+S
+#15814
+An Underwater Clearing~
+This part of the lake is a little less appealing than the rest of the 
+lake. The sounds of kids playing in the water far away near shore echo 
+through the waters.  There might be more stuff further into the water.
+~
+158 ROOM_DARK SECT_UNDER_WATER
+DDIR_NORTH
+~
+~
+0 -1 15804
+DDIR_EAST
+~
+~
+0 -1 15815
+DDIR_WEST
+~
+~
+0 -1 15817
+DDIR_SOUTH
+~
+~
+0 -1 15811
+S
+#15815
+An Underwater Clearing~
+This part of the lake is a little less appealing than the rest of the 
+lake. The sounds of kids playing in the water far away near shore echo 
+through the waters.  There might be more stuff further into the water.
+~
+158 ROOM_DARK SECT_UNDER_WATER
+DDIR_NORTH
+~
+~
+0 -1 15803
+DDIR_EAST
+~
+~
+0 -1 15802
+DDIR_WEST
+~
+~
+0 -1 15802
+DDIR_SOUTH
+~
+~
+0 -1 15811
+S
+#15816
+An Underwater Clearing~
+This part of the lake is a little less appealing than the rest of the 
+lake. The sounds of kids playing in the water far away near shore echo 
+through the waters.  There might be more stuff further into the water.
+~
+158 ROOM_DARK SECT_UNDER_WATER
+DDIR_NORTH
+~
+~
+0 -1 15816
+DDIR_EAST
+~
+~
+0 -1 15816
+DDIR_WEST
+~
+~
+0 -1 15802
+DDIR_SOUTH
+~
+~
+0 -1 15820
+S
+#15817
+An Underwater Clearing~
+This part of the lake is a little less appealing than the rest of the 
+lake. The sounds of kids playing in the water far away near shore echo 
+through the waters.  There might be more stuff further into the water.
+~
+158 ROOM_DARK SECT_UNDER_WATER
+DDIR_NORTH
+~
+~
+0 -1 15814
+DDIR_EAST
+~
+~
+0 -1 15817
+DDIR_WEST
+~
+~
+0 -1 15816
+DDIR_SOUTH
+~
+~
+0 -1 15813
+S
+#15818
+An Underwater Clearing~
+This part of the lake is a little less appealing than the rest of the 
+lake. The sounds of kids playing in the water far away near shore echo 
+through the waters.  There might be more stuff further into the water.
+~
+158 ROOM_DARK SECT_UNDER_WATER
+DDIR_NORTH
+~
+~
+0 -1 15821
+DDIR_EAST
+~
+~
+0 -1 15810
+DDIR_WEST
+~
+~
+0 -1 15814
+DDIR_SOUTH
+~
+~
+0 -1 15820
+S
+#15819
+An Underwater Clearing~
+This part of the lake is a little less appealing than the rest of the 
+lake. The sounds of kids playing in the water far away near shore echo 
+through the waters.  There might be more stuff further into the water.
+~
+158 ROOM_DARK SECT_UNDER_WATER
+DDIR_NORTH
+~
+~
+0 -1 15813
+DDIR_EAST
+~
+~
+0 -1 15818
+DDIR_WEST
+~
+~
+0 -1 15811
+DDIR_SOUTH
+~
+~
+0 -1 15802
+S
+#15820
+An Underwater Clearing~
+This part of the lake is a little less appealing than the rest of the 
+lake. The sounds of kids playing in the water far away near shore echo 
+through the waters.  There might be more stuff further into the water.
+~
+158 ROOM_DARK SECT_UNDER_WATER
+DDIR_NORTH
+~
+~
+0 -1 15811
+DDIR_EAST
+~
+~
+0 -1 15802
+DDIR_WEST
+~
+~
+0 -1 15815
+DDIR_SOUTH
+~
+~
+0 -1 15816
+S
+#15821
+An Underwater Clearing~
+This part of the lake is a little less appealing than the rest of the 
+lake. The sounds of kids playing in the water far away near shore echo 
+through the waters.  There might be more stuff further into the water.
+~
+158 ROOM_DARK SECT_UNDER_WATER
+DDIR_NORTH
+~
+~
+0 -1 15817
+DDIR_EAST
+~
+~
+0 -1 15803
+DDIR_WEST
+~
+~
+0 -1 15822
+DDIR_SOUTH
+~
+~
+0 -1 15816
+S
+#15822
+An Underwater Clearing~
+This part of the lake is a little less appealing than the rest of the 
+lake. The sounds of kids playing in the water far away near shore echo 
+through the waters.  There might be more stuff further into the water.
+~
+158 ROOM_DARK|ROOM_SAFE SECT_UNDER_WATER
+DDIR_DOWN
+~
+~
+0 -1 15823
+S
+#15823
+A Large Hole~
+This is a big hole in the seaweed bottom of VanEttan Lake.  There is 
+a lot of fish here.  The bottom is covered in seaweed and muck.  The 
+fish seem to like it here and the don't really have a problem with you 
+being here.
+~
+158 0 SECT_UNDER_WATER
+DDIR_UP
+~
+~
+0 -1 15822
+DDIR_EAST
+~
+~
+0 -1 15824
+DDIR_SOUTH
+~
+~
+0 -1 15827
+S
+#15824
+A Large Hole~
+This is a big hole in the seaweed bottom of VanEttan Lake.  There is 
+a lot of fish here.  The bottom is covered in seaweed and muck.  The 
+fish seem to like it here and the don't really have a problem with you 
+being here.
+~
+158 0 SECT_UNDER_WATER
+DDIR_EAST
+~
+~
+0 -1 15825
+DDIR_SOUTH
+~
+~
+0 -1 15828
+DDIR_WEST
+~
+~
+0 -1 15823
+S
+#15825
+A Large Hole~
+This is a big hole in the seaweed bottom of VanEttan Lake.  There is 
+a lot of fish here.  The bottom is covered in seaweed and muck.  The 
+fish seem to like it here and the don't really have a problem with you 
+being here.
+~
+158 0 SECT_UNDER_WATER
+DDIR_EAST
+~
+~
+0 -1 15826
+DDIR_SOUTH
+~
+~
+0 -1 15829
+DDIR_WEST
+~
+~
+0 -1 15824
+S
+#15826
+A Large Hole~
+This is a big hole in the seaweed bottom of VanEttan Lake.  There is 
+a lot of fish here.  The bottom is covered in seaweed and muck.  The 
+fish seem to like it here and the don't really have a problem with you 
+being here.
+~
+158 0 SECT_UNDER_WATER
+DDIR_SOUTH
+~
+~
+0 -1 15829
+DDIR_WEST
+~
+~
+0 -1 15825
+S
+#15827
+A Large Hole~
+This is a big hole in the seaweed bottom of VanEttan Lake.  There is 
+a lot of fish here.  The bottom is covered in seaweed and muck.  The 
+fish seem to like it here and the don't really have a problem with you 
+being here.
+~
+158 0 SECT_UNDER_WATER
+DDIR_EAST
+~
+~
+0 -1 15828
+DDIR_SOUTH
+~
+~
+0 -1 15831
+DDIR_NORTH
+~
+~
+0 -1 15823
+S
+#15828
+A Large Hole~
+This is a big hole in the seaweed bottom of VanEttan Lake.  There is 
+a lot of fish here.  The bottom is covered in seaweed and muck.  The 
+fish seem to like it here and the don't really have a problem with you 
+being here.
+~
+158 0 SECT_UNDER_WATER
+DDIR_EAST
+~
+~
+0 -1 15829
+DDIR_SOUTH
+~
+~
+0 -1 15832
+DDIR_WEST
+~
+~
+0 -1 15827
+DDIR_NORTH
+~
+~
+0 -1 15824
+S
+#15829
+A Large Hole~
+This is a big hole in the seaweed bottom of VanEttan Lake.  There is 
+a lot of fish here.  The bottom is covered in seaweed and muck.  The 
+fish seem to like it here and the don't really have a problem with you 
+being here.
+~
+158 0 SECT_UNDER_WATER
+DDIR_EAST
+~
+~
+0 -1 15830
+DDIR_SOUTH
+~
+~
+0 -1 15833
+DDIR_WEST
+~
+~
+0 -1 15828
+DDIR_NORTH
+~
+~
+0 -1 15825
+S
+#15830
+A Large Hole~
+This is a big hole in the seaweed bottom of VanEttan Lake.  There is 
+a lot of fish here.  The bottom is covered in seaweed and muck.  The 
+fish seem to like it here and the don't really have a problem with you 
+being here.
+~
+158 0 SECT_UNDER_WATER
+DDIR_SOUTH
+~
+~
+0 -1 15834
+DDIR_WEST
+~
+~
+0 -1 15829
+DDIR_NORTH
+~
+~
+0 -1 15826
+S
+#15831
+A Large Hole~
+This is a big hole in the seaweed bottom of VanEttan Lake.  There is 
+a lot of fish here.  The bottom is covered in seaweed and muck.  The 
+fish seem to like it here and the don't really have a problem with you 
+being here.
+~
+158 0 SECT_UNDER_WATER
+DDIR_EAST
+~
+~
+0 -1 15832
+DDIR_SOUTH
+~
+~
+0 -1 15835
+DDIR_NORTH
+~
+~
+0 -1 15827
+S
+#15832
+A Large Hole~
+This is a big hole in the seaweed bottom of VanEttan Lake.  There is 
+a lot of fish here.  The bottom is covered in seaweed and muck.  The 
+fish seem to like it here and the don't really have a problem with you 
+being here.
+~
+158 0 SECT_UNDER_WATER
+DDIR_EAST
+~
+~
+0 -1 15833
+DDIR_SOUTH
+~
+~
+0 -1 15836
+DDIR_WEST
+~
+~
+0 -1 15831
+DDIR_NORTH
+~
+~
+0 -1 15828
+S
+#15833
+A Large Hole~
+This is a big hole in the seaweed bottom of VanEttan Lake.  There is 
+a lot of fish here.  The bottom is covered in seaweed and muck.  The 
+fish seem to like it here and the don't really have a problem with you 
+being here.
+~
+158 0 SECT_UNDER_WATER
+DDIR_EAST
+~
+~
+0 -1 15834
+DDIR_SOUTH
+~
+~
+0 -1 15837
+DDIR_WEST
+~
+~
+0 -1 15832
+DDIR_NORTH
+~
+~
+0 -1 15829
+S
+#15834
+A Large Hole~
+This is a big hole in the seaweed bottom of VanEttan Lake.  There is 
+a lot of fish here.  The bottom is covered in seaweed and muck.  The 
+fish seem to like it here and the don't really have a problem with you 
+being here.
+~
+158 0 SECT_UNDER_WATER
+DDIR_SOUTH
+~
+~
+0 -1 15838
+DDIR_WEST
+~
+~
+0 -1 15833
+DDIR_NORTH
+~
+~
+0 -1 15830
+S
+#15835
+A Large Hole~
+This is a big hole in the seaweed bottom of VanEttan Lake.  There is 
+a lot of fish here.  The bottom is covered in seaweed and muck.  The 
+fish seem to like it here and the don't really have a problem with you 
+being here.
+~
+158 0 SECT_UNDER_WATER
+DDIR_EAST
+~
+~
+0 -1 15836
+DDIR_NORTH
+~
+~
+0 -1 15831
+S
+#15836
+A Large Hole~
+This is a big hole in the seaweed bottom of VanEttan Lake.  There is 
+a lot of fish here.  The bottom is covered in seaweed and muck.  The 
+fish seem to like it here and the don't really have a problem with you 
+being here.
+~
+158 0 SECT_UNDER_WATER
+DDIR_EAST
+~
+~
+0 -1 15837
+DDIR_WEST
+~
+~
+0 -1 15835
+DDIR_NORTH
+~
+~
+0 -1 15832
+S
+#15837
+A Large Hole~
+This is a big hole in the seaweed bottom of VanEttan Lake.  There is 
+a lot of fish here.  The bottom is covered in seaweed and muck.  The 
+fish seem to like it here and the don't really have a problem with you 
+being here.
+~
+158 0 SECT_UNDER_WATER
+DDIR_EAST
+~
+~
+0 -1 15838
+DDIR_WEST
+~
+~
+0 -1 15836
+DDIR_NORTH
+~
+~
+0 -1 15833
+S
+#15838
+A Large Hole~
+This is a big hole in the seaweed bottom of VanEttan Lake.  There is 
+a lot of fish here.  The bottom is covered in seaweed and muck.  The 
+fish seem to like it here and the don't really have a problem with you 
+being here.
+~
+158 0 SECT_UNDER_WATER
+DDIR_WEST
+~
+~
+0 -1 15837
+DDIR_NORTH
+~
+~
+0 -1 15834
+DDIR_DOWN
+~
+~
+0 -1 15839
+S
+#15839
+A Dark Cavern~
+This underwater cavern is very large. The walls are made of rocks that 
+are covered in algae.  The bottom of the cavern is sand and it has a 
+big slide mark in the middle as if something really big has swam across 
+it.
+~
+158 ROOM_DARK SECT_UNDER_WATER
+DDIR_UP
+~
+~
+0 -1 15838 
+DDIR_EAST
+~
+~
+0 -1 15840
+S
+#15840
+A Dark Cavern~
+This underwater cavern is very large. The walls are made of rocks that 
+are covered in algae.  The bottom of the cavern is sand and it has a 
+big slide mark in the middle as if something really big has swam across 
+it.
+~
+158 ROOM_DARK SECT_UNDER_WATER
+DDIR_WEST
+~
+~
+0 -1 15839 
+DDIR_EAST
+~
+~
+0 -1 15841
+S
+#15841
+A Dark Cavern~
+This underwater cavern is very large. The walls are made of rocks that 
+are covered in algae.  The bottom of the cavern is sand and it has a 
+big slide mark in the middle as if something really big has swam across 
+it.
+~
+158 ROOM_DARK SECT_UNDER_WATER
+DDIR_WEST
+~
+~
+0 -1 15840 
+DDIR_SOUTH
+~
+~
+0 -1 15842
+S
+#15842
+A Dark Cavern~
+This underwater cavern is very large. The walls are made of rocks that 
+are covered in algae.  The bottom of the cavern is sand and it has a 
+big slide mark in the middle as if something really big has swam across 
+it.
+~
+158 ROOM_DARK SECT_UNDER_WATER
+DDIR_SOUTH
+~
+~
+0 -1 15843 
+DDIR_NORTH
+~
+~
+0 -1 15841
+S
+#15843
+A Dark Cavern~
+This underwater cavern is very large. The walls are made of rocks that 
+are covered in algae.  The bottom of the cavern is sand and it has a 
+big slide mark in the middle as if something really big has swam across 
+it.
+~
+158 ROOM_DARK SECT_UNDER_WATER
+DDIR_WEST
+~
+~
+0 -1 15844 
+DDIR_NORTH
+~
+~
+0 -1 15842
+S
+#15844
+A Dark Cavern~
+This underwater cavern is very large. The walls are made of rocks that 
+are covered in algae.  The bottom of the cavern is sand and it has a 
+big slide mark in the middle as if something really big has swam across 
+it.
+~
+158 ROOM_DARK SECT_UNDER_WATER
+DDIR_SOUTH
+~
+~
+0 -1 15845
+DDIR_EAST
+~
+~
+0 -1 15843
+S
+#15845
+Ssab's Lair~
+Ssab rests here after just having a nice meal of fish.  He doesn't seem 
+to like you being here.  The room is dark and there is a pile of bones 
+in the corner.
+~
+158 ROOM_DARK SECT_UNDER_WATER
+DDIR_NORTH
+~
+~
+0 -1 15844
+S
+#15851
+The Island~
+People usually stay away from this island because of the fact that 
+the hermit doesn't want people there and is very rude about it unless 
+he needs something done. There are grasses and trees all over and a 
+distinct path to a stairway leading to the hermit's house.
+~
+158 ROOM_NO_MOB SECT_FOREST
+DDIR_NORTH
+~
+~
+0 -1 15873
+DDIR_EAST
+~
+~
+0 -1 15880
+DDIR_WEST
+~
+~
+0 -1 15865
+DDIR_UP
+~
+~
+0 -1 15800
+DDIR_SOUTH
+~
+~
+0 -1 15874
+S
+#15856
+The Beach~
+This is a wonderful place to take your family for an outing.  The water 
+looks fresh and the sand is warm.  you can see a beautiful flock of ducks 
+on the lake from here. 
+~
+158 0 SECT_FIELD
+DDIR_EAST
+~
+~
+0 -1 15863
+DDIR_WEST
+~
+~
+0 -1 15899
+DDIR_NORTH
+~
+~
+0 -1 15857
+S
+#15857
+The Beach~
+This is a wonderful place to take your family for an outing.  The water
+looks fresh and the sand is warm.  you can see a beautiful flock of ducks 
+on the lake from here. 
+~
+158 0 SECT_FIELD
+DDIR_SOUTH
+~
+~
+0 -1 15856
+DDIR_EAST
+~
+~
+0 -1 15864
+DDIR_WEST
+~
+~
+0 -1 15898
+DDIR_NORTH
+~
+~
+0 -1 15858
+S
+#15858
+The Beach~
+This is a wonderful place to take your family for an outing.  The water 
+looks fresh and the sand is warm.  you can see a beautiful flock of ducks 
+on the lake from here. 
+~
+158 0 SECT_FIELD
+DDIR_SOUTH
+~
+~
+0 -1 15857
+DDIR_EAST
+~
+~
+0 -1 15865
+DDIR_WEST
+~
+~
+0 -1 15897
+DDIR_NORTH
+~
+~
+0 -1 15859
+S
+#15859
+The Beach~
+This is a wonderful place to take your family for an outing.  The water 
+looks fresh and the sand is warm.  you can see a beautiful flock of ducks 
+on the lake from here. 
+~
+158 0 SECT_FIELD
+DDIR_SOUTH
+~
+~
+0 -1 15858
+DDIR_EAST
+~
+~
+0 -1 15866
+DDIR_WEST
+~
+~
+0 -1 15805
+DDIR_NORTH
+~
+~
+0 -1 15860
+S
+
+#15860
+The Beach~
+This is a wonderful place to take your family for an outing.  The water 
+looks fresh and the sand is warm.  you can see a beautiful flock of ducks 
+on the lake from here. 
+~
+158 0 SECT_FIELD
+DDIR_SOUTH
+~
+~
+0 -1 15859
+DDIR_EAST
+~
+~
+0 -1 15868
+DDIR_WEST
+~
+~
+0 -1 15894
+DDIR_NORTH
+~
+~
+0 -1 15861
+S
+#15861
+The Beach~
+This is a wonderful place to take your family for an outing.  The water 
+looks fresh and the sand is warm.  you can see a beautiful flock of ducks 
+on the lake from here. 
+~
+158 0 SECT_FIELD
+DDIR_SOUTH
+~
+~
+0 -1 15860
+DDIR_EAST
+~
+~
+0 -1 15867
+DDIR_WEST
+~
+~
+0 -1 15895
+DDIR_NORTH
+~
+~
+0 -1 15862
+S
+#15862
+The Beach~
+This is a wonderful place to take your family for an outing.  The water 
+looks fresh and the sand is warm.  you can see a beautiful flock of ducks 
+on the lake from here. 
+~
+158 0 SECT_FIELD
+DDIR_SOUTH
+~
+~
+0 -1 15861
+DDIR_EAST
+~
+~
+0 -1 15869
+DDIR_WEST
+~
+~
+0 -1 15896
+S
+#15863
+VanEttan Lake~
+This is beautiful VanEttan Lake.  VanEttan Lake is famous for its glorious 
+ducks.  Some ducks seem to enjoy your company and splash around playfully 
+in the water looking for small fish.  The water is fairly clear and 
+cool here.
+~
+158 0 SECT_WATER_SWIM
+DDIR_WEST
+~
+~
+0 -1 15856
+DDIR_NORTH
+~
+~
+0 -1 15864
+DDIR_EAST
+~
+~
+0 -1 15875
+S
+#15864
+VanEttan Lake~
+This is beautiful VanEttan Lake.  VanEttan Lake is famous for its glorious 
+ducks.  Some ducks seem to enjoy your company and splash around playfully 
+in the water looking for small fish.  The water is fairly clear and 
+cool here.
+~
+158 0 SECT_WATER_SWIM
+DDIR_SOUTH
+~
+~
+0 -1 15863
+DDIR_WEST
+~
+~
+0 -1 15857
+DDIR_NORTH
+~
+~
+0 -1 15865
+DDIR_EAST
+~
+~
+0 -1 15874
+S
+#15865
+VanEttan Lake~
+This is beautiful VanEttan Lake.  VanEttan Lake is famous for its glorious 
+ducks.  Some ducks seem to enjoy your company and splash around playfully 
+in the water looking for small fish.  The water is fairly clear and 
+cool here.
+~
+158 0 SECT_WATER_SWIM
+DDIR_SOUTH
+~
+~
+0 -1 15864
+DDIR_EAST
+~
+~
+0 -1 15851
+DDIR_WEST
+~
+~
+0 -1 15858
+DDIR_NORTH
+~
+~
+0 -1 15866
+S
+
+#15866
+VanEttan Lake~
+This is beautiful VanEttan Lake.  VanEttan Lake is famous for its glorious 
+ducks.  Some ducks seem to enjoy your company and splash around playfully 
+in the water looking for small fish.  The water is fairly clear and 
+cool here.
+~
+158 0 SECT_WATER_SWIM
+DDIR_SOUTH
+~
+~
+0 -1 15865
+DDIR_WEST
+~
+~
+0 -1 15859
+DDIR_NORTH
+~
+~
+0 -1 15868
+DDIR_EAST
+~
+~
+0 -1 15873
+S
+#15867
+VanEttan Lake~
+This is beautiful VanEttan Lake.  VanEttan Lake is famous for its glorious 
+ducks.  Some ducks seem to enjoy your company and splash around playfully 
+in the water looking for small fish.  The water is fairly clear and 
+cool here.
+~
+158 0 SECT_WATER_SWIM
+DDIR_WEST
+~
+~
+0 -1 15861
+DDIR_SOUTH
+~
+~
+0 -1 15868
+DDIR_NORTH
+~
+~
+0 -1 15869
+DDIR_EAST
+~
+~
+0 -1 15871
+S
+#15868
+VanEttan Lake~
+This is beautiful VanEttan Lake.  VanEttan Lake is famous for its glorious 
+ducks.  Some ducks seem to enjoy your company and splash around playfully 
+in the water looking for small fish.  The water is fairly clear and 
+cool here.
+~
+158 0 SECT_WATER_SWIM
+DDIR_NORTH
+~
+~
+0 -1 15867
+DDIR_SOUTH
+~
+~
+0 -1 15866
+DDIR_WEST
+~
+~
+0 -1 15860
+DDIR_EAST
+~
+~
+0 -1 15872
+S
+#15869
+VanEttan Lake~
+This is beautiful VanEttan Lake.  VanEttan Lake is famous for its glorious 
+ducks.  Some ducks seem to enjoy your company and splash around playfully 
+in the water looking for small fish.  The water is fairly clear and 
+cool here.
+~
+158 0 SECT_WATER_SWIM
+DDIR_SOUTH
+~
+~
+0 -1 15867
+DDIR_WEST
+~
+~
+0 -1 15862
+DDIR_EAST
+~
+~
+0 -1 15870
+S
+#15870
+VanEttan Lake~
+This is beautiful VanEttan Lake.  VanEttan Lake is famous for its glorious 
+ducks.  Some ducks seem to enjoy your company and splash around playfully 
+in the water looking for small fish.  The water is fairly clear and 
+cool here.
+~
+158 0 SECT_WATER_SWIM
+DDIR_WEST
+~
+~
+0 -1 15869
+DDIR_SOUTH
+~
+~
+0 -1 15871
+DDIR_EAST
+~
+~
+0 -1 15888
+S
+#15871
+VanEttan Lake~
+This is beautiful VanEttan Lake.  VanEttan Lake is famous for its glorious 
+ducks.  Some ducks seem to enjoy your company and splash around playfully 
+in the water looking for small fish.  The water is fairly clear and 
+cool here.
+~
+158 0 SECT_WATER_SWIM
+DDIR_NORTH
+~
+~
+0 -1 15870
+DDIR_WEST
+~
+~
+0 -1 15867
+DDIR_SOUTH
+~
+~
+0 -1 15872
+DDIR_EAST
+~
+~
+0 -1 15887
+S
+
+#15872
+VanEttan Lake~
+This is beautiful VanEttan Lake.  VanEttan Lake is famous for its glorious 
+ducks.  Some ducks seem to enjoy your company and splash around playfully 
+in the water looking for small fish.  The water is fairly clear and 
+cool here.
+~
+158 0 SECT_WATER_SWIM
+DDIR_NORTH
+~
+~
+0 -1 15871
+DDIR_WEST
+~
+~
+0 -1 15868
+DDIR_SOUTH
+~
+~
+0 -1 15873
+DDIR_EAST
+~
+~
+0 -1 15884
+S
+#15873
+VanEttan Lake~
+This is beautiful VanEttan Lake.  VanEttan Lake is famous for its glorious 
+ducks.  Some ducks seem to enjoy your company and splash around playfully 
+in the water looking for small fish.  The water is fairly clear and 
+cool here.
+~
+158 0 SECT_WATER_SWIM
+DDIR_NORTH
+~
+~
+0 -1 15872
+DDIR_SOUTH
+~
+~
+0 -1 15851
+DDIR_WEST
+~
+~
+0 -1 15866
+DDIR_EAST
+~
+~
+0 -1 15883
+S
+#15874
+VanEttan Lake~
+This is beautiful VanEttan Lake.  VanEttan Lake is famous for its glorious 
+ducks.  Some ducks seem to enjoy your company and splash around playfully 
+in the water looking for small fish.  The water is fairly clear and 
+cool here.
+~
+158 0 SECT_WATER_SWIM
+DDIR_NORTH
+~
+~
+0 -1 15851
+DDIR_WEST
+~
+~
+0 -1 15864
+DDIR_SOUTH
+~
+~
+0 -1 15875
+DDIR_EAST
+~
+~
+0 -1 15879
+S
+#15875
+VanEttan Lake~
+This is beautiful VanEttan Lake.  VanEttan Lake is famous for its glorious 
+ducks.  Some ducks seem to enjoy your company and splash around playfully 
+in the water looking for small fish.  The water is fairly clear and 
+cool here.
+~
+158 0 SECT_WATER_SWIM
+DDIR_NORTH
+~
+~
+0 -1 15874
+DDIR_WEST
+~
+~
+0 -1 15863
+DDIR_EAST
+~
+~
+0 -1 15876
+S
+#15876
+VanEttan Lake~
+This is beautiful VanEttan Lake.  VanEttan Lake is famous for its glorious 
+ducks.  Some ducks seem to enjoy your company and splash around playfully 
+in the water looking for small fish.  The water is fairly clear and 
+cool here.
+~
+158 0 SECT_WATER_SWIM
+DDIR_WEST
+~
+~
+0 -1 15875
+DDIR_EAST
+~
+~
+0 -1 15877
+DDIR_NORTH
+~
+~
+0 -1 15879
+S
+#15877
+VanEttan Lake~
+This is beautiful VanEttan Lake.  VanEttan Lake is famous for its glorious 
+ducks.  Some ducks seem to enjoy your company and splash around playfully 
+in the water looking for small fish.  The water is fairly clear and 
+cool here.
+~
+158 0 SECT_WATER_SWIM
+DDIR_WEST
+~
+~
+0 -1 15876
+DDIR_NORTH
+~
+~
+0 -1 15878
+DDIR_DOWN
+~
+~
+0 -1 15802
+S
+
+#15878
+VanEttan Lake~
+This is beautiful VanEttan Lake.  VanEttan Lake is famous for its glorious 
+ducks.  Some ducks seem to enjoy your company and splash around playfully 
+in the water looking for small fish.  The water is fairly clear and 
+cool here.
+~
+158 0 SECT_WATER_SWIM
+DDIR_SOUTH
+~
+~
+0 -1 15877
+DDIR_WEST
+~
+~
+0 -1 15879
+DDIR_NORTH
+~
+~
+0 -1 15881
+S
+#15879
+VanEttan Lake~
+This is beautiful VanEttan Lake.  VanEttan Lake is famous for its glorious 
+ducks.  Some ducks seem to enjoy your company and splash around playfully 
+in the water looking for small fish.  The water is fairly clear and 
+cool here.
+~
+158 0 SECT_WATER_SWIM
+DDIR_SOUTH
+~
+~
+0 -1 15876
+DDIR_EAST
+~
+~
+0 -1 15878
+DDIR_WEST
+~
+~
+0 -1 15874
+DDIR_NORTH
+~
+~
+0 -1 15880
+S
+#15880
+VanEttan Lake~
+This is beautiful VanEttan Lake.  VanEttan Lake is famous for its glorious 
+ducks.  Some ducks seem to enjoy your company and splash around playfully 
+in the water looking for small fish.  The water is fairly clear and 
+cool here.
+~
+158 0 SECT_WATER_SWIM
+DDIR_SOUTH
+~
+~
+0 -1 15879
+DDIR_WEST
+~
+~
+0 -1 15851
+DDIR_EAST
+~
+~
+0 -1 15881
+DDIR_NORTH
+~
+~
+0 -1 15883
+S
+#15881
+VanEttan Lake~
+This is beautiful VanEttan Lake.  VanEttan Lake is famous for its glorious 
+ducks.  Some ducks seem to enjoy your company and splash around playfully 
+in the water looking for small fish.  The water is fairly clear and 
+cool here.
+~
+158 0 SECT_WATER_SWIM
+DDIR_SOUTH
+~
+~
+0 -1 15878
+DDIR_WEST
+~
+~
+0 -1 15880
+DDIR_NORTH
+~
+~
+0 -1 15882
+S
+#15882
+VanEttan Lake~
+This is beautiful VanEttan Lake.  VanEttan Lake is famous for its glorious 
+ducks.  Some ducks seem to enjoy your company and splash around playfully 
+in the water looking for small fish.  The water is fairly clear and 
+cool here.
+~
+158 0 SECT_WATER_SWIM
+DDIR_SOUTH
+~
+~
+0 -1 15881
+DDIR_WEST
+~
+~
+0 -1 15883
+DDIR_NORTH
+~
+~
+0 -1 15885
+S
+#15883
+VanEttan Lake~
+This is beautiful VanEttan Lake.  VanEttan Lake is famous for its glorious 
+ducks.  Some ducks seem to enjoy your company and splash around playfully 
+in the water looking for small fish.  The water is fairly clear and 
+cool here.
+~  
+158 0 SECT_WATER_SWIM
+DDIR_SOUTH
+~
+~
+0 -1 15880
+DDIR_EAST
+~
+~
+0 -1 15882
+DDIR_WEST
+~
+~
+0 -1 15873
+DDIR_NORTH
+~
+~
+0 -1 15884
+S
+
+#15884
+VanEttan Lake~
+This is beautiful VanEttan Lake.  VanEttan Lake is famous for its glorious 
+ducks.  Some ducks seem to enjoy your company and splash around playfully 
+in the water looking for small fish.  The water is fairly clear and 
+cool here.
+~
+158 0 SECT_WATER_SWIM
+DDIR_SOUTH
+~
+~
+0 -1 15883
+DDIR_WEST
+~
+~
+0 -1 15872
+DDIR_EAST
+~
+~
+0 -1 15885
+DDIR_NORTH
+~
+~
+0 -1 15887
+S
+#15885
+VanEttan Lake~
+This is beautiful VanEttan Lake.  VanEttan Lake is famous for its glorious 
+ducks.  Some ducks seem to enjoy your company and splash around playfully 
+in the water looking for small fish.  The water is fairly clear and 
+cool here.
+~
+158 0 SECT_WATER_SWIM
+DDIR_SOUTH
+~
+~
+0 -1 15882
+DDIR_WEST
+~
+~
+0 -1 15884
+DDIR_NORTH
+~
+~
+0 -1 15886
+S
+#15886
+VanEttan Lake~
+This is beautiful VanEttan Lake.  VanEttan Lake is famous for its glorious 
+ducks.  Some ducks seem to enjoy your company and splash around playfully 
+in the water looking for small fish.  The water is fairly clear and 
+cool here.
+~
+158 0 SECT_WATER_SWIM
+DDIR_SOUTH
+~
+~
+0 -1 15885
+DDIR_WEST
+~
+~
+0 -1 15887
+DDIR_NORTH
+~
+~
+0 -1 15889
+S
+#15887
+VanEttan Lake~
+This is beautiful VanEttan Lake.  VanEttan Lake is famous for its glorious 
+ducks.  Some ducks seem to enjoy your company and splash around playfully 
+in the water looking for small fish.  The water is fairly clear and 
+cool here.
+~
+158 0 SECT_WATER_SWIM
+DDIR_SOUTH
+~
+~
+0 -1 15884
+DDIR_EAST
+~
+~
+0 -1 15886
+DDIR_WEST
+~
+~
+0 -1 15871
+DDIR_NORTH
+~
+~
+0 -1 15888
+S
+#15888
+VanEttan Lake~
+This is beautiful VanEttan Lake.  VanEttan Lake is famous for its glorious 
+ducks.  Some ducks seem to enjoy your company and splash around playfully 
+in the water looking for small fish.  The water is fairly clear and 
+cool here.
+~
+158 0 SECT_WATER_SWIM
+DDIR_SOUTH
+~
+~
+0 -1 15887
+DDIR_WEST
+~
+~
+0 -1 15870
+DDIR_EAST
+~
+~
+0 -1 15889
+S
+#15889
+VanEttan Lake~
+This is beautiful VanEttan Lake.  VanEttan Lake is famous for its glorious 
+ducks.  Some ducks seem to enjoy your company and splash around playfully 
+in the water looking for small fish.  The water is fairly clear and 
+cool here.
+~
+158 0 SECT_WATER_SWIM
+DDIR_SOUTH
+~
+~
+0 -1 15886
+DDIR_WEST
+~
+~
+0 -1 15888
+S
+
+#15891
+Loud Dr.~
+----------------------------
+|                          |
+|        Welcome To        |
+|      VanEttan  Lake      |
+|                          |
+|     by: Fudge '99-'00    |
+|     update added '01     |
+-------------  -------------
+            |  |
+            |  |
+            |__| 
+
+~
+158 0 SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 15892
+DDIR_WEST
+~
+~
+0 -1 17644
+S
+#15892
+Loud Dr.~
+This street runs through the town and all along VanEttan Lake.  It is 
+populated of citizens of the town.  Some are shopping, and some are 
+heading to the beach with there family.  the road is paved and has a 
+nice beach on one side and shops on the other.
+~
+158 0 SECT_CITY
+DDIR_WEST
+~
+~
+0 -1 15891
+DDIR_EAST
+~
+~
+0 -1 15893
+S
+#15893
+Loud Dr.~
+This street runs through the town and all along VanEttan Lake.  It is 
+populated of citizens of the town.  Some are shopping, and some are 
+heading to the beach with there family.  the road is paved and has a 
+nice beach on one side and shops on the other.
+~
+158 0 SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 15805
+DDIR_WEST
+~
+~
+0 -1 15892
+S
+#15894
+Loud Dr.~
+This street runs through the town and all along VanEttan Lake.  It is 
+populated of citizens of the town.  Some are shopping, and some are 
+heading to the beach with there family.  the road is paved and has a 
+nice beach on one side and shops on the other.
+~
+158 0 SECT_CITY
+DDIR_SOUTH
+~
+~
+0 -1 15805
+DDIR_EAST
+~
+~
+0 -1 15860
+DDIR_NORTH
+~
+~
+0 -1 15895
+S
+#15895
+Loud Dr.~
+This street runs through the town and all along VanEttan Lake.  It is 
+populated of citizens of the town.  Some are shopping, and some are 
+heading to the beach with there family.  the road is paved and has a 
+nice beach on one side and shops on the other.
+~
+158 0 SECT_CITY
+DDIR_SOUTH
+~
+~
+0 -1 15894
+DDIR_EAST
+~
+~
+0 -1 15861
+DDIR_NORTH
+~
+~
+0 -1 15896
+DDIR_WEST
+~
+~
+0 -1 15808
+S
+
+#15896
+Loud Dr.~
+This street runs through the town and all along VanEttan Lake.  It is 
+populated of citizens of the town.  Some are shopping, and some are 
+heading to the beach with there family.  the road is paved and has a 
+nice beach on one side and shops on the other.
+~
+158 0 SECT_CITY
+DDIR_SOUTH
+~
+~
+0 -1 15895
+DDIR_EAST
+~
+~
+0 -1 15862
+DDIR_WEST
+~
+~
+0 -1 15809
+S
+#15897
+Loud Dr.~
+This street runs through the town and all along VanEttan Lake.  It is 
+populated of citizens of the town.  Some are shopping, and some are 
+heading to the beach with there family.  the road is paved and has a 
+nice beach on one side and shops on the other.
+~
+158 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 15805
+DDIR_EAST
+~
+~
+0 -1 15858
+DDIR_SOUTH
+~
+~
+0 -1 15898
+S
+#15898
+Loud Dr.~
+This street runs through the town and all along VanEttan Lake.  It is 
+populated of citizens of the town.  Some are shopping, and some are 
+heading to the beach with there family.  the road is paved and has a 
+nice beach on one side and shops on the other.
+~
+158 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 15897
+DDIR_EAST
+~
+~
+0 -1 15857
+DDIR_SOUTH
+~
+~
+0 -1 15899
+DDIR_WEST
+~
+~
+0 -1 15807
+S
+#15899
+Loud Dr.~
+This street runs through the town and all along VanEttan Lake.  It is 
+populated of citizens of the town.  Some are shopping, and some are 
+heading to the beach with there family.  the road is paved and has a 
+nice beach on one side and shops on the other.
+~
+158 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 15898
+DDIR_EAST
+~
+~
+0 -1 15856
+DDIR_WEST
+~
+~
+0 -1 15806
+S
+#0
+
+
+#SHOPS
+15805 ITEM_TYPE_FOOD ITEM_TYPE_BOAT ITEM_TYPE_ARMOR ITEM_TYPE_DRINK_CON
+     ITEM_TYPE_CONTAINER 100 100 1 23
+15806 ITEM_TYPE_POTION ITEM_TYPE_STAFF ITEM_TYPE_WAND ITEM_TYPE_SCROLL
+     ITEM_TYPE_PILL 100 100 1 23
+0
+
+
+
+
+#RESETS
+M 0 15802 1 15862 ;The Father loaded in room The Beach
+M 0 15803 100 15862 ;The Mother loaded in room The Beach
+M 0 15804 100 15862 ;The child loaded in room The Beach
+M 0 15802 100 15861 ;The Father loaded in room The Beach
+M 0 15803 100 15861 ;The Mother loaded in room The Beach
+M 0 15804 100 15861 ;The child loaded in room The Beach
+M 0 15802 100 15860 ;The Father loaded in room The Beach
+M 0 15803 100 15860 ;The Mother loaded in room The Beach
+M 0 15804 100 15860 ;The child loaded in room The Beach
+M 0 15802 100 15859 ;The Father loaded in room The Beach
+M 0 15803 100 15859 ;The Mother loaded in room The Beach
+M 0 15804 100 15859 ;The child loaded in room The Beach
+M 0 15802 100 15858 ;The Father loaded in room The Beach
+M 0 15803 100 15858 ;The Mother loaded in room The Beach
+M 0 15804 100 15858 ;The child loaded in room The Beach
+M 0 15802 100 15857 ;The Father loaded in room The Beach
+M 0 15803 100 15857 ;The Mother loaded in room The Beach
+M 0 15804 100 15857 ;The child loaded in room The Beach
+M 0 15802 100 15856 ;The Father loaded in room The Beach
+M 0 15803 100 15856 ;The Mother loaded in room The Beach
+M 0 15804 100 15856 ;The child loaded in room The Beach
+M 0 15800 100 15800 ;Old Hermit loaded in room The Hermits House
+G 0 15808 0 
+G 1 15809 100  ;A Mug of Beer. placed in inventory
+M 0 15801 100 15869 ;The duck is here loaded in room VanEttan Lake
+M 0 15801 100 15870 ;The duck is here loaded in room VanEttan Lake
+M 0 15801 100 15871 ;The duck is here loaded in room VanEttan Lake
+M 0 15801 100 15872 ;The duck is here loaded in room VanEttan Lake
+M 0 15801 100 15873 ;The duck is here loaded in room VanEttan Lake
+M 0 15801 100 15874 ;The duck is here loaded in room VanEttan Lake
+M 0 15801 100 15875 ;The duck is here loaded in room VanEttan Lake
+M 0 15801 100 15876 ;The duck is here loaded in room VanEttan Lake
+M 0 15801 100 15877 ;The duck is here loaded in room VanEttan Lake
+M 0 15801 100 15878 ;The duck is here loaded in room VanEttan Lake
+M 0 15801 100 15879 ;The duck is here loaded in room VanEttan Lake
+M 0 15801 100 15880 ;The duck is here loaded in room VanEttan Lake
+M 0 15801 100 15881 ;The duck is here loaded in room VanEttan Lake
+M 0 15801 100 15882 ;The duck is here loaded in room VanEttan Lake
+M 0 15801 100 15883 ;The duck is here loaded in room VanEttan Lake
+M 0 15801 100 15884 ;The duck is here loaded in room VanEttan Lake
+M 0 15801 100 15885 ;The duck is here loaded in room VanEttan Lake
+M 0 15801 100 15886 ;The duck is here loaded in room VanEttan Lake
+M 0 15801 100 15887 ;The duck is here loaded in room VanEttan Lake
+M 0 15801 100 15888 ;The duck is here loaded in room VanEttan Lake
+M 0 15801 100 15889 ;The duck is here loaded in room VanEttan Lake
+M 0 15801 100 15863 ;The duck is here loaded in room VanEttan Lake
+M 0 15801 100 15864 ;The duck is here loaded in room VanEttan Lake
+M 0 15801 100 15865 ;The duck is here loaded in room VanEttan Lake
+M 0 15801 100 15866 ;The duck is here loaded in room VanEttan Lake
+M 0 15801 100 15867 ;The duck is here loaded in room VanEttan Lake
+M 0 15801 100 15868 ;The duck is here loaded in room VanEttan Lake
+M 0 15805 100 15809 ;The colonel loaded in room Colonel Sander's House
+G 1 15806 100  ;A Whole Chicken. placed in inventory
+G 1 15807 100  ;Chicken placed in inventory
+G 1 15808 100  ;A Whole Chicken. placed in inventory
+G 1 15809 100  ;A Mug of Beer. placed in inventory
+M 0 15806 100 15808 ;Mysteria loaded in room MagicsR'Us
+G 1 15810 100  ;scroll of mass cure. placed in inventory
+G 1 15811 100  ;scroll of mass cure. placed in inventory
+G 1 15812 100  ;Potion of passdoor. placed in inventory
+G 1 15813 100  ;Scroll of passdoor. placed in inventory
+G 1 15814 100  ;A staff of fly. placed in inventory
+G 1 15815 100  ;A wand of fly. placed in inventory
+G 1 15816 100  ;A staff of haste. placed in inventory
+G 1 15817 100  ;A wand of haste. placed in inventory
+M 0 15807 100 15807 ;The army man loaded in room Training Grounds
+M 0 15808 100 15806 ;Heather loaded in room Practice Grounds
+M 0 15809 100 15892 ;The citizen loaded in room Loud Dr.
+M 0 15809 100 15893 ;The citizen loaded in room Loud Dr.
+M 0 15809 100 15894 ;The citizen loaded in room Loud Dr.
+M 0 15809 100 15895 ;The citizen loaded in room Loud Dr.
+M 0 15809 100 15895 ;The citizen loaded in room Loud Dr.
+M 0 15809 100 15896 ;The citizen loaded in room Loud Dr.
+M 0 15809 100 15896 ;The citizen loaded in room Loud Dr.
+M 0 15809 100 15897 ;The citizen loaded in room Loud Dr.
+M 0 15809 100 15898 ;The citizen loaded in room Loud Dr.
+M 0 15809 100 15898 ;The citizen loaded in room Loud Dr.
+M 0 15809 100 15899 ;The citizen loaded in room Loud Dr.
+M 0 15809 100 15899 ;The citizen loaded in room Loud Dr.
+M 0 15810 100 15823 ;small fish loaded in quaking area
+M 0 15810 100 15823 ;small fish loaded in quaking area
+M 0 15810 100 15824 ;small fish loaded in quaking area
+M 0 15810 100 15824 ;small fish loaded in quaking area
+M 0 15810 100 15825 ;small fish loaded in quaking area
+M 0 15810 100 15825 ;small fish loaded in quaking area
+M 0 15810 100 15826 ;small fish loaded in quaking area
+M 0 15810 100 15826 ;small fish loaded in quaking area
+M 0 15810 100 15827 ;small fish loaded in quaking area
+M 0 15810 100 15827 ;small fish loaded in quaking area
+M 0 15810 100 15828 ;small fish loaded in quaking area
+M 0 15810 100 15828 ;small fish loaded in quaking area
+M 0 15810 100 15829 ;small fish loaded in quaking area
+M 0 15810 100 15829 ;small fish loaded in quaking area
+M 0 15810 100 15830 ;small fish loaded in quaking area
+M 0 15810 100 15830 ;small fish loaded in quaking area
+M 0 15810 100 15831 ;small fish loaded in quaking area
+M 0 15810 100 15831 ;small fish loaded in quaking area
+M 0 15810 100 15832 ;small fish loaded in quaking area
+M 0 15810 100 15832 ;small fish loaded in quaking area
+M 0 15810 100 15833 ;small fish loaded in quaking area
+M 0 15810 100 15833 ;small fish loaded in quaking area
+M 0 15810 100 15834 ;small fish loaded in quaking area
+M 0 15810 100 15834 ;small fish loaded in quaking area
+M 0 15810 100 15835 ;small fish loaded in quaking area
+M 0 15810 100 15835 ;small fish loaded in quaking area
+M 0 15810 100 15836 ;small fish loaded in quaking area
+M 0 15810 100 15836 ;small fish loaded in quaking area
+M 0 15810 100 15837 ;small fish loaded in quaking area
+M 0 15810 100 15837 ;small fish loaded in quaking area
+M 0 15810 100 15838 ;small fish loaded in quaking area
+M 0 15810 100 15838 ;small fish loaded in quaking area
+M 0 15811 1 15845 ;ssab loaded in his room
+G 1 15820 100 ;ssab's armor loaded in inv
+O 0 15818 100 15805 ;The Fountain loaded in room Loud Drive Intersection
+S
+
+
+
+
+#$

@@ -1,0 +1,1620 @@
+#AREA Outpost of Kric'crsk~
+#AUTHORS Rem~
+
+
+
+
+
+#HELPS
+-1 "OUTPOST" OUTPOST~
+{120}Outpost of {134}Kric'crsk{300} - {110}The {117}Orc{300} {110}Headquarters{300}.
+
+
+{130}   For eons, scholars of all races and origin, have always stressed that{300} 
+{130}in order for us to surpass even ourselves in all aspects of life, we must{300} 
+{130}have clear thinking, self awareness, and be void of bias, so that if we{300} 
+{130}ever make a judgement or a choice, we will know we did the right thing{300} 
+{130}for everyone and including ourselves. However, people are not as clear{300} 
+{130}thinking as the scholars thought sentient beings should be. Or that{300} 
+{130}having great self awareness so that we can better relate ourselves. Nor{300} 
+{130}are we void of bias such that any kind of differences we perceive, we{300} 
+{130}will fully understand them. Driven by our own lust, faith, passion and{300} 
+{130}hearth, we as sentient beings accelerated towards the unknown; it is this{300} 
+{130}unknown that many of us came to love, hate or fear or all of them.{300} 
+{130}   Now is the time for you to decide your own fate and the fate of your{300} 
+{130}people. Whether you join or not, if you do, whether if you are driven by{300} 
+{130}revenge, hope, friendship, love or hate, we do not know for certain. Yet{300} 
+{130}we can only hope for the all those who have suffered, who are suffering{300} 
+{130}now and will suffer in the future for all the evil things that the{300} 
+{130}dwarves had, have and will do to us, we urge you to help us to stop them.{300} 
+
+
+
+
+    {135}(A){300}  {117}Extras... Just a little something{300}.
+    {135}(B){300}  {117}Reminders... Hope it helps{300}.
+
+
+
+
+
+{b}OUTPOST1
+
+
+
+{117}Extras... Just a little something{300}.
+
+
+
+{140}This little area is designed with the intention to help newbies and orcs{300} 
+{140}in general. In some ways, it is also design to promote players like you to{300} 
+{140}join the race wars so as to make this mud more fun, enjoyable and exciting.{300}
+{140}So check this little area out and maybe you'll find something that you'll{300} 
+{140}like...{300}
+
+
+
+-1 OUTPOST2
+{a}OUTPOST1
+
+
+
+{117}Extras... Just a little something{300}.
+
+
+
+{140}This little area is designed with the intention to help newbies and orcs{300} 
+{140}in general. In some ways, it is also design to promote players like you to{300} 
+{140}join the race wars so as to make this mud more fun, enjoyable and exciting.{300}
+{140}So check this little area out and maybe you'll find something that you'll{300} 
+{140}like...{300}
+
+
+
+-1 OUTPOST2
+{-}GAMEAREA1
+~
+-1 OUTPOST1
+
+
+
+{117}Extras... Just a little something{300}.
+
+
+
+{140}This little area is designed with the intention to help newbies and orcs{300} 
+{140}in general. In some ways, it is also design to promote players like you to{300} 
+{140}join the race wars so as to make this mud more fun, enjoyable and exciting.{300}
+{140}So check this little area out and maybe you'll find something that you'll{300} 
+{140}like...{300}
+
+
+
+-1 OUTPOST2~
+{117}Reminders... Hope it helps{300}.
+
+
+
+
+{150}Well, the majority of help files are found by first typing "help", then{300} 
+{150}choose "E" and finally "W". I written a brief introduction on race wars{300} 
+{150}under the Drow Head quarters, so to excess that file, you'll have to{300} 
+{150}modify it yourself a little. Since it's written for drows in mind,{300} 
+{150}whenever you see DROWS being mentioned, replace it with ORCS and when{300} 
+{150}GNOMES are being mentioned, just replace them with DWARVES with the rules{300} 
+{150}of engagement being same for all races' wars. Below is the excess to the{300} 
+{150}help file written for drows. Good Luck!{300}
+
+
+    {135}(C){300} {117}Drow help file...{300}.
+
+
+
+
+{c}DUORP2
+~
+0 $~
+
+
+
+
+#RANGES 0 99 0 99
+#FLAGS AFLAG_NODEBUG|AFLAG_NOTELEPORT
+#MOBILES
+#2400
+Tavern Keeper~
+Hozrk~
+The tavern keeper is here.~
+This orc is medium built and of average height. He wore an apron on him, 
+with dirty brown tunic and pants, you don't find anything unusual about 
+him. As you enter the tavern, he smile at you broadly and asked you what 
+you need.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_SANCTUARY|AFF_UNDERSTAND|AFF_TONGUES
+0 S
+100 BODY_TORSO BODY_LEG|BODY_ARM|BODY_HAND 2d1000+9000 10d30+100
+100000 RACE_ORC
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 80~
+if ispc($n)
+  smile $n
+  say Can I help you?
+  break
+endif
+~
+|
+#2401
+Weapon Master~
+Sprzak~
+The owner of this store is here.~
+This is one sweaty orc. Wearing a nondescript tunic and pants, with a 
+leather apron in the front, he is forging metals into weapons of various 
+sizes and shapes. As when you entered his shop, he don't seem to notice you,
+however, when you picked up a sword to examine, he asked you if that is 
+what you need.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_SANCTUARY|AFF_UNDERSTAND|AFF_TONGUES
+0 S
+100 BODY_TORSO BODY_LEG|BODY_ARM|BODY_HAND 2d1000+9000 10d30+100
+100000 RACE_ORC
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 80~
+if ispc($n)
+  smile $n
+  say What you need stranger?
+  break
+endif
+~
+|
+#2402
+Armor Master~
+Olraz~
+An orc is here polishing a piece of armor.~
+An orc with shabby cloths sat on a stool polishing a piece of armor. 
+Furthermore, you notice that he is none too clean, however, you can 
+clearly see that every piece of armor is well crafted and polished.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_SANCTUARY|AFF_UNDERSTAND|AFF_TONGUES
+0 S
+100 BODY_TORSO BODY_LEG|BODY_ARM|BODY_HAND 2d1000+9000 10d30+100
+100000 RACE_ORC
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 80~
+if ispc($n)
+  smile $n
+  say Hello there! Welcome to my armor shop. :)
+  break
+endif
+~
+|
+#2403
+Morgue Keeper~
+Dezkth~
+A dead looking orc stands here.~
+A thinly built orc, looks has if he had died ages ago, give you the 
+creeps. His skin is pale and looks dead, and the weirdest part is that 
+he's eyes are all white! You dare not imagine what has he gone through 
+to become like this or that he is born this way.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_SANCTUARY|AFF_UNDERSTAND|AFF_TONGUES
+0 S
+100 BODY_TORSO BODY_LEG|BODY_ARM|BODY_HAND 2d1000+9000 10d30+100
+100000 RACE_ORC
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 80~
+if ispc($n)
+  sigh $n
+  say You lost your corpse?
+  break
+endif
+~
+|
+#2404
+Magic seller~
+Minzk~
+A handsome looking female orc is here.~
+Judging from her looks, she is probably of middle age. However, she is 
+indeed a very handsome woman. Her eyes, seems to shine and even sparkle 
+as when you look at them.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_SANCTUARY|AFF_UNDERSTAND|AFF_TONGUES
+0 S
+100 BODY_TORSO BODY_LEG|BODY_ARM|BODY_HAND 2d1000+9000 10d30+100
+100000 RACE_ORC
+POS_STANDING POS_STANDING SEX_FEMALE
+>all_greet_prog 80~
+if ispc($n)
+  giggle $n
+  say Can I help you with anything dear? :)
+  break
+endif
+~
+|
+#2405
+Trainer~
+Vrazek~
+A heavily built orc is here training the recruits.~
+He's taller than the average orcs by comparison and on top of that he is 
+very well built. He is either thin nor fat; he is just perfect, and his 
+well developed muscles reinforces that.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_TRAIN|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_SANCTUARY|AFF_UNDERSTAND|AFF_TONGUES
+0 S
+60 BODY_TORSO BODY_LEG|BODY_ARM|BODY_HAND 1d1+9999 1d1+99
+100000 RACE_ORC
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 80~
+if ispc($n)
+  smile $n
+  say Look at you, you really need to train more soldier!
+  break
+endif
+~
+|
+#2406
+Practicer~
+Fzrec~
+A gangly orc is here imparting new skills to the recruits.~
+He is the tallest orc you've seen in your entire life. Wearing a long 
+robe, he looks more of a scholar than an army officer. Whenever he 
+teaches new skills to the recruits, you can see that he is very patient. 
+Although you just met this orc only briefly, you notice that he never 
+imposes his superiority or his power over the recruits.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_PRACTICE|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_SANCTUARY|AFF_UNDERSTAND|AFF_TONGUES
+0 S
+60 BODY_TORSO BODY_LEG|BODY_ARM|BODY_HAND 1d1+9999 1d1+99
+100000 RACE_ORC
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 80~
+if ispc($n)
+  smile $n
+  say I'll help you with your skills as much as possible.
+  break
+endif
+~
+|
+#2407
+Inn keeper~
+Ckrozt~
+A burly orc stands beside a counter.~
+This orc is dirty and shabby redefined. He is an absolute big mess. 
+Hair uncombed, wearing yellowish and heavily stained white tunic and 
+pants. The worst thing about him is that he smell really really bad. You 
+wonder how many souls that exit in this world can stand near him. None 
+probably?~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_SANCTUARY|AFF_UNDERSTAND|AFF_TONGUES
+0 S
+100 BODY_TORSO BODY_LEG|BODY_ARM|BODY_HAND 2d1000+9000 10d30+100
+100000 RACE_ORC
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 80~
+if ispc($n)
+  smile $n
+  say Wat yer needth sthangehr?
+  break
+endif
+~
+|
+#2408
+Healer~
+Lady Przilca~
+A beautiful female orc stands here clad in the whitest robe.~
+You can't help but notice that she is beautiful, though only her face is 
+visible to you. She is clad in the whitest robe you have ever seen, and 
+her hair is covered by the white hood she wore.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_SANCTUARY|AFF_UNDERSTAND|AFF_TONGUES
+0 S
+100 BODY_TORSO BODY_LEG|BODY_ARM|BODY_HAND 2d1000+9000 10d30+100
+100000 RACE_ORC
+POS_STANDING POS_STANDING SEX_FEMALE
+>all_greet_prog 10~
+if ispc($n)
+  if level($n) < 16
+    if race($n) == 6
+      if quest (0,4,$n) == 4
+        giggle $n
+        say Welcome to the healer's chamber. :)
+        say I can help heal your wounds.
+        say Just say "cure" and I'll heal you.
+        break
+      endif
+    endif
+  endif
+endif
+~
+>speech_prog cure~
+if ispc($n)
+  if race($n) == 6
+    if level($n) < 16
+      if quest (0,4,$n) == 4
+        if quest (4,6,$i) == 0
+          emote smile sweetly at you.
+          emote closes her eyes and starts chanting.
+          Unknown $n gold -10000
+          mpquiet on
+          cast "cure critical" $n
+          mpquiet off
+          mpecho A soothing feeling flows through your whole body.
+          say There you go, I sincerely hope this would ease our pain.
+          say As for now I need to rest little.
+          say I'm sorry dear...
+          emote closes her eyes.
+          mpmset $i quest 4 6 30
+          break
+        else
+          mpecho You don't wish to disturb the nice lady...
+          mpecho for she has just offered her heart and soul to heal you. 
+          break
+        endif
+      endif
+    endif
+  endif
+endif
+~
+>rand_prog 50~
+if quest (4,6,$i) == 30
+  mpmset $i 4 6 29
+  break
+endif
+if quest (4,6,$i) == 29
+  mpmset $i 4 6 28
+  break
+endif
+if quest (4,6,$i) == 28 
+  mpmset $i 4 6 27
+  break
+endif
+if quest (4,6,$i) == 27
+  mpmset $i 4 6 26
+  break
+endif
+if quest (4,6,$i) == 26
+  mpmset $i 4 6 25
+  break
+endif
+if quest (4,6,$i) == 25
+  mpmset $i 4 6 24
+  break
+endif
+if quest (4,6,$i) == 24
+  mpmset $i 4 6 0
+  break
+endif
+~
+|
+#2409
+Men's guard~
+Restroom cleaner~
+A male cleaner is here cleaning the restroom.~
+There is nothing special about him. He's just a regular cleaner employed 
+by the army to keep the restroom clean, and everything is running they 
+are suppose to. So far, from the condition of the restroom as it is, he 
+is doing a great job.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_SANCTUARY|AFF_UNDERSTAND|AFF_TONGUES
+0 S
+100 BODY_TORSO BODY_LEG|BODY_ARM|BODY_HAND 2d1000+9000 10d30+100
+100000 RACE_ORC
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if ispc($n)
+  if sex($n) == 1
+    smile $n
+    say Please watch your steps, the floor is wet.
+    break
+  else
+    say Oh My! Sorry but this is the men's restroom.
+    shake 
+    sigh 
+    say I absolutely hate this job.
+    emote writes something on a board and hangs it over you.
+    emote hauls you out and you start glowing.
+    mptransfer $n 9755 
+    mpat 9755 mpechoat $n You feel kind of dumb.
+    mpat 9755 mpechoat $n Your glowing subsides.
+    break
+  endif
+endif
+~
+|
+#2410
+Women's guard~
+Restroom cleaner~
+A female cleaner is here cleaning the restroom.~
+There is nothing special about her. She's just a regular cleaner employed
+by the army to keep the restroom clean, and everything is running they
+are suppose to. So far, from the condition of the restroom as it is, she 
+is doing a great job.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_SANCTUARY|AFF_UNDERSTAND|AFF_TONGUES
+0 S
+100 BODY_TORSO BODY_LEG|BODY_ARM|BODY_HAND 2d1000+9000 10d30+100
+100000 RACE_ORC
+POS_STANDING POS_STANDING SEX_FEMALE
+>all_greet_prog 100~
+if ispc($n)
+  if sex($n) == 2
+    smile $n
+    say Please watch your steps, the floor is wet.
+    break
+  else
+    shout EeekkkK! PERVERT!
+    mpecho Girls in the restrooms SCREAMS!
+    mpecho Suddenly soaps and daggers are flying towards you!
+    mpecho You jet out of this place as fast as your legs can carry you!
+    mptransfer $n 9755
+    mpat 9755 mpechoat $n You feel kind of dumb.
+    mpat 9755 mpechoat $n Your glowing subsides.
+    break
+  endif
+endif
+~
+|
+#2411
+Chief~
+Chief Worzkg~
+A important looking orc is here.~
+He is fully clad in black battle armor and round shield, and it looks very 
+worn.  Dried blood stains, dents and scratches all can be found on his 
+armor and shield. He has a greater bastard sword which is sheathed, and wore
+a cape dark as the moonless nights.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_SANCTUARY|AFF_UNDERSTAND|AFF_TONGUES
+0 S
+100 BODY_TORSO BODY_LEG|BODY_ARM|BODY_HAND 2d1000+9000 10d30+100
+100000 RACE_ORC
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 50~
+if ispc($n)
+  smile $n
+  say Thank you for joining the army.
+  emote shakes your hand.
+  break
+endif
+~
+|
+#2412
+Recruiter~
+Commander Chizkri~
+A innocent looking orc female is here.~
+If the other officers have not called her commander, you would not even 
+think that she is in the army. For one thing, she does not even dress 
+like a soldier. Although she wore a plain dress, she looks pretty. Her 
+every move, gesture, the way she speak is so innocent.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_SANCTUARY|AFF_UNDERSTAND|AFF_TONGUES
+0 S
+100 BODY_TORSO BODY_LEG|BODY_ARM|BODY_HAND 2d1000+9000 10d30+100
+100000 RACE_ORC
+POS_STANDING POS_STANDING SEX_FEMALE
+>all_greet_prog 20~
+if ispc($n)
+  giggle $n
+  say Well, you have made the decision dear?
+  say Good, on behalf of the Orc Army, I welcome you. :)
+  break
+endif
+~
+>give_prog i2401~
+if ispc($n)
+  if race($n) == 6
+    if level($n) >= 10
+      if quest (0,4,$n) == 2
+        mpmset quest $n 0 4 4
+        say Thank you for joining the great cause.
+        curtsey $n
+        giggle $n
+        say As a token of the army's appreciation, of you
+        say joining the cause, please...
+        say pick up your VERY OWN ARMY DOG TAG!
+        say It's on the floor. Go ahead and wear it with pride. 
+        giggle $n
+        mpjunk all
+        mpquiet on
+        mpoload 2400
+        drop all
+        mpquiet off
+        break
+      endif
+    endif
+  endif
+endif
+~
+|
+#2413
+Entrance guard~
+Lady Youzt~
+A regal looking female orc is here.~
+Even though she is in full battle gear, she is as regal looking as any 
+queen you have ever seen, that is if you have ever seen one. She wore a 
+red cape that seems to an invisible gentle breeze.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_SANCTUARY|AFF_UNDERSTAND|AFF_TONGUES
+0 S
+100 BODY_TORSO BODY_LEG|BODY_ARM|BODY_HAND 2d1000+9000 10d30+100
+100000 RACE_ORC
+POS_STANDING POS_STANDING SEX_FEMALE
+>all_greet_prog 100~
+if ispc($n)
+  if race($n) == 6
+    if level($n) < 10
+      say Well, you have potential dear, however...
+      say if GROW a little here,... and maybe there... :)
+      say Well, anyways just come back when you're BIGGER ok?
+      wink $n
+      say Hope I'll see you soon dear.
+      say But for now...
+      emote starts chanting something softly.
+      mpecho You begins to glow!
+      mptransfer $n 9755
+      mpat 9755 mpechoat $n You stop glowing.
+      break
+    else
+      say Well, I suppose you're BIG enough to join...
+      say Hmm...
+      mpecho examine you critically...
+      poke $n
+      say Hmm... Do you want to join the army dear?
+      wink $n
+      say If you do, just say "yes".
+      break
+    endif
+   else
+      say Well, whatever race you are I'm sorry to say that this
+      say place is off limits. Although I wish to see you here
+      say more often.
+      wink $n
+      say Alone that is... :)
+      emote starts chanting something.
+      mpecho You starts to glow!
+      mptransfer $n 9755
+      mpat 9755 mpechoat $n The glow fades away from your body.
+      break
+  endif
+endif
+~
+>speech_prog yes~
+if ispc($n)
+  if race($n) == 6
+    if level($n) >= 10
+      if quest (0,4,$n) == 0
+        mpmset $n quest 0 4 2
+        say Well, here you go, the form is no the floor.
+        say Fill in your particulars and go ONE DOWN.
+        say Give the form to Commander Chizkri and she'll
+        say take it from there. Welcome to the army dear!
+        mpquiet on
+        mpoload 2401
+        drop all
+        mpquiet off
+        break
+      endif
+    endif
+  endif
+endif
+~
+|
+#2414
+Ceremonial Guards~
+Ceremonial Guard~
+A mean looking guard stands here.~
+Stands before you is an orc guard that is encased in full armor. At his 
+side, he has a huge broadsword sheath in a beautifully made scarab. The 
+weird thing about the scarab is that one of the side does not cover the 
+sword at all. What is holding the sword in the scarab is a complicated 
+looking latch.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_SANCTUARY|AFF_UNDERSTAND|AFF_TONGUES
+1000 S
+120 BODY_TORSO BODY_LEG|BODY_ARM|BODY_HAND 1d1+15999 1d1+299
+100000 RACE_ORC
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 80~
+if ispc($n)
+  if race($n) == 6
+    if quest (10,2,$n) == 0
+      emote grunts at you.
+      break
+    else
+      shout YOU TRAITOR!
+      mpkill $n
+      break
+    endif
+  else
+    shout INTRUDERS! INTRUDERS ALERT!
+    mpkill $n
+    break
+  endif
+endif
+~
+>fight_prog 100~
+if ispc($n)
+  mpquiet on
+  martialarts $n
+  martialarts $n
+  martialarts $n
+  martialarts $n
+  martialarts $n
+  mpquiet off
+  emote 's DEATH PSIONIC WAVE...
+  mpforce $n help DUORP3
+  break
+endif
+~
+>death_prog 100~
+if ispc($n)
+  mpmset $n quest 10 2 2
+  mpecho With his last breath the guard said...
+  say You shall pay for your deeds traitor!
+  break
+endif
+~
+|
+#0
+
+
+
+
+#OBJECTS
+#2400
+Army Dog Tag~
+an Army Dog Tag~
+A magical tag lies here.~
+This is a magical dog tag. One side of the dog tag carved the name and 
+the company the owner of the dog tag belongs to. The other side written 
+in older orc tongue. The words that you can make out if it are :
+"warning", "orcs" and "not".~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL|ITEM_FLAG_AUTO_ENGRAVE
+ITEM_WEAR_TAKE|ITEM_WEAR_NECK
+5 0 0 0
+2 50000 5
+A
+APPLY_CON 1
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_RACE = RACE_ORC 0 10
+P 10
+TRIG_VOID
+OPROG_ECHO
+The Army Dog Tag suddenly burst into bright flames!~
+P 10
+TRIG_VOID
+OPROG_JUNK
+#2401
+Recruit Form~
+a Recruit Form~
+A mind boggling form lies here.~
+Just a form of some sort.~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 0 0
+1 1 1
+#2402
+Orcish War Hammer~
+an Orcish War Hammer~
+A hammer lies here.~
+Bigger than a human war hammer and smaller than a troll war club, this 
+war hammer fits and orc warriors perfectly. However, you feel that there 
+is a weird kind of aura flowing out of this weapon.~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 2 5 WEAPON_POUND
+7 50000 5
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_RACE = RACE_ORC 0 10
+P 10
+TRIG_VOID
+OPROG_ECHO
+The Orcish War Hammer suddenly burst into bright flames!~
+P 10
+TRIG_VOID
+OPROG_JUNK
+#2403
+Orcish War Dagger~
+an Orcish War Dagger~
+A dagger lies here.~
+This is dagger is made is such a way that it is more heavy than 
+daggers of similar designs. The blade is somehow covered with a thin coat 
+of black shiny stuff which you don't know.~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 2 5 WEAPON_STAB
+7 50000 5
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_RACE = RACE_ORC 0 10
+P 10
+TRIG_VOID
+OPROG_ECHO
+The Orcish War Dagger suddenly burst into bright flames!~
+P 10
+TRIG_VOID
+OPROG_JUNK
+#2404
+Orcish Broadsword~
+an Orcish Broadsword~
+A broadsword lies here.~
+This broadsword is considered rather huge when compared to broadswords 
+made by other races. There is an unusual black ebony tint on it's blade, 
+however you guess it is perhaps the swordsmith accidentally over burnt it.~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 2 5 WEAPON_SLASH
+7 50000 5
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_RACE = RACE_ORC 0 10
+P 10
+TRIG_VOID
+OPROG_ECHO
+The Orcish Broadsword suddenly burst into bright flames!~
+P 10
+TRIG_VOID
+OPROG_JUNK
+#2405
+Orcish Small Katana~
+an Orcish Small Katana~
+A small katana lies here~
+This is one of the most crude small katana you have ever seen. The best 
+made katana will always be made by humans, however the blade seems to be 
+quite cold when you place your fingers on it.~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 2 5 WEAPON_STAB
+7 50000 5
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_RACE = RACE_ORC 0 10
+P 10
+TRIG_VOID
+OPROG_ECHO
+The Orcish Small Katana suddenly burst into bright flames!~
+P 10
+TRIG_VOID
+OPROG_JUNK
+#2406
+Orcish War Gauntlets~
+an Orcish War Gauntlets~
+A pair of gauntlets lies here.~
+Though this gauntlets is not as intricately made as the elves nor the 
+drows, it serves it's purpose; that is to give the maximum possible 
+protection to whoever uses this gauntlets.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HANDS
+5 0 0 0
+2 50000 5
+A
+APPLY_STR 1
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_RACE = RACE_ORC 0 10
+P 10
+TRIG_VOID
+OPROG_ECHO
+The Orcish War Gauntlets suddenly burst into bright flames!~
+P 10
+TRIG_VOID
+OPROG_JUNK
+#2407
+Orcish Armor~
+an Orcish Armor~
+An armor lies here.~
+This armor is fairly well made and from your quick examination of it, you 
+find that this armor is sturdy enough to protect the wearer from most blows.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_BODY
+5 0 0 0
+2 50000 5
+A
+APPLY_CON 1
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_RACE = RACE_ORC 0 10
+P 10
+TRIG_VOID
+OPROG_ECHO
+The Orcish Armor suddenly burst into bright flames!~
+P 10
+TRIG_VOID
+OPROG_JUNK
+#2408
+Orcish War Leggings~
+an Orcish War Leggings~
+A pair of leggings lies here.~
+At the first glance, you thought that this leggings is going to be 
+uncomfortable, however, there are paddings within the leggings! The 
+weird thing about the leggings is that the leggings is somewhat coated 
+with a black tint.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_LEGS
+5 0 0 0
+2 50000 5
+A
+APPLY_DEX 1
+A
+APPLY_CON 1
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_RACE = RACE_ORC 0 10
+P 10
+TRIG_VOID
+OPROG_ECHO
+The Orcish War Leggings suddenly burst into bright flames!~
+P 10
+TRIG_VOID
+OPROG_JUNK
+#2409
+Orcish War Robe~
+an Orcish War Robe~
+A robe lies here.~
+This is the standard Orcish War Robe, that are currently used by the 
+recruits of the Orc Army. The Orcish War Robe is as dark as the darkest 
+nights and as smooth as silk. However, you know by the texture of the 
+robe that it is not made out of silk.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_ABOUT
+5 0 0 0
+2 50000 5
+A
+APPLY_CON 1
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_RACE = RACE_ORC 0 10
+P 10
+TRIG_VOID
+OPROG_ECHO
+The Orcish War Robe suddenly burst into bright flames!~
+P 10
+TRIG_VOID
+OPROG_JUNK
+#2410
+Orcish War Shield~
+an Orcish War Shield~
+A shield lies here.~
+This War shield provides ample protection against the hardest blow a 
+strongest warrior can make. This shield is a must get for all orc warriors.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_SHIELD
+5 0 0 0
+2 50000 5
+A
+APPLY_CON 1
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_RACE = RACE_ORC 0 10
+P 10
+TRIG_VOID
+OPROG_ECHO
+The Orcish War Shield suddenly burst into bright flames!~
+P 10
+TRIG_VOID
+OPROG_JUNK
+#2411
+Spring~
+an Underground Spring.~
+An Underground Spring is here.~
+This underground spring provides the inhabitants in this outpost with 
+water. The water that flows out of this spring is crystal clear.~
+ITEM_TYPE_FOUNTAIN
+ITEM_FLAG_LEVEL
+0
+0 0 0 0
+9999 0 99
+#2412
+Hunter's Potion~
+a Hunter's Potion~
+A potion lies here.~
+The label says that this is a Hunter's Potion. However there is a warning 
+label that says that misuse may result in injury.~
+ITEM_TYPE_POTION
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+30 SPELL_DETECT_INVIS SPELL_DETECT_HIDDEN SPELL_NONE
+1 100000 46
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_RACE = RACE_ORC 0 10
+P 10
+TRIG_VOID
+OPROG_ECHO
+The Hunter's Potion suddenly burst into bright flames!~
+P 10
+TRIG_VOID
+OPROG_JUNK
+#2413
+Hunter's Scroll~
+a Hunter's Scroll~
+A scroll lies here.~
+The label says that this is a Hunter's Scroll. However there is a warning 
+label that says that misuse may result in injury.~
+ITEM_TYPE_SCROLL
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+30 SPELL_DETECT_INVIS SPELL_DETECT_HIDDEN SPELL_NONE
+1 100000 46
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_RACE = RACE_ORC 0 10
+P 10
+TRIG_VOID
+OPROG_ECHO
+The Hunter's Scroll suddenly burst into bright flames!~
+P 10
+TRIG_VOID
+OPROG_JUNK
+#2414
+Recall scroll~
+a Scroll of Recall~
+A recall scroll lies here.~
+Just a scroll of recall.~
+ITEM_TYPE_SCROLL
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+10 SPELL_WORD_OF_RECALL SPELL_NONE SPELL_NONE
+10 100 10
+#2415
+Feather Potion~
+a Feather Potion~
+A potion lies here.~
+The label says that this is a Feather Potion. However there is a warning 
+label that says that misuse may result in injury.~
+ITEM_TYPE_POTION
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+30 SPELL_FLY SPELL_NONE SPELL_NONE
+1 100000 46
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_RACE = RACE_ORC 0 10
+P 10
+TRIG_VOID
+OPROG_ECHO
+The Feather Potion suddenly burst into bright flames!~
+P 10
+TRIG_VOID
+OPROG_JUNK
+#2416
+Army Pit~
+an Army Pit.~
+An Army Pit is here.~
+There is nothing unusual about this pit. The pit you notice, is very 
+deep, which explains why it  can hold my items, armors, weapons and many 
+more things.~
+ITEM_TYPE_CONTAINER
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+0
+10000 0 0 0
+999 0 999
+#2417
+Cured Bacon~
+a slab of cured bacon~
+A slab of meat lies here.~
+You see nothing unusual about the cured bacon except that it is kind of 
+moldy.~
+ITEM_TYPE_FOOD
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+24 0 0 NOT_POISONED
+2 100 1
+#2418
+Cured Ham~
+a slab of cured ham~
+A slab of meat lies here.~
+You see nothing unusual about the cured ham except that it is kind of moldy.~
+ITEM_TYPE_FOOD
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+10 0 0 NOT_POISONED
+1 20 1
+#2419
+Home Brewed Grog~
+a mug of home brewed grog~
+A mug of grog is here.~
+This grog taste so bad that it appears to have been made by water 
+obtained from the liquid waste dumps.~
+ITEM_TYPE_DRINK_CON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+10 10 LIQ_LOCALSPC NOT_POISONED
+1 100 1
+#2420
+Twisted Knockout~
+a glass of twisted knockout~
+A glass of liquor is here.~
+You have never seen or even drink this type of liquor before. You wonder 
+if you should drink it.~
+ITEM_TYPE_DRINK_CON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+10 10 LIQ_WHISKY NOT_POISONED
+1 200 1
+#0
+
+
+
+
+#ROOMS
+#2400
+Tavern of the Lswd~
+The tavern so is dark and gloomy that you can barely see the tables and 
+chairs of crude design. You also noticed that most of those furniture you
+see here are patched and you guessed that tavern fights probably occurred
+frequently here. However, the odd thing about this tavern that there is
+no customers at that you can see at all. A waitress who dresses scantily,
+is cleaning a table, even though there's nothing to clean(if you ever
+can clean this place up at all). A scruffy and none too clean looking
+bartender lean against the counter. As when you entered, he looked at
+you disdainfully.~
+24 ROOM_DARK|ROOM_INDOORS|ROOM_SAFE SECT_HILLS
+DDIR_EAST
+You see a double door here.~
+double~
+EX_ISDOOR|EX_CLOSED -1 2402
+S
+#2401
+Kric'crsk finest Munition~
+The rusty smell of this place tells you that this cave contained many 
+things that are made of metal. As you explore this cave more, you find 
+that there are rows upon rows of weapons, in rusty condition, fills the 
+racks. Towards the end of the cave, you notice a rather huge orc, wielding 
+a large hammer, hammering a piece of red hot metal. The only visible 
+light source here is the blacksmith's furnance.~
+24 ROOM_DARK|ROOM_INDOORS|ROOM_SAFE SECT_HILLS
+DDIR_SOUTH
+You see a rusted door here.~
+rusted~
+EX_ISDOOR|EX_CLOSED -1 2402
+S
+#2402
+Tunnel of Ncrsk~
+This tunnel is so dark that roots that protruded out of the tunnel ceiling 
+hits you as you walk by. Dirt is everywhere and you noticed that clean 
+does not seem to be a strong point amongst the orcs. However you do notice 
+the loam on the tunnel floor is as fine as sand. Plants that thrive in 
+near darkness conditions grows abundantly here.~
+24 ROOM_DARK|ROOM_INDOORS SECT_HILLS
+DDIR_NORTH
+You see a rusted door here.~
+rusted~
+EX_ISDOOR|EX_CLOSED -1 2401
+DDIR_EAST
+Dome of Rozqk~
+~
+0 -1 2406
+DDIR_WEST
+You see a double door here.~
+double~
+EX_ISDOOR|EX_CLOSED -1 2400
+S
+#2403
+Kric'crsk finest Armory~
+As you push the heavily rusted wooden doors into the cave, you find that 
+this cave is warm, and even unbearably hot. All around you, you can barely 
+notice assorted broken and even useless armors lying all over the floor. 
+Closer as you get to the only visible light source in this cave, you found 
+an unusually huge orc standing in front of a huge cauldron like furnance.~
+24 ROOM_DARK|ROOM_INDOORS|ROOM_SAFE SECT_HILLS
+DDIR_EAST
+You see wooden doors here.~
+wooden~
+EX_ISDOOR|EX_CLOSED -1 2407
+S
+#2404
+Bmuzd Body Shop~
+This cave actually reeks with smell of rotten flesh. You couldn't begin to 
+imagine what this place has to sell. As much as you hate it, you do have 
+to admit that living things like yourself do die one way or the other. 
+After some time as your eyes adjust to the near darkness of this cave, you 
+finally noticed that the cave floor litters with bones and even rotten 
+body parts. It is when you gasp in astonishment, that a medium built orc 
+told you that those you see here are unclaimed bodies of fallen warriors.~
+24 ROOM_DARK|ROOM_INDOORS|ROOM_SAFE SECT_HILLS
+DDIR_SOUTH
+You see a pair of doors here.~
+doors~
+EX_ISDOOR|EX_CLOSED -1 2405
+S
+#2405
+Tunnel of Szrilk~
+Like the tunnels you find here in the so called Dungeon of 
+Kric'crsk, the ceiling tunnel is heavily infested with roots of trees that 
+grows above. From the looks of this place, you know that this tunnel is 
+manually digged by the orcs, not of natural cause. For what reason they 
+named an orc made tunnel, you do not know. It is most probably to honor 
+the one who construct this tunnel? Or maybe to honor a fallen war hero.~
+24 ROOM_DARK|ROOM_INDOORS SECT_HILLS
+DDIR_NORTH
+You see a pair of doors here.~
+doors~
+EX_ISDOOR|EX_CLOSED -1 2404
+DDIR_EAST
+You see a gate here.~
+gate~
+EX_ISDOOR|EX_CLOSED -1 2409
+DDIR_SOUTH
+Dome of Rozqk~
+~
+0 -1 2406
+S
+#2406
+Dome of Rozqk~
+This dome like cavern is crude in comparison to the ones found in other 
+races. The ceiling is obviously enlarged, and made to look roughly like a 
+dome. This you can tell by the markings of tools found on the ceiling that 
+you can barely see. Only a few torches can be found in this dome that 
+barely light this place. Interesting enough, next to each torch, there is 
+a banner that contain designs that you cannot identify. They are probably 
+war banners of rival tribes that had been vanquished. Directly in the 
+center of the ceiling of the dome is a spiral stairways that leads both up 
+and down this dome. Four miniature underground springs are found in this 
+dome with benches placed next to them.~
+24 ROOM_DARK|ROOM_INDOORS|ROOM_SAFE SECT_HILLS
+DDIR_NORTH
+Tunnel of Szrilk~
+~
+0 -1 2405
+DDIR_EAST
+Tunnel of Ickrocz~
+~
+0 -1 2410
+DDIR_SOUTH
+Tunnel of Tvayv~
+~
+0 -1 2407
+DDIR_WEST
+Tunnel of Ncrsk~
+~
+0 -1 2402
+DDIR_UP
+Cave of History~
+~
+0 -1 2413
+DDIR_DOWN
+Outpost High Command~
+~
+0 -1 2421
+S
+#2407
+Tunnel of Tvayv~
+This tunnel appears to be under construction. This tunnel by far is the 
+smallest you have seen so far. Several construction workers are busy 
+enlarging this tunnel. Though this is done virtually in total darkness, 
+these workers seemed to know what they are doing. Other than dusty and 
+full of dirt and rocks due to the enlargement, there is nothing of 
+interest here.~
+24 ROOM_DARK|ROOM_INDOORS SECT_HILLS
+DDIR_NORTH
+Dome of Rozqk~
+~
+0 -1 2406
+DDIR_SOUTH
+You see an iron door here.~
+iron~
+EX_ISDOOR|EX_CLOSED -1 2408
+DDIR_WEST
+You see wooden doors here.~
+wooden~
+EX_ISDOOR|EX_CLOSED -1 2403
+S
+#2408
+Curious shop of Uczk~
+A peculiar odor feels this cave as you enter. As you look around this 
+cave, you notice that unknown ingredients, herbs and materials fills the 
+shelves that occupies the whole cave. Cobwebs filled this cave as you pass 
+by the shelves. You can barely hear the sound of rats scurrying in the 
+darkness. This place looks more like a laboratory than a shop. You can 
+only hope that what ever you buy from here will not hurt and even kill 
+you.~
+24 ROOM_DARK|ROOM_INDOORS|ROOM_SAFE SECT_HILLS
+DDIR_NORTH
+You see an iron door here.~
+iron~
+EX_ISDOOR|EX_CLOSED -1 2407
+S
+#2409
+Fizkc's Training Ground~
+This cave is the brightest of all in the outpost of Kric'crsk, if ever 
+three torches are bright enough to light this whole cave. Huge does not 
+begin to describe this place. It is very obvious that this cave has been 
+enlarged manually. It is even larger than the dome you saw back a ways. 
+The center of this training ground is dusted smooth so that soldiers can 
+spa easily. On the four corners of the training ground contains racks of 
+assorted weapons and armors for the soldiers to train with. Several safety 
+paddings are available so that soldiers can train safely.~
+24 ROOM_DARK|ROOM_INDOORS|ROOM_SAFE SECT_HILLS
+DDIR_WEST
+You see a gate here.~
+gate~
+EX_ISDOOR|EX_CLOSED -1 2405
+S
+#2410
+Tunnel of Ickrocz~
+This tunnel is dedicate to all the heros fallen under the treachery of those
+who have been betrayed by murderous gnome sympathizers. Lies below each 
+statues, are slabs of bronze plaque, writing untold stories of heroism and
+great sacrifices that each hero and heroin has made before their valiant 
+death. One very unique bronze plaque lies directly in the middle of the
+tunnel ceiling. You squint your eyes to catch a better glimpse of what is
+written on the plaque. Nevertheless, you just cannot catch any phrase or even
+words written in the plaque.~
+24 ROOM_DARK|ROOM_INDOORS SECT_HILLS
+DDIR_EAST
+You see a regular door here.~
+regular~
+EX_ISDOOR|EX_CLOSED -1 2412
+DDIR_SOUTH
+You see two doors here.~
+two~
+EX_ISDOOR|EX_CLOSED -1 2411
+DDIR_WEST
+Dome of Rozqk~
+~
+0 -1 2406
+S
+#2411
+Qpcig's Practice Hall~
+This practice hall, although a little smaller compared to the training 
+hall, is of oval shape. There are many officers here waiting to impart all
+the skills necessary in the war against tyranny, against the dwarves. 
+Weaknesses and strength of assorted weapons and armors are taught to the 
+new recruits. Veterans are constantly being upgraded with latest know hows in
+the art of war so as to give a clear and present edge to the army.~
+24 ROOM_DARK|ROOM_INDOORS|ROOM_SAFE SECT_HILLS
+DDIR_NORTH
+You see two doors here.~
+two~
+EX_ISDOOR|EX_CLOSED -1 2410
+S
+#2412
+Y'rabrk's Finest Inn~
+Names are deceiving and this inn means just that. A crude looking orc is 
+standing next to a shabby counter smiling broadly at you. The floors are 
+packed with dirt and dust that is due to prolong uncleaning. Though this 
+inn is not as great as the ones made by human's or the elves', they are 
+serviceble. Rooms are not as spacious as you would like it to be, however 
+the bed are in fact quite clean and the chairs and tables are not too 
+wobbly for your comfort.~
+24 ROOM_DARK|ROOM_INDOORS|ROOM_SAFE SECT_HILLS
+DDIR_WEST
+You see a regular door here.~
+regular~
+EX_ISDOOR|EX_CLOSED -1 2410
+S
+#2413
+Cave of History~
+As you walk along the spiral stairs that connects this sizable cave with 
+other caves and caverns system, you feel like as if you're walking 
+through history. The cave walls are painfully polished and art depicting the
+struggles between the dwarves and the orcs. For ages, the dwarves have 
+claim both race and cultural superiority over the orcs. The dwarves 
+first started the slow but steady ethnocide and genocide of the orcs. Our 
+caves are taken away from us and home are raided constantly. The dwarves 
+kills orcs for sport, and for fun. Many have suffered and even died 
+needlessly, all due to the dwarves' crimes against orckind. The first 
+large scale resistance against the murderous dwarves are lead by Chief Bwrak,
+of the clan Hellsfire. The battle was long and ugly and loses were great. 
+Finally, after forty nine days of struggle against the oppressors, Chief 
+Bwrak and the various clans united under one banner won the decisive 
+battle. That day was a the first day that the orckind can live as free 
+people; free from total annihilation and destruction of our culture. 
+Now we urge you sons and daughters of orckind, to defend what your 
+forefathers have fought and bleed for. Only you can prevent us from being
+oppressed by savages who do not have honor, justice and understanding 
+of the rudimentary rights of living beings.~
+24 ROOM_DARK|ROOM_INDOORS|ROOM_SAFE SECT_HILLS
+DDIR_UP
+Chamber of Jzisk~
+~
+0 -1 2416
+DDIR_DOWN
+Dome of Rozqk~
+~
+0 -1 2406
+S
+#2414
+Healing room~
+This is basically a place where the wounded are taken care of. Several 
+orcish shaman and monks are busy healing the wounded, curing diseases, 
+illnesses and poisons. Though this place looks kind of grim and blood 
+seems to be all over the place, nevertheless, you notice that the 
+patients are all very well taken care of. You are awe by the fact that 
+patient care takers are very attentive to the need of the patients. As 
+you approach the head shaman, she welcome you with open arms, thanking 
+you for joining the fight for freedom of the orckind.~
+24 ROOM_DARK|ROOM_INDOORS|ROOM_SAFE SECT_HILLS
+DDIR_EAST
+Chamber of Jzisk~
+~
+0 -1 2416
+S
+#2415
+Staging area~
+This is where the orc army gather to group and regroup for covert or full 
+scale assaults against the dwarven military installations. You can see 
+many officers walking briskly into and out of this cave. Almost everyone 
+speak softly here, so much so that it's barely audible to you. Briefing rooms
+can be seen to the far north section of this huge cave. Many more 
+soldiers in full battle gear stand in attention waiting for something or 
+someone.~
+24 ROOM_DARK|ROOM_INDOORS SECT_HILLS
+DDIR_SOUTH
+Chamber of Jzisk~
+~
+0 -1 2416
+S
+#2416
+Chamber of Jzisk~
+This is the most busiest cavern of this entire outpost. People comes and 
+goes from all parts of the cavern systems. There are benches for those who 
+need to take a rest or catch a breath. This is cavern is linked by all other
+caverns of great importance. Caverns such as the Staging area to your 
+north,  healing room to your west, equipment center to the east of you, 
+recruitment center above you, and finally the restrooms are towards your 
+south.~
+24 ROOM_DARK|ROOM_INDOORS SECT_HILLS
+DDIR_NORTH
+Staging area~
+~
+0 -1 2415
+DDIR_EAST
+Equipment dump~
+~
+0 -1 2418
+DDIR_SOUTH
+Hallway~
+~
+0 -1 2417
+DDIR_WEST
+Healing room~
+~
+0 -1 2414
+DDIR_UP
+Recruitment Center~
+~
+0 -1 2420
+DDIR_DOWN
+Cave of History~
+~
+0 -1 2413
+S
+#2417
+Hallway~
+This the the hallway to the restrooms. The most curious thing in this 
+hallway is that the floors are made up of highly smooth black marble slabs. 
+The walls are circular and is smoothly connected to the ceiling, both are 
+covered with smaller, but equally smooth marble, except that they are 
+white in color. This is the only place where trash can is available in 
+this whole Kric'crsk Outpost. You wonder why.~
+24 ROOM_DARK|ROOM_INDOORS SECT_HILLS
+DDIR_NORTH
+Chamber of Jzisk~
+~
+0 -1 2416
+DDIR_SOUTH
+Hallway~
+~
+0 -1 2423
+S
+#2418
+Equipment Dump~
+This is where the scouts and the exploration teams of the orc army drop 
+any excess items, equipments, armors and weapons for the use of others. 
+Because that the orc army has always been running on a tight budget, thus
+the army has to depend heavily on the people who joined the army for extra
+equipments. Though this is a tedious way to do business, for the survival 
+of the orckind, any forms of help will be greatly valued.~
+24 ROOM_DARK|ROOM_INDOORS SECT_HILLS
+DDIR_WEST
+Chamber of Jzisk~
+~
+0 -1 2416
+S
+#2419
+Entrance of Kric'crsk~
+Sharpen stakes are strategically placed all over the entrance and extend 
+from there downwards to the base of the hill. The entrance of the outpost 
+is actually a small fort made of combination of boulders and lumber. There
+are watch towers situated at all the four corners of the fort. You can 
+see foot soldiers constantly patrolling the area surrounding this fort. 
+To the side of the main gate, a small booth is set up so that the 
+soldiers can monitor those who enter and leave the outpost.~
+24 ROOM_DARK|ROOM_PRIVATE|ROOM_SAFE SECT_HILLS
+DDIR_WEST
+~
+~
+0 -1 17502
+DDIR_DOWN
+Recruitment Center~
+~
+0 -1 2420
+S
+#2420
+Recruitment Center~
+This where all those who wish to join the cause to fight for a better 
+tomorrow for orckind is being processed and recruited into the orc army. 
+Because of the tight budget faced by the army high command, no military 
+uniforms are issued. According to the army, being an orc is more than 
+enough to identify one as belong to the orc army. It is the duty of each 
+and every sons and daughters of the orckind to fight against oppression.~
+24 ROOM_DARK|ROOM_INDOORS|ROOM_SAFE SECT_HILLS
+DDIR_UP
+Entrance of Kric'crsk~
+~
+0 -1 2419
+DDIR_DOWN
+Chamber of Jzisk~
+~
+0 -1 2416
+S
+#2421
+Outpost High Command~
+This the center and the heart of the fight against the barbaric dwarves. 
+On the far north wall of the cavern, hangs a current map of the mortal 
+realms. Pointers and multi-colored threads filled this map. The threads 
+and pointers are most probably used for the plannings of all the 
+campaigns that have been directed at the enemy, however, exactly what it 
+means you do not know.~
+24 ROOM_DARK|ROOM_INDOORS|ROOM_SAFE SECT_HILLS
+DDIR_UP
+Dome of Rozqk~
+~
+0 -1 2406
+S
+#2422
+Restroom~
+This is the men's restroom. Of all the place you can think of as being 
+dirty, you are surprised that the restrooms are very clean and well taken 
+care of. The fact that the walls and the floor are made of black and 
+white, highly polished marbles tiles tells you that the army takes 
+sanitation and personal cleanliness very seriously. The southern corner of 
+this huge restroom is dedicated to bathing and there's even a hot spring 
+there! You are seriously wondering what else could they have here.~
+24 ROOM_DARK|ROOM_INDOORS|ROOM_SAFE SECT_HILLS
+DDIR_EAST
+You see a polished door here.~
+polished~
+EX_ISDOOR|EX_CLOSED -1 2423
+S
+#2423
+Hallway~
+This is the end of the hallway that leads to the restrooms. Both to your 
+left and right are highly polished steel doors. The door to your west has 
+a plague that says "man" and the door to your east has a plague that says
+"woman" on it. You take a step back and try to think this out logically 
+about the existance of a restroom. Perhaps the world has greatly 
+civilized, which brightened your disposition.~
+24 ROOM_DARK|ROOM_INDOORS SECT_HILLS
+DDIR_NORTH
+Hallway~
+~
+0 -1 2417
+DDIR_EAST
+You see a shiny door here.~
+shiny~
+EX_ISDOOR|EX_CLOSED -1 2424
+DDIR_WEST
+You see  a polished door here.~
+polished~
+EX_ISDOOR|EX_CLOSED -1 2422
+S
+#2424
+Restroom~
+This is the women's restroom. Everything here are polished up to the 
+point where the reflection of any light source hurts the eyes. Orc made 
+running underground water is available, and the lion head faucet 
+constantly supplies fresh and clean water. There is also a sub complex 
+connected to this restroom, that is loaded with state of the art bathing 
+facilities and a huge hot spring is also situated there.~
+24 ROOM_DARK|ROOM_INDOORS|ROOM_SAFE SECT_HILLS
+DDIR_WEST
+You see a shiny door here.~
+shiny~
+EX_ISDOOR|EX_CLOSED -1 2423
+S
+#0
+
+
+
+
+#RESETS
+O 0  2411   1  2406 ;   an Underground Spring. in Dome of Rozqk            
+O 0  2416   1  2418 ;             an Army Pit. in Equipment Dump           
+M 0  2400   1  2400 ;                    Hozrk in Tavern of the Lswd       
+G 1  2417 999       ;    a slab of cured bacon
+G 1  2418 999       ;      a slab of cured ham
+G 1  2419 999       ;a mug of home brewed grog
+G 1  2420 999       ;a glass of twisted knocko
+M 0  2401   1  2401 ;                   Sprzak in Kric'crsk finest Munition
+G 1  2402 999       ;     an Orcish War Hammer
+G 1  2403 999       ;     an Orcish War Dagger
+G 1  2404 999       ;     an Orcish Broadsword
+G 1  2405 999       ;   an Orcish Small Katana
+M 0  2402   1  2403 ;                    Olraz in Kric'crsk finest Armory  
+G 1  2406 999       ;  an Orcish War Gauntlets
+G 1  2407 999       ;          an Orcish Armor
+G 1  2408 999       ;   an Orcish War Leggings
+G 1  2409 999       ;       an Orcish War Robe
+G 1  2410 999       ;     an Orcish War Shield
+M 0  2403   1  2404 ;                   Dezkth in Bmuzd Body Shop          
+M 0  2404   1  2408 ;                    Minzk in Curious shop of Uczk     
+G 1  2412 999       ;        a Hunter's Potion
+G 1  2413 999       ;        a Hunter's Scroll
+G 1  2414 999       ;       a Scroll of Recall
+G 1  2415 999       ;         a Feather Potion
+M 0  2405   1  2409 ;                   Vrazek in Fizkc's Training Ground  
+M 0  2406   1  2411 ;                    Fzrec in Qpcig's Practice Hall    
+M 0  2407   1  2412 ;                   Ckrozt in Y'rabrk's Finest Inn     
+M 0  2408   1  2414 ;             Lady Przilca in Healing room             
+M 0  2409   1  2422 ;         Restroom cleaner in Restroom                 
+M 0  2410   1  2424 ;         Restroom cleaner in Restroom                 
+M 0  2411   1  2421 ;             Chief Worzkg in Outpost High Command     
+M 0  2412   1  2420 ;        Commander Chizkri in Recruitment Center       
+M 0  2413   1  2419 ;               Lady Youzt in Entrance of Kric'crsk    
+M 0  2414   9  2402 ;         Ceremonial Guard in Tunnel of Ncrsk          
+M 0  2414   9  2405 ;         Ceremonial Guard in Tunnel of Szrilk         
+M 0  2414   9  2407 ;         Ceremonial Guard in Tunnel of Tvayv          
+M 0  2414   9  2410 ;         Ceremonial Guard in Tunnel of Ickrocz        
+M 0  2414   9  2415 ;         Ceremonial Guard in Staging area             
+M 0  2414   9  2416 ;         Ceremonial Guard in Chamber of Jzisk         
+M 0  2414   9  2417 ;         Ceremonial Guard in Hallway                  
+M 0  2414   9  2423 ;         Ceremonial Guard in Hallway                  
+M 0  2414   9  2418 ;         Ceremonial Guard in Equipment Dump           
+D 0  2400 DIR_EAST DOOR_CLOSED ;door in Tavern of the Lswd       
+D 0  2402 DIR_WEST DOOR_CLOSED ;door in Tunnel of Ncrsk          
+D 0  2401 DIR_SOUTH DOOR_CLOSED ;door in Kric'crsk finest Munition
+D 0  2402 DIR_NORTH DOOR_CLOSED ;door in Tunnel of Ncrsk          
+D 0  2403 DIR_EAST DOOR_CLOSED ;door in Kric'crsk finest Armory  
+D 0  2407 DIR_WEST DOOR_CLOSED ;door in Tunnel of Tvayv          
+D 0  2404 DIR_SOUTH DOOR_CLOSED ;door in Bmuzd Body Shop          
+D 0  2405 DIR_NORTH DOOR_CLOSED ;door in Tunnel of Szrilk         
+D 0  2408 DIR_NORTH DOOR_CLOSED ;door in Curious shop of Uczk     
+D 0  2407 DIR_SOUTH DOOR_CLOSED ;door in Tunnel of Tvayv          
+D 0  2409 DIR_WEST DOOR_CLOSED ;door in Fizkc's Training Ground  
+D 0  2405 DIR_EAST DOOR_CLOSED ;door in Tunnel of Szrilk         
+D 0  2411 DIR_NORTH DOOR_CLOSED ;door in Qpcig's Practice Hall    
+D 0  2410 DIR_SOUTH DOOR_CLOSED ;door in Tunnel of Ickrocz        
+D 0  2412 DIR_WEST DOOR_CLOSED ;door in Y'rabrk's Finest Inn     
+D 0  2410 DIR_EAST DOOR_CLOSED ;door in Tunnel of Ickrocz        
+S
+
+
+
+
+#SHOPS
+2400 ITEM_TYPE_FOOD ITEM_TYPE_DRINK_CON ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING
+     ITEM_TYPE_NOTHING 100  10  0 23 ;Hozrk
+2401 ITEM_TYPE_WEAPON ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING
+     ITEM_TYPE_NOTHING 100  10  0 23 ;Sprzak
+2402 ITEM_TYPE_ARMOR ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING
+     ITEM_TYPE_NOTHING 100  10  0 23 ;Olraz
+2403 ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING
+     ITEM_TYPE_NOTHING 100  10  0 23 ;Dezkth
+2404 ITEM_TYPE_SCROLL ITEM_TYPE_POTION ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING
+     ITEM_TYPE_NOTHING 100  10  0 23 ;Minzk
+0
+
+
+
+
+#SPECIALS
+S
+
+
+
+
+#$

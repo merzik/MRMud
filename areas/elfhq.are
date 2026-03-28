@@ -1,0 +1,1451 @@
+#AREA Elven Camp~
+
+#AUTHORS Haxl~
+
+#HELPS
+0 $~
+
+#RANGES 0 99 10 95
+
+#FLAGS AFLAG_NODEBUG|AFLAG_NOTELEPORT
+
+#MOBILES
+#400
+guard elf elven~
+The Elven Guard~
+There is an elf here attacking intruders on sight.~
+The typical elf like slenderness and agility make this elf a tough opponent.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_SANCTUARY|AFF_INFRARED
+1000 S
+95 BODY_ARM BODY_FOOT 10000d1+5000 10d10+80
+10000 RACE_ELF
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 100~
+if race($n) == RACE_ELF
+  smile $n
+  say Welcome fellow elf
+else
+  growl $n
+  say Die Intruder!
+  mpkill $n
+endif
+~
+>fight_prog 100~
+if rand(40)
+  cast 'acid blast' $n
+else
+  kick $n
+endif
+~
+>death_prog 100~
+say We shall arise and be triumphant......
+say You shall never kill us off foreign scum!
+mpquiet on
+mass 'acid blast'
+mass 'acid blast'
+mass 'curse'
+mpquiet off
+~
+|
+#401
+guard elf elven~
+The Elven Guard~
+There is an elf here attacking intruders on sight.~
+The typical elf like slenderness and agility make this elf a tough opponent.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_SANCTUARY|AFF_INFRARED
+1000 S
+95 BODY_ARM BODY_FOOT 10000d1+5000 10d10+80
+10000 RACE_ELF
+POS_STANDING POS_STANDING SEX_MALE
+#402
+ethereal_1~
+Elven ethereal mob~
+What long desc ?~
+Loads up guards on the entrance of a non-elf
+purges them occasionally to prevent a buildup of fuckloads of guards~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_ETHEREAL
+1000 S
+95 BODY_ARM BODY_FOOT 10000d1+5000 10d10+80
+10000 RACE_ELF
+POS_STANDING POS_STANDING SEX_MALE
+#403
+ethereal_1~
+Elven ethereal mob~
+What long desc ?~
+Loads up guards on the entrance of a non-elf
+purges them occasionally to prevent a buildup of fuckloads of guards~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_ETHEREAL
+1000 S
+95 BODY_ARM BODY_FOOT 10000d1+5000 10d10+80
+10000 RACE_ELF
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if race($n) == 2
+  break
+else
+  mpmload 401
+  rescale 401 $n 160
+  mpforce guard mpkill $n
+endif
+~
+>rand_prog 4~
+mpquiet on
+mppurge guard
+mpquiet off
+~
+|
+#404
+Elf Elven citizen~
+An Elven Citizen~
+An Elf is running an errand here.~
+This elf seems to be totally at peace with it's surroundings, and from the 
+looks of the surroundings, who would not be?~
+ACT_SMART|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN
+1000 S
+95 BODY_HEAD BODY_HEAD 1d1+9999 1d1+99
+10000 RACE_ELF
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 10~
+say Welcome to the City, $n.
+~
+|
+#405
+elf elven shopkeeper~
+A Shopkeeper~
+An Elf is here watching over his wares.~
+To fight this elf would be utter madness!~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN
+1000 S
+95 BODY_HEAD BODY_HEAD 1d1+9999 1d1+99
+10000 RACE_ELF
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 10~
+say Welcome to the shop, $n.
+~
+|
+#406
+elf elven shopkeeper~
+A Shopkeeper~
+An Elf is here watching over his wares.~
+To fight this elf would be utter madness!~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN
+1000 S
+95 BODY_HEAD BODY_HEAD 1d1+9999 1d1+99
+10000 RACE_ELF
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 10~
+say Welcome to the shop, $n.
+~
+|
+#407
+elf elven shopkeeper~
+A Shopkeeper~
+An Elf is here watching over his wares.~
+To fight this elf would be utter madness!~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN
+1000 S
+95 BODY_HEAD BODY_HEAD 1d1+9999 1d1+99
+10000 RACE_ELF
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 10~
+say Welcome to the shop, $n.
+~
+|
+#408
+elf elven trainer~
+An Elven Trainer~
+An Elf is here waiting to help you practice and train.~
+To fight this elf would be utter madness!~
+ACT_SENTINEL|ACT_TRAIN|ACT_PRACTICE|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN
+1000 S
+95 BODY_HEAD BODY_HEAD 1d1+9999 1d1+99
+10000 RACE_ELF
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 10~
+smile $n
+~
+|
+#409
+elf elven king high~
+The Elven High-King~
+The High-King is sitting on his throne here.~
+To fight this elf would mean instant death.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN
+1000 S
+95 BODY_HEAD BODY_HEAD 1d1+9999 1d1+99
+10000 RACE_ELF
+POS_STANDING POS_STANDING SEX_MALE
+>fight_prog 100~
+laugh $n
+~
+>greet_prog 100~
+if race($n) == 2
+  smile $n
+  mpechoat $n The Elven High-King says 'So $n, Are YOU interested in joining the Army then ?'
+else
+  say BEGONE! HEATHEN!
+  mptransfer $n 9755
+endif
+~
+>speech_prog worthy chance.~
+if quest(0,4,$n) == 1
+  mpmset $n quest 0 4 2
+  say Well I suppose that is so.
+  say But, You must not let the nation down.
+  say I will give you an ENLISTMENT PAPER to sign, if you are really that keen.
+endif
+~
+>speech_prog enlistment paper~
+if quest(0,4,$n) == 2
+  mpmset $n quest 0 4 3
+  say here it is so.....
+  mpoload 400
+  mpquiet on
+  cast 'giant strength' $n
+  mpquiet off
+  give enlistment $n
+  mpjunk enlistment
+else
+  say You must leave now!
+  mpforce $n south
+endif
+~
+>speech_prog resign~
+if armystatus($n) == 1
+ say You wish to leave us then.
+ frown $n
+ say So be it.
+ mpoload 428
+ mpquiet on
+ cast 'giant strength' $n
+ mpquiet off
+ give paper $n
+ mpjunk paper 
+else
+ say You are not in the army!
+ mptransfer $n 9755
+endif
+~
+|
+#410
+elf elven queen~
+The Queen Elf~
+The Queen is sitting on her throne here.~
+To fight this elf would mean instant death.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN
+1000 S
+95 BODY_HEAD BODY_HEAD 1d1+9999 1d1+99
+10000 RACE_ELF
+POS_STANDING POS_STANDING SEX_FEMALE
+>fight_prog 100~
+Unknown $n
+~
+>greet_prog 100~
+if race($n) == 2
+  emote looks up from what she was reading. 
+endif
+~
+>speech_prog yes~
+say We are very selective about who we let in and who we reject.
+say How do We know that YOU are worthy of a chance to kill our blood enemies?
+mpmset $n quest 0 4 1
+~
+|
+#411
+Ethereal sign mob~
+Mr Sign~
+Blah blah~
+Make people look at the sign~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_ETHEREAL
+1000 S
+95 BODY_HEAD BODY_HEAD 1d1+9999 1d1+99
+10000 RACE_ELF
+POS_STANDING POS_STANDING SEX_FEMALE
+>all_greet_prog 100~
+mpforce $n look sign
+~
+|
+#413
+Healer~
+Healer~
+Healer~
+~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_ETHEREAL
+1000 S
+95 BODY_HEAD BODY_HEAD 1d1+9999 1d1+99
+10000 RACE_ELF
+POS_STANDING POS_STANDING SEX_FEMALE
+>rand_prog 100~
+mpquiet on
+if rand(20)
+  cast 'cure critical' $r
+endif
+if rand(20)
+  cast 'cure blind' $r
+endif
+if rand(20)
+  cast 'cure poison' $r
+endif
+if rand(20)
+  cast 'cure light' $r
+endif
+if rand(20)
+  cast 'remove curse' $r
+endif
+if rand(20)
+  cast 'heal' $r
+endif
+if rand(20)
+  cast 'enhanced revive' $r
+endif
+if rand(20)
+  cast 'enhanced heal' $r
+endif
+if rand(20)
+  cast 'enhanced rest' $r
+endif
+if rand(20)
+  cast 'bless' $r
+endif
+if rand(20)
+  cast 'giant strength' $r
+endif
+if rand(20)
+  cast 'armor' $r
+endif
+if rand(20)
+  cast 'shield' $r
+endif
+mpquiet off
+~
+|
+#414
+elf elven shopkeeper~
+A Shopkeeper~
+An Elf is here watching over his wares.~
+To fight this elf would be utter madness!~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN
+1000 S
+95 BODY_HEAD BODY_HEAD 1d1+9999 1d1+99
+10000 RACE_ELF
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 10~
+say Welcome to the shop, $n.
+~
+|
+#415
+deer~
+A deer~
+A deer is grazing on some grass here.~
+The eyes seem to open with terror and fright as the deer spots you.
+~
+ACT_SMART|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN
+1000 S
+10 BODY_HEAD BODY_HEAD 1d250+0 1d25+0
+10000 RACE_ELF
+POS_STANDING POS_STANDING SEX_FEMALE
+>rand_prog 5
+mpecho You hear a munching sound.
+~
+>rand_prog 10
+mpasound You see a deer bolting through the undergrowth in the distance.
+~
+|
+
+
+#0
+
+
+
+
+#OBJECTS
+#400
+enlistment paper~
+enlistment Paper~
+A piece of paper is here.~
+To join the elven army type: "Enlist <password>"
+
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 0 0
+0 10 10
+P 1
+TRIG_UNKNOWN 100 enlist
+OPROG_IF OIF_USER_RACE = RACE_ELF 2 4
+P 2
+TRIG_VOID
+OPROG_ECHO
+You enlist in the elven army, Congratulations.~
+P 2
+TRIG_VOID
+OPROG_GOD_ARGUMENT
+mpat 424 army join~
+P 2
+TRIG_VOID
+OPROG_JUNK
+#401
+potion bright green~
+a Bright Green Potion~
+A bright green potion lies here.~
+This potion looks very bright and very green, this makes you wonder as to what
+it's contents are.~
+ITEM_TYPE_POTION
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+15 SPELL_ARMOR SPELL_BLESS SPELL_SHIELD
+1 10000 12
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_RACE = RACE_ELF 0 2
+P 2
+TRIG_VOID
+OPROG_JUNK
+#402
+potion bright purple~
+a Bright Purple Potion~
+A bright purple potion lies here.~
+This potion looks very bright and very purple, this makes you wonder as to what
+the contents are inside it.~
+ITEM_TYPE_POTION
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+15 SPELL_GIANT_STRENGTH SPELL_CURE_LIGHT SPELL_STONE_SKIN
+1 10000 12
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_RACE = RACE_ELF 0 2
+P 2
+TRIG_VOID
+OPROG_JUNK
+#403
+potion elven vision~
+a potion of elven vision~
+There is an elven potion lying here.~
+This is a potion which lets you see things as an elf sees them. Not like those
+other inferior races do.~
+ITEM_TYPE_POTION
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+10 SPELL_DETECT_HIDDEN SPELL_DETECT_INVIS SPELL_DETECT_MAGIC
+1 5000 10
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_RACE = RACE_ELF 0 2
+P 2
+TRIG_VOID
+OPROG_JUNK
+#404
+scroll elven vision~
+a scroll of elven vision~
+There is an elven scroll lying here.~
+This is a scroll which lets you see things as an elf sees them. Not like those
+other inferior races do.~
+ITEM_TYPE_SCROLL
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+10 SPELL_DETECT_HIDDEN SPELL_DETECT_INVIS SPELL_DETECT_MAGIC
+1 5000 10
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_RACE = RACE_ELF 0 2
+P 2
+TRIG_VOID
+OPROG_JUNK
+#405
+potion travelling~
+a potion of travelling~
+A potion is here.~
+This is just a clear looking potion, you wonder what it will do?~
+ITEM_TYPE_POTION
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+10 SPELL_HASTE SPELL_FLY SPELL_INVIS
+1 5000 10
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_RACE = RACE_ELF 0 2
+P 2
+TRIG_VOID
+OPROG_JUNK
+#406
+small bag elven~
+a small bag of elven origin~
+A small well crafted bag is lying here on the ground.~
+~
+ITEM_TYPE_CONTAINER
+ITEM_FLAG_MAGIC|ITEM_FLAG_INVENTORY|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+200 CONT_CLOSEABLE 0 0
+1 10000 10
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_RACE = RACE_ELF 0 2
+P 2
+TRIG_VOID
+OPROG_JUNK
+#409
+crystal elven~
+a glowing crystal~
+A crystal is lighting up the room here.~
+~
+ITEM_TYPE_LIGHT
+ITEM_FLAG_MAGIC|ITEM_FLAG_INVENTORY|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+0 0 10000 0
+1 100000 10
+A
+APPLY_HITROLL 2
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_RACE = RACE_ELF 0 2
+P 2
+TRIG_VOID
+OPROG_JUNK
+#410
+sceptre elven~
+a mysterious sceptre~
+A stick is lying on the ground here.~
+~
+ITEM_TYPE_TREASURE
+ITEM_FLAG_MAGIC|ITEM_FLAG_INVENTORY|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+0 0 0 0
+1 700000 10
+A
+APPLY_CON 1
+A
+APPLY_WIS 1
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_RACE = RACE_ELF 0 2
+P 2
+TRIG_VOID
+OPROG_JUNK
+#411
+elven armor leggings~
+green leggings~
+A pair of green leggings lie on the ground blending into the background.~
+The material that these leggings are made out of seems to make sudden changes
+in colour to blend in with the background of the place you are standing. It is
+rather strange, but you notice all the warriors around the camp wearing similar
+type armour.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_INVENTORY|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_LEGS
+5 0 0 0
+1 100000 10
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_RACE = RACE_ELF 0 2
+P 2
+TRIG_VOID
+OPROG_JUNK
+#412
+elven armor sleeves~
+green sleeves~
+A pair of green sleeves lie on the ground blending into the background.~
+The material that these leggings are made out of seems to make sudden changes
+in colour to blend in with the background of the place you are standing. It is
+rather strange, but you notice all the warriors around the camp wearing similar
+type armour.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_INVENTORY|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_ARMS
+5 0 0 0
+1 100000 10
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_RACE = RACE_ELF 0 2
+P 2
+TRIG_VOID
+OPROG_JUNK
+#413
+elven armor gloves~
+green gloves~
+A pair of green gloves lie on the ground blending into the background.~
+The material that these gloves are made out of seems to make sudden changes
+in colour to blend in with the background of the place you are standing. It is
+rather strange, but you notice all the warriors around the camp wearing similar
+type armour.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_INVENTORY|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HANDS
+5 0 0 0
+1 100000 10
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_RACE = RACE_ELF 0 2
+P 2
+TRIG_VOID
+OPROG_JUNK
+#414
+elven armor boots~
+green boots~
+A pair of green boots lie on the ground blending into the background.~
+The material that these boots are made out of seems to make sudden changes
+in colour to blend in with the background of the place you are standing. It is
+rather strange, but you notice all the warriors around the camp wearing similar
+type armour.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_INVENTORY|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_FEET
+0 0 0 0
+1 100000 10
+A
+APPLY_HITROLL 2
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_RACE = RACE_ELF 0 2
+P 2
+TRIG_VOID
+OPROG_JUNK
+#415
+elven armor ring~
+green ring~
+A green ring lies on the ground blending into the background.~
+The material that this ring is made out of seems to make sudden changes
+in colour to blend in with the background of the place you are standing. It is
+rather strange, but you notice all the warriors around the camp wearing similar
+type armour.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_INVENTORY|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_FINGER
+0 0 0 0
+1 100000 10
+A
+APPLY_HITROLL 2
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_RACE = RACE_ELF 0 2
+P 2
+TRIG_VOID
+OPROG_JUNK
+#416
+elven armor ring~
+green ring~
+A green ring lies on the ground blending into the background.~
+The material that this ring is made out of seems to make sudden changes
+in colour to blend in with the background of the place you are standing. It is
+rather strange, but you notice all the warriors around the camp wearing similar
+type armour.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_INVENTORY|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_FINGER
+3 0 0 0
+1 100000 10
+A
+APPLY_WIS 1
+A
+APPLY_DEX 1
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_RACE = RACE_ELF 0 2
+P 2
+TRIG_VOID
+OPROG_JUNK
+#417
+elven armor cape~
+green cape~
+A green cape lies on the ground blending into the background.~
+The material that this cape is made out of seems to make sudden changes
+in colour to blend in with the background of the place you are standing. It is
+rather strange, but you notice all the warriors around the camp wearing similar
+type armour.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_INVENTORY|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_NECK
+3 0 0 0
+1 100000 10
+A
+APPLY_DAMROLL 1
+A
+APPLY_HITROLL 1
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_RACE = RACE_ELF 0 2
+P 2
+TRIG_VOID
+OPROG_JUNK
+#418
+elven armor cloak~
+green cloak~
+A green cloak lies on the ground blending into the background.~
+The material that this ring is made out of seems to make sudden changes
+in colour to blend in with the background of the place you are standing. It is
+rather strange, but you notice all the warriors around the camp wearing similar
+type armour.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_INVENTORY|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_NECK
+5 0 0 0
+1 100000 10
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_RACE = RACE_ELF 0 2
+P 2
+TRIG_VOID
+OPROG_JUNK
+#419
+elven armor bracelet~
+green bracelet~
+A green bracelet lies on the ground blending into the background.~
+The material that this ring is made out of seems to make sudden changes
+in colour to blend in with the background of the place you are standing. It is
+rather strange, but you notice all the warriors around the camp wearing similar
+type armour.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_INVENTORY|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WRIST
+3 0 0 0
+1 100000 10
+A
+APPLY_DAMROLL 1
+A
+APPLY_DEX 1
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_RACE = RACE_ELF 0 2
+P 2
+TRIG_VOID
+OPROG_JUNK
+#420
+elven armor helmet~
+green helmet~
+A green helmet lies on the ground blending into the background.~
+The material that this helmet is made out of seems to make sudden changes
+in colour to blend in with the background of the place you are standing. It is
+rather strange, but you notice all the warriors around the camp wearing similar
+type armour.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_INVENTORY|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HEAD
+5 0 0 0
+1 100000 10
+A
+APPLY_INT 1
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_RACE = RACE_ELF 0 2
+P 2
+TRIG_VOID
+OPROG_JUNK
+#421
+elven armor ward~
+green ward~
+A green ward lies on the ground blending into the background.~
+The material that this ward is made out of seems to make sudden changes
+in colour to blend in with the background of the place you are standing. It is
+rather strange, but you notice all the warriors around the camp wearing similar
+type armour.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_INVENTORY|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+5 0 0 0
+1 100000 10
+A
+APPLY_HITROLL 2
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_RACE = RACE_ELF 0 2
+P 2
+TRIG_VOID
+OPROG_JUNK
+#422
+elven bow~
+elven bow~
+A powerful looking bow lies on the ground blending into the background.~
+~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_MAGIC|ITEM_FLAG_INVENTORY|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+423 2 6 WEAPON_STAB
+1 10000 10
+A
+APPLY_HITROLL 2
+A
+APPLY_DAMROLL 2
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_RACE = RACE_ELF 0 2
+P 2
+TRIG_VOID
+OPROG_JUNK
+#423
+elven arrows~
+elven arrow~
+A nasty looking arrow is here on the ground.~
+~
+ITEM_TYPE_AMMO
+ITEM_FLAG_MAGIC|ITEM_FLAG_INVENTORY|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+423 25 7 1
+1 10000 10
+#424
+elven sword~
+elven sword~
+A powerful looking sword lies on the ground blending into the background.~
+~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_MAGIC|ITEM_FLAG_INVENTORY|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 2 6 WEAPON_STAB
+1 10000 10
+A
+APPLY_HITROLL 2
+A
+APPLY_DAMROLL 2
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_RACE = RACE_ELF 0 2
+P 2
+TRIG_VOID
+OPROG_JUNK
+#425
+elven mace~
+elven mace~
+A powerful looking mace lies on the ground blending into the background.~
+~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_MAGIC|ITEM_FLAG_INVENTORY|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 2 6 WEAPON_STAB
+1 10000 10
+A
+APPLY_HITROLL 2
+A
+APPLY_DAMROLL 2
+C
+club~
+FLAG_CLASS_MONK|FLAG_CLASS_ILLUSIONIST|FLAG_CLASS_ROGUE
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_RACE = RACE_ELF 0 2
+P 2
+TRIG_VOID
+OPROG_JUNK
+#427
+elven firestick~
+elven firestick~
+A powerful looking firestick lies on the ground blending into the background.~
+~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_MAGIC|ITEM_FLAG_INVENTORY|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 3 2 WEAPON_STAB
+1 100000 10
+A
+APPLY_WIS 1
+A
+APPLY_STR 1
+C
+flay~
+FLAG_CLASS_ILLUSIONIST|FLAG_CLASS_ROGUE
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_RACE = RACE_ELF 0 2
+P 2
+TRIG_VOID
+OPROG_JUNK
+#428
+discharge paper~
+A Discharge Paper~
+A piece of paper is here.~
+To leave the elven army type: "Resignarmy <password>"
+
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 0 0
+0 10 10
+P 1
+TRIG_UNKNOWN 100 resignarmy
+OPROG_IF OIF_USER_RACE = RACE_ELF 2 4
+P 2
+TRIG_VOID
+OPROG_ECHO
+You Resign from the elven army, Goodbye.~
+P 2
+TRIG_VOID
+OPROG_GOD_ARGUMENT
+mpat 424 army retire~
+P 2
+TRIG_VOID
+OPROG_JUNK
+
+#0
+
+
+
+
+#ROOMS
+#400
+A path in the trees~
+You are on a new path, the valley leads off to the south of here. As you look 
+around you, there is some sort of sign here mysteriously though, it was not 
+visible to you the first time that you looked. You have the ominous feeling
+that from the hidden forest somebody is observing your movements very 
+carefully. Caution from here on in is advised.~
+4 ROOM_NO_RECALL SECT_FOREST
+DDIR_NORTH
+You see more forest~
+~
+0 -1 401
+DDIR_SOUTH
+You see the edge of the valley~
+~
+0 -1 7825
+E
+sign~
+,
+,                =====================================
+,               ||                                   ||
+,               ||      Elven Army Territory.        ||   
+,               ||       Proceed at own risk.        ||   
+,               ||                                   ||
+,                =====================================
+,                               |     |
+,                               |     |~
+S
+#401
+A path in the trees~
+The path leads onwards to the east from here. There is still that feeling 
+that you are being watched very closely. The trees around here look very well
+looked after. The fauna also seems to be used to the presence of people being
+around them. Still you feel the need for caution.~
+4 ROOM_NO_RECALL SECT_FOREST
+DDIR_EAST
+You see more forest~
+~
+0 -1 402
+DDIR_SOUTH
+You see more forest~
+~
+0 -1 400
+S
+#402
+A fork in a path in the trees~
+There is a fork in the path here. You wonder which way you should go, but 
+urgency urges you onwards, as the heckles on the back of your neck still seem
+to be standing on end. The way back to the west seems a more favourable option
+at this very moment in time.~
+4 ROOM_NO_RECALL SECT_FOREST
+DDIR_NORTH
+You see more forest~
+~
+0 -1 403
+DDIR_SOUTH
+You see more forest~
+~
+0 -1 404
+DDIR_WEST
+You see more forest~
+~
+0 -1 401
+S
+#403
+A path in the trees~
+You still seem to have the feeling that your every move is being observed 
+closely. This is starting to really annoy you, and if it does not go away 
+soon, then you are never going to be able to get to sleep tonight. But then
+who needs to sleep anyway? This part of the forest seems to be under some sort
+of magical enchantment, leading to the unsurpassed growth that you observe all
+around you.~
+4 ROOM_NO_RECALL SECT_FOREST
+DDIR_EAST
+You see more forest~
+~
+0 -1 405
+DDIR_SOUTH
+You see a fork in the path~
+~
+0 -1 402
+S
+#404
+A path in the trees~
+You still seem to have the feeling that your every move is being observed 
+closely. This is starting to really annoy you, and if it does not go away 
+soon, then you are never going to be able to get to sleep tonight. But then
+who needs to sleep anyway? This part of the forest seems to be under some sort
+of magical enchantment, leading to the unsurpassed growth that you observe all
+around you.~
+4 ROOM_NO_RECALL SECT_FOREST
+DDIR_NORTH
+You see a fork in the path~
+~
+0 -1 402
+DDIR_WEST
+You see more forest~
+~
+0 -1 406
+S
+#405
+A path in the trees~
+You still seem to have the feeling that your every move is being observed 
+closely. This is starting to really annoy you, and if it does not go away 
+soon, then you are never going to be able to get to sleep tonight. But then
+who needs to sleep anyway? This part of the forest seems to be under some sort
+of magical enchantment, leading to the unsurpassed growth that you observe all
+around you. The air is starting to glow magically, and the breeze is getting 
+much fresher here as you walk through the forest.~
+4 ROOM_NO_RECALL SECT_FOREST
+DDIR_SOUTH
+You see a clearing~
+~
+0 -1 407
+DDIR_WEST
+You see more forest~
+~
+0 -1 403
+S
+#406
+A path in the trees~
+You still seem to have the feeling that your every move is being observed 
+closely. This is starting to really annoy you, and if it does not go away 
+soon, then you are never going to be able to get to sleep tonight. But then
+who needs to sleep anyway? This part of the forest seems to be under some sort
+of magical enchantment, leading to the unsurpassed growth that you observe all
+around you. The air is starting to glow magically, and the breeze is getting 
+much fresher here as you walk through the forest.~
+4 ROOM_NO_RECALL SECT_FOREST
+DDIR_EAST
+You see more forest~
+~
+0 -1 404
+DDIR_SOUTH
+You see a clearing of some sort~
+~
+0 -1 408
+S
+#407
+A clearing in the forest~
+You are in some sort of weird clearing. The trees seem to be overhanging this 
+area, and yet nothing is growing under the trees. It is almost as if there is 
+a lot of traffic of some sort passing over this area frequently. You cannot
+however detect any tracks of people or animals moving around here recently.
+This makes the heckles on your neck start to throb with fear, as your heart 
+starts to speed up in expectation of action.~
+4 ROOM_NO_RECALL SECT_FOREST
+DDIR_NORTH
+You see more forest~
+~
+0 -1 405
+DDIR_EAST
+You see more forest~
+~
+0 -1 410
+DDIR_WEST
+You see more forest~
+~
+0 -1 406
+DDIR_UP
+You see a branch overhead~
+~
+0 -1 410
+S
+#408
+A clearing in the forest~
+You are in some sort of weird clearing. The trees seem to be overhanging this 
+area, and yet nothing is growing under the trees. It is almost as if there is 
+a lot of traffic of some sort passing over this area frequently. You cannot
+however detect any tracks of people or animals moving around here recently.
+This makes the heckles on your neck start to throb with fear, as your heart 
+starts to speed up in expectation of action.~
+4 ROOM_NO_RECALL SECT_FOREST
+DDIR_NORTH
+You see more forest~
+~
+0 -1 406
+DDIR_EAST
+You see more forest~
+~
+0 -1 404
+DDIR_WEST
+You see more forest~
+~
+0 -1 409
+DDIR_UP
+You see a branch overhead~
+~
+0 -1 411
+S
+#409
+A path in the forest~
+You have entered a really dark region in the forest. You should not really 
+have wandered deep. Now you see the foes who have been observing your 
+movements since you have entered this forest. They seem to be watching out
+for their kin.~
+4 ROOM_NO_RECALL SECT_FOREST
+DDIR_EAST
+You see more forest~
+~
+0 -1 408
+S
+#410
+In the trees over the forest~
+You are in a weird sort of place now. There are walkways magically constructed
+out of the trees, which seem to actually enhance the beauty of this place,
+rather than take from it. There are elves moving around here with the kind of 
+grace that no other race can even attempt to have. You feel safer here than you
+have when you were in the crowded towns and cities of the realm. It is good to
+be back among your own kind.~
+4 ROOM_NO_MOB|ROOM_SAFE SECT_CITY
+DDIR_WEST
+You see more walkways~
+~
+0 -1 412
+DDIR_DOWN
+You see the forest below you~
+~
+0 -1 407
+S
+#411
+In the trees over the forest~
+You are in a weird sort of place now. There are walkways magically constructed
+out of the trees, which seem to actually enhance the beauty of this place,
+rather than take from it. There are elves moving around here with the kind of 
+grace that no other race can even attempt to have. You feel safer here than you
+have when you were in the crowded towns and cities of the realm. It is good to
+be back among your own kind.~
+4 ROOM_NO_MOB|ROOM_SAFE SECT_CITY
+DDIR_EAST
+You see more walkways~
+~
+0 -1 416
+DDIR_DOWN
+You see the forest below you~
+~
+0 -1 408
+S
+#412
+In the trees over the forest~
+You are in a weird sort of place now. There are walkways magically constructed
+out of the trees, which seem to actually enhance the beauty of this place,
+rather than take from it. There are elves moving around here with the kind of 
+grace that no other race can even attempt to have. You feel safer here than you
+have when you were in the crowded towns and cities of the realm. It is good to
+be back among your own kind.~
+4 ROOM_SAFE SECT_CITY
+DDIR_EAST
+You see more walkways~
+~
+0 -1 410
+DDIR_SOUTH
+You see an armor shop~
+~
+0 -1 418
+DDIR_WEST
+You see more walkways~
+~
+0 -1 413
+S
+#413
+In the trees over the forest~
+You are in a weird sort of place now. There are walkways magically constructed
+out of the trees, which seem to actually enhance the beauty of this place,
+rather than take from it. There are elves moving around here with the kind of 
+grace that no other race can even attempt to have. You feel safer here than you
+have when you were in the crowded towns and cities of the realm. It is good to
+be back among your own kind.~
+4 ROOM_SAFE SECT_CITY
+DDIR_NORTH
+You see more walkways~
+~
+0 -1 414
+DDIR_EAST
+You see more walkways~
+~
+0 -1 412
+DDIR_SOUTH
+You see a weapon shop~
+~
+0 -1 419
+S
+#414
+In the trees over the forest~
+You are in a weird sort of place now. There are walkways magically constructed
+out of the trees, which seem to actually enhance the beauty of this place,
+rather than take from it. There are elves moving around here with the kind of 
+grace that no other race can even attempt to have. You feel safer here than you
+have when you were in the crowded towns and cities of the realm. It is good to
+be back among your own kind.~
+4 ROOM_SAFE SECT_CITY
+DDIR_NORTH
+You see a magic shop~
+~
+0 -1 420
+DDIR_SOUTH
+You see more walkways~
+~
+0 -1 413
+DDIR_WEST
+You see more walkways~
+~
+0 -1 415
+DDIR_UP
+You see the centre tree~
+~
+0 -1 422
+S
+#415
+In the trees over the forest~
+You are in a weird sort of place now. There are walkways magically constructed
+out of the trees, which seem to actually enhance the beauty of this place,
+rather than take from it. There are elves moving around here with the kind of 
+grace that no other race can even attempt to have. You feel safer here than you
+have when you were in the crowded towns and cities of the realm. It is good to
+be back among your own kind.~
+4 ROOM_SAFE SECT_CITY
+DDIR_NORTH
+You see a utility shop~
+~
+0 -1 421
+DDIR_EAST
+You see more walkways~
+~
+0 -1 414
+DDIR_SOUTH
+You see a training room~
+~
+0 -1 425
+DDIR_WEST
+You see more walkways~
+~
+0 -1 416
+S
+#416
+In the trees over the forest~
+You are in a weird sort of place now. There are walkways magically constructed
+out of the trees, which seem to actually enhance the beauty of this place,
+rather than take from it. There are elves moving around here with the kind of 
+grace that no other race can even attempt to have. You feel safer here than you
+have when you were in the crowded towns and cities of the realm. It is good to
+be back among your own kind.~
+4 ROOM_SAFE SECT_CITY
+DDIR_EAST
+You see more walkways~
+~
+0 -1 415
+DDIR_WEST
+You see more walkways~
+~
+0 -1 411
+S
+#418
+The Armor Shop~
+There are all sorts of wares on sale here. There are pieces of armor all over
+the walls. The gleam of all this shiny leathers and metals seems to be blinding
+your eyes. You feel that you should buy something, just out the sheer awe.~
+4 ROOM_SAFE SECT_CITY
+DDIR_NORTH
+You see more walkways~
+~
+0 -1 412
+S
+#419
+The Weapon Shop~
+There are all sorts of nasty weapons on the walls here. There seems to be a lot
+of work gone into them. The magic seems to be oozing out of the of the weapons
+being sold here.~
+4 ROOM_SAFE SECT_CITY
+DDIR_NORTH
+You see more walkways~
+~
+0 -1 413
+S
+#420
+The Magic Shop~
+This shop is absolutely overwhelming with the magical aura coming from the
+items on sale here. There are scrolls and potions stacked up on shelves. Along
+the walls there are a lot of staffs.~
+4 ROOM_SAFE SECT_CITY
+DDIR_SOUTH
+You see more walkways~
+~
+0 -1 414
+S
+#421
+The Utility Shop~
+There are all sorts of miscellaneous items lined up along the counter and in
+the shelves along the walls here. There is a pleasant looking elf behind the
+counter who seems like he will give you a genuine bargain on anything you buy
+here. If only the other stores in the realm were as nice to shop in.~
+4 ROOM_SAFE SECT_CITY
+DDIR_SOUTH
+You see more walkways~
+~
+0 -1 415
+S
+#422
+The Centre Tree~
+You are standing at the heart of the elven forest. This tree is the very soul
+of every elf, and you are as willing as every elf is to give your life to
+defend it. There is a wide entrance to the south, leading into the main throne
+room. The walkway that brought you here leads down from here.~
+4 ROOM_SAFE|ROOM_ALTAR_C|ROOM_ALTAR_O SECT_INN
+DDIR_NORTH
+You see the throne room~
+~
+0 -1 423
+DDIR_SOUTH
+You see a portal~
+~
+0 -1 426
+DDIR_DOWN
+You see more walkways~
+~
+0 -1 414
+S
+#423
+The Throne Room~
+You are standing at the throne of the king and queen of your race. There are 
+multiple adornments along each wall, which may be symbols of power, indicating
+how much of the knowledge from the past has been forgotten, because there is 
+nobody alive that is able to use them. The throne that the king and queen sit 
+upon is carved out of an absolutely massive piece of dead oak. The wood seems 
+too have been polished using the finest oils, and molded to the touch of the
+elven craftsmen that made it. You feel a great need to pay homage to the 
+persons sitting upon the throne here.~
+4 ROOM_SAFE SECT_INSIDE
+DDIR_SOUTH
+You see the centre tree~
+~
+0 -1 422
+S
+#424
+The Pledging room~
+Here is a room that no mortal should actually look in.
+Used with the pledge command in the throne room of the hq.
+
+Also used to resign, people get here using objects..
+
+~
+4 ROOM_NO_MOB|ROOM_SAFE|ROOM_NO_RECALL SECT_INSIDE
+S
+#425
+The training room~
+Here is a place where you can train all your stats and practice all your 
+spells and skills, to use against the enemy troopers.~
+4 ROOM_SAFE SECT_INSIDE
+DDIR_NORTH
+You see more walkways~
+~
+0 -1 415
+S
+#426
+The Gateway to the Realm~
+You are inside a gateway which seems to have some sort of magical link to 
+the outside world. There is a sign here.~
+4 ROOM_SAFE SECT_INSIDE
+DDIR_NORTH
+You see the centre tree~
+~
+0 -1 422
+E
+sign~
+,
+,                =====================================
+,               ||  To connect the southern exit     ||
+,               ||  to a place in the realm, say     ||
+,               ||                                   ||
+,               ||  'Elven'   - Elven City           ||
+,               ||  'Mist'    - Mist City            ||
+,               ||  'Ocean'   - Ocean city           ||
+,               ||  'Entropy' - City of Entropy      ||
+,               ||  'Chakkor' - City of Chakkor      ||   
+,               ||  'Midgaard'- City of Midgaard     ||   
+,               ||                                   ||
+,                =====================================
+,                               |     |
+,                               |     |~
+S
+#0
+
+
+
+
+#RESETS
+M 0 403   9 409 ;       Elven ethereal mob in A path in the forest     
+M 0 402   9 407 ;       Elven ethereal mob in A clearing in the forest 
+M 0 403   9 408 ;       Elven ethereal mob in A clearing in the forest 
+M 0 414   9 421 ;             A Shopkeeper in The Utility Shop         
+G 0 406  19       ;a small bag of elven orig
+G 0 409  19       ;        a glowing crystal
+G 0 410  19       ;     a mysterious sceptre
+M 0 405   9 420 ;             A Shopkeeper in The Magic Shop           
+G 0 401  19       ;    a Bright Green Potion
+G 0 402  19       ;   a Bright Purple Potion
+G 0 403  19       ; a potion of elven vision
+G 0 404  19       ; a scroll of elven vision
+G 0 405  19       ;   a potion of travelling
+M 0 406   9 418 ;             A Shopkeeper in The Armor Shop           
+G 0 411  19       ;           green leggings
+G 0 412  19       ;            green sleeves
+G 0 413  19       ;             green gloves
+G 0 414  19       ;              green boots
+G 0 415  19       ;               green ring
+G 0 416  19       ;               green ring
+G 0 417  19       ;               green cape
+G 0 418  19       ;              green cloak
+G 0 419  19       ;           green bracelet
+G 0 420  19       ;             green helmet
+G 0 421  19       ;               green ward
+M 0 407   9 419 ;             A Shopkeeper in The Weapon Shop          
+G 0 422  19       ;                elven bow
+G 0 423  19       ;              elven arrow
+G 0 424  19       ;              elven sword
+G 0 425  19       ;               elven mace
+G 0 427  19       ;          elven firestick
+M 0 408   9 425 ;         An Elven Trainer in The training room        
+M 0 411   9 400 ;                  Mr Sign in A path in the trees      
+M 0 413   9 422 ;                   Healer in The Centre Tree          
+M 0 409   9 423 ;             The king Elf in The Throne Room          
+M 0 410   9 423 ;            The Queen Elf in The Throne Room          
+M 0 404   9 414 ;         An Elven Citizen in In the trees over the for
+M 0 404   9 415 ;         An Elven Citizen in In the trees over the for
+M 0 404   9 413 ;         An Elven Citizen in In the trees over the for
+M 0 404   9 412 ;         An Elven Citizen in In the trees over the for
+M 0 404   9 415 ;         An Elven Citizen in In the trees over the for
+S
+
+
+
+
+#SHOPS
+414 ITEM_TYPE_NOTHING ITEM_TYPE_TREASURE ITEM_TYPE_TRASH ITEM_TYPE_NOTHING
+     ITEM_TYPE_NOTHING 100  50  0 23 ;A Shopkeeper
+405 ITEM_TYPE_WAND ITEM_TYPE_SCROLL ITEM_TYPE_POTION ITEM_TYPE_STAFF
+     ITEM_TYPE_NOTHING 100  50  0 23 ;A Shopkeeper
+406 ITEM_TYPE_NOTHING ITEM_TYPE_ARMOR ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING
+     ITEM_TYPE_NOTHING 100  50  0 23 ;A Shopkeeper
+407 ITEM_TYPE_NOTHING ITEM_TYPE_WEAPON ITEM_TYPE_AMMO ITEM_TYPE_NOTHING
+     ITEM_TYPE_NOTHING 100  50  0 23 ;A Shopkeeper
+0
+
+
+
+
+#SPECIALS
+S
+
+
+
+
+#$

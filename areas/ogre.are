@@ -1,0 +1,1238 @@
+#AREA High Mound~
+#AUTHORS Leza~
+
+
+
+
+
+#HELPS
+-1 HIGHMOUND~
+Since the war started with the, spits on the ground, elves. The ogre has come
+together to built a headquarter to regroup their tactics and gather new
+soldiers. It is said that it's impossible to infiltrate this structure. The
+security around and inside the building is so tight, if you sneeze, they'll
+know. Many have tried, but none has succeeded. With that in mind, it gives
+the ogre great hopes that their plan will succeed.~
+0 $~
+
+
+
+
+#RANGES 0 99 0 99
+#MOBILES
+#1850
+General Urik~
+General Urik~
+General Urik stands here looking over all the possible recruitees.~
+The general had been in many wars and seen quite a few troops comes and goes,
+so he has a sense of who would make a great soldiers. That is why the military
+relies on him to recruit soldiers who can hack it in this war.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_TONGUES
+0 S
+95 0 0 0d0+10000 0d0+200
+0 780605
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 100~
+if race($n) != 7
+  tell $n You're not authorize to be here.
+  mpforce $n west
+endif
+~
+>greet_prog 75~
+if quest(0,2,$n) == 0
+  if rand(50)
+    look $n
+    mpechoat You notice a smile on his face. He seems to like what he saw.
+    say You look like a strong ogre who knows how to
+    say take care of himself. Care to join the army
+    say and shows those elf what you're made of?
+  else
+    look $n
+    say Look at those muscle bulging from your arms,
+    say man what I wouldn't give to have someone like
+    say you in the army. Those elf would be shaking where
+    say they stand if they saw you coming. What do you say?
+  endif
+~
+>speech_prog yes~
+if quest(0,2,$n) == 0
+  if race($n) == 7
+    say Alright!
+    mpechoat $n The General pat you on the back.
+    say To join the army, type JOIN ARMY password right here.
+    tell $n Go see the Commander, he's located at the end of the hallway.
+    mpmset $n quest 0 2 1
+    tell $n To enter the headquarter, head back to the recruiter and say ENTER
+    mpechoat $n The General wish you luck out in the battlefield.
+  else
+    mpforce $n west
+  endif
+endif
+~
+>rand_prog 30~
+mpecho You hear a choir of voices in the background.  
+mpecho Be all you can be in the Ogre Army! JOIN the army now!
+~
+|
+#1851
+Odro~
+Odro~
+Odro The Armorer is here fixing up someones' dented armor.~
+The armorer has some very big arms. With all those armor coming in for
+repairs, it's a wonder he doesn't collapse from exhaustion. But he seems
+to enjoy his work.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_TONGUES
+0 S
+95 0 0 0d0+10000 0d0+200
+0 780605
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 100~
+if race($n) != 7
+  mpechoat $n You notice the shopkeeper reaching for something behind the counter.
+  mpechoat $n *swing* A trapdoor open beneath you and you plummented downward.
+  mpechoaround $n You see someone falling into a trapdoor.
+  mpasound Aaaarrrgggghhhhhhhh!
+  mptransfer $n 9755
+  mpat $n mpechoat $n After countless loops and turns, you have reach your destination.
+endif
+~
+>rand_prog 20~
+mpecho You hear the sound of a hammer hitting its target.
+~
+>rand_prog 35~
+if rand(50)
+  mpecho Whack!
+else
+  mpecho Thud!
+endif
+~
+|
+#1852
+Udru~
+Udru~
+Udru The Weaponsmith is here hammering away.~
+The weaponsmith looks very familiar. You can't recall where you see this man 
+before. Looking at him carefully, you notice he looks a lot like the armorer.
+Maybe they're brothers.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_TONGUES
+0 S
+95 0 0 0d0+10000 0d0+200
+0 780605
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 100~
+if race($n) != 7
+  mpechoat $n You notice the shopkeeper reaching for something behind the counter.
+  mpechoat $n *swing* A trapdoor open beneath you and you plummented downward.
+  mpechoaround $n You see someone falling into a trapdoor.
+  mpasound Aaaarrrgggghhhhhhhh!
+  mptransfer $n 9755
+  mpat $n mpechoat $n After countless loops and turns, you have reach your destination.
+endif
+~
+|
+#1853
+Orglu~
+Orglu~
+Orglu is here cooking up a storm to feed the entire army.~
+You see a very fat ogre, if ogre can be consider fat. With so many people to
+fed, how does he makes the time to eat. Guess you can always find time for
+food, even if the others has to starve while you're eating.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_TONGUES
+0 S
+95 0 0 1d1+20640 0d0+200
+0 780605
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 100~
+if race($n) != 7
+  mpechoat $n You notice the shopkeeper reaching for something behind the counter.
+  mpechoat $n *swing* A trapdoor open beneath you and you plummented downward.
+  mpechoaround $n You see someone falling into a trapdoor.
+  mpasound Aaaarrrgggghhhhhhhh!
+  mptransfer $n 9755
+  mpat $n mpechoat $n After countless loops and turns, you have reach your destination.
+endif
+~
+>rand_prog 35~
+mpmset $r thirst 50
+mpmset $r full 50
+mpechoat $r Oglu invites you to a feast.
+~
+|
+#1854
+Ogala~
+Ogala~
+The curator of the morgue is here shoveling bodies into the fire to be cremated.~
+He has the worst job of all, with the looks on his eyes, you can tell he hadn't
+sleep much since the war started. And there seems to be an endless pile of
+corpse coming in by the hour.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_TONGUES
+0 S
+95 0 0 0d0+10000 0d0+200
+0 780605
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 100~
+if race($n) != 7
+  mpechoat $n You notice the shopkeeper reaching for something behind the counter.
+  mpechoat $n *swing* A trapdoor open beneath you and you plummented downward.
+  mpechoaround $n You see someone falling into a trapdoor.
+  mpasound Aaaarrrgggghhhhhhhh!
+  mptransfer $n 9755
+  mpat $n mpechoat $n After countless loops and turns, you have reach your destination.
+endif
+~
+|
+#1855
+Uda~
+Uda~
+Shaman Uda stands here offering his services to the you, for a fee of course.~
+The shaman is a second class shaman, much better than that third class one who
+are hired. Now why didn't they hire this one, maybe its because his fees is too
+great. But just knowing his potion and scrolls won't backfire on you makes it
+even more appealing to buy things here.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_TONGUES
+0 S
+95 0 0 0d0+10000 0d0+200
+0 780605
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 100~
+if race($n) != 7
+  mpechoat $n You notice the shopkeeper reaching for something behind the counter.
+  mpechoat $n *swing* A trapdoor open beneath you and you plummented downward.
+  mpechoaround $n You see someone falling into a trapdoor.
+  mpasound Aaaarrrgggghhhhhhhh!
+  mptransfer $n 9755
+  mpat $n mpechoat $n After countless loops and turns, you have reach your destination.
+endif
+~
+|
+#1856
+Ulgo~
+Ulgo~
+Shaman Ulgo stands here preparing everyone for battle.~
+You see a fairly small ogre compares to the others. He's a third class shaman,
+but having a third class shaman to heal you is better than not. Though I would
+be careful, it is common knowledge that once in a while his spell backfires.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_TONGUES
+0 S
+120 0 0 1d1+16550 0d10000+200
+0 1179924
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 100~
+if race($n) != 7
+  mpechoat $n The shaman begins to cast a spell.
+  mpechoat $n Suddenly he points his finger at you and you feel funny.
+  mptransfer $n 9755
+  mpat $n mpechoat $n After what seems like minutes, the sensation went away.
+  mpat $n mpforce $n look
+endif
+~
+>rand_prog 75~
+if rand(25)
+  cast 'cure critical' $r
+  break
+endif
+if rand(15)
+  cast 'armor' $r
+  break
+endif
+if rand(15)
+  cast 'shield' $r
+  break
+endif
+if rand(15)
+  cast 'bless' $r
+  break
+endif
+if rand(10)
+  cast 'giant strength' $r
+  break
+endif
+if rand(5)
+  cast 'sanctuary' $r
+  break
+endif
+if rand(10)
+  cast 'refresh' $r
+  break
+endif
+if rand(10)
+  cast 'heal' $r
+  break
+endif
+~
+|
+#1857
+Ulaag~
+Ulaag~
+Ulaag is here meditating, would you care to join him?~
+It is said that Ulaag had traveled around the world learning all he could before
+the Commander approach him for a position here in the army. If the skill exist, he
+can train you in it if you care to learn.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_PRACTICE|ACT_SMART|ACT_NO_ORDER
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_TONGUES
+0 S
+95 0 0 1d1+10671 0d10000+200
+0 780605
+POS_STANDING POS_STANDING SEX_MALE
+>rand_prog 30~
+if rand(50)
+  mpecho Huummm...
+else
+  if rand(25)
+    mpecho Huummm.....
+  else
+    if rand(10)
+      mpecho Huummm.......
+    endif
+  endif
+endif
+~
+|
+#1858
+Ograa~
+Ograa~
+The infamous Ogra stands before you.~
+With his many success in battles as a soldier and his keen sense of survival,
+Ograa task is to improve the troops chances of survival. No one has been able
+to lay a hand upon Ogra for as long as anyone can remember, so it pays to learn
+from the best.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_TRAIN|ACT_SMART|ACT_NO_ORDER
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_TONGUES
+0 S
+95 0 0 0d0+10000 0d0+200
+0 780605
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 20~
+mpechoat $n Ogra appears out of nowhere and slam you on the ground.  
+say The lesson here is always be prepare for the unexpected.  
+say Someone could be lurking nearby.
+~
+|
+#1859
+Ulga~
+Commander Ulga~
+Commander Ulga is here sitting behind his desk.~
+You see a very big and ugly ogre before you, but I wouldn't want to mention
+that to him. He's just a bit conscious about his appearance. Besides being
+ugly, his battle scars improves his looks a bit. He might not look good, but 
+he sure knows how to win a war.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_SANCTUARY|AFF_UNDERSTAND|AFF_TONGUES
+0 S
+95 0 0 0d0+10000 0d0+200
+0 780605
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 100~
+if race($n) == 7
+  if quest(0,2,$n) == 1
+    shake $n
+    tell $n Congratulations! We're always looking for good soldiers.
+    tell $n To help you in the battles out there, here's a teleporter.
+    tell $n It'll take you back to the Ogres' Headquarters in a jiffy.
+    mpoload 1862
+    mpquiet on
+    cast 'giant strength' $n
+    mpquiet off
+    give i1862 $n
+    tell $n Well good luck soldiers.
+    emote salutes you.
+    mpforce $n emote salutes the Commander.
+    mpmset $n quest 0 2 2
+  else
+    say What can I do for you?
+    say If you need another teleporter, say I need another teleporter.
+  endif
+else
+  if race($n) == 2
+    tell $n Think I wouldn't notice a spy within my headquarters hey.
+    tell $n Well think again, I know all that goes within these walls.
+    tell $n You have been found quilty of treason against the ogre race.
+    tell $n The sentence is death.
+    shout I have found a spy within these walls.
+    shout I, Commander Ulga, has found $n quilty of treason.
+    shout $s sentence is death, and will be executed immeadiately.
+    mpechoat $n You feel a blow on your head as you slip into unconsciousness.
+    mpechoat $n *splash* A bucket of water was thrown on you.
+    mpechoat $n You notice that they put you in a gullotine.
+    mpecho The Commander shouted out 'Commence!'
+    mpecho The executioner pulls the rope...
+    mpforce $n shout Long live the e..l...v...e.....
+    mpechoat $n The last thing you heard was the Commander hedious laugh.
+    mptransfer $n 9755
+    mpat $n mpechoat $n You woke up and found yourself lying in Chakkor.
+    mpat $n mpechoat $n Next to you is a note.
+    mpat $n mpechoat $n It says, be this as a warning, the next time I catch you.
+    mpat $n mpechoat $n It'll be for real. You will forfeit your LIFE!
+  else
+    tell $n You don't belong here, begone with you.
+    mptransfer $n 9755
+  endif
+endif
+~
+>speech_prog p I need another teleporter.~
+say What! You lost it already. That does not bode well for you.
+say The military can't afford to give you another one for free.
+say Give me 10,000 credits and I'll give you another one.
+~
+>bribe_prog 10000~
+mpoload 1862
+mpquiet on
+cast 'giant strength' $n
+mpquiet off
+give i1862 $n
+drop i1862
+~
+|
+#1860
+recruiter~
+a recruiter~
+A recruiter is here shouting at you to join the army.~
+He looks fairly young to be in the army, but a yound ogre is still very tough
+in battle though they lack experience.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_TONGUES
+0 S
+95 0 0 0d0+10000 0d0+200
+0 780605
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if race($n)==2
+  shout $n is a spy!
+  mpechoat $n The recruiter knocks you senseless with a large club.
+  mptransfer $n 9755
+  mpat $n mpforce $n shout I'm a stinking elf spy who fail my mission to infiltrate the Ogres' HQ.
+  mpat $n mpechoat $n Those bastard must of done something to me to force me to say that.
+else
+  if race($n)!=7
+    say Sorry, ogres only.
+    mpechoat $n The recruiter reach for his medallion and point his finger at you.
+    mpechoaround $n The recruiter reach for his medallion and point his finger at $n.
+    mptransfer $n 9755
+    mpecho $n has vanish from the room.
+    mpat $n mpechoat $n You feel a dizzy sensation, and when you regain your senses.
+    mpat $n mpechoat $n You notice you're back at Chakkor.
+  else
+    if level($n)<10
+      tell $n You're not old or experience enough to join the army
+      tell $n at this time, please come later.
+      mpechoat $n The recruiter told you to jog back to Chakkor to strengthen
+      mpechoat $n your body and mind for the day you come of age to join them.
+      mpechoat $n You begin the long jog back.
+      mpechoat $n Looking back, you shout 'I'll be back and when I do, you'll be
+      mpechoat $n begging me to join you.'
+      mptransfer $n 9755
+    else
+      if quest(0,2,$n) > 0
+        emote salutes you.
+        say Welcome back soldier.
+        tell $n When you're ready, say ENTER to enter the headquarters.
+      else
+        say Welcome to the Ogre Recruitment Center. We're always looking for
+        say a few good ogres to put the elf in their places or in the menu.
+        say Are you that ogre? Well if you are, head east and JOIN the army now!
+      endif
+    endif
+  endif
+endif
+~
+>rand_prog 20~
+if ispc($r)
+  if race($r) == 7
+    say What are you waiting for, $r, go JOIN the army.
+    say Don't stand around and wait to be drafted.
+  else
+    if race($n)==2
+      shout $n is a spy!
+      mpechoat $n The recruiter knocks you senseless with a large club.
+      mptransfer $n 9755
+      mpat $n mpforce $n shout I'm a stinking elf spy who fail my mission to infiltrate the Ogres' HQ.
+      mpat $n mpechoat $n Those bastard must of done something to me to force me to say that.
+    else
+      tell $r Sorry, Ogres only.
+      mpechoat $r The recruiter escort you into a catapult.
+      mpecho 3-2-1! Fire!
+      mpechoat $r You're flying through the air.
+      mptransfer $r 9755
+      mpat $n mpforce $n shout Watchout!
+      mpat $n mpechoaround $n You saw $n, crashing into the ground next to you.
+    endif
+  endif
+endif
+~
+>speech_prog enter~
+if quest(0,2,$n) > 0
+  mpechoat $n A voice calls out, 'You may enter.'
+  mptransfer $n 1852
+else
+  tell $n You're not in the army. Enter the adjacent room to join now.
+  tell $n If you're already in the army, enter the adjacent room anyway
+  tell $n to add you names to the list.
+endif
+~
+|
+#1861
+Urag~
+Urag~
+Urag is here trying to sell you items that he think you'll need.~
+He looks just like any average ogre. Except for the way he tries to get you
+to buy his wares. He sounds like he's been doing this for a very long time.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_TONGUES
+0 S
+95 0 0 0d0+10000 0d0+200
+0 780605
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 100~
+if race($n) != 7
+  mpechoat $n You notice the shopkeeper reaching for something behind the counter.
+  mpechoat $n *swing* A trapdoor open beneath you and you plummented downward.
+  mpechoaround $n You see someone falling into a trapdoor.
+  mpasound Aaaarrrgggghhhhhhhh!
+  mptransfer $n 9755
+  mpat $n mpechoat $n After countless loops and turns, you have reach your destination.
+endif
+~
+|
+#0
+
+
+
+
+#OBJECTS
+#1850
+elf arm~
+arm of an elf~
+A arm lies here dripping blood.~
+~
+ITEM_TYPE_FOOD
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+10 0 0 NOT_POISONED
+2 50 10
+#1851
+elf leg~
+leg of an elf~
+A leg lies here dripping blood.~
+~
+ITEM_TYPE_FOOD
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+25 0 0 NOT_POISONED
+3 125 10
+#1852
+elf torso~
+torso of an elf~
+A torso lies here gashing out blood.~
+~
+ITEM_TYPE_FOOD
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+50 0 0 NOT_POISONED
+4 250 10
+#1853
+jar~
+a jug of elf blood~
+A jug lies here.~
+~
+ITEM_TYPE_DRINK_CON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+30 30 LIQ_BLOOD NOT_POISONED
+2 150 10
+#1854
+sack~
+a sack~
+A sack lies here.~
+~
+ITEM_TYPE_CONTAINER
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+100 CONT_CLOSEABLE -1 0
+5 100 10
+#1855
+torch~
+a torch~
+A torch rest here.~
+~
+ITEM_TYPE_LIGHT
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 20 0
+2 50 10
+#1856
+giant scroll~
+a scroll of giant strength~
+A scroll lies here.~
+~
+ITEM_TYPE_SCROLL
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+30 SPELL_GIANT_STRENGTH SPELL_NONE SPELL_NONE
+1 2000 32
+#1857
+potion giant~
+a potion of giant strength~
+A potion lies here.~
+~
+ITEM_TYPE_POTION
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+30 SPELL_GIANT_STRENGTH SPELL_NONE SPELL_NONE
+1 2000 32
+#1858
+scroll recall~
+a recall scroll~
+A scroll rests here.~
+~
+ITEM_TYPE_SCROLL
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+1 SPELL_WORD_OF_RECALL SPELL_NONE SPELL_NONE
+1 100 1
+#1859
+sword~
+a sword~
+A sword rests here.~
+~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 1 6 WEAPON_CRUSH
+3 100 1
+#1860
+club~
+a club~
+A club rests here.~
+~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 2 3 WEAPON_POUND
+4 100 1
+#1861
+dagger~
+a dagger~
+A dagger rests here.~
+~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 2 4 WEAPON_STAB
+2 100 1
+#1862
+teleporter~
+a teleporter~
+An unknown object lies here.~
+~
+ITEM_TYPE_TREASURE
+ITEM_FLAG_MAGIC|ITEM_FLAG_INVENTORY|ITEM_FLAG_LEVEL|ITEM_FLAG_AUTO_ENGRAVE
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+0 0 0 0
+0 0 10
+E
+teleporter~
+Command: ogrehq
+This will take you back to the Ogres' Headquarter, but you must have at least
+90% hitpoints. Otherwise it won't work.~
+A
+APPLY_STR 1
+A
+APPLY_AC -5
+P 1
+TRIG_TICK 50
+OPROG_IF OIF_USER_RACE ! RACE_OGRE 2 0
+P 2
+TRIG_VOID
+OPROG_JUNK
+P 3
+TRIG_UNKNOWN 100 ogrehq
+OPROG_IF OIF_USER_RACE = RACE_OGRE 4 0
+P 4
+TRIG_VOID
+OPROG_IF OIF_USER_PERCENT_HITPT > 89 5 7
+P 5
+TRIG_VOID
+OPROG_GOD_COMMAND
+mpgoto 1853~
+P 6
+TRIG_VOID
+OPROG_ECHO
+You're not register to use this device. Please sign up at the Ogres' Headquarter.~
+P 6
+TRIG_VOID
+OPROG_JUNK
+P 7
+TRIG_VOID
+OPROG_ECHO
+You're too wounded to use the device at this time.~
+#1863
+fountain~
+fountain~
+A fountain is here.~
+~
+ITEM_TYPE_FOUNTAIN
+ITEM_FLAG_LEVEL
+0
+0 0 0 0
+100 0 1
+#1864
+army uniform~
+a army issue uniform~
+A uniform is here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_BODY
+7 0 0 0
+2 10000 10
+P 1
+TRIG_TICK 70
+OPROG_IF OIF_USER_RACE ! RACE_OGRE 2 0
+P 2
+TRIG_VOID
+OPROG_ECHO
+A ogre spy came up behind you and retrieve the stolen uniform.~
+P 2
+TRIG_VOID
+OPROG_JUNK
+#1865
+army helmet~
+a army issue helmet~
+A helmet is here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HEAD
+7 0 0 0
+2 10000 10
+P 1
+TRIG_TICK 70
+OPROG_IF OIF_USER_RACE ! RACE_OGRE 2 0
+P 2
+TRIG_VOID
+OPROG_ECHO
+A ogre spy came up behind you and retrieve the stolen helmet.~
+P 2
+TRIG_VOID
+OPROG_JUNK
+#1866
+army legging~
+a army issue legging~
+A legging is here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_LEGS
+7 0 0 0
+2 10000 10
+P 1
+TRIG_TICK 70
+OPROG_IF OIF_USER_RACE ! RACE_OGRE 2 0
+P 2
+TRIG_VOID
+OPROG_ECHO
+A ogre spy came up behind you and retrieve the stolen legging.~
+P 2
+TRIG_VOID
+OPROG_JUNK
+#1867
+army boot~
+a army issue boot~
+A boot is here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_FEET
+7 0 0 0
+2 10000 10
+P 1
+TRIG_TICK 70
+OPROG_IF OIF_USER_RACE ! RACE_OGRE 2 0
+P 2
+TRIG_VOID
+OPROG_ECHO
+A ogre spy came up behind you and retrieve the stolen boot.~
+P 2
+TRIG_VOID
+OPROG_JUNK
+#1868
+army gauntlet~
+a army issue gauntlet~
+A gauntlet lies here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HANDS
+7 0 0 0
+2 10000 10
+P 1
+TRIG_TICK 70
+OPROG_IF OIF_USER_RACE ! RACE_OGRE 2 0
+P 2
+TRIG_VOID
+OPROG_ECHO
+A ogre spy came up behind you and retrieve the stolen gauntlet.~
+P 2
+TRIG_VOID
+OPROG_JUNK
+#1869
+army sleeves~
+a army issue sleeves~
+A sleeves lies here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_ARMS
+7 0 0 0
+2 10000 10
+P 1
+TRIG_TICK 70
+OPROG_IF OIF_USER_RACE ! RACE_OGRE 2 0
+P 2
+TRIG_VOID
+OPROG_ECHO
+A ogre spy came up behind you and retrieve the stolen sleeves.~
+P 2
+TRIG_VOID
+OPROG_JUNK
+#1870
+army shield~
+a army issue shield~
+A shield lies here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_SHIELD
+7 0 0 0
+2 10000 10
+P 1
+TRIG_TICK 70
+OPROG_IF OIF_USER_RACE ! RACE_OGRE 2 0
+P 2
+TRIG_VOID
+OPROG_ECHO
+A ogre spy came up behind you and retrieve the stolen shield.~
+P 2
+TRIG_VOID
+OPROG_JUNK
+#1871
+army cloak~
+a army issue cloak~
+A cloak lies here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_NECK
+7 0 0 0
+2 10000 10
+P 1
+TRIG_TICK 70
+OPROG_IF OIF_USER_RACE ! RACE_OGRE 2 0
+P 2
+TRIG_VOID
+OPROG_ECHO
+A ogre spy came up behind you and retrieve the stolen cloak.~
+P 2
+TRIG_VOID
+OPROG_JUNK
+#1872
+army belt~
+a army issue belt~
+A belt lies here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WAIST
+7 0 0 0
+2 10000 10
+P 1
+TRIG_TICK 70
+OPROG_IF OIF_USER_RACE ! RACE_OGRE 2 0
+P 2
+TRIG_VOID
+OPROG_ECHO
+A ogre spy came up behind you and retrieve the stolen belt.~
+P 2
+TRIG_VOID
+OPROG_JUNK
+#0
+
+
+
+
+#ROOMS
+#1850
+Recuitment Stand~
+You find yourself in front of the ogre recruitment center. There's a tent 
+set up to the east of you for fellow ogre who wish to join the "cause."
+While behind the stand is the ogre headquarters. It looks heavily guarded.
+Wonder if those stinking elf spies can infiltrate it, not.~
+18 ROOM_NO_RECALL SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 0
+DDIR_EAST
+~
+~
+0 -1 1851
+DDIR_SOUTH
+~
+~
+0 -1 2345
+S
+#1851
+A Tent~
+You are standing in a large tent. It's a mess in here, you wonder how
+they keep track of recruitees. Well maybe if you join and work hard, you
+can work your way up and organize this place. Well what are you waiting
+for, go sign up for the army.~
+18 ROOM_INDOORS|ROOM_SAFE SECT_INSIDE
+DDIR_WEST
+~
+~
+0 -1 1850
+S
+#1852
+A Hallway~
+You are standing in the hallway leading to the center of the headquarters.
+Along the walls you can see portraits of heroes of past battles who has taken
+us to glory by vanqusihing the enemy. By their examples we can triumph.~
+18 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 1853
+DDIR_SOUTH
+~
+~
+0 -1 1850
+S
+#1853
+Common Room~
+This is the center of the headquarters. To the north of you is where the leader
+presides. To the east and west are the shops, always willing to help out a
+fellow member by lowering it prices. And above you is the planning room,
+where the conquest of the enemies begins.~
+18 ROOM_INDOORS|ROOM_SAFE|ROOM_ALTAR_C|ROOM_ALTAR_O|ROOM_NOTE_BOARD SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 1864
+DDIR_EAST
+~
+~
+0 -1 1854
+DDIR_SOUTH
+~
+~
+0 -1 1852
+DDIR_WEST
+~
+~
+0 -1 1859
+DDIR_UP
+~
+~
+0 -1 1869
+S
+#1854
+A Hallway~
+You are standing at the eastern part of the hallway. You can hear loud voices
+coming from the west. While the hallway continues to the east.~
+18 ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+~
+~
+0 -1 1855
+DDIR_WEST
+~
+~
+0 -1 1853
+S
+#1855
+Eastern Structure~
+You have reach the eastern end of the building. This is where the shops are
+located. We have reach an agreement with the shopkeepers to provide quality
+services and prices to our fellow troops. Well, what are you waiting for,
+equip yourself and be prepare for the invasion.~
+18 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 1857
+DDIR_EAST
+~
+~
+0 -1 1856
+DDIR_SOUTH
+~
+~
+0 -1 1858
+DDIR_WEST
+~
+~
+0 -1 1854
+S
+#1856
+Morgue~
+This is the morgue. You can see many corpse lies in the backroom. Casualty of
+war is expected, but if more people join, maybe we can end this war as quickly
+as possible. May their soul rest in peace.~
+18 ROOM_NO_MOB|ROOM_INDOORS|ROOM_SAFE|ROOM_MORGUE SECT_INSIDE
+DDIR_WEST
+~
+~
+0 -1 1855
+S
+#1857
+Mess Hall~
+You find yourself in the mess hall. This is where the troops get fed. It's
+military food, so what can you expect. Also, in the room is a man selling
+rations. You never know when you'll get hungry out there.~
+18 ROOM_NO_MOB|ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+~
+~
+0 -1 1855
+S
+#1858
+Magic Shop~
+As you enter the room, a over-whelming odor flares up your nostril. It must
+be the many ingredients that are use to make up the potions. But they're
+needed, it just might save your life.~
+18 ROOM_NO_MOB|ROOM_INDOORS|ROOM_SAFE SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 1855
+S
+#1859
+A Hallway~
+You are standing at the western part of the hallway. You can hear loud voices
+coming from the east. While the hallway continues to the west.~
+18 ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+~
+~
+0 -1 1853
+DDIR_WEST
+~
+~
+0 -1 1860
+S
+#1860
+Western Structure~
+You have reach the western end of the building. This is where the shops are
+located. We have reach an agreement with the shopkeepers to provide quality
+services and prices to our fellow troops. Well, what are you waiting for,
+equip yourself and be prepare for the invasion.~
+18 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 1862
+DDIR_EAST
+~
+~
+0 -1 1859
+DDIR_SOUTH
+~
+~
+0 -1 1863
+DDIR_WEST
+~
+~
+0 -1 1861
+S
+#1861
+Armor Shop~
+As you enter the room, you can see many armors align the walls. They have
+different sizes to fit the many new recruitees. Hope you can find something
+to suit your needs.~
+18 ROOM_NO_MOB|ROOM_INDOORS|ROOM_SAFE SECT_INSIDE
+DDIR_EAST
+~
+~
+0 -1 1860
+S
+#1862
+General Store~
+You find yourself inside a general store. There are canteens, containers, 
+and all around general items you might need on your journey. If you can't 
+find it here then it doesn't exist.~
+18 ROOM_NO_MOB|ROOM_INDOORS|ROOM_SAFE SECT_INSIDE
+DDIR_SOUTH
+~
+~
+0 -1 1860
+S
+#1863
+Weapon Shop~
+You stumble upon a weapon shop. There's many weapon on display here. If you 
+can't find the right one, well the smith can make you one, but it'll be costly.
+And it'll take a VERY long time with the overwheliming request he recieves.~
+18 ROOM_NO_MOB|ROOM_INDOORS|ROOM_SAFE SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 1860
+S
+#1864
+A Hallway~
+As you step into the room. You hear many voices coming from the west, all in
+unison. You glance to the west, and you see the training halls, where new
+recruits are being train. You glance to the east, and their lies the practice
+halls. One must practice daily to keep in shape.~
+18 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 1867
+DDIR_EAST
+~
+~
+0 -1 1865
+DDIR_SOUTH
+~
+~
+0 -1 1853
+DDIR_WEST
+~
+~
+0 -1 1866
+S
+#1865
+Practice Halls~
+This is where you practice your skills to hone it. The more you practice, the
+better you're at it. We can't stress enough the importance of keeping a daily
+routine. Get to work soldier!~
+18 ROOM_NO_MOB|ROOM_INDOORS|ROOM_SAFE SECT_INSIDE
+DDIR_WEST
+~
+~
+0 -1 1864
+S
+#1866
+Training Halls~
+This is where the new recuits are being train. If you're a new recuit, 
+you'll find yourself in here daily, training to improve yourself. It's a very
+vigorous course, but it'll improve your chance of staying alive.~
+18 ROOM_NO_MOB|ROOM_INDOORS|ROOM_SAFE SECT_INSIDE
+DDIR_EAST
+~
+~
+0 -1 1864
+S
+#1867
+A Hallway~
+You are standing at the northern part of the hallway. You can hear loud voices
+coming from the south. While the hallway continues to the north.~
+18 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 1868
+DDIR_SOUTH
+~
+~
+0 -1 1864
+S
+#1868
+Commander's Quarter~
+You find yourself standing before the commander of this regiments. The room is
+richly furnish. It is said that a comfortable man is stress free, giving them
+more time to think on more important matters.~
+18 ROOM_NO_MOB|ROOM_INDOORS|ROOM_SAFE SECT_INSIDE
+DDIR_SOUTH
+~
+~
+0 -1 1867
+S
+#1869
+Planning Room~
+You are standing in the planning room. You can clearly see a very long
+rectangler table at the center of the room with chairs surrounding it. On the
+center of the table is a model of the enemy encampment, outlining its strength
+and weak points.~
+18 ROOM_INDOORS|ROOM_SAFE SECT_INSIDE
+DDIR_DOWN
+~
+~
+0 -1 1853
+S
+#0
+
+
+
+
+#RESETS
+M 0  1851   1  1861 ;                     Odro in Armor Shop               
+G 1  1864 100       ;     a army issue uniform
+G 1  1865 100       ;      a army issue helmet
+G 1  1866 100       ;     a army issue legging
+G 1  1867 100       ;        a army issue boot
+G 1  1868 100       ;    a army issue gauntlet
+G 1  1869 100       ;     a army issue sleeves
+G 1  1870 100       ;      a army issue shield
+G 1  1871 100       ;       a army issue cloak
+G 1  1872 100       ;        a army issue belt
+M 0  1852   1  1863 ;                     Udru in Weapon Shop              
+G 1  1859 100       ;                  a sword
+G 1  1860 100       ;                   a club
+G 1  1861 100       ;                 a dagger
+M 0  1853   1  1857 ;                    Orglu in Mess Hall                
+G 1  1850 100       ;            arm of an elf
+G 1  1851 100       ;            leg of an elf
+G 1  1852 100       ;          torso of an elf
+G 1  1853 100       ;       a jug of elf blood
+M 0  1855   1  1858 ;                      Uda in Magic Shop               
+G 1  1856 100       ;a scroll of giant strengt
+G 1  1857 100       ;a potion of giant strengt
+G 1  1858 100       ;          a recall scroll
+M 0  1861   1  1862 ;                     Urag in General Store            
+G 1  1854 100       ;                   a sack
+G 1  1855 100       ;                  a torch
+M 0  1854   1  1856 ;                    Ogala in Morgue                   
+M 0  1856   1  1853 ;                     Ulgo in Common Room              
+M 0  1857   1  1865 ;                    Ulaag in Practice Halls           
+M 0  1858   1  1866 ;                    Ograa in Training Halls           
+M 0  1859   1  1868 ;           Commander Ulga in Commander's Quarter      
+M 0  1850   1  1851 ;             General Urik in A Tent                   
+M 0  1860   2  1850 ;              a recruiter in Recuitment Stand         
+M 0  1860   2  1850 ;              a recruiter in Recuitment Stand         
+S
+
+
+
+
+#SHOPS
+1851 ITEM_TYPE_ARMOR ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING
+     ITEM_TYPE_NOTHING 100  50  0 23 ;Odro
+1852 ITEM_TYPE_WEAPON ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING
+     ITEM_TYPE_NOTHING 100  50  0 23 ;Udru
+1853 ITEM_TYPE_FOOD ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING
+     ITEM_TYPE_NOTHING 100  50  0 23 ;Orglu
+1855 ITEM_TYPE_SCROLL ITEM_TYPE_WAND ITEM_TYPE_STAFF ITEM_TYPE_POTION
+     ITEM_TYPE_NOTHING 100  50  0 23 ;Uda
+1861 ITEM_TYPE_LIGHT ITEM_TYPE_CONTAINER ITEM_TYPE_BOAT ITEM_TYPE_NOTHING
+     ITEM_TYPE_NOTHING 100  50  0 23 ;Urag
+0
+
+
+
+
+#SPECIALS
+S
+
+
+
+
+#$

@@ -1,0 +1,2304 @@
+#AREA Aviaran Skies~
+
+#AUTHORS Pythos Fury~
+
+#RANGES 0 95 0 99
+
+#RESETMSG You hear the wails of cats in the distance.~
+
+#FLAGS AFLAG_FREEQUIT|AFLAG_NOTELEPORT
+
+#HELPS
+-1 "AVIARAN SKIES"~
+{160}        Aviaran Skies{300}
+The skies above Ocean City, extending over the ocean are considered the
+air space of the Aviaran Airborne Army.  Those Aviarans who desire a
+career in the army in defense of Aviarans realms-wide arrive here to
+train and hopefully be deemed worthy of the great honor of being inducted
+into the Aviaran Airborne Army.
+
+(a) Pythos
+{a}PYTHOS
+~
+-1 PYTHOS~
+Yes, please help Pythos as he needs a lot of help!
+{130}Areas by Pythos{300}
+{130}New Singase{300}
+{130}Old Singase{300}
+{130}Singase Plains{300}
+{130}Aviaran Skies{300}
+~
+-1 'NEW SINGASE'~
+Try help singase
+~
+-1 'OLD SINGASE'~
+Try help singase
+~
+0 $~
+
+#MOBILES
+#13550
+Army Airborne Admiral Avimus~
+Admiral Avimus~
+Aviaran Airborne Army Admiral Avimus hovers above you.~
+This most powerful of Aviaran Army Aviators appears highly unapproachable
+unless you have been ordered to see him.  His powerful form, stern face and
+piercingly demanding eyes make you shake in your boots.  The only word he seems
+to react to is 'enlist', which is what new recruits must do.~
+ACT_IS_NPC|ACT_RACE|ACT_BODY|ACT_NO_ORDER|ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART
+AFF_DETECT_HIDDEN|AFF_SANCTUARY|AFF_INFRARED|AFF_UNDERSTAND|AFF_FLYING|AFF_TONGUES|AFF_DETECT_INVIS
+0 S
+95 BODY_WING|BODY_HEAD BODY_WING|BODY_HEAD 1d1+10999 6d9+139
+0 RACE_AVIARAN
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if race($n)==8
+   nod $n
+   if quest(0,3,$n)==3
+      if quest(20,1,$n)==0
+         say You did a masterful job.  I never doubted you would
+         say do the job necessary to become one of us.
+         mpoload 13551
+         give i13551 $n
+         mpjunk i13551
+         mpmset $n quest 20 1 1
+         say Take this document and go to the Acceptance
+         say Chamber.  There you must AGREE to the restrictions
+         say and all the guidelines on the document.
+         say At that time, you will be a true member of the
+         say mighty Aviaran Airborne Army.
+         say Oh, ummm, before I forget......
+         say If you want annals of your ancestry, you must see
+         say Colonel Ahlerr and say "May I please have the annals sir?"
+         say and he will do his necessary work for you.
+         break
+      endif
+   endif
+   break
+endif
+if race($n)==11
+   growl $n
+   say How did you ever get this far?
+   mpquiet on
+   cast 'remove curse' $n
+   cast 'remove curse' $n
+   cast 'remove curse' $n
+   cast 'remove curse' $n
+   cast 'remove curse' $n
+   cast 'remove curse' $n
+   cast 'remove curse' $n
+   cast 'remove curse' $n
+   cast 'remove curse' $n
+   cast 'remove curse' $n
+   cast 'remove curse' $n
+   mpforce $n remove all
+   cast 'dispel magic' $n
+   cast 'dispel magic' $n
+   cast 'dispel magic' $n
+   cast 'dispel magic' $n
+   cast 'dispel magic' $n
+   cast 'dispel magic' $n
+   cast 'dispel magic' $n
+   cast 'dispel magic' $n
+   cast 'dispel magic' $n
+   cast 'dispel magic' $n
+   cast 'dispel magic' $n
+   cast 'dispel magic' $n
+   cast 'dispel magic' $n
+   mpforce $n drop all.recall
+   mpquiet off
+   mpkill $n
+   cast acid $n
+   cast acid $n
+   cast 'vampiric touch' $n
+   cast 'dispel good' $n
+   kick $n
+   trip $n
+   break
+else
+   growl $n
+   say Begone!
+   mptransfer $n 27700
+endif
+~
+>fight_prog 50~
+   mpquiet on
+   mpforce $n remove all
+   mpforce $n drop all.recall
+   mpquiet off
+   mpechoat $n You shall die!
+   mpechoat $n You whimper.
+   mpechoaround $n $n whimpers.
+   cast acid $n
+   cast acid $n
+   cast 'vampiric touch' $n
+   cast 'dispel good' $n
+   martialarts
+   martialarts
+   martialarts
+   kick $n
+   trip $n
+~
+>speech_prog enlist~
+   say You may join the army... I will transfer you there.
+   tell $n Type army join <password> to join the army.
+   mptransfer $n 13599
+~
+>speech_prog retire~
+   say You may retire from the army... I will transfer you there.
+   tell $n Type army retire <password> to return the army.
+   mptransfer $n 13599
+~
+>speech_prog enlist_blehspam~
+if race($n)==8
+   if quest(0,3,$n)==0
+      say So, you wish to enlist in the Aviaran Airborne Army, do you?
+      mpforce $n bow Avimus
+      mpforce $n say Yes, sir, that is my desire.
+      say You must understand that joining our legion is not a decision
+      say to be taken lightly.
+      mpforce $n say I fully understand, sir, that being in our airborne army is a great responsibility.
+      say It isn't YOUR Airborne Army yet! Don't go off wrong headed and
+      say call it yours when it is by no means yours!
+      growl $n
+      mpforce $n grovel Avimus
+      say Get on your feet!
+      say You look like a cat when you act like that!
+      spit
+      say I hate cats!
+      say And you had better start hating cats and quit acting like
+      say them if you know what is good for you.
+      mpforce $n say Yes, sir.
+      say you must prove yourself worthy of the Aviaran Airborne Army.
+      mpgoto 13595
+      slay cat
+      slay cat
+      slay cat
+      mpmload 13559
+      mpgoto 13592
+      say Go kill the cat that is trapped in the Activities Chamber.
+      say That will prove your worthiness.
+      mpmset $n quest 0 3 1
+      break
+   endif
+   if quest(0,3,$n)==1
+      say I told you to go kill that cat!
+      say If it died already by hands other than your own, you
+      say have proven yourself to be less than the best.
+      say If it died in some other fashion, then you can have
+      say another chance.
+      mpmset $n quest 0 3 2
+      say Did it die in some other fashion?
+      break
+   endif
+   if quest(0,3,$n)==2
+      say I told you to go kill that cat!
+      say If it died already by hands other than your own, you
+      say have proven yourself to be less than the best.
+      say If it died in some other fashion, then you can have
+      say another chance.
+      mpmset $n quest 0 3 2
+      say Did it die in some other fashion?
+      break
+   endif
+   if quest(0,3,$n)>=3
+      say You already passed the test.
+      say I already gave you the required documents.  If you
+      say have lost them, what is it to me?  It's your loss and
+      say not mine.
+      sigh
+      say I am in a giving mood today.
+      mpoload 13551
+      give i13551 $n
+      mpjunk i13551 
+   endif
+endif
+~
+>speech_prog yes~
+if quest(0,3,$n)==2
+   mpgoto 13595
+   slay cat
+   slay cat
+   slay cat
+   mpmload 13559
+   mpgoto 13592
+   say Go kill the cat that is trapped in the Activities Chamber.
+   say That will prove your worthiness.
+   mpmset $n quest 0 3 1
+endif
+~
+>speech_prog p Alienate me please, sir.~
+if quest(0,3,$n)==3
+   say You are not worthy of being called an Aviaran!
+   say You are nothing better than an alley cat!
+   mpoload 13552
+   mpquiet on
+   cast 'remove curse' self
+   mpquiet off
+   growl $n
+   give i13552 $n
+   mpjunk i13552
+   say Now go into that
+   growl $n
+   say Alienation chamber and ALIENATE yourself.....
+   say CAT!
+endif
+~
+>speech_prog p retire_resign~
+if quest(0,3,$n)==3
+   say You are not worthy of being called an Aviaran!
+   say You are nothing better than an alley cat!
+   mpoload 13552
+   mpquiet on
+   cast 'remove curse' self
+   mpquiet off
+   growl $n
+   give i13552 $n
+   mpjunk i13552
+   say Now go into that
+   growl $n
+   say Alienation chamber and ALIENATE yourself.....
+   say CAT!
+endif
+~
+|
+#13551
+ailiah~
+Ailiah~
+Ailiah awaits the arrival of another customer.~
+She has matted nondescript brown hair and empty plain eyes.  Her clothing looks
+as if she hasn't purchased anything new in the past fifty years as the colors
+are all faded and the hems have been repaired on more than one occasion.  As
+you stand here, you hope her wares are much better than her clothes.  You feel
+a sense of comfort as you think about the shop's location in the headquarters.
+~
+ACT_NO_ORDER|ACT_BODY|ACT_SMART|ACT_STAY_AREA|ACT_SENTINEL|ACT_IS_NPC|ACT_RACE
+AFF_DETECT_HIDDEN|AFF_TONGUES|AFF_FLYING|AFF_UNDERSTAND|AFF_SANCTUARY|AFF_DETECT_INVIS|AFF_INFRARED
+0 S
+1 BODY_HEAD|BODY_WING BODY_HEAD|BODY_WING 1d1+99 1d1+9
+0 RACE_AVIARAN
+POS_STANDING POS_STANDING SEX_FEMALE
+>all_greet_prog 100~
+ if race($n)==8
+ if rand(60)
+ smile $n
+ endif
+ break
+ endif
+ if race($n)==11
+ mpslay $n
+ break
+ endif
+ mptransfer $n 13596
+~
+|
+#13552
+auneah~
+Auneah~
+Auneah awaits the arrival of more purchasers.~
+She has beautiful fiery red hair and piercing green eyes.  She wears traditional
+Aviaran garb, but nobody has ever made it look so ravishing as Auneah does.~
+ACT_BODY|ACT_NO_ORDER|ACT_SMART|ACT_STAY_AREA|ACT_SENTINEL|ACT_IS_NPC|ACT_RACE
+AFF_UNDERSTAND|AFF_DETECT_INVIS|AFF_TONGUES|AFF_FLYING|AFF_INFRARED|AFF_DETECT_HIDDEN|AFF_SANCTUARY
+0 S
+1 BODY_HEAD|BODY_WING BODY_HEAD|BODY_WING 1d1+99 1d1+9
+0 RACE_AVIARAN
+POS_STANDING POS_STANDING SEX_FEMALE
+>all_greet_prog 100~
+ if race($n)==8
+ if rand(60)
+ smile $n
+ endif
+ break
+ endif
+ if race($n)==11
+ mpslay $n
+ break
+ endif
+ mptransfer $n 13596
+~
+|
+#13553
+Antoine~
+Antoine~
+Antoine busily arranges his wares in appealing showcases.
+~
+He looks quite unkempt as he flies back and forth moving this a little to the
+left and that a little to the right in his showcases.  All his movement and
+shifting of wares seems to get him no where in his attempt at some form of
+neatness.
+~
+ACT_BODY|ACT_NO_ORDER|ACT_STAY_AREA|ACT_SENTINEL|ACT_RACE|ACT_IS_NPC|ACT_SMART
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_SANCTUARY|AFF_INFRARED|AFF_UNDERSTAND|AFF_FLYING|AFF_TONGUES
+0 S
+1 BODY_WING|BODY_HEAD BODY_WING|BODY_HEAD 1d1+99 1d1+9
+0 RACE_AVIARAN
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+ if race($n)==8
+ if rand(60)
+ nod $n
+ endif
+ break
+ endif
+ if race($n)==11
+ mpslay $n
+ break
+ endif
+ mptransfer $n 13596
+~
+|
+#13554
+Admiral Andujar~
+Admiral Andujar~
+Aviaran Airborne Army Admiral Andujar patrols the air.
+~
+This Admiral shows a great amount of self confidence as he looks you over.
+You get a cold chill running down your back as if his eyes could pierce right
+through you.
+~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_BODY|ACT_NO_ORDER|ACT_IS_NPC|ACT_RACE
+AFF_DETECT_HIDDEN|AFF_DETECT_INVIS|AFF_SANCTUARY|AFF_TONGUES|AFF_FLYING|AFF_UNDERSTAND|AFF_INFRARED|AFF_STEALTH
+0 S
+95 BODY_HEAD|BODY_WING BODY_WING|BODY_HEAD 1d1+10999 7d9+160
+0 RACE_AVIARAN
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+ if race($n) == 11
+  say You were warned not to come here!
+  mpquiet on
+  cast 'remove curse' $n
+  cast 'remove curse' $n
+  cast 'remove curse' $n
+  cast 'remove curse' $n
+  cast 'remove curse' $n
+  cast 'remove curse' $n
+  cast 'remove curse' $n
+  cast 'remove curse' $n
+  cast 'remove curse' $n
+  mpforce $n remove all
+  cast 'dispel magic' $n
+  cast 'dispel magic' $n
+  cast 'dispel magic' $n
+  cast 'dispel magic' $n
+  cast 'dispel magic' $n
+  cast 'dispel magic' $n
+  cast 'dispel magic' $n
+  mpquiet off
+  mpforce $n drop all.recall
+  mpforce $n shout I am a foolish cat!
+  mpkill $n
+  cast acid $n
+  cast acid $n
+  cast fireball $n
+  cast 'energy drain' $n
+  cast 'vampiric touch' $n
+  cast 'dispel good' $n
+  martialarts
+  martialarts
+ break
+ endif
+ if race($n)==8
+  nod $n
+  tell $n You must see Admiral Avimus if you wish to join our ranks.
+  tell $n Just say ENLIST when you come before him.
+  tell $n Do you want to enter our air space?
+  mpmset $n quest 7 1 1
+ break
+ else
+ say You do not belong here.
+ mptransfer $n 27700
+ endif
+~
+>speech_prog yes~
+ if quest(7,1,$n)==1
+ mptransfer $n 13552
+ endif
+~
+>fight_prog 50~
+ mpquiet on
+ mpforce $n remove all
+ mpforce $n drop all.recall
+ mpquiet off
+ mpforce $n look
+ tell $n You shall die for your foolishness.
+ cast acid $n
+ cast acid $n
+ cast 'vampiric touch' $n
+ cast 'energy drain' $n
+ cast 'dispel good' $n
+ martialarts
+ martialarts
+ kick
+~
+|
+#13555
+Sergeant Major Amelia~
+Sergeant Major Amelia~
+Sergeant Major Amelia of the Aviaran Army Aviators is busily recruiting Aviarans.
+~
+She is large and powerful for an Aviaran.  Her Airborne Army training must be
+quite complete for her to appear so powerful.  She hovers here recruiting as
+many Aviarans as she can possibly recruit.
+~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_RACE|ACT_NO_ORDER|ACT_BODY|ACT_IS_NPC|ACT_SMART
+AFF_SANCTUARY|AFF_DETECT_HIDDEN|AFF_DETECT_INVIS|AFF_INFRARED|AFF_FLYING|AFF_TONGUES|AFF_UNDERSTAND
+0 S
+40 BODY_WING|BODY_HEAD BODY_WING|BODY_HEAD 13d13+733 12d5+0
+0 RACE_AVIARAN
+POS_STANDING POS_STANDING SEX_NEUTRAL
+ >all_greet_prog 100~
+ if race($n)==8
+ if rand(60)
+  nod $n
+ endif
+ if quest(0,3,$n)<=2
+  tell $n You must see Admiral Avimus if you wish to
+  tell $n join our ranks.
+  tell $n Just say ENLIST when you come before him.
+ break
+ endif
+ if quest(0,3,$n)==3
+ tell $n If you wish to retire from our ranks
+ tell $n Tell Admiral Avimus "Alienate me please, sir."
+ break
+ endif
+ break
+ endif
+ if race($n)==11
+ mpechoat $n Sergeant Major Amelia tells you 'You were warned not to come here.'
+ mpechoat $n Sergeant Major Amelia tells you 'At least I can make you a good cat.'
+ mpquiet on
+ mpforce $n remove all
+ mpforce $n drop all.recall
+ mpquiet off
+ mpkill $n
+ cast acid $n
+ cast acid $n
+ cast acid $n
+ cast 'vampiric touch' $n
+ cast 'dispel good' $n
+ break
+ else
+ mptransfer $n 27700
+ endif
+~
+|
+#13556
+Ranker~
+Ranker~
+A Ranker Mob will not be described.~
+Ranker is here to rank you.~
+ACT_NO_ORDER|ACT_IS_NPC|ACT_SMART|ACT_BODY|ACT_RACE|ACT_SENTINEL
+AFF_TONGUES|AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_STEALTH|AFF_FLYING|AFF_INVISIBLE|AFF_UNDERSTAND|AFF_INFRARED|AFF_ETHEREAL
+0 S
+1 BODY_HEAD|BODY_WING BODY_WING|BODY_HEAD 1d1+99 1d1+9
+0 RACE_AVIARAN
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>speech_prog p What is my rank?~
+ if actorhasobjnum(13555)
+ if level($n)>=10
+ if level($n)<=19
+ mpechoat $n You are a corporal in the Aviaran Airborne Army.
+ mpmset $n long Aviaran Airborne Army Corporal $n hovers here.
+ break
+ endif
+ endif
+ if level($n)>=20
+ if level($n)<=29
+ mpechoat $n You are a sergeant in the Aviaran Airborne Army.
+ mpmset $n long Aviaran Airborne Army Sergeant $n hovers here.
+ break
+ endif
+ endif
+ if level($n)>=30
+ if level($n)<=39
+ mpechoat $n You are a master sergeant in the Aviaran Airborne Army.
+ mpmset $n long Aviaran Airborne Army Master Sergeant $n hovers here.
+ break
+ endif
+ endif
+ if level($n)>=40
+ if level($n)<=49
+ mpechoat $n You are a sergeant major in the Aviaran Airborne Army.
+ mpmset $n long Aviaran Airborne Army Sergeant Major $n hovers here.
+ break
+ endif
+ endif
+ if level($n)>=50
+ if level($n)<=59
+ mpechoat $n You are a major in the Aviaran Airborne Army.
+ mpmset $n long Aviaran Airborne Army Major $n hovers here.
+ break
+ endif
+ endif
+ if level($n)>=60
+ if level($n)<=69
+ mpechoat $n You are a lieutenant colonel in the Aviaran Airborne Army.
+ mpmset $n long Aviaran Airborne Army Lieutenant Colonel $n hovers here.
+ break
+ endif
+ endif
+ if level($n)>=70
+ if level($n)<=79
+ mpechoat $n You are a colonel in the Aviaran Airborne Army.
+ mpmset $n long Aviaran Airborne Army Colonel $n hovers here.
+ break
+ endif
+ endif
+ if level($n)>=80
+ if level($n)<=89
+ mpechoat $n You are a vice admiral in the Aviaran Airborne Army.
+ mpmset $n long Aviaran Airborne Army Vice Admiral $n hovers here.
+ break
+ endif
+ endif
+ if level($n)>=90
+ mpechoat $n You have achieved the rank of Admiral Of The Aviaran Airborne Army.
+ mpmset $n long Admiral Of The Aviaran Army $n hovers above you.
+ endif
+ endif
+ mppurge self
+~
+|
+#13557
+Ghost Cat Tsarian~
+Cat~
+The ghost of a cat is rising toward the heavens.
+~
+This ghost is what remains of one of the nine lives of a Tsarian.
+~
+ACT_STAY_AREA|ACT_WEAK|ACT_BODY|ACT_RACE|ACT_SENTINEL|ACT_IS_NPC
+AFF_BLIND|AFF_FLYING
+1000 S
+5 BODY_CLAW BODY_CLAW 3d9+48 2d5+0
+0 RACE_TSARIAN
+POS_STANDING POS_STANDING SEX_NEUTRAL
+#13558
+Ghost Cat Tsarian~
+Cat~
+The ghost of a cat was rejected by the heavens.
+~
+This ghost is what remains of one of the nine lives of a Tsarian.
+~
+ACT_WEAK|ACT_STAY_AREA|ACT_BODY|ACT_RACE|ACT_IS_NPC|ACT_SENTINEL
+AFF_BLIND|AFF_FLYING
+-1000 S
+5 BODY_CLAW BODY_CLAW 3d9+48 2d5+0
+0 RACE_TSARIAN
+POS_STANDING POS_STANDING SEX_NEUTRAL
+#13559
+Cat~
+A cat~
+A cat is chained here.
+~
+This Tsarian has been given the opportunity to become a good cat.
+~
+ACT_RACE|ACT_BODY|ACT_SMART|ACT_WEAK|ACT_STAY_AREA|ACT_IS_NPC|ACT_SENTINEL
+AFF_FLYING
+0 S
+95 BODY_WING|BODY_HEAD BODY_HEAD|BODY_WING 1d1+10999 1d1+149
+0 RACE_TSARIAN
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>all_greet_prog 100~
+ rescale 13559 $n 90
+~
+>death_prog 100~
+ if quest(0,3,$n)==1
+ mpmset $n quest 0 3 3
+ endif
+~
+|
+#13560
+Ahlerr Colonel Aviaran~
+Colonel Ahlerr~
+Aviaran Airborne Army Colonel Ahlerr is busily chronicling ancestries.
+~
+This Colonel in the Aviaran Army Aviators has the undesirable duties of
+chronicling the ancestries of all Aviarans.  His eyes are bloodshot from the lack
+of sleep as he busily researches to the fullest possible extent the heritage
+of all who beseech him.
+~
+ACT_NO_ORDER|ACT_BODY|ACT_SMART|ACT_STAY_AREA|ACT_SENTINEL|ACT_IS_NPC|ACT_RACE
+AFF_INFRARED|AFF_TONGUES|AFF_UNDERSTAND|AFF_SANCTUARY|AFF_DETECT_HIDDEN|AFF_DETECT_INVIS|AFF_FLYING
+0 S
+95 BODY_HEAD|BODY_WING BODY_HEAD|BODY_WING 1d1+10999 6d9+97
+0 RACE_AVIARAN
+POS_STANDING POS_STANDING SEX_MALE
+>speech_prog p May I please have the annals sir?~
+ if quest(0,3,$n)==3
+ say I shall chronicle your ancestry
+ say since you have proven your
+ say worthiness.
+ mpoload 13561
+ mpquiet on
+ cast 'giant strength' $n
+ cast 'remove curse' Ahlerr
+ mpquiet off
+ give Annal $n
+ mpquiet on
+ mpforce $n wear annal
+ mpquiet off
+ mpjunk Annal
+ break
+ else
+ say You haven't proven your
+ say worthiness at this time.
+ endif
+~
+>all_greet_prog 100~
+ if race($n) == 11
+  say You were warned not to come here!
+  mpquiet on
+  cast 'remove curse' $n
+  cast 'remove curse' $n
+  cast 'remove curse' $n
+  cast 'remove curse' $n
+  cast 'remove curse' $n
+  cast 'remove curse' $n
+  cast 'remove curse' $n
+  cast 'remove curse' $n
+  cast 'remove curse' $n
+  mpforce $n remove all
+  cast 'dispel magic' $n
+  cast 'dispel magic' $n
+  cast 'dispel magic' $n
+  cast 'dispel magic' $n
+  cast 'dispel magic' $n
+  cast 'dispel magic' $n
+  cast 'dispel magic' $n
+  mpquiet off
+  mpforce $n drop all.recall
+  mpforce $n shout I am a foolish cat!
+  mpkill $n
+  cast acid $n
+  cast acid $n
+  cast fireball $n
+  cast 'energy drain' $n
+  cast 'vampiric touch' $n
+  cast 'dispel good' $n
+  martialarts
+  martialarts
+ break
+ endif
+ if race($n)==8
+ if quest(0,3,$n)<=2
+  nod $n
+  tell $n You must see Admiral Avimus if you wish to
+  tell $n join our ranks.
+  tell $n Just say ENLIST when you come before him.
+ break
+ endif
+ if quest(0,3,$n)==3
+ tell $n If you wish to retire from our ranks
+ tell $n Tell Admiral Avimus "Alienate me please, sir."
+ break
+ else
+ say You do not belong here.
+ mptransfer $n 27700
+ endif
+~
+>fight_prog 50~
+ mpquiet on
+ mpforce $n remove all
+ mpforce $n drop all.recall
+ mpquiet off
+ mpforce $n look
+ tell $n You shall die for your foolishness.
+ cast acid $n
+ cast acid $n
+ cast 'vampiric touch' $n
+ cast 'energy drain' $n
+ cast 'dispel good' $n
+ martialarts
+ martialarts
+ kick
+~
+|
+#0
+
+
+
+#OBJECTS
+#13550
+Aviaran Away Scroll~
+An Aviaran Away Scroll~
+A scroll of Aviaran make hovers above the ground.~
+Use this scroll to go away in times of great emergency or for any other
+instances where quick transportation is necessary.
+~
+ITEM_TYPE_SCROLL
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+4 SPELL_WORD_OF_RECALL SPELL_NONE SPELL_NONE
+0 10 1
+#13551
+Aviaran Airborne Army Acceptance Act~
+Aviaran Airborne Army Acceptance Act~
+An important Aviaran document hovers above the ground.~
+With this document, you are about to accept a great and awesome responsibility.
+You shall henceforth hate all cats who walk about.  You shall believe in your
+heart that the only good cat is a dead cat and in that manner, attempt to make
+all cats good cats.  You must AGREE to these terms to be permitted to join the
+vaunted Aviaran Airborne Army.
+~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL|ITEM_FLAG_AUTO_ENGRAVE
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+0 0 0 0
+1 10 10
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_WEAR_LOC = WEAR_NONE 0 5
+P 5
+TRIG_VOID
+OPROG_IF OIF_USER_RACE = 8 0 30
+P 8
+TRIG_UNKNOWN 100 agree
+OPROG_IF OIF_USER_RACE = 8 10 30
+P 10
+TRIG_VOID
+OPROG_IF OIF_WEAR_LOC = WEAR_NONE 12 15
+P 12
+TRIG_VOID
+OPROG_ECHO
+You must be holding the Acceptance Act to do that.
+~
+P 15
+TRIG_VOID
+OPROG_IF OIF_USER_ROOM_NUM = 13593 17 19
+P 17
+TRIG_VOID
+OPROG_GOD_ARGUMENT
+mpgoto 13599 & say I shall join the army here! Type army join <password>
+~
+P 17
+TRIG_VOID
+OPROG_JUNK
+P 19
+TRIG_VOID
+OPROG_ECHO
+You must be in the Acceptance Chamber to do that.
+~
+P 30
+TRIG_VOID
+OPROG_JUNK
+#13552
+Aviaran Airborne Army Alienation Act~
+Aviaran Airborne Army Alienation Act~
+A disgusting looking Aviaran document hovers above the ground.~
+With this document, you will be able to ALIENATE yourself from the Aviaran
+Airborne Army if you decide you truly wish to be a cowardly cat in an Aviaran
+body.
+~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+0 0 0 0
+1 10 10
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_WEAR_LOC = WEAR_NONE 0 5
+P 5
+TRIG_VOID
+OPROG_IF OIF_USER_RACE = 8 0 30
+P 8
+TRIG_UNKNOWN 100 alienate
+OPROG_IF OIF_USER_RACE = 8 10 30
+P 10
+TRIG_VOID
+OPROG_IF OIF_WEAR_LOC = WEAR_NONE 12 15
+P 12
+TRIG_VOID
+OPROG_ECHO
+You must be holding the Alienation Act to do that.
+~
+P 15
+TRIG_VOID
+OPROG_IF OIF_USER_ROOM_NUM = 13594 17 19
+P 17
+TRIG_VOID
+OPROG_ECHO
+You are now worse than a cat.
+~
+P 17
+TRIG_VOID
+OPROG_GOD_ARGUMENT
+mpgoto 13599 & say I may retire the army now; type army retire <password>
+~
+P 17
+TRIG_VOID
+OPROG_JUNK
+P 19
+TRIG_VOID
+OPROG_ECHO
+You must be in the Alienation Chamber to do that.
+~
+P 30
+TRIG_VOID
+OPROG_JUNK
+#13553
+Aviaran Airborne Army AAA Anti-Necromancer Potion~
+AAA Anti-Necromancer Potion~
+A potion of Aviaran make hovers above the ground.~
+~
+ITEM_TYPE_POTION
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+15 SPELL_STABILITY SPELL_NONE SPELL_NONE
+1 700 10
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_RACE = 8 0 2
+P 2
+TRIG_VOID
+OPROG_JUNK
+#13554
+Aviaran Airborne Army AAA Anti-Necromancer Scroll~
+AAA Anti-Necromancer Scroll~
+A scroll of Aviaran make hovers above the ground.~
+~
+ITEM_TYPE_POTION
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+15 SPELL_STABILITY SPELL_NONE SPELL_NONE
+1 700 10
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_RACE = 8 0 2
+P 2
+TRIG_VOID
+OPROG_JUNK
+#13555
+Aviaran Airborne Army Award~
+Aviaran Airborne Army Award~
+A winged medal of Aviaran make hovers above the ground.~
+The bearer of this award has been proven worthy of the calling of the Aviaran
+Airborne Army.  You should check your RANK at regular intervals as the rank
+of an Aviaran is to be respected.
+~
+ITEM_TYPE_TREASURE
+ITEM_FLAG_LEVEL|ITEM_FLAG_AUTO_ENGRAVE|ITEM_FLAG_QUEST
+ITEM_WEAR_HOLD|ITEM_WEAR_TAKE
+0 0 0 0
+1 100 10
+P 1
+TRIG_COMMAND 100 rank
+OPROG_IF OIF_WEAR_LOC = WEAR_NONE 5 10
+P 5
+TRIG_VOID
+OPROG_ECHO
+You must be holding the Aviaran Airborne Army Award to do that.
+~
+P 10
+TRIG_VOID
+OPROG_IF OIF_USER_POSITION = 5 15 20
+P 15
+TRIG_VOID
+OPROG_IF OIF_USER_RACE = 8 17 200
+P 17
+TRIG_VOID
+OPROG_GOD_COMMAND
+mpmload 13556 &
+say What is my rank?
+~
+P 20
+TRIG_VOID
+OPROG_ECHO
+You must be resting to do that.
+~
+P 100
+TRIG_TICK 100
+OPROG_IF OIF_USER_RACE = 8 0 200
+P 200
+TRIG_VOID
+OPROG_JUNK
+#13556
+Aviaran Airborne Army AAA Armoring Potion~
+AAA Armoring Potion~
+Aviaran Airborne Army Armoring Potion~
+~
+ITEM_TYPE_POTION
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+9 SPELL_ARMOR SPELL_STONE_SKIN SPELL_NONE
+1 250 8
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_RACE = 8 0 2
+P 2
+TRIG_VOID
+OPROG_JUNK
+#13557
+Aviaran Airborne Army AAA Armoring Scroll~
+AAA Armoring Scroll~
+A scroll of Aviaran make hovers above the ground.~
+~
+ITEM_TYPE_SCROLL
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+9 SPELL_ARMOR SPELL_STONE_SKIN SPELL_NONE
+1 250 8
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_RACE = 8 0 2
+P 2
+TRIG_VOID
+OPROG_JUNK
+#13558
+Aviaran Airborne Army AAA battlearmor armor~
+AAA Battlearmor~
+Battlearmor of Aviaran make hovers above the ground.~
+Aviaran Airborne Army Battlearmor can handle some punishment but is suitable
+only for brief skirmishes.  Better armor would be advisable as soon as you
+have the means of acquiring it.
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_NODROP|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_ABOUT|ITEM_WEAR_BODY
+2 0 0 0
+4 375 4
+A
+APPLY_DEX 1
+A
+APPLY_MOVE 5
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_RACE = 8 0 2
+P 2
+TRIG_VOID
+OPROG_JUNK
+#13559
+Heavy Aviaran Airborne Army AAA Battlearmor Armor~
+Heavy AAA Battlearmor~
+Heavy battlearmor of Aviaran make hovers above the ground.~
+Heavy Aviaran Airborne Army Battlearmor can withstand a great deal
+of punishment and still afford the bearer plenty of protection,
+especially from those worthless cats!
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_NODROP|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_ABOUT|ITEM_WEAR_BODY
+3 0 0 0
+11 975 10
+A
+APPLY_HITROLL 2
+A
+APPLY_DEX 1
+A
+APPLY_STR 1
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_RACE = 8 0 2
+P 2
+TRIG_VOID
+OPROG_JUNK
+#13560
+Aviaran Airborne Army AAA Ring~
+AAA Ring~
+A ring of Aviaran make hovers above the ground.~
+With this ring, you can be known immediately as an Aviaran with honor.
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_NODROP|ITEM_FLAG_LEVEL
+ITEM_WEAR_FINGER|ITEM_WEAR_TAKE
+2 0 0 0
+2 1775 10
+A
+APPLY_MOVE 10
+A
+APPLY_HITROLL 2
+A
+APPLY_DAMROLL 1
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_RACE = 8 0 2
+P 2
+TRIG_VOID
+OPROG_JUNK
+#13561
+Annals Aviaran Ancestry~
+Annals of Aviaran Ancestry~
+A genealogy of Aviaran kind hovers here.~
+Your lineage can be seen dating back long before your grandfather's grandfather
+took his first flight.
+~
+ITEM_TYPE_TREASURE
+ITEM_FLAG_MAGIC|ITEM_FLAG_AUTO_ENGRAVE|ITEM_FLAG_LEVEL|ITEM_FLAG_NODROP|ITEM_FLAG_QUEST
+ITEM_WEAR_HOLD|ITEM_WEAR_TAKE
+0 0 0 0
+1 1775 10
+A
+APPLY_WIS 2
+A
+APPLY_CON 2
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_RACE = 8 0 2
+P 2
+TRIG_VOID
+OPROG_JUNK
+P 3
+TRIG_WEAR 100
+OPROG_IF OIF_USER_RACE = 8 5 0
+P 5
+TRIG_VOID
+OPROG_OBJECT_QUEST_IF 0 1 = 0 8 0
+P 8
+TRIG_VOID
+OPROG_QUEST_SET 0 1 1
+P 8
+TRIG_VOID
+OPROG_GOD_COMMAND
+mposet i13561 short The Annals of $'s Aviaran Ancestry~
+#13562
+Aviaran Leg Armor~
+Aviaran Leg Armor~
+Legware of Aviaran make hovers above the ground.~
+This leg armor is quite lightweight yet strong enough to endure during fights
+and flights, provided you don't spend much time on the ground where Aviarans
+aren't well suited.
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL|ITEM_FLAG_NODROP
+ITEM_WEAR_LEGS|ITEM_WEAR_TAKE
+3 0 0 0
+3 700 9
+A
+APPLY_MOVE 10
+A
+APPLY_HITROLL 2
+A
+APPLY_DAMROLL 1
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_RACE = 8 0 2
+P 2
+TRIG_VOID
+OPROG_JUNK
+#13563
+Aviaran Brain Bucket Helmet~
+Aviaran Brain Bucket~
+A helmet of Aviaran make hovers above the ground.~
+This helmet is shaped perfectly for the unique Aviaran Eagle-like head.  It is
+quite unacceptable for the head of any other race, and it's a good thing, too
+since Aviarans get quite disgusted when someone else tries to wear their
+equipment.
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL|ITEM_FLAG_NODROP
+ITEM_WEAR_TAKE|ITEM_WEAR_HEAD
+3 0 0 0
+3 700 9
+A
+APPLY_HITROLL 2
+A
+APPLY_DAMROLL 1
+A
+APPLY_MOVE 10
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_RACE = 8 0 2
+P 2
+TRIG_VOID
+OPROG_JUNK
+#13564
+Aviaran Airborne Army AAA Awl~
+AAA Awl~
+An awl of Aviaran make hovers above the ground.~
+The Aviaran Airborne Army Awl is a very sharp awl, fitting nicely into your
+hand.  It is balanced quite nicely for stabbing your enemy or even throwing
+at your enemies, although it would be a very foolish Aviaran who threw his
+last awl.
+~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_LEVEL|ITEM_FLAG_NODROP
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 2 5 WEAPON_PIERCE
+4 375 7
+C
+punch~
+FLAG_CLASS_ILLUSIONIST|FLAG_CLASS_ROGUE|FLAG_CLASS_RANGER|FLAG_CLASS_NECROMANCER|FLAG_CLASS_ASSASSIN
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_RACE = 8 0 2
+P 2
+TRIG_VOID
+OPROG_JUNK
+#13565
+Aviaran Airborne Army AAA Aggressor Whip~
+AAA Aggressor~
+A whip of Aviaran make hovers above the ground.~
+This Aviaran Airborne Army whip is long, narrow, and quite painful when used
+by an experienced Aviaran.
+~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_WIELD|ITEM_WEAR_TAKE
+0 2 5 WEAPON_WHIP
+4 375 7
+C
+arial avalanche~
+FLAG_CLASS_ELEMENTALIST|FLAG_CLASS_ROGUE|FLAG_CLASS_RANGER|FLAG_CLASS_MONK
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_RACE = 8 0 2
+P 2
+TRIG_VOID
+OPROG_JUNK
+#13566
+sign~
+A sign~
+A sign stands firmly planted beside the path.
+~
+{170}*==============================================================================*{300}
+{170}|BEWARE!! You have just entered Aviaran territory.  If you are not an Aviaran, |{300}
+{170}|you will be driven out.  If you are a {710}cat{170}, we would like to meet you and do   |{300}
+{170}|our best to make a good cat out of you.  All Aviarans love good cats and would|{300}
+{170}|like to determine whether you can be a good cat or not.  If you choose, as a  |{300}
+{170}|cat, to enter our territory, we can assure you that you will become a good    |{300}
+{170}|cat.                                                                          |{300}
+{170}|                                                                              |{300}
+{170}|                            Aviaran Slogan:                                   |{300}
+{170}|                   {710}The only good cat is a dead cat.{170}                           |{300}
+{170}*==============================================================================*{300}
+{170}     ||                             ||   ||                              ||      {300}
+{170}     ||                             ||   ||                              ||      {300}
+{170}    \||/                           \||/ \||/                            \||/     {300}
+~
+ITEM_TYPE_FURNITURE
+ITEM_FLAG_LEVEL
+0
+0 0 0 0
+300 100 1
+#0
+
+
+
+#ROOMS
+#13550
+Rising Above The Trees~
+You have climbed further into the sky as the trees are falling away beneath you.
+You feel like soaring and floating on the wind currents, this is so relaxing.
+As you look around, you notice a militarily dressed Aviaran carefully studying
+all who arrive here.
+~
+135 ROOM_SOLITARY|ROOM_NO_CASTLE|ROOM_NO_RIP SECT_AIR
+DDIR_DOWN
+~
+~
+0 -1 13551
+S
+#13551
+Climbing Into The Air~
+You have entered the skies as you begin your climb above Ocean City.  At this
+altitude you can look around yourself at the treetops which are barely above
+your head.  You feel more at home the higher into the air you go.  Ground level
+feels so restraining!  Now that you have the opportunity to stretch your wings
+and soar into the skies, it feels quite invigorating.
+~
+135 ROOM_SOLITARY|ROOM_NO_CASTLE|ROOM_NO_RIP SECT_AIR
+DDIR_UP
+~
+~
+0 -1 13550
+DDIR_DOWN
+~
+~
+0 -1 13596
+S
+#13552
+A Bird's Eye View of Ocean City~
+Far below you, you see the tops of trees and homes of the residents of Ocean
+City.  It most definitely feels great to be able to stretch your wings and soar
+once again.  As you take a closer look around you, you notice ghosts of cats
+climbing heavenward.  This is a good opportunity to make certain these ghosts
+never reach their goals as you don't want to pollute heaven with their Tsarian
+stench.
+~
+135 ROOM_NO_CASTLE|ROOM_NO_RIP SECT_AIR
+DDIR_DOWN
+~
+~
+0 -1 13550
+DDIR_SOUTH
+~
+~
+0 -1 13553
+DDIR_EAST
+~
+~
+0 -1 13557
+S
+#13553
+A Bird's Eye View of Ocean City~
+Far below you, you see the tops of trees and homes of the residents of Ocean
+City.  It most definitely feels great to be able to stretch your wings and soar
+once again.  The air has the faint smell of the smoke of the fireplaces and
+cooking stoves from below. Thatched, tiled, flat, and steepled, the roofs below
+move by revealing the poverty and wealth of the citizens below.  As you take a
+closer look around you, you notice ghosts of cats climbing heavenward.  This is
+a good opportunity to make certain these ghosts never reach their goals as you
+don't want to pollute heaven with their Tsarian stench.
+~
+135 ROOM_NO_CASTLE|ROOM_NO_RIP SECT_AIR
+DDIR_NORTH
+~
+~
+0 -1 13552
+DDIR_SOUTH
+~
+~
+0 -1 13554
+DDIR_EAST
+~
+~
+0 -1 13556
+S
+#13554
+A Bird's Eye View of Ocean City~
+Far below you, you see the tops of trees and homes of the residents of Ocean
+City.  It most definitely feels great to be able to stretch your wings and soar
+once again.  Ahead against the horizon, the light glints against the spires of
+the city below. A light grey smoke hangs low over the city, the creation of the
+efforts of those below to create heat and light.  As you take a closer look
+around you, you notice ghosts of cats climbing heavenward.  This is a good
+opportunity to make certain these ghosts never reach their goals as you don't
+want to pollute heaven with their Tsarian stench.
+~
+135 ROOM_NO_CASTLE|ROOM_NO_RIP SECT_AIR
+DDIR_NORTH
+~
+~
+0 -1 13553
+DDIR_EAST
+~
+~
+0 -1 13555
+DDIR_SOUTH
+~
+~
+0 -1 13561
+DDIR_WEST
+~
+~
+0 -1 13569
+DDIR_UP
+~
+~
+0 -1 13578
+S
+#13555
+A Bird's Eye View of Ocean City~
+Far below you, you see the tops of trees and homes of the residents of Ocean
+City.  It most definitely feels great to be able to stretch your wings and soar
+once again.  Paved streets glisten and pass by as you continue your flight.
+Dodging a flock of pigeons you raise your altitude and taken in the city blocks
+and the neighborhoods below.  As you take a closer look around you, you notice
+ghosts of cats climbing heavenward.  This is a good opportunity to make certain
+these ghosts never reach their goals as you don't want to pollute heaven with
+their Tsarian stench.
+~
+135 ROOM_NO_CASTLE|ROOM_NO_RIP SECT_AIR
+DDIR_WEST
+~
+~
+0 -1 13554
+DDIR_NORTH
+~
+~
+0 -1 13556
+DDIR_EAST
+~
+~
+0 -1 13560
+DDIR_SOUTH
+~
+~
+0 -1 13577
+S
+
+#13556
+A Bird's Eye View of Ocean City~
+Far below you, you see the tops of trees and homes of the residents of Ocean
+City.  It most definitely feels great to be able to stretch your wings and soar
+once again.  Ocean City glistens below as the sweep of your wings give flight
+over the roof tops.  Trees stand lone vigils on streets which teem with
+citizens, like ants crawling from their holes for a hard day of work.  As you
+take a closer look around you, you notice ghosts of cats climbing heavenward.
+This is a good opportunity to make certain these ghosts never reach their goals
+as you don't want to pollute heaven with their Tsarian stench.
+~
+135 ROOM_NO_CASTLE|ROOM_NO_RIP SECT_AIR
+DDIR_SOUTH
+~
+~
+0 -1 13555
+DDIR_NORTH
+~
+~
+0 -1 13557
+DDIR_EAST
+~
+~
+0 -1 13559
+DDIR_WEST
+~
+~
+0 -1 13553
+S
+#13557
+A Bird's Eye View of Ocean City~
+Far below you, you see the tops of trees and homes of the residents of Ocean
+City.  It most definitely feels great to be able to stretch your wings and soar
+once again.  The sweet smell of baking pastries wafts up to you from one of the
+houses below, almost making you want to swoop down and devour them.  As you
+take a closer look around you, you notice ghosts of cats climbing heavenward.
+This is a good opportunity to make certain these ghosts never reach their goals
+as you don't want to pollute heaven with their Tsarian stench.
+~
+135 ROOM_NO_CASTLE|ROOM_NO_RIP SECT_AIR
+DDIR_SOUTH
+~
+~
+0 -1 13556
+DDIR_WEST
+~
+~
+0 -1 13552
+DDIR_EAST
+~
+~
+0 -1 13558
+S
+#13558
+A Bird's Eye View of Ocean City~
+Far below you, you see the tops of trees and homes of the residents of Ocean
+City.  The steeple of a church below reaches skyward in an apparent attempt to
+reach the stars.  It most definitely feels great to be able to stretch your
+wings and soar once again.  As you take a closer look around you, you notice
+ghosts of cats climbing heavenward.  This is a good opportunity to make
+certain these ghosts never reach their goals as you don't want to pollute
+heaven with their Tsarian stench.
+~
+135 ROOM_NO_CASTLE|ROOM_NO_RIP SECT_AIR
+DDIR_WEST
+~
+~
+0 -1 13557
+DDIR_SOUTH
+~
+~
+0 -1 13559
+S
+#13559
+A Bird's Eye View of Ocean City~
+Far below you, you see the tops of trees and homes of the residents of Ocean
+City.  A large cemetery catches your eye and you imagine it is filled with the
+graves of Tsarians that were removed from the realms in an attempt to make the
+realms clean once more.  It most definitely feels great to be able to stretch
+your wings and soar once again.  As you take a closer look around you, you
+notice ghosts of cats climbing heavenward.  This is a good opportunity to make
+certain these ghosts never reach their goals as you don't want to pollute
+heaven with their Tsarian stench.
+~
+135 ROOM_NO_CASTLE|ROOM_NO_RIP SECT_AIR
+DDIR_NORTH
+~
+~
+0 -1 13558
+DDIR_WEST
+~
+~
+0 -1 13556
+DDIR_SOUTH
+~
+~
+0 -1 13560
+S
+#13560
+A Bird's Eye View of Ocean City~
+Far below you, you see the tops of trees and homes of the residents of Ocean
+City.  It most definitely feels great to be able to stretch your wings and soar
+once again.  As you take a closer look around you, you notice ghosts of cats
+climbing heavenward.  This is a good opportunity to make certain these ghosts
+never reach their goals as you don't want to pollute heaven with their Tsarian
+stench.
+~
+135 ROOM_NO_CASTLE|ROOM_NO_RIP SECT_AIR
+DDIR_NORTH
+~
+~
+0 -1 13559
+DDIR_WEST
+~
+~
+0 -1 13555
+S
+#13561
+A Bird's Eye View of Ocean City~
+Far below you, you see the tops of trees and homes of the residents of Ocean
+City.  It most definitely feels great to be able to stretch your wings and soar
+once again.  As you take a closer look around you, you notice ghosts of cats
+climbing heavenward.  This is a good opportunity to make certain these ghosts
+never reach their goals as you don't want to pollute heaven with their Tsarian
+stench.
+~
+135 ROOM_NO_CASTLE|ROOM_NO_RIP SECT_AIR
+DDIR_NORTH
+~
+~
+0 -1 13554
+DDIR_WEST
+~
+~
+0 -1 13575
+DDIR_EAST
+~
+~
+0 -1 13577
+DDIR_UP
+~
+~
+0 -1 13579
+S
+
+#13562
+A Bird's Eye View of the Ocean ~
+You are high above the ocean.  Looking down, you see ocean swells moving slowly
+northeastward toward Ocean City.  All about the skies here, you smell the
+wondrous aroma of the saltwater below, mixed with the foul stench of the
+rejected ghosts of cats as they are on their way to the depths below. You feel
+a great sense of urgency as you decide to eliminate these ghosts once and for
+all.
+~
+135 ROOM_NO_CASTLE|ROOM_NO_RIP SECT_AIR
+DDIR_EAST
+~
+~
+0 -1 13575
+DDIR_SOUTH
+~
+~
+0 -1 13563
+DDIR_WEST
+~
+~
+0 -1 13567
+DDIR_UP
+~
+~
+0 -1 13580
+S
+#13563
+A Bird's Eye View of the Ocean ~
+You are high above the ocean.  Looking down, you see ocean swells moving slowly
+northeastward toward Ocean City.  Below a giant splash of water, as a whale
+arches through the sea, and you pause for a moment to admire his majesty.
+Blues, greys, and whites mingle on the horizon in a quiet study of color as you
+move on toward your goal.  All about the skies here, you smell the wondrous
+aroma of the saltwater below, mixed with the foul stench of the rejected ghosts
+of cats as they are on their way to the depths below. You feel a great sense of
+urgency as you decide to eliminate these ghosts once and for all.
+~
+135 ROOM_NO_CASTLE|ROOM_NO_RIP SECT_AIR
+DDIR_NORTH
+~
+~
+0 -1 13562
+DDIR_EAST
+~
+~
+0 -1 13576
+DDIR_SOUTH
+~
+~
+0 -1 13564
+DDIR_WEST
+~
+~
+0 -1 13566
+S
+#13564
+A Bird's Eye View of the Ocean ~
+You are high above the ocean.  Looking down, you see ocean swells moving slowly
+northeastward toward Ocean City.  As you continue to fly over the ocean below
+the moist breezes wet your hair.  The clouds begins to thicken here.  White
+fluffy mountains forming just ahead of your path, float by at the leisurely
+pace of the breezes.  All about the skies here, you smell the wondrous aroma of
+the saltwater below, mixed with the foul stench of the rejected ghosts of cats
+as they are on their way to the depths below. You feel a great sense of urgency
+as you decide to eliminate these ghosts once and for all.
+~
+135 ROOM_NO_CASTLE|ROOM_NO_RIP SECT_AIR
+DDIR_NORTH
+~
+~
+0 -1 13563
+DDIR_SOUTH
+~
+~
+0 -1 13573 
+DDIR_EAST
+~
+~
+0 -1 13574
+DDIR_WEST
+~
+~
+0 -1 13565
+DDIR_UP
+~
+~
+0 -1 13581
+S
+#13565
+A Bird's Eye View of the Ocean ~
+You are high above the ocean.  Looking down, you see ocean swells moving slowly
+northeastward toward Ocean City.  Flying ever on, the ocean spray almost
+reaches you as a school of dolphins skims the surface below. Above you, the sky
+blue ceiling seems to rival the dark blue below for beauty.  All about the
+skies here, you smell the wondrous aroma of the saltwater below, mixed with the
+foul stench of the rejected ghosts of cats as they are on their way to the
+depths below.  You feel a great sense of urgency as you decide to eliminate
+these ghosts once and for all.
+~
+135 ROOM_NO_CASTLE|ROOM_NO_RIP SECT_AIR
+DDIR_EAST
+~
+~
+0 -1 13564
+DDIR_NORTH
+~
+~
+0 -1 13566
+DDIR_SOUTH
+~
+~
+0 -1 13570
+DDIR_WEST
+~
+~
+0 -1 13572
+DDIR_UP
+~
+~
+0 -1 13582
+S
+#13566
+A Bird's Eye View of the Ocean ~
+You are high above the ocean.  Looking down, you see ocean swells moving slowly
+northeastward toward Ocean City. The ocean air blows back your hair as you fly.
+Below you see the azure blue of the ocean, and its creatures moving through it,
+flying in their own way through the sea.  All about the skies here, you smell
+the wondrous aroma of the saltwater below, mixed with the foul stench of the
+rejected ghosts of cats as they are on their way to the depths below.  You feel
+a great sense of urgency as you decide to eliminate these ghosts once and for
+all.
+~
+135 ROOM_NO_CASTLE|ROOM_NO_RIP SECT_AIR
+DDIR_SOUTH
+~
+~
+0 -1 13565
+DDIR_NORTH
+~
+~
+0 -1 13567
+DDIR_EAST
+~
+~
+0 -1 13563
+DDIR_WEST
+~
+~
+0 -1 13568 
+S
+#13567
+A Bird's Eye View of the Ocean ~
+You are high above the ocean.  Looking down, you see ocean swells moving slowly
+northeastward toward Ocean City.  All about the skies here, you smell the
+wondrous aroma of the saltwater below, mixed with the foul stench of the
+rejected ghosts of cats as they are on their way to the depths below. You feel
+a great sense of urgency as you decide to eliminate these ghosts once and for
+all.
+~
+135 ROOM_NO_CASTLE|ROOM_NO_RIP SECT_AIR
+DDIR_SOUTH
+~
+~
+0 -1 13566
+DDIR_EAST
+~
+~
+0 -1 13562
+S
+
+#13568
+A Bird's Eye View of the Ocean ~
+You are high above the ocean.  Looking down, you see ocean swells moving slowly
+northeastward toward Ocean City.  All about the skies here, you smell the
+wondrous aroma of the saltwater below, mixed with the foul stench of the
+rejected ghosts of cats as they are on their way to the depths below. You feel
+a great sense of urgency as you decide to eliminate these ghosts once and for
+all.
+~
+135 ROOM_NO_CASTLE|ROOM_NO_RIP SECT_AIR
+DDIR_SOUTH
+~
+~
+0 -1 13572
+S
+#13569
+A Bird's Eye View of the Beach~
+You are flying high above the beaches of Ocean City.  The air is full of the
+powerfully sweet smell of the saltwater below mixed with the wonderful fragrance
+of the plant life in Ocean City.  You see off in the northeast apparitions
+floating upward and to the southwest you see apparitions floating downward.
+~
+135 ROOM_NO_CASTLE|ROOM_NO_RIP SECT_AIR
+DDIR_EAST
+~
+~
+0 -1 13554
+DDIR_SOUTH
+~
+~
+0 -1 13575
+S
+#13570
+A Bird's Eye View of the Ocean ~
+You are high above the ocean.  Looking down, you see ocean swells moving slowly
+northeastward toward Ocean City.  All about the skies here, you smell the
+wondrous aroma of the saltwater below, mixed with the foul stench of the
+rejected ghosts of cats as they are on their way to the depths below. You feel
+a great sense of urgency as you decide to eliminate these ghosts once and for
+all.
+~
+135 ROOM_NO_CASTLE|ROOM_NO_RIP SECT_AIR
+DDIR_NORTH
+~
+~
+0 -1 13565
+DDIR_WEST
+~
+~
+0 -1 13571
+DDIR_EAST
+~
+~
+0 -1 13573 
+S
+#13571
+A Bird's Eye View of the Ocean ~
+You are high above the ocean.  Looking down, you see ocean swells moving slowly
+northeastward toward Ocean City.  All about the skies here, you smell the
+wondrous aroma of the saltwater below, mixed with the foul stench of the
+rejected ghosts of cats as they are on their way to the depths below. You feel
+a great sense of urgency as you decide to eliminate these ghosts once and for
+all.
+~
+135 ROOM_NO_CASTLE|ROOM_NO_RIP SECT_AIR
+DDIR_EAST
+~
+~
+0 -1 13570
+DDIR_NORTH
+~
+~
+0 -1 13572
+S
+#13572
+A Bird's Eye View of the Ocean ~
+You are high above the ocean.  Looking down, you see ocean swells moving slowly
+northeastward toward Ocean City.  All about the skies here, you smell the
+wondrous aroma of the saltwater below, mixed with the foul stench of the
+rejected ghosts of cats as they are on their way to the depths below. You feel
+a great sense of urgency as you decide to eliminate these ghosts once and for
+all.
+~
+135 ROOM_NO_CASTLE|ROOM_NO_RIP SECT_AIR
+DDIR_SOUTH
+~
+~
+0 -1 13571
+DDIR_EAST
+~
+~
+0 -1 13565
+DDIR_NORTH
+~
+~
+0 -1 13568 
+S
+#13573
+A Bird's Eye View of the Ocean ~
+You are high above the ocean.  Looking down, you see ocean swells moving slowly
+northeastward toward Ocean City.  All about the skies here, you smell the
+wondrous aroma of the saltwater below, mixed with the foul stench of the
+rejected ghosts of cats as they are on their way to the depths below. You feel
+a great sense of urgency as you decide to eliminate these ghosts once and for
+all.
+~
+135 ROOM_NO_CASTLE|ROOM_NO_RIP SECT_AIR
+DDIR_NORTH
+~
+~
+0 -1 13564
+DDIR_DOWN
+~
+~
+0 -1 10743
+S
+
+#13574
+A Bird's Eye View of the Beach~
+You are flying high above the beaches of Ocean City.  The air is full of the
+powerfully sweet smell of the saltwater below mixed with the wonderful fragrance
+of the plant life in Ocean City.  You see Ocean City to the northeast.  The ocean
+extends beyond the horizon to the southwest.
+~
+135 ROOM_NO_CASTLE|ROOM_NO_RIP SECT_AIR
+DDIR_NORTH
+~
+~
+0 -1 13576
+DDIR_WEST
+~
+~
+0 -1 13564
+S
+#13575
+A Bird's Eye View of the Beach~
+You are flying high above the beaches of Ocean City.  The air is full of the
+powerfully sweet smell of the saltwater below mixed with the wonderful fragrance
+of the plant life in Ocean City.  Many of the inhabitants and visitors of Ocean
+City are frolicking in the waves and on the beach below.
+~
+135 ROOM_NO_CASTLE|ROOM_NO_RIP SECT_AIR
+DDIR_NORTH
+~
+~
+0 -1 13569
+DDIR_EAST
+~
+~
+0 -1 13561
+DDIR_SOUTH
+~
+~
+0 -1 13576
+DDIR_WEST
+~
+~
+0 -1 13562
+S
+#13576
+A Bird's Eye View of the Beach~
+You are flying high above the beaches of Ocean City.  The air is full of the
+powerfully sweet smell of the saltwater below mixed with the wonderful fragrance
+of the plant life in Ocean City.  Many females are lying on the beach as if they
+actually expect some magical powers from the sun to enter their bodies.  The
+males, on the other hand, are lifting heavy objects over their heads and then
+lowering them only to do it again.  It looks quite foolish to do such a thing.
+~
+135 ROOM_NO_CASTLE|ROOM_NO_RIP SECT_AIR
+DDIR_NORTH
+~
+~
+0 -1 13575
+DDIR_SOUTH
+~
+~
+0 -1 13574
+DDIR_WEST
+~
+~
+0 -1 13563
+S
+#13577
+A Bird's Eye View of Ocean City~
+Far below you, you see the tops of trees and homes of the residents of Ocean
+City.  It most definitely feels great to be able to stretch your wings and soar
+once again.  As you take a closer look around you, you notice ghosts of cats
+climbing heavenward.  This is a good opportunity to make certain these ghosts
+never reach their goals as you don't want to pollute heaven with their Tsarian
+stench.
+~
+135 ROOM_NO_CASTLE|ROOM_NO_RIP SECT_AIR
+DDIR_NORTH
+~
+~
+0 -1 13555
+DDIR_WEST
+~
+~
+0 -1 13561
+S
+#13578
+In The Clouds~
+You have reached an altitude high enough above land that you are flying within
+the clouds.  You feel the moisture that form these large, puffy clouds as you
+soar with ease through the sky.  It is quite difficult to see through all the
+cloudiness.
+~
+135 ROOM_DARK|ROOM_NO_CASTLE|ROOM_NO_RIP SECT_AIR
+DDIR_DOWN
+~
+~
+0 -1 13554
+DDIR_SOUTH
+~
+~
+0 -1 13579
+S
+#13579
+In The Clouds~
+You have reached an altitude high enough above land that you are flying within
+the clouds.  You feel the moisture that form these large, puffy clouds as you
+soar with ease through the sky.  There are some dark shapes off in the distance
+but it is nearly impossible to see anything through these clouds.
+~
+135 ROOM_DARK|ROOM_NO_CASTLE|ROOM_NO_RIP SECT_AIR
+DDIR_NORTH
+~
+~
+0 -1 13578
+DDIR_DOWN
+~
+~
+0 -1 13561
+S
+
+#13580
+In The Clouds~
+You have reached an altitude high enough above land that you are flying within
+the clouds.  You feel the moisture that form these large, puffy clouds as you
+soar with ease through the sky.  The clouds are moving ever so slowly inland
+on the soft breeze.
+~
+135 ROOM_DARK|ROOM_NO_CASTLE|ROOM_NO_RIP SECT_AIR
+DDIR_DOWN
+~
+~
+0 -1 13562
+DDIR_UP
+~
+~
+0 -1 13585
+S
+#13581
+In The Clouds~
+You have reached an altitude high enough above land that you are flying within
+the clouds.  You feel the moisture that form these large, puffy clouds as you
+soar with ease through the sky.  Through a small break in the clouds, you can
+see the deep blue of the ocean far below. 
+~
+135 ROOM_DARK|ROOM_NO_CASTLE|ROOM_NO_RIP SECT_AIR
+DDIR_DOWN
+~
+~
+0 -1 13564
+DDIR_WEST
+~
+~
+0 -1 13582
+DDIR_UP
+~
+~
+0 -1 13587
+S
+#13582
+In The Clouds~
+You have reached an altitude high enough above land that you are flying within
+the clouds.  You feel the moisture that form these large, puffy clouds as you
+soar with ease through the sky.  The air is almost completely free from the
+sounds of life and you wonder if you are alone here or if maybe the clouds
+themselves form a sound barrier of some sort.
+~
+135 ROOM_DARK|ROOM_NO_CASTLE|ROOM_NO_RIP SECT_AIR
+DDIR_EAST
+~
+~
+0 -1 13581
+DDIR_DOWN
+~
+~
+0 -1 13565
+S
+#13583
+High Above The Clouds~
+Flying this high is what it's all about.  Looking down, you see the clouds far
+below you.  All those fluffy clouds look almost like the blossoms in all the
+fruit trees on the land far below the clouds.  At this great of an altitude, it
+is quite difficult to see anything moving on the ground.
+~
+135 ROOM_NO_CASTLE|ROOM_NO_RIP SECT_AIR
+DDIR_DOWN
+~
+~
+0 -1 13579
+DDIR_WEST
+~
+~
+0 -1 13584
+S
+#13584
+High Above The Clouds~
+Flying this high is what it's all about.  Looking down, you see the clouds far
+below you.  All those fluffy clouds look almost like the blossoms in all the
+fruit trees on the land far below the clouds.  The clouds seem to be performing
+a very intricate dance as the soft breeze nudges them ever onward.  At this
+great of an altitude, it is quite difficult to see anything moving on the
+ground.
+~
+135 ROOM_NO_CASTLE|ROOM_NO_RIP SECT_AIR
+DDIR_EAST
+~
+~
+0 -1 13583
+DDIR_WEST
+~
+~
+0 -1 13585
+DDIR_NORTH
+~
+~
+0 -1 13589
+S
+#13585
+High Above The Clouds~
+Flying this high is what it's all about.  Looking down, you see the clouds far
+below you.  All those fluffy clouds look almost like the blossoms in all the
+fruit trees on the land far below the clouds.  At this great of an altitude, it
+is quite difficult to see anything moving on the ground while all around you is
+open space.  Nothing seems to dare fly this high.
+~
+135 ROOM_NO_CASTLE|ROOM_NO_RIP SECT_AIR
+DDIR_EAST
+~
+~
+0 -1 13584
+DDIR_SOUTH
+~
+~
+0 -1 13586
+DDIR_DOWN
+~
+~
+0 -1 13580
+DDIR_UP
+~
+~
+0 -1 13591
+S
+
+#13586
+High Above The Clouds~
+Flying this high is what it's all about.  Looking down, you see the clouds far
+below you.  All those fluffy clouds look almost like the blossoms in all the
+fruit trees on the land far below the clouds.  The skies belong to you, nobody
+else dares enter your airspace and you reign supreme here.
+~
+135 ROOM_NO_CASTLE|ROOM_NO_RIP SECT_AIR
+DDIR_NORTH
+~
+~
+0 -1 13585
+DDIR_SOUTH
+~
+~
+0 -1 13587
+DDIR_WEST
+~
+~
+0 -1 13588
+S
+#13587
+High Above The Clouds~
+Flying this high is what it's all about.  Looking down, you see the clouds far
+below you.  All those fluffy clouds look almost like the blossoms in all the
+fruit trees on the land far below the clouds.  At this great of an altitude, it
+is quite difficult to see anything moving on the ground.  The sun seems to be
+much closer here, almost within reach as you bask in its warm rays, soaking up
+its energies.
+~
+135 ROOM_NO_CASTLE|ROOM_NO_RIP SECT_AIR
+DDIR_NORTH
+~
+~
+0 -1 13586
+DDIR_UP
+~
+~
+0 -1 13590
+DDIR_DOWN
+~
+~
+0 -1 13581
+S
+#13588
+Aero Armory~
+As you look about yourself, you see powerful armaments designed especially for
+the unique anatomy of Aviarans.  The armaments here will not fit other races as
+they aren't shaped properly to wear them.  The armor here, while absolutely
+powerfully extravagant, pale in comparison to the beauty of the one who is
+selling them.
+~
+135 ROOM_NO_CASTLE|ROOM_NO_RIP SECT_AIR
+DDIR_EAST
+~
+~
+0 -1 13586
+S
+#13589
+Aero Agressivators~
+As you look about yourself, you see many awesome weapons made especially for
+the Aviaran race.  You almost feel sorry for those other races who have to make
+due with lesser weapons until you realize those other races, especially the evil
+cats, are so greatly deserving of elimination.
+~
+135 ROOM_NO_CASTLE|ROOM_NO_RIP SECT_AIR
+DDIR_SOUTH
+~
+~
+0 -1 13584
+S
+#13590
+Aero Accessories~
+As you look around yourself, you see many scrolls and potions in varying stages
+of readiness.  The shopkeeper seems to start many different things before
+completing any one of them.  Hopefully she has actually properly completed the
+ones she is currently selling.
+~
+135 ROOM_NO_CASTLE|ROOM_NO_RIP SECT_AIR
+DDIR_DOWN
+~
+~
+0 -1 13587
+S
+#13591
+Antichamber of Aviaran Airborne Army Admiral Avimus~
+You are approaching the chamber of the great leader of the Aviaran race.  As you
+look about yourself you see a great number of statues and portraits of great
+Aviaran warriors of times in history.  You can't help but wonder if you have
+what it takes to one day be honored in such a manner.
+~
+135 ROOM_NO_CASTLE|ROOM_NO_RIP SECT_AIR
+DDIR_DOWN
+~
+~
+0 -1 13585
+DDIR_UP
+~
+~
+0 -1 13592
+S
+
+#13592
+Audience Chamber of Aviaran Airborne Army Admiral Avimus~
+You have entered a wondrous section of air space!  All about you are magical
+windows looking out upon the realms where great battles can be viewed.  The
+occupant of this room must obviously be the Commander in Chief of the Aviaran
+Airborne Army.  Maps and battle plans are spread throughout and if it weren't
+for the foreboding nature of Admiral Avimus hovering above you, you would want
+to look over the maps and into the magical windows more closely.
+~
+135 ROOM_NO_CASTLE|ROOM_NO_RIP SECT_AIR
+DDIR_DOWN
+~
+~
+0 -1 13591
+DDIR_EAST
+~
+~
+0 -1 13593
+DDIR_WEST
+~
+~
+0 -1 13594
+DDIR_UP
+~
+~
+0 -1 13595
+S
+#13593
+Acceptance Chamber of Aviaran Airborne Army Admiral Avimus~
+Upon arrival here, you have a great sense of accomplishment combined with a
+sense of an incredibly important upcoming event in your life.  You have shown
+your abilities to be strong enough to garner acceptance into the Aviaran
+Airborne Army and are about to be accepted.
+~
+135 ROOM_NO_CASTLE|ROOM_NO_RIP SECT_AIR
+DDIR_WEST
+~
+~
+0 -1 13592
+S
+#13594
+Alienation Chamber of Aviaran Airborne Army Admiral Avimus~
+Looking about you, you get a great sense of foreboding as you are about to
+disgrace yourself and let your comrades in battle down.  There are a great many
+statues of great Aviaran Airborne Army, but they all are facing away from you
+as if they have all turned their backs on you.
+~
+135 ROOM_NO_CASTLE|ROOM_NO_RIP SECT_AIR
+DDIR_EAST
+~
+~
+0 -1 13592
+S
+#13595
+Activities Chamber of Aviaran Airborne Army Admiral Avimus~
+You see signs of a great many activities of Aviarans who have attempted to join
+the Airborne Army before your arrival.  As you look around yourself, you wonder
+what you may have gotten yourself into by permitting yourself to be recruited.
+You aren't sure whether you have the mettle to get through the activities that
+undoubtedly will tax your mind and might.
+~
+135 ROOM_NO_CASTLE|ROOM_NO_RIP SECT_AIR
+DDIR_DOWN
+~
+~
+0 -1 13592
+S
+#13596
+The hills outside Ocean City~
+You have begun a steep climb into the hills outside Ocean City.  The terrain is
+quite difficult and would seem better to fly over instead of walking on it.  It
+is interesting to see very little sign of travel through these hills.  You get
+the feeling that maybe you should leave before you get yourself into a greater
+predicament than you can bear.
+~
+135 ROOM_NO_CASTLE|ROOM_NO_RIP SECT_HILLS
+DDIR_UP
+~
+~
+0 -1 13551
+DDIR_EAST
+~
+~
+0 -1 13597
+S
+
+@changed connection north to roads   12/18/03
+#13597
+Outside Ocean City~
+You stand on the outskirts of Ocean City.  The ground is covered with grass.
+A few rabbits occasionally pop there heads up from their burrows, and then
+duck back down when they see you look at them.  The forest continues north.~
+118 0 SECT_FOREST
+DDIR_NORTH
+You see a frozen forest.~
+~
+0 -1 4565
+DDIR_WEST
+You see the hills outside Ocean City.~
+~
+0 -1 13596
+DDIR_EAST
+You see a very small clearing.~
+~
+0 -1 12365
+DDIR_SOUTH
+You see Ocean City.~
+~
+0 -1 11400
+S
+#13599
+The Enlistment Room~
+Here you may join or retire from an army... but you may only follow once per
+reincarnation.  Choose Wisely.~
+135 ROOM_NO_CASTLE|ROOM_NO_RIP|ROOM_NO_RECALL|ROOM_SAFE|ROOM_DARK SECT_AIR
+DDIR_DOWN
+~
+~
+0 -1 13592
+S
+#0
+
+
+
+#SHOPS
+13551 ITEM_TYPE_POTION ITEM_TYPE_SCROLL ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING
+     ITEM_TYPE_NOTHING 100 85 0 23 ;Ailiah
+13553 ITEM_TYPE_WEAPON ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING
+     ITEM_TYPE_NOTHING 100 85 0 23 ;Antoine
+13552 ITEM_TYPE_ARMOR ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING
+     ITEM_TYPE_NOTHING 100 85 0 23 ;Auneah
+
+0
+
+
+
+
+#RESETS
+M 0 13554 1 13550 ;Andujar loaded in room Rising Above The Trees
+M 0 13550 1 13592 ;Avimus loaded in room Audience Chamber of Aviaran Airborne Army Admiral
+M 0 13551 1 13590 ;Ailiah loaded in room Aero Accessories
+G 1 13550 1000000000  ;Aviaran Away Scroll placed in inventory
+G 1 13553 1000000000  ;Aviaran Anti-Necromancer Potion placed in inventory
+G 1 13554 1000000000  ;Aviaran Anti-Necromancer Scroll placed in inventory
+G 1 13556 1000000000  ;Aviaran Airborne Army Armoring Potion placed in inventory
+G 1 13557 1000000000  ;Aviaran Airborne Army Armoring Scroll placed in inventory
+M 0 13553 1 13589 ;Antoine loaded in room Aero Agressivators
+G 1 13564 1000000000  ;Aviaran Airborne Army Awl placed in inventory
+G 1 13565 1000000000  ;Aviaran Airborne Army Aggressor placed in inventory
+M 0 13552 1 13588 ;Auneah loaded in room Aero Armory
+G 1 13559 1000000000  ;Heavy Aviaran Airborne Army Battlearmor placed in inventory
+G 1 13560 1000000000  ;Aviaran Airborne Army Ring placed in inventory
+G 1 13562 1000000000  ;Aviaran Leg Armor placed in inventory
+G 1 13563 1000000000  ;Aviaran Brain Bucket placed in inventory
+M 0 13557 100 13577 ;Cat loaded in room A Bird's Eye View of Ocean City
+M 0 13557 100 13577 ;Cat loaded in room A Bird's Eye View of Ocean City
+M 0 13558 100 13573 ;Cat loaded in room A Bird's Eye View of the Ocean 
+M 0 13558 100 13573 ;Cat loaded in room A Bird's Eye View of the Ocean 
+M 0 13558 100 13572 ;Cat loaded in room A Bird's Eye View of the Ocean 
+M 0 13558 100 13572 ;Cat loaded in room A Bird's Eye View of the Ocean 
+M 0 13558 100 13571 ;Cat loaded in room A Bird's Eye View of the Ocean 
+M 0 13558 100 13571 ;Cat loaded in room A Bird's Eye View of the Ocean 
+M 0 13558 100 13570 ;Cat loaded in room A Bird's Eye View of the Ocean 
+M 0 13558 100 13570 ;Cat loaded in room A Bird's Eye View of the Ocean 
+M 0 13558 100 13568 ;Cat loaded in room A Bird's Eye View of the Ocean 
+M 0 13558 100 13568 ;Cat loaded in room A Bird's Eye View of the Ocean 
+M 0 13558 100 13567 ;Cat loaded in room A Bird's Eye View of the Ocean 
+M 0 13558 100 13567 ;Cat loaded in room A Bird's Eye View of the Ocean 
+M 0 13558 100 13566 ;Cat loaded in room A Bird's Eye View of the Ocean 
+M 0 13558 100 13566 ;Cat loaded in room A Bird's Eye View of the Ocean 
+M 0 13558 100 13565 ;Cat loaded in room A Bird's Eye View of the Ocean 
+M 0 13558 100 13565 ;Cat loaded in room A Bird's Eye View of the Ocean 
+M 0 13558 100 13564 ;Cat loaded in room A Bird's Eye View of the Ocean 
+M 0 13558 100 13564 ;Cat loaded in room A Bird's Eye View of the Ocean 
+M 0 13558 100 13563 ;Cat loaded in room A Bird's Eye View of the Ocean 
+M 0 13558 100 13563 ;Cat loaded in room A Bird's Eye View of the Ocean 
+M 0 13558 100 13562 ;Cat loaded in room A Bird's Eye View of the Ocean 
+M 0 13558 100 13562 ;Cat loaded in room A Bird's Eye View of the Ocean 
+M 0 13557 100 13561 ;Cat loaded in room A Bird's Eye View of Ocean City
+M 0 13557 100 13561 ;Cat loaded in room A Bird's Eye View of Ocean City
+M 0 13557 100 13560 ;Cat loaded in room A Bird's Eye View of Ocean City
+M 0 13557 100 13560 ;Cat loaded in room A Bird's Eye View of Ocean City
+M 0 13557 100 13559 ;Cat loaded in room A Bird's Eye View of Ocean City
+M 0 13557 100 13559 ;Cat loaded in room A Bird's Eye View of Ocean City
+M 0 13557 100 13558 ;Cat loaded in room A Bird's Eye View of Ocean City
+M 0 13557 100 13558 ;Cat loaded in room A Bird's Eye View of Ocean City
+M 0 13557 100 13557 ;Cat loaded in room A Bird's Eye View of Ocean City
+M 0 13557 100 13557 ;Cat loaded in room A Bird's Eye View of Ocean City
+M 0 13557 100 13556 ;Cat loaded in room A Bird's Eye View of Ocean City
+M 0 13557 100 13556 ;Cat loaded in room A Bird's Eye View of Ocean City
+M 0 13557 100 13555 ;Cat loaded in room A Bird's Eye View of Ocean City
+M 0 13557 100 13555 ;Cat loaded in room A Bird's Eye View of Ocean City
+M 0 13557 100 13554 ;Cat loaded in room A Bird's Eye View of Ocean City
+M 0 13557 100 13554 ;Cat loaded in room A Bird's Eye View of Ocean City
+M 0 13557 100 13553 ;Cat loaded in room A Bird's Eye View of Ocean City
+M 0 13557 100 13553 ;Cat loaded in room A Bird's Eye View of Ocean City
+M 0 13557 100 13552 ;Cat loaded in room A Bird's Eye View of Ocean City
+M 0 13557 100 13552 ;Cat loaded in room A Bird's Eye View of Ocean City
+M 0 13555 1 13551 ;Amelia loaded in room Climbing Into The Air
+M 0 13560 1 13582 ;Ahlerr loaded in room In The Clouds
+O 0 13566 1 13596 ;A sign loaded in room 
+S
+
+
+
+
+#$

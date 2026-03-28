@@ -1,0 +1,1272 @@
+#AREA Ogre Den~
+#AUTHORS Jaxom  ~
+
+#AUTHORS Jaxom Robinton~
+
+
+
+#HELPS
+-1 OGRE 'OGRE DEN'~
+{070}OGRE DEN
+--------
+
+The ogres of Ogre Den have taken up residence in a complex of caverns near
+the halfling village of The Shire.  They have found that halfling stew makes
+a good meal, but most of the time they just eat the halflings raw.
+
+(a) {060}Jaxom{300}
+
+
+
+{a}JAXOM
+~
+0 $~
+
+
+
+#RANGES 5 35 1 50
+#MOBILES
+#2850
+ogre metalworker~
+the Ogre Metalworker~
+An ogre with blackened skin stands here.
+~
+{070}He is a huge ogre with extraordinarily large muscles and skin that is
+blackened by ash and soot.
+~
+ACT_RACE|ACT_BODY|ACT_SMART|ACT_STAY_AREA|ACT_SENTINEL
+0 
+-500 S
+10 BODY_FOOT BODY_HAND|BODY_HEAD 1d1+1000 1d1+100
+10 RACE_OGRE
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 100~
+if race($n) == 7
+  mpechoat $n The ogre grunts at you in recognition.
+  mpechoaround $n The ogre grunts as it sees $n.
+else
+  if race($n) == 1
+    growl $n
+    mpkill $n
+  else
+    if quest(2, 2, $n) == 1
+      growl $n
+      mpkill $n
+    endif
+  endif
+endif
+~
+>all_greet_prog 0~
+if class($n) == 6
+  if quest(30, 1, $n) == 0
+    shout I have banished a filthy assassin!
+    mpmset $n quest 30 1 1
+  else
+    mptransfer $n 2899
+    mpat $n mpforce $n say I am a loser!
+    shout I have sent a backstabbing assassin to hell!
+  endif
+endif
+~
+|
+#2851
+ogre shaman~
+the Ogre Shaman~
+An ogre with painted skin chants here.~
+{070}She is a small ogre with a gruesome face and skin that is
+painted with ash and soot and she looks disgusting.
+~
+ACT_RACE|ACT_BODY|ACT_SMART|ACT_STAY_AREA|ACT_SENTINEL
+0 
+-500 S
+40 BODY_FOOT 0 1d1+1000 1d1+50
+50000 RACE_OGRE
+POS_STANDING POS_STANDING SEX_FEMALE
+>greet_prog 100~
+if race($n) == 7
+  mpechoat $n The ogre grunts at you in recognition.
+  mpechoaround $n The ogre grunts as it sees $n.
+else
+  if race($n) == 1
+    growl $n
+    mpkill $n
+  else
+    if quest(2, 2, $n) == 1
+      growl $n
+      mpkill $n
+    endif
+  endif
+endif
+~
+>all_greet_prog 0~
+if class($n) == 6
+  if quest(30, 1, $n) == 0
+    shout I have banished a filthy assassin!
+    mpmset $n quest 30 1 1
+  else
+    mptransfer $n 2899
+    mpat $n mpforce $n say I am a loser!
+    shout I have sent a backstabbing assassin to hell!
+  endif
+endif
+~
+>death_prog 100~
+if race($n) == 7
+else
+  mpmset $n quest 2 2 1
+endif
+~
+>rand_prog 10~
+if race($r) == 7
+  if rand(20)
+    cast sanctuary $r
+  else
+    if rand(20)
+      cast 'giant strength' $r
+    else
+      if rand(20)
+        cast bless $r
+      else
+        if rand(20)
+          cast 'enhanced heal' $r
+        else
+          cast shield $r
+        endif
+      endif
+    endif
+  endif
+endif
+~
+|
+#2852
+ogre magi~
+the Ogre Magi~
+An ogre in outrageous dress stands here.~
+{070}He is a shriveled ogre with extraordinarily long hair and skin that is
+so wrinkled you wonder if it even needs pockets.
+~
+ACT_RACE|ACT_BODY|ACT_SMART|ACT_STAY_AREA|ACT_SENTINEL
+0 
+-500 S
+10 BODY_FOOT 0 1d1+1000 1d1+100
+10 RACE_OGRE
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 100~
+if race($n) == 7
+  mpechoat $n The ogre grunts at you in recognition.
+  mpechoaround $n The ogre grunts as it sees $n.
+else
+  if race($n) == 1
+    growl $n
+    mpkill $n
+  else
+    if quest(2, 2, $n) == 1
+      growl $n
+      mpkill $n
+    endif
+  endif
+endif
+~
+>all_greet_prog 0~
+if class($n) == 6
+  if quest(30, 1, $n) == 0
+    shout I have banished a filthy assassin!
+    mpmset $n quest 30 1 1
+  else
+    mptransfer $n 2899
+    mpat $n mpforce $n say I am a loser!
+    shout I have sent a backstabbing assassin to hell!
+  endif
+endif
+~
+|
+#2853
+ogre chieftan~
+the Ogre chieftan~
+An enormous ogre scowls at you.~
+{070}He is a huge ogre with extraordinarily large muscles wearing a jumble
+of clothes that while expensive looking do not go together at all.
+~
+ACT_RACE|ACT_BODY|ACT_SMART|ACT_STAY_AREA|ACT_SENTINEL|ACT_TRAIN|ACT_PRACTICE
+AFF_TONGUES|AFF_UNDERSTAND 
+-500 S
+40 BODY_FOOT BODY_HAND|BODY_HEAD 1d1+1000 1d1+50
+100000 RACE_OGRE
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 100~
+if race($n) == 7
+  if quest(0, 2, $n) == 0
+    say You! Do Job for me!
+    say Bring head of Thain!
+    say Wear this, You one of us now.
+    mpoload 2850
+    give i2850 $n
+    drop i2850
+    mpjunk all
+    mpmset $n quest 0 2 1
+  endif
+else
+  if race($n) == 1
+    say Mmmmmmm,  Halfling
+    emote rubs his belly and smiles.
+    mpkill $n
+  else
+    say What you want?
+  endif
+endif
+~
+>all_greet_prog 0~
+if class($n) == 6
+  if quest(30, 1, $n) == 0
+    shout I have banished a filthy assassin!
+    mpmset $n quest 30 1 1
+  else
+    mptransfer $n 2899
+    mpat $n mpforce $n say I am a loser!
+    shout I have sent a backstabbing assassin to hell!
+  endif
+endif
+~
+>death_prog 100~
+if race($n) == 7
+else
+  mpmset $n quest 2 2 1
+  if actorhasobjnum(1116)
+    if race($n) == 1
+      mpoload 2861
+    endif
+  endif
+endif
+~
+>give_prog i1115~
+if race($n) == 7
+  if quest(0, 2, $n) == 1
+    say Good Job.
+    mpoload 2860
+    give i2860 $n
+    say Now go away!
+    mpjunk all
+    mpmset $n quest 0 2 2
+  else
+    say Nice head, me full though.
+  endif
+else
+  say Nice head, me full though.
+endif
+~
+|
+#2854
+ogre warrior~
+an Ogre Warrior~
+An ogre with tattered armor stands here.~
+{070}He is a huge ogre with large muscles.~
+ACT_RACE|ACT_BODY|ACT_SMART|ACT_STAY_AREA|ACT_SENTINEL
+0 
+-500 S
+30 BODY_FOOT BODY_HAND|BODY_HEAD 1d1+479 1d1+21
+20000 RACE_OGRE
+POS_STANDING POS_RESTING SEX_MALE
+>greet_prog 100~
+if race($n) == 7
+  mpechoat $n The ogre grunts at you in recognition.
+  mpechoaround $n The ogre grunts as it sees $n.
+else
+  if race($n) == 1
+    growl $n
+    mpkill $n
+  else
+    if quest(2, 2, $n) == 1
+      growl $n
+      mpkill $n
+    endif
+  endif
+endif
+~
+>all_greet_prog 0~
+if class($n) == 6
+  if quest(30, 1, $n) == 0
+    shout I have banished a filthy assassin!
+    mpmset $n quest 30 1 1
+  else
+    mptransfer $n 2899
+    mpat $n mpforce $n say I am a loser!
+    shout I have sent a backstabbing assassin to hell!
+  endif
+endif
+~
+>death_prog 100~
+if race($n) == 7
+else
+  mpmset $n quest 2 2 1
+endif
+~
+|
+#2855
+ogre scout~
+an Ogre Scout~
+An ogre wearing raw leather is here.~
+{070}He is wearing the skin of a deer that looks freshly killed.~
+ACT_RACE|ACT_BODY|ACT_SMART|ACT_STAY_AREA
+0 
+-500 S
+20 BODY_FOOT BODY_HAND|BODY_HEAD 1d1+279 1d1+17
+10000 RACE_OGRE
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 100~
+if race($n) == 7
+  mpechoat $n The ogre grunts at you in recognition.
+  mpechoaround $n The ogre grunts as it sees $n.
+else
+  if race($n) == 1
+    growl $n
+    mpkill $n
+  else
+    if quest(2, 2, $n) == 1
+      growl $n
+      mpkill $n
+    endif
+  endif
+endif
+~
+>all_greet_prog 0~
+if class($n) == 6
+  if quest(30, 1, $n) == 0
+    shout I have banished a filthy assassin!
+    mpmset $n quest 30 1 1
+  else
+    mptransfer $n 2899
+    mpat $n mpforce $n say I am a loser!
+    shout I have sent a backstabbing assassin to hell!
+  endif
+endif
+~
+>death_prog 100~
+if race($n) == 7
+else
+  mpmset $n quest 2 2 1
+endif
+~
+|
+#2856
+ogre warrior~
+an Ogre Warrior~
+An ogre with tattered armor stands here.~
+{070}He is a huge ogre with large muscles.~
+ACT_RACE|ACT_BODY|ACT_SMART|ACT_STAY_AREA|ACT_SENTINEL 0 -500 S
+19 BODY_FOOT BODY_HAND|BODY_HEAD 1d100+150 1d16+8
+20000 RACE_OGRE
+POS_SLEEPING POS_RESTING SEX_MALE
+>all_greet_prog 0~
+if class($n) == 6
+  if quest(30, 1, $n) == 0
+    shout I have banished a filthy assassin!
+    mpmset $n quest 30 1 1
+  else
+    mptransfer $n 2899
+    mpat $n mpforce $n say I am a loser!
+    shout I have sent a backstabbing assassin to hell!
+  endif
+endif
+~
+|
+#0
+
+
+
+#OBJECTS
+#2850
+hair halfling ring~
+a Ring of Hair~
+A loop of hair lies on the ground.~
+{030}It is a loop of halfling hair.  Bits of the poor halfling's scalp are still
+hanging from it.
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_FINGER|ITEM_WEAR_TAKE
+4 0 0 0
+1 100 5
+A
+APPLY_HITROLL 1
+A
+APPLY_DAMROLL 1
+A
+APPLY_STR 1
+P 1
+TRIG_TICK 50
+OPROG_IF OIF_USER_RACE ! 7 2 0
+P 2
+TRIG_VOID
+OPROG_ECHO You destroy the ring of hair in disgust.~
+P 2
+TRIG_VOID
+OPROG_JUNK
+#2851
+tattered armor~
+tattered armor~
+Tattered armor lies on the ground.~
+{030}It is deer hide that has been ripped off a deer and stitched into a
+rough shirt without any tanning or even bothering to get rid of the blood.
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_BODY|ITEM_WEAR_TAKE
+4 0 0 0
+1 100 10
+A
+APPLY_HITROLL 2
+A
+APPLY_DAMROLL 2
+A
+APPLY_STR 1
+P 1
+TRIG_WEAR 100
+OPROG_IF OIF_USER_RACE ! 7 2 0
+P 2
+TRIG_VOID
+OPROG_ECHO You destroy the ogre junk in disgust.~
+P 2
+TRIG_VOID
+OPROG_JUNK
+#2852
+tattered belt~
+a tattered belt~
+A tattered belt lies on the ground.~
+{030}It is deer hide that has been ripped off a deer and stitched into a
+rough belt without any tanning or even bothering to get rid of the blood.
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_WAIST|ITEM_WEAR_TAKE
+4 0 0 0
+1 100 10
+A
+APPLY_HITROLL 2
+A
+APPLY_DAMROLL 2
+A
+APPLY_STR 1
+P 1
+TRIG_WEAR 100
+OPROG_IF OIF_USER_RACE ! 7 2 0
+P 2
+TRIG_VOID
+OPROG_ECHO You destroy the ogre junk in disgust.~
+P 2
+TRIG_VOID
+OPROG_JUNK
+#2853
+tattered boots~
+tattered boots~
+Tattered boots lies on the ground.~
+{030}It is deer hide that has been ripped off a deer and stitched into a
+rough shirt without any tanning or even bothering to get rid of the blood.
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_FEET|ITEM_WEAR_TAKE
+4 0 0 0
+1 100 10
+A
+APPLY_HITROLL 2
+A
+APPLY_DAMROLL 2
+A
+APPLY_STR 1
+P 1
+TRIG_WEAR 100
+OPROG_IF OIF_USER_RACE ! 7 2 0
+P 2
+TRIG_VOID
+OPROG_ECHO You destroy the ogre junk in disgust.~
+P 2
+TRIG_VOID
+OPROG_JUNK
+#2854
+ogres club~
+An Ogre's Club~
+An ogre's club lies on the ground.~
+{030}It is a tree branch with a spike embedded in it.~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_WIELD|ITEM_WEAR_TAKE
+0 2 7 7
+1 100 10
+A
+APPLY_HITROLL 2
+A
+APPLY_DAMROLL 1
+A
+APPLY_STR 1
+P 1
+TRIG_WEAR 100
+OPROG_IF OIF_USER_RACE ! 7 2 0
+P 2
+TRIG_VOID
+OPROG_ECHO You destroy the ogre junk in disgust.~
+P 2
+TRIG_VOID
+OPROG_JUNK
+#2855
+ogres potion~
+an ogre's potion~
+An ogre's potion lies here.~
+It is in a dirty leather flask.~
+ITEM_TYPE_POTION
+ITEM_FLAG_LEVEL|ITEM_FLAG_MAGIC
+ITEM_WEAR_TAKE
+20 SPELL_ARMOR SPELL_STONE_SKIN -1
+1 1000 10
+P 1
+TRIG_TICK 50
+OPROG_IF OIF_USER_RACE ! 7 2 0
+P 2
+TRIG_VOID
+OPROG_ECHO You destroy the ogre junk in disgust.~
+P 2
+TRIG_VOID
+OPROG_JUNK
+#2856
+ogres pill~
+an ogre's pill~
+An ogre's pill lies here.~
+It is a grimy looking thing that you do not want to put in your mouth.~
+ITEM_TYPE_PILL
+ITEM_FLAG_LEVEL|ITEM_FLAG_MAGIC
+ITEM_WEAR_TAKE
+20 SPELL_PROTECTION_EVIL SPELL_HEAL -1
+1 1000 10
+P 1
+TRIG_TICK 50
+OPROG_IF OIF_USER_RACE ! 7 2 0
+P 2
+TRIG_VOID
+OPROG_ECHO You destroy the ogre junk in disgust.~
+P 2
+TRIG_VOID
+OPROG_JUNK
+#2857
+ogres wand~
+an ogre's wand~
+An ogre's wand lies here.~
+It is a gnarled stick.~
+ITEM_TYPE_WAND
+ITEM_FLAG_LEVEL|ITEM_FLAG_MAGIC
+ITEM_WEAR_TAKE
+20 3 3 SPELL_SANCTUARY
+1 1000 10
+P 1
+TRIG_TICK 50
+OPROG_IF OIF_USER_RACE ! 7 2 0
+P 2
+TRIG_VOID
+OPROG_ECHO You destroy the ogre junk in disgust.~
+P 2
+TRIG_VOID
+OPROG_JUNK
+#2858
+ogres staff~
+an ogre's staff~
+An ogre's staff lies here.~
+It is a gnarled tree branch.~
+ITEM_TYPE_STAFF
+ITEM_FLAG_LEVEL|ITEM_FLAG_MAGIC
+ITEM_WEAR_TAKE
+30 3 3 SPELL_HEAL
+1 1000 10
+P 1
+TRIG_TICK 50
+OPROG_IF OIF_USER_RACE ! 7 2 0
+P 2
+TRIG_VOID
+OPROG_ECHO You destroy the ogre junk in disgust.~
+P 2
+TRIG_VOID
+OPROG_JUNK
+#2859
+ogres recall scroll~
+an ogre's recall~
+An ogre's recall lies here.~
+It is in a dirty piece of parchment.~
+ITEM_TYPE_SCROLL
+ITEM_FLAG_LEVEL|ITEM_FLAG_MAGIC
+ITEM_WEAR_TAKE
+20 SPELL_WORD_OF_RECALL -1 -1
+1 100 5
+#2860
+ogre arm band~
+an Ogre's arm band~
+An ogre's arm band lies on the ground.~
+{030}It is deer hide that has been ripped off a deer and stitched into a
+rough belt without any tanning or even bothering to get rid of the blood.
+It has the symbol of the ogre clan on it.
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL|ITEM_FLAG_AUTO_ENGRAVE|ITEM_FLAG_NOREMOVE
+ITEM_WEAR_ARMS|ITEM_WEAR_TAKE
+4 0 0 0
+1 100 25
+A
+APPLY_HITROLL 5
+A
+APPLY_DAMROLL 3
+A
+APPLY_STR 2
+E
+symbol~
+{000}.{070}  ____
+  /\  /\
+  \o\/o/
+  /    \
+  VVVVVV
+~
+P 1
+TRIG_WEAR 100
+OPROG_IF OIF_USER_RACE ! 7 2 0
+P 2
+TRIG_VOID
+OPROG_ECHO You destroy the ogres arm band in disgust.~
+P 2
+TRIG_VOID
+OPROG_JUNK
+#2861
+ogre chieftan's head~
+an ogre's head~
+The ogre chieftan's head lies here.~
+The detatched head of an ogre is a gruesome sight.~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 0 0
+1 1 1
+#0
+
+
+
+#ROOMS
+#2850
+Trail through the forest~
+{020}This trail in the forest has been created by the tramp of many large feet.
+The sides of the trail are formed by bent and twisted trees and they lead
+deep into the forest.  It is obvious that this trail leads from The Shire,
+but where does it lead to?
+~
+28 ROOM_NO_MOB SECT_FOREST
+DDIR_EAST
+~
+~
+0 -1 2851 
+DDIR_WEST
+~
+~
+0 -1 1101
+S
+#2851
+Trail through the forest~
+{020}This trail in the forest has been created by the tramp of many large feet.
+The sides of the trail are formed by bent and twisted trees and they lead
+deep into the forest.  The forest has attempted to close in but it seems that
+any new sapling that attempt to grow are ripped from the ground.
+~
+28 0 SECT_FOREST
+DDIR_WEST
+~
+~
+0 -1 2850
+DDIR_SOUTH
+~
+~
+0 -1 2852 
+S
+#2852
+Trail through the forest~
+{020}This trail in the forest has been created by the tramp of many large feet.
+The sides of the trail are formed by bent and twisted trees and they lead
+deep into the forest.  It is obvious that this trail leads from The Shire,
+but where does it lead to?
+~
+28 0 SECT_FOREST
+DDIR_NORTH
+~
+~
+0 -1 2851
+DDIR_EAST
+~
+~
+0 -1 2853 
+S
+#2853
+Trail through the forest~
+{020}This trail in the forest has been created by the tramp of many large feet.
+The sides of the trail are formed by bent and twisted trees and they lead
+deep into the forest.  You see that you are coming to the end of the trail
+and that it ends in a vertical cliff.
+~
+28 0 SECT_FOREST
+DDIR_WEST
+~
+~
+0 -1 2852
+DDIR_EAST
+~
+~
+0 -1 2854 
+S
+#2854
+Entrance to the Ogre's Den~
+{120}You are standing outside a large cave entrance.  This hole in the cliff
+towers over you rising around thirty feet into the air.  Sunlight pours
+through the break in the trees between the forest and the cliff face.
+~
+28 0 SECT_FIELD
+DDIR_WEST
+~
+~
+0 -1 2853
+DDIR_EAST
+~
+~
+0 -1 2855 
+S
+#2855
+Big cave in den~
+{070}The enormous hole in the cliff has not narrowed once inside the mountain and
+forms a large cavern with several tunnels leading deeper into the mountain.
+The ground here is hard rock and is fairly clear of debris probably due to
+a high volume of traffic through here.
+~
+28 ROOM_DARK|ROOM_INDOORS SECT_INSIDE
+DDIR_WEST
+~
+~
+0 -1 2854
+DDIR_SOUTH
+~
+~
+0 -1 2856 
+DDIR_NORTH
+~
+~
+0 -1 2857 
+DDIR_EAST
+~
+~
+0 -1 2858 
+S
+
+#2856
+Big cave in den~
+{070}The enormous hole in the cliff has not narrowed once inside the mountain and
+forms a large cavern with several tunnels leading deeper into the mountain.
+The ground here is hard rock and is fairly clear of debris probably due to
+a high volume of traffic through here.
+~
+28 ROOM_DARK|ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 2855
+DDIR_EAST
+~
+~
+0 -1 2860 
+DDIR_SOUTH
+~
+~
+0 -1 2864 
+S
+#2857
+Big cave in den~
+{070}The enormous hole in the cliff has not narrowed once inside the mountain and
+forms a large cavern with several tunnels leading deeper into the mountain.
+The ground here is hard rock and is fairly clear of debris probably due to
+a high volume of traffic through here.
+~
+28 ROOM_DARK|ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+~
+~
+0 -1 2855
+DDIR_EAST
+~
+~
+0 -1 2859
+DDIR_NORTH
+~
+~
+0 -1 2861
+S
+#2858
+Big cave in den~
+{070}The enormous hole in the cliff has not narrowed once inside the mountain and
+forms a large cavern with several tunnels leading deeper into the mountain.
+The ground here is hard rock and is fairly clear of debris probably due to
+a high volume of traffic through here.
+~
+28 ROOM_DARK|ROOM_INDOORS SECT_INSIDE
+DDIR_WEST
+~
+~
+0 -1 2855
+DDIR_SOUTH
+~
+~
+0 -1 2860
+DDIR_NORTH
+~
+~
+0 -1 2859
+S
+#2859
+Big cave in den~
+{070}The enormous hole in the cliff has not narrowed once inside the mountain and
+forms a large cavern with several tunnels leading deeper into the mountain.
+The ground here is hard rock and is fairly clear of debris probably due to
+a high volume of traffic through here.
+~
+28 ROOM_DARK|ROOM_INDOORS SECT_INSIDE
+DDIR_WEST
+~
+~
+0 -1 2857
+DDIR_EAST
+~
+~
+0 -1 2862
+DDIR_SOUTH
+~
+~
+0 -1 2858
+S
+#2860
+Big cave in den~
+{070}The enormous hole in the cliff has not narrowed once inside the mountain and
+forms a large cavern with several tunnels leading deeper into the mountain.
+The ground here is hard rock and is fairly clear of debris probably due to
+a high volume of traffic through here.
+~
+28 ROOM_DARK|ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 2858
+DDIR_WEST
+~
+~
+0 -1 2856
+DDIR_EAST
+~
+~
+0 -1 2863
+S
+#2861
+Tunnel from big room~
+{070}A large tunnel about 15 feet tall leaves the enormous cavern fronting the
+complex leading deeper into the mountain.  The sides of this tunnel are full
+of refuse and decaying pieces of halfling.
+~
+28 ROOM_DARK|ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+~
+~
+0 -1 2857
+DDIR_NORTH
+~
+~
+0 -1 2866 
+S
+
+#2862
+Tunnel from big room~
+{070}A large tunnel about twenty feet tall leaves the enormous cavern fronting the
+complex leading deeper into the mountain.  The sides of this tunnel are
+actually fairly clear.  This must be a main passage into the mountain.
+~
+28 ROOM_DARK|ROOM_INDOORS SECT_INSIDE
+DDIR_WEST
+~
+~
+0 -1 2859
+DDIR_EAST
+~
+~
+0 -1 2868 
+S
+#2863
+Tunnel from big room~
+{070}A large tunnel about 15 feet tall leaves the enormous cavern fronting the
+complex leading deeper into the mountain.  The sides of this tunnel are full
+of refuse and decaying pieces of halfling.
+~
+28 ROOM_DARK|ROOM_INDOORS SECT_INSIDE
+DDIR_WEST
+~
+~
+0 -1 2860
+DDIR_EAST
+~
+~
+0 -1 2867 
+S
+#2864
+Tunnel from big room~
+{070}A large tunnel about 15 feet tall leaves the enormous cavern fronting the
+complex leading deeper into the mountain.  The sides of this tunnel are full
+of refuse and decaying pieces of halfling.
+~
+28 ROOM_DARK|ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 2856
+DDIR_SOUTH
+~
+~
+0 -1 2865 
+S
+#2865
+Metal ogre's cave~
+{070}This is a large cavern which has no exits except the tunnel that you came
+through, unless you are smoke.  A crack in the wall leads to the outside
+and is being used as a vent for the crude forge that occupies this room.
+~
+28 ROOM_DARK|ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 2864
+S
+#2866
+Shaman's cave~
+{070}The tunnel has widened into a small cavern only ten feet high.  The walls
+are hung with the body parts of various species including the sentient ones.
+A large cauldron full of some sort of fluid boils in the center of the room.
+~
+28 ROOM_DARK|ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+~
+~
+0 -1 2861
+S
+#2867
+Ogre magi's cave~
+{070}This is a large cavern that is so cluttered that it looks small.
+The shelves that line the walls have either been created using piles of
+rock as supports or are just branches stuck in cracks in the walls.
+~
+28 ROOM_DARK|ROOM_INDOORS SECT_INSIDE
+DDIR_WEST
+~
+~
+0 -1 2863
+S
+#2868
+Cavern intersection~
+{070}Several tunnels meet here forming a small cavern.  One of the tunnels leads
+out toward the complex's entrance while two others lead deeper into the
+mountain.  A symbol is gouged into the rock on one wall of this chamber.
+~
+28 ROOM_DARK|ROOM_SAFE|ROOM_INDOORS SECT_INSIDE
+DDIR_WEST
+~
+~
+0 -1 2862
+DDIR_EAST
+~
+~
+0 -1 2870
+DDIR_NORTH
+~
+~
+0 -1 2869
+E
+symbol~
+{000}.{070}  ____
+  /\  /\
+  \o\/o/
+  /    \
+  VVVVVV
+~
+S
+#2869
+Tunnel in the Den~
+{070}This tunnel is only about ten feet high.  It is unlit and looks as
+though it has been hewn out of the solid rock.  The walls have been worn
+fairly smooth but rubbish of all sorts line the sides obscuring the walls.
+~
+28 ROOM_DARK|ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+~
+~
+0 -1 2868
+DDIR_NORTH
+~
+~
+0 -1 2871
+S
+#2870
+Tunnel in the Den~
+{070}This tunnel is only about ten feet high.  It is unlit and looks as
+though it has been hewn out of the solid rock.  The walls have been worn
+fairly smooth but rubbish of all sorts line the sides obscuring the walls.
+~
+28 ROOM_DARK|ROOM_INDOORS SECT_INSIDE
+DDIR_WEST
+~
+~
+0 -1 2868
+DDIR_EAST
+~
+~
+0 -1 2872
+S
+#2871
+Chieftan's Cave~
+{070}This large cave is adorned with an amazing asortment of decorations.
+You can see fine rugs buried underneath rough bear skins and similar
+travesties along the walls. The treasure in here that has been abused is
+of an amount that indicates this is the cave of the most powerful of ogres.
+~
+28 ROOM_DARK|ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+~
+~
+0 -1 2869
+S
+#2872
+Ogre's sleeping cavern~
+{070}This cavern is the largest in the complex.  From the looks of it, it
+needs to be large indeed as it seems to be where most of the ogres in this
+comunity sleep.  It is a complete mess and you wonder if you should even try
+to walk across this large cavern.
+~
+28 ROOM_DARK|ROOM_INDOORS SECT_INSIDE
+DDIR_WEST
+~
+~
+0 -1 2870
+DDIR_NORTH
+~
+~
+0 -1 2873
+DDIR_SOUTH
+~
+~
+0 -1 2874
+DDIR_EAST
+~
+~
+0 -1 2875
+S
+#2873
+Ogre's sleeping cavern~
+{070}This cavern is the largest in the complex.  From the looks of it, it
+needs to be large indeed as it seems to be where most of the ogres in this
+comunity sleep.  It is a complete mess and you wonder if you should even try
+to walk across this large cavern.
+~
+28 ROOM_DARK|ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+~
+~
+0 -1 2872
+DDIR_EAST
+~
+~
+0 -1 2876
+S
+#2874
+Ogre's sleeping cavern~
+{070}This cavern is the largest in the complex.  From the looks of it, it
+needs to be large indeed as it seems to be where most of the ogres in this
+comunity sleep.  It is a complete mess and you wonder if you should even try
+to walk across this large cavern.
+~
+28 ROOM_DARK|ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 2872
+DDIR_EAST
+~
+~
+0 -1 2877
+S
+#2875
+Ogre's sleeping cavern~
+{070}This cavern is the largest in the complex.  From the looks of it, it
+needs to be large indeed as it seems to be where most of the ogres in this
+comunity sleep.  It is a complete mess and you wonder if you should even try
+to walk across this large cavern.
+~
+28 ROOM_DARK|ROOM_INDOORS SECT_INSIDE
+DDIR_WEST
+~
+~
+0 -1 2872
+DDIR_SOUTH
+~
+~
+0 -1 2877
+DDIR_NORTH
+~
+~
+0 -1 2876
+DDIR_EAST
+~
+~
+0 -1 2878
+S
+#2876
+Ogre's sleeping cavern~
+{070}This cavern is the largest in the complex.  From the looks of it, it
+needs to be large indeed as it seems to be where most of the ogres in this
+comunity sleep.  It is a complete mess and you wonder if you should even try
+to walk across this large cavern.
+~
+28 ROOM_DARK|ROOM_INDOORS SECT_INSIDE
+DDIR_WEST
+~
+~
+0 -1 2873
+DDIR_SOUTH
+~
+~
+0 -1 2875
+DDIR_EAST
+~
+~
+0 -1 2879
+S
+#2877
+Ogre's sleeping cavern~
+{070}This cavern is the largest in the complex.  From the looks of it, it
+needs to be large indeed as it seems to be where most of the ogres in this
+comunity sleep.  It is a complete mess and you wonder if you should even try
+to walk across this large cavern.
+~
+28 ROOM_DARK|ROOM_INDOORS SECT_INSIDE
+DDIR_WEST
+~
+~
+0 -1 2874
+DDIR_NORTH
+~
+~
+0 -1 2875
+DDIR_EAST
+~
+~
+0 -1 2880
+S
+#2878
+Ogre's sleeping cavern~
+{070}This cavern is the largest in the complex.  From the looks of it, it
+needs to be large indeed as it seems to be where most of the ogres in this
+comunity sleep.  It is a complete mess and you wonder if you should even try
+to walk across this large cavern.
+~
+28 ROOM_DARK|ROOM_INDOORS SECT_INSIDE
+DDIR_WEST
+~
+~
+0 -1 2875
+DDIR_NORTH
+~
+~
+0 -1 2879
+DDIR_SOUTH
+~
+~
+0 -1 2880
+S
+#2879
+Ogre's sleeping cavern~
+{070}This cavern is the largest in the complex.  From the looks of it, it
+needs to be large indeed as it seems to be where most of the ogres in this
+comunity sleep.  It is a complete mess and you wonder if you should even try
+to walk across this large cavern.
+~
+28 ROOM_DARK|ROOM_INDOORS SECT_INSIDE
+DDIR_WEST
+~
+~
+0 -1 2876
+DDIR_SOUTH
+~
+~
+0 -1 2878
+S
+#2880
+Ogre's sleeping cavern~
+{070}This cavern is the largest in the complex.  From the looks of it, it
+needs to be large indeed as it seems to be where most of the ogres in this
+comunity sleep.  It is a complete mess and you wonder if you should even try
+to walk across this large cavern.
+~
+28 ROOM_DARK|ROOM_INDOORS SECT_INSIDE
+DDIR_WEST
+~
+~
+0 -1 2877
+DDIR_NORTH
+~
+~
+0 -1 2878
+S
+#0
+
+#SHOPS
+2850 ITEM_TYPE_WEAPON ITEM_TYPE_ARMOR ITEM_TYPE_LIGHT ITEM_TYPE_CONTAINER 0 100 50 0 23
+2852 ITEM_TYPE_POTION ITEM_TYPE_WAND ITEM_TYPE_PILL ITEM_TYPE_STAFF ITEM_TYPE_SCROLL 100 50 0 23
+0
+
+
+#RESETS
+M 0 2850 1 2865 ; metalworker in forge
+G 1 2851 50     ; tattered armor
+G 1 2852 50     ; tattered belt
+G 1 2853 50     ; tattered boots
+G 1 2854 50     ; ogre club
+M 0 2851 1 2866 ; shaman in shaman cave
+M 0 2852 1 2867 ; magi in magi cave
+G 1 2855 100    ; potion
+G 1 2856 100    ; pill
+G 1 2857 100    ; wand
+G 1 2858 100    ; staff
+G 1 2859 500    ; ogres recall
+M 0 2853 1 2871 ; chieftan in chieftans cave
+M 0 2854 5 2855 ; warrior in big cave
+G 1 2851 50     ; tattered armor
+M 0 2854 5 2857
+G 1 2852 50     ; tattered belt
+M 0 2854 5 2859
+G 1 2853 50     ; tattered boots
+M 0 2854 5 2861
+G 1 2854 50     ; ogre club
+M 0 2854 5 2863
+M 0 2856 18 2872 ; warrior asleep in sleeping cavern
+M 0 2856 18 2872
+M 0 2856 18 2873
+M 0 2856 18 2873
+M 0 2856 18 2874
+M 0 2856 18 2874
+M 0 2856 18 2875
+M 0 2856 18 2875
+M 0 2856 18 2876
+M 0 2856 18 2876
+M 0 2856 18 2877
+M 0 2856 18 2877
+M 0 2856 18 2878
+M 0 2856 18 2878
+M 0 2856 18 2879
+M 0 2856 18 2879
+M 0 2856 18 2880
+M 0 2856 18 2880
+G 1 2851 50     ; tattered armor
+M 0 2855 3 2851 ; scout in trail
+M 0 2855 3 2853
+M 0 2855 3 2854
+S
+
+#$

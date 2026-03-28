@@ -1,0 +1,1400 @@
+#AREA Gorthesus's Abode~
+#AUTHORS Hupster Hup~
+
+#RANGES 50 60 0 99
+
+#FLAGS AFLAG_NODEBUG|AFLAG_NOTELEPORT
+
+#HELPS
+-1 GORTHESUS ABODE~
+{110} Gorthesus is the 9th generation son of the mighty hero of Order Gilikak.
+He strives to live his life in the valiant manner of his great for father.  He
+has built a small house on the grounds next to Gilikak's Mansion,  where he 
+works to gain knowledge and power to build his own legacy.  He has been
+known to help others in their own quest for holiness.
+
+{160}Created 8-98 Hupster
+~
+
+-1 HELP_RING~ 
+{170}Alfred pulls from his breast pocket a small ring.
+~
+-1 HELP_PACE~
+{110}Gorthesus paces back and forth impatiently.
+~
+-1 HELP_SQUAWK~
+{170}The Owl squawks loudly at you angrily.
+~
+-1 HELP_BONE~
+{170}The sage opens the small pouch and sprinkles some bone powder upon the ring of enchantment.
+~
+-1 HELP_RING2~
+{170}The Sage rubs the ring lightly and it glows in an errie{120} green light.
+~
+
+-1 HELP_KISS~
+{170}The concubine grabs your shirt and pulls you close to her heaving breasts
+{170}and lays her full lips upon yours.
+~
+-1 HELP_MOVE~
+{170}You feel disoriented as you open your eyes to new surrounding's
+~
+-1 HELP_RUMAGE~
+{170}The sage rummages within his robes searching for something.
+~
+-1 HELP_GORTH~
+{170}Gorthesus kneels here upon his prayer rug forehead to the ground in deep
+{170}thought.  He raises his head slightly upon your arrival.
+~
+
+0 $~
+
+
+#MOBILES
+#2750
+Sentinel~
+The hallowed Sentinel~
+A hallowed Sentinel of Gorthesus' person guard stands here.~
+The huge man is dressed in shining white armor.  A small brown feather bounces from his cap as he walks.~
+ACT_SENTINEL|ACT_SCAVENGER|ACT_BODY|ACT_SMART 0
+251 S
+55 BODY_HEAD BODY_FOOT|BODY_ARM 5d45+2582 4d5+45
+23560 415376
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 99~
+ if quest (0,6,$n) == 0
+   say The Lord does not wish any vistors.
+   say Mind not to disturb him
+   mpmset $n quest 0 6 1
+else
+   grumble
+endif
+~
+>speech_prog feather~
+ if quest(0,6,$n) == 15
+   say What would you want with this old thing?
+   say If you want it you have to do me a favor.
+mpmset $n quest 0 6 16
+   say Will you do me that favor?
+endif
+~
+>speech_prog no~
+   say Than you wont get the feather will you.
+~
+>speech_prog yes~
+if quest(0,6,$n) == 16
+   say I have noticed that the Master's concubine hasn't been busy of late.
+   say Ask her if she is in need of some company.
+   mpmset $n quest 0 6 17
+endif
+if quest(0,6,$n) == 19
+   say Great! Whooo hooo!
+   mpoload 2762
+   give feather $n
+   say Thanks $n I am gonna rock her realm.
+   mpmset $n quest 0 6 20
+endif
+~
+|
+#2751
+Butler Alfred~
+Alfred the Butler~
+Alfred the Butler is here attending to the house's needs.~
+The old man in hunched over within his black suit.~
+ACT_SCAVENGER|ACT_BODY|ACT_SMART 0
+251 S
+55 BODY_HEAD BODY_FOOT 5d4+2999 4d6+41
+22560 0
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 35~
+   say Ahh I see that we have visitors.
+   say I am sorry $n, but the master wishes not to be disturbed.
+~
+>all_greet_prog 99~
+if quest(0,6,$n) == 24
+   Say You look as if you have lost something my child.
+endif
+if quest(0,6,$n) == 28
+   say Have you lost something again?
+endif
+~
+>speech_prog ring~
+if quest(0,6,$n) == 24
+   say Oh.. lets see..
+   mpforce all help help_ring
+   say This old thing? 
+   mpoload 2758
+   give i2758 $n
+   say There you go child.
+   mpmset $n quest 0 6 25
+endif
+~
+>speech_prog scarf~
+if quest(0,6,$n) == 28
+   say Silly children losing things all about.
+   mpoload 2757 
+   give scarf $n
+   sigh
+   mpmset $n quest 0 6 29
+endif
+~
+|
+#2752
+Owl~
+A Wise Owl~
+An Owl sits here upon the pedestal preening his feathers.~
+The old owl is large and brown.~
+ACT_SCAVENGER|ACT_BODY|ACT_SMART|ACT_SENTINEL AFF_SANCTUARY|AFF_UNDERSTAND 
+251 S
+55 BODY_CLAW BODY_WING 5d4+2999 4d6+41
+22560 0
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 99~
+if quest(0,6,$n) == 10
+   mpforce all help help_squawk
+   Say Whooo are you?
+   say No one comes up here except the master and the sage.
+   say Who sent you?
+endif
+~
+>speech_prog sage~
+if quest(0,6,$n) == 10
+   say Well hmm.. How obtuse of him.
+   say In regards to what?
+   mpmset $n quest 0 6 11
+endif
+~
+>speech_prog truth~
+if quest(0,6,$n) == 11
+   say He sent you seeking truth did he.  
+   say Well I will not help anyone except the master.
+   say Don't try it.. begging will not help.
+   mpmset $n quest 0 6 12
+endif
+if quest(0,6,$n) == 21
+   say Oh yes! I see..
+   say Tell the Sage that the "Question is the answer".
+   say Now quit pestering so I may preen in my lost feather.
+   mpmset $n quest 0 6 22
+endif
+~
+>speech_prog question~
+if quest(0,6,$n) == 11
+   say He sent you seeking truth did he.  
+   say Well I will not help anyone except the master.
+   say Don't try it.. begging will not help.
+   mpmset $n quest 0 6 12
+endif
+if quest(0,6,$n) == 21
+   say Oh yes! I see..
+   say Tell the Sage that the "Question is the answer".
+   say Now quit pestering so I may preen in my lost feather.
+   mpmset $n quest 0 6 22
+endif
+~
+>social_prog beg~
+if quest(0,6,$n) == 12
+   mpecho The owl looks slightly moved by your attempts.
+   mpmset $n quest 0 6 13
+   break
+endif
+if quest(0,6,$n) == 13
+   mpmset $n quest 0 6 14
+   say Okay Okay
+   mpforce all help help_squawk
+   say Will you do something for me first though?
+endif
+~
+>speech_prog yes~
+if quest(0,6,$n) == 14
+   say I seem to have lost one of my main flight feathers..
+   say Find it and bring it to me.
+   mpmset $n quest 0 6 15
+   mpoload 2750
+   give i2750 $n
+endif
+~
+>give_prog i2762~
+if quest(0,6,$n) == 20 
+   mpjunk i2762
+   mpforce all help help_squawk
+   say Thank you $n
+   say Now what was you were needing?
+   mpmset $n quest 0 6 21
+else
+   drop i2762
+   say Whats this for?
+endif
+~
+|
+#2753
+Concubine~
+A lovely concubine~
+A lovely young lady dressed in silks and seduction lies here on the bed.~
+The young lady is looking at you with lust in her eyes.~
+ACT_SCAVENGER|ACT_BODY|ACT_SMART|ACT_SENTINEL 0
+251 S
+55 BODY_CLAW BODY_WING 5d4+2999 4d6+41
+22560 0
+POS_STANDING POS_STANDING SEX_FEMALE
+>all_greet_prog 65~
+   wink $n
+   tell $n Why hello precious... Looking for some company?
+~
+>all_greet_prog 99~
+if quest(0,6,$n) == 6
+   tell $n pssssssst.
+   Tell $n Come here $n
+   Tell $n Come talk to me
+   mpmset $n quest 0 6 7
+   mpmset self quest 0 5 1
+endif
+if quest(0,6,$n) == 17
+   say Hello again $n
+   say What can I help you with?
+endif
+if quest(0,6,$n) == 26
+   Say Hello $n.. What can I do for this time?
+   mpmset $n quest 0 6 27
+endif
+~
+>rand_prog 65~
+if quest(0,5,self) == 1
+   say I am so lonely for some company.
+   Say The master has been in there for days.
+   mpmset self quest 0 5 2
+   break
+endif
+If quest(0,5,self) == 2
+   Say What did the Sage tell you the master was searching for?
+   Say It's okay to share with me... it has been so long...
+   wink $r
+   mpmset self quest 0 5 0
+   break
+endif
+if quest(0,5,self) == 3
+   say Touch me damn you!  Feel me in all my glory!
+   mpecho The Concubine licks her full lips in anticipation of your touch.
+   break
+endif
+If quest(0,5,self) == 4
+   cry
+   say It hurts so much... Console me friend...
+   sob
+break
+endif
+if quest(0,5,self) == 5
+   sigh
+   say Did the Sage say anything to you about the roof perhaps?
+   mpmset self quest 0 5 0
+   break
+endif
+~
+>speech_prog truth~
+if quest(0,6,$n) == 7
+   say Ahh yes... He looks for truth to answer his question.
+   if sex ($n) == 1
+      say Touch me please $n, It has been too long... feel me!
+      mpmset self quest 0 5 3
+      mpmset $n quest 0 6 8
+   endif
+   if sex ($n) == 2
+      say Oh $n I cant take it.  not being touched by a man for so long is taking its toll upon me.  
+      say I cannot keep back the tears..
+      mpmset self quest 0 5 4
+      mpmset $n quest 0 6 8
+   endif
+endif
+~
+>social_prog fondle~
+if quest(0,6,$n) == 8
+   if sex ($n) == 1
+      mpforce $n help help_kiss
+      say Yes.. That is what I needed!
+      say Thank you $n
+      mpmset self quest 0 5 5
+      mpmset $n quest 0 6 9
+   endif
+endif
+~
+>social_prog comfort~
+if quest(0,6,$n) == 8
+   if sex ($n) == 2
+      say Thank you friend.
+      say That is exactly what I needed form you.
+      mpmset self quest 0 5 5
+      mpmset $n quest 0 6 9
+   endif
+endif
+~
+>speech_prog key~
+if quest(0,6,$n) == 27
+   say Oh that desk key?
+   say Okay I will give it to you if you find me my silk scarf.
+   say I desperately want to look good for John later.
+   mpmset $n quest 0 6 28
+endif
+~
+>speech_prog yes~
+if quest(0,6,$n) == 9
+   tell $n It just so happens I found this the other day under some boots in the closet over there.
+   mpoload 2750
+   give i2750 $n
+   tell $n And $n,  Thank you!
+   kiss $n
+   mpmset $n quest 0 6 10
+endif
+if quest(0,6,$n) == 18
+   say You look unsure, Could it have been someone else perhaps.
+endif
+~
+>speech_prog company~
+if quest(0,6,$n) == 17
+   say Oh would I need some company.. Oh I would very much enjoy it!
+   say Would you be the giver of this gift?
+   mpmset $n quest 0 6 18
+endif
+~
+>speech_prog no~
+if quest(0,6,$n) == 18
+   say Ahh shucks.. Who then?
+endif
+~
+>speech_prog sentinel~
+if quest(0,6,$n) == 18
+   say Oh yes.. it must be that cute one John.
+   say Tell him I said yes, I shall twist his toes tonight.
+   wink $n
+   mpmset $n quest 0 6 19
+endif
+~
+>give_prog i2757~
+if quest(0,6,$n) == 29
+   mpjunk i2757
+   say Thank you $n
+   say You have been such a good help.
+   mpoload 2755
+   give i2755 $n
+   mpmset $n quest 0 6 30
+   say Thanks again.
+else
+   drop i2757
+   say What is this for?
+endif
+~
+
+|
+#2754
+Gorthesus gorth_mob~
+The mighty Gorthesus~
+The 9th generation son of Gilikak kneels here praying to Lord Order.~
+The young man is adorned in white robes of the finest fabric.  Power and
+intelligence emanates form his stout frame.~
+ACT_BODY|ACT_SMART|ACT_SENTINEL AFF_SANCTUARY|AFF_UNDERSTAND|AFF_DETECT_INVIS
+251 S
+65 BODY_HAND BODY_LEG 5d20+6999 7d6+41
+222560 0
+POS_STANDING POS_STANDING SEX_MALE
+>rand_prog 3~
+if quest(0,5,self) == 13
+   mpquiet on
+      cast "feast"
+   mpquiet off
+   say I must be..
+   mpforce all help help_pace
+endif
+~
+>rand_prog 10~
+drop all
+sac all
+~
+>rand_prog 60~
+if quest(0,5,self) == 2
+   mpforce sage_mob say It is about our guest here. $n
+   ponder
+   mpforce sage_mob say He came to me seeking an audience with you.
+   mpmset self quest 0 5 3
+   break
+endif 
+if quest(0,5,self) == 3
+   mpforce sage_mob say I sent him away on a fruitless quest to seek his own answer.
+   mpforce sage_mob say It seems he returned with Truth.
+   ponder
+   mpmset self quest 0 5 4
+   break
+endif
+if quest(0,5,self) == 4
+   say Truth!.. You have found it?
+   mpforce sage_mob say It seems Master that.. that..
+   say What. What!?
+   mpmset self quest 0 5 5
+   break
+endif
+if quest(0,5,self) == 5
+   mpforce sage_mob Well.. it seems that this person is the answer to your question.
+   say WHAT!?
+   mpforce sage_mob Yes Master.. It seems that it is so..
+   sigh
+   mpmset self quest 0 5 6
+   break
+endif
+if quest(0,5,self) == 6
+   say Leave us Sage..
+   mpforce sage_mob say As you wish..
+   mpforce sage_mob goto 2770
+   say So you are my answer are you?
+   say Well are you? 
+   mpmset self quest 0 5 0
+break
+endif
+if quest(0,5,self) == 7
+   say I suppose that I should share with you my problem.
+   sigh Well as you may know I am the ninth generation grandson of the Mighty Gilikak.
+   say It is my quest in life to lead a pure and true life like my forefather.
+   mpmset self quest 0 5 8
+   break
+endif
+if quest(0,5,self) == 8
+   say I have prayed to Lord Order for 40 days and 40 nights for an answer to my 
+   question.
+   say My question is "How can I live a holy life in the eyes of my peers?"
+   sigh
+   mpmset self quest 0 5 9
+   break
+endif
+if quest(0,5,self) == 9
+   say If you posses the answer you must tell me.
+   say Please $n share with my your insight into my problem.
+   sigh
+   mpforce all help help_pace
+   mpmset self quest 0 5 10
+   break
+endif
+if quest(0,5,self) == 10
+   say How can I live a holy life in the eyes of my peers?
+   say Help me $n.
+   sigh
+   mpmset self quest 0 5 11
+break
+endif
+if quest(0,5,self) == 11
+   say I must lead my life in a manner which is acceptable to all.
+   say I must be..
+   sigh
+   mpmset self quest 0 5 12
+   break
+endif
+if quest(0,5,self) == 12
+   say I must be humble.. I must be pious.. I must be...
+   say Help me My friend.
+   mpforce all help help_pace
+   mpmset self quest 0 5 13
+   break
+endif
+~
+>rand_prog 75~
+if quest(0,5,self) == 1
+   mpforce all help help_gorth
+   say Sage, why are you bothering me?
+   mpforce sage_mob say But Master it is important.
+   say What is it sage.
+   mpmset self quest 0 5 2
+endif
+~
+
+>speech_prog peaceful~
+if quest(0,6,$n) == 33
+   shout Yesss..!!!!!
+   say That is it $n
+   say You truly are the answer!
+   say Thank you, Take this.  I must pray.
+   if class($n) == 0
+      mpoload 2759
+      give i2759 $n
+      mpmset $n quest 0 6 34
+      mptransfer $n 2750
+      tell $n Thank you
+   else
+      if class($n) == 4
+         mpoload 2759
+         give i2759 $n
+         mpmset $n quest 0 6 34
+         mptransfer $n 2750
+         tell $n Thank you
+      else
+         if class($n) == 1
+         or class($n) == 7
+            mpoload 2760
+            give i2760 $n
+            mpmset $n quest 0 6 34
+            mptransfer $n 2750
+            tell $n Thank you
+         else
+            if class($n) == 5
+               mpoload 2760
+               give i2760 $n
+               mpmset $n quest 0 6 34
+               mptransfer $n 2750
+               tell $n Thank you
+            else
+               if class($n) == 2
+                  mpoload 2761
+                  give i2761 $n
+                  mpmset $n quest 0 6 34
+                  mptransfer $n 2750
+                  tell $n Thank You
+               else
+                  if class($n) == 3
+                     mpoload 2761
+                     give i2761 $n
+                     mpmset $n quest 0 6 34
+                     mptransfer $n 2750
+                     tell $n Thank You
+                  else
+                     if class($n) == 6
+                        mpoload 2761
+                        give i2761 $n
+                        mpmset $n quest 0 6 34
+                        mptransfer $n 2750
+                        tell $n Thank You
+                     endif
+                  endif
+               endif
+            endif
+         endif
+      endif
+   endif
+endif
+~
+
+>speech_prog yes~
+if quest(0,6,$n) == 32
+   say Hmm... how can this be... 
+   ponder
+   mpforce all help help_pace
+   say You don't look special in any way..
+   mpmset self quest 0 5 7
+   mpmset $n quest 0 6 33
+endif
+~
+|
+#2755
+Sage sage_mob~
+The Hallowed Sage~
+The Hallowed Sage of Order sits here quietly.~
+The graceful man stands here with his arm folded inside his robes.~
+ACT_BODY|ACT_SMART|ACT_SENTINEL AFF_SANCTUARY|AFF_UNDERSTAND
+251 S
+65 BODY_HAND BODY_LEG 5d20+6999 7d6+41
+222560 0
+POS_STANDING POS_STANDING SEX_MALE
+>speech_prog bits~
+   say I reset your bits.
+   mpmset $n quest 0 31 0
+~
+>all_greet_prog 99~
+if quest(0,6,$n) == 1
+   tell $n I am sorry $n, The master is very busy at the moment.
+   tell $n Unless you are seeking some sort of spiritual advisement I suggest you return at a later time.
+   mpmset $n quest 0 6 2
+endif
+If quest(0,6,$n) == 22
+   tell $n Have you found anything that will help you?
+endif
+if quest(0,6,$n) == 25
+   say Have you found it!?
+   mpmset self quest 0 5 0
+   say Give it to me.
+endif
+if quest(0,6,$n) == 30
+   say Good, Good give it to me.
+endif
+~
+>speech_prog p spiritual advisement~
+   if quest(0,6,$n) == 2
+   tell $n Why yes $n, the master is purifying himself in hopes of finding truth.
+   Mpmset $n quest 0 6 3
+Endif
+~
+>Speech_prog truth~
+if quest(0,6,$n) == 3
+   tell $n Truth is the key to finding the answer to the question.
+   Mpmset $n quest 0 6 4
+Endif
+~
+>speech_prog question~
+if quest(0,6,$n) == 4
+   tell $n The question is different for every person.
+   Tell $n But I have a question for you $n.
+   Say Are you ready?
+   Mpmset $n quest 0 6 5
+Endif
+~
+>speech_prog yes~
+if quest(0,6,$n) == 31
+   mpmset self quest 0 5 0
+   say The ring has told be something very interesting.
+   say It seems that you are the answer to the question $n.
+   say You must see the master at once.
+   mpmset $n quest 0 6 32
+   mptransfer $n 2771
+   mpgoto 2771
+   mpforce all help help_move
+   say Master..
+   mpmset gorth_mob quest 0 5 1
+endif
+if quest(0,6,$n) == 5
+   Tell $n Why are there bird dropping's on the roof?
+   Tell $n Find the answer and you will be on the road to what you seek.
+   Mpmset $n quest 0 6 6
+endif
+~
+>speech_prog no~
+if quest(0,6,$n) == 5
+   tell $n Then come back to me when you are.
+   Mpmset $n quest 0 6 0
+Endif
+~
+>speech_prog p Question is the answer~
+if quest(0,6,$n) == 22
+   ponder
+   say hmmm I do not quite follow the words.
+   say Let me ask the ring.
+   mpmset $n quest 0 6 23
+endif
+~
+>speech_prog ring~
+if quest(0,6,$n) == 23
+   say Yes the Ring of Enchantment.
+   say It holds many answers.. let me see...
+   gasp
+   say It is gone!  Where did it go! 
+   tell $n You must help me find it $n!
+   mpmset $n quest 0 6 24
+   mpmset self quest 0 5 1
+endif
+~
+>rand_prog 55~
+if quest(0,5,self) == 1
+   say Where has it gone?
+   mpforce all help help_rumage
+   break
+endif
+if quest(0,5,self) == 2
+   mpforce all help help_ring2
+   say Come on baby.
+   mpmset self quest 0 5 3
+   break
+endif
+if quest(0,5,self) == 3
+   mpforce all help help_ring2
+   say Odd.. it tells me that I need use some bone powder with this spell.
+   say Fetch me my bag of Bone powder from the desk.  I believe the Concubine posses the key.
+   mpmset self quest 0 5 0
+   break
+endif
+if quest(0,5,self) == 4
+   mpforce all help help_bone
+   say Hmmmm..
+   say Very intresting...
+   mpmset self quest 0 5 5
+   break
+endif 
+if quest(0,5,self) == 5
+   mpforce all help help_bone
+   say Well I have not seen this before..
+   say How.. odd..
+   mpmset self quest 0 5 6
+break
+endif
+if quest(0,5,self) == 6
+   say Well would you like to know what I have found?
+   mpmset self quest 0 5 0
+   break
+endif
+~
+>give_prog i2758~
+if quest(0,6,$n) == 25
+   mpjunk i2758
+   say Thank you $n
+   say Let us ask the ring what the meaning of the Owls message was.
+   mpmset self quest 0 5 2
+   mpmset $n quest 0 6 26
+else
+   drop i2758
+   say What is this for?
+endif
+~
+>give_prog i2756~
+if quest(0,6,$n) == 30
+   mpjunk i2756
+   say Thank you $n
+   say Let us see if this works.
+   mpmset self quest 0 5 4
+   mpmset $n quest 0 6 31
+else
+   drop i2756
+   say what is this for?
+endif
+~
+|
+#2756
+Sentinel~
+The hallowed Sentinel~
+A hallowed Sentinel of Gorthesus' person guard stands here.~
+The huge man is dressed in shining white armor.~
+ACT_SENTINEL|ACT_SCAVENGER|ACT_BODY|ACT_SMART 0
+251 S
+55 BODY_HEAD BODY_FOOT|BODY_ARM 5d45+2582 4d5+45
+23560 415376
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 45~
+if quest(0,6,$n) == 0
+   say The master wishes not to be disturbed.
+   say Mind that you do not bother him.
+   mpmset $n quest 0 6 1
+else 
+   grumble
+endif
+~
+|
+#2757
+Statue lord order~
+Statue~
+Statue~
+Statue~
+ACT_SENTINEL|ACT_BODY|ACT_SMART AFF_ETHEREAL
+251 S
+55 BODY_HEAD BODY_FOOT|BODY_ARM 5d45+2582 4d5+45
+23560 415376
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 99~
+if whichgod($n) == 1
+   mpecho {170}The small statue of Lord Order glows brightly.
+endif
+~
+>act_prog p begs and grovels~
+if whichgod($n) == 1
+   if quest(0,6,$n) == 34
+      mpoload 2763
+      give i2763 $n
+      mpmset $n quest 0 6 35
+   endif
+endif
+~
+|
+#0
+#OBJECTS
+#2750
+Window Crank~
+A small window crank~
+A small piece of metal lies here in the dust.~
+~
+ITEM_TYPE_KEY
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+2772 0 0 0
+1 60 1
+#2751
+Statue ~
+A statue of Lord Order~
+A small statue of Lord Order stands upon a pedestal here.~
+The small statue of Lord Order is carved form the purest ivory marble.~
+ITEM_TYPE_FURNITURE
+ITEM_FLAG_LEVEL
+0
+0 0 0 0
+2000 60 1
+#2752
+Hallowed Breastplate~
+A hallowed breastplate~
+A piece of sacred armor lies here in the dust.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL|ITEM_FLAG_MAGIC|ITEM_FLAG_ANTI_EVIL
+ITEM_WEAR_TAKE|ITEM_WEAR_BODY
+15 0 0 0
+62 34351 55
+A
+APPLY_MANA 5
+A
+APPLY_SAVING_SPELL 2
+#2753
+Hallowed Spear~
+A hallowed spear~
+A piece of sacred armor lies here in the dust.~
+~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_LEVEL|ITEM_FLAG_MAGIC|ITEM_FLAG_ANTI_EVIL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 15 2 0
+15 151560 55
+A 
+APPLY_DAMROLL 2
+A
+APPLY_HITROLL 3
+#2754
+desk~
+a small desk~
+A small desk stands here against the wall.~
+The desk is made of fine wood and has a few drawers laden into it.
+~
+ITEM_TYPE_CONTAINER
+ITEM_FLAG_LEVEL
+0
+13 1|2|4|8 2755 0
+2760 60 1
+#2755
+desk key~
+a small desk key~
+A small key lies here in the dust.~
+~
+ITEM_TYPE_KEY
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+2754 0 0 0
+2 60 1
+#2756
+Bone powder~
+a small bag of bone powder~
+A small leather bag lies here.~
+~
+ITEM_TYPE_TREASURE
+ITEM_FLAG_LEVEL|ITEM_FLAG_HUM
+ITEM_WEAR_TAKE
+0 0 0 0
+5 551560 1
+#2757
+silk scarf~
+a silk scarf~
+A white silken scarf lies here on the floor.~
+~
+ITEM_TYPE_TREASURE
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 0 0
+5 60 1
+#2758
+ring of enchantment~
+a ring of enchantment~
+A small ring lies here in the dust.~
+The small ring has a sigil emblazoned upon it thin band.
+~
+ITEM_TYPE_TREASURE
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 0 0
+5 55151 1
+#2759
+sceptre hallowed~
+A hallowed sceptre~
+A sacred staff lies here in the dust.~
+The long staff is emblazoned with the sigil or Lord Order.~
+ITEM_TYPE_LIGHT
+ITEM_FLAG_LEVEL|ITEM_FLAG_MAGIC|ITEM_FLAG_GLOW|ITEM_FLAG_NOREMOVE|ITEM_FLAG_ANTI_EVIL|ITEM_FLAG_ANTI_GOOD
+ITEM_WEAR_TAKE
+0 0 -1 0
+13 6515151 60
+A 
+APPLY_AC -15
+A
+APPLY_DEX 2
+#2760
+sceptre hallowed~
+A hallowed sceptre~
+A sacred staff lies here in the dust.~
+The long staff is emblazoned with the sigil or Lord Order.~
+ITEM_TYPE_LIGHT
+ITEM_FLAG_LEVEL|ITEM_FLAG_MAGIC|ITEM_FLAG_GLOW|ITEM_FLAG_NOREMOVE|ITEM_FLAG_ANTI_EVIL|ITEM_FLAG_ANTI_GOOD
+ITEM_WEAR_TAKE
+0 0 -1 0
+13 6515151 60
+A 
+APPLY_DAMROLL 7
+A
+APPLY_STR 3
+#2761
+sceptre hallowed~
+A hallowed sceptre~
+A sacred staff lies here in the dust.~
+The long staff is emblazoned with the sigil or Lord Order.~
+ITEM_TYPE_LIGHT
+ITEM_FLAG_LEVEL|ITEM_FLAG_MAGIC|ITEM_FLAG_GLOW|ITEM_FLAG_NOREMOVE|ITEM_FLAG_ANTI_EVIL|ITEM_FLAG_ANTI_GOOD
+ITEM_WEAR_TAKE
+0 0 -1 0
+13 6515151 60
+A
+APPLY_HIT 50
+A
+APPLY_AC -12
+#2762
+Owl Feather~
+a small brown feather~
+A brown feather lies here in the dust.~
+~
+ITEM_TYPE_TREASURE
+ITEM_FLAG_LEVEL|ITEM_FLAG_HUM
+ITEM_WEAR_TAKE
+0 0 0 0
+5 551560 1
+#2763
+Rune order~
+A rune of Order~
+A small brown token lies here in the dust.~
+The rune hums with the healing energy of Reason.~
+ITEM_TYPE_TREASURE
+ITEM_FLAG_LEVEL|ITEM_FLAG_HUM|ITEM_FLAG_MAGIC|ITEM_FLAG_GLOW
+ITEM_WEAR_TAKE
+0 0 0 0
+5 551560 50
+P 1
+TRIG_TICK 20
+OPROG_APPLY OAPPLY_HIT 50
+P 1
+TRIG_VOID
+OPROG_GOD_COMMAND mpecho {110}The Rune hums as healing energy flows into your body.
+~
+P 2
+TRIG_TICK 99
+OPROG_IF OIF_USER_LEVEL > 70 2 0
+P 2
+TRIG_VOID
+OPROG_JUNK
+#0
+
+#ROOMS
+#2750
+Front Lawn~
+Standing before a relatively small house in comparison to Gilikak's Mansion, 
+you walk slowly along a pebbled path over a wide expanse of green lawn.
+The building seems to be entirely constructed of white marble and limestone.
+Tall graceful pillars support the overhang of the second floor above the porch. 
+~
+27 ROOM_SAFE SECT_FIELD
+DDIR_NORTH
+Lawn~
+~
+0 0 2773
+DDIR_SOUTH
+Porch~
+~
+0 0 2751
+S
+#2751
+Porch~
+Standing between the huge marble support columns you stare blankly at the
+white door in front of you.  Two large glass panes are inset in the door etched
+with a sigil of some kind that matches the ones etched in the four huge
+windows marking the front of the house.
+~
+27 ROOM_NO_RIP SECT_FIELD
+DDIR_NORTH
+Front Lawn~
+~
+0 0 2750
+DDIR_SOUTH
+Foyer~
+Door~
+EX_ISDOOR|EX_CLOSED 0 2752
+S
+#2752
+Foyer~
+You stand within the confines of the small house.  A large chandelier hangs
+form the ceiling above your head.  The floor is cut in diamonds of polished
+white marble, covered in a few places by fine woven rugs.  A well lit hall
+continues ahead of you as a open room catches your eye to the left.
+~
+27 ROOM_INDOORS|ROOM_NO_RIP SECT_INSIDE
+DDIR_NORTH
+Porch~
+Door~
+EX_ISDOOR|EX_CLOSED 0 2751
+DDIR_WEST
+Closet~
+Door~
+EX_ISDOOR|EX_CLOSED 0 2753
+DDIR_SOUTH
+Hall~
+~
+0 0 2756
+DDIR_EAST
+Sitting room~
+~
+0 0 2754
+S
+#2753
+Closet~
+A few coats hang from a small rack about eye level.  
+A small row of boots cover the floor at your feet.
+~
+27 ROOM_DARK|ROOM_INDOORS|ROOM_NO_RIP SECT_INSIDE
+DDIR_EAST
+Foyer~
+Door~
+EX_ISDOOR|EX_CLOSED 0 2752
+S
+#2754
+Sitting Room~
+A small room, nicely furnished, appears before you as you walk in.  A glass
+table in the center of the room matches well with the cushions covering the
+floor haphazardly.  The light streaming in from the large window in the north
+wall floods in the room in a quiet brilliance.
+~
+27 ROOM_INDOORS|ROOM_NO_RIP SECT_INSIDE
+DDIR_WEST
+Foyer~
+~
+0 0 2752
+S
+#2755
+Equipment room~
+The small musty room is lined wall to wall with weapons and armor of various
+styles and function.  A rack on the far wall is dedicated exclusively to
+finely hewn swords of all shapes and sizes.  A full set of ivory armor hangs
+on the other wall glowing as if lit from within.
+~
+27 ROOM_INDOORS|ROOM_NO_RIP SECT_INSIDE
+DDIR_SOUTH
+Training room~
+~
+0 0 2758
+S
+#2756
+Hallway~
+The narrow hallway is lined with candelabras and beautiful tapestries.  A
+small door to the east is lined in a dark molding.  The back of the house is
+to the south as the entrance is to the north.
+~
+27 ROOM_INDOORS|ROOM_NO_RIP SECT_INSIDE
+DDIR_NORTH
+Foyer~
+~
+0 0 2752
+DDIR_EAST
+Kitchen~
+~
+0 0 2757
+DDIR_SOUTH
+End of Hallway~
+~
+0 0 2759
+S
+#2757
+Kitchen~
+A small wood stove stands against the east wall with a boiling pot churning
+upon it.  A small pantry rest next to the stove with shelves lined with
+foodstuffs. 
+~
+27 ROOM_INDOORS|ROOM_NO_RIP SECT_INSIDE
+DDIR_WEST 
+Hallway~
+~
+0 0 2756
+S
+#2758
+Training room~
+The small wood floored room is bare of adornments except a wooden sparring
+dummy in the center.  A large glass mirror covers the south wall used for
+perfecting fighting skills and techniques.
+~
+27 ROOM_INDOORS|ROOM_NO_RIP SECT_INSIDE
+DDIR_NORTH
+Equipment room~
+~
+0 0 2755
+DDIR_EAST
+End of Hallway~
+~
+0 0 2759
+S
+#2759
+End of Hallway~
+The small corridor comes to it's end here.  A large mural hangs on the wall
+here depicting the great battle fought by Gilikak hundreds of years ago.  A
+small training room is west of your current position and a brightly lit room
+is to the east.
+~
+27 ROOM_INDOORS|ROOM_NO_RIP SECT_INSIDE
+DDIR_NORTH
+Hallway~
+~
+0 0 2756
+DDIR_WEST
+Training room~
+~
+0 0 2758
+DDIR_EAST
+Brightly Lit Room~
+~
+0 0 2760
+S
+#2760
+Brightly lit room~
+A small table fills the center of the room surrounded by ornately carved
+chairs.  A white lace tablecloth laden with heaping bowls of fruit and
+platters of mutton. 
+~
+27 ROOM_INDOORS|ROOM_NO_RIP SECT_INSIDE
+DDIR_WEST
+End of Hallway~
+~
+0 0 2759
+DDIR_SOUTH
+Stairwell~
+~
+0 0 2761
+S
+#2761
+Stairwell~
+The well lit spiraling staircase reaches high into the house.  A gold laden
+arm rail follows the contours of the graceful staircase as it rises one
+polished marble step at a time.  A few candelabras line the staircase lighting
+your way.
+~
+27 ROOM_INDOORS|ROOM_NO_RIP SECT_INSIDE
+DDIR_NORTH
+Brightly Lit Room~
+~
+0 0 2760
+DDIR_UP
+Stairwell~
+~
+0 0 2762
+S
+#2762
+Stairwell~
+The well lit spiraling staircase descends into the house.  A gold laden arm
+rail follows the contours of the graceful staircase as it drops one polished
+marble step at a time.  A few candelabras line the staircase lighting your way.
+~
+27 ROOM_INDOORS|ROOM_NO_RIP SECT_INSIDE
+DDIR_DOWN
+Stairwell~
+~
+0 0 2761
+DDIR_NORTH
+Shrine~
+~ 
+0 0 2763
+S
+#2763
+Shrine~
+A small Shrine to Order is erected here for the personal use of the house's
+residents.  A small stone altar lines the north wall below a geometrical design
+emblazoned upon the plaster.
+~
+27 ROOM_INDOORS|ROOM_NO_RIP SECT_INSIDE
+DDIR_SOUTH
+Stairwell~
+~
+0 0 2762
+DDIR_NORTH
+Dark Room~
+~
+0 0 2764
+S
+#2764
+Dark Room~
+The small room is sparsely furnished with just a small end table and a woven
+rug spread upon the floor. A course painting hangs on the wall next to a
+faintly burning candelabra.
+~
+27 ROOM_INDOORS|ROOM_NO_RIP SECT_INSIDE
+DDIR_SOUTH
+Shrine~
+~
+0 0 2763
+DDIR_WEST
+Large Bedroom~
+~
+0 0 2765
+S
+#2765
+A Large Bedroom~
+The large bedroom is very roomy and luxurious.  A finely carved canopy bed
+fills the center of the room.  Huge pillows cover the bed and the lavish
+spread hanging to the ground.  A small desk and set of drawers sit in front of
+the huge window cut into the west wall.
+~
+27 ROOM_INDOORS|ROOM_NO_RIP SECT_INSIDE
+DDIR_EAST
+Dark room~
+~
+0 0 2764
+DDIR_WEST
+Large Bedroom~
+~
+0 0 2768
+DDIR_SOUTH
+Large Bedroom~
+~
+0 0 2766
+DDIR_NORTH
+Study~
+~
+0 0 2770
+S
+#2766
+A Large Bedroom~
+The large bedroom is very roomy and luxurious.  A finely carved canopy bed
+fills the center of the room.  Huge pillows cover the bed and the lavish
+spread hanging to the ground.  A small desk and set of drawers sit in front of
+the huge window cut into the west wall.
+~
+27 ROOM_INDOORS|ROOM_NO_RIP SECT_INSIDE
+DDIR_WEST
+Large Bedroom~
+~
+0 0 2767
+DDIR_NORTH
+Large Bedroom~
+~
+0 0 2765
+S
+#2767
+A Large Bedroom~
+The large bedroom is very roomy and luxurious.  A finely carved canopy bed
+fills the center of the room.  Huge pillows cover the bed and the lavish
+spread hanging to the ground.  A small desk and set of drawers sit in front of
+the huge window cut into the west wall.
+~
+27 ROOM_INDOORS|ROOM_NO_RIP SECT_INSIDE
+DDIR_EAST
+Large Bedroom~
+~
+0 0 2766
+DDIR_NORTH
+Large Bedroom~
+~
+0 0 2768
+S
+#2768
+A Large Bedroom~
+The large bedroom is very roomy and luxurious.  A finely carved canopy bed
+fills the center of the room.  Huge pillows cover the bed and the lavish spread
+hanging to the ground.  A small desk and set of drawers sit in front of the
+huge window cut into the west wall.
+~
+27 ROOM_INDOORS|ROOM_NO_RIP SECT_INSIDE
+DDIR_EAST
+Dark room~
+~
+0 0 2765
+DDIR_SOUTH
+Large Bedroom~
+~
+0 0 2767
+DDIR_NORTH
+Closet~
+Door~
+EX_ISDOOR|EX_CLOSED 0 2769
+S
+#2769
+Closet~
+The small walk in closet has fine clothes as well as worn outfits hanging in a
+small semi-circle ahead of you.  The small window in the ceiling letting light
+in is about the size that a normal person could fir through it easily.  A
+small shelf on the floor holds a row of fine footwear.
+~
+27 ROOM_INDOORS|ROOM_NO_RIP SECT_INSIDE
+DDIR_UP
+Roof~
+Window~
+EX_ISDOOR|EX_CLOSED|EX_LOCKED|EX_PICKPROOF|EX_HIDDEN 2750 2772
+DDIR_SOUTH
+Large Bedroom~
+Door~
+EX_ISDOOR|EX_CLOSED 0 2768
+S
+#2770
+Study~
+The small study has bookcases on each wall filled with tombs of various titles.
+An ornately craved door sits in the middle of the east wall.  A small desk and
+candelabra stand in the northwest corner.  The finely woven rug bunches up
+slightly upon your step.
+~
+27 ROOM_INDOORS|ROOM_NO_RIP SECT_INSIDE
+DDIR_SOUTH
+Large Bedroom~
+~
+0 0 2765
+S
+#2771
+Gorthesus' Chancel~
+The Small room is devoid of windows and is painted in a calming shade of white.
+A small praying rug and sitting pillow lie on the floor next to a small basin
+of water used for purification in the ritual chants that Gorthesus uses to
+find his spiritual connection to Lord Order.
+~
+27 ROOM_INDOORS|ROOM_NO_RIP SECT_INSIDE
+S
+#2772
+Roof~
+The bleak limestone room is litter in debris and bird droppings.  A small
+pedestal lies next you supported by to small stone columns.  A Small latch on
+the window is worn form obvious use.
+~
+27 ROOM_INDOORS|ROOM_NO_RIP SECT_INSIDE
+DDIR_DOWN
+Closet~
+Window~
+EX_ISDOOR|EX_CLOSED|EX_LOCKED|EX_PICKPROOF|EX_HIDDEN 2751 2769
+S
+#2773
+Front Lawn~
+You stand on the front lawn just inside the gate to the road.  Gilikak's
+Mansion looms high over you to the east.  You see a small abode to the 
+south.
+~
+27 ROOM_SAFE SECT_FIELD
+DDIR_NORTH
+~
+~
+0 -1 17046
+DDIR_EAST
+~
+~
+0 -1 11300
+DDIR_SOUTH
+~
+~
+0 -1 2750
+S
+
+#0
+#RESETS
+M 0 2757 1 2763 ;statue ethereal in shrine
+O 0 2751 1 2763 ; statue object in shrine
+M 0 2750 4 2751 ; sentinel on lawn
+E 1 2752 151 5; breastplate on sentinel
+E 1 2753 151 16 ; spear on sentinel
+M 0 2756 4 2750 ; sentinel on lawn
+E 1 2752 151 5; breastplate on sentinel 
+E 1 2753 151 16 ; spear on sentinel
+M 0 2756 4 2752 ; sentinel on lawn
+E 1 2752 151 5; breastplate on sentinel 
+E 1 2753 151 16 ; spear on sentinel
+M 0 2756 4 2750 ; sentinel on lawn
+E 1 2752 151 5; breastplate on sentinel 
+E 1 2753 151 16 ; spear on sentinel
+M 0 2751 1 2756 ; alfred in hallway
+M 0 2752 1 2772 ; owl on roof
+M 0 2753 1 2767 ; concubine  in bedroom
+M 0 2754 1 2771 ; Gorthesus in chanel
+E 1 2752 151 5 : breastplate on gorthesus
+E 1 2753 151 16; spear on gorthesus
+M 0 2755 1 2770 ; sage in study
+O 0 2754 1 2768 ; desk in bedroom
+P 1 2756 151 2754 ; bag in desk
+D 0 2751 DIR_SOUTH 1 ; front door
+D 1 2752 DIR_NORTH 1
+D 0 2752 DIR_WEST 1 ; closet door
+D 1 2753 DIR_EAST 1
+D 0 2768 DIR_NORTH 1 ;closet door
+D 1 2769 DIR_SOUTH 1
+D 0 2769 DIR_UP 2 ; window
+D 1 2772 DIR_DOWN 2
+
+S
+#$
+

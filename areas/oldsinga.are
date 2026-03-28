@@ -1,0 +1,5678 @@
+#AREA Old Singase~
+ #AUTHORS Pythos ~
+ 
+ #AUTHORS Pythos Brrr Tazzy~
+ 
+ #TEMPERATURE 40 80 30 7
+ 
+ 
+ 
+ 
+ #HELPS
+ -1 OLDSING '{120}Old Singase{300}'~
+ {120}                   Old Singase{300}
+ The town of Old Singase sprung up from an old trading post in the Valdemar
+ region when travellers needed a place to rest while travelling through the
+ region. There was nothing around at the time and the distance to the coasts
+ was great and burdensome. As the explorers came in from far away places, they
+ invariably would be willing to trade items of great value just for a safe place
+ to lay their heads. Old Singase reached its zenith shortly before the
+ Order-Chaos wars which almost levelled Chakkor. These wars were so great that
+ they drug the finest men and women from across the realms, leaving behind the
+ more foolish, poorest to keep the towns alive. Being so far from the rest of
+ civilization, Singase, as it was called then, was hit especially hard. It became
+ almost a ghost town with its great and wise decimated and the explorers from
+ other towns and villages either being swallowed up in the wars or having to stay
+ behind to keep the local governing bodies from collapse. Since almost nobody was
+ coming in to trade, the wisest remaining among the Singase residents left for
+ greener pastures. What is left of the once thriving town is a nearly even split
+ of extremely poor and extremely wealthy, the wealthy getting their money by
+ inheritance rather than hard work. There are but five wise left among them, but
+ they are aging and will soon be gone as well with none to step up and replace
+ them. Nobody wants to replace them as they are looked down upon by the rest of
+ the town, but explorers invariably go to see them in the off chance they can
+ learn nuggets of Wisdom.
+ 
+ 
+ 
+ 
+ ~
+ 0 $~
+ 
+ 
+ 
+ #RANGES 5 35 0 99
+ #MOBILES
+ #27700
+ Singase Guard~
+ A Guard of Old Singase~
+ A Guard of Old Singase guards the gates.
+ ~
+ The guard looks at you with piercing eyes. He seems very powerful and alert to
+ your every move. You don't want to get on his bad side.
+ His armor is dark and formidable although a bit scuffed.
+ ~
+ ACT_RACE|ACT_IS_NPC|ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER|ACT_BODY
+ AFF_TONGUES|AFF_DETECT_INVIS|AFF_SANCTUARY|AFF_PROTECT_EVIL|AFF_PROTECT_GOOD|AFF_DETECT_HIDDEN|AFF_INFRARED|AFF_UNDERSTAND|AFF_HUNT
+ 0 S
+ 18 BODY_HAND|BODY_HEAD|BODY_TORSO|BODY_ARM|BODY_FOOT|BODY_LEG BODY_FOOT|BODY_HAND 5d15+562 3d6+12
+ 17000 RACE_OGRE
+ POS_STANDING POS_STANDING SEX_MALE
+ >death_prog 100~
+  if level($n) >= 49
+  mppurge self
+  endif
+ ~
+ >give_prog I27721~
+  mpecho A Guard of Old Singase thanks you for your generosity.
+  mpjunk i27721
+  if inroom($n) == 27738
+   mpoload 27714
+   mpoload 27715
+   mpquiet on
+   wear i27714
+   wear i27715
+   mpquiet off
+  else
+  if inroom($n) == 27742
+   mpoload 27716
+   mpoload 27717
+   mpquiet on
+   wear i27716
+   wear i27717
+   mpquiet off
+  else
+  if inroom($n) == 27740
+   mpoload 27718
+   mpquiet on
+   wear i27718
+   mpquiet off
+  else
+  if inroom($n) == 27736
+   mpoload 27719
+   mpquiet on
+   wear i27719
+   mpquiet off
+  else
+   chuckle
+  endif
+ endif
+ endif
+ endif
+ ~
+ >rand_prog 20~
+  mpecho $I scans the plains for signs of attackers.
+ ~
+ |
+ #27701
+ Older Woman Well~
+ A well dressed older woman~
+ A well dressed older woman looks down her nose at you.
+ ~
+ This woman, although old and feeble, still has an air of supremacy about her.
+ You notice how she scowls at anyone who appears to have a lower upbringing than
+ her. Her dress is of the most expensive materials from across the realms.
+ ~
+ ACT_RACE|ACT_BODY|ACT_SMART|ACT_STAY_AREA|ACT_IS_NPC|ACT_SCAVENGER
+ AFF_TONGUES|AFF_INFRARED|AFF_UNDERSTAND
+ 0 S
+ 3 BODY_HEAD|BODY_EYE|BODY_HIP|BODY_LEG|BODY_ARM BODY_EYE|BODY_HIP|BODY_CLAW|BODY_FOOT|BODY_MOUTH 2d6+29 1d5+1
+ 2250 RACE_HUMAN
+ POS_STANDING POS_STANDING SEX_FEMALE
+ >entry_prog 33~
+  say How dare you get in my way, vermin!
+ ~
+ >all_greet_prog 40~
+  say Ahhh, someone to carry my baggage!
+ ~
+ |
+ #27702
+ Woman Well~
+ A well dressed woman~
+ A well dressed woman looks at you with curiosity.
+ ~
+ The woman walks about in a very pretentious manner, making you think that at any
+ moment, she will command you to follow her to the market to carry whatever she
+ intends to purchase there.
+ ~
+ ACT_BODY|ACT_RACE|ACT_SMART|ACT_IS_NPC|ACT_STAY_AREA
+ AFF_INFRARED|AFF_UNDERSTAND|AFF_TONGUES
+ 0 S
+ 5 BODY_EYE|BODY_HIP|BODY_LEG|BODY_ARM|BODY_FOOT BODY_MOUTH|BODY_HIP|BODY_EYE|BODY_FOOT|BODY_CLAW 3d14+29 2d5+0
+ 1500 RACE_HUMAN
+ POS_STANDING POS_STANDING SEX_FEMALE
+ >entry_prog 25~
+  say I would like you to move aside so I can pass.
+ ~
+ >entry_prog 25~
+  say Step aside, you're blocking my way.
+ ~
+ >all_greet_prog 35~
+  say Move it, buster or I'll have my husband move you!
+ ~
+ >all_greet_prog 25~
+  say Can't you see I was looking at that?
+  say Now move aside.
+ ~
+ |
+ #27703
+ Man Well Older~
+ A well dressed older man~
+ A well dressed older man stands here lost in thought.
+ ~
+ This older gentleman has had the good fortune of living a long, luxurious life.
+ You doubt he has ever worked a single day in his life as he has no scars nor
+ any callouses on his hands. His suit looks as crisp as the day he purchased it.
+ ~
+ ACT_IS_NPC|ACT_SMART|ACT_STAY_AREA|ACT_BODY|ACT_RACE
+ AFF_UNDERSTAND|AFF_TONGUES|AFF_INFRARED
+ 0 S
+ 4 BODY_LEG|BODY_ARM|BODY_HAND|BODY_FOOT|BODY_HEAD BODY_HEAD|BODY_FOOT|BODY_HAND 5d5+36 1d7+0
+ 2250 RACE_HUMAN
+ POS_STANDING POS_STANDING SEX_MALE
+ >all_greet_prog 20~
+  say I'll give you a gold coin if you clean my outhouse.
+ ~
+ >all_greet_prog 15~
+  say Are you here for the job I posted at the square?
+ ~
+ >all_greet_prog 20~
+  say I'll give you both of my gold coins
+  say if you can tell me how much money I have.
+ ~
+ >speech_prog two 2~
+  sigh
+  say How did you know?
+  give 2 coin $n
+  say Now leave me alone!
+ ~
+ >speech_prog yes~
+  say Good, go clean my outhouse and I will pay you.
+ ~
+ >speech_prog no~
+  say Then leave, scoundrel!
+ ~
+ >entry_prog 20~
+  say Out of my way!
+ ~
+ >entry_prog 20~
+  say Step aside, foreigner, and let me through.
+ ~
+ >entry_prog 35~
+  say Why don't you go back to where ever you came from?
+  say Can't you see you're not welcome here?
+ ~
+ |
+ #27704
+ Well Man~
+ A well dressed man~
+ A well dressed man ignores you.
+ ~
+ This man carries an air of superiority and unconcern for anyone but himself. He
+ has obviously not been raised to care about the plight of the poor who live on
+ the outskirts of his own town.
+ ~
+ ACT_RACE|ACT_STAY_AREA|ACT_BODY|ACT_IS_NPC|ACT_SMART
+ AFF_UNDERSTAND|AFF_TONGUES|AFF_INFRARED
+ 0 S
+ 6 BODY_TORSO|BODY_LEG|BODY_ARM|BODY_HEAD|BODY_HAND BODY_HEAD|BODY_HAND|BODY_FOOT 1d7+69 1d13+0
+ 1500 RACE_HUMAN
+ POS_STANDING POS_STANDING SEX_MALE
+ #27705
+ Poverty Man~
+ A poverty stricken man~
+ A poverty stricken man begs you for help.
+ ~
+ The poor man looks like he hasn't held a job of any sort for eons. His
+ disheveled appearance and filthy body is enough to keep him in his present
+ condition.
+ ~
+ ACT_BODY|ACT_SCAVENGER|ACT_IS_NPC|ACT_STAY_AREA|ACT_SMART|ACT_RACE
+ AFF_TONGUES|AFF_UNDERSTAND|AFF_INFRARED
+ 0 S
+ 12 BODY_LEG|BODY_TORSO|BODY_EYE|BODY_HEAD|BODY_MOUTH BODY_FOOT|BODY_MOUTH|BODY_HAND|BODY_HEAD 3d8+118 2d8+3
+ 5 RACE_HUMAN
+ POS_STANDING POS_STANDING SEX_MALE
+ >all_greet_prog 65~
+  mpecho A poverty stricken man holds his hand out, hoping for money.
+ ~
+ >entry_prog 40~
+  if sex($n) == 1
+  say G'day mate, can you spare a coin or two?
+  else
+  if sex($n) == 2
+  say G'day sheila, can you spare a coin or two?
+  else
+  say G'day to you, whatever you are,
+  say can you spare a coin or two?
+  endif
+  endif
+ ~
+ >bribe_prog 1~
+  if sex($n) == 1
+  thank $n
+  shake $n
+  shake $n
+  else
+  if sex($n) == 2
+  say Thank you, sheila, so very much!
+  bow $n
+  hand $n
+  else
+  say You're a good man, errr, woman,
+  say errr whatever you are.
+  endif
+  endif
+ ~
+ |
+ #27706
+ Poverty Woman~
+ A poverty stricken woman~
+ A poverty stricken woman holds her weatherbeaten hand out toward you.
+ ~
+ The poor woman looks like she hasn't had a good meal in months. She is dressed
+ in rags and in bad need of a bath.
+ ~
+ ACT_BODY|ACT_RACE|ACT_STAY_AREA|ACT_SMART|ACT_IS_NPC
+ AFF_TONGUES|AFF_UNDERSTAND|AFF_INFRARED
+ 0 S
+ 14 BODY_HIP|BODY_LEG|BODY_TORSO|BODY_EYE|BODY_ARM BODY_CLAW|BODY_FOOT|BODY_MOUTH|BODY_HIP 4d6+154 2d8+3
+ 7 RACE_HUMAN
+ POS_STANDING POS_STANDING SEX_FEMALE
+ #27707
+ Tower Guard~
+ A tower guard~
+ A tower guard stands alert, watching for enemies.
+ ~
+ The tower guard is well armored from head to toe, the armor polished so well
+ that it almost blinds you. He stands alert, watching for any signs of intruders
+ who may attempt to subdue Old Singase.
+ ~
+ ACT_RACE|ACT_BODY|ACT_NO_ORDER|ACT_IS_NPC|ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART
+ AFF_TONGUES|AFF_HUNT|AFF_UNDERSTAND|AFF_SANCTUARY|AFF_PROTECT_GOOD|AFF_PROTECT_EVIL|AFF_DETECT_HIDDEN|AFF_DETECT_INVIS|AFF_INFRARED
+ 300 S
+ 22 BODY_HEAD|BODY_LEG|BODY_ARM|BODY_HAND|BODY_FOOT|BODY_TORSO BODY_HEAD|BODY_FOOT|BODY_HAND 3d17+797 4d7+4
+ 1275 RACE_OGRE
+ POS_STANDING POS_STANDING SEX_MALE
+ >give_prog I27721~
+  mpjunk i27721
+  mpecho A tower guard thanks you for your great generosity.
+   if inroom($n) == 27776
+    mpoload 27703
+    mpoload 27704
+    mpquiet on
+    wear i27703
+    wear i27704
+    mpquiet off
+   else
+   if inroom($n) == 27777
+    mpoload 27705
+    mpquiet on
+    wear i27705
+    mpquiet off
+   else
+   if inroom($n) == 27778
+   mpoload 27706
+   mpoload 27707
+   mpquiet on
+   wear i27706
+   wear i27707
+   mpquiet off
+   else
+   if inroom($n) == 27779
+   mpoload 27708
+   mpquiet on
+   wear i27708
+   mpquiet off
+   else
+   if inroom($n) == 27780
+   mpoload 27709
+   mpquiet on
+   wear i27709
+   mpquiet off
+   else
+   if inroom($n) == 27781
+   mpoload 27710
+   mpoload 27711
+   mpquiet on
+   wear i27710
+   wear i27711
+   mpquiet off
+   else
+   if inroom($n) == 27782
+   mpoload 27712
+   mpquiet on
+   wear i27712
+   mpquiet off
+   else
+   if inroom($n) == 27784
+   mpoload 27713
+   mpquiet on
+   wear i27713
+   mpquiet off
+   else
+   chuckle
+  endif
+ endif
+ endif
+ endif
+ ~
+ >all_greet_prog 100~
+  mpecho $I holds his weapon more firmly.
+ ~
+ >rand_prog 20~
+  mpecho $I shifts his feet uneasily.
+ ~
+ >death_prog 100~
+  if level($n) >= 49
+  mppurge self
+  endif
+ ~
+ |
+ #27708
+ Pareroultja~
+ Pareroultja~
+ Pararoultja is here, turning gold into lead.
+ ~
+ She is rather demure, with a very wise gnomish aura. Her form seems to change
+ from fire to water to a whirling wind.
+ ~
+ ACT_TRAIN|ACT_NO_ORDER|ACT_PRACTICE|ACT_SMART|ACT_STAY_AREA|ACT_IS_NPC|ACT_SENTINEL|ACT_BODY|ACT_RACE
+ AFF_SANCTUARY|AFF_INFRARED|AFF_UNDERSTAND|AFF_PROTECT_EVIL|AFF_PROTECT_GOOD|AFF_TONGUES
+ 0 S
+ 75 BODY_LEG|BODY_ARM|BODY_FOOT|BODY_HEAD BODY_HAND|BODY_FOOT 4d27+7500 7d8+75
+ 10 RACE_GNOME
+ POS_STANDING POS_STANDING SEX_FEMALE
+ #27709
+ Ganduwarrmanyi~
+ Ganduwarrmanyi~
+ Ganduwarrmanyi is here, ready to steal your equipment.
+ ~
+ His eyes are very shifty, making you check your belongings. You don't know what
+ he is up to, but you are sure it is nothing a man of integrity would do. He is
+ wearing loosely fitting clothing to enable him to hide his theft more easily.
+ ~
+ ACT_BODY|ACT_STAY_AREA|ACT_TRAIN|ACT_PRACTICE|ACT_SMART|ACT_NO_ORDER|ACT_IS_NPC|ACT_SENTINEL|ACT_RACE
+ AFF_SANCTUARY|AFF_INFRARED|AFF_TONGUES|AFF_UNDERSTAND|AFF_PROTECT_EVIL|AFF_PROTECT_GOOD
+ 0 S
+ 75 BODY_TORSO|BODY_FOOT|BODY_ARM|BODY_HEAD BODY_HAND|BODY_FOOT 4d27+7500 7d8+75
+ 10 RACE_DWARF
+ POS_STANDING POS_STANDING SEX_MALE
+ #27710
+ Garrawa~
+ Garrawa~
+ Garrawa is sitting here, lost in thought.
+ ~
+ This man is wearing extravagant clothing from the great artistic trading centers
+ of the realms. Although extremely old, they have been relatively well cared for.
+ He was once considered among the great philosophers of Old Singase but now he is
+ tolerated, his mind slipping due to his extreme age. While Old Singasis now
+ consider him a worthless old man, his vast knowledge and wisdom would be well
+ worth your time. He is one of a very few left in Old Singase who were here in
+ the heyday of the town.
+ ~
+ ACT_BODY|ACT_SENTINEL|ACT_STAY_AREA|ACT_NO_ORDER|ACT_RACE|ACT_UNDEAD|ACT_IS_NPC|ACT_SMART
+ AFF_PROTECT_EVIL|AFF_PROTECT_GOOD|AFF_SANCTUARY|AFF_UNDERSTAND|AFF_INFRARED|AFF_DETECT_HIDDEN|AFF_DETECT_INVIS
+ 1000 S
+ 50 BODY_HEAD|BODY_EYE BODY_FOOT 1d100+1250 5d4+35
+ 17000 RACE_GNOME
+ POS_RESTING POS_RESTING SEX_MALE
+ >all_greet_prog 40~
+  say Who sent you to me?
+ ~
+ >all_greet_prog 55~
+  say Oh, for the days of
+  say Rrrb the Benevolent and
+  say his personal guard,
+  say Lord Protector Yzzat the Terrible!
+  say Rumour has it their descendants
+  say still wander the realms.
+ ~
+ >speech_prog p A bird in the hand is worth two in the bush.~
+  if quest(0,5,$n) == 16
+  tell $n Very good!
+  tell $n I didn't expect the right answer coming from the likes
+  tell $n of you!
+  mpoload 27727
+  mpquiet on
+  cast 'remove curse'
+  mpquiet off
+  give i27727 $n
+  mpjunk i27727
+  mpmset $n quest 0 5 17
+  tell $n If you wanna try another test, see Ganngalida and tell
+  tell $n him I sent you.
+  mpechoat $n You walk out with a sense of pride.
+  mpechoaround $n $n swaggers out of Garrawa's abode, head held high.
+  mptransfer $n 27714
+  else
+  if quest(0,5,$n) == 18
+  tell $n I told you where to go, now get out of my house!
+  mptransfer $n 27799
+  endif
+  endif
+ ~
+ >speech_prog ~
+  if quest(0,5,$n) == 16
+  rofl
+  tell $n This has proven to be my lucky day! I had a bet with
+  tell $n Bidanggu that I would fool you.
+  mpecho Garrawa rubs his hands together in great excitement.
+  tell $n Go to Bidanggu and say 'another failure coming to
+  tell $n see you' and I will let you try again.
+  pat $n
+  tell $n Begone!
+  mpmset $n quest 0 5 18
+  mptransfer $n 27714
+  endif
+ ~
+ >speech_prog p Ganalanja sent me~
+  if quest(0,5,$n) == 15
+  say Very well, then.
+  ponder
+  say Tell me this....
+  ponder
+  grin
+  tell $n An ornithological specimen.....
+  mpechoaround $n {030}Garrawa says 'If you wanted to impress a person...'{300}
+  mpecho $i walks across the room.
+  tell $n held in digital captivity.....
+  mpechoaround $n {030}Garrawa says 'with your great wisdom....'{300}
+  mpecho $i walks back.
+  tell $n carries the equivalent value as that of.....
+  mpechoaround $n {030}Garrawa says 'and you only had the chance to say one thing'{300}
+  mpecho $i walks across the room.
+  tell $n double the amount in dense foliage.
+  mpechoaround $n {030}Garrawa says 'before that person made his decision'{300}
+  mpecho $i walks back.
+  tell $n In common language, the language of the unlearned,
+  mpechoat $n {030}Garrawa asks you 'What did I just say?'{300}
+  mpechoaround $n {030}Garrawa says 'what would you say?'{300}
+  mpmset $n quest 0 5 16
+  endif
+ ~
+ |
+ #27711
+ Ganalanja~
+ Ganalanja~
+ Ganalanja sits here, reading some text.
+ ~
+ He is wearing the clothes of a great statesman, only these clothes are well worn
+ and tattered by the effects of time. He still carries an air of intellectual
+ superiority, despite the criticisms of the populace at large. As you watch him,
+ he seems to take no notice of you, focusing his attention to the texts at hand.
+ His reading speed is overwhelming as he litterally flies through texts, bouncing
+ back and forth between a great multitude of scrolls at a frenzied pace, cross
+ referencing everything. At times, he stops to scribble something on another
+ scroll nearby. This man is obviously one of the few remaining great statesmen
+ from times gone by. It would behoove you to learn what you can from this man.
+ ~
+ ACT_STAY_AREA|ACT_RACE|ACT_SENTINEL|ACT_IS_NPC|ACT_NO_ORDER|ACT_BODY|ACT_SMART
+ AFF_SANCTUARY|AFF_DETECT_INVIS|AFF_PROTECT_EVIL|AFF_PROTECT_GOOD|AFF_DETECT_HIDDEN|AFF_UNDERSTAND
+ 1000 S
+ 50 BODY_EYE|BODY_HEAD BODY_FOOT 1d100+1250 6d7+24
+ 17000 RACE_GNOME
+ POS_RESTING POS_RESTING SEX_MALE
+ >all_greet_prog 100~
+ if quest(0,5,$n) == 10 
+    say Ahh, yes.
+    say Yannyalu told me to expect you.
+    smile $n
+ else 
+    if quest(0,5,$n) == 13
+       cackle $n
+       say You thought you could out wit me, leave!
+       mpforce $n west
+    endif
+ endif
+ ~
+ >speech_prog p a half dollar and a nickel~
+ if quest(0,5,$n) == 12
+    say Well, you ARE smarter than you look.
+    smile
+    say You may have my gloves
+    mpoload 27728
+    give i27728 $n
+    mpjunk i27728
+    mpmset $n quest 0 5 15
+    tell $n If you want to try to get the last piece of that
+    tell $n worthless eq, try going to Garrawa.
+ endif
+ ~
+ >speech_prog p a half dollar and a nickel.~
+ if quest(0,5,$n) == 12
+    say Well, you ARE smarter than you look.
+    smile
+    say You may have my gloves
+    mpoload 27728
+    give i27728 $n
+    mpjunk i27728
+    mpmset $n quest 0 5 15
+    tell $n If you want to try to get the last piece of that
+    tell $n worthless eq, try going to Garrawa.
+ endif
+ ~
+ >speech_prog p a nickel and a half dollar~
+ if quest(0,5,$n) == 12
+    say Well, you ARE smarter than you look.
+    smile
+    say You may have my gloves
+    mpoload 27728
+    give i27728 $n
+    mpjunk i27728
+    mpmset $n quest 0 5 15
+    tell $n If you want to try to get the last piece of that
+    tell $n worthless eq, try going to Garrawa.
+ endif
+ ~
+ >speech_prog p a nickel and a half dollar.~
+ if quest(0,5,$n) == 12
+    say Well, you ARE smarter than you look.
+    smile
+    say You may have my gloves
+    mpoload 27728
+    give i27728 $n
+    mpjunk i27728
+    mpmset $n quest 0 5 15
+    tell $n If you want to try to get the last piece of that
+    tell $n worthless eq, try going to Garrawa.
+ endif
+ ~
+ >speech_prog ~
+ if quest(0,5,$n) == 12
+    say Well well well!
+    say You don't look that smart and a reply like that proves it!
+    mpmset $n quest 0 5 13
+    pat $n
+    tell $n Well this is great!  I had a bet with Bidanggu that
+    tell $n I would fool you. Go to Bidanggu and say 'another failure
+    tell $n coming to see you' and I will let you try again.
+    pat $n
+    say Now leave my home.
+    mpquiet on
+    mpforce $n stand
+    mpforce $n west
+    mpquiet off
+ endif
+ ~
+ >speech_prog p Yannyalu told me she gave you two worthless items.~
+ if quest(0,5,$n) == 10
+    say Ahh, yes she did.
+    say Have a seat and rest your weary legs.
+    mpquiet on
+    mpforce $n rest
+    mpquiet off
+    say She gave me a pair of gloves, and a pair of boots.
+    say I kept the gloves but gave the boots to my friend that needed
+    say  them. If you want my gloves so bad, all you have to do is
+    say answer a question.
+    say Do you wish to take my challenge?
+    mpmset $n quest 0 5 11
+ endif
+ ~
+ >speech_prog yes~
+ if quest(0,5,$n) == 11
+    mpechoaround $n $i starts mumbling nonsense.
+    tell $n Ok, I once traversed to a land far away and they had
+    tell $n a foriegn currency.
+    tell $n They went as so:
+    tell $n 5 cents = 1 nickel
+    tell $n 10 cents = 1 dime
+    tell $n 25 cents = 1 quarter
+    tell $n 50 cents = half dollar
+    tell $n 100 cents = 1 dollar
+    tell $n I had 55 cents, only two coins, one not being a half
+    tell $n dollar. I did not have a dime and a quarter.
+    mpechoat $n {030}Ganalanja asks you 'What coin combination DID I have?'{300}
+    mpmset $n quest 0 5 12
+ endif
+ ~
+ |
+ #27712
+ Ganngalida~
+ Ganngalida~
+ Ganngalida paces the floor, practicing philosophical speaches to himself.
+ ~
+ This man, although old, has an obviously large amount of energy as he paces the
+ floor constantly with the sure steps of a man far younger than himself. He is
+ telling riddles of philosophy to himself as if practicing before delivering
+ these riddles to a class of intellectually hungry students. His clothes are well
+ worn and the Old Singasis hurl insults at him, making it obvious to you that
+ his teaching days in this part of the realms have long since passed. You would
+ do well to hear his teachings.
+ ~
+ ACT_RACE|ACT_SENTINEL|ACT_IS_NPC|ACT_BODY|ACT_STAY_AREA|ACT_NO_ORDER|ACT_SMART
+ AFF_PROTECT_EVIL|AFF_PROTECT_GOOD|AFF_UNDERSTAND|AFF_SANCTUARY|AFF_DETECT_INVIS|AFF_DETECT_HIDDEN
+ 1000 S
+ 50 BODY_EYE|BODY_HEAD BODY_HAND 1d100+1250 5d8+30
+ 17000 RACE_GNOME
+ POS_STANDING POS_STANDING SEX_MALE
+ >all_greet_prog 100~
+ ponder
+ ~
+ >rand_prog 06~
+ say If a man and daughter were travelling by boat
+ say in opposite directions,
+ say the man travelling at 5 knots and the daughter
+ say travelling at 3 knots....
+ ponder
+ say C equals pi d, or is that area?
+ ponder
+ ~
+ >rand_prog 08~
+ say If a woman had 4 pies and a cat ate half of one,
+ say how much would the cat weigh?
+ ponder
+ ~
+ >rand_prog 10~
+ say If you were standing in a square room with a window
+ say on each wall, and all of the windows faced north...
+ say how many bushels of corn would it take to make a bottle
+ say of firebreather?
+ ponder
+ ~
+ >speech_prog one 1~
+  if quest(0,5,$n) == 20
+  say Very good! Your mind is quick, you would be surprised at
+  say how many fail that test of wisdom!
+  mpoload 27724
+  mpquiet on
+  cast 'remove curse'
+  mpquiet off
+  give i27724 $n
+  mpjunk i27724
+  mpmset $n quest 0 5 0
+  say Congratulations, you have passed all the tests
+  say in our fair land.
+  say Enjoy your stay here.
+  say I will take you back to the square. You don't want
+  say to get mugged on your way.
+  mpechoat $n $i takes you to the square and returns home.
+  mpechoaround $n $i and $n leave $i's house.
+  mptransfer $n 27700
+  mpgoto 27700
+  mpgoto 27755
+  mpecho $i returns safely home.
+  else
+  say One what? One resident here? One house? One life to lose? What?
+  endif
+ ~
+ >speech_prog ~
+  if quest(0,5,$n) == 20
+   cackle
+   mpmset $n quest 0 5 21
+   say You have made me a wealthy man indeed.
+   say Your answer was incorrect and now Bidanggu is required to
+   say pay me for your loss. He bet me.....
+   mpecho Ganngalida stands and thinks for a moment.
+   say No, I'll let him tell you.
+   snicker
+   say Go see him and tell him "Another failure coming to see you."
+   say Now leave me to my thoughts, failure.
+   mpecho Ganngalida waves his hand and.....
+   mptransfer $n 27799
+  endif
+ ~
+ >speech_prog p Garrawa sent me~
+ if quest(0,5,$n) == 17
+  say He did, did he?
+  say Now why would he do a thing like that?
+  mpmset $n quest 0 5 19
+  else
+  say Somehow, I doubt it.
+ endif
+ ~
+ >speech_prog test wisdom riddle~
+ if quest(0,5,$n) == 19
+  say Ohhh, yes, I like these times! Most people around here
+  say don't want to stretch their minds.
+  tell $n As I was on my way to Chakkor,
+  mpechoaround $n {030}$i says 'If you added all the homes in this city'{300}
+  tell $n I met a woman with nine bags.
+  mpechoaround $n {030}$i says 'and included the number of different streets'{300}
+  tell $n Inside each bag were nine cats.
+  mpechoaround $n {030}$i says 'dividing that number by the number of guildhouses'{300}
+  tell $n Each cat had nine kittens.
+  mpechoaround $n {030}$i says 'and multiplied it by the number of stores in Chakkor'{300}
+  tell $n Each kitten was playing with two mice.
+  mpechoaround $n {030}$i says 'what total would you have?'{300}
+  mpechoat $n {030}$i asks you 'How many were on their way to Chakkor?'
+  mpmset $n quest 0 5 20
+ else
+  say What are you mumbling about, $n?
+ endif
+ ~
+ |
+ #27713
+ Yannyalu~
+ Yannyalu~
+ Yannyalu sits here, discussing simple matters whith anyone who will listen.
+ ~
+ She is quite old and poor, although it is obvious she has taken great care of
+ herself. A widow of a great many years, she depends on the kindness of others
+ for her sustenance. Her clothes, neat but worn out, her speech simple yet
+ complex, her eyes old yet piercing to the heart, she speaks of a great simple
+ wisdom lost to the citizens within her own community. Their folly could well be
+ your gain.
+ ~
+ ACT_BODY|ACT_SENTINEL|ACT_SMART|ACT_NO_ORDER|ACT_STAY_AREA|ACT_IS_NPC|ACT_RACE
+ AFF_UNDERSTAND|AFF_DETECT_INVIS|AFF_SANCTUARY|AFF_PROTECT_EVIL|AFF_PROTECT_GOOD|AFF_DETECT_HIDDEN
+ 1000 S
+ 50 BODY_MOUTH|BODY_HEAD BODY_FOOT|BODY_HIP 1d100+1250 3d5+40
+ 10000 RACE_GNOME
+ POS_RESTING POS_RESTING SEX_FEMALE
+ >all_greet_prog 100~
+ if quest(0,5,$n) == 5 
+    say Ahh, yes.
+    say Yangal told me to expect you.
+    smile $n
+ else 
+    if quest(0,5,$n) == 8
+       cackle $n
+       say You thought you could out wit me, leave!
+       mpechoat $n Wow! That made your head spin!
+       mpechoaround $n $n is thrown out of $i's house by some unseen force.
+       mptransfer $n 27725
+    endif
+ endif
+ ~
+ >speech_prog star~
+ if quest(0,5,$n) == 7
+    say Well, you ARE smarter than you look.
+    mpecho Yannyalu lets out a sigh.
+    say I guess I will have to let go of this bracelet,
+    say you deserve it.
+    mpoload 27726
+    mpquiet
+    cast 'remove curse'
+    mpquiet off
+    give i27726 $n
+    mpjunk i27726
+    mpmset $n quest 0 5 10
+    tell $n Now, I will tell you who I gave the other two
+    tell $n items too. I am sure like me, he will be willing
+    tell $n to part with the eq if you prove yourself to him.
+    tell $n Go see Ganalanja. Tell him I told you I gave him
+    tell $n two worthless items.
+    tell $n Good luck.
+    mpechoat $n You saunter out of $i's home with a sense of great accomplisment.
+    mpechoaround $n $n's face seems to glow with pride as $e leaves.
+    mptransfer $n 27725
+ endif
+ ~
+ >speech_prog ~
+ if quest(0,5,$n) == 7
+    say Well well well!
+    say You don't look that smart and a reply like that proves it!
+    mpmset $n quest 0 5 8
+    pat $n
+    tell $n Well this is great!  I had a bet with Bidanggu
+    tell $n that I would fool you. Go to Bidanggu and say 'another
+    tell $n failure coming to see you' and I will let you try again.
+    pat $n
+    say Now leave my home.
+    mpechoat $n You sadly make your departure.
+    mpechoaround $n $n leaves $i's house, seemingly with $l tail between $l legs.
+    mptransfer $n 27725
+ endif
+ ~
+ >speech_prog p Yangal told me she gave you some items she found in the trash.~
+ if quest(0,5,$n) == 5
+    say Ahh, yes she did.
+    say She gave me a bracelet, a pair of gloves, and a pair of boots.
+    say I only kept the bracelet and gave the other two items to another
+    say close friend. I am willing to part with my bracelet if you can
+    say correctly answer a question.
+    say Do you wish to take my challenge?
+    mpmset $n quest 0 5 6
+ endif
+ ~
+ >speech_prog yes~
+ if quest(0,5,$n) == 6
+    say Great!  My husband was once a great farmer, let him rest in peace.
+    say He wasn't a stupid farmer, one year he was given 10 apple trees.
+    tell $n Somehow he planted all 10 trees in 5 rows.
+    tell $n But, the mysterious thing was that each row
+    tell $n had 4 trees in them!
+    say What did our field look like that year?
+    mpmset $n quest 0 5 7
+ endif
+ ~
+ |
+ #27714
+ Yangal~
+ Yangal~
+ Yangal stands here, bidding you welcome.
+ ~
+ She wears clothes of a wealthy debutante, her dress flowing, her jewelry
+ glittering, her hair glowing in the sunlight. Her face gleams as she smiles at
+ you. Her wealth is far beyond that of the rest of the citizenry and you wonder
+ from whence it came. Could she have been born into this wealth? Has she garnered
+ this wealth herself? You find it hard to believe such a person could exist in
+ this city of foolishness. She appears to have a great wisdom that no other of
+ her age and few others older than she even care to obtain here. Perhaps she
+ could impart some of her Wisdom on you.
+ ~
+ ACT_RACE|ACT_BODY|ACT_IS_NPC|ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER
+ AFF_SANCTUARY|AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_UNDERSTAND
+ 1000 S
+ 50 BODY_HEAD|BODY_EYE BODY_FOOT|BODY_HIP 1d100+1250 3d8+36
+ 75000 RACE_GNOME
+ POS_STANDING POS_STANDING SEX_FEMALE
+ >all_greet_prog 100~
+ if quest(0,5,$n) == 3
+    cackle $n
+    say You doubted my wisdom, now get out of my house!
+    mpechoat $n {110}You are blown out of $i's home by a strong wind.{300}
+    mpmadd $n currhp -10
+    mpechoaround $n $n is picked up by a strong wind, throwing $e out of $i's house.
+    mptransfer $n 27705
+   else
+  if quest(0,5,$n) >= 5
+   smile $n
+  endif
+ endif
+ ~
+ >speech_prog wisdom Wisdom~
+ if quest(0,5,$n) == 0
+    say Hello $n.
+    tell $n Ahh, so you feel I am not wise!
+    frown
+    say Back in the days of Rrrb the Benevolent,
+    say I was considered very wise indeed.
+    tell $n So do you wish to take the test of wisdom?
+    mpmset $n quest 0 5 1
+ endif
+ ~
+ >speech_prog mother mom lady woman female~
+ if quest(0,5,$n) == 2
+    tell $n Exactly!  Very good. I found this band in the
+    tell $n trash, why don't you take it.
+    mpecho Yangal digs around in the back of the room.
+    mpoload 27725
+    mpquiet on
+    cast 'remove curse'
+    mpquiet off
+    give i27725 $n
+    mpjunk i27725
+    mpmset $n quest 0 5 5
+    tell $n I found more items like that band in the trash.
+    tell $n I gave them to my dear friend, Yannyalu.  I'm sure
+    tell $n that she will part with some of them if you
+    tell $n can pass her test. Tell her I told you I gave her
+    tell $n some items I found in the trash.
+    mpechoat $n You leave Yangal's humble abode with a sense of accomplishment.
+    mpechoaround $n $n walks out with a swagger in $s step.
+    mptransfer $n 27705
+ endif
+ ~
+ >speech_prog ~
+ if quest(0,5,$n) == 2
+    cackle
+    tell $n And you thought I wasn't wise!  You can't
+    tell $n even answer my simple riddle!
+    mpmset $n quest 0 5 3
+    tell $n Ok, I will give you another chance, but first
+    tell $n go tell my friend that I fooled you. Go to Bidanggu
+    tell $n and say 'another failure coming to see you'.
+    pat $n
+    tell $n Then you can test my wisdom again.
+    mpechoat $n You dejectedly leave $i's house.
+    mpechoaround $n $n looks very sad as $e leaves $i's home.
+    mptransfer $n 27705
+   else
+    if quest(0,5,$n) > 5
+    smile
+    tell $n You have already been here.
+ endif
+ ~
+ >speech_prog yes~
+ if quest(0,5,$n) == 1
+    say Very well then.
+    mpecho Yangal ponders for a quick second.
+    say Here is a quick riddle, answer it correctly and
+    say I will reward you.
+    tell $n A man and his son are in a chariot crash. The man dies,
+    mpechoaround $n {030}Yangal says 'If you wanted to cook a good fish'{300}
+    tell $n but his son is taken to the witchdoctor to be healed.
+    mpechoaround $n {030}Yangal says 'and you didn't have any firewood'{300}
+    tell $n The witchdoctor says "I cannot work on him,
+    mpechoaround $n {030}Yangal says 'What would be the best kind of'{300}
+    tell $n he is my son."
+    mpechoaround $n {030}Yangal says 'tree to cut down?'{300}
+    mpechoat $n {030}Yangal asks you 'How is it possible?'{300}
+    mpmset $n quest 0 5 2
+ endif
+ ~
+ |
+ #27715
+ Kaiadilt~
+ Kaiadilt~
+ Kaiadilt is here, ready to improve your abilities.
+ ~
+ His appearance is so overwhelming that it almost saps all your energy from you.
+ He seems to have great magical powers that almost swallow him up.
+ ~
+ ACT_PRACTICE|ACT_BODY|ACT_NO_ORDER|ACT_TRAIN|ACT_STAY_AREA|ACT_SENTINEL|ACT_RACE|ACT_IS_NPC
+ AFF_UNDERSTAND|AFF_SANCTUARY|AFF_PROTECT_EVIL|AFF_PROTECT_GOOD|AFF_DETECT_INVIS|AFF_DETECT_HIDDEN
+ 0 S
+ 75 BODY_TORSO|BODY_HEAD|BODY_ARM BODY_HEAD|BODY_FOOT|BODY_HAND 1d200+4150 4d7+55
+ 0 RACE_GNOME
+ POS_STANDING POS_STANDING SEX_MALE
+ #27716
+ Injilariija~
+ Injilariija~
+ Injilariija is here, waiting to improve your abilities.
+ ~
+ She seems to be all over the room! Which one is her? Her form changes from large
+ and foreboding to small and unassuming, from dragon to mouse. It is enough to
+ make your head spin!
+ ~
+ ACT_PRACTICE|ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_TRAIN|ACT_BODY|ACT_RACE|ACT_IS_NPC|ACT_NO_ORDER
+ AFF_INVISIBLE|AFF_INFRARED|AFF_SANCTUARY|AFF_DETECT_HIDDEN|AFF_DETECT_INVIS|AFF_UNDERSTAND|AFF_PROTECT_EVIL|AFF_PROTECT_GOOD
+ 0 S
+ 75 BODY_HEAD|BODY_EYE BODY_ARM|BODY_MOUTH|BODY_HAND 1d200+4150 3d9+55
+ 0 RACE_GNOME
+ POS_STANDING POS_STANDING SEX_FEMALE
+ #27717
+ Nguburinji~
+ Nguburinji~
+ Nguburinji is here, waiting to improve your abilities.
+ ~
+ She is a shifty-eyed woman, ever searching for the next victim of her knife.
+ She seems ready to train the next student or assassinate them, depending on her
+ mood.
+ ~
+ ACT_NO_ORDER|ACT_SMART|ACT_IS_NPC|ACT_PRACTICE|ACT_TRAIN|ACT_STAY_AREA|ACT_SENTINEL|ACT_RACE|ACT_BODY
+ AFF_UNDERSTAND|AFF_PROTECT_EVIL|AFF_PROTECT_GOOD|AFF_DETECT_HIDDEN|AFF_DETECT_INVIS|AFF_SANCTUARY|AFF_STEALTH
+ 0 S
+ 75 BODY_EYE|BODY_HEAD BODY_HAND|BODY_MOUTH 1d200+4150 3d9+55
+ 0 RACE_DROW
+ POS_STANDING POS_STANDING SEX_FEMALE
+ #27718
+ Lardil~
+ Lardil~
+ Lardil stands here, waiting to improve your abilities.
+ ~
+ She stands here, wearing the garb of a great Knight. She is obviously very good
+ at her trade. It would behove you to listen well to her instruction.
+ ~
+ ACT_STAY_AREA|ACT_SENTINEL|ACT_PRACTICE|ACT_SMART|ACT_TRAIN|ACT_NO_ORDER|ACT_RACE|ACT_BODY|ACT_IS_NPC
+ AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_SNEAK|AFF_SANCTUARY|AFF_INFRARED|AFF_UNDERSTAND|AFF_PROTECT_EVIL|AFF_PROTECT_GOOD
+ 1000 S
+ 75 BODY_HEAD|BODY_TORSO|BODY_ARM|BODY_FOOT BODY_FOOT|BODY_HAND 1d200+4150 3d9+55
+ 0 RACE_ELF
+ POS_STANDING POS_STANDING SEX_FEMALE
+ #27719
+ Bidanggu~
+ Bidanggu~
+ Bidanggu is busy slaughtering unclaimed corpses for the shoppes.
+ ~
+ He has dried blood all over his clothes as he busily cuts up unclaimed corpses.
+ If you have one you need to claim, you better get it before he sells it to Mabo!
+ ~
+ ACT_SENTINEL|ACT_SCAVENGER|ACT_STAY_AREA|ACT_IS_NPC|ACT_SMART|ACT_BODY|ACT_RACE
+ AFF_DETECT_INVIS|AFF_UNDERSTAND|AFF_TONGUES|AFF_DETECT_HIDDEN
+ 0 S
+ 25 BODY_HEAD BODY_HEAD 1d1+18999 1d1+299
+ 0 RACE_HALFLING
+ POS_STANDING POS_STANDING SEX_MALE
+  >speech_prog p another failure coming to see you~
+  if quest(0,5,$n) == 3
+     cackle
+     say So you let Yangal fool you with her riddle!
+     say Well you made me lose a bet with her and
+     say I owe her 50,000 gold coins!
+     say You'll have to pay me for my loss!
+     if goldamt($n) >= 50000
+        mpechoat $n Bidanggu takes your money.
+        mpechoaround $n Bidanggu takes money away from $n.
+        mpmadd $n gold -50000
+        mpmset $n long $n, the unwise stands here foolishly.
+        mpmset $n quest 0 5 0
+        mpforce $n shout I am dumb!
+     else
+        say Please come back when you have enough money
+        say to pay my debts!
+        mpechoat $n {110}Bidanggu drives his heel into your foot.{300}
+        mpechoaround $n Bidanggu drives his heel into $n's foot.
+        mpmadd $n currhp -10
+        mpmset $n quest 0 5 4
+        mptransfer $n 27734
+     endif
+  endif
+ if quest(0,5,$n) == 21
+     growl $n
+     say You DO realize, don't you, that I had a bet with
+     say Ganngalida that you would defeat his riddle?
+     say You have cost me 50,000 gold coins and I will beat
+     say it out of you if necessary!
+     if goldamt($n) >= 50000
+        mpechoat $n Bidanggu takes your money.
+        mpechoaround $n Bidanggu takes money away from $n.
+        mpmadd $n gold -50000
+        mpmset $n long Worthless gutter scrapings named $n.
+        mpmset $n quest 0 5 17
+        mpforce $n shout I am dumber than a bucket of rocks!
+      else
+        mpechoat $n {110}Bidanggu drives his heel into your foot.{300}
+        mpechoaround $n Bidanggu drives his heel into $n's foot.
+        mpmadd $n currhp -10
+        say You had better come back with my gold or....
+        say I will hunt you down!
+        say Dog!
+        mptransfer $n 27734
+     endif
+ endif
+ if quest(0,5,$n) == 13
+     say You loser! You are the dumbest person I have ever met!
+     say You made me lose my bet with Ganalanja!
+     say You WILL repay me!
+     if goldamt($n) >= 50000
+        mpechoat $n You feel lighter by 50,000 gold coins!
+        mpmadd $n gold -50000
+        mpmset $n long The dumbest person in the realms wanders aimlessly about.
+        mpmset $n quest 0 5 10
+        mpforce $n shout I am the dumbest person in the realms!
+     else
+        mpechoat $n {110}Bidanggu drives his heel into your foot.{300}
+        mpechoaround $n Bidanggu drives his heel into $n's foot.
+        mpmadd $n currhp -10
+        mpmset $n 0 5 14
+        say Now go! Do not return until I have my gold!
+        mptransfer $n 27734
+     endif
+ endif
+ if quest(0,5,$n) == 18
+     groan
+     say I was certain you would be able to outwit Garrawa.
+     sigh
+     say You have cost me 50,000 gold coins, fool!
+     say You will pay me what I lost or I will not help you.
+     if goldamt($n) >= 50000
+        mpechoat $n Bidanggu takes your money.
+        mpechoaround $n Bidanggu takes money away from $n.
+        mpmadd $n gold -50000
+        mpmset $n long $n, the fool stands here.
+        mpmset $n quest 0 5 15
+        mpforce $n shout I am such a fool!
+     else
+        mpechoat $n {110}Bidanggu drives his heel into your foot.{300}
+        mpechoaround $n Bidanggu drives his heel into $n's foot.
+        mpmadd $n currhp -10
+        say Now, go! Return when you can repay me for my losses!
+        mptransfer $n 27734
+     endif
+ endif
+ if quest(0,5,$n) == 8
+     mpforce $n say Yannyalu wants her money, you lost the bet!
+     say So you let Yannyalu fool you with her problem!?
+     mpforce $n nod
+     say Well I am not going to pay for YOUR stupidity, YOU will!
+     if goldamt($n) >= 50000
+        mpechoat $n Bidanggu takes your money.
+        mpechoaround $n Bidanggu takes money from $n.
+        mpmadd $n gold -50000
+        mpmset $n long $n, the stupid stands here stupidly gazing into the sun.
+        mpmset $n quest 0 5 5
+        mpforce $n shout I am stupid!
+     else
+        say Well! You think I'm going to let you off? 
+        say I need 50,000 gold coins to pay my debt to Yannyalu.
+        mpechoat $n {110}Bidanggu drives his heel into your foot.{300}
+        mpechoaround $n Bidanggu drives his heel into $n's foot.
+        mpmadd $n currhp -10
+        say Come back when you have my money!
+        mpmset $n quest 0 5 9
+        mptransfer $n 27734
+     endif
+ endif
+  ~
+  >all_greet_prog 100~
+  if quest(0,5,$n) == 3
+     snicker $n
+ endif
+ if quest(0,5,$n) == 4
+     if goldamt($n) >= 50000
+        mpechoat $n Bidanggu takes your money.
+        mpechoaround $n Bidanggu takes some money away from $n.
+        mpmadd $n gold -50000
+        mpmset $n long $n, the poor and unwise is here.
+        mpmset $n quest 0 5 0
+        mpforce $n shout I am dumb!
+     else
+        say Get out! Don't come back until you have my money!
+        mptransfer $n 27734
+     endif
+  endif
+  if quest(0,5,$n) == 8
+     snicker $n
+ endif
+ if quest(0,5,$n) == 9
+     if goldamt($n) >= 50000
+        mpechoat $n Bidanggu takes your money.
+        mpechoaround $n Bidanggu takes money away from $n.
+        mpmadd $n gold -50000
+        mpmset $n long $n, stupid and poor is here.
+        mpmset $n quest 0 5 5
+        mpforce $n shout I am stupid!
+     else
+        say Get out! Stay out until you have my cash!
+        mptransfer $n 27734
+     endif
+  endif
+  if quest(0,5,$n) == 14
+     if goldamt($n) >= 50000
+        mpechoat $n Bidanggu takes your money.
+        mpechoaround $n Bidanggu takes money away from $n.
+        mpmadd $n gold -50000
+        mpmset $n long The dumbest and poorest person in the realms wanders about aimlessly.
+        mpmset $n quest 0 5 10
+    endif
+  endif
+  ~
+ |
+ #27720
+ Mabo~
+ Mabo~
+ Mabo is here, hoping you will buy something.
+ ~
+ He has a grimy face that he constantly wipes with his hand and sleeve as he
+ prepares food. You see no signs of cleanliness about his person. From time to
+ time, he sneezes, wipes his nose with his fingers, and continues about his
+ business of cooking YOUR food! His attire is more like that of a stockyardman
+ than a cook and obviously never cleaned.
+ ~
+ ACT_RACE|ACT_STAY_AREA|ACT_NO_ORDER|ACT_IS_NPC|ACT_BODY|ACT_SENTINEL
+ AFF_TONGUES|AFF_INFRARED|AFF_UNDERSTAND|AFF_DETECT_HIDDEN|AFF_DETECT_INVIS
+ 0 S
+ 35 BODY_HEAD BODY_HEAD 1d1+10999 1d1+99
+ 0 RACE_ORC
+ POS_STANDING POS_STANDING SEX_MALE
+ #27721
+ Darby~
+ Darby~
+ Darby stands, waiting for a sale.
+ ~
+ She seems quite busy repairing armor as she runs to and fro, getting each tool
+ she needs from under a junk heap in this corner and that and then just dropping
+ the tool in another junk heap. Her abilities must have been great at some time
+ but her lack of care and patience has caused her workmanship to fall far from
+ where it had been ages ago. She wears the garb of her trade, nothing special
+ nor unusual.
+ ~
+ ACT_SENTINEL|ACT_RACE|ACT_BODY|ACT_NO_ORDER|ACT_STAY_AREA|ACT_IS_NPC|ACT_SMART
+ AFF_DETECT_INVIS|AFF_UNDERSTAND|AFF_TONGUES|AFF_DETECT_HIDDEN|AFF_INFRARED
+ 0 S
+ 5 BODY_HEAD BODY_HEAD 1d1+1099 1d1+99
+ 0 RACE_ORC
+ POS_STANDING POS_STANDING SEX_FEMALE
+ >give_prog I27744~
+ if quest(6,5,$n) == 0
+   say Hmmm, I will need some metal to repair your lamp properly.
+   say You haven't got any have you?
+   mpmset $n quest 6 5 1
+   mpquiet on
+   mpjunk i27744
+   mpquiet off
+ else
+   chuckle
+   say I have plenty more lamps where that came from, keep it.
+   mpquiet on
+   cast 'giant strength' $n
+   mpquiet off
+   give i27744 $n
+ endif
+ ~
+ >give_prog I27734~
+ if quest(6,5,$n) == 0
+   say Hmmm, I will need some metal to repair your shield properly.
+   say You haven't got any have you?
+   mpmset $n quest 6 5 2
+   mpquiet on
+   mpjunk i27734
+   mpquiet off
+ else
+   chuckle
+   say I have plenty more shields where that came from, keep it.
+   mpquiet on
+   cast 'giant strength' $n
+   mpquiet off
+   give i27734 $n
+ endif
+ ~
+ >give_prog I27742~
+ if quest(6,5,$n) == 0
+   say Hmmm, I will need some metal to repair your gloves properly.
+   say You haven't got any have you?
+   mpmset $n quest 6 5 3
+   mpquiet on
+   mpjunk i27742
+   mpquiet off
+ else
+   chuckle
+   say I have plenty more gloves where those came from, keep them.
+   mpquiet on
+   cast 'giant strength' $n
+   mpquiet off
+   give i27742 $n
+ endif
+ ~
+ >give_prog I27743~
+ if quest(6,5,$n) == 0
+   say Hmmm, I will need some metal to repair your belt properly.
+   say You haven't got any have you?
+   mpmset $n quest 6 5 4
+   mpquiet on
+   mpjunk i27743
+   mpquiet off
+ else
+   chuckle
+   say I have plenty more belts where that came from, keep it.
+   mpquiet on
+   cast 'giant strength' $n
+   mpquiet off
+   give i27743 $n
+ endif
+ ~
+ >give_prog I27741~
+ if quest(6,5,$n) == 0
+   say Hmmm, I will need some metal to repair your boots properly.
+   say You haven't got any have you?
+   mpmset $n quest 6 5 5
+   mpquiet on
+   mpjunk i27741
+   mpquiet off
+ else
+   chuckle
+   say I have plenty more boots where those came from, keep them.
+   mpquiet on
+   cast 'giant strength' $n
+   mpquiet off
+   give i27741 $n
+ endif
+ ~
+ >give_prog I27740~
+ if quest(6,5,$n) == 0
+   say Hmmm, I will need some metal to repair your leggings properly.
+   say You haven't got any have you?
+   mpmset $n quest 6 5 6
+   mpquiet on
+   mpjunk i27740
+   mpquiet off
+ else
+   chuckle
+   say I have plenty more leggings where those came from, keep them.
+   mpquiet on
+   cast 'giant strength' $n
+   mpquiet off
+   give i27740 $n
+ endif
+ ~
+ >give_prog I27739~
+ if quest(6,5,$n) == 0
+   say Hmmm, I will need some metal to repair your helmet properly.
+   say You haven't got any have you?
+   mpmset $n quest 6 5 7
+   mpquiet on
+   mpjunk i27739
+   mpquiet off
+ else
+   chuckle
+   say I have plenty more helmets where that came from, keep it.
+   mpquiet on
+   cast 'giant strength' $n
+   mpquiet off
+   give i27739 $n
+ endif
+ ~
+ >give_prog I27738~
+ if quest(6,5,$n) == 0
+   say Hmmm, I will need some metal to repair your body armor properly.
+   say You haven't got any have you?
+   mpmset $n quest 6 5 8
+   mpquiet on
+   mpjunk i27738
+   mpquiet off
+ else
+   chuckle
+   say I have plenty more body armor where that came from, keep it.
+   mpquiet on
+   cast 'giant strength' $n
+   mpquiet off
+   give i27738 $n
+ endif
+ ~
+ >give_prog I27735~
+ if quest(6,5,$n) == 0
+   say Hmmm, I will need some metal to repair your ring properly.
+   say You haven't got any have you?
+   mpmset $n quest 6 5 9
+   mpquiet on
+   mpjunk i27735
+   mpquiet off
+ else
+   chuckle
+   say I have plenty more rings where that came from, keep it.
+   mpquiet on
+   cast 'giant strength' $n
+   mpquiet off
+   give i27735 $n
+ endif
+ ~
+ >give_prog I27736~
+ if quest(6,5,$n) == 0
+   say Hmmm, I will need some metal to repair your amulet properly.
+   say You haven't got any have you?
+   mpmset $n quest 6 5 10
+   mpquiet on
+   mpjunk i27736
+   mpquiet off
+ else
+   chuckle
+   say I have plenty more amulets where that came from, keep it.
+   mpquiet on
+   cast 'giant strength' $n
+   mpquiet off
+   give i27736 $n
+ endif
+ ~
+ >give_prog I27737~
+ if quest(6,5,$n) == 0
+   say Hmmm, I will need some metal to repair your collar properly.
+   say You haven't got any have you?
+   mpmset $n quest 6 5 11
+   mpquiet on
+   mpjunk i27737
+   mpquiet off
+ else
+   chuckle
+   say I have plenty more collars where that came from, keep it.
+   mpquiet on
+   cast 'giant strength' $n
+   mpquiet off
+   give i27737 $n
+ endif
+ ~
+ >give_prog I27721~
+ if quest(6,5,$n) >= 1
+  say This will do the trick... but it'll cost you!
+   else
+    say What do you want me to do with this, eh?
+    mpquiet on
+    cast 'giant strength' $n
+    mpquiet off
+    give i27721 $n
+ endif
+ ~
+ >speech_prog cost~
+ if quest(6,5,$n) == 0
+   ponder $n
+ else
+   mpecho Darby glances at you for a moment.
+   say I sure love wild flowers.
+   say I hear the Plains of the North have
+   say some pretty ones this time of year.
+ endif
+ ~
+ >give_prog I304~
+ if quest(6,5,$n) == 0
+   say What is this for?
+ else
+   if hasobjnum(27721)
+     mpecho Darby accepts the flowers and disappears for a short time.
+     mpecho Darby returns, wipes her brow and looks at you with a smile.
+     say Here you are... a nice job if I don't say so myself.
+     if quest(6,5,$n) == 1
+       mpquiet on
+       mpjunk i27721
+       cast 'giant strength' $n
+       mpquiet off
+       mpoload 27745
+       give i27745 $n
+       mpmset $n quest 6 5 0
+     endif
+     if quest(6,5,$n) == 2
+       mpquiet on
+       mpjunk i27721
+       cast 'giant strength' $n
+       mpquiet off
+       mpoload 27746
+       give i27746 $n
+       mpmset $n quest 6 5 0
+     endif
+     if quest(6,5,$n) == 3
+       mpquiet on
+       mpjunk i27721
+       cast 'giant strength' $n
+       mpquiet off
+       mpoload 27747
+       give i27747 $n
+       mpmset $n quest 6 5 0
+     endif
+     if quest(6,5,$n) == 4
+       mpquiet on
+       mpjunk i27721
+       cast 'giant strength' $n
+       mpquiet off
+       mpoload 27748
+       give i27748 $n
+       mpmset $n quest 6 5 0
+     endif
+     if quest(6,5,$n) == 5
+       mpquiet on
+       mpjunk i27721
+       cast 'giant strength' $n
+       mpquiet off
+       mpoload 27749
+       give i27749 $n
+       mpmset $n quest 6 5 0
+     endif
+     if quest(6,5,$n) == 6
+       mpquiet on
+       mpjunk i27721
+       cast 'giant strength' $n
+       mpquiet off
+       mpoload 27750
+       give i27750 $n
+       mpmset $n quest 6 5 0
+     endif
+     if quest(6,5,$n) == 7
+       mpquiet on
+       mpjunk i27721
+       cast 'giant strength' $n
+       mpquiet off
+       mpoload 27751
+       give i27751 $n
+       mpmset $n quest 6 5 0
+     endif
+     if quest(6,5,$n) == 8
+       mpquiet on
+       mpjunk i27721
+       cast 'giant strength' $n
+       mpquiet off
+       mpoload 27752
+       give i27752 $n
+       mpmset $n quest 6 5 0
+     endif
+     if quest(6,5,$n) == 9
+       mpquiet on
+       mpjunk i27721
+       cast 'giant strength' $n
+       mpquiet off
+       mpoload 27753
+       give i27753 $n
+       mpmset $n quest 6 5 0
+     endif
+     if quest(6,5,$n) == 10
+       mpquiet on
+       mpjunk i27721
+       cast 'giant strength' $n
+       mpquiet off
+       mpoload 27754
+       give i27754 $n
+       mpmset $n quest 6 5 0
+     endif
+     if quest(6,5,$n) == 11
+       mpquiet on
+       mpjunk i27721
+       cast 'giant strength' $n
+       mpquiet off
+       mpoload 27755
+       give i27755 $n
+       mpmset $n quest 6 5 0
+     endif
+ else
+     say What is this for?
+     mpecho Darby mumbles something about metal.
+   endif
+ endif
+ ~
+ |
+ #27722
+ Ngurrinji~
+ Ngurrinji~
+ Ngurrinji impatiently awaits your decision.
+ ~
+ His arms are very large and scarred by the many years of work with metals,
+ making a wide variety of weapon and repairing an even wider variety. Upon closer
+ examination, you see scars that appear to be from some kind of explosive. His
+ attire is caked with black dust from his kilns, as is his face and arms.
+ ~
+ ACT_IS_NPC|ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+ AFF_TONGUES|AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_INFRARED
+ 0 S
+ 5 BODY_HEAD BODY_HEAD 1d1+1099 1d1+99
+ 0 RACE_ORC
+ POS_STANDING POS_STANDING SEX_MALE
+ >give_prog I27756~
+ if quest(11,4,$n) == 0
+   say Hmmm, I will need some metal to repair your dagger properly.
+   say You haven't got any have you?
+   mpmset $n quest 11 4 1
+   mpquiet on
+   mpjunk i27756
+   mpquiet off
+ else
+   chuckle
+   say I have plenty more daggers where that came from, keep it.
+   mpquiet on
+   cast 'giant strength' $n
+   mpquiet off
+   give i27756 $n
+ endif
+ ~
+ >give_prog I27758~
+ if quest(11,4,$n) == 0
+   say Hmmm, I will need some metal to repair your club properly.
+   say You haven't got any have you?
+   mpmset $n quest 11 4 2
+   mpquiet on
+   mpjunk i27758
+   mpquiet off
+ else
+   chuckle
+   say I have plenty more clubs where that came from, keep it.
+   mpquiet on
+   cast 'giant strength' $n
+   mpquiet off
+   give i27758 $n
+ endif
+ ~
+ >give_prog I27760~
+ if quest(11,4,$n) == 0
+   say Hmmm, I will need some metal to repair your sword properly.
+   say You haven't got any have you?
+   mpmset $n quest 11 4 3
+   mpquiet on
+   mpjunk i27760
+   mpquiet off
+ else
+   chuckle
+   say I have plenty more swords where that came from, keep it.
+   mpquiet on
+   cast 'giant strength' $n
+   mpquiet off
+   give i27760 $n
+ endif
+ ~
+ >give_prog I27762~
+ if quest(11,4,$n) == 0
+   say Hmmm, I will need some metal to repair your arrow properly.
+   say You haven't got any have you?
+   mpmset $n quest 11 4 4
+   mpquiet on
+   mpjunk i27762
+   mpquiet off
+ else
+   chuckle
+   say I have plenty more arrows where that came from, keep it.
+   mpquiet on
+   cast 'giant strength' $n
+   mpquiet off
+   give i27762 $n
+ endif
+ ~
+ >give_prog I27763~
+ if quest(11,4,$n) == 0
+   say Hmmm, I will need some metal to repair your bow properly.
+   say You haven't got any have you?
+   mpmset $n quest 11 4 5
+   mpquiet on
+   mpjunk i27763
+   mpquiet off
+ else
+   chuckle
+   say I have plenty more bows where that came from, keep it.
+   mpquiet on
+   cast 'giant strength' $n
+   mpquiet off
+   give i27763 $n
+ endif
+ ~
+ >give_prog I27721~
+ if quest(11,4,$n) >= 1
+  say This will do the trick... but it'll cost you!
+   else
+    say What do you want me to do with this, eh?
+    mpquiet on
+    cast 'giant strength' $n
+    mpquiet off
+    give i27721 $n
+ endif
+ ~
+ >speech_prog cost~
+ if quest(11,4,$n) == 0
+   ponder $n
+ else
+   mpecho $i glances at you for a moment.
+   say Tell you what, I could really go for a bowl of
+   say shark fin soup from the Land of Not.
+ endif
+ ~
+ >give_prog I11901~
+ if quest(11,4,$n) == 0
+   say What is this for?
+ else
+   if hasobjnum(27721)
+     mpecho $i takes the soup, devours it, and disappears for a short time.
+     mpecho $i returns, wipes his brow and looks at you with a smile.
+     say Here you are... a nice job if I don't say so myself.
+     if quest(11,4,$n) == 1
+       mpquiet on
+       mpjunk i27721
+       cast 'giant strength' $n
+       mpquiet off
+       mpoload 27757
+       give i27757 $n
+       mpmset $n quest 11 4 0
+     endif
+     if quest(11,4,$n) == 2
+       mpquiet on
+       mpjunk i27721
+       cast 'giant strength' $n
+       mpquiet off
+       mpoload 27759
+       give i27759 $n
+       mpmset $n quest 11 4 0
+     endif
+     if quest(11,4,$n) == 3
+       mpquiet on
+       mpjunk i27721
+       cast 'giant strength' $n
+       mpquiet off
+       mpoload 27761
+       give i27761 $n
+       mpmset $n quest 11 4 0
+     endif
+     if quest(11,4,$n) == 4
+       mpquiet on
+       mpjunk i27721
+       cast 'giant strength' $n
+       mpquiet off
+       mpoload 27763
+       give i27763 $n
+       mpmset $n quest 11 4 0
+     endif
+     if quest(11,4,$n) == 5
+       mpquiet on
+       mpjunk i27721
+       cast 'giant strength' $n
+       mpquiet off
+       mpoload 27765
+       give i27765 $n
+       mpmset $n quest 11 4 0
+     endif
+   else
+     say What is this for?
+     mpecho $i mumbles something about metal.
+   endif
+ endif
+ ~
+ |
+ #27723
+ kanjamalak~
+ Kanjamalak~
+ Kanjamalak stands here, writing scrolls.
+ ~
+ She appears to be quite old and forgetful as she writes scrolls. She seems to
+ have no idea as to the reason for the scrolls. There must have been a time when
+ she was a great spellcaster, but that had to have been in the distant past. Her
+ clothes are in a state of great disarray and have long since outlived their
+ usefulness.
+ ~
+ ACT_STAY_AREA|ACT_SENTINEL|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE|ACT_IS_NPC
+ AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_INFRARED|AFF_UNDERSTAND|AFF_TONGUES
+ 0 S
+ 5 BODY_HEAD BODY_HEAD 1d1+1099 1d1+99
+ 0 RACE_ORC
+ POS_STANDING POS_STANDING SEX_FEMALE
+ >all_greet_prog 100~
+ say I hope you plan on buying something,
+ say or I will have to show you the door.
+ ~
+ >rand_prog 05~
+ say You need to buy something or leave!
+ ~
+ >rand_prog 05~
+ say I have given you enough time to decide on something.
+ ~
+ |
+ #27724
+ Pareroulgalida~
+ Pareroulgalida~
+ Pareroulgalida stands here piously.
+ ~
+ He is short of stature and seems very aged. He is wearing a long, loosely
+ flowing hooded robe which covers his entire body with just his hands and
+ sandalled feet protruding.
+ ~
+ ACT_IS_NPC|ACT_SENTINEL|ACT_STAY_AREA|ACT_TRAIN|ACT_PRACTICE|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+ AFF_INFRARED|AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_FAERIE_FIRE|AFF_UNDERSTAND|AFF_TONGUES|AFF_SANCTUARY
+ 0 S
+ 75 BODY_HEAD BODY_EYE 4d27+7500 7d8+75
+ 0 RACE_GNOME
+ POS_STANDING POS_STANDING SEX_MALE
+ #27725
+ One~
+ The One~
+ The One is here, playing games.
+ ~
+ It is here.
+ ~
+ ACT_IS_NPC|ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_BODY|ACT_RACE
+ AFF_ETHEREAL
+ 0 S
+ 33 BODY_HEAD BODY_EYE 4d27+11500 7d8+95
+ 0 RACE_GNOME
+ POS_STANDING POS_STANDING SEX_FEMALE
+ #27726
+ Another~
+ Another~
+ Another is here, playing games.
+ ~
+ It is here.
+ ~
+ ACT_IS_NPC|ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_BODY|ACT_RACE
+ AFF_ETHEREAL
+ 0 S
+ 33 BODY_HEAD BODY_EYE 4d27+11500 7d8+95
+ 0 RACE_GNOME
+ POS_STANDING POS_STANDING SEX_MALE
+ >all_greet_prog 100~
+  mpquiet on
+  mpforce $n rest
+  mpquiet off
+  mpechoat $n You sink deeply into the couch.
+  mpechoaround $n $n sinks deeply into the couch.
+ ~
+ |
+ #27727
+ One~
+ The One~
+ The One is here, playing games.
+ ~
+ It is here.
+ ~
+ ACT_IS_NPC|ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_BODY|ACT_RACE
+ AFF_ETHEREAL
+ 0 S
+ 33 BODY_HEAD BODY_EYE 4d27+11500 7d8+95
+ 0 RACE_GNOME
+ POS_STANDING POS_STANDING SEX_FEMALE
+ >all_greet_prog 100~
+  mpechoat $n You feel sick.
+  mpechoat $n You hold your nose, and attempt to flee the room!
+  mpechoaround $n $n holds $l nose, and tries to flee!
+ ~
+ >rand_prog 20~
+  mpforce $r puke self
+ ~
+ |
+
+ #0
+ 
+ 
+ 
+ #OBJECTS
+ #27700
+ Fountain~
+ An old fountain~
+ An old fountain sprays water sporadically.~
+ The fountain is molded in the shape of a person, standing fifteen feet tall.
+ Its once great beauty has been worn down and discolored over the centuries. You
+ can see where a few careless repairs have been made to its workings. Birds have
+ used it for bathing and left deposits behind. From time to time it shoots a 
+ weak stream of water into the air, then returns to its incessant gurgling. It is
+ a shame to see such a work of art in such a sad condition.
+ ~
+ ITEM_TYPE_FOUNTAIN
+ ITEM_FLAG_LEVEL
+ 0
+ 0 0 0 0
+ 0 100000 1
+ #27701
+ Statue~
+ A statue of a man~
+ A statue of a man stands in the middle of the boulevard.~
+ This statue is quite peculiar. It doesn't seem to represent a warrior of any
+ kind. The man seems diminutive, weak, and quite elderly. You wonder what these
+ people revere to have a statue of some worthless man standing here. The statue
+ looks as if it has been here for centuries and has been less than admirably
+ cared for. Birds have been permitted to build their nests on it with not even
+ the least disruption to their building.
+ ~
+ ITEM_TYPE_FURNITURE
+ ITEM_FLAG_LEVEL
+ 0
+ 0 0 0 0
+ 0 1000000 1
+ #27702
+ Statue~
+ A statue of a woman~
+ A statue of a woman stands in the middle of the boulevard.~
+ You are immediately impressed by the absolute unimpressiveness of the woman
+ portrayed here. She is of barely average beauty and slightly advanced in years.
+ She has only the slightest smile which, as you look more closely seems to be
+ more of a sly smirk. Her hands are folded neatly behind her back in a fashion
+ as to give an authoritarian air. The statue has long been in need of upkeep.
+ But the birds seem to like it.
+ ~
+ ITEM_TYPE_FURNITURE
+ ITEM_FLAG_LEVEL
+ 0
+ 0 0 0 0
+ 0 10000000 1
+ #27703
+ Gleaming Shield~
+ A gleaming shield~
+ A shield lies glittering in the sunlight.~
+ It is quite large, covering over half of the body. It should protect its user
+ quite well. It has been taken care of extremely well.
+ ~
+ ITEM_TYPE_ARMOR
+ ITEM_FLAG_NODROP|ITEM_FLAG_LEVEL|ITEM_FLAG_NOREMOVE|ITEM_FLAG_ANTI_EVIL|ITEM_FLAG_INVIS
+ ITEM_WEAR_SHIELD|ITEM_WEAR_TAKE
+ 7 0 0 0
+ 7 75624 18
+ A
+ APPLY_HITROLL 3
+ A
+ APPLY_DAMROLL 2
+ A
+ APPLY_WIS -2
+ #27704
+ Gleaming Boots~
+ Gleaming Boots~
+ A pair of boots glitter in the sunlight.~
+ They seem to be of great value, being so well polished. Or maybe it's just that
+ the owner has taken great pride in their appearance.
+ ~
+ ITEM_TYPE_ARMOR
+ ITEM_FLAG_NODROP|ITEM_FLAG_LEVEL|ITEM_FLAG_NOREMOVE|ITEM_FLAG_ANTI_EVIL|ITEM_FLAG_INVIS
+ ITEM_WEAR_TAKE|ITEM_WEAR_FEET
+ 8 0 0 0
+ 3 6427 18
+ A
+ APPLY_HITROLL 2
+ A
+ APPLY_DAMROLL 2
+ A
+ APPLY_STR 1
+ #27705
+ Gleaming Bracelet~
+ A gleaming bracelet~
+ A bracelet lies gleaming in the sunlight.~
+ What a beautiful bracelet!
+ ~
+ ITEM_TYPE_ARMOR
+ ITEM_FLAG_NOREMOVE|ITEM_FLAG_NODROP|ITEM_FLAG_LEVEL|ITEM_FLAG_ANTI_EVIL|ITEM_FLAG_INVIS
+ ITEM_WEAR_TAKE|ITEM_WEAR_WRIST
+ 7 0 0 0
+ 1 6247 18
+ A
+ APPLY_DEX 2
+ A
+ APPLY_MANA 20
+ #27706
+ Gleaming Bracer~
+ A gleaming bracer~
+ A bracer lies glittering in the sunlight.~
+ This bracer has more beauty than protective value. It seems to be made of tin!
+ ~
+ ITEM_TYPE_ARMOR
+ ITEM_FLAG_NOREMOVE|ITEM_FLAG_ANTI_EVIL|ITEM_FLAG_NODROP|ITEM_FLAG_LEVEL|ITEM_FLAG_INVIS
+ ITEM_WEAR_WRIST|ITEM_WEAR_TAKE|ITEM_WEAR_NECK
+ 9 0 0 0
+ 1 6427 18
+ A
+ APPLY_HITROLL 1
+ A
+ APPLY_DEX 2
+ A
+ APPLY_DAMROLL 1
+ #27707
+ Gleaming Ring~
+ A gleaming ring~
+ A ring lies glittering in the sunlight.~
+ The ring catches the sunlight in a most beautiful fashion.
+ ~
+ ITEM_TYPE_ARMOR
+ ITEM_FLAG_NODROP|ITEM_FLAG_LEVEL|ITEM_FLAG_NOREMOVE|ITEM_FLAG_ANTI_EVIL|ITEM_FLAG_INVIS
+ ITEM_WEAR_TAKE|ITEM_WEAR_FINGER
+ 8 0 0 0
+ 2 6427 18
+ A
+ APPLY_HITROLL 2
+ A
+ APPLY_DAMROLL 1
+ A
+ APPLY_STR 1
+ #27708
+ Gleaming Band~
+ A gleaming band~
+ A ring of metal lies glittering in the sunlight.~
+ The band is made of titanium, polished to a high sheen. Other than that, you see
+ nothing special about a gleaming band.
+ ~
+ ITEM_TYPE_ARMOR
+ ITEM_FLAG_NODROP|ITEM_FLAG_NOREMOVE|ITEM_FLAG_LEVEL|ITEM_FLAG_ANTI_EVIL|ITEM_FLAG_INVIS
+ ITEM_WEAR_TAKE|ITEM_WEAR_FINGER|ITEM_WEAR_WRIST
+ 6 0 0 0
+ 2 6427 18
+ A
+ APPLY_DAMROLL 2
+ A
+ APPLY_HITROLL 3
+ A
+ APPLY_DEX 2
+ #27709
+ Gleaming Armor~
+ Gleaming Armor~
+ A suit of armor lies glittering in the sunlight.~
+ This armor is a sturdy composite of steel and platinum.
+ ~
+ ITEM_TYPE_ARMOR
+ ITEM_FLAG_ANTI_EVIL|ITEM_FLAG_LEVEL|ITEM_FLAG_NOREMOVE|ITEM_FLAG_NODROP|ITEM_FLAG_INVIS
+ ITEM_WEAR_TAKE|ITEM_WEAR_BODY
+ 7 0 0 0
+ 5 6427 18
+ A
+ APPLY_DAMROLL 2
+ A
+ APPLY_HITROLL 3
+ A
+ APPLY_CON -2
+ #27710
+ Gleaming Helmet~
+ A gleaming helmet~
+ A helmet lies glittering in the sunlight.~
+ It is unimaginable how anyone could see out of this helmet but also unimaginable
+ how anyone could get damaged while wearing it.
+ ~
+ ITEM_TYPE_ARMOR
+ ITEM_FLAG_NOREMOVE|ITEM_FLAG_NODROP|ITEM_FLAG_LEVEL|ITEM_FLAG_ANTI_EVIL|ITEM_FLAG_INVIS
+ ITEM_WEAR_TAKE|ITEM_WEAR_HEAD
+ 8 0 0 0
+ 5 6247 18
+ A
+ APPLY_DAMROLL 2
+ A
+ APPLY_WIS -2
+ A
+ APPLY_HITROLL 3
+ #27711
+ Gleaming Leggings~
+ Gleaming leggings~
+ A pair of leggings lie glittering in  the sunlight.~
+ Don't they just gleam?
+ ~
+ ITEM_TYPE_ARMOR
+ ITEM_FLAG_NODROP|ITEM_FLAG_LEVEL|ITEM_FLAG_NOREMOVE|ITEM_FLAG_ANTI_EVIL|ITEM_FLAG_INVIS
+ ITEM_WEAR_TAKE|ITEM_WEAR_LEGS
+ 8 0 0 0
+ 4 6427 18
+ A
+ APPLY_MOVE -30
+ A
+ APPLY_MANA 25
+ #27712
+ Gleaming Arms~
+ Gleaming arms~
+ A pair of arms lie glittering in the sunlight.~
+ These will do nicely.
+ ~
+ ITEM_TYPE_ARMOR
+ ITEM_FLAG_ANTI_EVIL|ITEM_FLAG_NOREMOVE|ITEM_FLAG_NODROP|ITEM_FLAG_LEVEL|ITEM_FLAG_INVIS
+ ITEM_WEAR_TAKE|ITEM_WEAR_ARMS
+ 9 0 0 0
+ 3 6427 18
+ A
+ APPLY_WIS -2
+ A
+ APPLY_CON -1
+ A
+ APPLY_INT 2
+ #27713
+ Gleaming Broadsword~
+ A gleaming broadsword~
+ A large sword lies glittering in the sunlight.~
+ If you are in a pinch, you can use this, but it would be better suited hanging
+ on your wall.
+ ~
+ ITEM_TYPE_WEAPON
+ ITEM_FLAG_NODROP|ITEM_FLAG_LEVEL|ITEM_FLAG_NOREMOVE|ITEM_FLAG_ANTI_EVIL|ITEM_FLAG_ANTI_GOOD|ITEM_FLAG_INVIS
+ ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+ 0 4 7 WEAPON_SLASH
+ 8 7584 18
+ A
+ APPLY_WIS -2
+ A
+ APPLY_CON -2
+ A
+ APPLY_INT 1
+ C
+ gaseous emination~
+ FLAG_CLASS_RANGER|FLAG_CLASS_ROGUE|FLAG_CLASS_ILLUSIONIST|FLAG_CLASS_ASSASSIN
+ #27714
+ Bronze Armor~
+ Bronze armor~
+ A pile of metal lies in the dust.~
+ It gives a yellowish-orangish hue.
+ ~
+ ITEM_TYPE_ARMOR
+ ITEM_FLAG_LEVEL|ITEM_FLAG_NOREMOVE|ITEM_FLAG_ANTI_EVIL
+ ITEM_WEAR_BODY|ITEM_WEAR_TAKE
+ 8 0 0 0
+ 5 5432 15
+ A
+ APPLY_INT 2
+ A
+ APPLY_WIS -2
+ #27715
+ Bronze Helmet~
+ A bronze helmet~
+ A pile of metal lies in the dust.~
+ It gives a yellowish-orangish hue.
+ ~
+ ITEM_TYPE_ARMOR
+ ITEM_FLAG_LEVEL|ITEM_FLAG_NOREMOVE|ITEM_FLAG_ANTI_EVIL
+ ITEM_WEAR_TAKE|ITEM_WEAR_HEAD
+ 8 0 0 0
+ 3 5432 15
+ A
+ APPLY_MANA 10
+ A
+ APPLY_DAMROLL -2
+ A
+ APPLY_HITROLL -2
+ #27716
+ Bronze Leggings~
+ Bronze leggings~
+ A pile of metal lies in the dust.~
+ It gives a yellowish-orangish hue.
+ ~
+ ITEM_TYPE_ARMOR
+ ITEM_FLAG_LEVEL
+ ITEM_WEAR_TAKE|ITEM_WEAR_LEGS
+ 7 0 0 0
+ 3 5432 15
+ A
+ APPLY_MANA 20
+ A
+ APPLY_HITROLL -2
+ A
+ APPLY_DAMROLL -2
+ #27717
+ Bronze Boots~
+ Bronze boots~
+ A pile of metal lies in the dust.~
+ It gives a yellowish-orangish hue.
+ ~
+ ITEM_TYPE_ARMOR
+ ITEM_FLAG_LEVEL|ITEM_FLAG_ANTI_EVIL
+ ITEM_WEAR_FEET|ITEM_WEAR_TAKE
+ 7 0 0 0
+ 4 5432 15
+ A
+ APPLY_MANA 25
+ A
+ APPLY_HITROLL -3
+ A
+ APPLY_DAMROLL -3
+ #27718
+ Bronze Arms~
+ Bronze arms~
+ A pile of metal lies in the dust.~
+ It gives a yellowish-orangish hue.
+ ~
+ ITEM_TYPE_ARMOR
+ ITEM_FLAG_LEVEL|ITEM_FLAG_ANTI_EVIL
+ ITEM_WEAR_ARMS|ITEM_WEAR_TAKE
+ 9 0 0 0
+ 3 5432 15
+ A
+ APPLY_HITROLL -3
+ A
+ APPLY_DEX 1
+ A
+ APPLY_DAMROLL -3
+ #27719
+ Bronze Shield~
+ A bronze shield~
+ A pile of metal lies in the dust.~
+ It gives a yellowish-orangish hue.
+ ~
+ ITEM_TYPE_ARMOR
+ ITEM_FLAG_LEVEL|ITEM_FLAG_ANTI_EVIL|ITEM_FLAG_ANTI_GOOD
+ ITEM_WEAR_SHIELD|ITEM_WEAR_TAKE
+ 7 0 0 0
+ 6 5432 15
+ A
+ APPLY_HITROLL 1
+ A
+ APPLY_DAMROLL 2
+ A
+ APPLY_INT -1
+ #27720
+ Expensive Dress~
+ An expensive dress~
+ An expensive dress has been hung with care.~
+ You would look nice at the Cotillian Ball in this, if you were female. You would
+ look silly in this anywhere if you were male.
+ ~
+ ITEM_TYPE_ARMOR
+ ITEM_FLAG_LEVEL
+ ITEM_WEAR_TAKE|ITEM_WEAR_BODY
+ -1 0 0 0
+ 2 175 2
+ A
+ APPLY_DAMROLL -1
+ A
+ APPLY_HITROLL -1
+ A
+ APPLY_HIT -2
+ #27721
+ Gold Nugget pretty rock~
+ A gold nugget~
+ A pretty rock lies here.~
+ Isn't it pretty?!
+ ~
+ ITEM_TYPE_TREASURE
+ ITEM_FLAG_LEVEL
+ ITEM_WEAR_HOLD|ITEM_WEAR_TAKE
+ 0 0 0 0
+ 8 3000 1
+ #27722
+ Dark Suit~
+ A dark suit~
+ A dark suit has been hung with care.~
+ This would suit a man quite nicely when called to court duties.
+ ~
+ ITEM_TYPE_ARMOR
+ ITEM_FLAG_LEVEL
+ ITEM_WEAR_BODY|ITEM_WEAR_TAKE
+ -1 0 0 0
+ 3 175 3
+ A
+ APPLY_DEX -2
+ #27723
+ Rags cloth~
+ Rags~
+ Some cloth has been discarded.~
+ You think you notice animal excrement smeared throughout.
+ ~
+ ITEM_TYPE_ARMOR
+ ITEM_FLAG_NODROP|ITEM_FLAG_LEVEL
+ ITEM_WEAR_BODY|ITEM_WEAR_TAKE
+ 2 0 0 0
+ 2 13 3
+ A
+ APPLY_INT -2
+ #27724
+ Gorgeous Belt~
+ A gorgeous belt~
+ A gorgeous belt is hanging here.~
+ This belt would be a major addition to your wardrobe.
+ ~
+ ITEM_TYPE_ARMOR
+ ITEM_FLAG_ANTI_EVIL|ITEM_FLAG_NOREMOVE|ITEM_FLAG_LEVEL|ITEM_FLAG_NODROP|ITEM_FLAG_GLOW
+ ITEM_WEAR_TAKE|ITEM_WEAR_WAIST
+ 3 0 0 0
+ 2 5000 2
+ A
+ APPLY_WIS 1
+ #27725
+ Worthless Band~
+ A worthless band~
+ A bent eating utensil has been left here.~
+ It looks somewhat like an old spoon, only bent in a loop.
+ ~
+ ITEM_TYPE_ARMOR
+ ITEM_FLAG_NODROP|ITEM_FLAG_LEVEL|ITEM_FLAG_ANTI_EVIL|ITEM_FLAG_NOREMOVE|ITEM_FLAG_GLOW
+ ITEM_WEAR_WRIST|ITEM_WEAR_TAKE|ITEM_WEAR_FINGER
+ 3 0 0 0
+ 1 50 2
+ A
+ APPLY_WIS 1
+ #27726
+ Worthless Bracelet~
+ A worthless bracelet~
+ A bent cooking utensil has been left here.~
+ It looks somewhat like a ladle, only bent in a loop.
+ ~
+ ITEM_TYPE_ARMOR
+ ITEM_FLAG_GLOW|ITEM_FLAG_NOREMOVE|ITEM_FLAG_LEVEL|ITEM_FLAG_ANTI_EVIL|ITEM_FLAG_NODROP
+ ITEM_WEAR_TAKE|ITEM_WEAR_WRIST|ITEM_WEAR_NECK
+ 3 0 0 0
+ 2 50 2
+ A
+ APPLY_INT 1
+A APPLY_DEX 1 #27727
+ Worthless Boots~
+ A worthless pair of boots~
+ A worn out pair of boots lie in a heap.~
+ The soles have been worn out, the laces rotten, the uppers long since dry rotted
+ to the point of leaving gaping holes.
+ ~
+ ITEM_TYPE_ARMOR
+ ITEM_FLAG_NODROP|ITEM_FLAG_LEVEL|ITEM_FLAG_ANTI_EVIL|ITEM_FLAG_NOREMOVE|ITEM_FLAG_GLOW
+ ITEM_WEAR_TAKE|ITEM_WEAR_FEET
+ 3 0 0 0
+ 3 50 2
+ A
+ APPLY_WIS 1
+ #27728
+ Worthless Gloves~
+ A worthless pair of gloves~
+ A worn out pair of gloves have been carelessly discarded.~
+ The fingers are missing and the palms are worn threadbare.
+ ~
+ ITEM_TYPE_ARMOR
+ ITEM_FLAG_NODROP|ITEM_FLAG_NOREMOVE|ITEM_FLAG_LEVEL|ITEM_FLAG_GLOW|ITEM_FLAG_ANTI_EVIL
+ ITEM_WEAR_TAKE|ITEM_WEAR_HANDS
+ 3 0 0 0
+ 1 50 2
+ A
+ APPLY_INT 1
+A APPLY_DEX 1 #27729
+ protection~
+ some protection~
+ You sense a protective force.~
+ You can't get a firm grasp on what it looks like. It does, however, seem
+ somewhat familiar.
+ ~
+ ITEM_TYPE_PILL
+ ITEM_FLAG_INVIS|ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+ 34 SPELL_STABILITY SPELL_FLY SPELL_HASTE
+ 0 35000 33
+ #27730
+ liquified protection~
+ some liquified protection~
+ You sense a protective force.~
+ You can't quite get a grasp on what it looks like, it is so elusive.
+ ~
+ ITEM_TYPE_POTION
+ ITEM_FLAG_LEVEL|ITEM_FLAG_MAGIC|ITEM_FLAG_INVIS
+ ITEM_WEAR_HOLD|ITEM_WEAR_TAKE
+ 35 SPELL_STABILITY SPELL_FLY SPELL_MAGE_SHIELD
+ 0 37500 33
+ #27731
+ writ travelling~
+ A Writ of Travelling~
+ An old scroll flutters in the breeze.~
+ Going somewhere?
+ ~
+ ITEM_TYPE_SCROLL
+ ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL|ITEM_FLAG_INVIS
+ ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+ 35 SPELL_ASTRAL_PROJECTION SPELL_ETHEREAL_TRAVEL SPELL_PASS_DOOR
+ 1 40000 33
+ #27732
+ Beef Surprise Platter~
+ Beef Surprise Platter~
+ A Beef Surprise Platter lies steaming on the ground.~
+ You see grey meat with green splotches, some white and green furry mashed
+ potatoes, some wrinkled peas, all covered by a furry green-yellow gravy.
+ ~
+ ITEM_TYPE_FOOD
+ ITEM_FLAG_LEVEL
+ ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+ 5 0 0 POISONED
+ 2 150 7
+ #27733
+ slice coffee~
+ A slice of coffee~
+ A black substance covers the ground.~
+ It is very thick, strong, and obviously old, as all the heat has
+ dissipated from it.
+ ~
+ ITEM_TYPE_DRINK_CON
+ ITEM_FLAG_LEVEL
+ ITEM_WEAR_HOLD|ITEM_WEAR_TAKE
+ 1 1 LIQ_COFFE NOT_POISONED
+ 1 15 1
+ #27734
+ damaged shield~
+ a damaged shield~
+ Some damaged equipment lies here.~
+ It is battered and beaten almost beyond repair.
+ ~
+ ITEM_TYPE_ARMOR
+ ITEM_FLAG_LEVEL
+ ITEM_WEAR_SHIELD|ITEM_WEAR_TAKE
+ 0 0 0 0
+ 2 200 2
+ #27735
+ damaged ring~
+ a damaged ring~
+ Some damaged equipment lies here.~
+ It is battered and beaten almost beyond repair.
+ ~
+ ITEM_TYPE_ARMOR
+ ITEM_FLAG_LEVEL
+ ITEM_WEAR_FINGER|ITEM_WEAR_TAKE
+ 0 0 0 0
+ 1 200 2
+ #27736
+ damaged amulet~
+ a damaged amulet~
+ Some damaged equipment lies here.~
+ It is battered and beaten almost beyond repair.
+ ~
+ ITEM_TYPE_ARMOR
+ ITEM_FLAG_LEVEL
+ ITEM_WEAR_TAKE|ITEM_WEAR_NECK
+ 0 0 0 0
+ 2 200 2
+ #27737
+ damaged collar~
+ a damaged collar~
+ Some damaged equipment lies here.~
+ It is battered and beaten almost beyond repair.
+ ~
+ ITEM_TYPE_ARMOR
+ ITEM_FLAG_LEVEL
+ ITEM_WEAR_TAKE|ITEM_WEAR_NECK
+ 0 0 0 0
+ 3 200 2
+ #27738
+ damaged body armor~
+ damaged body armor~
+ Some damaged equipment lies here.~
+ It is battered and beaten almost beyond repair.
+ ~
+ ITEM_TYPE_ARMOR
+ ITEM_FLAG_LEVEL
+ ITEM_WEAR_TAKE|ITEM_WEAR_BODY
+ 0 0 0 0
+ 5 200 2
+ #27739
+ damaged helmet~
+ a damaged helmet~
+ Some damaged equipment lies here.~
+ It is battered and beaten almost beyond repair.
+ ~
+ ITEM_TYPE_ARMOR
+ ITEM_FLAG_LEVEL
+ ITEM_WEAR_TAKE|ITEM_WEAR_HEAD
+ 0 0 0 0
+ 1 200 2
+ #27740
+ damaged leggings~
+ some damaged leggings~
+ Some damaged equipment lies here.~
+ They are battered and beaten almost beyond repair.
+ ~
+ ITEM_TYPE_ARMOR
+ ITEM_FLAG_LEVEL
+ ITEM_WEAR_TAKE|ITEM_WEAR_LEGS
+ 0 0 0 0
+ 3 200 2
+ #27741
+ damaged boots~
+ a damaged pair of boots~
+ Some damaged equipment lies here.~
+ They are battered and beaten almost beyond repair.
+ ~
+ ITEM_TYPE_ARMOR
+ ITEM_FLAG_LEVEL
+ ITEM_WEAR_TAKE|ITEM_WEAR_FEET
+ 0 0 0 0
+ 4 200 2
+ #27742
+ damaged gloves~
+ a damaged pair of gloves~
+ Some damaged equipment lies here.~
+ They are battered and beaten almost beyond repair.
+ ~
+ ITEM_TYPE_ARMOR
+ ITEM_FLAG_LEVEL
+ ITEM_WEAR_TAKE|ITEM_WEAR_HANDS
+ 0 0 0 0
+ 2 200 2
+ #27743
+ damaged belt~
+ a damaged belt~
+ Some damaged equipment lies here.~
+ It is battered and beaten almost beyond repair.
+ ~
+ ITEM_TYPE_ARMOR
+ ITEM_FLAG_LEVEL
+ ITEM_WEAR_TAKE|ITEM_WEAR_WAIST
+ 0 0 0 0
+ 1 200 2
+ #27744
+ damaged oil lamp~
+ a damaged oil lamp~
+ Some damaged equipment lies here.~
+ Its wick is gone, the bottom shows a hole. Obviously, this lamp will not last
+ long.
+ ~
+ ITEM_TYPE_LIGHT
+ ITEM_FLAG_LEVEL
+ ITEM_WEAR_TAKE
+ 0 0 15 0
+ 1 50 1
+ #27745
+ repaired oil lamp~
+ a repaired oil lamp~
+ Some repaired equipment lies here.~
+ You can see where there used to be a hole in the bottom of the lamp and some
+ dents have been hammered out of it, but it is still pretty worthless.
+ ~
+ ITEM_TYPE_LIGHT
+ ITEM_FLAG_LEVEL
+ ITEM_WEAR_TAKE
+ 0 0 333 0
+ 2 75 2
+ A
+ APPLY_AC -2
+ A
+ APPLY_HITROLL 1
+ A
+ APPLY_DAMROLL 1
+ #27746
+ repaired shield~
+ a repaired shield~
+ Some repaired equipment lies here.~
+ You can see where there had been huge dents. Now, there are smaller dents and
+ creases. Do you really want this garbage?
+ ~
+ ITEM_TYPE_ARMOR
+ ITEM_FLAG_LEVEL
+ ITEM_WEAR_TAKE|ITEM_WEAR_SHIELD
+ 3 0 0 0
+ 4 300 2
+ A
+ APPLY_HITROLL 1 A APPLY_DEX 1 #27747
+ repaired gloves~
+ a repaired pair of gloves~
+ Some repaired equipment lies here.~
+ They have multicolored fingers where the fingers of several different gloves
+ have been patched together in order to make these things.
+ ~
+ ITEM_TYPE_ARMOR
+ ITEM_FLAG_LEVEL
+ ITEM_WEAR_TAKE|ITEM_WEAR_HANDS
+ 3 0 0 0
+ 4 300 2
+ A
+ APPLY_HITROLL 1
+ #27748
+ repaired belt~
+ a repaired belt~
+ Some repaired equipment lies here.~
+ You see many patches of leather, making it much less than satisfactory.
+ ~
+ ITEM_TYPE_ARMOR
+ ITEM_FLAG_LEVEL
+ ITEM_WEAR_TAKE|ITEM_WEAR_WAIST
+ 4 0 0 0
+ 2 375 2
+ A
+ APPLY_DEX 1
+ #27749
+ repaired boots~
+ a repaired pair of boots~
+ Some repaired equipment lies here.~
+ They have newer soles, replaced laces and touched up uppers. They are still
+ worthless.
+ ~
+ ITEM_TYPE_ARMOR
+ ITEM_FLAG_LEVEL
+ ITEM_WEAR_TAKE|ITEM_WEAR_FEET
+ 3 0 0 0
+ 5 520 2
+ A
+ APPLY_MOVE 4
+ #27750
+ repaired leggings~
+ some repaired leggings~
+ Some repaired equipment lies here.~
+ They have patches of tin attached to places where there used to be holes.
+ ~
+ ITEM_TYPE_ARMOR
+ ITEM_FLAG_LEVEL
+ ITEM_WEAR_TAKE|ITEM_WEAR_LEGS
+ 3 0 0 0
+ 3 380 2
+ A
+ APPLY_DAMROLL 1
+ #27751
+ repaired helmet~
+ a repaired helmet~
+ Some repaired equipment lies here.~
+ It used to have a huge dent in the top. Now there are creases where the dent
+ used to be.
+ ~
+ ITEM_TYPE_ARMOR
+ ITEM_FLAG_LEVEL
+ ITEM_WEAR_HEAD|ITEM_WEAR_TAKE
+ 3 0 0 0
+ 2 500 2
+ A
+ APPLY_STR 1
+ #27752
+ repaired body armor~
+ repaired body armor~
+ Some repaired equipment lies here.~
+ You see where there were several dents and even a few holes. The person who wore
+ this when the holes were made is no longer with us. Now, that's a sobering
+ thought!
+ ~
+ ITEM_TYPE_ARMOR
+ ITEM_FLAG_LEVEL
+ ITEM_WEAR_TAKE|ITEM_WEAR_BODY
+ 3 0 0 0
+ 6 750 2
+ A
+ APPLY_DEX 1
+ A
+ APPLY_HITROLL 1
+ #27753
+ repaired ring~
+ a repaired ring~
+ Some repaired equipment lies here.~
+ It has two distinct sections where two of them were combined to make this one.
+ ~
+ ITEM_TYPE_ARMOR
+ ITEM_FLAG_LEVEL
+ ITEM_WEAR_TAKE|ITEM_WEAR_FINGER
+ 3 0 0 0
+ 1 750 2
+ A
+ APPLY_STR 1
+ #27754
+ repaired amulet~
+ a repaired amulet~
+ Some repaired equipment lies here.~
+ The gemstone has been replaced by a piece of pretty glass! Do you call that a
+ repair job or just a theft?
+ ~
+ ITEM_TYPE_ARMOR
+ ITEM_FLAG_LEVEL
+ ITEM_WEAR_TAKE|ITEM_WEAR_NECK
+ 4 0 0 0
+ 2 495 2
+ A
+ APPLY_HITROLL 1
+ #27755
+ repaired collar~
+ a repaired collar~
+ Some repaired equipment lies here.~
+ You pitty the person who actually has to wear this!
+ ~
+ ITEM_TYPE_ARMOR
+ ITEM_FLAG_LEVEL
+ ITEM_WEAR_TAKE|ITEM_WEAR_NECK
+ 3 0 0 0
+ 2 275 2
+ A
+ APPLY_MANA 4
+ #27756
+ damaged dagger~
+ a damaged dagger~
+ Some damaged equipment lies here.~
+ The hilt is falling off, the blade chipped. It seems quite worthless.
+ ~
+ ITEM_TYPE_WEAPON
+ ITEM_FLAG_LEVEL
+ ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+ 0 1 3 WEAPON_STAB
+ 2 75 1
+ #27757
+ repaired dagger~
+ a repaired dagger~
+ Some repaired equipment lies here.~
+ The hilt has been carelessly reattached and the blade sharpened down to a point
+ where it will almost cut a slice of coffee.
+ ~
+ ITEM_TYPE_WEAPON
+ ITEM_FLAG_LEVEL
+ ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+ 0 4 2 WEAPON_STAB
+ 3 175 2
+ #27758
+ damaged club~
+ a damaged club~
+ Some damaged equipment lies here.~
+ You see where termites have eaten through it.
+ ~
+ ITEM_TYPE_WEAPON
+ ITEM_FLAG_LEVEL
+ ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+ 0 1 3 WEAPON_POUND
+ 2 75 1
+ #27759
+ repaired club~
+ a repaired club~
+ Some repaired equipment lies here.~
+ You see where termites have eaten through it. It seems like it hasn't even been
+ repaired! What a rip off!
+ ~
+ ITEM_TYPE_WEAPON
+ ITEM_FLAG_LEVEL
+ ITEM_WEAR_WIELD|ITEM_WEAR_TAKE
+ 0 2 5 WEAPON_POUND
+ 3 175 2
+ #27760
+ damaged sword~
+ a damaged sword~
+ Some damaged equipment lies here.~
+ The hilt is falling off, the blade bent. Not much value can be found in this.
+ ~
+ ITEM_TYPE_WEAPON
+ ITEM_FLAG_LEVEL
+ ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+ 0 1 3 WEAPON_PIERCE
+ 3 75 1
+ #27761
+ repaired sword~
+ a repaired sword~
+ Some repaired equipment lies here.~
+ The hilt has been replaced and the blade straightened out in a half-hazard
+ fashion.
+ ~
+ ITEM_TYPE_WEAPON
+ ITEM_FLAG_LEVEL
+ ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+ 0 2 5 WEAPON_PIERCE
+ 4 175 2
+ A
+ APPLY_DAMROLL 1
+ #27762
+ damaged arrow~
+ a damaged arrow~
+ Some damaged equipment lies here.~
+ Its fletches have been torn off and its tip is rusted beyond recognition.
+ ~
+ ITEM_TYPE_AMMO
+ ITEM_FLAG_LEVEL
+ ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+ 1 1 6 3
+ 1 10 1
+ #27763
+ damaged bow~
+ a damaged bow~
+ Some damaged equipment lies here.~
+ It is missing its drawstring.
+ ~
+ ITEM_TYPE_WEAPON
+ ITEM_FLAG_LEVEL
+ ITEM_WEAR_TAKE
+ 1 1 3 WEAPON_SLICE
+ 3 225 1
+ #27764
+ repaired arrow~
+ a repaired arrow~
+ Some repaired equipment lies here.~
+ It has new fletches although they weren't placed properly and a sharpened tip
+ although it is still rusty.
+ ~
+ ITEM_TYPE_AMMO
+ ITEM_FLAG_LEVEL
+ ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+ 1 2 19 3
+ 1 15 2
+ #27765
+ repaired bow~
+ a repaired bow~
+ Some repaired equipment lies here.~
+ It has a new drawstring, although the drawstring is far too small for the bow.
+ ~
+ ITEM_TYPE_WEAPON
+ ITEM_FLAG_LEVEL
+ ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+ 1 2 5 WEAPON_SLICE
+ 3 775 2
+ #27766
+ scroll recall~
+ a scroll of recall~
+ a scroll of recall lies forgotten in the dust.~
+ You try to recall what use this has.
+ ~
+ ITEM_TYPE_SCROLL
+ ITEM_FLAG_LEVEL
+ ITEM_WEAR_TAKE
+ 27 SPELL_WORD_OF_RECALL SPELL_NONE SPELL_NONE
+ 1 175 10
+ #27767
+ bottle travelling~
+ A bottle of Travelling~
+ An old bottle rolls around on the ground.~
+ Going somewhere?
+ ~
+ ITEM_TYPE_POTION
+ ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL|ITEM_FLAG_INVIS
+ ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+ 34 SPELL_ASTRAL_PROJECTION SPELL_ETHEREAL_TRAVEL SPELL_PASS_DOOR
+ 1 40000 33
+ #27768
+ pick axe~
+ A rusty old pick axe~
+ A rusty old pick axe gets rustier as it sits here.~
+ It is quite old and overused. You notice a bit of a yellowish substance from
+ when it was used in the mines a long time ago.
+ ~
+ ITEM_TYPE_TRASH
+ ITEM_FLAG_LEVEL
+ ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+ 0 0 0 WEAPON_CHOP
+ 1 1000 1
+ E yellowish substance~
+ It looks like sulphur deposits or some other mineral which can be easily MINEd
+ in the surrounding plains.
+ ~
+ P 1
+ TRIG_UNKNOWN 100 mine
+ OPROG_IF OIF_WEAR_LOC ! WEAR_NONE 2 7
+ P 2
+ TRIG_VOID
+ OPROG_IF OIF_USER_PERCENT_MOVE > 30 3 6
+ P 3
+ TRIG_VOID
+ OPROG_IF OIF_USER_ROOM_NUM = 27891 4 8
+ P 4
+ TRIG_VOID
+ OPROG_IF OIF_RANDOM_PERCENT < 25 5 8
+ P 5
+ TRIG_VOID
+ OPROG_ECHO
+ You pry the pick axe from the rock and notice a chunk of yellowish rock.~
+ P 5
+ TRIG_VOID
+ OPROG_GOD_COMMAND
+ MPOLOAD 27721~
+ P 6
+ TRIG_VOID
+ OPROG_ECHO
+ You try to mine but give up for the day.~
+ P 7
+ TRIG_VOID
+ OPROG_ECHO
+ You start digging in the dirt with your hands. Boy that hurts!~
+ P 7
+ TRIG_VOID
+ OPROG_APPLY OAPPLY_MOVE -60
+ P 8
+ TRIG_VOID
+ OPROG_ECHO
+ You mine for a while, but find nothing for your efforts.~
+ P 8
+ TRIG_VOID
+ OPROG_APPLY OAPPLY_MOVE -18
+ #27769
+ invisible bottle~
+ An invisible bottle~
+ An invisible bottle sits here, trying to hide.~
+ It is amazing that you can see an invisible bottle!
+ ~
+ ITEM_TYPE_POTION
+ ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+ 8 SPELL_DETECT_INVIS SPELL_PASS_DOOR SPELL_FAERIE_FIRE
+ 0 1000 1
+ A
+ APPLY_STR -2
+ A
+ APPLY_AC 2
+ A
+ APPLY_WIS -2
+ #27770
+ invisible scrip~
+ An invisible scrip~
+ An invisible scrip sits here, trying to hide.~
+ It is amazing that you can see an invisible piece of paper!
+ ~
+ ITEM_TYPE_SCROLL
+ ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+ 8 SPELL_DETECT_INVIS SPELL_PASS_DOOR SPELL_FAERIE_FIRE
+ 0 1000 1
+ A
+ APPLY_STR -2
+ A
+ APPLY_AC 2
+ A
+ APPLY_WIS -2
+
+#0
+ 
+ 
+ 
+ #ROOMS
+ #27700
+ Old Singase Square~
+ You are in the center of town. All around you, you see signs of a once great
+ trading center, although it is now in a state of rapid decay as the citizenry
+ has a very indifferent attitude toward its upkeep. They seem to worship the
+ god of sloth here, or so it appears.
+ ~
+ 277 ROOM_SAFE|ROOM_NO_CASTLE|ROOM_NO_MOB|ROOM_NO_RIP|ROOM_ALTAR_N SECT_CITY
+ DDIR_NORTH
+ Chakkor Avenue
+ ~
+ ~
+ 0 -1 27701
+ DDIR_SOUTH
+ Chakkor Avenue
+ ~
+ ~
+ 0 -1 27706
+ DDIR_EAST
+ Boulevard Of The Sun
+ ~
+ ~
+ 0 -1 27727
+ DDIR_WEST
+ Boulevard Of The Sun
+ ~
+ ~
+ 0 -1 27731
+ S
+ #27701
+ Chakkor Avenue~
+ This avenue, named for one of the great cities of the realms, was built to honor
+ the rulers of Chakkor. It was once a beautiful avenue through the city but has
+ been worn down by travel and lack of care. The avenue was built using the style
+ of Chakkorian architects, the buildings lining it built in glorious Chakkorian
+ flair. The well worn flagstones to the west and east are testament to the large
+ amount of travellers that have passed this way.
+ ~
+ 277 ROOM_NO_CASTLE SECT_CITY
+ DDIR_SOUTH
+ The Old Singase Square
+ ~
+ ~
+ 0 -1 27700
+ DDIR_NORTH
+ Chakkor Avenue
+ ~
+ ~
+ 0 -1 27702
+ DDIR_EAST
+ Ngurrinji's weapon shop
+ ~
+ ~
+ 0 -1 27811
+ DDIR_WEST
+ Kanjamalak's Magic Shop
+ ~
+ ~
+ 0 -1 27783
+ S
+ #27702
+ Chakkor Avenue~
+ This avenue, named for one of the great cities of the realms, was built to
+ honor the rulers of Chakkor. It was once a beautiful avenue through the city
+ but has been worn down by travel and lack of care. Wagon wheels and horses
+ have muddied and worn the road to but a shadow of it's former self, and you
+ are careful where you step lest you discover more about the outdoor sewerage
+ system that you can smell all around you.
+ ~
+ 277 ROOM_NO_CASTLE SECT_CITY
+ DDIR_SOUTH
+ Chakkor Avenue
+ ~
+ ~
+ 0 -1 27701
+ DDIR_NORTH
+ Chakkor Avenue
+ ~
+ ~
+ 0 -1 27703
+ S
+ #27703
+ Chakkor Avenue~
+ This avenue, named for one of the great cities of the realms, was built to
+ honor the rulers of Chakkor. It was once a beautiful avenue through the city
+ but has been worn down by travel and lack of care. The houses to the west
+ and east have yet to lose all their glory having been well maintained till
+ now - surprising given the open display of poverty in the streets. The smell
+ is not so bad here.
+ ~
+ 277 ROOM_NO_CASTLE SECT_CITY
+ DDIR_SOUTH
+ Chakkor Avenue
+ ~
+ ~
+ 0 -1 27702
+ DDIR_NORTH
+ Chakkor Avenue
+ ~
+ ~
+ 0 -1 27704
+ DDIR_EAST
+ A Well Kept Old House
+ ~
+ ~
+ 0 -1 27758
+ DDIR_WEST
+ A Well Kept Old House
+ ~
+ ~
+ 0 -1 27759
+ S
+ #27704
+ Chakkor Avenue~
+ This avenue, named for one of the great cities of the realms, was built to
+ honor the rulers of Chakkor. It was once a beautiful avenue through the city
+ but has been worn down by travel and lack of care. Some of the citizens
+ stand around here with nothing to do. Whilst there is activity around you,
+ nothing much seems to be happening at the moment. You notice some movement
+ in the house to the west.
+ ~
+ 277 ROOM_NO_CASTLE SECT_CITY
+ DDIR_SOUTH
+ Chakkor Avenue
+ ~
+ ~
+ 0 -1 27703
+ DDIR_NORTH
+ Chakkor Avenue
+ ~
+ ~
+ 0 -1 27705
+ DDIR_EAST
+ A Well Kept Old House
+ ~
+ ~
+ 0 -1 27756
+ DDIR_WEST
+ A Well Kept Old House
+ ~
+ ~
+ 0 -1 27757
+ S
+ #27705
+ Chakkor Avenue~
+ This avenue, named for one of the great cities of the realms, was built to
+ honor the rulers of Chakkor. It was once a beautiful avenue through the city
+ but has been worn down by travel and lack of care. To the east is another
+ house that has retained some of it's former glory. There is a well worn path
+ to the west where you notice a particularly well maintained house.
+ ~
+ 277 ROOM_NO_CASTLE SECT_CITY
+ DDIR_SOUTH
+ Chakkor Avenue
+ ~
+ ~
+ 0 -1 27704
+ DDIR_NORTH
+ Inside the North Gate
+ ~
+ ~
+ 0 -1 27735
+ DDIR_WEST
+ Yangal's house
+ ~
+ ~
+ 0 -1 27753
+ DDIR_EAST
+ A Well Kept Old House
+ ~
+ ~
+ 0 -1 27764
+ S
+ 
+ #27706
+ Chakkor Avenue~
+ This avenue, named for one of the great cities of the realms, was built to
+ honor the rulers of Chakkor. It was once a beautiful avenue through the city
+ but has been worn down by travel and lack of care. The smells of food have an
+ interesting effect in almost covering up the smells of the gutters. To the
+ east you can see some activity, and to the west there are people milling
+ around a diner of sorts.
+ ~
+ 277 ROOM_NO_CASTLE SECT_CITY
+ DDIR_NORTH
+ Old Singase Square
+ ~
+ ~
+ 0 -1 27700
+ DDIR_SOUTH
+ Chakkor Avenue
+ ~
+ ~
+ 0 -1 27707
+ DDIR_WEST
+ Mabo's Diner
+ ~
+ ~
+ 0 -1 27809
+ DDIR_EAST
+ Darby's Armor
+ ~
+ ~
+ 0 -1 27810
+ S
+ #27707
+ Chakkor Avenue~
+ This avenue, named for one of the great cities of the realms, was built to
+ honor the rulers of Chakkor. It was once a beautiful avenue through the city
+ but has been worn down by travel and lack of care. Obviously a more residental
+ area, the houses to the east and west retain some of their former glory... at
+ least on the outside. The smell of the gutter is stiffling here.
+ ~
+ 277 ROOM_NO_CASTLE SECT_CITY
+ DDIR_NORTH
+ Chakkor Avenue
+ ~
+ ~
+ 0 -1 27706
+ DDIR_SOUTH
+ Chakkor Avenue
+ ~
+ ~
+ 0 -1 27708
+ DDIR_EAST
+ A Well Kept Old House
+ ~
+ ~
+ 0 -1 27760
+ DDIR_WEST
+ A Well Kept Old House
+ ~
+ ~
+ 0 -1 27761
+ S
+ #27708
+ Chakkor Avenue~
+ This avenue, named for one of the great cities of the realms, was built to
+ honor the rulers of Chakkor. It was once a beautiful avenue through the city
+ but has been worn down by travel and lack of care. Obviously a more residental
+ area, the houses to the east and west retina some of their former glory... at
+ least on the outside. The smell of the gutter is stiffling here.
+ ~
+ 277 ROOM_NO_CASTLE SECT_CITY
+ DDIR_NORTH
+ Chakkor Avenue
+ ~
+ ~
+ 0 -1 27707
+ DDIR_SOUTH
+ Chakkor Avenue
+ ~
+ ~
+ 0 -1 27710
+ DDIR_EAST
+ A Well Kept Old House
+ ~
+ ~
+ 0 -1 27762
+ DDIR_WEST
+ A Well Kept Old House
+ ~
+ ~
+ 0 -1 27763
+ S
+ #27709
+ Chakkor Avenue~
+ You are not very far into the village and already your stomach is turning from
+ the stench of the open sewers. Much of the village is in such an awful state
+ of disrepair that you have great concern about being here. You have to watch
+ your step to keep from stepping on any stench-producing objects, while at the
+ same time, you are watching the buildings to make sure they don't start falling
+ around you. Maybe it would be better to leave now.
+ ~
+ 277 ROOM_NO_CASTLE SECT_CITY
+ DDIR_NORTH
+ Chakkor Avenue
+ ~
+ ~
+ 0 -1 27708
+ DDIR_SOUTH
+ Chakkor Avenue
+ ~
+ ~
+ 0 -1 27710
+ S
+ #27710
+ Chakkor Avenue~
+ This avenue, named for one of the great cities of the realms, was built to honor
+ the rulers of Chakkor. It was once a beautiful avenue through the city but has
+ been worn down by travel and lack of care. The avenue was built using the style
+ of Chakkorian architects, the buildings lining it built in glorious Chakkorian
+ flair. You can see it is obvious this city was built long before the Order-Chaos
+ struggle practically ripped Chakkor apart.
+ ~
+ 277 ROOM_NO_CASTLE SECT_CITY
+ DDIR_NORTH
+ Chakkor Avenue
+ ~
+ ~
+ 0 -1 27708
+ DDIR_SOUTH
+ Inside the South Gates
+ ~
+ ~
+ 0 -1 27739
+ S
+ #27711
+ Kytar Avenue~
+ You are travelling down a tree lined avenue. This avenue, named for one of the
+ trading partners of this old city, was built to accomodate the influx of traders
+ and workers coming to make an easier life for themselves. As you look at the
+ delapidated structures built along this avenue, you can't help but think the new
+ arrivals have made a grave error in leaving their homelands.
+ ~
+ 277 ROOM_NO_CASTLE SECT_CITY
+ DDIR_NORTH
+ Boulevard Of The Sun
+ ~
+ ~
+ 0 -1 27729
+ DDIR_SOUTH
+ Kytar Avenue
+ ~
+ ~
+ 0 -1 27712
+ S
+ 
+ #27712
+ Kytar Avenue~
+ You continue to walk down this worn down avenue.  The condition of the
+ buildings continue to decrease and you begin to wonder if it is safe to
+ walk these streets?  There is an extremely decayed building to the east.
+ Where is the demolition crew the city has paid for?
+ ~
+ 277 ROOM_NO_CASTLE SECT_CITY
+ DDIR_NORTH
+ Kytar Avenue
+ ~
+ ~
+ 0 -1 27711
+ DDIR_SOUTH
+ Kytar Avenue
+ ~
+ ~
+ 0 -1 27713
+ DDIR_EAST
+ A Run Down Shack
+ ~
+ ~
+ 0 -1 27775
+ S
+ #27713
+ Kytar Avenue~
+ You still wander down this worn down alley.  The buildings on either
+ side do not appear to be improving in property values.  Decreasing
+ perhaps, but not increasing.  The trees seem to be growing from inside
+ the houses, not beside them.
+ ~
+ 277 ROOM_NO_CASTLE SECT_CITY
+ DDIR_NORTH
+ Kytar Avenue
+ ~
+ ~
+ 0 -1 27712
+ DDIR_SOUTH
+ Kytar Avenue
+ ~
+ ~
+ 0 -1 27714
+ S
+ #27714
+ Kytar Avenue~
+ You have reached the outer walls of the city.  The watch tower directly
+ above you is used to gain access to the outer walls.  There seems to be
+ an abboration to the west.  A fairly decent looking house.  It must have
+ been built here to take advantage of the low property taxes.
+ ~
+ 277 ROOM_NO_CASTLE SECT_CITY
+ DDIR_NORTH
+ Kytar Avenue
+ ~
+ ~
+ 0 -1 27713
+ DDIR_WEST
+ Garrawa's house
+ ~
+ ~
+ 0 -1 27754
+ DDIR_UP
+ A Watchtower
+ ~
+ ~
+ 0 -1 27780
+ S
+ #27715
+ Kytar Avenue~
+ You have traveled north of the training boulevard.  This tree-lined
+ avenue was named for the once active trade route.  The avenue has seen
+ some wear and tear, and you can almost imagine the hordes of people
+ walking home from work to their poor, dilapidated homes.
+ ~
+ 277 ROOM_NO_CASTLE SECT_CITY
+ DDIR_NORTH
+ Kytar Avenue
+ ~
+ ~
+ 0 -1 27716
+ DDIR_SOUTH
+ Boulevard Of The Sun
+ ~
+ ~
+ 0 -1 27729
+ S
+ #27716
+ Kytar Avenue~
+ As you walk further north away from the boulevard, the houses seem to
+ get worse (if possible).  The front porches are drooping, falling apart.
+ It does not seem safe to walk up the stairs to knock on the front door.
+ The birds sitting on the eaves seem almost scared that they might fall
+ to the ground unexpectedly if the rot continues it's present course.
+ ~
+ 277 ROOM_NO_CASTLE SECT_CITY
+ DDIR_SOUTH
+ Kytar Avenue
+ ~
+ ~
+ 0 -1 27715
+ DDIR_NORTH
+ Kytar Avenue
+ ~
+ ~
+ 0 -1 27717
+ DDIR_WEST
+ A Run Down Shack
+ ~
+ ~
+ 0 -1 27767
+ DDIR_EAST
+ A Run Down Shack
+ ~
+ ~
+ 0 -1 27769
+ S
+ #27717
+ Kytar Avenue~
+ You are still on the tree lined avenue.  The houses seem in worse
+ condition than those to the south.  It just doesn't seem possible. The
+ trees here, seem to cringe toward the houses, attempting to hide the
+ hideousness of their outward appearance.  Might they be ashamed of where
+ they were planted?
+ ~
+ 277 ROOM_NO_CASTLE SECT_CITY
+ DDIR_SOUTH
+ Kytar Avenue
+ ~
+ ~
+ 0 -1 27716
+ DDIR_NORTH
+ Kytar Avenue
+ ~
+ ~
+ 0 -1 27718
+ DDIR_WEST
+ A Run Down Shack
+ ~
+ ~
+ 0 -1 27766
+ DDIR_EAST
+ A Run Down Shack
+ ~
+ ~
+ 0 -1 27768
+ S
+ 
+ #27718
+ Kytar Avenue~
+ You have reached another outer wall.  Directly above you is one of the
+ infamous watchtowers that allow access to the brave hearted to walk on
+ the city walls.  There seems to be a "transplanted" house to the east.
+ It definitely does not fit in with the rest of the avenue.  The  trees
+ and hedges are neatly trimmed and the flower gardens are weed free.
+ ~
+ 277 ROOM_NO_CASTLE SECT_CITY
+ DDIR_SOUTH
+ Kytar Avenue
+ ~
+ ~
+ 0 -1 27717
+ DDIR_EAST
+ Ganalanja's house
+ ~
+ ~
+ 0 -1 27751
+ DDIR_WEST
+ A Run Down Shack
+ ~
+ ~
+ 0 -1 27765
+ DDIR_UP
+ A Watchtower
+ ~
+ ~
+ 0 -1 27784
+ S
+ #27719
+ Pompeii Avenue~
+ You have wandered off the beaten path.  This avenue was also named for
+ one of the great trade routes of this town's heyday.  The trees and
+ hedges are much overgrown and in need of much trimming and pruning. The
+ homes on this side of town are not much better than the other ones.
+ ~
+ 277 ROOM_NO_CASTLE SECT_CITY
+ DDIR_NORTH
+ Pompeii Avenue
+ ~
+ ~
+ 0 -1 27720
+ DDIR_SOUTH
+ Boulevard Of The Sun
+ ~
+ ~
+ 0 -1 27733
+ S
+ #27720
+ Pompeii Avenue~
+ The trees and bushes on this avenue get worse as you go further from the
+ boulevard.  You have to duck and twist to avoid the needle sharp
+ branches.  The homes here were built for the main traders of the town,
+ so they would have a resting place while attempting to sell their goods
+ at the marketplace once arriving at home.
+ ~
+ 277 ROOM_NO_CASTLE SECT_CITY
+ DDIR_SOUTH
+ Pompeii Avenue
+ ~
+ ~
+ 0 -1 27719
+ DDIR_NORTH
+ Pompeii Avenue
+ ~
+ ~
+ 0 -1 27721
+ S
+ #27721
+ Pompeii Avenue~
+ The homes on each side of the road appear to have trees growing through
+ the house.  The overgrown yards have mounds of trash, paper, empty
+ rusting cans, and paths carved through the yard by small creatures. It
+ would be wise to stay on the worn paths to the doors, as adventuring off
+ the path may be harmful to your health.
+ ~
+ 277 ROOM_NO_CASTLE SECT_CITY
+ DDIR_SOUTH
+ Pompeii Avenue
+ ~
+ ~
+ 0 -1 27720
+ DDIR_NORTH
+ Pompeii Avenue
+ ~
+ ~
+ 0 -1 27722
+ DDIR_EAST
+ A Run Down Shack
+ ~
+ ~
+ 0 -1 27771
+ DDIR_WEST
+ A Run Down Shack
+ ~
+ ~
+ 0 -1 27772
+ S
+ #27722
+ Pompeii Avenue~
+ You have reached one of the many outer city walls.  The watchtower is
+ directly above you.  There is a strange house to the west. It
+ definitely does not follow the given "dress code" of the neighborhood.
+ It's front lawn is very neat.  The tree branches on that side of the
+ street are not hanging over the hedges.  You could actually use the
+ sidewalk!  The house on the east side of the road definitely fits in
+ with the neighborhood scheme.  The front porch is falling apart, the
+ windows are shattered and boarded up, and the screen door is halfway
+ hanging off its frame.
+ ~
+ 277 ROOM_NO_CASTLE SECT_CITY
+ DDIR_SOUTH
+ Pompeii Avenue
+ ~
+ ~
+ 0 -1 27721
+ DDIR_WEST
+ Ganngalida's house
+ ~
+ ~
+ 0 -1 27755
+ DDIR_UP
+ A Watchtower
+ ~
+ ~
+ 0 -1 27782
+ DDIR_EAST
+ A Run Down Shack
+ ~
+ ~
+ 0 -1 27770
+ S
+ #27723
+ Pompeii Avenue~
+ You have wandered south of the boulevard.  The homes here follow the
+ general appearance of most of the homes in the neighborhood. It appears
+ that a single match and a stiff wind would erase the whole town in a
+ heartbeat.   The wilderness between the homes grows many things, paper,
+ rusting tin cans, and heaps of other garbage.
+ ~
+ 277 ROOM_NO_CASTLE SECT_CITY
+ DDIR_SOUTH
+ Pompeii Avenue
+ ~
+ ~
+ 0 -1 27724
+ DDIR_NORTH
+ Boulevard Of The Sun
+ ~
+ ~
+ 0 -1 27733
+ S
+ 
+ #27724
+ Pompeii Avenue~
+ The yards on the houses on this street are hideous.  They match the
+ houses well.  The front porches are falling apart.  The stairs are
+ rotted through, the windows are covered with cardboard, the front door
+ appears to be hanging by one nail.  The yards have mounds and mounds of
+ garbage.  You could assume that garbage days here have been canceled.
+ ~
+ 277 ROOM_NO_CASTLE SECT_CITY
+ DDIR_NORTH
+ Pompeii Avenue
+ ~
+ ~
+ 0 -1 27723
+ DDIR_SOUTH
+ Pompeii Avenue
+ ~
+ ~
+ 0 -1 27726
+ DDIR_EAST
+ A Run Down Shack
+ ~
+ ~
+ 0 -1 27773
+ DDIR_WEST
+ A Run Down Shack
+ ~
+ ~
+ 0 -1 27774
+ S
+ #27725
+ Pompeii Avenue~
+ You have reached another outer wall of the city.  The watchtower is
+ directly above you.  It is an entryway to the city walls that protect
+ the city from ruffians.  The front yard of the house to the east is very
+ unusual.  It is very clean.  There is no garbage in the yard, the trees
+ and hedges are trimmed, and the flower beds are weed-free.  It might pay
+ to visit the citizen that lives to the east.
+ ~
+ 277 ROOM_NO_CASTLE SECT_CITY
+ DDIR_NORTH
+ Pompeii Avenue
+ ~
+ ~
+ 0 -1 27726
+ DDIR_EAST
+ Yannyalu's house
+ ~
+ ~
+ 0 -1 27752
+ DDIR_UP
+ A Watchtower
+ ~
+ ~
+ 0 -1 27781
+ S
+ #27726
+ Pompeii Avenue~
+ The houses east and west of this spot have deteriorated to the point of
+ no return.  The timbers used to build the houses are completely rotten,
+ and the trees have overtaken the homes.  The newest trees appear to have
+ started in the rooms and are growing out the windows and through the
+ holes in the roof.
+ ~
+ 277 ROOM_NO_CASTLE SECT_CITY
+ DDIR_NORTH
+ Pompeii Avenue
+ ~
+ ~
+ 0 -1 27724
+ DDIR_SOUTH
+ Pompeii Avenue
+ ~
+ ~
+ 0 -1 27725
+ S
+ #27727
+ Boulevard Of The Sun~
+ You are walking down a once beautiful boulevard. The paving stones show signs
+ they had been polished to a high sheen. Their smooth curves have been chipped
+ and broken, their beautiful polish worn down by heavy travel down the centuries.
+ What an interesting sight you see here! As you stand and watch, you see people
+ wander into the buildings lining this street carrying different items, walk out
+ carrying nothing, then come back again with other items of perceived
+ uselessness. They make several trips back and forth before finally leaving with
+ their original items, only ever so slightly altered.
+ ~
+ 277 ROOM_NO_CASTLE SECT_CITY
+ DDIR_WEST
+ Boulevard Of The Sun
+ ~
+ ~
+ 0 -1 27700
+ DDIR_EAST
+ Boulevard Of The Sun
+ ~
+ ~
+ 0 -1 27728
+ DDIR_SOUTH
+ Darby's Armor
+ ~
+ ~
+ 0 -1 27810
+ DDIR_NORTH
+ Ngurrinji's Weaponry
+ ~
+ ~
+ 0 -1 27811
+ S
+ #27728
+ Boulevard Of The Sun~
+ You are walking down a once beautiful boulevard. The paving stones show signs
+ they had been polished to a high sheen. Their smooth curves have been chipped
+ and broken, their beautiful polish worn down by heavy travel down the centuries.
+ What an interesting combination of establishments here! If you want to learn
+ to heal the sick, you can enter the establishment to the south. If you want to
+ learn to speak with the ones those fools to the south couldn't help you can
+ choose the establishment to the north. The sense of death is quite strong in
+ either direction.
+ ~
+ 277 ROOM_NO_CASTLE SECT_CITY
+ DDIR_WEST
+ Boulevard Of The Sun
+ ~
+ ~
+ 0 -1 27727
+ DDIR_EAST
+ Boulevard Of The Sun
+ ~
+ ~
+ 0 -1 27729
+ DDIR_SOUTH
+ Monk Guild
+ ~
+ ~
+ 0 -1 27745
+ DDIR_NORTH
+ Necromancer Guild
+ ~
+ ~
+ 0 -1 27746
+ S
+ #27729
+ Boulevard Of The Sun~
+ You are walking down a once beautiful boulevard. The paving stones show signs
+ they had been polished to a high sheen. Their smooth curves have been chipped
+ and broken, their beautiful polish worn down by heavy travel down the centuries.
+ Looking down the street stretching north and south from here, you can see
+ extreme decay and poverty. There seems to be a great deal of activity while at
+ the same time, there seems to be absolutely nothing being accomplished.
+ ~
+ 277 ROOM_NO_CASTLE SECT_CITY
+ DDIR_NORTH
+ Kytar Avenue
+ ~
+ ~
+ 0 -1 27715
+ DDIR_EAST
+ Boulevard Of The Sun
+ ~
+ ~
+ 0 -1 27730
+ DDIR_SOUTH
+ Kytar Avenue
+ ~
+ ~
+ 0 -1 27711
+ DDIR_WEST
+ Boulevard Of The Sun
+ ~
+ ~
+ 0 -1 27728
+ S
+ 
+ #27730
+ Boulevard Of The Sun~
+ You are walking down a once beautiful boulevard. The paving stones show signs
+ they had been polished to a high sheen. Their smooth curves have been chipped
+ and broken, their beautiful polish worn down by heavy travel down the centuries.
+ You can see how well planned this boulevard was when built as the sun seemingly
+ travels down the boulevard on its path around the realms each day. The boulevard
+ was also built wide enough to take into account the seasonal shifts of the sun's
+ path. The decaying town spreads out before you to the west while to the north,
+ there seem to be some sort of mind games being played. To the south, people are
+ attempting to turn gold into lead.
+ ~
+ 277 ROOM_NO_CASTLE SECT_CITY
+ DDIR_WEST
+ Boulevard Of The Sun
+ ~
+ ~
+ 0 -1 27729
+ DDIR_EAST
+ Inside the East Gate
+ ~
+ ~
+ 0 -1 27737
+ DDIR_NORTH
+ Illusionist Guild
+ ~
+ ~
+ 0 -1 27743
+ DDIR_SOUTH
+ Elementalist Guild
+ ~
+ ~
+ 0 -1 27744
+ S
+ #27731
+ Boulevard Of The Sun~
+ You are walking down a once beautiful boulevard. The paving stones show signs
+ they had been polished to a high sheen. Their smooth curves have been chipped
+ and broken, their beautiful polish worn down by heavy travel down the centuries.
+ The gutters here are full of dead and dying animals, signs of disease can be
+ plainly seen on the poor creatures. There is activity to the south, where an
+ intriguing aroma eminates. It appears to be a diner of no great ability. There
+ is an old building to the north that catches your eye.
+ ~
+ 277 ROOM_NO_CASTLE SECT_CITY
+ DDIR_EAST
+ Old Singase Square
+ ~
+ ~
+ 0 -1 27700
+ DDIR_WEST
+ Boulevard Of The Sun
+ ~
+ ~
+ 0 -1 27732
+ DDIR_SOUTH
+ Mabo's Diner
+ ~
+ ~
+ 0 -1 27809
+ DDIR_NORTH
+ Kanjamalak's Magic Shop
+ ~
+ ~
+ 0 -1 27783
+ S
+ #27732
+ Boulevard Of The Sun~
+ You are walking down a once beautiful boulevard. The paving stones show signs
+ they had been polished to a high sheen. Their smooth curves have been chipped
+ and broken, their beautiful polish worn down by heavy travel down the centuries.
+ You had better watch your step here. You really don't want to step in the open
+ sewers! You hear sounds of battle to the south and, less powerfully, to the
+ north.
+ ~
+ 277 ROOM_NO_CASTLE SECT_CITY
+ DDIR_EAST
+ Boulevard Of The Sun
+ ~
+ ~
+ 0 -1 27731
+ DDIR_WEST
+ Boulevard Of The Sun
+ ~
+ ~
+ 0 -1 27733
+ DDIR_SOUTH
+ Ranger Guild
+ ~
+ ~
+ 0 -1 27747
+ DDIR_NORTH
+ Rogue Guild
+ ~
+ ~
+ 0 -1 27748
+ S
+ #27733
+ Boulevard Of The Sun~
+ You are walking down a once beautiful boulevard. The paving stones show signs
+ they had been polished to a high sheen. Their smooth curves have been chipped
+ and broken, their beautiful polish worn down by heavy travel down the centuries.
+ As you stand here, you take in the sights - seriously delapidated residences
+ to the north and south among the overgrown and unkept shrubbery, gutters filled
+ with rotten and decayed pieces of animals and vegetation, extremely
+ impoverished people walking the same streets as extremely wealthy people. It
+ is amazing how the wealthy don't even take notice of their own poor!
+ ~
+ 277 ROOM_NO_CASTLE SECT_CITY
+ DDIR_NORTH
+ Pompeii Avenue
+ ~
+ ~
+ 0 -1 27719
+ DDIR_SOUTH
+ Pompeii Avenue
+ ~
+ ~
+ 0 -1 27723
+ DDIR_EAST
+ Boulevard Of The Sun
+ ~
+ ~
+ 0 -1 27732
+ DDIR_WEST
+ Boulevard Of The Sun
+ ~
+ ~
+ 0 -1 27734
+ S
+ #27734
+ Boulevard Of The Sun~
+ You are walking down a once beautiful boulevard. The paving stones show signs
+ they had been polished to a high sheen. Their smooth curves have been chipped
+ and broken, their beautiful polish worn down by heavy travel down the centuries.
+ The smell of death here is quite strong. Every now and again, someone walks
+ into the building to the south, shoulders slumped, body shuddering while you
+ occasionally see a shadow sneaking into the dark building to the north.
+ ~
+ 277 ROOM_NO_CASTLE SECT_CITY
+ DDIR_EAST
+ Boulevard Of The Sun
+ ~
+ ~
+ 0 -1 27733
+ DDIR_WEST
+ Inside the West Gates
+ ~
+ ~
+ 0 -1 27741
+ DDIR_NORTH
+ Assassin Guild
+ ~
+ ~
+ 0 -1 27749
+ DDIR_SOUTH
+ The Morgue
+ ~
+ ~
+ 0 -1 27750
+ S
+ #27735
+ Inside the North Gate~
+ You are inside the gate to Old Singase and what you saw from outside the gate
+ is basically the same as what you see now, with the possible exception that what
+ you see now is much worse than what you saw then. Garbage is strewn all across
+ the town but the residents don't seem to care. It is amazing what indifference
+ does.
+ ~
+ 277 ROOM_NO_CASTLE SECT_CITY
+ DDIR_SOUTH
+ Chakkor Avenue
+ ~
+ ~
+ 0 -1 27705
+ DDIR_NORTH
+ Outside the North Gates
+ ~
+ Gates~
+ EX_ISDOOR|EX_CLOSED -1 27736
+ DDIR_UP
+ A Watchtower
+ ~
+ ~
+ 0 -1 27777
+ S
+ 
+ #27736
+ Outside the North Gate~
+ You have arrived outside Old Singase. The town has obviously seen its better
+ days as it is in a steady state of decay. Between you and the town rests a
+ nondescript gate, barring admittance to this nothingness.
+ ~
+ 277 ROOM_NO_CASTLE SECT_CITY
+ DDIR_SOUTH
+ Inside the North Gates
+ ~
+ Gates~
+ EX_ISDOOR|EX_CLOSED -1 27735
+ DDIR_NORTH
+ The plains of Singase spread out before you.
+ ~
+ ~
+ 0 -1 27827
+ S
+ #27737
+ Inside the East Gate~
+ You are inside the gate to Old Singase and what you saw from outside the gate
+ is basically the same as what you see now, with the possible exception that what
+ you see now is much worse than what you saw then. Garbage is strewn all across
+ the town but the residents don't seem to care. It is amazing what indifference
+ does.
+ ~
+ 277 ROOM_NO_CASTLE SECT_CITY
+ DDIR_WEST
+ Boulevard Of The Sun
+ ~
+ ~
+ 0 -1 27730
+ DDIR_EAST
+ Outside the East Gates
+ ~
+ Gates~
+ EX_ISDOOR|EX_CLOSED -1 27738
+ DDIR_UP
+ A Watchtower
+ ~
+ ~
+ 0 -1 27776
+ S
+ #27738
+ Outside the East Gate~
+ You have arrived outside Old Singase. The town has obviously seen its better
+ days as it is in a steady state of decay. Between you and the town rests a
+ nondescript gate, barring admittance to this nothingness.
+ ~
+ 277 ROOM_NO_CASTLE SECT_CITY
+ DDIR_WEST
+ Inside the East Gates
+ ~
+ Gates~
+ EX_ISDOOR|EX_CLOSED -1 27737
+ DDIR_EAST
+ ~
+ ~
+ 0 -1 27832
+ S
+ #27739
+ Inside the South Gate~
+ You are inside the gate to Old Singase and what you saw from outside the gate
+ is basically the same as what you see now, with the possible exception that what
+ you see now is much worse than what you saw then. Garbage is strewn all across
+ the town but the residents don't seem to care. It is amazing what indifference
+ does.
+ ~
+ 277 ROOM_NO_CASTLE SECT_CITY
+ DDIR_NORTH
+ Chakkor Avenue
+ ~
+ ~
+ 0 -1 27710
+ DDIR_SOUTH
+ Outside the South Gates
+ ~
+ Gates~
+ EX_ISDOOR|EX_CLOSED -1 27740
+ DDIR_UP
+ A Watchtower
+ ~
+ ~
+ 0 -1 27779
+ S
+ #27740
+ Outside the South Gate~
+ You have arrived outside Old Singase. The town has obviously seen its better
+ days as it is in a steady state of decay. Between you and the town rests a
+ nondescript gate, barring admittance to this nothingness.
+ ~
+ 277 ROOM_NO_CASTLE SECT_CITY
+ DDIR_NORTH
+ Inside the South Gates
+ ~
+ Gates~
+ EX_ISDOOR|EX_CLOSED -1 27739
+ DDIR_SOUTH
+ The plains of Singase spread out before you.
+ ~
+ ~
+ 0 -1 27881
+ S
+ #27741
+ Inside the West Gate~
+ You are inside the gate to Old Singase and what you saw from outside the gate
+ is basically the same as what you see now, with the possible exception that what
+ you see now is much worse than what you saw then. Garbage is strewn all across
+ the town but the residents don't seem to care. It is amazing what indifference
+ does.
+ ~
+ 277 ROOM_NO_CASTLE SECT_CITY
+ DDIR_EAST
+ Boulevard Of The Sun
+ ~
+ ~
+ 0 -1 27734
+ DDIR_WEST
+ Outside the West Gates
+ ~
+ Gates~
+ EX_ISDOOR|EX_CLOSED -1 27742
+ DDIR_UP
+ A Watchtower
+ ~
+ ~
+ 0 -1 27778
+ S
+ 
+ #27742
+ Outside the West Gate~
+ You have arrived outside Old Singase. The town has obviously seen its better
+ days as it is in a steady state of decay. Between you and the town rests a
+ nondescript gate, barring admittance to this nothingness.
+ ~
+ 277 ROOM_NO_CASTLE SECT_CITY
+ DDIR_EAST
+ Inside the West Gates
+ ~
+ Gates~
+ EX_ISDOOR|EX_CLOSED -1 27741
+ DDIR_WEST
+ ~
+ ~
+ 0 -1 27823
+ S
+ #27743
+ Illusionist Guild~
+ Now you see me, now you don't. Is that a frog hopping beside you? Or did you
+ conjure that up? You are about to become a force to be reckoned with as you
+ spend time training your skills.
+ ~
+ 277 ROOM_ALLOW_ILL|ROOM_NO_CASTLE|ROOM_INDOORS SECT_CITY
+ DDIR_SOUTH
+ Boulevard Of The Sun
+ ~
+ ~
+ 0 -1 27730
+ S
+ #27744
+ Elementalist Guild~
+ You shall be better able to use the power of the elements as you practice your
+ skills. Many have left here much more powerful than when they arrived. Do you
+ have the desire necessary to be counted among them?
+ ~
+ 277 ROOM_NO_CASTLE|ROOM_ALLOW_ELE|ROOM_INDOORS SECT_CITY
+ DDIR_NORTH
+ Boulevard Of The Sun
+ ~
+ ~
+ 0 -1 27730
+ S
+ #27745
+ Monk Guild~
+ Hurry! There are dieing people around you! Go heal them, give them the food and
+ protection they need to continue living. Yours is a calling greater than self.
+ You shall become a much better servant to those in need as you practice your
+ skills here.
+ ~
+ 277 ROOM_ALLOW_MON|ROOM_NO_CASTLE|ROOM_INDOORS SECT_CITY
+ DDIR_NORTH
+ Boulevard Of The Sun
+ ~
+ ~
+ 0 -1 27728
+ S
+ #27746
+ Necromancer Guild~
+ So you want to learn the skills of the dead ones, do you? Are you up to the
+ challenge? Here, you can learn everything you need to be a good necromancer...
+ IF you are up to it!
+ ~
+ 277 ROOM_ALLOW_NEC|ROOM_NO_CASTLE|ROOM_INDOORS SECT_CITY
+ DDIR_SOUTH
+ Boulevard Of The Sun
+ ~
+ ~
+ 0 -1 27728
+ S
+ #27747
+ Ranger Guild~
+ Chivalry is not lost here! You can learn all the skills necessary to protect the
+ innocent and slay the vermin. Many pieces of equipment afford you all the
+ challenges you need to become a better ranger.
+ ~
+ 277 ROOM_NO_CASTLE|ROOM_INDOORS|ROOM_ALLOW_RAN SECT_CITY
+ DDIR_NORTH
+ Boulevard Of The Sun
+ ~
+ ~
+ 0 -1 27732
+ S
+ 
+ #27748
+ Rogue Guild~
+ Here is a perfect place for the scum of the earth to practice their dastardly
+ skills. There are safes to crack, "innocent vitims" to rob, and a myriad other
+ equipment on which to train.
+ ~
+ 277 ROOM_NO_CASTLE|ROOM_ALLOW_ROG|ROOM_INDOORS SECT_CITY
+ DDIR_SOUTH
+ Boulevard Of The Sun
+ ~
+ ~
+ 0 -1 27732
+ S
+ #27749
+ Assassin Guild~
+ Here, you see, or almost see, different apparati used in training your skills as
+ an assassin.
+ ~
+ 277 ROOM_DARK|ROOM_ALLOW_ASN|ROOM_NO_CASTLE|ROOM_INDOORS SECT_CITY
+ DDIR_SOUTH
+ Boulevard Of The Sun
+ ~
+ ~
+ 0 -1 27734
+ S
+ #27750
+ The Morgue~
+ As you enter the morgue, you are instantly thrown aback by the stench of rotting
+ flesh. A hulking form stands over a dead body, slicing parts off it with obvious
+ pleasure. You hear maniacal laughter with every slice. The whole sight makes you
+ nauseous.
+ ~
+ 277 ROOM_SAFE|ROOM_MORGUE|ROOM_NO_CASTLE|ROOM_INDOORS SECT_CITY
+ DDIR_NORTH
+ Boulevard of The Sun
+ ~
+ ~
+ 0 -1 27734
+ S
+ #27751
+ Ganalanja's house~
+ This house, being well kept, is an abboration in Old Singase. There just might
+ be something of use here. It looks remarkably similar to a few other abborations
+ in town. Three of the walls have paintings of beautiful landscapes, wildflowers
+ covering grassy hillsides with snowcapped mountains in the background. The sun
+ stands partially obstructed by the mountains, sending streaks of light across
+ the hillsides. The fourth wall is dedicated to a set of shelves filled with
+ gold overlaid, jewel inlaid scrollkeepers.
+ ~
+ 277 ROOM_SAFE|ROOM_NO_CASTLE|ROOM_INDOORS SECT_CITY
+ DDIR_WEST
+ Kytar Avenue
+ ~
+ ~
+ 0 -1 27718
+ S
+ #27752
+ Yannyalu's house~
+ This house, being well kept, is an abboration in Old Singase. There just might
+ be something of use here. It looks remarkably similar to a few other abborations
+ in town. One obvious difference between this and the other abborations is an
+ entire wall dedicated to the shameless display of awards for battle in the
+ great war.
+ {120}     A large letter C has been placed on the wall.{300}
+ {120}     A small altar with candles is here.{300}
+ ~
+ 277 ROOM_SAFE|ROOM_NO_CASTLE|ROOM_INDOORS|ROOM_ALTAR_C SECT_CITY
+ DDIR_WEST
+ Pompeii Avenue
+ ~
+ ~
+ 0 -1 27725
+ S
+ #27753
+ Yangal's house~
+ This house, being well kept, is an abboration in Old Singase. There just might
+ be something of use here. It looks remarkably similar to a few other abborations
+ in town. A set of shelves goes from floor to ceiling on one wall, filled with
+ scrolls placed with care and order. A few rather unobtrusive paintings have
+ been tastefully placed on the other walls, adding a sense of comfort and
+ beauty to the home.
+ ~
+ 277 ROOM_SAFE|ROOM_NO_CASTLE|ROOM_INDOORS SECT_CITY
+ DDIR_EAST
+ Chakkor Avenue
+ ~
+ ~
+ 0 -1 27705
+ S
+ 
+ #27754
+ Garrawa's house~
+ This house, being well kept, is an abboration in Old Singase. There just might
+ be something of use here. It looks remarkably similar to a few other abborations
+ in town. Many manuscripts have been painstakingly well cared for in this
+ residence and the stench of the town has been eliminated from here. It is
+ actually quite pleasant to the nose!
+ ~
+ 277 ROOM_SAFE|ROOM_NO_CASTLE|ROOM_INDOORS SECT_CITY
+ DDIR_EAST
+ Kytar Avenue
+ ~
+ ~
+ 0 -1 27714
+ S
+ #27755
+ Ganngalida's house~
+ This house, being well kept, is an abboration in Old Singase. There just might
+ be something of use here. It looks remarkably similar to a few other abborations
+ in town. You notice tucked away in the corner of a room, an ornately decorated
+ scroll. Upon closer examination, you see it is an official award for valor in
+ battle. Either the owner of this house or, more likely, some long dead
+ predecessor received this reward during the famous Order-Chaos wars.
+ {120}     A large letter O has been carefully hung on the wall.{300}
+ {120}     An altar sits here.{300}
+ ~
+ 277 ROOM_SAFE|ROOM_NO_CASTLE|ROOM_INDOORS|ROOM_ALTAR_O SECT_CITY
+ DDIR_EAST
+ Pompeii Avenue
+ ~
+ ~
+ 0 -1 27722
+ S
+ #27756
+ A Well Kept Old House~
+ You have entered an ornate home. The beauty of this home is even greater when
+ you take into consideration the fact that it is several hundred years old. The
+ walls are covered with expensive portraits and tapestries. You can see that this
+ house has been well cared for as you see no cracks in the walls or damaged spots
+ in the flooring. The best way you know how to describe this house to your
+ acquaintances is that it is exquisite.
+ ~
+ 277 ROOM_NO_CASTLE|ROOM_INDOORS SECT_CITY
+ DDIR_WEST
+ Chakkor Avenue
+ ~
+ ~
+ 0 -1 27704
+ S
+ #27757
+ A Well Kept Old House~
+ You have entered an ornate home. It is quite amazing that a town so completely
+ run down could have a home in such immaculate condition. The floors are covered
+ with expensive imported rugs. The lighting is provided by crystal chandeliers
+ hung from the vaulted ceilings. The owner of this residence obviously wasn't hurt
+ at all by the wars. The best way you know how to describe this house to your
+ acquaintances is that it is exquisite.
+ ~
+ 277 ROOM_NO_CASTLE|ROOM_INDOORS SECT_CITY
+ DDIR_EAST
+ Chakkor Avenue
+ ~
+ ~
+ 0 -1 27704
+ S
+ #27758
+ A Well Kept Old House~
+ You have entered an ornate home. Portraits line one wall over the mantle in a
+ manner suggesting a lineage of sorts. All the men seem to be scowling as if
+ they were pulled away from important matters just to sit and wait for the
+ painter to finish. All the women are extremely ugly, bearing huge, bent noses
+ and overly adorned in gaudy jewelry. Flaunting such wealth is so unbecoming, it
+ makes you wonder how these women could live with themselves. It's no wonder
+ the town came to be in its current state, with people like that living here!
+ ~
+ 277 ROOM_NO_CASTLE|ROOM_INDOORS SECT_CITY
+ DDIR_WEST
+ Chakkor Avenue
+ ~
+ ~
+ 0 -1 27703
+ S
+ #27759
+ A Well Kept Old House~
+ You have entered an ornate home. One corner of the home draws your immediate
+ attention. There is a glass faced porceleinkast standing in the corner. The
+ beauty and workmanship is quite astounding. Peering through the glass face,
+ you see many beautiful plates, saucers, and bowls arranged to be viewed as
+ art. Intermingled with these rather fragile appearing dishes are small
+ crystal figurines. It is quite obvious the owners of this home lavish
+ extravagance upon themselves when, in your opinion, they should be helping
+ out the impoverished amongst them.
+ ~
+ 277 ROOM_NO_CASTLE|ROOM_INDOORS SECT_CITY
+ DDIR_EAST
+ Chakkor Avenue
+ ~
+ ~
+ 0 -1 27703
+ S
+ 
+ #27760
+ A Well Kept Old House~
+ You have entered an ornate home. The dining table catches your eye.
+ The table itself is of ornate construction. There are four extravagant
+ chairs surrounding the table. Sitting on the table are four place settings
+ consisting of a plate, soup bowl, cup and saucer, five forks of differing
+ sizes, five spoons of differing sizes, two knives, all arranged in the
+ high social class style. Centered on the table is a floral arrangement
+ with a five-candle candelabra.
+ ~
+ 277 ROOM_NO_CASTLE|ROOM_INDOORS SECT_CITY
+ DDIR_WEST
+ Chakkor Avenue
+ ~
+ ~
+ 0 -1 27707
+ DDIR_EAST
+ Kytar Avenue
+ ~
+ ~
+ 0 -1 27712
+ S
+ #27761
+ A Well Kept Old House~
+ You have entered an ornate home. There is a large mahogany desk with a large
+ high backed stuffed chair sitting on one side of the room. As you consider
+ this desk, you see a couple ink wells, several extravagant quills, and some
+ blank papyrus. It appears as if this home has everything necessary for
+ beautiful writing except someone worthy of the task.
+ ~
+ 277 ROOM_NO_CASTLE|ROOM_INDOORS SECT_CITY
+ DDIR_EAST
+ ~
+ ~
+ 0 -1 27707
+ DDIR_WEST
+ Pompeii Avenue
+ ~
+ ~
+ 0 -1 27726
+ S
+ #27762
+ A Well Kept Old House~
+ You have entered an ornate home. The home is furnished with Kytarian leather
+ couches, chairs, ottomans, and chaise-longs. The furniture is quite plush,
+ giving you the idea that you would sink deeply into anything on which you
+ chose to sit. You feel a sudden urge to rest your weary legs.
+ ~
+ 277 ROOM_NO_CASTLE|ROOM_INDOORS SECT_CITY
+ DDIR_WEST
+ Chakkor Avenue
+ ~
+ ~
+ 0 -1 27708
+ DDIR_EAST
+ Kytar Avenue
+ ~
+ ~
+ 0 -1 27713
+ S
+ #27763
+ A Well Kept Old House~
+ You have entered the home of an avid sport hunter. There are stuffed animals
+ standing in many places, posed as if ready to strike. You see a nine foot
+ tall stuffed bear, a lion whose face comes up to your shoulders, a gazzelle
+ with a wolf crouched, ready to attack and other, not so familiar animals.
+ In a house like this, the hunter had to have been on a controlled hunt of
+ some sort as you seriously doubt anyone living here would actually go out in
+ the wild alone to find these animals.
+ ~
+ 277 ROOM_NO_CASTLE|ROOM_INDOORS SECT_CITY
+ DDIR_EAST
+ Chakkor Avenue
+ ~
+ ~
+ 0 -1 27708
+ DDIR_WEST
+ Pompeii Avenue
+ ~
+ ~
+ 0 -1 27726
+ S
+ #27764
+ A Well Kept Old House~
+ You have entered an ornate home. The beauty of this home is even greater when
+ you take into consideration the fact that it is several hundred years old. The
+ walls are covered with expensive portraits and tapestries. You can see that this
+ house has been well cared for as you see no cracks in the walls or damaged spots
+ in the flooring. The best way you know how to describe this house to your
+ acquaintances is that it is exquisite.
+ ~
+ 277 ROOM_NO_CASTLE|ROOM_INDOORS SECT_CITY
+ DDIR_WEST
+ Chakkor Avenue
+ ~
+ ~
+ 0 -1 27705
+ S
+ #27765
+ A Run Down Shack~
+ You have entered a garbage strewn dump of a residence. There are dirty rags all
+ over the place. The walls have been left to rot and decay, the floor long since
+ disintegrated and now is a dirt floor. The squalor in which these people live is
+ absolutely gut wrenching.
+ ~
+ 277 ROOM_NO_CASTLE|ROOM_INDOORS SECT_CITY
+ DDIR_EAST
+ Kytar Avenue
+ ~
+ ~
+ 0 -1 27718
+ S
+ 
+ #27766
+ A Run Down Shack~
+ You have entered a garbage strewn dump of a residence. As you look around, there
+ is no getting around the fact there is a tree growing inside the shack! Looking
+ up, you can't help but wonder whether the tree cracked the rafters of the roof
+ or if the tree grew to support the roof since the rafters no longer could.
+ ~
+ 277 ROOM_NO_CASTLE|ROOM_INDOORS SECT_CITY
+ DDIR_EAST
+ Kytar Avenue
+ ~
+ ~
+ 0 -1 27717
+ S
+ #27767
+ A Run Down Shack~
+ You have entered a garbage strewn dump of a residence. There are large holes in
+ the roof, allowing starlight or, as is more often the case, rain to come into
+ the home. The floors have been rotting for a very long time and you see the
+ ground under the home in some spots.
+ ~
+ 277 ROOM_NO_CASTLE|ROOM_INDOORS SECT_CITY
+ DDIR_EAST
+ Kytar Avenue
+ ~
+ ~
+ 0 -1 27716
+ S
+ #27768
+ A Run Down Shack~
+ You have entered a garbage strewn dump of a residence. You notice the strong
+ pungent smell of rotting flesh immediately upon entry into this shack. Wow!
+ That is strong! Your stomach starts turning and you feel quite nauseous.
+ ~
+ 277 ROOM_NO_CASTLE|ROOM_INDOORS SECT_CITY
+ DDIR_WEST
+ Kytar Avenue
+ ~
+ ~
+ 0 -1 27717
+ S
+ #27769
+ A Run Down Shack~
+ You have entered a garbage strewn dump of a residence. There are trees
+ growing out the windows of this shack. Birds have taken up residence in
+ the trees, on rafters, in the holes in the roof, and elsewhere. You have
+ to watch your step to avoid stepping in fresh bird droppings.
+ ~
+ 277 ROOM_NO_CASTLE|ROOM_INDOORS SECT_CITY
+ DDIR_WEST
+ Kytar Avenue
+ ~
+ ~
+ 0 -1 27716
+ S
+ #27770
+ A Run Down Shack~
+ You have entered a garbage strewn dump of a residence. You see rat tracks going
+ this way and that, pieces of gnawed food, large sized rat holes in the walls
+ and an occasional rat scampering to and fro. It seems from what you can see
+ here, that the rodents are the masters of this house.
+ ~
+ 277 ROOM_NO_CASTLE|ROOM_INDOORS SECT_CITY
+ DDIR_WEST
+ Pompeii Avenue
+ ~
+ ~
+ 0 -1 27722
+ S
+ #27771
+ A Run Down Shack~
+ You have entered a terribly run down shack. Looking at the table, you see
+ mismatched dishes situated in an attempt at a proper appearance. There is
+ a cracked plate, chipped saucer, cup with handle broken off, a fork with
+ bent or broken tines, and oversized spoon sitting at each place setting.
+ It pains your heart to see someone in such squalor trying their hardest
+ to keep a nice house.
+ ~
+ 277 ROOM_NO_CASTLE|ROOM_INDOORS SECT_CITY
+ DDIR_WEST
+ Pompeii Avenue
+ ~
+ ~
+ 0 -1 27721
+ S
+ 
+ #27772
+ A Run Down Shack~
+ You have entered a garbage strewn dump of a residence. Looking around, you
+ see bits of broken pottery scattered across the floor, a hole abundant
+ mattress lying in the corner, an armchair with a leg missing and massive
+ chunks of fabric torn off, and a coffee table sitting in two sections in
+ the middle of the floor.
+ ~
+ 277 ROOM_NO_CASTLE|ROOM_INDOORS SECT_CITY
+ DDIR_EAST
+ Pompeii Avenue
+ ~
+ ~
+ 0 -1 27721
+ S
+ #27773
+ A Run Down Shack~
+ You have entered a garbage strewn dump of a residence.
+ {110}Something brushes your foot as you stare at this mess!{300}
+ The walls have been left to rot and decay, the floor long since
+ disintegrated and now is a dirt floor. The squalor in which these people
+ live is absolutely gut wrenching.
+ {120}     Some old papers flutter in the breeze.{300}
+ ~
+ 277 ROOM_NO_CASTLE|ROOM_INDOORS SECT_CITY
+ DDIR_WEST
+ Pompeii Avenue
+ ~
+ ~
+ 0 -1 27724
+ S
+ #27774
+ A Run Down Shack~
+ You have entered an extremely draughty shack. The glassless windows are
+ covered by tattered shards of materials, probably never intended to
+ be drapery, but used in that form nevertheless. The drapes flutter in
+ the breeze as nothing interferes with the travels of the winds.
+ {120}     You see excrement covering the floor.{300}
+ ~
+ 277 ROOM_NO_CASTLE|ROOM_INDOORS SECT_CITY
+ DDIR_EAST
+ Pompeii Avenue
+ ~
+ ~
+ 0 -1 27724
+ S
+ #27775
+ A Run Down Shack~
+ You have entered an absolutely horrendous home. There are dirty rags all
+ over the place. The walls have been left to rot and decay, the floor long
+ since disintegrated and now is a dirt floor. The squalor in which these
+ people live is absolutely gut wrenching.
+ {120}     You see a massive rat scuttling around.{300}
+ ~
+ 277 ROOM_NO_CASTLE|ROOM_INDOORS SECT_CITY
+ DDIR_WEST
+ Kytar Avenue
+ ~
+ ~
+ 0 -1 27712
+ S
+ #27776
+ A Watchtower~
+ As you look around, you can see a great distance over the plains. As there are
+ but a few trees on the plains, you see how well guarded this city can be. The
+ watchtower has many slots from which to dump hot tar on enemies who venture
+ too close to the walls and to fire arrows at enemy armies. As you peer over
+ the side of the wall, you see a massive amount of tar built up over the
+ centuries from battles against a great number of attackers.
+ ~
+ 277 ROOM_NO_CASTLE|ROOM_INDOORS SECT_CITY
+ DDIR_NORTH
+ On The City Wall
+ ~
+ ~
+ 0 -1 27785
+ DDIR_SOUTH
+ On The City Wall
+ ~
+ ~
+ 0 -1 27808
+ DDIR_DOWN
+ Inside the East Gate
+ ~
+ ~
+ 0 -1 27737
+ S
+ #27777
+ A Watchtower~
+ As you look around, you can see a great distance over the plains. As there are
+ but a few trees on the plains, you see how well guarded this village can be.
+ It is just too bad that the village has crumbled from within. You can't help
+ but feel that the walls do more to protect the rest of the realms from the
+ decay of this village.
+ ~
+ 277 ROOM_NO_CASTLE|ROOM_INDOORS SECT_CITY
+ DDIR_DOWN
+ Inside the North Gates
+ ~
+ ~
+ 0 -1 27735
+ DDIR_EAST
+ On The City Wall
+ ~
+ ~
+ 0 -1 27790
+ DDIR_WEST
+ On The City Wall
+ ~
+ ~
+ 0 -1 27791
+ S
+ 
+ #27778
+ A Watchtower~
+ As you look around at the village below, you can see weak streams of smoke
+ rising from various parts of the village....some are actually coming from
+ chimneys in homes! But most of the smoke comes from the open sewers. You can
+ remember from your childhood that massive heaps of garbage can occasionally
+ start burning on their own and you wonder if this is what has happened here.
+ ~
+ 277 ROOM_NO_CASTLE|ROOM_INDOORS SECT_CITY
+ DDIR_DOWN
+ Inside the West Gates
+ ~
+ ~
+ 0 -1 27741
+ DDIR_NORTH
+ On The City Wall
+ ~
+ ~
+ 0 -1 27796
+ DDIR_SOUTH
+ On The City Wall
+ ~
+ ~
+ 0 -1 27797
+ S
+ #27779
+ A Watchtower~
+ You have arrived at one of the many watchtowers surrounding this decrepit
+ village. Looking at this watchtower, you see large gaps in the walls where
+ large stones had previously been sitting. It seems as if at any time,
+ another stone could fall from the watchtower.
+ ~
+ 277 ROOM_NO_CASTLE|ROOM_INDOORS SECT_CITY
+ DDIR_WEST
+ On The City Wall
+ ~
+ ~
+ 0 -1 27802
+ DDIR_EAST
+ On The City Wall
+ ~
+ ~
+ 0 -1 27803
+ DDIR_DOWN
+ Inside the South Gates
+ ~
+ ~
+ 0 -1 27739
+ S
+ #27780
+ A Watchtower~
+ You have arrived at the top of one of many watchtowers. It is quite obvious
+ from the appearance of this tower that it has been used for many purposes
+ which don't necessarily fit with its designed purpose. There are many names
+ scratched into the stone and mortar constructed tower walls. You can't help
+ but wander what else has been going on here, and why weren't people being
+ carried away for defacing it?
+ ~
+ 277 ROOM_NO_CASTLE|ROOM_INDOORS SECT_CITY
+ DDIR_WEST
+ On The City Wall
+ ~
+ ~
+ 0 -1 27805
+ DDIR_NORTH
+ On The City Wall
+ ~
+ ~
+ 0 -1 27806
+ DDIR_DOWN
+ Kytar Avenue
+ ~
+ ~
+ 0 -1 27714
+ S
+ #27781
+ A Watchtower~
+ As you look around, you can see a great distance over the plains. As there are
+ but a few trees on the plains, you see how well guarded this city can be. The
+ watchtower has many slots from which to dump hot tar on enemies who venture too
+ close to the walls and to fire arrows at enemy armies.
+ ~
+ 277 ROOM_NO_CASTLE|ROOM_INDOORS SECT_CITY
+ DDIR_NORTH
+ On The City Wall
+ ~
+ ~
+ 0 -1 27799
+ DDIR_EAST
+ On The City Wall
+ ~
+ ~
+ 0 -1 27800
+ DDIR_DOWN
+ Pompeii Avenue
+ ~
+ ~
+ 0 -1 27725
+ S
+ #27782
+ A Watchtower~
+ As you look around, you can see a great distance over the plains. As there are
+ but a few trees on the plains, you see how well guarded this city can be. The
+ watchtower has many slots from which to dump hot tar on enemies who venture too
+ close to the walls and to fire arrows at enemy armies. At one time, this
+ village was well protected.
+ ~
+ 277 ROOM_NO_CASTLE|ROOM_INDOORS SECT_CITY
+ DDIR_DOWN
+ Pompeii Avenue
+ ~
+ ~
+ 0 -1 27722
+ DDIR_EAST
+ On The City Wall
+ ~
+ ~
+ 0 -1 27793
+ DDIR_SOUTH
+ On The City Wall
+ ~
+ ~
+ 0 -1 27794
+ S
+ #27784
+ A Watchtower~
+ As you look around, you can see a great distance over the plains. As there are
+ but a few trees on the plains, you see how well guarded this city can be. The
+ watchtower has many slots from which to dump hot tar on enemies who venture too
+ close to the walls and to fire arrows at enemy armies. A great deal of effort
+ had at one time been called upon to design and build the system of walls and
+ watchtowers. It is a shame the village has fallen to such a sad state.
+ ~
+ 277 ROOM_NO_CASTLE|ROOM_INDOORS SECT_CITY
+ DDIR_DOWN
+ Kytar Avenue
+ ~
+ ~
+ 0 -1 27718
+ DDIR_WEST
+ On The City Wall
+ ~
+ ~
+ 0 -1 27788
+ DDIR_SOUTH
+ On The City Wall
+ ~
+ ~
+ 0 -1 27787
+ S
+ #27785
+ On The City Wall~
+ You are walking on the protective wall which surrounds the city. It is made of
+ huge cut granite and marble stones, mortared together with a glassy black
+ substance. It has been worn by centuries of weather, but is of very sturdy
+ construction. The wall is wide enough for two chariots to pass each other with
+ ease.
+ ~
+ 277 ROOM_NO_CASTLE SECT_CITY
+ DDIR_SOUTH
+ A Watchtower
+ ~
+ ~
+ 0 -1 27776
+ DDIR_NORTH
+ On The City Wall
+ ~
+ ~
+ 0 -1 27786
+ S
+ #27786
+ On The City Wall~
+ You are walking on the protective wall which surrounds the city. It is made of
+ huge cut granite and marble stones, mortared together with a glassy black
+ substance. It has been worn by centuries of weather, with a little help from
+ hooligans wanting a piece of the wall for their very own.
+ ~
+ 277 ROOM_NO_CASTLE SECT_CITY
+ DDIR_SOUTH
+ On The City Wall
+ ~
+ ~
+ 0 -1 27785
+ DDIR_NORTH
+ On The City Wall
+ ~
+ ~
+ 0 -1 27787
+ S
+ #27787
+ On The City Wall~
+ You are walking on the protective wall which surrounds the city. It is made of
+ huge cut granite and marble stones, mortared together with a glassy black
+ substance. You see signs of recent battles here, but they seem more of the mob
+ variety than a struggle against attackers as there are broken bottles and
+ clubs scattered about.
+ ~
+ 277 ROOM_NO_CASTLE SECT_CITY
+ DDIR_SOUTH
+ On The City Wall
+ ~
+ ~
+ 0 -1 27786
+ DDIR_NORTH
+ A Watchtower
+ ~
+ ~
+ 0 -1 27784
+ S
+ #27788
+ On The City Wall~
+ You are walking on the protective wall which surrounds the city. It is made of
+ huge cut granite and marble stones, mortared together with a glassy black
+ substance. The wall is wide enough for two chariots to pass each other with
+ ease but you seriously doubt it would be wise to put a chariot up here, due to
+ the delapidated state of this section of the wall.
+ ~
+ 277 ROOM_NO_CASTLE SECT_CITY
+ DDIR_EAST
+ A Watchtower
+ ~
+ ~
+ 0 -1 27784
+ DDIR_WEST
+ On The City Wall
+ ~
+ ~
+ 0 -1 27789
+ S
+ #27789
+ On The City Wall~
+ You are walking on the protective wall which surrounds the city. It is made of
+ huge cut granite and marble stones, mortared together with a glassy black
+ substance. At one time, this would have been a beautiful, formidable barrier
+ protecting the insiders from the outsiders.
+ ~
+ 277 ROOM_NO_CASTLE SECT_CITY
+ DDIR_EAST
+ On The City Wall
+ ~
+ ~
+ 0 -1 27788
+ DDIR_WEST
+ On The City Wall
+ ~
+ ~
+ 0 -1 27790
+ S
+ #27790
+ On The City Wall~
+ You are walking on the protective wall which surrounds the city. It is made of
+ huge cut granite and marble stones, mortared together with a glassy black
+ substance. Much of the mortar has crumbled away and a few granite stones have
+ shifted to a point they are in danger of falling to the ground below.
+ ~
+ 277 ROOM_NO_CASTLE SECT_CITY
+ DDIR_EAST
+ On The City Wall
+ ~
+ ~
+ 0 -1 27789
+ DDIR_WEST
+ A Watchtower
+ ~
+ ~
+ 0 -1 27777
+ S
+ #27791
+ On The City Wall~
+ You are walking on the protective wall which surrounds the city. It is made of
+ huge cut granite and marble stones, mortared together with a glassy black
+ substance. It has been worn by centuries of weather, but is of very sturdy
+ construction. The wall is wide enough for two chariots to pass each other with
+ ease, especially when you take into account the loss of ledges due to the
+ deterioration factor.
+ ~
+ 277 ROOM_NO_CASTLE SECT_CITY
+ DDIR_EAST
+ A Watchtower
+ ~
+ ~
+ 0 -1 27777
+ DDIR_WEST
+ On The City Wall
+ ~
+ ~
+ 0 -1 27792
+ S
+ #27792
+ On The City Wall~
+ You are walking on the protective wall which surrounds the city. It is made of
+ huge cut granite and marble stones, mortared together with a glassy black
+ substance. Much of the mortar has been worn away over the centuries, leaving
+ block on block. You wonder how much of a shove it would take to knock the
+ stones to the ground below.
+ ~
+ 277 ROOM_NO_CASTLE SECT_CITY
+ DDIR_EAST
+ On The City Wall
+ ~
+ ~
+ 0 -1 27791
+ DDIR_WEST
+ On The City Wall
+ ~
+ ~
+ 0 -1 27793
+ S
+ #27793
+ On The City Wall~
+ You are walking on the protective wall which surrounds the city. It is made of
+ huge cut granite and marble stones, mortared together with a glassy black
+ substance. It has been worn by centuries of weather and many decades of
+ indifference coming from the powers that be who run the village.
+ ~
+ 277 ROOM_NO_CASTLE SECT_CITY
+ DDIR_EAST
+ On The City Wall
+ ~
+ ~
+ 0 -1 27792
+ DDIR_WEST
+ A Watchtower
+ ~
+ ~
+ 0 -1 27782
+ S
+ #27794
+ On The City Wall~
+ You are walking on the protective wall which surrounds the city. At least
+ it was a protective wall at one time. It is crumbling in spots now and
+ there seems no interest in protecting the wall which was built to
+ protect the villagers. As you look around, you consider the possibility
+ that you just might want to leave the wall for safer ground.
+ ~
+ 277 ROOM_NO_CASTLE SECT_CITY
+ DDIR_NORTH
+ A Watchtower
+ ~
+ ~
+ 0 -1 27782
+ DDIR_SOUTH
+ On The City Wall
+ ~
+ ~
+ 0 -1 27795
+ S
+ #27795
+ On The City Wall~
+ You are walking on the protective wall which surrounds the city. It is made of
+ huge cut granite and marble stones, mortared together with a glassy black
+ substance. It has been worn by centuries of weather, but is of very sturdy
+ construction. The wall is wide enough for two chariots to pass each other with
+ ease, but who would take that chance on this wall?
+ ~
+ 277 ROOM_NO_CASTLE SECT_CITY
+ DDIR_NORTH
+ On The City Wall
+ ~
+ ~
+ 0 -1 27794
+ DDIR_SOUTH
+ On The City Wall
+ ~
+ ~
+ 0 -1 27796
+ S
+ #27796
+ On The City Wall~
+ You are walking on the protective wall which surrounds the city. It is made of
+ huge cut granite and marble stones, mortared together with a glassy black
+ substance. It has been worn by centuries of weather, but is of very sturdy
+ construction. The wall is wide enough for two chariots to pass each other with
+ ease, but why would anyone want to risk causing irreparable harm to the wall
+ while they were traversing it?
+ ~
+ 277 ROOM_NO_CASTLE SECT_CITY
+ DDIR_NORTH
+ On The City Wall
+ ~
+ ~
+ 0 -1 27795
+ DDIR_SOUTH
+ A Watchtower
+ ~
+ ~
+ 0 -1 27778
+ S
+ 
+ #27797
+ On The City Wall~
+ You are walking on the protective wall which surrounds the city. It is made of
+ huge cut granite and marble stones, mortared together with a glassy black
+ substance. It has been worn by centuries of weather, and the malfeasance of
+ those in charge in this dump of a town.
+ ~
+ 277 ROOM_NO_CASTLE SECT_CITY
+ DDIR_SOUTH
+ On The City Wall
+ ~
+ ~
+ 0 -1 27798
+ DDIR_NORTH
+ A Watchtower
+ ~
+ ~
+ 0 -1 27778
+ S
+ #27798
+ On The City Wall~
+ You are walking on the protective wall which surrounds the city. It is made of
+ huge cut granite and marble stones, mortared together with a glassy black
+ substance. It has been worn by centuries of weather and is becoming unstable.
+ It might be a good idea to find a way down before anything happens.
+ ~
+ 277 ROOM_NO_CASTLE SECT_CITY
+ DDIR_NORTH
+ On The City Wall
+ ~
+ ~
+ 0 -1 27797
+ DDIR_SOUTH
+ On The City Wall
+ ~
+ ~
+ 0 -1 27799
+ S
+ #27799
+ On The City Wall~
+ You are walking on the protective wall which surrounds the city. It is made of
+ huge cut granite and marble stones, mortared together with a glassy black
+ substance. It has been worn by centuries of weather, but is of very sturdy
+ construction. The wall is wide enough for two chariots to pass each other with
+ ease, that is if the wall can handle such shaking and shuddering caused by
+ the running of two different chariots on the same part of the wall.
+ ~
+ 277 ROOM_NO_CASTLE SECT_CITY
+ DDIR_NORTH
+ On The City Wall
+ ~
+ ~
+ 0 -1 27798
+ DDIR_SOUTH
+ A Watchtower
+ ~
+ ~
+ 0 -1 27781
+ S
+ #27800
+ On The City Wall~
+ You are walking on the protective wall which surrounds the city. It is made of
+ huge cut granite and marble stones, mortared together with a glassy black
+ substance. At least you think it was mortared together with such a substance.
+ The other sections of wall have such a material but this section of the wall
+ is deplete of all mortar.
+ ~
+ 277 ROOM_NO_CASTLE SECT_CITY
+ DDIR_WEST
+ A Watchtower
+ ~
+ ~
+ 0 -1 27781
+ DDIR_EAST
+ On The City Wall
+ ~
+ ~
+ 0 -1 27801
+ S
+ #27801
+ On The City Wall~
+ You are walking on the protective wall which surrounds the city. It is made of
+ huge cut granite and marble stones, mortared together with a glassy black
+ substance. As the wind picks up, you feel the wall swaying slightly. Taking
+ into account the massive breadth of the wall here, it is definitely not a good
+ sign when the wall starts to sway. You begin to wonder how to get off this
+ junk heap.
+ ~
+ 277 ROOM_NO_CASTLE SECT_CITY
+ DDIR_WEST
+ On The City Wall
+ ~
+ ~
+ 0 -1 27800
+ DDIR_EAST
+ On The City Wall
+ ~
+ ~
+ 0 -1 27802
+ S
+ #27802
+ On The City Wall~
+ You are walking on the protective wall which surrounds the city. It is made of
+ huge cut granite and marble stones, mortared together with a glassy black
+ substance. Over a number of centuries, the wall had been repaired frequently
+ but from its current condition, you surmise its upkeep was halted more than a
+ century ago.
+ ~
+ 277 ROOM_NO_CASTLE SECT_CITY
+ DDIR_WEST
+ On The City Wall
+ ~
+ ~
+ 0 -1 27801
+ DDIR_EAST
+ A Watchtower
+ ~
+ ~
+ 0 -1 27779
+ S
+ 
+ #27803
+ On The City Wall~
+ You are walking on the protective wall which surrounds the city. It is made of
+ huge cut granite and marble stones, mortared together with a glassy black
+ substance. With little or no effort being exerted in its upkeep, the wall has
+ long been showing major signs of wear.
+ ~
+ 277 ROOM_NO_CASTLE SECT_CITY
+ DDIR_WEST
+ A Watchtower
+ ~
+ ~
+ 0 -1 27779
+ DDIR_EAST
+ On The City Wall
+ ~
+ ~
+ 0 -1 27804
+ S
+ #27804
+ On The City Wall~
+ You are walking on the protective wall which surrounds the city. It is made of
+ huge cut granite and marble stones, mortared together with a glassy black
+ substance. It has been worn by centuries of weather, but was once of very
+ sturdy construction. The wall is wide enough for two chariots to pass each
+ other with ease, that is, if they don't fall off the wall with how it sways.
+ ~
+ 277 ROOM_NO_CASTLE SECT_CITY
+ DDIR_WEST
+ On The City Wall
+ ~
+ ~
+ 0 -1 27803
+ DDIR_EAST
+ On The City Wall
+ ~
+ ~
+ 0 -1 27805
+ S
+ #27805
+ On The City Wall~
+ You are walking on the protective wall which surrounds the city. It is made of
+ huge cut granite and marble stones, mortared together with a glassy black
+ substance. You notice quite a few well worn stones that are very mismatched.
+ The keepers of the wall must have repaired it a great many decades ago without
+ regard to its original construction and forgotten about doing any repairs
+ since then.
+ ~
+ 277 ROOM_NO_CASTLE SECT_CITY
+ DDIR_WEST
+ On The City Wall
+ ~
+ ~
+ 0 -1 27804
+ DDIR_EAST
+ A Watchtower
+ ~
+ ~
+ 0 -1 27780
+ S
+ #27806
+ On The City Wall~
+ You are walking on the protective wall which surrounds the city. It is made of
+ huge cut granite and marble stones, mortared together with a glassy black
+ substance. It has been worn by centuries of weather and is in bad need of
+ repairs, but then, what isn't needing repairs or total demolition around here?
+ ~
+ 277 ROOM_NO_CASTLE SECT_CITY
+ DDIR_SOUTH
+ A Watchtower
+ ~
+ ~
+ 0 -1 27780
+ DDIR_NORTH
+ On The City Wall
+ ~
+ ~
+ 0 -1 27807
+ S
+ #27807
+ On The City Wall~
+ You are walking on the protective wall which surrounds the city. As you look
+ around at the village below, your stomach turns at the disgusting sight
+ filling your eyes. There are trees growing out of the roofs of many a house
+ while right next door, at times, there are elaborately expensive homes. It
+ is quite obvious that the wealthier residents don't care at all what happens
+ to the poor among them.
+ ~
+ 277 ROOM_NO_CASTLE SECT_CITY
+ DDIR_SOUTH
+ On The City Wall
+ ~
+ ~
+ 0 -1 27806
+ DDIR_NORTH
+ On The City Wall
+ ~
+ ~
+ 0 -1 27808
+ S
+ #27808
+ On The City Wall~
+ You are walking on the protective wall which surrounds the city. As you
+ take time to scan the scenery, you wonder who in their right minds would
+ want to attack such a wretched place. At least the garbage is being kept
+ within the village, but somehow you doubt that was the original intent,
+ the protecting of the realms from the garbage of the village.
+ ~
+ 277 ROOM_NO_CASTLE SECT_CITY
+ DDIR_NORTH
+ A Watchtower
+ ~
+ ~
+ 0 -1 27776
+ DDIR_SOUTH
+ On The City Wall
+ ~
+ ~
+ 0 -1 27807
+ S
+ #27809
+ Mabo's Diner~
+ You have entered an old diner. The stench of hastily prepared food is enough to
+ dismiss your hunger. You see bugs crawling across the floor, counters and tables
+ completing the job the aroma started. It is a wonder Mabo makes any money
+ selling his food.
+ ~
+ 277 ROOM_NO_CASTLE|ROOM_INDOORS SECT_INSIDE
+ DDIR_NORTH
+ Boulevard of The Sun
+ ~
+ ~
+ 0 -1 27731
+ DDIR_EAST
+ Chakkor Avenue
+ ~
+ ~
+ 0 -1 27706
+ S
+ #27810
+ Darby's Armor~
+ Old overly stressed armor hangs on the walls and is strewn throughout the shop.
+ Darby seems totally uninterested in cleanliness. You think you saw a rat
+ scurrying through the pieces of armor. Many of the straps show signs of chewing
+ and gnawing. This hardly looks like a place to buy decent armor.
+ ~
+ 277 ROOM_NO_CASTLE|ROOM_INDOORS SECT_INSIDE
+ DDIR_NORTH
+ Boulevard of The Sun
+ ~
+ ~
+ 0 -1 27727
+ DDIR_WEST
+ Chakkor Avenue
+ ~
+ ~
+ 0 -1 27706
+ S
+ #27811
+ Ngurrinji's Weaponry~
+ You hear the sounds of metal striking metal. The equipment here seems old and
+ battered. They have obviously seen their better days. Many of the weapons show
+ signs of haphazard attempts at repair. Would it be wise to buy anything here?
+ ~
+ 277 ROOM_NO_CASTLE|ROOM_INDOORS SECT_INSIDE
+ DDIR_SOUTH
+ Boulevard of The Sun
+ ~
+ ~
+ 0 -1 27727
+ DDIR_WEST
+ Chakkor Avenue
+ ~
+ ~
+ 0 -1 27701
+ S
+ #27783
+ Kanjamalak's Magic Shop~
+ As you enter this shop, you notice the magical aura around all the things on
+ display. It seems quite eerie and you feel the urgent need to hop away.
+ ~
+ 277 ROOM_NO_CASTLE|ROOM_INDOORS SECT_INSIDE
+ DDIR_SOUTH
+ Boulevard of The Sun
+ ~
+ ~
+ 0 -1 27731
+ DDIR_EAST
+ Chakkor Avenue
+ ~
+ ~
+ 0 -1 27701
+ S
+ #0
+ 
+ 
+ 
+ #SHOPS
+ 27719 ITEM_TYPE_CORPSE_PC ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING
+      ITEM_TYPE_NOTHING 100 85 0 23 ;Bidanggu
+ 27720 ITEM_TYPE_FOOD ITEM_TYPE_DRINK_CON ITEM_TYPE_KEY ITEM_TYPE_MONEY
+      ITEM_TYPE_NOTHING 135 85 0 15 ;Mabo
+ 27721 ITEM_TYPE_ARMOR ITEM_TYPE_CONTAINER ITEM_TYPE_BOAT ITEM_TYPE_PILL
+      ITEM_TYPE_NOTHING 135 85 10 23 ;Darby
+ 27722 ITEM_TYPE_AMMO ITEM_TYPE_WEAPON ITEM_TYPE_LIGHT ITEM_TYPE_TREASURE
+      ITEM_TYPE_NOTHING 135 85 5 18 ;Ngurrinji
+ 27723 ITEM_TYPE_POTION ITEM_TYPE_SCROLL ITEM_TYPE_STAFF ITEM_TYPE_TRASH
+      ITEM_TYPE_WAND 135 85 7 19 ;Kanjamalak
+ 0
+ 
+ 
+ 
+ 
+ #RESETS
+ M 1 27725 1 27700 ;The One loaded in room Singase Square
+ G 1 27703 100
+ G 1 27704 100
+ G 1 27705 100
+ G 1 27706 100
+ G 1 27707 100
+ G 1 27708 100
+ G 1 27709 100
+ G 1 27710 100
+ G 1 27711 100
+ G 1 27712 100
+ G 1 27713 100
+ G 1 27714 100
+ G 1 27715 100
+ G 1 27716 100
+ G 1 27717 100
+ G 1 27718 100
+ G 1 27719 100
+ G 1 27724 100
+ G 1 27725 100
+ G 1 27726 100
+ G 1 27727 100
+ G 1 27728 100
+ G 1 27744 100
+ G 1 27745 100
+ G 1 27746 100
+ G 1 27747 100
+ G 1 27748 100
+ G 1 27749 100
+ G 1 27750 100
+ G 1 27751 100
+ G 1 27752 100
+ G 1 27753 100
+ G 1 27754 100
+ G 1 27755 100
+ G 1 27757 100
+ G 1 27759 100
+ G 1 27761 100
+ G 1 27764 100
+ G 1 27765 100
+ M 0 27726 1 27762 ;Another loaded in room A Well Kept House
+ M 0 27700 100 27737 ;A Guard of Old Singase loaded in room Inside the East Gate
+ M 0 27700 100 27737 ;A Guard of Old Singase loaded in room Inside the East Gate
+ M 0 27700 100 27738 ;A Guard of Old Singase loaded in room Outside the East Gate
+ M 0 27700 100 27738 ;A Guard of Old Singase loaded in room Outside the East Gate
+ M 0 27700 100 27741 ;A Guard of Old Singase loaded in room Inside the West Gate
+ M 0 27700 100 27741 ;A Guard of Old Singase loaded in room Inside the West Gate
+ M 0 27700 100 27742 ;A Guard of Old Singase loaded in room Outside the West Gate
+ M 0 27700 100 27742 ;A Guard of Old Singase loaded in room Outside the West Gate
+ M 0 27700 100 27739 ;A Guard of Old Singase loaded in room Inside the South Gate
+ M 0 27700 100 27739 ;A Guard of Old Singase loaded in room Inside the South Gate
+ M 0 27700 100 27740 ;A Guard of Old Singase loaded in room Outside the South Gate
+ M 0 27700 100 27740 ;A Guard of Old Singase loaded in room Outside the South Gate
+ M 0 27700 100 27735 ;A Guard of Old Singase loaded in room Inside the North Gate
+ M 0 27700 100 27735 ;A Guard of Old Singase loaded in room Inside the North Gate
+ M 0 27700 100 27736 ;A Guard of Old Singase loaded in room Outside the North Gate
+ M 0 27700 100 27736 ;A Guard of Old Singase loaded in room Outside the North Gate
+ M 0 27706 100 27775 ;A poverty stricken woman loaded in room A Run Down Shack
+ E 1 27723 100 WEAR_BODY ;Equip with Rags
+ M 0 27705 100 27714 ;A poverty stricken man loaded in room Kytar Avenue
+ E 1 27723 100 WEAR_BODY ;Equip with Rags
+ M 0 27706 100 27714 ;A poverty stricken woman loaded in room Kytar Avenue
+ E 1 27723 100 WEAR_BODY ;Equip with Rags
+ M 0 27705 100 27769 ;A poverty stricken man loaded in room A Run Down Shack
+ E 1 27723 100 WEAR_BODY ;Equip with Rags
+ M 0 27706 100 27769 ;A poverty stricken woman loaded in room A Run Down Shack
+ E 1 27723 100 WEAR_BODY ;Equip with Rags
+ M 0 27705 100 27767 ;A poverty stricken man loaded in room A Run Down Shack
+ E 1 27723 100 WEAR_BODY ;Equip with Rags
+ M 0 27705 100 27765 ;A poverty stricken man loaded in room A Run Down Shack
+ E 1 27723 100 WEAR_BODY ;Equip with Rags
+ M 0 27706 100 27765 ;A poverty stricken woman loaded in room A Run Down Shack
+ E 1 27723 100 WEAR_BODY ;Equip with Rags
+ M 0 27706 100 27768 ;A poverty stricken woman loaded in room A Run Down Shack
+ E 1 27723 100 WEAR_BODY ;Equip with Rags
+ M 0 27705 100 27770 ;A poverty stricken man loaded in room A Run Down Shack
+ E 1 27723 100 WEAR_BODY ;Equip with Rags
+ M 0 27706 100 27770 ;A poverty stricken woman loaded in room A Run Down Shack
+ E 1 27723 100 WEAR_BODY ;Equip with Rags
+ M 0 27706 100 27772 ;A poverty stricken woman loaded in room A Run Down Shack
+ E 1 27723 100 WEAR_BODY ;Equip with Rags
+ M 0 27705 100 27771 ;A poverty stricken man loaded in room A Run Down Shack
+ E 1 27723 100 WEAR_BODY ;Equip with Rags
+ M 0 27705 100 27774 ;A poverty stricken man loaded in room A Run Down Shack
+ E 1 27723 100 WEAR_BODY ;Equip with Rags
+ M 0 27706 100 27774 ;A poverty stricken woman loaded in room A Run Down Shack
+ E 1 27723 100 WEAR_BODY ;Equip with Rags
+ M 0 27706 100 27773 ;A poverty stricken woman loaded in room A Run Down Shack
+ E 1 27723 100 WEAR_BODY ;Equip with Rags
+ M 0 27705 100 27773 ;A poverty stricken man loaded in room A Run Down Shack
+ E 1 27723 100 WEAR_BODY ;Equip with Rags
+ M 0 27705 100 27725 ;A poverty stricken man loaded in room Pompeii Avenue
+ E 1 27723 100 WEAR_BODY ;Equip with Rags
+ M 0 27701 100 27762 ;A well dressed older woman loaded in room A Well Kept Old House
+ E 1 27720 100 WEAR_BODY ;Equip with An expensive dress
+ M 0 27703 100 27762 ;A well dressed older man loaded in room A Well Kept Old House
+ E 1 27722 100 WEAR_BODY ;Equip with A dark suit
+ M 0 27704 100 27762 ;A well dressed man loaded in room A Well Kept Old House
+ E 1 27722 100 WEAR_BODY ;Equip with A dark suit
+ M 0 27702 100 27762 ;A well dressed woman loaded in room A Well Kept Old House
+ E 1 27720 100 WEAR_BODY ;Equip with An expensive dress
+ M 0 27703 100 27760 ;A well dressed older man loaded in room A Well Kept Old House
+ E 1 27722 100 WEAR_BODY ;Equip with A dark suit
+ M 0 27701 100 27760 ;A well dressed older woman loaded in room A Well Kept Old House
+ E 1 27720 100 WEAR_BODY ;Equip with An expensive dress
+ M 0 27704 100 27760 ;A well dressed man loaded in room A Well Kept Old House
+ E 1 27722 100 WEAR_BODY ;Equip with A dark suit
+ M 0 27702 100 27760 ;A well dressed woman loaded in room A Well Kept Old House
+ E 1 27720 100 WEAR_BODY ;Equip with An expensive dress
+ M 0 27703 100 27761 ;A well dressed older man loaded in room A Well Kept Old House
+ E 1 27722 100 WEAR_BODY ;Equip with A dark suit
+ M 0 27704 100 27761 ;A well dressed man loaded in room A Well Kept Old House
+ E 1 27722 100 WEAR_BODY ;Equip with A dark suit
+ M 0 27702 100 27761 ;A well dressed woman loaded in room A Well Kept Old House
+ E 1 27720 100 WEAR_BODY ;Equip with An expensive dress
+ M 0 27701 100 27761 ;A well dressed older woman loaded in room A Well Kept Old House
+ E 1 27720 100 WEAR_BODY ;Equip with An expensive dress
+ M 0 27701 100 27759 ;A well dressed older woman loaded in room A Well Kept Old House
+ E 1 27720 100 WEAR_BODY ;Equip with An expensive dress
+ M 0 27703 100 27759 ;A well dressed older man loaded in room A Well Kept Old House
+ E 1 27722 100 WEAR_BODY ;Equip with A dark suit
+ M 0 27704 100 27757 ;A well dressed man loaded in room A Well Kept Old House
+ E 1 27722 100 WEAR_BODY ;Equip with A dark suit
+ M 0 27702 100 27757 ;A well dressed woman loaded in room A Well Kept Old House
+ E 1 27720 100 WEAR_BODY ;Equip with An expensive dress
+ M 0 27703 100 27756 ;A well dressed older man loaded in room A Well Kept Old House
+ E 1 27722 100 WEAR_BODY ;Equip with A dark suit
+ M 0 27702 100 27756 ;A well dressed woman loaded in room A Well Kept Old House
+ E 1 27720 100 WEAR_BODY ;Equip with An expensive dress
+ M 0 27701 100 27764 ;A well dressed older woman loaded in room A Well Kept Old House
+ E 1 27720 100 WEAR_BODY ;Equip with An expensive dress
+ M 0 27704 100 27764 ;A well dressed man loaded in room A Well Kept Old House
+ E 1 27722 100 WEAR_BODY ;Equip with A dark suit
+ M 0 27707 100 27777 ;A tower guard loaded in room A Watchtower
+ M 0 27707 100 27782 ;A tower guard loaded in room A Watchtower
+ M 0 27707 100 27778 ;A tower guard loaded in room A Watchtower
+ M 0 27707 100 27781 ;A tower guard loaded in room A Watchtower
+ M 0 27707 100 27779 ;A tower guard loaded in room A Watchtower
+ M 0 27707 100 27780 ;A tower guard loaded in room A Watchtower
+ M 0 27707 100 27776 ;A tower guard loaded in room A Watchtower
+ M 0 27707 100 27784 ;A tower guard loaded in room A Watchtower
+ M 1 27708 7 27744 ;Your Guildmaster loaded in room Elementalist Guild
+ M 1 27709 1 27748 ;Your Guildmaster loaded in room Rogue Guild
+ M 1 27716 1 27743 ;Injilariija loaded in room Illusionist Guild
+ M 1 27715 1 27746 ;Kaiadilt loaded in room Necromancer Guild
+ M 1 27717 1 27749 ;Nguburinji loaded in room Assassin Guild
+ M 1 27718 1 27747 ;Lardil loaded in room Ranger Guild
+ M 1 27719 1 27750 ;Bidanggu loaded in room The Morgue
+ M 1 27714 1 27753 ;Yangal loaded in room Test Site 1
+ M 1 27713 1 27752 ;Yannyalu loaded in room Test Site 2
+ M 1 27711 1 27751 ;Ganalanja loaded in room Test Site 3
+ M 1 27710 1 27754 ;Garrawa loaded in room Test Site 4
+ M 1 27712 1 27755 ;Ganngalida loaded in room Test Site 5
+ M 1 27720 1 27809 ;Mabo loaded in room Room number 27809
+ G 1 27732 100  ;Beef Surprise Platter placed in inventory
+ G 1 27733 100  ;A slice of coffee placed in inventory
+ M 1 27721 1 27810 ;Darby loaded in room Room number 27810
+ G 1 27729 100000  ;some protection placed in inventory
+ G 1 27744 100000  ;a damaged oil lamp placed in inventory
+ G 1 27734 100000  ;a damaged shield placed in inventory
+ G 1 27735 100000  ;a damaged ring placed in inventory
+ G 1 27736 100000  ;a damaged amulet placed in inventory
+ G 1 27737 100000  ;a damaged collar placed in inventory
+ G 1 27738 100000  ;damaged body armor placed in inventory
+ G 1 27739 100000  ;a damaged helmet placed in inventory
+ G 1 27740 100000  ;some damaged leggings placed in inventory
+ G 1 27741 100000  ;a damaged pair of boots placed in inventory
+ G 1 27742 100000  ;a damaged pair of gloves placed in inventory
+ G 1 27743 100000  ;a damaged belt placed in inventory
+ M 1 27722 1 27811 ;Ngurrinji loaded in room Room number 27811
+ G 1 27756 100000  ;a damaged dagger placed in inventory
+ G 1 27758 100000  ;a damaged club placed in inventory
+ G 1 27760 100000  ;a damaged sword placed in inventory
+ G 1 27762 100000  ;a damaged arrow placed in inventory
+ G 1 27763 100000  ;a damaged bow placed in inventory
+ G 1 27768 100000  ;a rusty pick axe placed in inventory
+ M 1 27723 1 27783 ;Kanjamalak loaded in room Room number 27783
+ G 1 27769 100000
+ G 1 27770 100000
+ G 1 27767 100000  ;A Bottle of Travelling placed in inventory
+ G 1 27731 100000  ;A Writ of Travelling placed in inventory
+ G 1 27730 100000  ;some liquified protection placed in inventory
+ G 1 27766 100000  ;a scroll of recall placed in inventory
+ M 0 27706 100 27706 ;A poverty stricken woman in Chakkor Avenue
+ E 1 27723 100 WEAR_BODY ;equip with rags
+ M 0 27706 100 27708 ;A poverty stricken woman in Chakkor Avenue
+ E 1 27723 100 WEAR_BODY ;equip with rags
+ M 0 27705 100 27710 ;A poverty stricken man in Chakkor Avenue
+ E 1 27723 100 WEAR_BODY ;equip with rags
+ M 0 27705 100 27702 ;A poverty stricken man in Chakkor Avenue
+ E 1 27723 100 WEAR_BODY ;equip with rags
+ M 0 27705 100 27705 ;A poverty stricken man in Chakkor Avenue
+ E 1 27723 100 WEAR_BODY ;equip with rags
+ M 0 27704 100 27712 ;A well dressed man in Kytar Avenue
+ E 1 27722 100 WEAR_BODY ;Equip with A dark suit
+ M 0 27704 100 27711 ;A well dressed man in Kytar Avenue
+ E 1 27722 100 WEAR_BODY ;Equip with A dark suit
+ M 0 27704 100 27704 ;A well dressed man in Chakkor Avenue
+ E 1 27722 100 WEAR_BODY ;Equip with A dark suit
+ M 1 27724 1 27745 ;Pareroulgalida loaded in room Monk Guild
+ M 0 27703 100 27758 ;A well dressed older man loaded in room A Well Kept Old House
+ E 1 27722 100 WEAR_BODY ;Equip with A dark suit
+ M 0 27703 100 27758 ;A well dressed older man loaded in room A Well Kept Old House
+ E 1 27722 100 WEAR_BODY ;Equip with A dark suit
+ M 0 27701 100 27758 ;A well dressed older woman loaded in room A Well Kept Old House
+ E 1 27720 100 WEAR_BODY ;equip with an expensive dress
+ M 0 27701 100 27758 ;A well dressed older woman loaded in room A Well Kept Old House
+ E 1 27720 100 WEAR_BODY ;equip with an expensive dress
+ M 0 27702 100 27763 ;A well dressed woman loaded in room A Well Kept Old House
+ E 1 27720 100 WEAR_BODY ;equip with an expensive dress
+ M 0 27702 100 27763 ;A well dressed woman loaded in room A Well Kept Old House
+ E 1 27720 100 WEAR_BODY ;equip with an expensive dress
+ M 0 27704 100 27763 ;A well dressed man loaded in room A Well Kept Old House
+ E 1 27722 100 WEAR_BODY ;Equip with A dark suit
+ M 0 27704 100 27763 ;A well dressed man loaded in room A Well Kept Old House
+ E 1 27722 100 WEAR_BODY ;Equip with A dark suit
+ M 0 27705 100 27766 ;A poverty stricken man loaded in room A Run Down Shack
+ E 1 27723 100 WEAR_BODY ;equip with rags
+ M 0 27705 100 27766 ;A poverty stricken man loaded in room A Run Down Shack
+ E 1 27723 100 WEAR_BODY ;equip with rags
+ M 0 27706 100 27766 ;A poverty stricken woman loaded in room A Run Down Shack
+ E 1 27723 100 WEAR_BODY ;equip with rags
+ M 0 27706 100 27766 ;A poverty stricken woman loaded in room A Run Down Shack
+ E 1 27723 100 WEAR_BODY ;equip with rags
+ M 0 27706 100 27767 ;A poverty stricken woman loaded in room A Run Down Shack
+ E 1 27723 100 WEAR_BODY ;equip with rags
+ M 0 27705 100 27768 ;A poverty stricken man loaded in room A Run Down Shack
+ E 1 27723 100 WEAR_BODY ;equip with rags
+ M 0 27706 100 27771 ;A poverty stricken woman loaded in room A Run Down Shack
+ E 1 27723 100 WEAR_BODY ;equip with rags
+ M 0 27701 100 27701 ;A well dressed older woman loaded in room Chakkor Avenue
+ E 1 27720 100 WEAR_BODY ;equip with an expensive dress
+ M 0 27702 100 27701 ;A well dressed woman loaded in room Chakkor Avenue
+ E 1 27720 100 WEAR_BODY ;equip with an expensive dress
+ M 0 27703 100 27701 ;A well dressed older man loaded in room Chakkor Avenue
+ E 1 27722 100 WEAR_BODY ;Equip with A dark suit
+ M 0 27704 100 27701 ;A well dressed man loaded in room Chakkor Avenue
+ E 1 27722 100 WEAR_BODY ;Equip with A dark suit
+ M 0 27705 100 27703 ;A poverty stricken man loaded in room Chakkor Avenue
+ E 1 27723 100 WEAR_BODY ;equip with rags
+ M 0 27705 100 27703 ;A poverty stricken man loaded in room Chakkor Avenue
+ E 1 27723 100 WEAR_BODY ;equip with rags
+ M 0 27705 100 27703 ;A poverty stricken man loaded in room Chakkor Avenue
+ E 1 27723 100 WEAR_BODY ;equip with rags
+ M 0 27706 100 27707 ;A poverty stricken woman loaded in room Chakkor Avenue
+ E 1 27723 100 WEAR_BODY ;equip with rags
+ M 0 27706 100 27707 ;A poverty stricken woman loaded in room Chakkor Avenue
+ E 1 27723 100 WEAR_BODY ;equip with rags
+ M 0 27705 100 27709 ;A poverty stricken man loaded in room Chakkor Avenue
+ E 1 27723 100 WEAR_BODY ;equip with rags
+ M 0 27706 100 27709 ;A poverty stricken woman loaded in room Chakkor Avenue
+ E 1 27723 100 WEAR_BODY ;equip with rags
+ M 0 27706 100 27709 ;A poverty stricken woman loaded in room Chakkor Avenue
+ E 1 27723 100 WEAR_BODY ;equip with rags
+ M 0 27706 100 27713 ;A poverty stricken woman loaded in room Kytar Avenue
+ E 1 27723 100 WEAR_BODY ;equip with rags
+ M 0 27703 100 27713 ;A well dressed older man loaded in room Kytar Avenue
+ E 1 27722 100 WEAR_BODY ;Equip with A dark suit
+ M 0 27704 100 27713 ;A well dressed man loaded in room Kytar Avenue
+ E 1 27722 100 WEAR_BODY ;Equip with A dark suit
+ M 0 27701 100 27715 ;A well dressed older woman loaded in room Kytar Avenue
+ E 1 27720 100 WEAR_BODY ;equip with an expensive dress
+ M 0 27702 100 27715 ;A well dressed woman loaded in room Kytar Avenue
+ E 1 27720 100 WEAR_BODY ;equip with an expensive dress
+ M 0 27703 100 27715 ;A well dressed older man loaded in room Kytar Avenue
+ E 1 27722 100 WEAR_BODY ;Equip with A dark suit
+ M 0 27704 100 27715 ;A well dressed man loaded in room Kytar Avenue
+ E 1 27722 100 WEAR_BODY ;Equip with A dark suit
+ M 0 27705 100 27716 ;A poverty stricken man loaded in room Kytar Avenue
+ E 1 27723 100 WEAR_BODY ;equip with rags
+ M 0 27705 100 27716 ;A poverty stricken man loaded in room Kytar Avenue
+ E 1 27723 100 WEAR_BODY ;equip with rags
+ M 0 27706 100 27716 ;A poverty stricken woman loaded in room Kytar Avenue
+ E 1 27723 100 WEAR_BODY ;equip with rags
+ M 0 27706 100 27716 ;A poverty stricken woman loaded in room Kytar Avenue
+ E 1 27723 100 WEAR_BODY ;equip with rags
+ M 0 27705 100 27717 ;A poverty stricken man loaded in room Kytar Avenue
+ E 1 27723 100 WEAR_BODY ;equip with rags
+ M 0 27703 100 27717 ;A well dressed older man loaded in room Kytar Avenue
+ E 1 27722 100 WEAR_BODY ;Equip with A dark suit
+ M 0 27703 100 27717 ;A well dressed older man loaded in room Kytar Avenue
+ E 1 27722 100 WEAR_BODY ;Equip with A dark suit
+ M 0 27703 100 27717 ;A well dressed older man loaded in room Kytar Avenue
+ E 1 27722 100 WEAR_BODY ;Equip with A dark suit
+ M 0 27702 100 27719 ;A well dressed woman loaded in room Pompeii Avenue
+ E 1 27720 100 WEAR_BODY ;equip with an expensive dress
+ M 0 27701 100 27719 ;A well dressed older woman loaded in room Pompeii Avenue
+ E 1 27720 100 WEAR_BODY ;equip with an expensive dress
+ M 0 27706 100 27719 ;A poverty stricken woman loaded in room Pompeii Avenue
+ E 1 27723 100 WEAR_BODY ;equip with rags
+ M 0 27705 100 27720 ;A poverty stricken man loaded in room Pompeii Avenue
+ E 1 27723 100 WEAR_BODY ;equip with rags
+ M 0 27703 100 27721 ;A well dressed older man loaded in room Pompeii Avenue
+ E 1 27722 100 WEAR_BODY ;Equip with A dark suit
+ M 0 27704 100 27785 ;A well dressed man loaded in room On The City Wall
+ E 1 27722 100 WEAR_BODY ;Equip with A dark suit
+ M 0 27704 100 27785 ;A well dressed man loaded in room On The City Wall
+ E 1 27722 100 WEAR_BODY ;Equip with A dark suit
+ M 0 27705 100 27786 ;A poverty stricken man loaded in room On The City Wall
+ E 1 27723 100 WEAR_BODY ;equip with rags
+ M 0 27705 100 27786 ;A poverty stricken man loaded in room On The City Wall
+ E 1 27723 100 WEAR_BODY ;equip with rags
+ M 0 27703 100 27787 ;A well dressed older man loaded in room On The City Wall
+ E 1 27722 100 WEAR_BODY ;Equip with A dark suit
+ M 0 27702 100 27787 ;A well dressed woman loaded in room On The City Wall
+ E 1 27720 100 WEAR_BODY ;equip with an expensive dress
+ M 0 27701 100 27788 ;A well dressed older woman loaded in room On The City Wall
+ E 1 27720 100 WEAR_BODY ;equip with an expensive dress
+ M 0 27705 100 27788 ;A poverty stricken man loaded in room On The City Wall
+ E 1 27723 100 WEAR_BODY ;equip with rags
+ M 0 27705 100 27789 ;A poverty stricken man loaded in room On The City Wall
+ E 1 27723 100 WEAR_BODY ;equip with rags
+ M 0 27701 100 27790 ;A well dressed older woman loaded in room On The City Wall
+ E 1 27720 100 WEAR_BODY ;equip with an expensive dress
+ M 0 27703 100 27791 ;A well dressed older man loaded in room On The City Wall
+ E 1 27722 100 WEAR_BODY ;Equip with A dark suit
+ M 0 27706 100 27792 ;A poverty stricken woman loaded in room On The City Wall
+ E 1 27723 100 WEAR_BODY ;equip with rags
+ M 0 27705 100 27792 ;A poverty stricken man loaded in room On The City Wall
+ E 1 27723 100 WEAR_BODY ;equip with rags
+ M 0 27704 100 27792 ;A well dressed man loaded in room On The City Wall
+ E 1 27722 100 WEAR_BODY ;Equip with A dark suit
+ M 0 27703 100 27792 ;A well dressed older man loaded in room On The City Wall
+ E 1 27720 100 WEAR_BODY ;equip with an expensive dress
+ M 0 27702 100 27792 ;A well dressed woman loaded in room On The City Wall
+ E 1 27720 100 WEAR_BODY ;equip with an expensive dress
+ M 0 27701 100 27792 ;A well dressed older woman loaded in room On The City Wall
+ E 1 27720 100 WEAR_BODY ;equip with an expensive dress
+ M 0 27704 100 27796 ;A well dressed man loaded in room On The City Wall
+ E 1 27722 100 WEAR_BODY ;Equip with A dark suit
+ M 0 27704 100 27796 ;A well dressed man loaded in room On The City Wall
+ E 1 27722 100 WEAR_BODY ;Equip with A dark suit
+ M 0 27704 100 27796 ;A well dressed man loaded in room On The City Wall
+ E 1 27722 100 WEAR_BODY ;Equip with A dark suit
+ M 0 27706 100 27797 ;A poverty stricken woman loaded in room On The City Wall
+ E 1 27723 100 WEAR_BODY ;equip with rags
+ M 0 27706 100 27797 ;A poverty stricken woman loaded in room On The City Wall
+ E 1 27723 100 WEAR_BODY ;equip with rags
+ M 0 27706 100 27797 ;A poverty stricken woman loaded in room On The City Wall
+ E 1 27723 100 WEAR_BODY ;equip with rags
+ M 0 27705 100 27798 ;A poverty stricken man loaded in room On The City Wall
+ E 1 27723 100 WEAR_BODY ;equip with rags
+ M 0 27704 100 27798 ;A well dressed man loaded in room On The City Wall
+ E 1 27722 100 WEAR_BODY ;Equip with A dark suit
+ M 0 27703 100 27798 ;A well dressed older man loaded in room On The City Wall
+ E 1 27722 100 WEAR_BODY ;Equip with A dark suit
+ M 0 27704 100 27799 ;A well dressed man loaded in room On The City Wall
+ E 1 27722 100 WEAR_BODY ;Equip with A dark suit
+ M 0 27704 100 27799 ;A well dressed man loaded in room On The City Wall
+ E 1 27722 100 WEAR_BODY ;Equip with A dark suit
+ M 0 27702 100 27800 ;A well dressed woman loaded in room On The City Wall
+ E 1 27720 100 WEAR_BODY ;equip with an expensive dress
+ M 0 27702 100 27800 ;A well dressed woman loaded in room On The City Wall
+ E 1 27720 100 WEAR_BODY ;equip with an expensive dress
+ M 0 27706 100 27801 ;A poverty stricken woman loaded in room On The City Wall
+ E 1 27723 100 WEAR_BODY ;equip with rags
+ M 0 27706 100 27801 ;A poverty stricken woman loaded in room On The City Wall
+ E 1 27723 100 WEAR_BODY ;equip with rags
+ M 0 27706 100 27801 ;A poverty stricken woman loaded in room On The City Wall
+ E 1 27723 100 WEAR_BODY ;equip with rags
+ M 0 27703 100 27803 ;A well dressed older man loaded in room On The City Wall
+ E 1 27722 100 WEAR_BODY ;Equip with A dark suit
+ M 0 27705 100 27803 ;A poverty stricken man loaded in room On The City Wall
+ E 1 27723 100 WEAR_BODY ;equip with rags
+ M 0 27704 100 27803 ;A well dressed man loaded in room On The City Wall
+ E 1 27722 100 WEAR_BODY ;Equip with A dark suit
+ M 0 27706 100 27805 ;A poverty stricken woman loaded in room On The City Wall
+ E 1 27723 100 WEAR_BODY ;equip with rags
+ M 0 27702 100 27805 ;A well dressed woman loaded in room On The City Wall
+ E 1 27720 100 WEAR_BODY ;equip with an expensive dress
+ M 0 27701 100 27805 ;A well dressed older woman loaded in room On The City Wall
+ E 1 27720 100 WEAR_BODY ;equip with an expensive dress
+ M 0 27704 100 27807 ;A well dressed man loaded in room On The City Wall
+ E 1 27722 100 WEAR_BODY ;Equip with A dark suit
+ M 0 27704 100 27807 ;A well dressed man loaded in room On The City Wall
+ E 1 27722 100 WEAR_BODY ;Equip with A dark suit
+ M 0 27706 100 27808 ;A poverty stricken woman loaded in room On The City Wall
+ E 1 27723 100 WEAR_BODY ;equip with rags
+ M 0 27706 100 27808 ;A poverty stricken woman loaded in room On The City Wall
+ E 1 27723 100 WEAR_BODY ;equip with rags
+ M 0 27706 100 27808 ;A poverty stricken woman loaded in room On The City Wall
+ E 1 27723 100 WEAR_BODY ;equip with rags
+ M 0 27706 100 27808 ;A poverty stricken woman loaded in room On The City Wall
+ E 1 27723 100 WEAR_BODY ;equip with rags
+ M 0 27727 1 27768 ;The One loaded in room A Run Down Shack
+ O 0 27700 1 27700 ;A fountain loaded in room Old Singase Square
+ O 0 27701 1 27733 ;A statue of a man loaded in room Boulevard Of The Sun
+ O 0 27702 1 27729 ;A statue of a woman loaded in room Boulevard Of The Sun
+ D 0 27740 DIR_NORTH DOOR_CLOSED ;CLOSE North Door in Outside the South Gate
+ D 0 27739 DIR_SOUTH DOOR_CLOSED ;CLOSE South Door in Inside the South Gate
+ D 0 27738 DIR_WEST DOOR_CLOSED ;CLOSE West Door in Outside the East Gate
+ D 0 27737 DIR_EAST DOOR_CLOSED ;CLOSE East Door in Inside the East Gate
+ D 0 27736 DIR_SOUTH DOOR_CLOSED ;CLOSE South Door in Outside the North Gate
+ D 0 27735 DIR_NORTH DOOR_CLOSED ;CLOSE North Door in Inside the North Gate
+ D 0 27741 DIR_WEST DOOR_CLOSED ;CLOSE West Door in Inside the West Gate
+ D 0 27742 DIR_EAST DOOR_CLOSED ;CLOSE East Door in Outside the West Gate
+ S
+ 
+ 
+ 
+ 
+ #$
+ 

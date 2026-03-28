@@ -1,0 +1,1497 @@
+#AREA Caverns of the Duorp~
+
+#AUTHORS Rem~
+
+#HELPS
+-1 "DUORP" DUORP~
+{120}Caverns of {134}Duorp{300} - {110}The {117}Drow{300} {110}Headquarters{300}.
+
+
+{130}This is the Drow army headquarters. The sole purpose of the building of{300} 
+{130}this headquarters is because of the war against the gnomes. In the{300}
+{130}beginning, the gnomes are thought to be mere pests; like flies that kept{300} 
+{130}buzzing around you. No actions were taken. Then the gnomes started killing{300} 
+{130}innocent drows; murdering defenseless children destroying our homes. This{300} 
+{130}act of terrorism against the people of the drows has forced the Drow High{300} 
+{130}Command to take immediate action. General Norkras has been chosen to lead{300} 
+{130}the expedition. A crude but useful cavern system has been set up to{300} 
+{130}meet the needs of the army. General Norkras is known for his brilliance in{300} 
+{130}battle as well as a great fighter. He has been in many wars, such as the{300} 
+{130}great Kasha War where General Norkras, against all odds have successfully{300} 
+{130}neutralize the foe and even totally eliminated them. With General{300} 
+{130}Norkras, as the commander in charge, we will triumph against the evil{300} 
+{130}that is done by the gnomes. We will win.{300}
+
+
+
+  {135}(A){300} {117}Extras...{300}
+  {135}(B){300} {117}IMPORTANT{130} things you need to know when you're in the army.{300}
+
+
+
+
+
+{b}DUORP2
+{a}DUORP1
+{-}GAMEAREA1
+~
+-1 DUORP1~
+{117}Extras...{300}
+
+
+{130}Ok, firstly, this area is design to help lowbies and even newbies that{300} 
+{130}have decided to fight for a great cause. Without players like you, there{300} 
+{130}will not be an army, thus there will not be any fun. So I hope that drows{300} 
+{130}like yourself will join the army and enrich the role playing in this mud.{300} 
+{130}Well that's all I have to say for now. Hope you enjoy what this little{300} 
+{130}area has to offer. :>{300}~
+-1 DUORP2~
+{117}IMPORTANT{300} {120}things you need to know when you're in the army.{300}
+{120}          (well, some of it anyways...){300}
+
+
+{150}Well, this is just a quick fix reminder for those who are joining the{300} 
+{150}army. This list is compiled with pointers I think would help a newbie{300} 
+{150}adjust himself in race war.{300} {142}Good Luck!{300}
+
+   {174}1.{300} {120}Race war starts at {135}LEVEL 10{300}
+   {174}2.{300} {135}DROWS FIGHT GNOMES.{300} {120}Remember that for it may save your life.{300}
+   {174}3.{300} {120}type {135}ARMY GNOME{300} {120}for foe and {135}ARMY{300} {120}for friend.{300}
+   {174}4.{300} {135}Don't need to pay to join the army.(unless you have some to spare){300}
+   {174}5.{300} {120}If any gnome army appear in your {135}WHO{300} {120}list, they can whack you and{300} 
+      {120}so can you whack them.{135}So DON'T complain if you are WHACKED{300} {120}while{300} 
+      {120}leveling {135}"peacefully".{300} {120}The choice is yours.{300}
+   {174}6.{300} {120}If you have a {135}(KILLER) flag{300}{120}, you die, you lose 2x exp. {135}NO excuse.{300}
+   {174}7.{300} {135}Once you quit from the army, you're quit for good.{300} {120}You can only{300} 
+      {120}join back in your next life. {135}So make up your mind.{300}
+   {174}8.{300} {120}For a complete list of help on race war, type {135}HELP{300} {120}then choose{300} 
+      {135}(E){300} {120}then {135}(W){120}. I'm sure you know how to use {135}HELP.{300}~
+-1 DUORP3~
+{110}-<{130}<(>{140}*{171}<{PULVERIZED}>{140}*{130}<)>{110}>-{300}   {110}Y{160}O{120}U{130}!!!{300}~
+0 $~
+
+#RANGES 0 99 0 99
+
+#FLAGS AFLAG_NODEBUG|AFLAG_NOTELEPORT
+
+#MOBILES
+#16300
+Lady Okeya~
+Lady Okeya~
+A female drow stands here smiling.~
+Here you see a very beautiful drow dressed in robe of intricate design. 
+Hair black as night, and eyes as blue as the ocean, you wonder how many 
+hearts have she broken. :>~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_SANCTUARY|AFF_UNDERSTAND|AFF_TONGUES
+0 S
+60 BODY_TORSO BODY_LEG|BODY_ARM|BODY_HAND 1d1+9999 1d1+99
+100000 RACE_DROW
+POS_STANDING POS_STANDING SEX_FEMALE
+>all_greet_prog 80~
+if ispc($n)
+  giggle $n
+  say You are here to get something you've lost? :>
+  break
+endif
+~
+|
+#16301
+Commander Ihcinihs~
+Commander Ihcinihs~
+A plump male drow stands here grinning at you.~
+Though a little on the plump side, he's perhaps the best teacher in the 
+art of war and hand to hand combat a drow can be. The fact that he also 
+possess the knowledge of the arcane matters makes him a formidable foe of 
+the gnome scum.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_PRACTICE|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_SANCTUARY|AFF_UNDERSTAND|AFF_TONGUES
+0 S
+60 BODY_TORSO BODY_LEG|BODY_ARM|BODY_HAND 1d1+9999 1d1+99
+100000 RACE_DROW
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 80~
+if ispc($n)
+  smile $n
+  say You look scrawny. Come here and let me butch you up! :>
+  break
+endif
+~
+|
+#16302
+Commander Arika~
+Commander Arika~
+You see a handsome young drow here.~
+Even Don Juan has to bow to this young drow. He's the master in the art of 
+love. ALL the women, whomever met him, married or not, will find him 
+irresistible. If you are female, you better save yourself the pain and give 
+in to him because if he wants you... you know it in your heart that he'll 
+sweep you off this universe... :>~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_TRAIN|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_SANCTUARY|AFF_UNDERSTAND|AFF_TONGUES
+0 S
+60 BODY_TORSO BODY_LEG|BODY_ARM|BODY_HAND 1d1+9999 1d1+99
+100000 RACE_DROW
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 80~
+if ispc($n)
+  if sex($n) <= 1
+    smile $n
+  else
+    say Ah... lady of high born, maiden of this universe,
+    say how long have I waited for thee! Come my lovely, 
+    say be with me and I shall show you the nectar of
+    say euphoria... :)
+    mpmset $i quest 0 6 30
+    break
+  endif
+endif
+~
+>rand_prog 60~
+if quest (0,6,$i) == 30
+  say Do you know what is "Dong,Dong,Dong...Dong,Dong?"
+  say Guess not...
+  mpmset $i quest 0 6 29
+  break
+endif
+if quest (0,6,$i) == 29
+  mpecho ...You here background music starting...
+  emote sings 'Oh oh Oh Onlllyyyy YOUOOUOUOUO...
+  mpecho ...background vocal : onlyyouonlyyouonlyyou...
+  emote sings 'Can blow my mind like that...
+  mpmset $i quest 0 6 28
+  break
+endif
+if quest (0,6,$i) == 28
+  emote sings 'Onlyyyy YOUOUOOUO...
+  mpecho ...background vocal : youyouyouyou...
+  emote sings 'Can bring my brother back...
+  mpmset $i quest 0 6 27
+  break
+endif
+if quest (0,6,$i) == 27
+  emote sings 'Only yooooouuu...
+  mpecho ...wolf bays : Aaaauuuooooooo...
+  emote sings 'I love, with all my heart...
+  emote sings 'Can stitch my boxers up...
+  mpecho ...from the background, you hear boxers been torn apart...
+  mpmset $i quest 0 6 26
+  break
+endif
+if quest (0,6,$i) == 26
+  emote sings 'The only one that can do all that...
+  mpecho ...you hear cats fighting in the background...
+  emote sings' that is OH oh Oh only YOUoooo...
+  mpecho ...now more cats are fighting in the background...
+  mpmset $i quest 0 6 25
+  break
+endif
+if quest (0,6,$i) == 25
+  sigh 
+  emote takes a deep breath...
+  emote ...and slowly exhale...
+  mpmset $i quest 0 6 24
+  break
+endif
+if quest (0,6,$i) == 24
+  emote sings 'Oh oh oH Only YOUuouo...
+  mpecho . o O (bet you think the singing is over..)
+  emote sings 'Can ...
+  emote looks up into the ceiling...
+  mpmset $i quest 0 6 23
+  break
+endif
+if quest (0,6,$i) == 23
+  mpecho ...suddenly some cats came flying out of no where...
+  mpecho ...SMACK!...
+  mpecho landed flat on Arika's face!
+  mpecho ...Hopefully, Commander Arika won't sing anymore.. :)
+  groan 
+  mpmset $i quest 0 6 0
+  break
+endif
+~
+|
+#16303
+Little Okoyr~
+Little Okoyr~
+You see a cute little drow child here.~
+Here you see the cutest child you've ever seen. She have a pair of those
+pony tails that are long and held by ribbons and beads of unknown design.
+Her voice is sweet and melodious as she smile at you innocently. :)~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_SANCTUARY|AFF_UNDERSTAND|AFF_TONGUES
+0 S
+100 BODY_TORSO BODY_LEG|BODY_ARM|BODY_HAND 2d1000+9000 10d30+100
+100000 RACE_DROW
+POS_STANDING POS_STANDING SEX_FEMALE
+>all_greet_prog 80~
+if ispc($n)
+  emote smile sweetly.
+  say Can I help you?
+  break
+endif
+~
+|
+#16304
+Commander Drokar~
+Commander Drokar~
+You see a middle aged drow standing behind the counter.~
+Here is the man who's at ease with ANY type of weapons. From daggers to 
+longswords; slings to spears, you name it, he can use it.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_SANCTUARY|AFF_UNDERSTAND|AFF_TONGUES
+0 S
+100 BODY_TORSO BODY_LEG|BODY_ARM|BODY_HAND 2d1000+9000 10d30+100
+100000 RACE_DROW
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 80~
+if ispc($n)
+  say What do you want?
+  break
+endif
+~
+|
+#16305
+Commander Ijuyr~
+Commander Ijuyr~
+You see a handsome young drow polishing armor.~
+He's tall and good looking. A little heavy and better built than the rest 
+of the drows you've seen so far. He's currently polishing armors and 
+making sure that they're in excellent condition before each piece is sold 
+to the drow army. With that in mind you know that you are in good hands.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_SANCTUARY|AFF_UNDERSTAND|AFF_TONGUES
+0 S
+100 BODY_TORSO BODY_LEG|BODY_ARM|BODY_HAND 2d1000+9000 10d30+100
+100000 RACE_DROW
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 80~
+if ispc($n)
+  if sex($n) == 2
+    say Can I help you with anything beauty?
+    wink $n
+    break
+  endif
+endif
+~
+|
+#16306
+Lady Okhoy~
+Lady Okhoy~
+You see a female drow here smiling at you winsomely.~
+The twinkle in her eyes and a mischievous smile, she's just absolutely 
+adorable. If only you could monopolize her beauty... :)~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_SANCTUARY|AFF_UNDERSTAND|AFF_TONGUES
+0 S
+100 BODY_TORSO BODY_LEG|BODY_ARM|BODY_HAND 2d1000+9000 10d30+100
+402141 RACE_DROW
+POS_STANDING POS_STANDING SEX_FEMALE
+>all_greet_prog 80~
+if ispc($n)
+  if sex($n) == 1 
+    giggle 
+    ruffle $n
+    say Hello dear, what can I do for you?
+    break
+  endif
+endif
+~
+|
+#16307
+Lady Enaka~
+Lady Enaka~
+You see a lovely looking drow here.~
+Though petite that she is, she's every bit a woman that you could have 
+imagine her to be. Her short but silky black hair does not diminish her 
+beauty even a little. By just looking at her, it seems that you can eat 
+anything... anything at all... :)~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_SANCTUARY|AFF_UNDERSTAND|AFF_TONGUES
+0 S
+100 BODY_TORSO BODY_LEG|BODY_ARM|BODY_HAND 2d1000+9000 10d30+100
+432095 RACE_DROW
+POS_STANDING POS_STANDING SEX_FEMALE
+>all_greet_prog 80~
+if ispc($n)
+  if sex($n) == 1
+    smile 
+    twiddle $n
+    say Honey dear, you hungry?
+    say Would you like some home made food?
+    wink $n 
+    giggle 
+    break
+  endif
+endif
+~
+|
+#16308
+Commander Odrus~
+Commander Odrus~
+A beefy looking drow is here.~
+He's Mr. Universe redefined. He's everything physical a guy wanna be. He's 
+every woman's secret dream. No doubt that he can kill you with a sneeze or 
+perhaps a laugh. Nevertheless, you feel safe knowing that he's on your 
+side.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_SANCTUARY|AFF_UNDERSTAND|AFF_TONGUES
+0 S
+95 BODY_TORSO BODY_LEG|BODY_ARM|BODY_HAND 1d1+9999 1d1+99
+100000 RACE_DROW
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if ispc($n)
+  if race($n) == 3
+    if level($n) < 10
+      say Come back when you grow some whiskers kid.
+      mpecho Commander Odrus picks you up with his pinky and...
+      say 3...2...1 Up up and away!
+      mpecho You flew, tumbling in the air and landed on Chakkor!
+      mptransfer $n 9755
+      mpecho OUCH! Your behind hurts...
+      break
+    else
+      say Show your patriotism by joining the army.
+      say Be all that you can be; kick those gnome scums' a**es!
+      say What do you say eh?
+      say Right here and right now!
+      say C'mon yellow belly... I D-A-R-E YOU!
+      break
+    endif
+  else
+    if race($n) == 5
+      say Punk you've got guts coming here.
+      say I give you that. HOWEVER... Face the omnipotent power
+      say of the Drow Army. Remember my name and FEAR ME
+      say GNOME SCUM! For you shall suffer!
+      mptransfer $n 9755
+      mpat 9755 mpechoaround $n HUMILIATION COMBO!
+      mpat 9755 mpforce $n remove all
+      mpat 9755 mpechoat $n YOU ARE STRIPPED NAKED!
+      mpat 9755 mpmset $n long A GNOME SCUM is here!
+      mpat 9755 mpforce $n shout I'M A GNOME SCUM! SCUMS OF ALL SCUMS!
+      mpat 9755 mpforce $n chat I'M A GNOME SCUM! SCUMS OF ALL SCUMS! 
+      break
+    else
+      say Punk this is no place for you. GET OUT OF MY FACE!
+      mpecho Gives you the kick of your life time!
+      mpecho THUD!
+      mpecho You've landed in Chakkor!
+      mptransfer $n 9755
+      mpat 9755 mpforce $n shout I WILL NOT SPY FOR GNOME SCUMS ANYMORE!
+      break
+    endif
+  endif
+endif
+~
+|
+#16309
+General Norkras~
+General Norkras~
+General Norkras of the Drow Army is here.~
+He's tall and lean. Cloak that he wears is dark and silky. His drow semi 
+plate armor is polished and trimmed with gold markings of the Drow Royal 
+Army. Jutting out of his cloak, is his drow sword. You wouldn't want to 
+be the one who would witness the drawing of his sword however, you do 
+have to admit that the sword is very well made and of the best design.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_SANCTUARY|AFF_UNDERSTAND|AFF_TONGUES
+0 S
+95 BODY_TORSO BODY_LEG|BODY_ARM|BODY_HAND 1d1+9999 1d1+99
+100000 RACE_DROW
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 50~
+if ispc($n)
+  if armystatus($n) == 0
+     mpechoat $n Type <ARMY JOIN password> here to join the Drow Army.
+  endif
+  if sex($n) == 2
+    mpforce $n grovel
+    emote looks at you deprecatingly...
+    snicker $n
+    break
+  else
+    mpforce $n grovel
+    say What are you looking at?
+    emote Stares at you with his steely eyes.
+    say Shut your mouth and go hunt those pesky gnome scums!
+    mpecho Two guard immediately shove you out of this room.
+    mptransfer $n 16310 
+    break
+  endif
+endif
+~
+|
+#16310
+Drow Army Scout~
+Drow Army Scout~
+A nondescript drow is here.~
+There's nothing special about this drow.~
+ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_STEALTH|AFF_HUNT|AFF_TONGUES
+0 S
+10 BODY_TORSO BODY_LEG|BODY_ARM|BODY_HAND 1d20+150 1d10+10
+10 RACE_DROW
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if quest (9,2,$n) == 2
+  say You murderous PIG!
+  mpkill $n
+  break
+else
+  if ispc($n)
+     if race($n) == 3
+        if armystatus($n) == 0
+           mpechoat $n If you wish to join the Drow Army, go see General Norkras.
+        endif
+     endif
+  endif
+endif
+~
+>entry_prog 80~
+if ispc($n)
+  if level($n) >= 30
+    if race($n) == 3
+    else
+      if race($n) == 5
+        mpforce $n shout Help! I've been assassinated by $i!!!
+        mpkill $n
+        mpforce $n chat Serves me right for being assassinated!
+        mpforce $n chat I deserve it!
+      else
+        mpforce $n shout Help! I've been assassinated by $i!!!
+        mpkill $n 
+      endif
+    endif
+  endif
+endif
+~
+>rand_prog 5~
+if position($i) != 6
+  mpquiet on
+  cast teleport
+  mpquiet off
+else
+  mppurge $i
+  break
+endif
+~
+>fight_prog 100~
+emote 's knife...
+mpforce $n help DUORP3
+mpechoat $n You Sure are BLEEDING!!
+mpquiet on
+knife $n
+mpquiet off
+~
+|
+#16311
+Drow Assassin~
+A hooded figure~
+A hooded figure is here.~
+You see nothing special about her.~
+ACT_SENTINEL|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_STEALTH|AFF_HUNT|AFF_TONGUES
+0 S
+10 BODY_TORSO BODY_LEG|BODY_ARM|BODY_HAND 1d1+359 1d10+20
+10 RACE_DROW
+POS_STANDING POS_STANDING SEX_FEMALE
+>all_greet_prog 100~
+if ispc($n)
+  if level($n) > 35
+    mpecho You hear a very soft voice from the darkness...
+    say Are you interested in killing someone?
+    say If you do, the payment is 5 million coins.
+    say Take it or leave it... NO BARGAIN.
+    say Just say MURDER <victim's name>
+    break
+  endif
+endif
+~
+>speech_prog P MURDER~
+if ispc($n) 
+  if level($n) > 35
+    if quest (7,2,$n) == 2
+      say Sorry kid, ONLY ONCE in your life time.
+      say Go do it yourself...
+    else
+      if goldamt($n) > 5000001
+        say Consider it done...
+        mpecho Someone disappeared into the darkness...
+        mpmadd $n gold -5000000
+        mpmadd $n exp -1000000
+        mpmset $n quest 7 2 2
+        mpgoto $2
+        mpforce $2 stand
+        mpmload 16312
+        mpforce $2 wake
+        mpforce $2 say Who goes there!?
+        mppurge $i
+      endif
+      say Sorry kid, no money no murder.
+      mpechoat $n You feel SO DUMB!
+      break
+    endif
+  endif
+endif
+~
+>fight_prog 100~
+emote 's knife...
+mpforce $n help DUORP3
+mpechoat $n You Sure are BLEEDING!!
+mpquiet on
+knife $n
+mpquiet off
+~
+|
+#16312
+Drow Assassin~
+A hooded figure~
+A hooded figure is here.~
+You see nothing special about her.~
+ACT_SENTINEL|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_STEALTH|AFF_HUNT|AFF_TONGUES
+0 S
+10 BODY_TORSO BODY_LEG|BODY_ARM|BODY_HAND 1d1+348 1d10+20
+10 RACE_DROW
+POS_STANDING POS_STANDING SEX_FEMALE
+>speech_prog p Who goes there!?~
+if level($n) > 25
+  mpforce $n shout Help! Someone is trying to assassinate me!!
+  mpoload 16318
+  wear i16318
+  mpkill $n
+else
+  mpgoto 1
+  mppurge $i
+endif
+~
+>fight_prog 100~
+emote 's knife...
+mpforce $n help DUORP3
+mpechoat $n You Sure are BLEEDING!!
+mpquiet on
+knife $n
+mpquiet off
+~
+>rand_prog 80~
+if position($i) != 6
+  mppurge $i
+  break
+endif
+~
+|
+#16313
+Drow Imperial Guard~
+Drow Imperial Guard~
+An Imperial Drow Guard is standing here.~
+It is so heavily armored that you can't determine it's sex. 
+The dark cloak and a dark scarf that covered it's face, 
+you wonder what's covered within it. After some careful
+thinking, it's probably a good idea not to know its 
+intention.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_SANCTUARY|AFF_UNDERSTAND|AFF_TONGUES
+1000 S
+120 BODY_TORSO BODY_LEG|BODY_ARM|BODY_HAND 1d1+15999 1d1+199
+100000 RACE_DROW
+POS_STANDING POS_STANDING SEX_FEMALE
+>all_greet_prog 100~
+if ispc($n)
+  if quest (9,2,$n) != 2
+    if race($n) == 3
+      emote gives you a nod.
+      break
+    else
+      shout Intruder! BANZAI!
+      mpforce $n remove all
+      mpforce $n shout Help! I've been PULVERIZED by Drow Imperial Guard!!!!!
+      mpkill $n
+      break
+    endif
+  else
+    say YOU murderous PIG! Now DIE!
+    mpforce $n remove all
+    mpforce $n shout Help! I've been PULVERIZED by Drow Imperial Guard!!!!!
+    mpkill $n
+    break
+  endif
+endif
+~
+>fight_prog 20~
+emote 's Dark Blade...
+mpforce $n help DUORP3
+mpechoat $n You are D-Y-I-N-G!!!
+mpquiet on
+mpforce $n remove all
+martialarts $n
+martialarts $n
+martialarts $n
+martialarts $n
+martialarts $n
+martialarts $n
+martialarts $n
+martialarts $n
+mpquiet off
+~
+>death_prog 100~
+if ispc($n)
+  mpmset $n quest 9 2 2
+  emote points at $n.
+  mpechoat $n With his last breath, he cursed you to hell!
+  mpmset $n long $n the MURDEROUS PIG is GROVELING here.
+  break
+endif
+~
+|
+#0
+
+
+
+
+#OBJECTS
+#16300
+Fried Carrots~
+a plate of fried carrots~
+A plate of carrots is lying on the floor.~
+As suggested by the looks of it... The carrots are over fried. You wonder 
+if its edible.~
+ITEM_TYPE_FOOD
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+24 0 0 NOT_POISONED
+2 100 1
+#16301
+Gumbo~
+a bowl of gumbo~
+A bowl of gumbo is lying on the floor.~
+The gumbo looks so ridiculous that from the smell of it, you feel like 
+puking. You wonder what Lady Enaka used in cooking this gumbo.~
+ITEM_TYPE_FOOD
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+10 0 0 NOT_POISONED
+1 20 1
+#16302
+Tree Juice~
+a glass of tree juice~
+A glass of tree juice lies here.~
+Well, juice from some trees. At least that's what you've been told.~
+ITEM_TYPE_DRINK_CON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+10 10 LIQ_LEMONADE NOT_POISONED
+1 100 1
+#16303
+Crystal water~
+a glass of crystal water~
+A glass of water is lying on the floor.~
+The water is so pure that you couldn't believe your eyes.~
+ITEM_TYPE_DRINK_CON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+10 10 LIQ_WATER NOT_POISONED
+1 50 1
+#16304
+Thin rapier~
+a thin rapier~
+A slim rapier lies here.~
+This is an intricately crafted thin rapier.~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 2 5 WEAPON_SLASH
+7 1500 5
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_RACE = RACE_DROW 0 10
+P 10
+TRIG_VOID
+OPROG_ECHO
+Because of your inability to use this weapon it broke apart.~
+P 10
+TRIG_VOID
+OPROG_JUNK
+#16305
+Whip~
+a whip~
+A whip lies here.~
+This is a whip made of cowhide.~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 2 5 WEAPON_WHIP
+7 1000 5
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_RACE = RACE_DROW 0 10
+P 10
+TRIG_VOID
+OPROG_ECHO
+Because of your inability to use this weapon it broke apart.~
+P 10
+TRIG_VOID
+OPROG_JUNK
+#16306
+Drow Army Dagger~
+a Drow Army Dagger~
+A small dagger lies here.~
+This is a standard Drow Army issue dagger.~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 2 5 WEAPON_STAB
+7 800 5
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_RACE = RACE_DROW 0 10
+P 10
+TRIG_VOID
+OPROG_ECHO
+Because of your inability to use this weapon it broke apart.~
+P 10
+TRIG_VOID
+OPROG_JUNK
+#16307
+Semi plate armor~
+a semi plate armor~
+A plate armor lies here.~
+This is a standard Drow Army issue semi plate armor.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_BODY
+5 0 0 0
+2 3000 5
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_RACE = RACE_DROW 0 10
+P 10
+TRIG_VOID
+OPROG_ECHO
+The armor broke apart.~
+P 10
+TRIG_VOID
+OPROG_JUNK
+#16308
+Drow gloves~
+a Drow gloves~
+A nondescript gloves lies here.~
+This is a standard Drow Army issue gloves.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HANDS
+4 0 0 0
+2 3000 5
+A
+APPLY_DEX 1
+A
+APPLY_WIS 1
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_RACE = RACE_DROW 0 10
+P 10
+TRIG_VOID
+OPROG_ECHO
+The gloves broke apart.~
+P 10
+TRIG_VOID
+OPROG_JUNK
+#16309
+Drow leggings~
+a Drow leggings~
+A nondescript leggings lies here.~
+This is a standard issue Drow army leggings.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_LEGS
+4 0 0 0
+2 3000 5
+A
+APPLY_DEX 1
+A
+APPLY_WIS 1
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_RACE = RACE_DROW 0 10
+P 10
+TRIG_VOID
+OPROG_ECHO
+The leggings broke apart.~
+P 10
+TRIG_VOID
+OPROG_JUNK
+#16310
+Drow helm~
+a Drow helm~
+A nondescript helm lies here.~
+This is a standard issue Drow army helm.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HEAD
+4 0 0 0
+2 3000 5
+A
+APPLY_MANA 10
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_RACE = RACE_DROW 0 10
+P 10
+TRIG_VOID
+OPROG_ECHO
+The helm broke apart.~
+P 10
+TRIG_VOID
+OPROG_JUNK
+#16311
+Recall scroll~
+a Scroll of Recall~
+A recall scroll lies here.~
+Just a scroll of recall.~
+ITEM_TYPE_SCROLL
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+10 SPELL_WORD_OF_RECALL SPELL_NONE SPELL_NONE
+1 250 10
+#16312
+Scroll of detect invis~
+a scroll of detect invis~
+A scroll lies here.~
+Just a magical scroll.~
+ITEM_TYPE_SCROLL
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+10 SPELL_DETECT_INVIS SPELL_NONE SPELL_NONE
+1 1000 20
+#16313
+Scroll of detect hidden~
+a scroll of detect hidden~
+A scroll lies here.~
+Just a magical scroll.~
+ITEM_TYPE_SCROLL
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+10 SPELL_DETECT_HIDDEN SPELL_NONE SPELL_NONE
+1 1000 20
+#16314
+Potion of detect invis~
+a potion of detect invis~
+A potion lies here.~
+Just a magical potion.~
+ITEM_TYPE_POTION
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+10 SPELL_DETECT_INVIS SPELL_NONE SPELL_NONE
+1 1000 20
+#16315
+Potion of detect hidden~
+a potion of detect hidden~
+A potion lies here.~
+Just a magical potion.~
+ITEM_TYPE_POTION
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+10 SPELL_DETECT_HIDDEN SPELL_NONE SPELL_NONE
+1 1000 20
+#16316
+Drow bracer~
+a Drow bracer~
+A nondescript bracer lies here.~
+This a standard issue Drow Army bracer.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WRIST
+4 0 0 0
+2 3000 5
+A
+APPLY_MANA 10
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_RACE = RACE_DROW 0 10
+P 10
+TRIG_VOID
+OPROG_ECHO
+The bracer broke apart.~
+P 10
+TRIG_VOID
+OPROG_JUNK
+#16317
+Spring~
+an underground spring~
+An Underground spring~
+This is a unique underground spring. The crystal clear underground water 
+kept the spring filled constantly.~
+ITEM_TYPE_FOUNTAIN
+ITEM_FLAG_LEVEL
+0
+0 0 0 0
+9999 0 99
+#16318
+Drow Army Knife~
+drow Army Knife~
+A very IMPORTANT knife lies here.~
+This is what drow assassins used to kill their victims.~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 2 5 WEAPON_STAB
+2 800 5
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_RACE = RACE_DROW 0 10
+P 10
+TRIG_VOID
+OPROG_ECHO
+Because of your inability to use this weapon it broke apart.~
+P 10
+TRIG_VOID
+OPROG_JUNK
+#0
+
+
+
+
+#ROOMS
+#16300
+Magical Cavern~
+Though this cavern, like any cavern you have been in, is dark and damp, 
+when you look closely, you find that the cave walls consist of multi hue 
+rocks and minerals. Some of them even emits a faint greenish glow in the 
+dark. The sound and ultimately, the echo of water drops hitting the cave 
+floors gives you a sense of being all alone by yourself. Occasionally, 
+you would feel gust of gentle breeze lapping on your face. However, you 
+cannot detect any exits that leads into the outside world.~
+163 ROOM_DARK|ROOM_INDOORS SECT_FOREST
+DDIR_EAST
+You see a Spacious Tunnel~
+~
+0 -1 16304
+DDIR_SOUTH
+You see a Large Cavern~
+~
+0 -1 16301
+S
+#16301
+Large Cavern~
+You have come into a dimly lit cavern that is more spacious than the 
+others you have seen so far. Numerous drows that remains faceless to you, 
+moves in and out of this cavern. It is very obvious to you that this 
+cavern is enlarged by means of tools, not of natural cause. Stalagmites 
+and stalactites that met together have been carved into pillars of 
+intricate design that is lost in antiquity. Voices kept echoing throughout 
+this spacious cave as members of the drow army practice and sharpened 
+their skills in the struggle against the gnomes.~
+163 ROOM_DARK|ROOM_INDOORS|ROOM_SAFE SECT_FOREST
+DDIR_NORTH
+You see a Magical Cavern~
+~
+0 -1 16300
+DDIR_SOUTH
+You see a Largest Cavern~
+~
+0 -1 16302
+S
+#16302
+Largest Cavern~
+This is the largest cavern you have encounter so far in your exploration 
+of this make shift head quarters of the drow army. You see several drows 
+grunt and sweat as they train hard and train for victory against the 
+gnomes. Off into the south side of this cavern, you can immediately detect a 
+miniature faucet that constantly has water running out of it; to sooth 
+the thirst of those who trained hard.~
+163 ROOM_DARK|ROOM_INDOORS|ROOM_SAFE SECT_FOREST
+DDIR_NORTH
+You see a Large Cavern~
+~
+0 -1 16301
+S
+#16303
+Dark Cavern~
+Although this cave is dark and maybe just a little small, there is quite 
+a few drows to be found here. Most of the drows you found here dresses in 
+white or partly white. You have also noticed badly worn stretchers are 
+placed neatly on the side of the cave wall. As you walk deeper into this 
+cavern, you have also noticed that the drows you have met here are mostly 
+grim faced. As you approached the end of the cave, you realize that just 
+ahead of you lies the bodies of the ones who lost their lives in battle. 
+You instinctively brought your hand to your mouth as you try to fight of 
+the nausea you feel.~
+163 ROOM_INDOORS|ROOM_SAFE|ROOM_MORGUE SECT_FOREST
+DDIR_EAST
+You see a Small Cave~
+~
+0 -1 16305
+S
+#16304
+Spacious Tunnel~
+As you walk down this tunnel, you find that this tunnel floor actually 
+has more dirt that it should have. This puzzled you greatly as the caves 
+that you have come across so far are limestone caves. Towards where the 
+end of the wall meet the floor, weird fungus and mushrooms actually grows 
+here. On top of that, they actually give a soft glow too.~
+163 ROOM_DARK|ROOM_INDOORS SECT_FOREST
+DDIR_EAST
+You see a Grand Cavern~
+~
+0 -1 16306
+DDIR_WEST
+You see a Magical Cavern~
+~
+0 -1 16300
+S
+#16305
+Small Cave~
+You have noticed that this cave is enlarged so that this cave can be put 
+to a better use rather than leaving it as a tunnel. A small underground 
+stream meanders though this cave as you walk across a beautifully crafted 
+little bridge of drow design. You noticed a stall that sells drinks are 
+set up in the far end corner of the cave. You wonder if the drinks sold 
+here is safe to drink. :>~
+163 ROOM_DARK|ROOM_INDOORS|ROOM_SAFE SECT_FOREST
+DDIR_EAST
+You see a Wide Cavern~
+~
+0 -1 16307
+DDIR_WEST
+You see a Dark Cavern~
+~
+0 -1 16303
+S
+#16306
+Grand Cavern~
+You have never been in a cave that is so called grand, however, this is 
+as close a cave as being called grand. Stairs that leads to other parts 
+of this complex is literally carved into the slopes of the caves. Make 
+shift chandeliers, though looks crude, gives out a gentle glow that is 
+very dim. Of the four corners of this caverns, are placed four little 
+cauldrons each corner, that seems to burn forever. The walls of the cave 
+are so smooth that you shudder at the time an effort spent on polishing 
+those walls. Brass slabs were placed onto the walls, containing names of 
+the those who lost their lives valiantly in war. You feel a sense of 
+nostalgia, as when you stood on the highest part of the cavern, looking 
+at this magnificent architect of the drows.~
+163 ROOM_DARK|ROOM_INDOORS SECT_FOREST
+DDIR_EAST
+You see a Forest Center~
+~
+0 -1 16310
+DDIR_WEST
+You see a Spacious Tunnel~
+~
+0 -1 16304
+S
+#16307
+Wide Cavern~
+This cavern is converted into a mess hall where all the drows have their 
+meals here. This cave is so huge that those long benches and tables that 
+filled it are capable to cater thousands of drows in any given time. 
+Right as of now, this cave is sparsely filled. Cooks and helpers are 
+constantly busy preparing food whenever it is not meal time and after 
+meals, they are busy cleaning. On the right hand corner of the counter, 
+located a small stall that has a sign that says that it is opened twenty 
+four hours a day. The reason for the mess hall to open twenty four hours 
+a day is probably due to the fact that wars, unlike work, ignores time. 
+Wars only end when one of the party or parties succeed in obtaining 
+whatever it desires; at whatever the costs.~
+163 ROOM_DARK|ROOM_INDOORS|ROOM_SAFE SECT_FOREST
+DDIR_SOUTH
+You see a Spacious Tunnel~
+~
+0 -1 16308
+DDIR_WEST
+You see a Small Cave~
+~
+0 -1 16305
+S
+#16308
+Spacious Tunnel~
+As you walk down this tunnel, you find that this tunnel floor actually
+has more dirt that it should have. This puzzled you greatly as the caves
+that you have come across so far are limestone caves. Towards where the
+end of the wall meet the floor, weird fungus and mushrooms actually grows
+here. On top of that, they actually give a soft glow too.~
+163 ROOM_DARK|ROOM_INDOORS SECT_FOREST
+DDIR_NORTH
+You see a Wide Cavern~
+~
+0 -1 16307
+DDIR_SOUTH
+You see a Grand Cavern~
+~
+0 -1 16309
+S
+#16309
+Grand Cavern~
+You have never been in a cave that is so called grand, however, this is
+as close a cave as being called grand. Stairs that leads to other parts
+of this complex is literally carved into the slopes of the caves. Make
+shift chandeliers, though looks crude, gives out a gentle glow that is
+very dim. Of the four corners of this caverns, are placed four little
+cauldrons each corner, that seems to burn forever. The walls of the cave
+are so smooth that you shudder at the time an effort spent on polishing
+those walls. Brass slabs were placed onto the walls, containing names of
+the those who lost their lives valiantly in war. You feel a sense of
+nostalgia, as when you stood on the highest part of the cavern, looking
+at this magnificent architect of the drows.~
+163 ROOM_DARK|ROOM_INDOORS SECT_FOREST
+DDIR_NORTH
+You see a Spacious Tunnel~
+~
+0 -1 16308
+DDIR_SOUTH
+~
+You see a Cavern Center~
+0 -1 16310
+S
+#16310
+Cavern Center~
+Behold! The center of the Caverns of the Duorp. Directly in the center 
+of this hall lies a monolith carved out of some kind of black marble. 
+The inscriptions that filled all the four sides of the monolith, looks 
+incomprehensible, however you guessed it is probably lore of the drows 
+passed down generation by generation. A sword as black as a moonless 
+night, floats magically above this monolith. The sword is sleek in 
+design, unlike human made sword, it is thin and long; almost a stabbing 
+weapon rather than slashing weapon. On all the four diagonal corners of 
+the monolith, about seven feet away, stood four different statues. 
+Probably statues of war heroes that were lost in the legends. This 
+grand hall is linked by the four great stairways, north, south, east 
+and west of you. Of a ways from the center of this hall lies a helix 
+shaped stairways that goes up and down.~
+163 ROOM_DARK|ROOM_INDOORS|ROOM_SAFE SECT_FOREST
+DDIR_NORTH
+You see a Grand Cavern~
+~
+0 -1 16309
+DDIR_EAST
+You see a Grand Cavern~
+~
+0 -1 16314
+DDIR_SOUTH
+You see a Grand Cavern~
+~
+0 -1 16311
+DDIR_WEST
+You see a Grand Cavern~
+~
+0 -1 16306
+DDIR_UP
+You see an  Entrance~
+~
+0 -1 16321
+DDIR_DOWN
+You see a Com Center~
+~
+0 -1 16322
+S
+#16311
+Grand Cavern~
+You have never been in a cave that is so called grand, however, this is
+as close a cave as being called grand. Stairs that leads to other parts
+of this complex is literally carved into the slopes of the caves. Make
+shift chandeliers, though looks crude, gives out a gentle glow that is
+very dim. Of the four corners of this caverns, are placed four little
+cauldrons each corner, that seems to burn forever. The walls of the cave
+are so smooth that you shudder at the time an effort spent on polishing
+those walls. Brass slabs were placed onto the walls, containing names of
+the those who lost their lives valiantly in war. You feel a sense of
+nostalgia, as when you stood on the highest part of the cavern, looking
+at this magnificent architect of the drows.~
+163 ROOM_DARK|ROOM_INDOORS SECT_FOREST
+DDIR_NORTH
+You see a Cavern Center~
+~
+0 -1 16310
+DDIR_SOUTH
+You see a Hall of Duorp~
+~
+0 -1 16312
+S
+#16312
+Hall of Duorp~
+Though this so called hall is actually a cavern rather than a hall, you 
+can see that it used to be a cave.However it is meticulously transformed 
+into a hall. Ceremonial armors and weapons filled this hall and you are 
+mildly surprised by the fact that there is not even a speck of dust 
+found on those armors and weapons. The ceiling of this hall is polished 
+and tales of the struggle between the drows and the gnomes were carved 
+on.~
+163 ROOM_DARK|ROOM_INDOORS SECT_FOREST
+DDIR_NORTH
+You see a Grand Cavern~
+~
+0 -1 16311
+DDIR_SOUTH
+You see a Circular Tunnel~
+~
+0 -1 16313
+S
+#16313
+Circular Tunnel~
+This a circular tunnel that is "L" shaped, is connecting between the 
+Hall of Duorp and the Cavern of Armor. Again the walls of this circular 
+tunnel is highly polished. The floor of this tunnel is made of jet black 
+marble tiles.~
+163 ROOM_DARK|ROOM_INDOORS SECT_FOREST
+DDIR_NORTH
+You see a Hall of Duorp~
+~
+0 -1 16312
+DDIR_EAST
+You see a Cavern of Arms~
+~
+0 -1 16315
+S
+#16314
+Grand Cavern~
+You have never been in a cave that is so called grand, however, this is
+as close a cave as being called grand. Stairs that leads to other parts
+of this complex is literally carved into the slopes of the caves. Make
+shift chandeliers, though looks crude, gives out a gentle glow that is
+very dim. Of the four corners of this caverns, are placed four little
+cauldrons each corner, that seems to burn forever. The walls of the cave
+are so smooth that you shudder at the time an effort spent on polishing
+those walls. Brass slabs were placed onto the walls, containing names of
+the those who lost their lives valiantly in war. You feel a sense of
+nostalgia, as when you stood on the highest part of the cavern, looking
+at this architect of the drows.~
+163 ROOM_DARK|ROOM_INDOORS SECT_FOREST
+DDIR_EAST
+You see a Hall of Duorp~
+~
+0 -1 16316
+DDIR_WEST
+You see a Cavern Center~
+~
+0 -1 16310
+S
+#16315
+Cavern of Arms~
+Sounds of hammer beating on metal is reverberating throughout this 
+cavern. Immediately you identify this cavern either belong to a weapon 
+smith or and armor smith. The only visible light source is from the 
+furnace. You can barely detect the silhouette of a drow working on a 
+piece of red hot metal. Nevertheless this is the only cavern that you 
+find that is almost filled with racks upon racks of weapons of assorted 
+nature. On the far east corner of this cavern, three blacksmiths are busy
+hammering alloys into blades, daggers, and more... all of which produces 
+a deadly gleam.~
+163 ROOM_DARK|ROOM_INDOORS|ROOM_SAFE SECT_FOREST
+DDIR_EAST
+You see a Hall of Armor~
+~
+0 -1 16317
+DDIR_WEST
+You see a Circular Tunnel~
+~
+0 -1 16313
+S
+#16316
+Hall of Duorp~
+Though this so called hall is actually a cavern rather than a hall, you
+can see that it used to be a cave.However it is meticulously transformed
+into a hall. Ceremonial armors and weapons filled this hall and you are
+mildly surprised by the fact that there is not even a speck of dust
+found on those armors and weapons. The ceiling of this hall is polished 
+and tales of the struggle between the drows and the gnomes were carved  
+on.~
+163 ROOM_DARK|ROOM_INDOORS SECT_FOREST
+DDIR_EAST
+You see a Magical Cavern~
+~
+0 -1 16320
+DDIR_WEST
+You see a Grand Cavern~
+~
+0 -1 16314
+S
+#16317
+Cavern of Armor~
+More clanking sounds can be found over here as you noticed that this 
+cavern more furnaces when compared to the Cavern of Arms. This cavern is 
+much brighter than any other caves and tunnels you have come across.
+Nevertheless, rows upon rows of armors that's specifically designed for 
+the Drow Army are found here. This is also the place where the army 
+recruits equip themselves. Armors you find here are of high quality and 
+exceptionally well crafted.~
+163 ROOM_DARK|ROOM_INDOORS|ROOM_SAFE SECT_FOREST
+DDIR_WEST
+You see a Cavern of Arms~
+~
+0 -1 16315
+S
+#16318
+A Cave~
+As you walk deeper and deeper into this cave, the surrounding seems to 
+get colder and colder. The air gets denser and denser to the point that 
+you are practically drinking air. You don't know how such phenomenon 
+exist in caves as there is no visible or even audible signs of large 
+mass water being contained within this cave. Perhaps your senses are 
+deceiving you, but out off the corners off eyes, you could have sworn 
+you seen someone watching you.~
+163 ROOM_DARK|ROOM_INDOORS|ROOM_SAFE SECT_FOREST
+DDIR_SOUTH
+You see a Cavern of Ysird~
+~
+0 -1 16319
+S
+#16319
+Cavern of Ysird~
+Right as you enter this cavern, you found a statue of a drow placed 
+exactly on the center. As you look at the plaque that is embedded below 
+the statue. The plaque explains that this cavern is dedicated to Ysird 
+the drow necromancer for playing a major role of repelling an invasion 
+by the gnomes. Sadly Ysird died due to over exhaustion after casting 
+the crucial spell. After this incident, this cavern, not only does is 
+it dedicated to Ysird but also being converted into a school of magic. 
+So that magical scrolls can be scribed and potions to be brewed to help 
+in the war effort.~
+163 ROOM_DARK|ROOM_INDOORS|ROOM_SAFE SECT_FOREST
+DDIR_NORTH
+You see A Cave~
+~
+0 -1 16318
+DDIR_SOUTH
+You see a Magical Cavern~
+~
+0 -1 16320
+S
+#16320
+Magical Cavern~
+Though this cavern, like any cavern you have been in, is dark and damp,
+when you look closely, you find that the cave walls consist of multi hue
+rocks and minerals. Some of them even emits a faint greenish glow in the
+dark. The sound and ultimately, the echo of water drops hitting the cave
+floors gives you a sense of being all alone by yourself. 
+Occasionally, you would feel gust of gentle breeze lapping on your 
+face. However, you cannot detect any exits that leads into the outside 
+world.~
+163 ROOM_DARK|ROOM_INDOORS SECT_FOREST
+DDIR_NORTH
+You see a Cavern of Ysird~
+~
+0 -1 16319
+DDIR_WEST
+You see a Hall of Duorp~
+~
+0 -1 16316
+S
+#16321
+Entrance~
+This is the entrance to the Caverns of Duorp, where the Drow Army 
+resides. There's nothing uncommon about this place except that there's a 
+sign that says as bright as day, "Only Drow Army and wannabes may step 
+up...Other races please stay out of our war..." You notice a booth and 
+a gate is set up right in front of the path that leads to the 
+stronghold. The tiny inscription that is found on the same sign says, 
+"If you still can stand here and look at this, you are definitely a 
+drow."~
+163 ROOM_DARK|ROOM_INDOORS 1027
+DDIR_UP
+~
+~
+0 -1 5134
+DDIR_DOWN
+You see a Cavern Center~
+~
+0 -1 16310
+S
+#16322
+Com Center~
+Upon entering this room, you find that this place is VERY busy. Numerous 
+clerks are busy sending messages to and fro from one desk to the other. 
+Many maps of the gnome empire are found hanging all over the walls with 
+lots of marking all over them. As you walk towards what it seems to be the 
+center of the Com Center, you heard someone says "Sir, but I need more 
+men!" As you turned around to see whoever is making that remark, you have 
+been shoved by the messengers and clerks that walked of hurriedly.~
+163 ROOM_DARK|ROOM_INDOORS|ROOM_SAFE SECT_FOREST
+DDIR_UP
+You see a Cavern Center~
+~
+0 -1 16310
+S
+#0
+
+#RESETS
+O 0 16317   1 16310 ;    an underground spring in Cavern Center            
+M 0 16307   1 16307 ;               Lady Enaka in Wide Cavern              
+G 1 16300 999       ; a plate of fried carrots
+G 1 16301 999       ;          a bowl of gumbo
+M 0 16306   1 16305 ;               Lady Okhoy in Small Cave               
+G 1 16302 999       ;    a glass of tree juice
+G 1 16303 999       ; a glass of crystal water
+M 0 16304   1 16315 ;         Commander Drokar in Cavern of Arms           
+G 1 16304 999       ;            a thin rapier
+G 1 16305 999       ;                   a whip
+G 1 16306 999       ;       a Drow Army Dagger
+M 0 16305   1 16317 ;          Commander Ijuyr in Cavern of Armor          
+G 1 16307 999       ;       a semi plate armor
+G 1 16308 999       ;            a Drow gloves
+G 1 16309 999       ;          a Drow leggings
+G 1 16310 999       ;              a Drow helm
+G 1 16316 999       ;            a Drow bracer
+M 0 16303   1 16319 ;             Little Okoyr in Cavern of Ysird          
+G 1 16311 999       ;       a Scroll of Recall
+G 1 16312 999       ; a scroll of detect invis
+G 1 16313 999       ;a scroll of detect hidden
+G 1 16314 999       ; a potion of detect invis
+G 1 16315 999       ;a potion of detect hidden
+M 0 16300   1 16303 ;               Lady Okeya in Dark Cavern              
+M 0 16301   1 16301 ;       Commander Ihcinihs in Large Cavern             
+M 0 16302   1 16302 ;          Commander Arika in Largest Cavern           
+M 0 16308   1 16321 ;          Commander Odrus in Entrance                 
+M 0 16309   1 16322 ;          General Norkras in Com Center               
+M 0 16310  11 16300 ;          Drow Army Scout in Magical Cavern           
+E 1 16318 999 ITEM_WEAR_HEAD ;equip drow Army Knife          
+M 0 16310  11 16304 ;          Drow Army Scout in Spacious Tunnel          
+E 1 16318 999 ITEM_WEAR_HEAD ;equip drow Army Knife          
+M 0 16310  11 16306 ;          Drow Army Scout in Grand Cavern             
+E 1 16318 999 ITEM_WEAR_HEAD ;equip drow Army Knife          
+M 0 16310  11 16308 ;          Drow Army Scout in Spacious Tunnel          
+E 1 16318 999 ITEM_WEAR_HEAD ;equip drow Army Knife          
+M 0 16310  11 16309 ;          Drow Army Scout in Grand Cavern             
+E 1 16318 999 ITEM_WEAR_HEAD ;equip drow Army Knife          
+M 0 16310  11 16311 ;          Drow Army Scout in Grand Cavern             
+E 1 16318 999 ITEM_WEAR_HEAD ;equip drow Army Knife          
+M 0 16310  11 16312 ;          Drow Army Scout in Hall of Duorp            
+E 1 16318 999 ITEM_WEAR_HEAD ;equip drow Army Knife          
+M 0 16310  11 16313 ;          Drow Army Scout in Circular Tunnel          
+E 1 16318 999 ITEM_WEAR_HEAD ;equip drow Army Knife          
+M 0 16310  11 16314 ;          Drow Army Scout in Grand Cavern             
+E 1 16318 999 ITEM_WEAR_HEAD ;equip drow Army Knife          
+M 0 16310  11 16316 ;          Drow Army Scout in Hall of Duorp            
+E 1 16318 999 ITEM_WEAR_HEAD ;equip drow Army Knife          
+M 0 16310  11 16320 ;          Drow Army Scout in Magical Cavern           
+E 1 16318 999 ITEM_WEAR_HEAD ;equip drow Army Knife          
+M 0 16311   1 16318 ;          A hooded figure in A Cave                   
+M 0 16313   8 16309 ;      Drow Imperial Guard in Grand Cavern             
+M 0 16313   8 16311 ;      Drow Imperial Guard in Grand Cavern             
+M 0 16313   8 16314 ;      Drow Imperial Guard in Grand Cavern             
+M 0 16313   8 16306 ;      Drow Imperial Guard in Grand Cavern             
+M 0 16313   8 16300 ;      Drow Imperial Guard in Magical Cavern           
+M 0 16313   8 16308 ;      Drow Imperial Guard in Spacious Tunnel          
+M 0 16313   8 16320 ;      Drow Imperial Guard in Magical Cavern           
+M 0 16313   8 16313 ;      Drow Imperial Guard in Circular Tunnel          
+S
+
+#SHOPS
+16307 ITEM_TYPE_FOOD ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING
+     ITEM_TYPE_NOTHING 100  10  0 23 ;Lady Enaka
+16306 ITEM_TYPE_DRINK_CON ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING
+     ITEM_TYPE_NOTHING 100  10  0 23 ;Lady Okhoy
+16304 ITEM_TYPE_WEAPON ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING
+     ITEM_TYPE_NOTHING 100  10  0 23 ;Commander Drokar
+16305 ITEM_TYPE_ARMOR ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING
+     ITEM_TYPE_NOTHING 100  10  0 23 ;Commander Ijuyr
+16303 ITEM_TYPE_SCROLL ITEM_TYPE_POTION ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING
+     ITEM_TYPE_NOTHING 100  10  0 23 ;Little Okoyr
+16300 ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING
+     ITEM_TYPE_NOTHING 100  10  0 23 ;Lady Okeya
+0
+
+#SPECIALS
+S
+
+#$

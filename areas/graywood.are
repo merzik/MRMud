@@ -1,0 +1,1249 @@
+#AREA Graywood Forest~
+
+#AUTHORS GreyG  ~
+
+#HELPS
+0 $~
+
+#RANGES 5 15 0 99
+
+#FLAGS AFLAG_NODEBUG
+
+#MOBILES
+#9600
+mother nature~
+Mother Nature~
+Mother Nature is standing here, communing with the huge oak trees.~
+Mother Nature's physical form is very hard to define, as it shifts constantly
+from one form to the next.  The overall appearance, however, is feminine and
+most definitely very powerful.  Not someone inexperienced players should be
+messing around with.~
+ACT_SENTINEL
+AFF_DETECT_INVIS|AFF_PASS_DOOR
+700 S
+26 0 0 20d10+500 4d6+10
+10000 77205
+POS_STANDING POS_STANDING SEX_FEMALE
+#9601
+gardener~
+the Crystal Gardener~
+The Gardener is wandering around here, tending his crystals.~
+The Crystal Gardener is a strange looking man made of crystal.  He wanders
+through his garden, adjusting here, primping there, and basically caring for
+his artistic wonder of creation.  He pauses a moment as he sees you staring
+at him, and then continues on his rounds, muttering under his breath.~
+ACT_SENTINEL|ACT_SCAVENGER
+AFF_SANCTUARY
+349 S
+16 0 0 4d12+200 4d4+8
+5000 7227
+POS_STANDING POS_STANDING SEX_MALE
+#9602
+monster marsh~
+the Marsh Monster~
+The Marsh Monster is lying here, watching you.~
+This ultimately repulsive beast looks as if it is made up of the same slime 
+and sludge that makes up the marsh itself.  It oozes slowly toward you, and
+seems to have a certain weird curiosity about you.~
+ACT_SENTINEL|ACT_SCAVENGER
+AFF_PASS_DOOR
+-700 S
+12 0 0 5d12+150 2d7+7
+3000 2918
+POS_STANDING POS_STANDING SEX_NEUTRAL
+#9603
+turtle giant~
+the Giant Snapping Turtle~
+The Giant Turtle glares up at you from the pond.~
+This giant reptile must have been alive for thousands of years.  Its huge 
+head pokes out from its enormous shell, and large dark eyes track your every
+move.~
+ACT_SENTINEL|ACT_SCAVENGER|ACT_AGGRESSIVE
+0
+-350 S
+8 0 0 10d10+40 2d6+5
+1000 1286
+POS_STANDING POS_STANDING SEX_MALE
+#9604
+hawk~
+a large hawk~
+A large hawk flies down toward you, screeching!~
+Basically your average hawk, just eight times the average size.~
+ACT_SCAVENGER|ACT_AGGRESSIVE
+0
+350 S
+6 0 0 8d10+15 1d8+5
+500 822
+POS_STANDING POS_STANDING SEX_FEMALE
+#9605
+boar wild~
+the wild boar~
+A wild boar is standing here, eyeing you warily.~
+He has tiny pink eyes on his otherwise very large body.  These eyes track your
+every move, as do his eight-inch pair of tusks.~
+0
+AFF_DETECT_INVIS|AFF_FLYING
+350 S
+4 0 0 5d10+5 1d8+2
+100 459
+POS_STANDING POS_STANDING SEX_MALE
+#9606
+snake cottonmouth~
+the cottonmouth snake~
+A large cottonmouth snake is coiled here, hissing at you.~
+The snake is about six feet long, and is hissing and preparing to strike any-
+thing that moves.  Better not move...~
+ACT_AGGRESSIVE
+AFF_DETECT_HIDDEN|AFF_FLYING
+-350 S
+3 0 0 1d25+20 1d7+0
+100 300
+POS_STANDING POS_STANDING SEX_NEUTRAL
+#9607
+jackelope~
+the jackelope~
+A jackelope is standing here, giggling at you.~
+He looks like your worst nightmare!~
+ACT_SCAVENGER
+AFF_FLYING
+0 S
+5 0 0 2d10+50 2d4+1
+500 631
+POS_STANDING POS_STANDING SEX_FEMALE
+#9608
+jabberwocky~
+the jabberwocky~
+A jabberwocky is dancing here, gibbering and yodeling wildly.~
+A dark, hefty looking creature whose mass belies his obvious dexterity. He is
+best describes as a cross between a gorilla and a lion, if you can imagine 
+that.  He dances around madly, singing in his own weird tongue.~
+ACT_SCAVENGER
+0
+0 S
+5 0 0 1d5+90 2d4+5
+500 631
+POS_STANDING POS_STANDING SEX_MALE
+#9609
+ogre~
+the ugly ogre~
+The ugly ogre stands here, grumbling to himself.~
+The ogre's face is ugly enough to frighten the dead, and indeed it does scare
+you a bit.  His arms are huge and burly, and it looks as if he could destroy
+trees with the large club he is carrying.~
+ACT_SCAVENGER
+0
+-500 S
+6 0 0 5d8+80 2d6+3
+1000 822
+POS_STANDING POS_STANDING SEX_MALE
+#9610
+hound rock~
+the rock hound~
+A rock hound is here, contentedly gnawing on a stalagmite.~
+This small dog-like creature is made entirely of stone.  While he is kind of
+cute, he looks as though he could fight viciously if attacked.~
+ACT_SCAVENGER
+0
+350 S
+4 0 0 1d20+38 1d8+0
+100 459
+POS_STANDING POS_STANDING SEX_MALE
+#9696
+isha elf~
+Isha the Dark Elf~
+Isha the Dark Elf is here, observing you silently.~
+She is no less than beautiful, skin as dark as the night and hair shining like
+silver in the moonlight.  Her slender body is adorned with a sleeveless shirt
+and a short skirt made from black scales joined with silver threads.  Her back
+is covered by a large, hooded cloak as black as her skin and in her broad
+silver belt hangs a long, slender sword in a silver scabbard.~
+0
+AFF_DETECT_INVIS|AFF_FLYING
+-1000 S
+20 0 0 1d12+445 3d6+9
+5000 20422
+POS_STANDING POS_STANDING SEX_FEMALE
+#0
+
+
+
+
+#OBJECTS
+#9600
+ring sapphire~
+a beautiful ring of sapphire~
+A ring made of sapphire lies here, abandoned.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_GLOW|ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_FINGER|ITEM_WEAR_HOLD
+0 -1 -1 -1
+1 10000 16
+E
+ring sapphire~
+The beautiful sapphire ring is glowing and seems to be very magical.~
+A
+APPLY_STR 2
+A
+APPLY_HIT 10
+#9601
+dagger crystal~
+a sharp dagger made of crystal~
+There is a dagger made of crystal here.~
+~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_HUM|ITEM_FLAG_MAGIC|ITEM_FLAG_ANTI_GOOD|ITEM_FLAG_ANTI_EVIL|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 3 4 WEAPON_PIERCE
+2 8000 10
+E
+dagger crystal~
+The sharp-looking dagger is made entirely of crystal, and looks as if it 
+would be a very deadly weapon indeed.  It hums quietly to itself.~
+A
+APPLY_DEX 2
+A
+APPLY_HITROLL 2
+#9602
+potion clear~
+a clear, colourless potion~
+A clear, colourless potion has been carelessly dropped here.~
+~
+ITEM_TYPE_POTION
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+15 SPELL_INVIS SPELL_NONE SPELL_NONE
+1 1000 17
+E
+potion clear~
+The potion is devoid of any colour or smell, and would probably be tasteless
+if you were bold enough to quaff it.~
+#9603
+wand~
+a bent and gnarled wand~
+A bent and gnarled wand lies here.~
+~
+ITEM_TYPE_WAND
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+10 10 10 SPELL_ARMOR
+20 5000 21
+E
+wand gnarled~
+The wand is old, bent, and battered.  Carved into the tip on one end you see
+the image of a small shield.~
+#9604
+staff healing~
+a staff of healing~
+A staff of healing is resting on the ground here~
+~
+ITEM_TYPE_STAFF
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+5 5 5 SPELL_CURE_LIGHT
+7 5000 16
+E
+staff healing~
+The staff is about four feet long and completely featureless.~
+#9605
+cloak scarlet~
+a scarlet cloak~
+A scarlet cloak has been discarded here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_ANTI_GOOD|ITEM_FLAG_ANTI_EVIL|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_NECK
+5 -1 -1 -1
+7 10000 10
+E
+cloak scarlet~
+The cloak is made of some unidentifiable material that is coloured a rich, 
+deep scarlet.~
+A
+APPLY_INT 2
+#9606
+sign~
+a large sign~
+There is a large sign posted here at the entrance to the Graywood Forest.~
+~
+ITEM_TYPE_LIGHT
+ITEM_FLAG_LEVEL
+0
+0 0 0 0
+100 0 1
+E
+sign large~
+Greetings, adventurers!  Welcome to my forest.  Within you should find much
+adventure and perhaps a bit of danger.  This is not a place restricted by 
+level, for there are monsters here set at many different levels and degrees
+of difficulty.  At any rate, have fun, and may your ventures be most and very
+profitable.
+
+
+           Grayghost, Master of Fate and All that is Inevitable~
+#9607
+sign small dark~
+a small dark sign~
+There is a small dark sign here on the front door.~
+~
+ITEM_TYPE_LIGHT
+ITEM_FLAG_LEVEL
+0
+0 0 0 0
+100 0 1
+E
+sign small dark~
+The sign is so dark that it is difficult to make out, but you can read the 
+words:
+
+                                Isha's House
+                               Do not disturb!
+
+You remember hearing rumors about a dark elf coming to live in the forest...~
+#9608
+stump rotting~
+a rotting stump~
+A rotting stump is here, taking up space.~
+~
+ITEM_TYPE_CONTAINER
+ITEM_FLAG_LEVEL
+0
+100 0 -1 0
+100 0 4
+#9609
+box large oaken~
+a large oaken box~
+There is a large oaken box lying on the ground here.~
+~
+ITEM_TYPE_CONTAINER
+ITEM_FLAG_LEVEL
+0
+100 15 9610 0
+100 0 4
+E
+box large~
+The large oaken box is very plain and has only a small keyhole in the front.~
+#9610
+key oaken~
+an oaken key~
+A oaken key lies here, forgotten.~
+~
+ITEM_TYPE_KEY
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+0 0 0 0
+1 0 1
+E
+key~
+The small oaken key looks like it goes to a large oaken box...hint-hint.~
+#9611
+gold coins~
+the gold~
+A lot of gold is here~
+~
+ITEM_TYPE_MONEY
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+100000 0 0 0
+0 100000 1
+#0
+
+
+
+
+#ROOMS
+#9600
+The Graywood Forest~
+The cold, gray mist begins to surround you, and only a pale light serves to
+illuminate the dense forest.  To the east, the small forest path you have 
+begun following continues... Therein lies adventure.~
+96 ROOM_NO_MOB SECT_FOREST
+DDIR_EAST
+You see gloomy trees through the misty fog.~
+~
+0 -1 9601
+DDIR_WEST
+You see the turning point.~
+~
+0 -1 6017
+S
+#9601
+The Gloomy Trees~
+You are wandering along the faint path through the gloomy trees.~
+96 0 SECT_FOREST
+DDIR_NORTH
+There seems to be a quiet creek running along there.~
+~
+0 -1 9602
+DDIR_EAST
+You see more of the dank, gloomy trees.~
+~
+0 -1 9603
+DDIR_SOUTH
+You see more of the dank, gloomy trees.~
+~
+0 -1 9604
+DDIR_WEST
+You see the entrance to the Graywood Forest.~
+~
+0 -1 9600
+S
+#9602
+Trees along the Creek~
+A quiet, slow moving creek flows through the forest here, meandering its
+way to the northeast.  Its waters, while not terribly interesting, do add a
+touch of life to the otherwise dank, dreary forest.~
+96 0 SECT_FOREST
+DDIR_EAST
+You see the creek flowing into the gloom.~
+~
+0 -1 9605
+DDIR_SOUTH
+You see more of the dank, gloomy trees.~
+~
+0 -1 9601
+S
+#9603
+More of the Dreary Forest~
+The trees surround you, and the forest is quiet.  The fog closes in, and
+you feel like you're breathing water.~
+96 0 SECT_FOREST
+DDIR_EAST
+You see more of the dank, gloomy trees.~
+~
+0 -1 9610
+DDIR_WEST
+You see more of the dank, gloomy trees.~
+~
+0 -1 9601
+S
+#9604
+Gloomy Forest~
+The forest continues to give you feelings of oppression as you wander
+through the fog.  Toward the south, you can just make out what appears to be
+a small clearing in the dense foliage.~
+96 0 SECT_FOREST
+DDIR_NORTH
+You see more of the dank, gloomy trees.~
+~
+0 -1 9601
+DDIR_SOUTH
+You see what appears to be a clearing.~
+~
+0 -1 9611
+S
+#9605
+A Bend in the Creek~
+The creek turns due north here, and seems to be widening out a bit.  Up
+ahead in the distance, from what little you can see, the creek appears to turn
+east again.  While there are fewer trees growing here, the fog has become more
+dense and is getting harder to see through.~
+96 0 SECT_FOREST
+DDIR_NORTH
+You see the creek flowing into the gloom.~
+~
+0 -1 9606
+DDIR_WEST
+You see the creek flowing into the gloom.~
+~
+0 -1 9602
+S
+#9606
+Another Bend in the Creek~
+The ever-widening creek turns back to the east here. Through the thickening
+fog, you can see that the area around is becoming marshy, and that the trees
+are fewer and smaller now.  As you walk along the bank, your feet tend to sink 
+in the softening earth.~
+96 0 SECT_HILLS
+DDIR_EAST
+You see the creek flowing into the gloom.~
+~
+0 -1 9607
+DDIR_SOUTH
+You see the creek flowing into the gloom.~
+~
+0 -1 9605
+S
+#9607
+The Marshy Bank at the End of the Creek~
+The creek has spread out into a large morass here, and is basically best 
+defined as a swamp at this point.  To the east the swamp seems to turn in to a
+medium-sized body of water.  The fog has gotten really bad now, you can hardly
+see your nose in front of your face, and your feet are starting to get stuck 
+in the mud more and more frequently.~
+96 0 SECT_MOUNTAIN
+DDIR_EAST
+You see a pond through the mist.~
+~
+0 -1 9608
+DDIR_WEST
+You see the creek flowing into the gloom.~
+~
+0 -1 9606
+S
+#9608
+The Pond in the Mist~
+The small creek has at last expanded here and has become a fair-sized pond.
+The banks surrounding the pond are muddy and slippery, and the fog is so thick
+that it is almost difficult to breathe.  The dark black water here looks like 
+it might hide something evil...~
+96 0 SECT_MOUNTAIN
+DDIR_SOUTH
+You see more of the dank, gloomy trees.~
+~
+0 -1 9609
+DDIR_WEST
+You see the creek spreading out to make the pond.~
+~
+0 -1 9607
+S
+#9609
+Dead End in the Forest~
+The forest here seems to have but one exit--south.  The fog swirls around 
+the trees and makes it difficult to tell whether or not there is any passage
+in any other direction.~
+96 0 SECT_FOREST
+DDIR_SOUTH
+You see more of the dank, gloomy trees.~
+~
+0 -1 9610
+S
+#9610
+The Dead Tree~
+There is a huge, dead tree here, which conveniently marks the end of the
+forest.  Beyond, through the swirling fog, you perceive that a swampy marsh
+scene replaces that of the cold, dark forest.  The humidity here is almost
+stifling.~
+96 ROOM_NO_MOB SECT_FOREST
+DDIR_NORTH
+You see more of the dank, gloomy trees.~
+~
+0 -1 9609
+DDIR_EAST
+You see the marsh.~
+~
+0 -1 9615
+DDIR_WEST
+You see more of the dank, gloomy trees.~
+~
+0 -1 9603
+DDIR_UP
+You see the tree-top.~
+~
+0 -1 9649
+E
+dead tree~
+The tall dead tree looks as if it could be climbed.~
+S
+#9611
+The Forest Clearing~
+The forest has cleared out a bit here, leaving only some rotting stumps
+and brushy undergrowth.  To the south, you can make out an entrance to a
+large cave system.  East leads you deeper into the uncharted forest.~
+96 0 SECT_FOREST
+DDIR_NORTH
+You see more of the dank, gloomy trees.~
+~
+0 -1 9604
+DDIR_EAST
+You see an intersection in the forest.~
+~
+0 -1 9612
+DDIR_SOUTH
+You see a cave entrance.~
+~
+0 -1 9630
+E
+rotting stump~
+The stump looks like it has been dead a long time.  There is a hollowed out 
+spot on one side.~
+S
+#9612
+An Intersection in the Fog~
+Several paths come together here in the gloom, and while you can see the
+clearing to the west, the only other visible scenery is the misty, dark
+forest stretching out in every direction.~
+96 0 SECT_FOREST
+DDIR_NORTH
+You see more of the dank, gloomy trees.~
+~
+0 -1 9613
+DDIR_EAST
+You see more of the dank, gloomy trees.~
+~
+0 -1 9621
+DDIR_SOUTH
+You see more of the dank, gloomy trees.~
+~
+0 -1 9629
+DDIR_WEST
+You see more of the dank, gloomy trees.~
+~
+0 -1 9611
+S
+#9613
+The Foggy Forest~
+The quiet forest is engulfed in fog.  You are unsure of your surroundings.
+You feel as if this would be an easy place to get lost.~
+96 0 SECT_FOREST
+DDIR_EAST
+You see more of the dank, gloomy trees.~
+~
+0 -1 9614
+DDIR_SOUTH
+You see an intersection in the forest.~
+~
+0 -1 9612
+S
+#9614
+Deep within the Forest~
+Witch way to go?  The forest extends in all directions, and you're not
+where exactly you are, or where exactly it is that you need to go.  The only
+sounds here are the noises of the ever-swirling fog.~
+96 0 SECT_FOREST
+DDIR_NORTH
+You see more of the dank, gloomy trees.~
+~
+0 -1 9614
+DDIR_EAST
+You see more of the dank, gloomy trees.~
+~
+0 -1 9614
+DDIR_SOUTH
+You see more of the dank, gloomy trees.~
+~
+0 -1 9614
+DDIR_WEST
+You see more of the dank, gloomy trees.~
+~
+0 -1 9613
+S
+#9615
+The Marsh~
+The ground here is soggy and wet, and you find yourself traveling through
+mud (no pun intended).  Through the mist and fog you hear strange sounds and
+calls, as predators and prey play a deadly game in the marshy swamplands.   
+The fog here makes it difficult to see in any direction.~
+96 0 SECT_HILLS
+DDIR_NORTH
+You see fog.~
+~
+0 -1 9617
+DDIR_EAST
+You see fog.~
+~
+0 -1 9616
+DDIR_WEST
+You more of the dank, gloomy trees.~
+~
+0 -1 9610
+S
+#9616
+The Swampy Marsh~
+You are sloughing through the muddy marsh.  The thick fog swirls around 
+you and blocks off all sight.~
+96 0 SECT_HILLS
+DDIR_NORTH
+You see fog.~
+~
+0 -1 9618
+DDIR_WEST
+You see fog.~
+~
+0 -1 9615
+S
+#9617
+The Swampy Marsh~
+You are meandering through the fog, hoping you'll be able to find the way 
+out again.  The rolling fog still prevents you from seeing where you're
+going.~
+96 0 SECT_HILLS
+DDIR_EAST
+You see fog.~
+~
+0 -1 9618
+DDIR_SOUTH
+You see fog.~
+~
+0 -1 9615
+S
+#9618
+The Swampy Marsh~
+You are still wandering through the blinding fog in the middle of the wet,
+sticky marsh.~
+96 0 SECT_HILLS
+DDIR_NORTH
+You see fog.~
+~
+0 -1 9619
+DDIR_SOUTH
+You see fog.~
+~
+0 -1 9616
+DDIR_WEST
+You see fog.~
+~
+0 -1 9617
+S
+#9619
+The End of the Marsh~
+You seem to have reached the far end of the marsh.  While the fog is still
+thick, you seem to be able to see a rising mound of ground to the east.  You
+sense a presence there...~
+96 0 SECT_HILLS
+DDIR_EAST
+You see a rise in the marsh.~
+~
+0 -1 9620
+DDIR_SOUTH
+You see fog.~
+~
+0 -1 9618
+S
+#9620
+Atop the Rise in the Marsh~
+You have reached the top of a small rise at the far end of the marsh.  The
+fog swirls around you, but even so you can tell that something large makes
+its place of residence here.  Your only exit seems to be back the way you
+came.~
+96 0 SECT_FOREST
+DDIR_WEST
+You see fog.~
+~
+0 -1 9619
+S
+#9621
+The Small Winding Path~
+You have stumbled upon a winding path that leads east into the gloom.  It
+seems to have been set here for a reason.  The fog still swirls around you.~
+96 0 SECT_FIELD
+DDIR_EAST
+You see the path winding through the forest.~
+~
+0 -1 9622
+DDIR_WEST
+You see an intersection in the forest.~
+~
+0 -1 9612
+S
+#9622
+The Winding Path~
+The path you have been following curves to the south here.  Behind you you
+see the path proceeding to the west.  The trees close in oppressively, as does 
+the mist.~
+96 0 SECT_FIELD
+DDIR_SOUTH
+You see the path winding through the forest.~
+~
+0 -1 9623
+DDIR_WEST
+You see the path winding through the forest.~
+~
+0 -1 9621
+S
+#9623
+The Pool~
+As the path continues through the fog, it passes a small pool of water.
+Small fish swim rapidly around in the bottom of the pool, and you can see
+your reflection in the glassy surface.~
+96 0 SECT_FOREST
+DDIR_NORTH
+You see the path winding through the forest.~
+~
+0 -1 9622
+DDIR_SOUTH
+You see the path winding through the forest.~
+~
+0 -1 9624
+E
+pool water~
+The small pool of water appears to be fed by a natural spring.  You notice
+from your reflection that your hair needs to be combed.~
+S
+#9624
+The Path~
+The path curves back to the west here.~
+96 0 SECT_FIELD
+DDIR_NORTH
+You see a pool of water.~
+~
+0 -1 9623
+DDIR_WEST
+You see the path winding through the forest.~
+~
+0 -1 9625
+S
+#9625
+The Park Bench~
+A park bench has been placed here where the carefully tended forest path
+turns to the north.  It is becoming more and more apparent that this is not
+all a coincidence, but instead has been deliberately done for SOMEone's 
+personal satisfaction.~
+96 0 SECT_FIELD
+DDIR_NORTH
+You see the path winding through the forest.~
+~
+0 -1 9626
+DDIR_EAST
+You see the path winding through the forest.~
+~
+0 -1 9624
+S
+#9626
+The Path~
+The path turns back to the east here, and you can see a small house in the
+distance through the trees and the fog.  Perhaps the owner of all the strange
+things you've come across...~
+96 0 SECT_FIELD
+DDIR_EAST
+You see a small house.~
+~
+0 -1 9627
+DDIR_SOUTH
+You see the park bench.~
+~
+0 -1 9625
+S
+#9627
+The Front Door~
+You have reached the front door of the house, which is closed. The house
+is all made of brick and is painted black, with no windows.  There are no
+ornamentations of any kind to be seen anywhere.  A deathly quiet seems to 
+surround the house, making the surrounding fog and trees all the more eery.~
+96 0 SECT_FIELD
+DDIR_SOUTH
+You see the door.~
+door~
+EX_ISDOOR|EX_CLOSED -1 9628
+DDIR_WEST
+You see the path winding through forest.~
+~
+0 -1 9626
+S
+#9628
+Inside the House~
+Sparse furnishings occupy this one room home.  A bed, a table and chair,
+and a rug in front of the fireplace are all the scenery.  The room is dark 
+and somber, and an air of evil pervades.~
+96 ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+You see the door.~
+door~
+EX_ISDOOR|EX_CLOSED -1 9627
+S
+#9629
+Deep within the Forest~
+Witch way to go?  The forest extends in all directions, and you're not
+where exactly you are, or where exactly it is that you need to go.  The only
+sounds here are the noises of the ever-swirling fog.~
+96 0 SECT_FOREST
+DDIR_NORTH
+You see an intersection in the forest.~
+~
+0 -1 9612
+DDIR_EAST
+You see more of the dank, gloomy trees.~
+~
+0 -1 9629
+DDIR_SOUTH
+You see more of the dank, gloomy trees.~
+~
+0 -1 9629
+DDIR_WEST
+You see more of the dank, gloomy trees.~
+~
+0 -1 9629
+S
+#9630
+Cave Entrance~
+You are at the entrance to the cave.  It appears as though this is a
+natural cave that has been formed by the action of water long ago.  Water is
+either dripping or gathering on every available surface, so it won't actually
+be a break from the constant fog.  The cave extends off to the south in total
+darkness.~
+96 ROOM_NO_MOB SECT_FIELD
+DDIR_NORTH
+You see the forest clearing.~
+~
+0 -1 9611
+DDIR_SOUTH
+You see darkness.~
+~
+0 -1 9631
+S
+#9631
+The Cave~
+You are standing inside the cave.  If it can be possible, the air in here
+seems even moister than that outside.  Water drips off the ceiling down on
+to you, and as you walk you step in puddles.  The splits off here to either
+the east or the west.~
+96 ROOM_DARK|ROOM_INDOORS SECT_FIELD
+DDIR_NORTH
+You see the cave's entrance.~
+~
+0 -1 9630
+DDIR_EAST
+You see more of the cave.~
+~
+0 -1 9633
+DDIR_WEST
+You see more of the cave.~
+~
+0 -1 9632
+S
+#9632
+The Cave~
+The dank, dark cave turns back toward the south here, and you sense a 
+downward trend in the slope of the floor.  It smells musty and damp in here,
+and you can see mold and fungus growing on the walls.~
+96 ROOM_DARK|ROOM_INDOORS SECT_FIELD
+DDIR_EAST
+You see more of the cave.~
+~
+0 -1 9631
+DDIR_SOUTH
+You see more of the cave.~
+~
+0 -1 9634
+S
+#9633
+The Cave~
+The dank, dark cave turns back toward the south here, and you sense an
+upward trend in the slope of the floor.  As each drop of water hits each 
+puddle on the floor, there sounds a resounding PLOP! that echoes a thousand
+times before it fades out.~
+96 ROOM_DARK|ROOM_INDOORS SECT_FIELD
+DDIR_SOUTH
+You see more of the cave.~
+~
+0 -1 9635
+DDIR_WEST
+You see more of the cave.~
+~
+0 -1 9631
+S
+#9634
+The Hole in the Cave~
+There is a small hole in the wall here, and a cold wind blows out of it.
+That, combined with the wet atmosphere and the puddles of water are almost
+enough to douse your light source.  Just one more reminder that this may be 
+a fun place to visit but you would definitely not want to live here.  The
+cave is still sloping downward.~
+96 ROOM_DARK|ROOM_INDOORS SECT_FIELD
+DDIR_NORTH
+You see more of the cave.~
+~
+0 -1 9632
+DDIR_SOUTH
+You see more of the cave~
+~
+0 -1 9637
+S
+#9635
+The Cave~
+Stalactites and stalagmites abound throughout this chamber.  A small trail
+winds through the room around the stalagmites.  The sounds of dripping water
+are constant, and there are pools of water everywhere.  The upward trend
+seems to be continuing.~
+96 ROOM_DARK|ROOM_INDOORS SECT_FIELD
+DDIR_NORTH
+You see more of the cave.~
+~
+0 -1 9633
+DDIR_EAST
+You see more of the cave~
+~
+0 -1 9639
+DDIR_WEST
+You see more of the cave.~
+~
+0 -1 9636
+S
+#9636
+The Column Room~
+In this room, the stalactites and stalagmites have grown together in to
+tall, slick looking limestone columns.  The over-all affect is actually quite
+beautiful, and if the water would stop making all that infernal racket, you
+would probably be enjoying the natural art.~
+96 ROOM_DARK|ROOM_INDOORS SECT_FIELD
+DDIR_EAST
+You see more of the cave.~
+~
+0 -1 9635
+DDIR_SOUTH
+You see more of the cave.~
+~
+0 -1 9638
+S
+#9637
+The Stone Steps~
+You have stumbled upon a set of stone steps that have been carved into the
+floor at the extreme southern end of this cave.  Far down at the bottom of
+the steps you can see a faint glimmer of light.  You also hear a faint sound,
+almost as if someone or something were humming.~
+96 ROOM_DARK|ROOM_INDOORS SECT_FIELD
+DDIR_NORTH
+You see more of the cave.~
+~
+0 -1 9634
+DDIR_SOUTH
+You see the stone steps.~
+~
+0 -1 9640
+E
+stone steps~
+The steps are slippery and wet.  Watch your step if you proceed.~
+S
+#9638
+The Cracked Cave~
+At first glance, this room with its many stalactites and -mites seems to
+be a dead end.  After closer inspection, however, you notice that on two of
+the walls there are cracks that are probably big enough to allow you to pass
+through.  These cracks are located on the southern and western walls.~
+96 ROOM_DARK|ROOM_INDOORS SECT_FIELD
+DDIR_NORTH
+You see more of the cave.~
+~
+0 -1 9636
+DDIR_EAST
+You see a large crack in the wall.~
+~
+0 -1 9639
+DDIR_SOUTH
+You see a large crack in the wall.~
+~
+0 -1 9641
+S
+#9639
+The Cracked Cave~
+This cave room is devoid of any features except for a large fissure in the
+west wall.~
+96 ROOM_DARK|ROOM_INDOORS SECT_FIELD
+DDIR_EAST
+You see more of the cave.~
+~
+0 -1 9635
+DDIR_SOUTH
+You see more of the cave.~
+~
+0 -1 9642
+DDIR_WEST
+You see a large crack in the wall.~
+~
+0 -1 9638
+E
+large crack~
+The large crack looks like it might be big enough for you to get through.~
+S
+#9640
+The Crystal Garden~
+The first sight you see in this magnificent room is the incredible crystal
+garden, made up of hundreds of crystals, that seems to be "growing" at your 
+feet.  The amazingly beautiful crystals are colored every shade and every hue 
+of the rainbow, and each glows with an inner brilliance.  The most amazing 
+part is that every crystal is humming quietly to itself, each in a different 
+key.  The over-all affect is truly awe-inspiring.~
+96 ROOM_INDOORS SECT_FIELD
+DDIR_NORTH
+You see the stone steps.~
+~
+0 -1 9637
+E
+crystals garden~
+The crystal garden is truly beautiful.  A closer look tends to make you think
+that they are no accident, and that someone grew them on purpose.~
+S
+#9641
+The Narrow Crack~
+You are squeezing through a narrow crack in the rock that goes north or 
+south.  You are starting to become mildly claustrophobic.~
+96 ROOM_DARK|ROOM_INDOORS SECT_FIELD
+DDIR_NORTH
+You see the crack.~
+~
+0 -1 9638
+DDIR_SOUTH
+You see the crack.~
+~
+0 -1 9642
+S
+#9642
+The Back of the Cave~
+This seems to be the back of the cave.  To your east, you can see a faint
+glimmer of light.  Other than that and a crack in the south wall, you can see 
+no distinguishing features about this room.~
+96 ROOM_DARK|ROOM_INDOORS SECT_FIELD
+DDIR_NORTH
+You see more of the cave.~
+~
+0 -1 9639
+DDIR_EAST
+You see a faint light.~
+~
+0 -1 9643
+DDIR_SOUTH
+You see the crack.~
+~
+0 -1 9641
+E
+crack~
+The crack appears to be wide enough for you to pass through.~
+S
+#9643
+Back Entrance to the Cave~
+Suddenly you have come out in a sunny, breezy, wonderfully warm country
+field.  The shock at coming out of such gloomy surroundings into such a 
+pleasant atmosphere is almost more than your poor body can take.  Birds are
+singing, puffy white clouds move by overhead in a beautifully blue sky, and
+you can't help smiling at your pleasant surroundings.~
+96 ROOM_NO_MOB SECT_FIELD
+DDIR_EAST
+You see the sunny field.~
+~
+0 -1 9644
+DDIR_WEST
+You see the cave.~
+~
+0 -1 9642
+S
+#9644
+The Sunny Field~
+The pleasant weather and surroundings lull you into a sense of comfort as
+you stroll across the grass amidst the daisies and the dandelions.~
+96 0 SECT_FIELD
+DDIR_NORTH
+You see the sunny field.~
+~
+0 -1 9645
+DDIR_SOUTH
+You see the sunny field.~
+~
+0 -1 9646
+DDIR_WEST
+You see the back entrance to the cave.~
+~
+0 -1 9643
+E
+flowers dandelions daisies~
+The flowers are very pretty.  Refreshingly different from the cave scene.~
+S
+#9645
+The Sunny Field~
+You're making your way through the sunny field.  To the east you see a 
+grove of small oak trees.~
+96 0 SECT_FIELD
+DDIR_EAST
+You see some oak trees.~
+~
+0 -1 9647
+DDIR_SOUTH
+You see the sunny field.~
+~
+0 -1 9644
+S
+#9646
+The Sunny Field~
+You're making your way through the sunny field.  To the east you see a 
+grove of small oak trees.~
+96 0 SECT_FIELD
+DDIR_NORTH
+You see the sunny field.~
+~
+0 -1 9644
+DDIR_EAST
+You see some oak trees.~
+~
+0 -1 9647
+S
+#9647
+The Small Oak Trees~
+You are now walking amidst some small oak trees.  While not very tall, the
+trees do provide a bit of shade and make a very pleasant resting place for
+weary travelers.  To your west and north, you see the sunny field, and to the
+south, you notice a very small stand of huge oak trees that is probably
+responsible for the existence of this small stand.~
+96 0 SECT_FIELD
+DDIR_NORTH
+You see the sunny field.~
+~
+0 -1 9645
+DDIR_SOUTH
+You see a stand of huge oaks.~
+~
+0 -1 9648
+DDIR_WEST
+You see the sunny field.~
+~
+0 -1 9646
+S
+#9648
+Mother Nature's Nest~
+This is where Mother Nature herself has decided to take up residence, at
+least temporarily.  The tall, strong oak trees radiate a sense of power, and
+the entire area seems to thrive in the presence of the ruler of all natural
+occurrences.~
+96 0 SECT_FIELD
+DDIR_NORTH
+You see some oak trees.~
+~
+0 -1 9647
+E
+oaks trees~
+They look like they have been alive for centuries, and radiate a sense of 
+great power.~
+S
+#9649
+The Nest in the Tree~
+You have climbed the tree, and now stand amidst the fog in a huge bird's
+nest.  Anything you might have disturbed in here is probably very irritated
+at this point...~
+96 0 SECT_HILLS
+DDIR_DOWN
+You see the forest floor.~
+~
+0 -1 9610
+S
+#0
+
+#RESETS
+O 0  9606   1  9600 ;             a large sign in The Graywood Forest      
+O 0  9607   1  9627 ;        a small dark sign in The Front Door           
+O 0  9608   1  9611 ;          a rotting stump in The Forest Clearing      
+P 0  9602   1  9608 ;a clear, colourless potio in a rotting stump          
+D 0  9627 DIR_SOUTH DOOR_CLOSED ;door in The Front Door           
+D 0  9628 DIR_NORTH DOOR_CLOSED ;door in Inside the House         
+M 0  9696   1  9628 ;        Isha the Dark Elf in Inside the House         
+M 0  9600   1  9648 ;            Mother Nature in Mother Nature's Nest     
+E 1  9610  1 17 ;equip an oaken key             
+O 0  9609   1  9648 ;        a large oaken box in Mother Nature's Nest     
+P 1  9611   1  9609 ;                 the gold in a large oaken box        
+P 1  9600   1  9609 ;a beautiful ring of sapph in a large oaken box        
+M 0  9601   1  9640 ;     the Crystal Gardener in The Crystal Garden       
+E 1  9601  1 ITEM_WEAR_HEAD ;equip a sharp dagger made of cr
+M 0  9604   1  9649 ;             a large hawk in The Nest in the Tree     
+G 1  9603   1       ;  a bent and gnarled wand
+M 0  9602   1  9620 ;        the Marsh Monster in Atop the Rise in the Mars
+G 1  9605   1       ;          a scarlet cloak
+M 0  9603   1  9608 ;the Giant Snapping Turtle in The Pond in the Mist     
+G 1  9604   1       ;       a staff of healing
+M 0  9605   3  9606 ;            the wild boar in Another Bend in the Creek
+M 0  9605   3  9601 ;            the wild boar in The Gloomy Trees         
+M 0  9606   2  9619 ;    the cottonmouth snake in The End of the Marsh     
+M 0  9607   2  9615 ;            the jackelope in The Marsh                
+M 0  9608   2  9637 ;          the jabberwocky in The Stone Steps          
+M 0  9610   3  9631 ;           the rock hound in The Cave                 
+M 0  9610   3  9642 ;           the rock hound in The Back of the Cave     
+M 0  9609   3  9627 ;            the ugly ogre in The Front Door           
+M 0  9609   3  9629 ;            the ugly ogre in Deep within the Forest   
+S
+
+#SHOPS
+0
+
+#SPECIALS
+S
+
+
+
+
+#$

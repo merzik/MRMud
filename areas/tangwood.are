@@ -1,0 +1,1168 @@
+#AREA Tanglewood forest~
+#AUTHORS Tanis  ~
+
+
+
+
+
+#HELPS
+-1 TANGLEWOOD~
+Tanglewood forest, levels 5 - 10
+
+Tanglewood forest is a newbie area located 1 east and 1 north from the east
+gate of chakkor. It features marauding bands of orcs, monsters under beds
+and all sorts of other frightening newbie stuff.~
+0 $~
+
+
+
+
+#RANGES 5 10 0 99
+#MOBILES
+#11500
+ranger forest~
+The Forest Ranger~
+A Forest Ranger is here.~
+The Ranger looks pretty much the normal human woodsman. Armed with his
+trusted bow and wearing some leather armor he's hunting for some game.~
+ACT_STAY_AREA|ACT_SMART|ACT_BODY
+AFF_UNDERSTAND|AFF_SNEAK|AFF_TONGUES
+0 S
+8 BODY_HEAD|BODY_TORSO|BODY_LEG|BODY_ARM BODY_LEG|BODY_ARM 5d10+65 2d5+4
+1000 1286
+POS_STANDING POS_STANDING SEX_MALE
+#11501
+bunny rabbit small~
+The bunny rabbit~
+A small bunny rabbit is hopping around here.~
+The bunny rabbit is a small happy forest creature.~
+ACT_SENTINEL|ACT_BODY
+0
+5 S
+2 BODY_HEAD|BODY_HIP|BODY_FOOT BODY_MOUTH 3d5+12 1d4+0
+0 152
+POS_STANDING POS_STANDING SEX_FEMALE
+>rand_prog 12~
+emote hops around happily.
+~
+>rand_prog 8~
+emote leaves a dropping on your shoe.
+~
+>rand_prog 10~
+smile $r
+~
+|
+#11502
+rabbit small~
+The rabbit~
+A small rabbit is hopping around happily.~
+The rabbit is a small happy forest creature.~
+ACT_SENTINEL|ACT_BODY
+0
+5 S
+3 BODY_HEAD|BODY_HIP|BODY_FOOT BODY_MOUTH 2d10+25 1d6+0
+0 300
+POS_STANDING POS_STANDING SEX_MALE
+>rand_prog 16~
+emote hops around happily.
+~
+>rand_prog 8~
+emote leaves a dropping on your shoe.
+~
+|
+#11503
+rabbit fat~
+The fat rabbit~
+A fat rabbit is sitting here.~
+The fat rabbit is a fat forest creature.~
+ACT_SENTINEL|ACT_BODY
+0
+5 S
+5 BODY_HEAD|BODY_HIP|BODY_FOOT BODY_MOUTH 1d20+55 4d2+0
+0 631
+POS_STANDING POS_STANDING SEX_MALE
+>rand_prog 10~
+yawn 
+~
+|
+#11504
+rabbit big king~
+The big rabbit~
+A big rabbit is here, ruling his kingdom.~
+The rabbit has a crown on his head.~
+ACT_SENTINEL|ACT_BODY
+0
+10 S
+8 BODY_HEAD|BODY_HIP|BODY_FOOT BODY_MOUTH 2d20+90 3d3+4
+0 1286
+POS_STANDING POS_STANDING SEX_MALE
+>rand_prog 15~
+strut 
+~
+|
+#11505
+girl little~
+The little girl~
+A little girl is here.~
+The little girl is wearing a red cloak. She looks kinda sad.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY
+AFF_UNDERSTAND|AFF_TONGUES
+100 S
+6 BODY_ARM BODY_ARM 2d2+89 2d4+9
+500 822
+POS_STANDING POS_STANDING SEX_FEMALE
+>rand_prog 10~
+if rand(25)
+  sniff 
+else
+  if rand(35)
+    say The monster under my bed stole my teddybear!
+  else
+    say I miss my teddybear
+    sniff 
+  endif
+endif
+~
+>give_prog I11505~
+say oh thank you!
+smile 
+hug $n
+mpoload 11509
+give ring $n
+mpjunk all.teddybear
+~
+|
+#11506
+butterfly red~
+The red butterfly~
+A red butterfly is flying around the clearing.~
+It's an ordinary red butterfly.~
+ACT_SENTINEL|ACT_BODY
+AFF_FLYING
+0 S
+2 BODY_MOUTH|BODY_WING BODY_WING 2d8+4 1d4+0
+0 152
+POS_STANDING POS_STANDING SEX_NEUTRAL
+#11507
+butterfly yellow~
+The yellow butterfly~
+A yellow butterfly is here, resting on a flower.~
+It's an ordinary yellow butterfly.~
+ACT_SENTINEL|ACT_BODY
+AFF_FLYING
+0 S
+2 BODY_MOUTH|BODY_WING BODY_WING 2d8+4 1d4+0
+0 152
+POS_STANDING POS_STANDING SEX_NEUTRAL
+#11508
+butterfly black~
+The black butterfly~
+The black butterfly is here.~
+It's black.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY
+AFF_UNDERSTAND|AFF_FLYING|AFF_TONGUES
+50 S
+4 BODY_MOUTH|BODY_WING BODY_WING 1d1+69 2d4+2
+0 459
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>rand_prog 25~
+if rand(30)
+  say Oh I wish I was as colorful as the other butterflys.
+else
+  if rand(35)
+    say Why must I be so black?
+    sniff 
+  else
+    sniff 
+  endif
+endif
+~
+>give_prog I11506~
+    mpoload 11507
+    say Finally I can have some color on myself!
+    smile 
+    give i11507 $n
+    emote flies off to join the other butterflys.
+    mpgoto 3
+    suicide
+endif
+~
+>death_prog 100~
+if actorhasobjnum(30900)
+  if quest(30,1,$n) == 0
+    mpmset $n quest 30 1 1
+    mpoload 30914
+    mpforce $n HELP GUILDTOKEN
+    mpquiet on
+    c 'giant strength' $n
+    give i30914 $n
+    mpquiet off
+  endif
+endif~
+|
+#11509
+butterfly blue~
+The blue butterfly~
+There's a blue butterfly sunbathing here.~
+It's an ordinary blue butterfly~
+ACT_SENTINEL|ACT_BODY
+AFF_FLYING
+0 S
+2 BODY_MOUTH|BODY_WING BODY_WING 2d8+4 1d4+0
+0 152
+POS_STANDING POS_STANDING SEX_NEUTRAL
+#11510
+frog~
+The frog~
+A frog is sitting on a water lily here.~
+The frog has a small crown on its head.~
+ACT_SENTINEL|ACT_BODY
+0
+0 S
+5 BODY_LEG BODY_MOUTH 1d5+60 1d8+9
+0 631
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>act_prog p kisses~
+mpecho The frog didn't quite turn into a prince.
+~
+|
+#11511
+orc boss~
+The boss orc~
+There's a big bad fat boss orc here.~
+He looks big. Unlike the normal orcs he's almost 6 feet tall - would be
+taller is he was standing straight. He looks very mean.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY
+AFF_TONGUES
+-500 S
+11 BODY_HEAD|BODY_LEG|BODY_ARM BODY_LEG|BODY_ARM 5d10+120 2d6+9
+2000 2371
+POS_STANDING POS_STANDING SEX_MALE
+>rand_prog 10~
+mpkill $r
+~
+>rand_prog 15~
+if rand(5)
+  say Lezzgo boyz
+  say itz time to raid'n pillage
+  emote waves his sword in the air and screams his battlecry.
+  mpgoto 3
+  suicide 
+else
+  if rand(25)
+    slap boy
+  else
+    poke boy
+  endif
+endif
+~
+|
+#11512
+orc boy~
+The orc boy~
+An orc is here.~
+It's an ordinary orc, about 5 feet high and ugly as hell.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY
+AFF_TONGUES
+-100 S
+7 BODY_HEAD|BODY_LEG|BODY_ARM BODY_LEG|BODY_ARM 1d10+74 2d4+2
+200 1037
+POS_STANDING POS_STANDING SEX_MALE
+>rand_prog 4~
+if rand(5)
+  grunt 
+  mpkill $r
+else
+  if rand(10)
+    growl 
+  else
+    say Whatever u say boss!
+  endif
+endif
+~
+>speech_prog p Lezzgo boyz~
+mpgoto 3
+suicide 
+~
+|
+#11513
+orc boy big~
+The big orc boy~
+A big orc is here.~
+It's a rather big orc. Ugly as hell.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY
+AFF_TONGUES
+-150 S
+9 BODY_HEAD|BODY_LEG|BODY_ARM BODY_LEG|BODY_ARM 2d20+100 2d5+1
+500 1580
+POS_STANDING POS_STANDING SEX_MALE
+>speech_prog p Lezzgo boyz~
+mpgoto 11904
+suicide 
+~
+>rand_prog 10~
+if rand(50)
+  growl 
+else
+  poke boy
+endif
+~
+|
+#11514
+dragon red baby~
+The baby red dragon~
+There's a very small baby red dragon here. Better be quiet... It's sleeping.
+You'd better leave before its mother comes back...~
+It's still very small - it has propably just hatched out from an egg.~
+ACT_SENTINEL|ACT_BODY
+0
+0 S
+12 BODY_HEAD|BODY_LEG|BODY_ARM|BODY_WING|BODY_TAIL BODY_HEAD|BODY_LEG|BODY_ARM|BODY_WING|BODY_TAIL 2d12+150 2d7+9
+1000 2918
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>rand_prog 15~
+emote opens an eye and eyes $r suspiciously
+~
+>rand_prog 8~
+emote wakes up and attacks you!
+mpkill $r
+~
+>rand_prog 16~
+mpasound You see a cloud of black smoke come from the cave.
+~
+|
+#11515
+monster eyes teeth~
+The MONSTER~
+You notice a pair of glowing red eyes and a row of white sharp teeth in 
+the darkness~
+Run for your life! It's a MONSTER!!!~
+ACT_SENTINEL|ACT_BODY
+0
+0 S
+12 BODY_HEAD|BODY_TORSO BODY_MOUTH 6d10+125 2d7+9
+5000 2918
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>rand_prog 75~
+if rand(25)
+  grin $r
+else
+  mpkill $r
+endif
+~
+>rand_prog 15~
+mpasound You notice a pair of red eyes and a row of sharp white teeth under the bed.
+~
+|
+#11516
+orc boss~
+The boss orc~
+There's a big bad fat boss orc here.~
+He looks big. Unlike the normal orcs he's almost 6 feet tall - would be
+taller is he was standing straight. He looks very mean.~
+ACT_SCAVENGER|ACT_SMART|ACT_BODY
+AFF_TONGUES
+-500 S
+11 BODY_HEAD|BODY_LEG|BODY_ARM BODY_LEG|BODY_ARM 5d10+120 2d6+9
+2000 2371
+POS_STANDING POS_STANDING SEX_MALE
+>rand_prog 15~
+if rand(10)
+  shout 'Ere we go! 'Ere we go!
+else
+  if rand(12)
+    shout Waa Ork! Waa Ork! Waa Ork!
+  else
+    if rand(20)
+      say Wez raidin' the 'hood
+    else
+      if rand(30)
+        say Oo... wot do us 'ave 'ere?
+        slap $r
+        mpkill $r
+      else
+        grin 
+      endif
+    endif
+  endif
+endif
+~
+>greet_prog 50~
+say kill it boyz! rip itz lungz out! Make me 'appy!
+mpkill $r
+~
+|
+#11517
+orc boy~
+The orc boy~
+An orc is here.~
+It's an ordinary orc, about 5 feet high and ugly as hell.~
+ACT_SENTINEL|ACT_SCAVENGER|ACT_SMART|ACT_BODY
+AFF_TONGUES
+-100 S
+7 BODY_HEAD|BODY_LEG|BODY_ARM BODY_LEG|BODY_ARM 1d10+74 2d4+2
+200 1037
+POS_STANDING POS_STANDING SEX_MALE
+>rand_prog 80~
+follow boss
+~
+>act_prog p kill it~
+mpkill $r
+~
+>rand_prog 5~
+say 'Ere we go! 'Ere we go!
+~
+|
+#11518
+orc boy big~
+The big orc boy~
+A big orc is here.~
+It's a rather big orc. Ugly as hell.~
+ACT_SENTINEL|ACT_SCAVENGER|ACT_SMART|ACT_BODY
+AFF_TONGUES
+-150 S
+9 BODY_HEAD|BODY_LEG|BODY_ARM BODY_LEG|BODY_ARM 2d20+100 2d5+1
+500 1580
+POS_STANDING POS_STANDING SEX_MALE
+>rand_prog 80~
+follow boss
+~
+>act_prog p kill it~
+mpkill $r
+~
+|
+#11519
+monk drunken~
+The Monk~
+There's a drunken monk here.~
+This monk is obviously very very drunk.~
+ACT_SENTINEL|ACT_SCAVENGER|ACT_BODY
+AFF_TONGUES
+200 S
+9 BODY_LEG|BODY_ARM BODY_LEG|BODY_ARM 2d10+60 4d4+4
+500 1580
+POS_STANDING POS_STANDING SEX_MALE
+>rand_prog 25~
+if rand(30)
+  emote hugs you and keeps calling you Dieter.
+else
+  if rand(40)
+    emote takes a sip from his bottle.
+  else
+    emote runs around in circles, gets dizzy and falls down.
+  endif
+endif
+~
+|
+#11520
+fish~
+The fish~
+A fish is swimming around happily here.~
+It's an ordinary looking fish.~
+ACT_SENTINEL
+0
+0 S
+3 0 0 1d10+25 1d5+1
+0 300
+POS_STANDING POS_STANDING SEX_MALE
+>rand_prog 8~
+mpasound A fish jumps up from the water only to disappear into the depths a moment later.
+~
+|
+#11521
+fish big~
+The big fish~
+A big fish is lying in the bottom of the lake.~
+It might be salmon... you're not sure tho.~
+ACT_SENTINEL
+0
+0 S
+6 0 0 1d20+80 2d5+2
+0 822
+POS_STANDING POS_STANDING SEX_MALE
+#11522
+mob ethereal~
+The Ethereal mob~
+Yikes! It's an ethereal mob!~
+It's just an ethereal mob.~
+0
+AFF_STEALTH|AFF_ETHEREAL
+0 S
+20 0 0 1d1+914 1d1+93
+0 20422
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>rand_prog 15~
+mpecho You notice a huge dragonlike shape flying above you.
+~
+>rand_prog 15~
+mpecho The wind is picking up.
+~
+|
+#11523
+mob ethereal part II~
+The Ethereal mob II~
+Yikes! It's another ethereal mob!~
+It's just another ethereal mob.~
+ACT_SENTINEL
+AFF_STEALTH|AFF_ETHEREAL
+0 S
+20 0 0 1d1+892 1d1+91
+0 20422
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>rand_prog 20~
+mpecho Your lungs are about to burst.
+~
+>rand_prog 15~
+mpecho You almost swallow some water but manage to hold your breath.
+~
+|
+#0
+
+
+
+
+#OBJECTS
+#11500
+sword long longsword~
+longsword~
+Someone left a longsword here.~
+It looks very shiny and sharp.~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_GLOW|ITEM_FLAG_LEVEL|ITEM_FLAG_AUTO_ENGRAVE
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 3 3 WEAPON_SLASH
+6 4500 6
+#11501
+battlearmor leather~
+a Leather battlearmor~
+There's a suit of leather armor on the floor here.~
+It's a well made suit of leather armor.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_BODY
+4 0 0 0
+20 5000 8
+A
+APPLY_HITROLL 2
+A
+APPLY_DEX 1
+#11502
+sword orcish~
+an orcish sword~
+There's a sword with a jagged blade leaning against a wall here.~
+It's a black blade of orcish origin.~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_GLOW|ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL|ITEM_FLAG_AUTO_ENGRAVE
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 3 3 WEAPON_SLASH
+6 4500 10
+A
+APPLY_DAMROLL 2
+#11503
+spear orcish~
+an orcish spear~
+There's a spear lying on the floor.~
+It's a poorly made spear.~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_GLOW|ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL|ITEM_FLAG_AUTO_ENGRAVE
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 3 4 WEAPON_PIERCE
+5 4500 7
+A
+APPLY_DAMROLL 1
+#11504
+chainmail orcish pile metal~
+an orcish chainmail~
+There's a pile of metal on the floor.~
+It's a well made suit of chain mail. Definately not of orcish origin.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_BODY
+5 0 0 0
+20 5000 10
+A
+APPLY_CON 2
+#11505
+teddybear bear teddy~
+a cute teddybear~
+There's a teddybear on the floor.~
+It has the cutest pair of black eyes you've ever seen.~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 0 0
+3 100 3
+#11506
+paint drop~
+a drop of paint~
+There's a small drop of paint on the ground.~
+It's a drop of paint.~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 0 0
+1 30 3
+#11507
+bracelet bone~
+a bone bracelet~
+Someone left a bracelet made from bone on the ground.~
+It's a bracelet made from the ribcage of a hummingbird.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_GLOW|ITEM_FLAG_HUM|ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WRIST
+3 0 0 0
+2 12000 8
+A
+APPLY_HIT 5
+A
+APPLY_WIS 1
+#11508
+cloak red~
+a red cloak~
+There's a pile of red cloth on the ground.~
+It's a scarlet red cloak.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_NECK|ITEM_WEAR_ABOUT
+5 0 0 0
+4 1500 7
+#11509
+ring shiny~
+a shiny ring~
+You detect a small ring in the bush.~
+It's a small ring that shines brightly in sunlight.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_FINGER
+3 0 0 0
+1 3000 8
+A
+APPLY_DAMROLL -1
+A
+APPLY_MANA 15
+#0
+
+
+
+
+#ROOMS
+#11500
+Entrance to Tanglewood~
+You're at the entrance to Tanglewood forest. The trees move in the wind 
+giving the place a scary appearance. To the north is a forest clearing. 
+You can see a mountain range far to the north.~
+115 ROOM_NO_MOB SECT_FOREST
+DDIR_NORTH
+You see a clearing.~
+~
+0 -1 11502
+DDIR_SOUTH
+~
+~
+0 -1 17231
+S
+#11501
+The Woods~
+You're walking in the Tanglewood forest. The trees move in the wind
+giving the place an all around scary appearance. There aren't too many
+trees here and the forest ends in a clearing to the east.~
+115 0 SECT_FOREST
+DDIR_NORTH
+You can see a lot of trees.~
+~
+0 -1 11505
+DDIR_EAST
+You see a clearing.~
+~
+0 -1 11502
+S
+#11502
+A Clearing~
+You're standing on a forest clearing. There're a lot of flowers and other
+plants growing here - maybe you'd like to pick some. You can see forest in
+every direction. A mountainrange looms far to the north.~
+115 0 SECT_FIELD
+DDIR_NORTH
+You see a lot of trees.~
+~
+0 -1 11506
+DDIR_SOUTH
+You see the entrance.~
+~
+0 -1 11500
+DDIR_WEST
+You see a lot of trees.~
+~
+0 -1 11501
+S
+#11503
+The darkest part of the woods~
+This place is really gloomy. The trees are very old and you get this feeling
+that some of those might actually jump you...~
+115 0 SECT_FOREST
+DDIR_NORTH
+You can see a lot of trees.~
+~
+0 -1 11507
+S
+#11504
+A clearing in the woods~
+You're standing on a forest clearing. There're a lot of flowers and 
+other plants growing here. You can see forest in every direction. A 
+mountainrange looms far to the north.~
+115 0 SECT_FIELD
+DDIR_NORTH
+You can see a lot of trees.~
+~
+0 -1 11508
+DDIR_EAST
+You see a lot of trees.~
+~
+0 -1 11505
+S
+#11505
+The Woods~
+You're walking in the Tanglewood forest. The trees move in the wind
+giving the place an all around scary appearance. There aren't too many
+trees here and the forest ends in a clearing to the west.~
+115 0 SECT_FOREST
+DDIR_NORTH
+You see more trees.~
+~
+0 -1 11509
+DDIR_SOUTH
+You see trees.~
+~
+0 -1 11501
+DDIR_WEST
+You can see a clearing.~
+~
+0 -1 11504
+S
+#11506
+The Woods~
+You're walking in the Tanglewood forest. The trees move in the wind
+giving the place an all around scary appearance. There aren't too many
+trees here and the forest ends in a clearing to the south.~
+115 0 SECT_FOREST
+DDIR_NORTH
+There's a red wooden cottage there.~
+~
+0 -1 11510
+DDIR_EAST
+You see more trees.~
+~
+0 -1 11507
+DDIR_SOUTH
+You see a clearing.~
+~
+0 -1 11502
+S
+#11507
+The Woods~
+You're in the Tanglewood forest. It's pretty dark in here. You notice 
+a path that disappears into the darkness to south.~
+115 0 SECT_FOREST
+DDIR_SOUTH
+It's awfully dark in there.~
+~
+0 -1 11503
+DDIR_WEST
+You see trees.~
+~
+0 -1 11506
+S
+#11508
+Bunnies' paradise~
+You're on a small clearing in the woods. For some reason there're a lot of
+bunny poop here.~
+115 0 SECT_FIELD
+DDIR_EAST
+You see a lot more trees.~
+~
+0 -1 11509
+DDIR_SOUTH
+You see a clearing.~
+~
+0 -1 11504
+S
+#11509
+The Woods~
+You're in the woods. It's pretty dark here, but you get an all around 
+good feeling about this place. The mountains to the north are very 
+close now - the foothills are only a few hundred feet away.~
+115 0 SECT_FOREST
+DDIR_NORTH
+You can see foothills and some mountains behind them.~
+~
+0 -1 11515
+DDIR_EAST
+You detect a red wooden cottage.~
+~
+0 -1 11510
+DDIR_SOUTH
+You see more trees.~
+~
+0 -1 11505
+DDIR_WEST
+You see more trees.~
+~
+0 -1 11508
+S
+#11510
+A cottage in the woods~
+You're standing in front of a small red wooden cottage that someone built
+in the woods. You think someone is ho~
+115 0 SECT_FOREST
+DDIR_NORTH
+It's a cottage.~
+door~
+EX_ISDOOR|EX_CLOSED -1 11522
+DDIR_EAST
+You see a dimly lit path that leads to a lake.~
+~
+0 -1 11511
+DDIR_SOUTH
+You see trees.~
+~
+0 -1 11506
+DDIR_WEST
+You see more trees.~
+~
+0 -1 11509
+S
+#11511
+A dimly lit path~
+You're on a dimly lit path that leads from the cottage to the lake. 
+The forest continues to the north and south.~
+115 0 SECT_FOREST
+DDIR_NORTH
+You see trees.~
+~
+0 -1 11517
+DDIR_EAST
+You see a lake.~
+~
+0 -1 11512
+DDIR_WEST
+You see a red wooden cottage in there.~
+~
+0 -1 11510
+S
+#11512
+By the lake~
+You're standing by a rather small forest lake. The water looks refreshing
+and you feel like you could go for a swim.~
+115 0 SECT_FIELD
+DDIR_EAST
+You see the Lake.~
+~
+0 -1 11513
+DDIR_WEST
+You see a dimly lit path.~
+~
+0 -1 11511
+S
+#11513
+The Lake~
+You are swimming in the lake. The water is cool and refreshing. You can
+see some fish in the waters below you - some of them big, some of them
+small. You decide to keep this place in mind in case you'd want to go 
+fishing sometime~
+115 0 SECT_WATER_SWIM
+DDIR_WEST
+You see the shore.~
+~
+0 -1 11512
+DDIR_DOWN
+The water is clear.~
+~
+0 -1 11514
+S
+#11514
+Bottom of the lake~
+You dive to the bottom of the lake to admire the fish a little closer.~
+115 0 SECT_WATER_SWIM
+DDIR_UP
+It's the surface.~
+~
+0 -1 11513
+S
+#11515
+Path in the foothills~
+You're standing in the foothills of a huge mountain range. You can see 
+vast mountains to the north and west. The path continues to the north
+and south.~
+115 0 SECT_HILLS
+DDIR_NORTH
+Path in the mountains.~
+~
+0 -1 11521
+DDIR_EAST
+You see a lot of trees.~
+~
+0 -1 11516
+DDIR_SOUTH
+You see a lot of trees.~
+~
+0 -1 11509
+S
+#11516
+The Woods~
+You're walking in the Tanglewood forest. This place is very dark due to
+the fact that no light can penetrate the thick layer of branches above 
+you. You notice a path that leads west to the foothills and disappears 
+into the thick underbrush to the east.~
+115 0 SECT_FOREST
+DDIR_EAST
+You see trees.~
+~
+0 -1 11517
+DDIR_WEST
+You see foothills and some mountains behind them.~
+~
+0 -1 11515
+S
+#11517
+The Woods~
+You're in the Tanglewood forest. A chill goes down your spine as you notice
+something run into the bush right in front of you.~
+115 0 SECT_FOREST
+DDIR_SOUTH
+You see a dimly lit path.~
+~
+0 -1 11511
+DDIR_WEST
+You see trees.~
+~
+0 -1 11516
+S
+#11518
+The Lair~
+It's so dark in here that its hard to see where you're going. The cave seems
+rather big - its at least 300 feet long. You have a feeling that someTHING
+BIG lives here!~
+115 ROOM_DARK|ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+You see mountains.~
+~
+0 -1 11519
+S
+#11519
+Mountains~
+You're at the foot of a huge mountain. You can see a no snow on its top 
+which is kinda odd, since the mountain is at least 8000 feet high. You 
+notice an entrace to a large cave to the south.~
+115 0 SECT_HILLS
+DDIR_NORTH
+You see more mountains.~
+~
+0 -1 11524
+DDIR_EAST
+You see a mountain pass.~
+~
+0 -1 11520
+DDIR_SOUTH
+You see a dark cave.~
+~
+0 -1 11518
+S
+#11520
+A mountain pass~
+You're standing at the foot of a mountain range. You can see vast mountains
+in the west and north. The foothills and the forest are to the southeast.
+You have a bad feeling about going any further...~
+115 0 SECT_HILLS
+DDIR_NORTH
+You see mountains.~
+~
+0 -1 11525
+DDIR_EAST
+You see a mountain pass.~
+~
+0 -1 11521
+DDIR_WEST
+You see mountains.~
+~
+0 -1 11519
+S
+#11521
+A mountain pass~
+You're standing at the foot of a mountain range. You can see vast mountains
+in the west and north. The foothills and Tanglewood forest are to the south.
+You have a feeling that you should go back to the forest.~
+115 0 SECT_FOREST
+DDIR_SOUTH
+You see some foothills.~
+~
+0 -1 11515
+DDIR_WEST
+You see a mountain pass.~
+~
+0 -1 11520
+S
+#11522
+Inside the small wooden cottage~
+The cottage looks pretty much the ordinary forest cottage. There's a bed
+in one corner, a cabinet in another, several axes and other tools hang on
+the wall close to the door.~
+115 ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+That's the way out from the cottage.~
+door~
+EX_ISDOOR|EX_CLOSED -1 11510
+DDIR_DOWN
+It's dark under the bed.~
+~
+0 -1 11523
+S
+#11523
+Under The BED~
+It's too dark here to see.~
+115 ROOM_DARK|ROOM_INDOORS SECT_INSIDE
+DDIR_UP
+It's not under the bed.... maybe you should go there.~
+~
+0 -1 11522
+S
+#11524
+Mountains~
+You're hiking up a mountain. It's cold and the wind is growing stronger.
+You decide not to go any further.~
+115 0 SECT_HILLS
+DDIR_SOUTH
+You see mountains.~
+~
+0 -1 11519
+S
+#11525
+Mountains~
+You're in the foot of a large mountain. You can see the Tanglewood forest
+to the south. To the north is an inpenetratable wall of steep mountains and
+perilous mountain passes. You detect a cave some 100 feet above you.~
+115 0 SECT_HILLS
+DDIR_SOUTH
+You see a mountain pass.~
+~
+0 -1 11520
+DDIR_UP
+You see a cave up there.~
+~
+0 -1 11526
+S
+#11526
+Entrance to the Orc cave~
+You're at the entrance to a rather small looking cave. There're a lot
+of animal skeletons lying around. You have a feeling that someone lives
+in the cave.~
+115 0 SECT_HILLS
+DDIR_EAST
+It's too dark to tell.~
+~
+0 -1 11527
+DDIR_DOWN
+You see the mountain.~
+~
+0 -1 11525
+S
+#11527
+Orc Cave~
+The stench is just horrible. There're orc droppings and half eaten animals
+all around. The people living here obviously don't clean this place too 
+often.~
+115 ROOM_DARK|ROOM_INDOORS SECT_INSIDE
+DDIR_WEST
+That's the way outta here.~
+~
+0 -1 11526
+S
+#0
+
+
+
+
+#RESETS
+M 0 11500   1 11517 ;        The Forest Ranger in The Woods                
+E 0 11500 10 ITEM_WEAR_HEAD ;equip longsword                
+E 0 11501  2 5 ;equip a Leather battlearmor    
+M 0 11501   4 11508 ;         The bunny rabbit in Bunnies' paradise        
+M 0 11501   4 11501 ;         The bunny rabbit in The Woods                
+M 0 11501   4 11517 ;         The bunny rabbit in The Woods                
+M 0 11501   4 11507 ;         The bunny rabbit in The Woods                
+M 0 11502   4 11508 ;               The rabbit in Bunnies' paradise        
+M 0 11502   4 11508 ;               The rabbit in Bunnies' paradise        
+M 0 11502   4 11501 ;               The rabbit in The Woods                
+M 0 11502   4 11517 ;               The rabbit in The Woods                
+M 0 11502   4 11506 ;               The rabbit in The Woods                
+M 0 11503   1 11508 ;           The fat rabbit in Bunnies' paradise        
+M 0 11503   1 11510 ;           The fat rabbit in A cottage in the woods   
+M 0 11504   1 11508 ;           The big rabbit in Bunnies' paradise        
+M 0 11505   1 11522 ;          The little girl in Inside the small wooden c
+E 0 11508 30 3 ;equip a red cloak              
+M 0 11506   2 11502 ;        The red butterfly in A Clearing               
+G 0 11506   1       ;          a drop of paint
+M 0 11506   2 11504 ;        The red butterfly in A clearing in the woods  
+G 0 11506   1       ;          a drop of paint
+M 0 11506   2 11502 ;        The red butterfly in A Clearing               
+G 1 11506   1       ;          a drop of paint
+M 0 11506   2 11504 ;        The red butterfly in A clearing in the woods  
+G 1 11506   1       ;          a drop of paint
+M 0 11507   2 11502 ;     The yellow butterfly in A Clearing               
+G 0 11506   1       ;          a drop of paint
+M 0 11507   2 11504 ;     The yellow butterfly in A clearing in the woods  
+G 0 11506   1       ;          a drop of paint
+M 0 11507   2 11504 ;     The yellow butterfly in A clearing in the woods  
+G 1 11506   1       ;          a drop of paint
+M 0 11508   1 11503 ;      The black butterfly in The darkest part of the w
+M 0 11509   2 11502 ;       The blue butterfly in A Clearing               
+G 0 11506   1       ;          a drop of paint
+M 0 11509   2 11504 ;       The blue butterfly in A clearing in the woods  
+G 0 11506   1       ;          a drop of paint
+M 0 11509   2 11504 ;       The blue butterfly in A clearing in the woods  
+G 1 11506   1       ;          a drop of paint
+M 0 11510   1 11512 ;                 The frog in By the lake              
+M 0 11511   1 11527 ;             The boss orc in Orc Cave                 
+E 0 11502  5 ITEM_WEAR_HEAD ;equip an orcish sword          
+E 0 11504  4 5 ;equip an orcish chainmail      
+M 0 11512   2 11527 ;              The orc boy in Orc Cave                 
+E 0 11503 100 ITEM_WEAR_HEAD ;equip an orcish spear          
+M 0 11512   2 11527 ;              The orc boy in Orc Cave                 
+E 0 11503 100 ITEM_WEAR_HEAD ;equip an orcish spear          
+M 0 11512   2 11527 ;              The orc boy in Orc Cave                 
+E 0 11503 100 ITEM_WEAR_HEAD ;equip an orcish spear          
+M 0 11512   2 11527 ;              The orc boy in Orc Cave                 
+E 0 11503 100 ITEM_WEAR_HEAD ;equip an orcish spear          
+M 0 11512   2 11527 ;              The orc boy in Orc Cave                 
+E 0 11503 100 ITEM_WEAR_HEAD ;equip an orcish spear          
+M 0 11513   1 11527 ;          The big orc boy in Orc Cave                 
+E 0 11503 100 ITEM_WEAR_HEAD ;equip an orcish spear          
+M 0 11514   1 11518 ;      The baby red dragon in The Lair                 
+M 0 11515   1 11523 ;              The MONSTER in Under The BED            
+G 0 11505   1       ;         a cute teddybear
+M 0 11519   1 11511 ;                 The Monk in A dimly lit path         
+M 0 11520   3 11514 ;                 The fish in Bottom of the lake       
+M 0 11520   3 11514 ;                 The fish in Bottom of the lake       
+M 0 11520   3 11514 ;                 The fish in Bottom of the lake       
+M 0 11521   1 11514 ;             The big fish in Bottom of the lake       
+M 0 11522   1 11509 ;         The Ethereal mob in The Woods                
+M 0 11523   1 11514 ;      The Ethereal mob II in Bottom of the lake       
+D 0 11510 DIR_NORTH DOOR_CLOSED ;door in A cottage in the woods   
+D 0 11522 DIR_SOUTH DOOR_CLOSED ;door in Inside the small wooden c
+S
+
+
+
+
+#SHOPS
+0
+
+
+
+
+#SPECIALS
+S
+
+
+
+
+#$

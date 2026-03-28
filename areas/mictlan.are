@@ -1,0 +1,6107 @@
+#AREA Mictlan Region~
+#AUTHORS Leza   ~
+
+
+
+#HELPS
+-1 MICTLAN~
+Mictlan Region was supposedly named after a great elementalist, Mictlan. 
+It is said that he has travel around the world learning and gathering many
+potent magical items. At the end of his journey, he found himself deep within
+a jungle. It is said that their he built his home. Many have tried to find this
+magical place to learn all that Mictlan has learned, but every mission into
+the jungle has ended in failure. But this is all just rumors, since no one has
+ever found this place or is it?
+~
+0 $~
+
+
+
+
+#RANGES 70 95 70 95
+#FLAGS AFLAG_NOTELEPORT
+#MOBILES
+#24700
+hyena~
+The hyena~
+A hyena stands here glaring at you.~
+You see a ferocious creature who hungers for food.~
+ACT_STAY_AREA|ACT_WEAK|ACT_BODY
+AFF_INFRARED|AFF_SNEAK
+-400 S
+50 BODY_TORSO BODY_CLAW 10d60+2490 1d20+44
+20000 584441
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>all_greet_prog 100~
+mpecho The hyena eyes you curiously.
+if quest(30,1,$n) == 1
+  rescale 24700 $n 300
+else
+  if class($n) != 1
+    if level($n) < 95
+      rescale 24700 $n 160
+      laugh $n
+      mpkill $n
+    endif
+  endif
+endif
+~
+>rand_prog 2~
+mpasound You hear a very hideous laugh from somewhere close by.
+~
+|
+#24701
+boa constrictor snake~
+The boa constrictor~
+The snake is ready to strike at you.~
+You see a very huge boa constrictor. It looks very hungry.~
+ACT_STAY_AREA|ACT_WEAK|ACT_BODY
+AFF_INFRARED|AFF_SNEAK|AFF_STEALTH
+-400 S
+55 BODY_TORSO BODY_MOUTH|BODY_TAIL 10d40+3290 1d20+49
+20000 646617
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>all_greet_prog 100~
+if class($n) != 1
+  if level($n) < 95
+    rescale 24701 $n 160
+    mpkill $n
+  endif
+endif
+~
+>rand_prog 2~
+mpasound Ssssss. Ssssssh. Sssshhhh.
+mpecho It's coming from the bushes.
+~
+|
+#24702
+alligator~
+The alligator~
+The alligator swims toward you.~
+You see it's jaws opening and closing, as it closes it distance to you.~
+ACT_STAY_AREA|ACT_WEAK|ACT_BODY
+AFF_INFRARED|AFF_SNEAK
+-400 S
+55 BODY_TORSO BODY_MOUTH|BODY_TAIL 10d40+3290 1d20+49
+20000 646617
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>all_greet_prog 100~
+if class($n) != 1
+  if level($n) < 95
+    rescale 24702 $n 160
+    mpkill $n
+  endif
+endif
+~
+|
+#24703
+gorilla~
+The grey gorilla~
+The grey gorilla lunges at you!~
+He was upon you so fast you didn't get a good look at him.~
+ACT_STAY_AREA|ACT_WEAK|ACT_BODY
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_INFRARED|AFF_SNEAK|AFF_STEALTH
+-500 S
+60 BODY_TORSO BODY_MOUTH|BODY_LEG|BODY_TAIL|BODY_CLAW 10d40+3990 1d12+60
+50000 711952
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>all_greet_prog 100~
+if class($n) != 1
+  if level($n) < 95
+    rescale 24703 $n 180
+    mpkill $n
+  endif
+endif
+~
+|
+#24704
+air11 elemental~
+The air elemental~
+The air elemental hovers here blocking your path.~
+You see a translucent creature made of air.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_WEAK|ACT_SMART|ACT_NO_ORDER
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_INFRARED|AFF_FLYING|AFF_TONGUES
+0 S
+75 0 0 10d100+4000 10d2+80
+50000 780605
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>all_greet_prog 100~
+if class($n) != 1
+  if actorhasobjnum(24768)
+    say Since you aren't completing this quest alone
+    say you must defeat me in order to proceed.
+    rescale 24704 $n 140
+    mpkill $n
+  else
+    mpecho The air elemental snarls at you.
+    mpechoat $n You are not welcome here, now you must die!
+    rescale 24704 $n 250
+    mpkill $n
+  endif
+else
+  say Welcome master, you may proceed
+endif
+~
+|
+#24705
+earth11 elemental~
+The earth elemental~
+The earth elemental stands here blocking your path.~
+You see a creature made of rocks. He looks very tough.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_WEAK|ACT_SMART|ACT_NO_ORDER
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_INFRARED|AFF_TONGUES
+0 S
+75 0 0 10d100+4000 10d2+80
+50000 780605
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>all_greet_prog 100~
+if class($n) != 1
+  if actorhasobjnum(24768)
+    say Since you aren't completing this quest alone
+    say you must defeat me in order to proceed
+    rescale 24705 $n 140
+    mpkill $n
+  else
+    mpecho The earth elemental snarls at you.
+    mpechoat $n You are not welcome here, now you must die!
+    rescale 24705 $n 250
+    mpkill $n
+  endif
+else
+  say Welcome master, you may proceed
+endif
+~
+|
+#24706
+fire11 elemental~
+The fire elemental~
+The fire elemental stands here blocking your path.~
+You see a fiery creature. I wouldn't get close to it. You might get burn.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_WEAK|ACT_SMART|ACT_NO_ORDER
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_INFRARED|AFF_TONGUES
+0 S
+75 0 0 10d100+4000 10d2+80
+50000 780605
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>all_greet_prog 100~
+if class($n) != 1
+  if actorhasobjnum(24768)
+    say Since you aren't completing this quest alone
+    say you must defeat me in order to proceed
+    rescale 24706 $n 140
+    mpkill $n
+  else
+    mpecho The fire elemental snarls at you.
+    mpechoat $n You are not welcome here, now you must die!
+    rescale 24706 $n 250
+    mpkill $n
+  endif
+else
+  say Welcome master, you may proceed
+endif
+~
+|
+#24707
+water11 elemental~
+The water elemental~
+The water elemental stands here blocking your path.~
+You see a watery creature. Wonder would your weapon goes through him?~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_WEAK|ACT_SMART|ACT_NO_ORDER
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_INFRARED|AFF_TONGUES
+0 S
+75 0 0 10d100+4000 10d2+80
+50000 780605
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>all_greet_prog 100~
+if class($n) != 1
+  if actorhasobjnum(24768)
+    say Since you aren't completing this quest alone
+    say you must defeat me in order to proceed.
+    rescale 24707 $n 140
+    mpkill $n
+  else
+    mpecho The water elemental snarls at you.
+    mpechoat $n You are not welcome here, now you must die!
+    rescale 24707 $n 250
+    mpkill $n
+  endif
+else
+  say Welcome master, you may proceed
+endif
+~
+|
+#24708
+guardian air elemental~
+The guardian~
+The air elemental guardian is hovering here.~
+This elemental is extremely large compare to the smaller one you fought
+earlier.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_SANCTUARY|AFF_INFRARED|AFF_FLYING|AFF_TONGUES
+0 S
+80 0 0 10d100+6000 5d6+90
+100000 852748
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if class($n) == 1
+  say I have been waiting for you.
+  say Now, prepare yourself for the challenge.
+  say Whenever you're ready....
+  if pcsinarea(24802) > 4
+    rescale 24708 $n 175
+  else
+    if pcsinarea(24802) > 2
+      rescale 24708 $n 150
+    else
+      rescale 24708 $n 100
+    endif
+  endif
+else
+  if actorhasobjnum(24767)
+    if pcsinarea(24802) > 4
+      rescale 24708 $n 175
+    else
+      rescale 24708 $n 150
+    endif
+  else
+    say Trespasser, prepare to die!
+    mpjunk 24743
+    rescale 24708 $n 200
+    mpkill $n
+  endif
+endif
+~
+>rand_prog 30~
+say Are you ready yet?
+if rand(10)
+  say Ready or not here I come
+  mpkill $r
+endif
+~
+>fight_prog 40~
+if class($r) != 1
+  mass 'acid blast'
+  mass 'acid blast'
+  mass 'acid blast'
+endif
+~
+>death_prog 100~
+mptransfer pcs 24896
+mpoload 24743
+mpgoto 24896
+~
+|
+#24709
+guardian earth elemental~
+The guardian~
+The earth elemental guardian stands here.~
+This elemental is extremely large compare to the smaller one you fought
+earlier.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_SANCTUARY|AFF_INFRARED|AFF_TONGUES
+0 S
+80 0 0 10d100+6000 5d6+90
+100000 852748
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>all_greet_prog 100~
+if class($n) == 1
+  say I have been waiting for you.
+  say Now, prepare yourself for the challenge.
+  say Whenever you're ready...
+  if pcsinarea(24812) > 4
+    rescale 24709 $n 175
+  else
+    if pcsinarea(24812) > 2
+      rescale 24709 $n 150
+    else
+      rescale 24709 $n 100
+    endif
+  endif
+else
+  if actorhasobjnum(24767)
+    if pcsinarea(24812) > 4
+      rescale 24709 $n 175
+    else
+      rescale 24709 $n 150
+    endif
+  else
+    say Trespasser, prepare to die!
+    mpjunk 24742
+    rescale 24709 $n 200
+    mpkill $n
+  endif
+endif
+~
+>rand_prog 30~
+say Are you ready yet?
+if rand(10)
+  say Ready or not here I come.
+  mpkill $r
+endif
+~
+>fight_prog 40~
+if class($r) != 1
+  cast earthquake
+  cast earthquake
+  cast earthquake
+endif
+~
+>death_prog 100~
+mptransfer pcs 24896
+mpoload 24742
+mpgoto 24896
+~
+|
+#24710
+guardian fire elemental~
+The guardian~
+The fire elemental guardian stands here.~
+This elemental is extremely large compare to the smaller one you fought
+earlier.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_SANCTUARY|AFF_INFRARED|AFF_TONGUES
+0 S
+80 0 0 10d100+6000 5d6+90
+100000 852748
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>all_greet_prog 100~
+if class($n) == 1
+  say I have been waiting for you.
+  say Now, prepare yourself for the challenge.
+  say Whenever you're ready...
+  if pcsinarea(24856) > 4
+    rescale 24710 $n 175
+  else
+    if pcsinarea(24856) > 2
+      rescale 24710 $n 150
+    else
+      rescale 24710 $n 100
+    endif
+  endif
+else
+  if actorhasobjnum(24767)
+    if pcsinarea(24856) > 4
+      rescale 24710 $n 175
+    else
+      rescale 24710 $n 150
+    endif
+  else
+    say Trespasser, prepare to die!
+    mpjunk 24744
+    rescale 24710 $n 200
+    mpkill $n
+  endif
+endif
+~
+>rand_prog 30~
+say Are you ready yet?
+if rand(10)
+  say Ready or not here I come
+  mpkill $r
+endif
+~
+>fight_prog 40~
+if class($r) != 1
+  mass fireball
+  mass fireball
+  mass fireball
+endif
+~
+>death_prog 100~
+mptransfer pcs 24896
+mpoload 24744
+mpgoto 24896
+~
+|
+#24711
+guardian water elemental~
+The guardian~
+The water elemental guardian stands here.~
+This elemental is extremely large compare to the smaller one you fought
+earlier.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART
+AFF_SANCTUARY|AFF_INFRARED|AFF_TONGUES|AFF_DETECT_HIDDEN|AFF_DETECT_INVIS
+0 S
+80 0 0 10d100+6000 5d6+90
+100000 852748
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>all_greet_prog 100~
+if class($n) == 1
+  say I have been waiting for you.
+  say Now, prepare yourself for the challenge.
+  say Whenever you're ready...
+  if pcsinarea(24835) > 4
+    rescale 24711 $n 175
+  else
+    if pcsinarea(24835) > 2
+      rescale 24711 $n 150
+    else
+      rescale 24711 $n 100
+    endif
+  endif
+else
+  if actorhasobjnum(24767)
+    if pcsinarea(24835) > 4
+      rescale 24711 $n 175
+    else
+      rescale 24711 $n 150
+    endif
+  else
+    say Trespasser, prepare to die!
+    mpjunk 24745
+    rescale 24711 $n 200
+    mpkill $n
+  endif
+endif
+~
+>rand_prog 30~
+say Are you ready yet?
+if rand(10)
+  say Ready or not here I come
+  mpkill $r
+endif
+~
+>fight_prog 40~
+if class($r) != 1
+  mpecho The water elemental guardian hurls a gigantic tsunami.
+  mpquiet on
+  mass fireball
+  mass fireball
+  mass fireball
+  mpquiet off
+endif
+~
+>death_prog 100~
+mptransfer pcs 24896
+mpoload 24745
+mpgoto 24896
+~
+|
+#24712
+Mictlan~
+Mictlan~
+Mictlan the Shaman stands before you.~
+You see a man who seems ageless. He has a few wrinkles along his forehead, 
+but even with it you can't be sure how old he really is. But one thing for 
+sure, he has a very strong aura around him.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_SANCTUARY|AFF_INFRARED|AFF_PROTECT_EVIL
+0 S
+120 0 0 10d100+30000 2d50+120
+500000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if class($n) == 1
+  tell $n Welcome fellow elementalist.
+  tell $n I see you have passed my test, but can you defeat me?
+  tell $n I have acquired a few magical items on my many journies.
+  tell $n And I grow weary of them.
+  tell $n If you defeat me, you can have them all.
+  tell $n To the victors go the spoils.
+  tell $n Prepare yourself, I am ready!
+  mpforce $n give card11 mictlan
+  mpforce $n give ticket11 mictlan
+  mpjunk card11
+  mpjunk ticket11
+  mpmset $n quest 0 1 0
+else
+  if actorhasobjnum(24768)
+    mpforce $n give card11 mictlan
+    mpforce $n give ticket11 mictlan
+    mpjunk card11
+    mpjunk ticket11
+    mpmset $n quest 0 1 0
+  else
+    say You are not a fellow elementalist.
+    say How dare you trespass into my domain!
+    say Begone with you.
+    mptransfer $n 24700
+    mpat $n mpechoat $n You are teleported out.
+  endif
+endif
+~
+>fight_prog 30~
+if rand(15)
+  cast 'lightning breath' $r
+  mpechoat $r The Chieftain drains you of your power.
+  mpmadd $r mana -500
+endif
+if rand(25)
+  cast tremor
+  cast tremor
+  cast tremor
+endif
+if rand(35)
+  cast earthquake
+  cast earthquake
+endif
+if rand(45)
+  cast fireball $r
+  cast fireball $r
+  cast fireball $r
+  cast fireball $r
+endif
+~
+>death_prog 100~
+if rand(5)
+  mpoload 24776
+endif
+if rand(50)
+  mpechoat $n With the last breath of his life, Mictlan draws all his power
+  mpechoat $n for one glorious final attack.
+  cast fireball $n
+  cast fireball $n
+  cast fireball $n
+  cast fireball $n
+  cast fireball $n
+  cast fireball $n
+  cast fireball $n
+  cast fireball $n
+endif
+mptransfer pcs 24788
+mpgoto 24788
+mpecho With his dying breath, Mictlan teleports you all back to his room.
+mpecho There he began to tell you about a village here in this region.
+tell $n There is a village here in my region. Within that village is a
+tell $n shaman who can tell you the power of these items. Go see him.
+tell $n In order to get into the village, you must first locate its
+tell $n secret entrance. It is hidden somewhere within the mountains.
+tell $n The phrase to open the path is:
+tell $n He who walks the path of light shall sees it.
+if quest(4,1,$n) == 0
+  mpmset $n quest 4 1 1
+endif
+~
+|
+#24713
+astral ghost ghostmictlan~
+The ghost~
+The ghost of Mictlan stands before you.~
+You can see right through him except for the wavy line outlining his form.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART
+AFF_INVISIBLE|AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_INFRARED|AFF_FLYING|AFF_PASS_DOOR
+0 S
+95 0 0 0d0+25000 1d1+300
+0 928560
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+say Welcome, I am Mictlan. Well, just an astral projection.
+say But enough rambling about me, you are here on a QUEST.
+say If you succeed in this quest, you'll have the greatest artifacts known
+say to man, but you MUST be/have a elementalist to complete this quest.
+if class($n) == 1
+  mpoload 24767
+  mpquiet on
+  cast 'giant strength' $n
+  mpquiet off
+  give card11 $n
+  mpforce $n look quest
+  if rand(50)
+    mpgoto 24796
+    mppurge
+    mpmload 24708
+    mpgoto 24802
+    mppurge
+    mpmload 24725
+  else
+    mpgoto 24796
+    mppurge
+    mpmload 24725
+    mpgoto 24802
+    mppurge
+    mpmload 24708
+  endif
+  if rand(50)
+    mpgoto 24812
+    mppurge
+    mpmload 24709
+    mpgoto 24818
+    mppurge
+    mpmload 24725
+  else
+    mpgoto 24812
+    mppurge
+    mpmload 24725
+    mpgoto 24818
+    mppurge
+    mpmload 24709
+  endif
+  if rand(50)
+    mpgoto 24828
+    mppurge
+    mpmload 24711
+    mpgoto 24835
+    mppurge
+    mpmload 24725
+  else
+    mpgoto 24828
+    mppurge
+    mpmload 24725
+    mpgoto 24835
+    mppurge
+    mpmload 24711
+  endif
+  if rand(33)
+    mpgoto 24841
+    mppurge
+    mpmload 24710
+    mpgoto 24847
+    mppurge
+    mpmload 24725
+    mpgoto 24856
+    mppurge
+    mpmload 24725
+  else
+    if rand(66)
+      mpgoto 24841
+      mppurge
+      mpmload 24725
+      mpgoto 24847
+      mppurge
+      mpmload 24710
+      mpgoto 24856
+      mppurge
+      mpmload 24725
+    else
+      mpgoto 24841
+      mppurge
+      mpmload 24725
+      mpgoto 24847
+      mppurge
+      mpmload 24725
+      mpgoto 24856
+      mppurge
+      mpmload 24710
+    endif
+  endif
+endif
+mppurge $i
+~
+|
+#24714
+air44 elemental~
+The air elemental~
+The air elemental stands before you.~
+You see a air elemental. It's made of air. What else do you think it looks
+like?~
+ACT_SENTINEL|ACT_PET|ACT_SMART
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_SNEAK|AFF_FLYING|AFF_PASS_DOOR|AFF_TONGUES
+0 S
+75 0 0 1d1000+4000 1d50+50
+0 646617
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>fight_prog 25~
+mpecho The air elemental hurls a whirlwind at you.
+mpquiet on
+cast 'acid blast'
+cast 'acid blast'
+mpquiet off
+~
+>death_prog 30~
+mpecho The air elemental draws the last of his energy to cast one last final spell.
+mpquiet on
+cast 'acid blast' $r
+cast 'acid blast' $r
+mpquiet off
+~
+>hitprcnt_prog 20~
+if rand(35)
+  mpecho The air elemental tries to draw some life energy from his victim.
+  mpquiet on
+    cast 'energy drain'
+    cast 'energy drain'
+    cast 'energy drain'
+    cast 'energy drain'
+  mpquiet off
+endif
+~
+>rand_prog 10~
+mass fly
+mass haste
+~
+>social_prog glare~
+if isnpc($n)
+  glare $n
+  say My master wish me to vanquish thee.
+  say Now you must die!
+  mpkill $n
+else
+  if level($n) > 74
+    if isfight($n)
+      glare $n
+      say My master wish me to vanquish thee.
+      say Now you must die!
+      mpmset self level 90
+      mpkill $n
+    else
+       say Sorry master, but I cannot join in the fight.
+    endif
+  else
+    say Sorry master, but they are beyond my reach.
+  endif
+endif
+~
+|
+#24715
+earth44 elemental~
+The earth elemental~
+The earth elemental stands before you.~
+You see a earth elemental. It's made of rock. What else do you think it looks
+like?~
+ACT_SENTINEL
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_INFRARED|AFF_SNEAK|AFF_FLYING|AFF_PASS_DOOR
+0 S
+75 0 0 1d1000+4000 1d50+50
+0 646617
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>fight_prog 25~
+mpecho The earth elemental smashes the ground creating a devastating earthquake
+mpecho right under its enemy feet.
+mpquiet on
+cast color $n      
+cast color $n
+mpquiet off
+~
+>death_prog 20~
+mpecho The earth elemental draws the last of his energy to cast one last final spell.
+mpquiet on
+cast 'acid blast'
+mpquiet off
+~
+>hitprcnt_prog 20~
+if rand(35)
+  mpecho The earth elemental tries to draw some life energy from his victim.
+  mpquiet on
+    cast 'energy drain'
+    cast 'energy drain'
+  mpquiet off
+endif
+~
+>rand_prog 10~
+mass armor
+mass shield
+~
+>social_prog glare~
+if isnpc($n)
+  glare $n
+  say My master wish me to vanquish thee.
+  say Now you must die!
+  mpkill $n
+else
+  if level($n) > 74
+    if isfight($n)
+      glare $n
+      mpmset self level 90
+      say My master wish me to vanquish thee.
+      say Now you must die!
+      mpkill $n
+    else
+       say Sorry master, but I cannot join in that fight.
+    endif
+  else
+    say Sorry master, but they are beyond my reach.
+  endif
+endif
+~
+|
+#24716
+fire44 elemental~
+The fire elemental~
+The fire elemental stands before you.~
+You see a fire elemental. It's made of fire. What else do you think it looks
+like?~
+ACT_SENTINEL
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_INFRARED|AFF_SNEAK|AFF_FLYING|AFF_PASS_DOOR
+0 S
+75 0 0 1d1000+4000 1d50+50
+0 646617
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>fight_prog 25~
+mpecho The fire elemental sends forth a fireball.
+mpquiet on
+cast fireball
+cast fireball
+mpquiet off
+~
+>death_prog 20~
+mpecho The fire elemental draws the last of his energy to cast one last final spell.
+mpquiet on
+cast fireball
+cast fireball
+mpquiet off
+~
+>hitprcnt_prog 20~
+if rand(35)
+  mpecho The fire elemental tries to draw some life energy from his victim.
+  mpquiet on
+    cast 'energy drain'
+    cast 'energy drain'
+  mpquiet off
+endif
+~
+>rand_prog 5~
+mass 'enhanced heal'
+mass 'enhanced rest'
+mass 'enhanced revive'
+~
+>social_prog glare~
+if isnpc($n)
+  glare $n
+  say My master wish me to vanquish thee.
+  say Now you must die!
+  mpkill $n
+else
+  if level($n) > 74
+    if isfight($n)
+      glare $n
+      mpmset self level 90
+      say My master wish me to vanquish thee.
+      say Now you must die!
+      mpkill $n
+    else
+       say Sorry master, but I can't join in that fight.
+    endif
+  else
+    say Sorry master, but they are beyond my reach.
+  endif
+endif
+~
+|
+#24717
+water44 elemental~
+The water elemental~
+The water elemental stands before you.~
+You see a water elemental. It's made of water? What else do you think it looks like?~
+ACT_SENTINEL
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_INFRARED|AFF_SNEAK|AFF_FLYING|AFF_PASS_DOOR
+0 S
+1 0 0 2d1+500 1d50+50
+0 646617
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>fight_prog 25~
+mpecho The water elemental creates a tidal wave directing it toward its enemy.
+mpquiet on
+cast 'acid blast'
+cast 'acid blast'
+mpquiet off
+~
+>death_prog 20~
+mpecho The water elemental draws the last of his energy to cast one last final spell.
+mpquiet on
+cast 'acid blast'
+cast 'acid blast'
+mpquiet off
+~
+>hitprcnt_prog 20~
+if rand(35)
+  mpecho The water elemental tries to draw some life energy from his victim.
+  mpquiet on
+    cast 'energy drain'
+    cast 'energy drain'
+  mpquiet off
+endif
+~
+>rand_prog 8~
+mass 'breath water'
+mass 'giant strength'
+~
+>social_prog glare~
+if isnpc($n)
+  glare $n
+  say My master wish me to vanquish thee.
+  say Now you must die!
+  mpkill $n
+else
+  if level($n) > 74
+    if isfight($n)
+      glare $n
+      mpmset self level 90
+      say My master wish me to vanquish thee.
+      say Now you must die!
+      mpkill $n
+    else
+       say Sorry master, but I can't join in that fight.
+    endif
+  else
+    say Sorry master, but they are beyond my reach.
+  endif
+endif
+~
+|
+#24718
+ethtest~
+the ethtest~
+The ethtest stands here, completely clueless.~
+The ethtest look back at you.~
+ACT_SENTINEL
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_INFRARED|AFF_ETHEREAL|AFF_TONGUES
+0 S
+120 0 0 0d0+30000 1d1+237
+0 1179924
+POS_STANDING POS_STANDING SEX_NEUTRAL
+#24719
+ethexit~
+the ethexit~
+The ethexit stands here, completely clueless.~
+The ethexit looks back at you!~
+ACT_SENTINEL
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_ETHEREAL|AFF_UNDERSTAND|AFF_TONGUES
+0 S
+120 0 0 0d0+30000 1d1+238
+0 1179924
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>rand_prog 60~
+mpecho You notice some movements coming from the trees.
+mpecho A voice call forth from the trees, 'Do you wish to leave?'
+~
+>speech_prog exit leave mountain yes~
+mpechoat $n A voice shouted, 'Open the trail.'
+mpechoat $n The trees start to move aside and you can see a path now.
+mptransfer $n 24718
+~
+|
+#24720
+ethtrail~
+the ethtrail~
+The ethtrail stands here, completely clueless.~
+The ethtrail looks back at you!~
+ACT_SENTINEL|ACT_STAY_AREA
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_INFRARED|AFF_ETHEREAL
+0 S
+150 0 0 0d0+30000 0d0+400
+0 1810212
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>speech_prog p He who walks the path of light shall sees it.~
+if quest(4,1,$n) == 1
+  if class($n) == 1
+    mpasound You hear the sound of lightning striking in the distance.
+    mpechoat $n As soon as you speak the words, a bolt of lightning strikes in front of you.
+    mpechoaround $n A bolt of lightning shot forth from the sky hitting the ground next to you.
+    mpecho As the sparks clears, you notice a trail leading off of the mountain.
+    mpechoat An unknown force draws you into its secret trail.
+    mptransfer pcs 24858
+    mpat $n mpecho As soon as you step into the trail, the pathway closes in.
+    mpat $n mpecho Blocking you all from leaving the way you came.
+  else
+    mpasound You hear the sound of lightning striking in the distance.
+    mpechoat $n As soon as you speak the words, a bolt of lightning strikes in front of you.
+    mpechoaround $n A bolt of lightning shot forth from the sky hitting the ground next to you.
+    mpecho As the sparks clears, you notice a trail leading off of the mountain.
+    mpechoat An unknown force draws you into its secret trail.
+    mptransfer $n 24858
+    mpat $n mpecho As soon as you step into the trail, the pathway closes in.
+    mpat $n mpecho Blocking you all from leaving the way you came.
+endif
+~
+|
+#24721
+Huraka~
+Huraka~
+Huraka stand here, wiping her blade.~
+You see a woman in her mid-thirties. She has many scars on her body,
+depicting the many battles she had been in.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_SANCTUARY|AFF_INFRARED|AFF_TONGUES
+0 S
+120 0 0 0d0+30000 0d0+200
+0 1179924
+POS_STANDING POS_STANDING SEX_FEMALE
+>all_greet_prog 100~
+emote glances at you.
+say How may I help you?
+~
+|
+#24722
+Zotzilaha~
+Zotzilaha~
+Zotzilaha is in the back, mixing up a potion.~
+Zotzilaha looks at you and says, 'How may I help you?'~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_SANCTUARY|AFF_INFRARED|AFF_TONGUES
+0 S
+120 0 0 0d0+30000 0d0+200
+0 1179924
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if rand(75)
+  mpasound *ring* *ring*
+  mpechoat $n A bell ring.
+  emote rushes into the room when he heard a bell.
+  say How may I be of service?
+else
+  mpechoat $n The owner didn't even give you a glance as you step into the shop.
+endif
+~
+|
+#24723
+Tlazoteotl~
+Tlazoteotl~
+Tlazoteotl is here cooking up a storm.~
+She seems to be in a frenzy, cooking up a storm here. How many people does she has to feed?~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_SANCTUARY|AFF_INFRARED|AFF_TONGUES
+0 S
+120 0 0 0d0+30000 0d0+200
+0 1179924
+POS_STANDING POS_STANDING SEX_FEMALE
+>all_greet_prog 75~
+say Are you hungry? Here try some of my delicious grubs...
+mpmadd $n full 10
+~
+|
+#24724
+Rhialle~
+Rhialle~
+Rhialle sits here, polishing his blade.~
+You see a man who is still in his prime. Still able to stand on his own in a
+fight. But he is always looking to improve his skill.~
+ACT_SENTINEL|ACT_SMART|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_SANCTUARY|AFF_UNDERSTAND|AFF_TONGUES
+1000 S
+85 0 0 10d100+6000 5d20+150
+0 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if quest(8,2,$n) == 2
+  say I can smell the stench of the beast on you. You have done
+  say well. No one else has succeeded in killing it.
+  say Now I'm ready to fight you.
+  shout $n has won the rights to challenge me. Let the games begin.
+  rescale 24724 $n 100
+  connect 4 24895
+  mpforce $n up 
+  up
+   mpgoto 24895
+  mpat 24893 connect 4 -1 
+  mpasound You hear a lot of people chanting, 'Rhialle! Rhialle! Rhialle!'
+  say Whenever you're ready?
+else
+  if quest(8,2,$n) > 2
+    bow $n
+    say Welcome, Great Warrior, to my humble tent,
+    say but I must attends to my other matters.
+    wave $n
+    mpechoat $n Rhialle's private guards escort you out of the tent.
+    mpforce $n west
+  else
+    say Are you here to challenge me?
+  endif
+endif
+~
+>speech_prog yes~
+if quest(8,2,$n) == 0
+  say I'd been challenge countless times and have never once been defeated.
+  say You are a brave soul.
+  say But first you must prove to me you are a worthy opponent.
+  say Deep in the jungle is a beast. It's looks like its cousin,
+  say the grey gorillas, but it isn't. Its deadlier then any grey gorillas.
+  say The beast is always hiding until it is ready to strike at its opponent.
+  say Go find that beast and kill it, then will you be a worthy opponent.
+  say I wish you luck my friend.
+  mpmset $n quest 8 2 1
+  mpgoto 24893
+else
+  say You dare come back when you haven't even completed a simple
+  say task, like killing that beast I sent you to.
+  say Don't come back until you kill him.
+  say You aren't worthy of my time.
+  mpechoat $n Rhialle's private guard escorts you out of the tent.
+  mpforce $n west
+endif
+~
+>speech_prog no~
+rescale 24724 $n 200
+laugh $n
+say I see you feel my might and are afraid to challenge me.
+say It's understandable that someone like you would think they
+say have a chance of defeating me.
+mpforce $n consider rhialle
+muhaha
+~
+>rand_prog 50~
+if inroom($i) == 24895
+  if pcsinarea(24700) == 0
+    mpgoto 24893
+  endif
+endif
+~
+>fight_prog 100~
+if rand(20)
+  mpquiet on
+  cast fireball $r
+  cast fireball $r
+  disarm $r
+  mpquiet off
+  mpecho Rhialle sidesteps you and turns around for a charge!
+endif
+if rand(15)
+  kick
+endif
+if rand(25)
+  disarm
+endif
+~
+>death_prog 100~
+  if quest(8,2,$n) == 2
+  mptransfer pcs 24893
+  mpoload 24777
+  mpgoto 24893
+  mpmset $n quest 8 2 3
+~
+|
+#24725
+ethdeath~
+the ethdeath~
+The ethdeath stands here, completely clueless.~
+The ethdeath looks back at you!~
+ACT_SENTINEL|ACT_STAY_AREA
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_INFRARED|AFF_ETHEREAL
+0 S
+100 0 0 0d0+30000 0d0+400
+0 1810212
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>all_greet_prog 100~
+mptransfer pcs 24700
+mpat $n mpecho You hit a trap door and are knocked unconscious.
+mpat $n mpecho And when you wake again, you find yourself back in the jungle.
+~
+|
+#24726
+ethstaff~
+Someone~
+The ethstaff stands here, completely clueless.~
+The ethstaff looks back at you!~
+ACT_SENTINEL|ACT_STAY_AREA
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_ETHEREAL|AFF_TONGUES|AFF_UNDERSTAND
+0 S
+100 0 0 0d0+30000 0d0+400
+0 1810212
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>all_greet_prog 100~
+if actorhasobjnum(24741)
+  mpecho The statue says, 'I see that you have found the staff.'
+  mpecho The statue says, 'Well, whenever you're ready, say ENTER.'
+else
+  if rand(50)
+    mpgoto 24788
+    mpoload 24741
+    mpquiet on
+    drop i24741
+    mpquiet off
+    mpgoto 24772
+  endif
+endif
+~
+>speech_prog enter~
+if actorhasobjnum(24741)
+  mpgoto 24790
+  mpmload 24713
+  mpgoto 24772
+  mpforce $n drop i24741
+  mpquiet on
+  sacrifice staff101
+  mpquiet off
+  connect 5 24790
+  mpechoat $n The staffs grows brightly as you insert it.
+  mpechoaround $n steps forward to snap the staff back in place.
+  mpecho It grows brighter and brighter, blinding you for a sec.
+  mpecho And when you can see again you're in a different room.
+  mpforce $n down
+  connect 5 -1
+endif
+~
+|
+#24727
+puddy~
+A puddy~
+A glob of puddy is here.~
+When you try to look at the creature, something came over you. Try as you
+might, you can't think of what it was that you're trying to see. Oh well,
+it probably wasn't very important anyway.~
+ACT_BODY|ACT_SMART|ACT_NO_ORDER|ACT_SENTINEL
+AFF_UNDERSTAND|AFF_TONGUES|AFF_DETECT_HIDDEN|AFF_DETECT_INVIS|AFF_STEALTH
+0 S
+25 0 0 100D100+1000 1D1+20
+0 0
+POS_STANDING POS_STANDING SEX_NEUTRAL
+#24728
+beast~
+The beast~
+The beast is here looking for a prey!~
+He was upon you so fast you didn't get a good look at him.~
+ACT_STAY_AREA|ACT_WEAK|ACT_BODY
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_INFRARED|AFF_STEALTH|AFF_SNEAK
+-500 S
+50 BODY_TORSO BODY_MOUTH|BODY_LEG|BODY_TAIL|BODY_CLAW 10d100+3000 10d10+50
+50000 711952
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>all_greet_prog 100~
+if quest(8,2,$n) == 1
+  mpforce $n alias follow
+  mpforce $n follow self
+  rescale 24728 $n 120
+  mpkill $n
+endif
+~
+>rand_prog 30~
+mpasound You hear a fearsome growl from somewhere close by.
+~
+>death_prog 100~
+if quest(8,2,$n) == 1
+  mpmset $n quest 8 2 2
+endif
+~
+|
+#24729
+ghost~
+A ghost~
+The ethdoor stands here, completely clueless.~
+The ethdoor looks back at you!~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_INFRARED|AFF_ETHEREAL|AFF_TONGUES|AFF_UNDERSTAND
+0 S
+100 0 0 0d0+30000 0d0+400
+0 1810212
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>all_greet_prog 100~
+if actorhasobjnum(24742)
+  if actorhasobjnum(24743)
+    if actorhasobjnum(24744)
+      if actorhasobjnum(24745)
+        mpechoat $n The ghost says, 'I see you have acquired all four items.'
+        mpechoat $n The ghost says, 'SAY I am ready! to proceed.'
+      endif
+    else
+      say You're almost there.
+    endif
+  else
+    say You're almost there.
+  endif
+else
+  say You're almost there.
+endif
+~
+>speech_prog quest~
+say There are four different exits from here. Each will lead to one of
+say the four elemental guardians.  Once you defeat the guardian,
+say you will see an item. Get all four items and return here
+say for further instructions.
+~
+>speech_prog p I am ready!~
+if actorhasobjnum(24742)
+  if actorhasobjnum(24743)
+    if actorhasobjnum(24744)
+      if actorhasobjnum(24745)
+        connect 5 24857
+        mpforce $n down
+        connect 5 -1
+        mpat $n mpecho You feel a little dizzy from the transportation spell.
+      endif
+    endif
+  endif
+endif
+~
+|
+#24730
+ethAir~
+ethAir~
+The beast is here looking for prey!~
+He was upon you so fast you didn't get a good look at him.~
+ACT_STAY_AREA|ACT_WEAK|ACT_BODY|ACT_SENTINEL
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_INFRARED|AFF_STEALTH|AFF_SNEAK|AFF_ETHEREAL
+0 S
+50 BODY_TORSO BODY_MOUTH|BODY_LEG|BODY_TAIL|BODY_CLAW 10d100+3000 10d10+50
+50000 711952
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>rand_prog 100~
+mpforce $r glare air44
+mppurge $i
+~
+|
+#24731
+ethEarth~
+ethEarth~
+The beast is here looking for a prey!~
+He was upon you so fast you didn't get a good look at him.~
+ACT_STAY_AREA|ACT_WEAK|ACT_BODY|ACT_SENTINEL
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_INFRARED|AFF_STEALTH|AFF_SNEAK|AFF_ETHEREAL
+0 S
+50 BODY_TORSO BODY_MOUTH|BODY_LEG|BODY_TAIL|BODY_CLAW 10d100+3000 10d10+50
+50000 711952
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>rand_prog 100~
+mpforce $r glare earth44
+mppurge $i
+~
+|
+#24732
+ethFire~
+ethFire~
+The beast is here looking for a prey!~
+He was upon you so fast you didn't get a good look at him.~
+ACT_STAY_AREA|ACT_WEAK|ACT_BODY|ACT_SENTINEL
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_INFRARED|AFF_STEALTH|AFF_SNEAK|AFF_ETHEREAL
+0 S
+50 BODY_TORSO BODY_MOUTH|BODY_LEG|BODY_TAIL|BODY_CLAW 10d100+3000 10d10+50
+50000 711952
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>rand_prog 100~
+mpforce $r glare fire44
+mppurge $i
+~
+|
+#24733
+ethWater~
+ethWater~
+The beast is here looking for a prey!~
+He was upon you so fast you didn't get a good look at him.~
+ACT_STAY_AREA|ACT_WEAK|ACT_BODY|ACT_SENTINEL
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_INFRARED|AFF_STEALTH|AFF_SNEAK|AFF_ETHEREAL
+0 S
+50 BODY_TORSO BODY_MOUTH|BODY_LEG|BODY_TAIL|BODY_CLAW 10d100+3000 10d10+50
+50000 711952
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>rand_prog 100~
+mpforce $r glare water44
+mppurge $i
+~
+|
+#24734
+Dream Spawn Greater-Ennui~
+The Greater-Ennui Galax~
+The fearsome Dream Spawn is here upon his throne spying on you.~
+You see something as tall as a man, has four arms, and batlike wings. It's skin
+is gray and featureless, able to change with fluidic ease. From what little you
+know about this species, you know that they only exist in the dream world.~
+ACT_STAY_AREA|ACT_BODY|ACT_SENTINEL
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_INFRARED|AFF_SNEAK
+-1000 S
+95 BODY_TORSO BODY_MOUTH|BODY_LEG|BODY_TAIL|BODY_CLAW 10d100+10000 10d10+100
+0 711952
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>all_greet_prog 100~
+say You dare trespass upon my domain.
+say But no worry, for you shall never leave here alive.
+cackle
+muhaha
+say My minions and I will take care of you...
+mpmload 24736
+mpmload 24736
+mpmload 24736
+mpmload 24736
+mpmload 24736
+mpmload 24736
+mpmload 24736
+mpmload 24736
+mpmload 24736
+mpmload 24736
+mpecho A hoard of Dream Spawns appear from nowhere.
+mpforce spawn11 kill $n
+~
+|
+#24735
+ethSpawn~
+ethSpawn~
+Dream SPawn~
+He was upon you so fast you didn't get a good look at him.~
+ACT_STAY_AREA|ACT_WEAK|ACT_BODY|ACT_SENTINEL
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_INFRARED|AFF_STEALTH|AFF_SNEAK|AFF_ETHEREAL
+0 S
+50 BODY_TORSO BODY_MOUTH|BODY_LEG|BODY_TAIL|BODY_CLAW 10d100+3000 10d10+50
+50000 711952
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>greet_prog 5~
+mpechoat $n You feel very tired and want nothing more than to sleep right here.
+mpforce $n alias sleep
+mpforce $n sleep
+~
+>rand_prog 35~
+if position($r) == 4
+mpechoat $r You lay there sleeping peacefully.
+mpechoat $r But something begin to intrude upon your dreamlike state.
+mpechoat $r Dark clouds are moving in rapidly.
+mpechoat $r You try to wake from this nightmarish land, but found you couldn't.
+mpechoat $r You hear a very dreaded laugh coming from the distance.
+mpechoat $r Something says, 'Welcome mortals...hahahahahahaahhahah'
+mpechoat $r You feel a chill along your spine upon hearing that voice.
+mpechoat $r May god have mercy upon your soul...
+mpechoaround $r $r seems to vanish before your eyes.
+mptransfer $r
+~
+|
+#24736
+Dream Spawn~
+A Dream Spawn~
+A dream spawn is here.~
+You see something as tall as a man, has four arms, and batlike wings. It's skin
+is gray and featureless, able to change with fluidic ease. From what little you
+know about this species, you know that they only exist in the dream world.~
+ACT_STAY_AREA|ACT_BODY|ACT_SENTINEL
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_INFRARED|AFF_SNEAK
+-1000 S
+35 BODY_TORSO BODY_MOUTH|BODY_LEG|BODY_TAIL|BODY_CLAW 1d1000+2000 1d50+50
+0 711952
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>fight_prog 10~
+mpquiet on
+cast 'acid blast' $r
+mpquiet off
+~
+|
+#24737
+Dream Spawn~
+A Dream Spawn~
+A dream spawn is here.~
+You see something as tall as a man, has four arms, and batlike wings. It's skin
+is gray and featureless, able to change with fluidic ease. From what little you
+know about this species, you know that they only exist in the dream world.~
+ACT_STAY_AREA|ACT_BODY|ACT_SENTINEL
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_INFRARED|AFF_SNEAK
+-1000 S
+75 BODY_TORSO BODY_MOUTH|BODY_LEG|BODY_TAIL|BODY_CLAW 1d1000+25000 1d10+100
+0 711952
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>all_greet_prog 100~
+if actorhasobjnum(24748)
+  say So, you're a friend of Mictlan.
+  say He was the one who banish my master here.
+  say I will destroy you.
+  rescale 24737 $n 150
+else
+  say Master said to play nice with you.
+  mpkill $n
+endif
+~
+|
+#0
+
+
+
+#OBJECTS
+#24741
+staff staff101 wood~
+staff~
+A piece of wood lies here.~
+~
+ITEM_TYPE_TREASURE
+ITEM_FLAG_GLOW|ITEM_FLAG_HUM|ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 0 0
+2 0 50
+#24742
+ring earth~
+a "earth" ring~
+A shiny ring lies here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_GLOW|ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_FINGER
+5 0 0 0
+1 0 90
+A
+APPLY_MANA 120
+A
+APPLY_SAVING_SPELL -9 
+C
+~
+FLAG_CLASS_ELEMENTALIST
+#24743
+air ring~
+a "air" ring~
+A shiny ring lies here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_GLOW|ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_FINGER
+5 0 0 0
+1 0 90
+A
+APPLY_MANA 120
+A
+APPLY_SAVING_SPELL -9
+C
+~
+FLAG_CLASS_ELEMENTALIST
+#24744
+fire ring~
+a "fire" ring~
+A shiny ring lies here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_GLOW|ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_FINGER
+5 0 0 0
+1 0 90
+A
+APPLY_MANA 120
+A
+APPLY_SAVING_SPELL -9 
+#24745
+water ring~
+a "water" ring~
+A shiny ring lies here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_GLOW|ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_FINGER
+5 0 0 0
+1 0 90
+A
+APPLY_MANA 120
+A
+APPLY_SAVING_SPELL -9 
+C
+~
+FLAG_CLASS_ELEMENTALIST
+#24746
+ring Mictlan~
+a ring of Mictlan~
+A shiny ring lies here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_GLOW|ITEM_FLAG_HUM|ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_FINGER
+12 0 0 0
+5 0 95
+A
+APPLY_MANA 150
+A
+APPLY_SAVING_SPELL -6
+
+#24747
+quarterstaff Mictlan~
+a quarterstaff of Mictlan~
+A staff lies here.~
+~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_GLOW|ITEM_FLAG_HUM|ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 8 8 WEAPON_POUND
+5 0 95
+A
+APPLY_SAVING_SPELL -8
+A
+APPLY_MANA 100
+A
+APPLY_HIT -100
+C
+pound~
+FLAG_CLASS_ELEMENTALIST
+P 1
+TRIG_HIT 25
+OPROG_IF OIF_WEAR_LOC ! WEAR_NONE 2 0
+P 2
+TRIG_VOID
+OPROG_IF OIF_USER_CLASS = CLASS_ELEMENTALIST 3 0
+P 3
+TRIG_VOID
+OPROG_ECHO
+You feel a surge of power emitting from the staff.~
+P 3
+TRIG_VOID
+OPROG_APPLY OAPPLY_HIT 20
+P 4
+TRIG_DAMAGE 50
+OPROG_IF OIF_WEAR_LOC ! WEAR_NONE 5 0
+P 5
+TRIG_VOID
+OPROG_IF OIF_USER_CLASS = CLASS_ELEMENTALIST 6 0
+P 6
+TRIG_VOID
+OPROG_APPLY OAPPLY_HIT 20
+#24748
+spellbook book Mictlan~
+the spellbook of Mictlan~
+A old book lies here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_GLOW|ITEM_FLAG_HUM|ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+12 0 0 0
+5 0 95
+A
+APPLY_SAVING_SPELL -6
+A
+APPLY_MANA 150
+
+#24749
+robe Mictlan~
+a robe of Mictlan~
+A robe lies here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_GLOW|ITEM_FLAG_HUM|ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_ABOUT
+12 0 0 0
+3 0 95
+A
+APPLY_SAVING_SPELL -6
+A
+APPLY_MANA 150
+
+#24750
+diadem Armatha~
+a Diadem of Lady Armatha~
+A diadem lies here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_GLOW|ITEM_FLAG_HUM|ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HEAD
+16 0 0 0
+2 12000000 90
+A
+APPLY_INT 4
+A
+APPLY_WIS 4
+#24753
+shovel~
+a shovel~
+A shovel rest here.~
+~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 0 0
+3 100 5
+P 1
+TRIG_UNKNOWN 100 dig
+OPROG_IF OIF_USER_ROOM_NUM = 24879 4 2
+P 2
+TRIG_VOID
+OPROG_IF OIF_USER_ROOM_NUM = 24880 4 3
+P 3
+TRIG_VOID
+OPROG_IF OIF_USER_ROOM_NUM = 24881 4 7
+P 4
+TRIG_VOID
+OPROG_IF OIF_RANDOM_PERCENT < 20 5 6
+P 5
+TRIG_VOID
+OPROG_GOD_COMMAND
+mpoload 24722 & mpechoat $ You found some gold.~
+P 5
+TRIG_VOID
+OPROG_JUNK
+P 6
+TRIG_VOID
+OPROG_ECHO
+You found nothing.~
+P 7
+TRIG_VOID
+OPROG_ECHO
+You can't dig here.~
+#24754
+scuba gear~
+scuba gear~
+Some equipment lies here.~
+~
+ITEM_TYPE_TREASURE
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HEAD
+0 0 0 0
+0 0 0
+#24755
+sword~
+a sword~
+A sword rests here.~
+~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 3 4 WEAPON_SLICE
+5 100 10
+#24756
+Zotzilaha spellbook book spellbook22 book22~
+a Zotzilaha's spellbook~
+A old and worn book lies here.~
+~
+ITEM_TYPE_SCROLL
+ITEM_FLAG_GLOW|ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+30 SPELL_SHIELD SPELL_STONE_SKIN SPELL_ARMOR
+1 20000 35
+#24757
+Zotzilaha scroll scroll22~
+a Zotzilaha's scroll~
+A scroll lies here.~
+~
+ITEM_TYPE_SCROLL
+ITEM_FLAG_GLOW|ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+30 SPELL_BLESS SPELL_PROTECTION_EVIL SPELL_SANCTUARY
+1 10000 30
+#24758
+Zotzilaha potion potion22~
+a Zotzilaha's potion~
+A potion lies here.~
+~
+ITEM_TYPE_POTION
+ITEM_FLAG_GLOW|ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+30 SPELL_BLESS SPELL_SANCTUARY SPELL_PROTECTION_EVIL
+1 10000 30
+#24762
+gold123~
+some gold coins~
+Some gold coins rests here.~
+~
+ITEM_TYPE_MONEY
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+50000 0 0 0
+1 0 1
+#24763
+scroll44~
+a scroll~
+a scroll is here~
+~
+ITEM_TYPE_SCROLL
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+50 0 0 0
+1 0 60
+#24764
+scroll23~
+a scroll~
+a scroll is here~
+~
+ITEM_TYPE_SCROLL
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+20 SPELL_DETECT_INVIS SPELL_DETECT_HIDDEN SPELL_DETECT_MAGIC
+0 0 50
+#24765
+potion24~
+a potion~
+a potion is here~
+~
+ITEM_TYPE_POTION
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+20 SPELL_DETECT_INVIS SPELL_DETECT_HIDDEN SPELL_DETECT_MAGIC
+0 0 50
+#24766
+potion44~
+a potion~
+a potion is here~
+~
+ITEM_TYPE_POTION
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+50 0 0 0
+0 0 50
+#24767
+quest card card11~
+a quest card~
+a card is lying here.~
+~
+ITEM_TYPE_TREASURE
+ITEM_FLAG_LEVEL|ITEM_FLAG_INVENTORY
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+0 0 0 0
+1 0 75
+E
+card quest~
+Command: Ticket
+This command will make a ticket for the other member of the party to join
+in the quest. Without it, the other member can't proceed any further.
+It'll also cost you 500,000 credits for each member to join.~
+P 1
+TRIG_UNKNOWN 100 ticket
+OPROG_IF OIF_USER_CLASS = CLASS_ELEMENTALIST 2 5
+P 2
+TRIG_VOID
+OPROG_IF OIF_WEAR_LOC ! -1 3 6
+P 3
+TRIG_VOID
+OPROG_IF OIF_USER_GOLD > 499999 4 7
+P 4
+TRIG_VOID
+OPROG_GOD_COMMAND
+mpoload 24768 & mpmadd $ gold -500000~
+P 5
+TRIG_VOID
+OPROG_ECHO
+You're not qualified to use this.~
+P 5
+TRIG_VOID
+OPROG_JUNK
+P 6
+TRIG_VOID
+OPROG_ECHO
+You're not holding the object.~
+P 7
+TRIG_VOID
+OPROG_ECHO
+You don't have enough gold.~
+#24768
+ticket ticket11~
+a quest ticket~
+a ticket stub is resting here.~
+~
+ITEM_TYPE_TREASURE
+ITEM_FLAG_LEVEL|ITEM_FLAG_INVENTORY
+ITEM_WEAR_TAKE
+0 0 0 0
+0 0 75
+#24769
+rip44~
+a scroll~
+a scroll is here~
+~
+ITEM_TYPE_SCROLL
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+10 SPELL_RIP 0 0
+0 0 20
+#24770
+rift44~
+a scroll~
+a scroll is here~
+~
+ITEM_TYPE_SCROLL
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+10 SPELL_RIFT 0 0
+0 0 20
+#24771
+monky brain~
+a monkey brain soup~
+A head of a monkey is here.~
+~
+ITEM_TYPE_FOOD
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+40 0 0 0
+3 500 10
+#24772
+boa snake meat~
+a piece of boa meat~
+A piece of meat is here.~
+~
+ITEM_TYPE_FOOD
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+20 0 0 0
+1 250 10
+#24773
+hyena jerky~
+a piece of hyena jerky~
+A piece of jerky here.~
+~
+ITEM_TYPE_FOOD
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+10 0 0 0
+1 100 10
+#24774
+jug water~
+a jug of water~
+A jug is here.~
+~
+ITEM_TYPE_DRINK_CON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+20 20 LIQ_WATER 0
+4 200 10
+#24775
+sword Rhialle long blade~
+( Long ) a Blades of Rhialle~
+A sword rests here.~
+~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_GLOW|ITEM_FLAG_ANTI_EVIL|ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL|ITEM_FLAG_AUTO_ENGRAVE
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 9 10 WEAPON_SLASH
+5 0 95
+A
+APPLY_DAMROLL 3
+A
+APPLY_INT -4
+A
+APPLY_WIS -4
+C
+slash~
+FLAG_CLASS_RANGER
+P 1
+TRIG_HIT 50
+OPROG_IF_HAS_OBJECT 24776 2 0
+P 2
+TRIG_VOID
+OPROG_IF OIF_WEAR_LOC ! WEAR_NONE 3 0
+P 3
+TRIG_VOID
+OPROG_ECHO
+The sword glows brightly.~
+P 3
+TRIG_VOID
+OPROG_APPLY OAPPLY_HIT 20
+P 4
+TRIG_DAMAGE 25
+OPROG_IF_HAS_OBJECT 24776 5 0
+P 5
+TRIG_VOID
+OPROG_IF OIF_WEAR_LOC ! WEAR_NONE 6 0
+P 6
+TRIG_VOID
+OPROG_ECHO
+The sword glows faintly.~
+P 6
+TRIG_VOID
+OPROG_APPLY OAPPLY_HIT 20
+#24776
+sword Rhialle short blade~
+( Short ) a Blades of Rhialle~
+A sword rests here.~
+~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_GLOW|ITEM_FLAG_MAGIC|ITEM_FLAG_ANTI_EVIL|ITEM_FLAG_LEVEL|ITEM_FLAG_AUTO_ENGRAVE
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 9 10 WEAPON_PIERCE
+3 0 95
+A
+APPLY_DAMROLL 3
+A
+APPLY_INT -4
+A
+APPLY_WIS -4
+C
+slash~
+FLAG_CLASS_ROGUE|FLAG_CLASS_ASSASSIN
+P 1
+TRIG_HIT 50
+OPROG_IF_HAS_OBJECT 24775 2 0
+P 2
+TRIG_VOID
+OPROG_IF OIF_WEAR_LOC ! WEAR_NONE 3 0
+P 3
+TRIG_VOID
+OPROG_ECHO
+The sword glows brightly.~
+P 3
+TRIG_VOID
+OPROG_APPLY OAPPLY_HIT 20
+P 4
+TRIG_DAMAGE 25
+OPROG_IF_HAS_OBJECT 24775 5 0
+P 5
+TRIG_VOID
+OPROG_IF OIF_WEAR_LOC ! WEAR_NONE 6 0
+P 6
+TRIG_VOID
+OPROG_ECHO
+The sword glows faintly.~
+P 6
+TRIG_VOID
+OPROG_APPLY OAPPLY_HIT 20
+#24777
+Rhialle sphere magical~
+a Rhialle's Magical Sphere~
+A magical sphere lies here.~
+~
+ITEM_TYPE_LIGHT
+ITEM_FLAG_GLOW|ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL|ITEM_FLAG_AUTO_ENGRAVE|ITEM_FLAG_NOREMOVE|ITEM_FLAG_ANTI_EVIL
+ITEM_WEAR_TAKE|ITEM_WEAR_ARMS
+0 0 -1 0
+20 0 95
+A
+APPLY_SAVING_SPELL 8
+A
+APPLY_DAMROLL 10
+A
+APPLY_AC -10
+P 1
+TRIG_TICK 30
+OPROG_IF OIF_WEAR_LOC ! WEAR_NONE 2 0
+P 2
+TRIG_VOID
+OPROG_IF OIF_USER_CLASS = CLASS_RANGER 3 4
+P 3
+TRIG_VOID
+OPROG_IF OIF_MCLASS_RANGER > 30 8 0
+P 4
+TRIG_VOID
+OPROG_IF OIF_USER_CLASS = CLASS_ROGUE 5 6
+P 5
+TRIG_VOID
+OPROG_IF OIF_MCLASS_ROGUE > 40 8 0
+P 6
+TRIG_VOID
+OPROG_IF OIF_USER_CLASS = CLASS_ASSASSIN 7 0
+P 7
+TRIG_VOID
+OPROG_IF OIF_MCLASS_ASSASSIN > 40 8 0
+P 8
+TRIG_VOID
+OPROG_IF OIF_USER_PERCENT_HITPT < 100 9 0
+P 9
+TRIG_VOID
+OPROG_ECHO
+You feel a warm feeling emitting from the armor.~
+P 9
+TRIG_VOID
+OPROG_APPLY OAPPLY_HIT 15
+P 10
+TRIG_HIT 50
+OPROG_IF OIF_WEAR_LOC ! WEAR_NONE 11 0
+P 11
+TRIG_VOID
+OPROG_ECHO
+The armor absorb part of the blow.~
+P 11
+TRIG_VOID
+OPROG_APPLY OAPPLY_HIT 10
+P 12
+TRIG_DAMAGE 25
+OPROG_IF OIF_WEAR_LOC ! WEAR_NONE 13 0
+P 13
+TRIG_VOID
+OPROG_APPLY OAPPLY_HIT 5
+#24778
+Rhialle battlearmor magical~
+a Rhialle's battlearmor~
+A magical armor lies here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_GLOW|ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL|ITEM_FLAG_AUTO_ENGRAVE|ITEM_FLAG_NOREMOVE|ITEM_FLAG_ANTI_EVIL
+ITEM_WEAR_TAKE|ITEM_WEAR_BODY
+21 0 0 0
+20 0 95
+A
+APPLY_SAVING_SPELL 7
+A
+APPLY_DAMROLL 6
+A
+APPLY_MANA -80
+P 1
+TRIG_TICK 30
+OPROG_IF OIF_WEAR_LOC ! WEAR_NONE 2 0
+P 2
+TRIG_VOID
+OPROG_IF OIF_USER_CLASS = CLASS_RANGER 3 4
+P 3
+TRIG_VOID
+OPROG_IF OIF_MCLASS_RANGER > 30 8 0
+P 4
+TRIG_VOID
+OPROG_IF OIF_USER_CLASS = CLASS_ROGUE 5 6
+P 5
+TRIG_VOID
+OPROG_IF OIF_MCLASS_ROGUE > 40 8 0
+P 6
+TRIG_VOID
+OPROG_IF OIF_USER_CLASS = CLASS_ASSASSIN 7 0
+P 7
+TRIG_VOID
+OPROG_IF OIF_MCLASS_ASSASSIN > 40 8 0
+P 8
+TRIG_VOID
+OPROG_IF OIF_USER_PERCENT_HITPT < 100 9 0
+P 9
+TRIG_VOID
+OPROG_ECHO
+You feel a warm feeling emitting from the armor.~
+P 9
+TRIG_VOID
+OPROG_APPLY OAPPLY_HIT 15
+P 10
+TRIG_HIT 50
+OPROG_IF OIF_WEAR_LOC ! WEAR_NONE 11 0
+P 11
+TRIG_VOID
+OPROG_ECHO
+The armor absorb part of the blow.~
+P 11
+TRIG_VOID
+OPROG_APPLY OAPPLY_HIT 10
+P 12
+TRIG_DAMAGE 25
+OPROG_IF OIF_WEAR_LOC ! WEAR_NONE 13 0
+P 13
+TRIG_VOID
+OPROG_APPLY OAPPLY_HIT 5
+#24779
+Rhialle leggings magical~
+a Rhialle's leggings~
+A magical armor lies here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_GLOW|ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL|ITEM_FLAG_AUTO_ENGRAVE|ITEM_FLAG_NOREMOVE|ITEM_FLAG_ANTI_EVIL
+ITEM_WEAR_TAKE|ITEM_WEAR_LEGS
+21 0 0 0
+20 0 95
+A
+APPLY_SAVING_SPELL 7
+A
+APPLY_MANA -80
+A
+APPLY_DAMROLL 6
+P 1
+TRIG_TICK 30
+OPROG_IF OIF_WEAR_LOC ! WEAR_NONE 2 0
+P 2
+TRIG_VOID
+OPROG_IF OIF_USER_CLASS = CLASS_RANGER 3 4
+P 3
+TRIG_VOID
+OPROG_IF OIF_MCLASS_RANGER > 30 8 0
+P 4
+TRIG_VOID
+OPROG_IF OIF_USER_CLASS = CLASS_ROGUE 5 6
+P 5
+TRIG_VOID
+OPROG_IF OIF_MCLASS_ROGUE > 40 8 0
+P 6
+TRIG_VOID
+OPROG_IF OIF_USER_CLASS = CLASS_ASSASSIN 7 0
+P 7
+TRIG_VOID
+OPROG_IF OIF_MCLASS_ASSASSIN > 40 8 0
+P 8
+TRIG_VOID
+OPROG_IF OIF_USER_PERCENT_HITPT < 100 9 0
+P 9
+TRIG_VOID
+OPROG_ECHO
+You feel a warm feeling emitting from the armor.~
+P 9
+TRIG_VOID
+OPROG_APPLY OAPPLY_HIT 15
+P 10
+TRIG_HIT 50
+OPROG_IF OIF_WEAR_LOC ! WEAR_NONE 11 0
+P 11
+TRIG_VOID
+OPROG_ECHO
+The armor absorb part of the blow.~
+P 11
+TRIG_VOID
+OPROG_APPLY OAPPLY_HIT 10
+P 12
+TRIG_DAMAGE 25
+OPROG_IF OIF_WEAR_LOC ! WEAR_NONE 13 0
+P 13
+TRIG_VOID
+OPROG_APPLY OAPPLY_HIT 5
+#24780
+Rhialle shield magical~
+a Rhialle's shield~
+A magical armor lies here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_GLOW|ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL|ITEM_FLAG_AUTO_ENGRAVE|ITEM_FLAG_NOREMOVE|ITEM_FLAG_ANTI_EVIL
+ITEM_WEAR_TAKE|ITEM_WEAR_SHIELD
+21 0 0 0
+20 0 95
+A
+APPLY_SAVING_SPELL 7
+A
+APPLY_MANA -80
+A
+APPLY_DAMROLL 6
+P 1
+TRIG_TICK 30
+OPROG_IF OIF_WEAR_LOC ! WEAR_NONE 2 0
+P 2
+TRIG_VOID
+OPROG_IF OIF_USER_CLASS = CLASS_RANGER 3 4
+P 3
+TRIG_VOID
+OPROG_IF OIF_MCLASS_RANGER > 30 8 0
+P 4
+TRIG_VOID
+OPROG_IF OIF_USER_CLASS = CLASS_ROGUE 5 6
+P 5
+TRIG_VOID
+OPROG_IF OIF_MCLASS_ROGUE > 40 8 0
+P 6
+TRIG_VOID
+OPROG_IF OIF_USER_CLASS = CLASS_ASSASSIN 7 0
+P 7
+TRIG_VOID
+OPROG_IF OIF_MCLASS_ASSASSIN > 40 8 0
+P 8
+TRIG_VOID
+OPROG_IF OIF_USER_PERCENT_HITPT < 100 9 0
+P 9
+TRIG_VOID
+OPROG_ECHO
+You feel a warm feeling emitting from the armor.~
+P 9
+TRIG_VOID
+OPROG_APPLY OAPPLY_HIT 15
+P 10
+TRIG_HIT 50
+OPROG_IF OIF_WEAR_LOC ! WEAR_NONE 11 0
+P 11
+TRIG_VOID
+OPROG_ECHO
+The armor absorb part of the blow.~
+P 11
+TRIG_VOID
+OPROG_APPLY OAPPLY_HIT 10
+P 12
+TRIG_DAMAGE 25
+OPROG_IF OIF_WEAR_LOC ! WEAR_NONE 13 0
+P 13
+TRIG_VOID
+OPROG_APPLY OAPPLY_HIT 5
+#0
+
+
+#ROOMS
+#24700
+Lost in The Jungle~
+You look around you. You see many trees blocking your path and sight. You can't
+seem to remember which direction you came from. Better hurry before the
+inhabitants of this place find you. You are lost in the Jungle.~
+247 ROOM_DARK|ROOM_NO_RECALL|ROOM_NO_SAVE SECT_FOREST
+DDIR_NORTH
+~
+~
+0 -1 24704
+DDIR_EAST
+~
+~
+0 -1 24701
+DDIR_SOUTH
+~
+~
+0 -1 24708
+DDIR_WEST
+~
+~
+0 -1 24703
+S
+#24701
+Lost in The Jungle~
+You look around you. You see many trees blocking your path and sight. You can't
+seem to remember which direction you came from. Better hurry before the
+inhabitants of this place find you. You are lost in the Jungle.~
+247 ROOM_DARK|ROOM_NO_RECALL|ROOM_NO_SAVE SECT_FOREST
+DDIR_NORTH
+~
+~
+0 -1 24705
+DDIR_EAST
+~
+~
+0 -1 24702
+DDIR_SOUTH
+~
+~
+0 -1 24709
+DDIR_WEST
+~
+~
+0 -1 24700
+S
+#24702
+Lost in The Jungle~
+You look around you. You see many trees blocking your path and sight. You can't
+seem to remember which direction you came from. Better hurry before the
+inhabitants of this place find you. You are lost in the Jungle.~
+247 ROOM_DARK|ROOM_NO_RECALL|ROOM_NO_SAVE SECT_FOREST
+DDIR_NORTH
+~
+~
+0 -1 24706
+DDIR_EAST
+~
+~
+0 -1 24703
+DDIR_WEST
+~
+~
+0 -1 24701
+S
+#24703
+Lost in The Jungle~
+You look around you. You see many trees blocking your path and sight. You can't
+seem to remember which direction you came from. Better hurry before the
+inhabitants of this place find you. You are lost in the Jungle.~
+247 ROOM_DARK|ROOM_NO_RECALL|ROOM_NO_SAVE SECT_FOREST
+DDIR_NORTH
+~
+~
+0 -1 24707
+DDIR_EAST
+~
+~
+0 -1 24700
+DDIR_SOUTH
+~
+~
+0 -1 24711
+DDIR_WEST
+~
+~
+0 -1 24702
+S
+#24704
+Lost in The Jungle~
+You look around you. You see many trees blocking your path and sight. You can't
+seem to remember which direction you came from. Better hurry before the
+inhabitants of this place find you. You are lost in the Jungle.~
+247 ROOM_DARK|ROOM_NO_RECALL|ROOM_NO_SAVE SECT_FOREST
+DDIR_NORTH
+~
+~
+0 -1 24708
+DDIR_EAST
+~
+~
+0 -1 24705
+DDIR_SOUTH
+~
+~
+0 -1 24700
+DDIR_WEST
+~
+~
+0 -1 24707
+S
+#24705
+Lost in The Jungle~
+You look around you. You see many trees blocking your path and sight. You can't
+seem to remember which direction you came from. Better hurry before the
+inhabitants of this place find you. You are lost in the Jungle.~
+247 ROOM_DARK|ROOM_NO_RECALL|ROOM_NO_SAVE SECT_FOREST
+DDIR_NORTH
+~
+~
+0 -1 24709
+DDIR_EAST
+~
+~
+0 -1 24706
+DDIR_SOUTH
+~
+~
+0 -1 24701
+DDIR_WEST
+~
+~
+0 -1 24704
+S
+#24706
+Lost in The Jungle~
+You look around you. You see many trees blocking your path and sight. You can't
+seem to remember which direction you came from. Better hurry before the
+inhabitants of this place find you. You are lost in the Jungle.~
+247 ROOM_DARK|ROOM_NO_RECALL|ROOM_NO_SAVE SECT_FOREST
+DDIR_NORTH
+~
+~
+0 -1 24710
+DDIR_EAST
+~
+~
+0 -1 24707
+DDIR_SOUTH
+~
+~
+0 -1 24702
+DDIR_WEST
+~
+~
+0 -1 24705
+S
+#24707
+Lost in The Jungle~
+You look around you. You see many trees blocking your path and sight. You can't
+seem to remember which direction you came from. Better hurry before the
+inhabitants of this place find you. You are lost in the Jungle.~
+247 ROOM_DARK|ROOM_NO_RECALL|ROOM_NO_SAVE SECT_FOREST
+DDIR_NORTH
+~
+~
+0 -1 24711
+DDIR_EAST
+~
+~
+0 -1 24704
+DDIR_SOUTH
+~
+~
+0 -1 24703
+DDIR_WEST
+~
+~
+0 -1 24706
+S
+#24708
+Lost in The Jungle~
+You look around you. You see many trees blocking your path and sight. You can't
+seem to remember which direction you came from. Better hurry before the
+inhabitants of this place find you. You are lost in the Jungle.~
+247 ROOM_DARK|ROOM_NO_RECALL|ROOM_NO_SAVE SECT_FOREST
+DDIR_NORTH
+~
+~
+0 -1 24700
+DDIR_EAST
+~
+~
+0 -1 24709
+DDIR_SOUTH
+~
+~
+0 -1 24704
+DDIR_WEST
+~
+~
+0 -1 24711
+S
+#24709
+Lost in The Jungle~
+You look around you. You see many trees blocking your path and sight. You can't
+seem to remember which direction you came from. Better hurry before the
+inhabitants of this place find you. You are lost in the Jungle.~
+247 ROOM_DARK|ROOM_NO_RECALL|ROOM_NO_SAVE SECT_FOREST
+DDIR_NORTH
+~
+~
+0 -1 24701
+DDIR_EAST
+~
+~
+0 -1 24710
+DDIR_SOUTH
+~
+~
+0 -1 24705
+DDIR_WEST
+~
+~
+0 -1 24708
+S
+#24710
+Before the Mountain Trail~
+You have found a trail leading upward, into the mountains ranges. It looks
+looks very old, no one seems to walk this path for years. You can see a
+volcano in the distance, behind the mountains.~
+247 ROOM_DARK|ROOM_NO_RECALL|ROOM_NO_SAVE SECT_FOREST
+DDIR_NORTH
+~
+~
+0 -1 24712
+DDIR_EAST
+~
+~
+0 -1 24711
+DDIR_SOUTH
+~
+~
+0 -1 24706
+DDIR_WEST
+~
+~
+0 -1 24709
+S
+#24711
+Lost in The Jungle~
+You look around you. You see many trees blocking you path and sight. You can't
+seem to remember which direction you came from. Better hurry before the
+inhabitants of this place find you. You are lost in the Jungle.~
+247 ROOM_DARK|ROOM_NO_RECALL|ROOM_NO_SAVE SECT_FOREST
+DDIR_NORTH
+~
+~
+0 -1 24703
+DDIR_EAST
+~
+~
+0 -1 24708
+DDIR_SOUTH
+~
+~
+0 -1 24707
+DDIR_WEST
+~
+~
+0 -1 24710
+S
+#24712
+Mountain Trail~
+As soon as you took a step into the room. The jungle seem to come alive
+and close off your exits. The only way is to continue on. You are standing
+on the beginning of a trail leading up the mountain. You can see a volcano
+in the distance.~
+247 ROOM_DARK|ROOM_NO_RECALL|ROOM_NO_SAVE|ROOM_NO_MOB SECT_MOUNTAIN
+DDIR_NORTH
+~
+~
+0 -1 24713
+DDIR_SOUTH
+~
+~
+0 -1 0
+S
+#24713
+Mountain Trail~
+You are standing on a trail leading upward toward the volcano in the distance.
+It's a long hike up, you better continue moving. But watch your steps, many
+loose pebbles lies on the path. One miss step and you'll tumble down.~
+247 ROOM_NO_RECALL|ROOM_NO_SAVE SECT_MOUNTAIN
+DDIR_SOUTH
+~
+~
+0 -1 24712
+DDIR_WEST
+~
+~
+0 -1 24714
+S
+#24714
+Mountain Trail~
+You are standing on a trail leading upward toward the volcano in the distance.
+It's a long hike up, you better continue moving. But watch your steps, many
+loose pebbles lies on the path. One miss step and you'll tumble down.~
+247 ROOM_NO_RECALL|ROOM_NO_SAVE SECT_MOUNTAIN
+DDIR_EAST
+~
+~
+0 -1 24713
+DDIR_WEST
+~
+~
+0 -1 24715
+S
+#24715
+Mountain Trail~
+You are standing on a trail leading upward toward the volcano in the distance.
+It's a long hike up, you better continue moving. But watch your steps, many
+loose pebbles lies on the path. One miss step and you'll tumble down.~
+247 ROOM_NO_RECALL|ROOM_NO_SAVE SECT_MOUNTAIN
+DDIR_NORTH
+~
+~
+0 -1 24716
+DDIR_EAST
+~
+~
+0 -1 24714
+S
+#24716
+Mountain Trail~
+You are standing on a trail leading upward toward the volcano in the distance.
+It's a long hike up, you better continue moving. But watch your steps, many
+loose pebbles lies on the path. One miss step and you'll tumble down.~
+247 ROOM_NO_RECALL|ROOM_NO_SAVE SECT_MOUNTAIN
+DDIR_SOUTH
+~
+~
+0 -1 24715
+DDIR_WEST
+~
+~
+0 -1 24717
+S
+#24717
+Mountain Trail~
+You are standing on a trail leading upward toward the volcano in the distance.
+It's a long hike up, you better continue moving. But watch your steps, many
+loose pebbles lies on the path. One miss step and you'll tumble down.~
+247 ROOM_NO_RECALL|ROOM_NO_SAVE SECT_MOUNTAIN
+DDIR_NORTH
+~
+~
+0 -1 24718
+DDIR_EAST
+~
+~
+0 -1 24716
+S
+#24718
+Top of The Mountain~
+You have reach the top of the mountain. The trail from here on leads a
+downward path toward a clearing. You can still see the active volcano in the
+distance.~
+247 ROOM_NO_RECALL|ROOM_NO_SAVE SECT_MOUNTAIN
+DDIR_NORTH
+~
+~
+0 -1 24719
+DDIR_SOUTH
+~
+~
+0 -1 24717
+S
+#24719
+Mountain Trail~
+The trail continues downward. Each step you took, the clearing gets closer and
+closer. But you don't want to rush, going down is worse then coming up. Watch
+where you're stepping at.~
+247 ROOM_NO_RECALL|ROOM_NO_SAVE SECT_MOUNTAIN
+DDIR_NORTH
+~
+~
+0 -1 24720
+DDIR_SOUTH
+~
+~
+0 -1 24718
+S
+#24720
+Mountain Trail~
+The trail continues downward. Each step you took, the clearing gets closer and
+closer. But you don't want to rush, going down is worse then coming up. Watch
+where you're stepping at.~
+247 ROOM_NO_RECALL|ROOM_NO_SAVE SECT_MOUNTAIN
+DDIR_EAST
+~
+~
+0 -1 24721
+DDIR_SOUTH
+~
+~
+0 -1 24719
+S
+#24721
+Mountain Trail~
+The trail continues downward. Each step you took, the clearing gets closer and
+closer. But you don't want to rush, going down is worse then coming up. Watch
+where you're stepping at.~
+247 ROOM_NO_RECALL|ROOM_NO_SAVE SECT_HILLS
+DDIR_NORTH
+~
+~
+0 -1 24722
+DDIR_WEST
+~
+~
+0 -1 24720
+S
+#24722
+Before the River~
+You have reach the end of the trail. You are standing at a clearing. There is a
+river in front of you. It looks pretty deep. You see something swimming in the
+river. It doesn't look very friendly.~
+247 ROOM_NO_MOB|ROOM_NO_RECALL|ROOM_NO_SAVE SECT_HILLS
+DDIR_NORTH
+~
+~
+0 -1 24725
+DDIR_SOUTH
+~
+~
+0 -1 24721
+S
+#24723
+In The River~
+You are drifting in the river, endlessly. I wouldn't step off the boat, you
+can see a outline of a creature swimming in it. It looks very hungry. Wonder
+has it been fed yet? Why don't you stick your hand in and find out.~
+247 ROOM_NO_RECALL|ROOM_NO_SAVE SECT_WATER_NOSWIM
+DDIR_NORTH
+~
+~
+0 -1 24727
+DDIR_EAST
+~
+~
+0 -1 24724
+DDIR_SOUTH
+~
+~
+0 -1 24727
+DDIR_WEST
+~
+~
+0 -1 24726
+S
+#24724
+In The River~
+You are drifting in the river, endlessly. I wouldn't step off the boat, you
+can see a outline of a creature swimming in it. It looks very hungry. Wonder
+has it been fed yet? Why don't you stick your hand in and find out.~
+247 ROOM_NO_RECALL|ROOM_NO_SAVE SECT_WATER_NOSWIM
+DDIR_NORTH
+~
+~
+0 -1 24728
+DDIR_EAST
+~
+~
+0 -1 24725
+DDIR_SOUTH
+~
+~
+0 -1 24728
+DDIR_WEST
+~
+~
+0 -1 24723
+S
+#24725
+In The River~
+You are drifting in the river, endlessly. I wouldn't step off the boat, you
+can see a outline of a creature swimming in it. It looks very hungry. Wonder
+has it been fed yet? Why don't you stick your hand in and find out.~
+247 ROOM_NO_RECALL|ROOM_NO_SAVE SECT_WATER_NOSWIM
+DDIR_NORTH
+~
+~
+0 -1 24729
+DDIR_EAST
+~
+~
+0 -1 24726
+DDIR_SOUTH
+~
+~
+0 -1 24722
+DDIR_WEST
+~
+~
+0 -1 24724
+S
+#24726
+In The River~
+You are drifting in the river, endlessly. I wouldn't step off the boat, you
+can see a outline of a creature swimming in it. It looks very hungry. Wonder
+has it been fed yet? Why don't you stick your hand in and find out.~
+247 ROOM_NO_RECALL|ROOM_NO_SAVE SECT_WATER_NOSWIM
+DDIR_NORTH
+~
+~
+0 -1 24730
+DDIR_EAST
+~
+~
+0 -1 24723
+DDIR_SOUTH
+~
+~
+0 -1 24730
+DDIR_WEST
+~
+~
+0 -1 24725
+S
+#24727
+In The River~
+You are drifting in the river, endlessly. I wouldn't step off the boat, you
+can see a outline of a creature swimming in it. It looks very hungry. Wonder
+has it been fed yet? Why don't you stick your hand in and find out.~
+247 ROOM_NO_RECALL|ROOM_NO_SAVE SECT_WATER_NOSWIM
+DDIR_NORTH
+~
+~
+0 -1 24723
+DDIR_EAST
+~
+~
+0 -1 24728
+DDIR_SOUTH
+~
+~
+0 -1 24723
+DDIR_WEST
+~
+~
+0 -1 24730
+DDIR_DOWN
+~
+~
+0 -1 24731
+S
+#24728
+In The River~
+You are drifting in the river, endlessly. I wouldn't step off the boat, you
+can see a outline of a creature swimming in it. It looks very hungry. Wonder
+has it been fed yet? Why don't you stick your hand in and find out.~
+247 ROOM_NO_RECALL|ROOM_NO_SAVE SECT_WATER_NOSWIM
+DDIR_NORTH
+~
+~
+0 -1 24724
+DDIR_EAST
+~
+~
+0 -1 24729
+DDIR_SOUTH
+~
+~
+0 -1 24724
+DDIR_WEST
+~
+~
+0 -1 24727
+S
+#24729
+In The River~
+You are drifting in the river, endlessly. I wouldn't step off the boat, you
+can see a outline of a creature swimming in it. It looks very hungry. Wonder
+has it been fed yet? Why don't you stick your hand in and find out.~
+247 ROOM_NO_RECALL|ROOM_NO_SAVE SECT_WATER_NOSWIM
+DDIR_NORTH
+~
+~
+0 -1 24725
+DDIR_EAST
+~
+~
+0 -1 24730
+DDIR_SOUTH
+~
+~
+0 -1 24725
+DDIR_WEST
+~
+~
+0 -1 24728
+S
+#24730
+In The River~
+You are drifting in the river, endlessly. I wouldn't step off the boat, you
+can see a outline of a creature swimming in it. It looks very hungry. Wonder
+has it been fed yet? Why don't you stick your hand in and find out.~
+247 ROOM_NO_RECALL|ROOM_NO_SAVE SECT_WATER_NOSWIM
+DDIR_NORTH
+~
+~
+0 -1 24726
+DDIR_EAST
+~
+~
+0 -1 24727
+DDIR_SOUTH
+~
+~
+0 -1 24726
+DDIR_WEST
+~
+~
+0 -1 24729
+S
+#24731
+Underwater~
+You are scuba diving in a very dangerous river. The water is very clear so
+you can see quite far from where you are. This gives you a chance to runaway
+if you see something unfriendly charging at you.~
+247 ROOM_DARK|ROOM_NO_RECALL|ROOM_NO_SAVE|ROOM_INDOORS SECT_UNDER_WATER
+DDIR_EAST
+~
+~
+0 -1 24732
+S
+#24732
+Underwater~
+You are scuba diving in a very dangerous river. The water is very clear so
+you can see quite far from where you are. This gives you a chance to runaway
+if you see something unfriendly charging at you.~
+247 ROOM_DARK|ROOM_NO_RECALL|ROOM_NO_SAVE|ROOM_INDOORS SECT_UNDER_WATER
+DDIR_EAST
+~
+~
+0 -1 24735
+DDIR_SOUTH
+~
+~
+0 -1 24733
+DDIR_WEST
+~
+~
+0 -1 24731
+S
+#24733
+Underwater~
+You are scuba diving in a very dangerous river. The water is very clear so
+you can see quite far from where you are. This gives you a chance to runaway
+if you see something unfriendly charging at you.~
+247 ROOM_DARK|ROOM_NO_RECALL|ROOM_NO_SAVE|ROOM_INDOORS SECT_UNDER_WATER
+DDIR_NORTH
+~
+~
+0 -1 24732
+DDIR_EAST
+~
+~
+0 -1 24734
+S
+#24734
+Underwater~
+You are scuba diving in a very dangerous river. The water is very clear so
+you can see quite far from where you are. This gives you a chance to runaway
+if you see something unfriendly charging at you.~
+247 ROOM_DARK|ROOM_NO_RECALL|ROOM_NO_SAVE|ROOM_INDOORS SECT_UNDER_WATER
+DDIR_NORTH
+~
+~
+0 -1 24735
+DDIR_WEST
+~
+~
+0 -1 24733
+S
+#24735
+Underwater~
+You are scuba diving in a very dangerous river. The water is very clear so
+you can see quite far from where you are. This gives you a chance to runaway
+if you see something unfriendly charging at you.~
+247 ROOM_DARK|ROOM_NO_RECALL|ROOM_NO_SAVE|ROOM_INDOORS SECT_UNDER_WATER
+DDIR_NORTH
+~
+~
+0 -1 24738
+DDIR_EAST
+~
+~
+0 -1 24736
+DDIR_SOUTH
+~
+~
+0 -1 24734
+DDIR_WEST
+~
+~
+0 -1 24732
+S
+#24736
+Underwater~
+You are scuba diving in a very dangerous river. The water is very clear so
+you can see quite far from where you are. This gives you a chance to runaway
+if you see something unfriendly charging at you.~
+247 ROOM_DARK|ROOM_NO_RECALL|ROOM_NO_SAVE|ROOM_INDOORS SECT_UNDER_WATER
+DDIR_NORTH
+~
+~
+0 -1 24739
+DDIR_EAST
+~
+~
+0 -1 24737
+DDIR_WEST
+~
+~
+0 -1 24735
+S
+#24737
+Underwater~
+You are scuba diving in a very dangerous river. The water is very clear so
+you can see quite far from where you are. This gives you a chance to runaway
+if you see something unfriendly charging at you.~
+247 ROOM_DARK|ROOM_NO_RECALL|ROOM_NO_SAVE|ROOM_INDOORS SECT_UNDER_WATER
+DDIR_NORTH
+~
+~
+0 -1 24740
+DDIR_WEST
+~
+~
+0 -1 24736
+S
+#24738
+Underwater~
+You are scuba diving in a very dangerous river. The water is very clear so
+you can see quite far from where you are. This gives you a chance to runaway
+if you see something unfriendly charging at you.~
+247 ROOM_DARK|ROOM_NO_RECALL|ROOM_NO_SAVE|ROOM_INDOORS SECT_UNDER_WATER
+DDIR_NORTH
+~
+~
+0 -1 24743
+DDIR_EAST
+~
+~
+0 -1 24739
+DDIR_SOUTH
+~
+~
+0 -1 24735
+S
+#24739
+Underwater~
+You are scuba diving in a very dangerous river. The water is very clear so
+you can see quite far from where you are. This gives you a chance to runaway
+if you see something unfriendly charging at you.~
+247 ROOM_DARK|ROOM_NO_RECALL|ROOM_NO_SAVE|ROOM_INDOORS SECT_UNDER_WATER
+DDIR_NORTH
+~
+~
+0 -1 24742
+DDIR_EAST
+~
+~
+0 -1 24740
+DDIR_SOUTH
+~
+~
+0 -1 24736
+DDIR_WEST
+~
+~
+0 -1 24738
+S
+#24740
+Underwater~
+You are scuba diving in a very dangerous river. The water is very clear so
+you can see quite far from where you are. This gives you a chance to runaway
+if you see something unfriendly charging at you.~
+247 ROOM_DARK|ROOM_NO_RECALL|ROOM_NO_SAVE|ROOM_INDOORS SECT_UNDER_WATER
+DDIR_EAST
+~
+~
+0 -1 24741
+DDIR_SOUTH
+~
+~
+0 -1 24737
+DDIR_WEST
+~
+~
+0 -1 24739
+S
+#24741
+Underwater~
+You are scuba diving in a very dangerous river. The water is very clear so
+you can see quite far from where you are. This gives you a chance to runaway
+if you see something unfriendly charging at you.~
+247 ROOM_DARK|ROOM_NO_RECALL|ROOM_NO_SAVE|ROOM_INDOORS SECT_UNDER_WATER
+DDIR_EAST
+~
+~
+0 -1 0
+DDIR_WEST
+~
+~
+0 -1 24740
+DDIR_UP
+~
+~
+0 -1 24725
+S
+#24742
+Underwater~
+You are scuba diving in a very dangerous river. The water is very clear so
+you can see quite far from where you are. This gives you a chance to runaway
+if you see something unfriendly charging at you.~
+247 ROOM_DARK|ROOM_NO_RECALL|ROOM_NO_SAVE|ROOM_INDOORS SECT_UNDER_WATER
+DDIR_NORTH
+~
+~
+0 -1 24748
+DDIR_SOUTH
+~
+~
+0 -1 24739
+DDIR_WEST
+~
+~
+0 -1 24743
+S
+#24743
+Underwater~
+You are scuba diving in a very dangerous river. The water is very clear so
+you can see quite far from where you are. This gives you a chance to runaway
+if you see something unfriendly charging at you.~
+247 ROOM_DARK|ROOM_NO_RECALL|ROOM_NO_SAVE|ROOM_INDOORS SECT_UNDER_WATER
+DDIR_NORTH
+~
+~
+0 -1 24747
+DDIR_EAST
+~
+~
+0 -1 24742
+DDIR_SOUTH
+~
+~
+0 -1 24738
+DDIR_WEST
+~
+~
+0 -1 24744
+S
+#24744
+Underwater~
+You are scuba diving in a very dangerous river. The water is very clear so
+you can see quite far from where you are. This gives you a chance to runaway
+if you see something unfriendly charging at you.~
+247 ROOM_DARK|ROOM_NO_RECALL|ROOM_NO_SAVE|ROOM_INDOORS SECT_UNDER_WATER
+DDIR_NORTH
+~
+~
+0 -1 24745
+DDIR_EAST
+~
+~
+0 -1 24743
+S
+#24745
+Underwater~
+You are scuba diving in a very dangerous river. The water is very clear so
+you can see quite far from where you are. This gives you a chance to runaway
+if you see something unfriendly charging at you.~
+247 ROOM_DARK|ROOM_NO_RECALL|ROOM_NO_SAVE|ROOM_INDOORS SECT_UNDER_WATER
+DDIR_NORTH
+~
+~
+0 -1 24753
+DDIR_EAST
+~
+~
+0 -1 24747
+DDIR_SOUTH
+~
+~
+0 -1 24744
+DDIR_WEST
+~
+~
+0 -1 24746
+S
+#24746
+Underwater~
+You are scuba diving in a very dangerous river. The water is very clear so
+you can see quite far from where you are. This gives you a chance to runaway
+if you see something unfriendly charging at you.~
+247 ROOM_DARK|ROOM_NO_RECALL|ROOM_NO_SAVE|ROOM_INDOORS SECT_UNDER_WATER
+DDIR_EAST
+~
+~
+0 -1 24745
+DDIR_UP
+~
+~
+0 -1 24725
+S
+#24747
+Underwater~
+You are scuba diving in a very dangerous river. The water is very clear so
+you can see quite far from where you are. This gives you a chance to runaway
+if you see something unfriendly charging at you.~
+247 ROOM_DARK|ROOM_NO_RECALL|ROOM_NO_SAVE|ROOM_INDOORS SECT_UNDER_WATER
+DDIR_NORTH
+~
+~
+0 -1 24752
+DDIR_EAST
+~
+~
+0 -1 24748
+DDIR_SOUTH
+~
+~
+0 -1 24743
+DDIR_WEST
+~
+~
+0 -1 24745
+S
+#24748
+Underwater~
+You are scuba diving in a very dangerous river. The water is very clear so
+you can see quite far from where you are. This gives you a chance to runaway
+if you see something unfriendly charging at you.~
+247 ROOM_DARK|ROOM_NO_RECALL|ROOM_NO_SAVE|ROOM_INDOORS SECT_UNDER_WATER
+DDIR_NORTH
+~
+~
+0 -1 24751
+DDIR_EAST
+~
+~
+0 -1 24749
+DDIR_SOUTH
+~
+~
+0 -1 24742
+DDIR_WEST
+~
+~
+0 -1 24747
+S
+#24749
+Underwater~
+You are scuba diving in a very dangerous river. The water is very clear so
+you can see quite far from where you are. This gives you a chance to runaway
+if you see something unfriendly charging at you.~
+247 ROOM_DARK|ROOM_NO_RECALL|ROOM_NO_SAVE|ROOM_INDOORS SECT_UNDER_WATER
+DDIR_NORTH
+~
+~
+0 -1 24750
+DDIR_WEST
+~
+~
+0 -1 24748
+S
+#24750
+Underwater~
+You are scuba diving in a very dangerous river. The water is very clear so
+you can see quite far from where you are. This gives you a chance to runaway
+if you see something unfriendly charging at you.~
+247 ROOM_DARK|ROOM_NO_RECALL|ROOM_NO_SAVE|ROOM_INDOORS SECT_UNDER_WATER
+DDIR_SOUTH
+~
+~
+0 -1 24749
+DDIR_WEST
+~
+~
+0 -1 24751
+S
+#24751
+Underwater~
+You are scuba diving in a very dangerous river. The water is very clear so
+you can see quite far from where you are. This gives you a chance to runaway
+if you see something unfriendly charging at you.~
+247 ROOM_DARK|ROOM_NO_RECALL|ROOM_NO_SAVE|ROOM_INDOORS SECT_UNDER_WATER
+DDIR_NORTH
+~
+~
+0 -1 24754
+DDIR_EAST
+~
+~
+0 -1 24750
+DDIR_SOUTH
+~
+~
+0 -1 24748
+DDIR_WEST
+~
+~
+0 -1 24752
+S
+#24752
+Underwater~
+You are scuba diving in a very dangerous river. The water is very clear so
+you can see quite far from where you are. This gives you a chance to runaway
+if you see something unfriendly charging at you.~
+247 ROOM_DARK|ROOM_NO_RECALL|ROOM_NO_SAVE|ROOM_INDOORS SECT_UNDER_WATER
+DDIR_EAST
+~
+~
+0 -1 24751
+DDIR_SOUTH
+~
+~
+0 -1 24747
+DDIR_WEST
+~
+~
+0 -1 24753
+S
+#24753
+Underwater~
+You are scuba diving in a very dangerous river. The water is very clear so
+you can see quite far from where you are. This gives you a chance to runaway
+if you see something unfriendly charging at you.~
+247 ROOM_DARK|ROOM_NO_RECALL|ROOM_NO_SAVE|ROOM_INDOORS SECT_UNDER_WATER
+DDIR_EAST
+~
+~
+0 -1 24752
+DDIR_SOUTH
+~
+~
+0 -1 24745
+S
+#24754
+Underwater~
+You are scuba diving in a very dangerous river. The water is very clear so
+you can see quite far from where you are. This gives you a chance to runaway
+if you see something unfriendly charging at you. You see a way leading up.~
+247 ROOM_DARK|ROOM_NO_RECALL|ROOM_NO_SAVE|ROOM_INDOORS SECT_UNDER_WATER
+DDIR_SOUTH
+~
+~
+0 -1 24751
+DDIR_UP
+~
+~
+0 -1 24755
+S
+#24755
+In The River~
+You see a path to the north of you leading into another jungle area. The plants
+in this jungle looks larger and more fearsome. As if a plant is fearsome. All
+the other path leads you back into the river.~
+247 ROOM_NO_MOB SECT_WATER_NOSWIM
+DDIR_NORTH
+~
+~
+0 -1 24756
+DDIR_EAST
+~
+~
+0 -1 24730
+DDIR_SOUTH
+~
+~
+0 -1 24725
+DDIR_WEST
+~
+~
+0 -1 24723
+S
+#24756
+Jungle~
+You notice that the plants in this region is larger. You take a look at a
+plant. It's a new species you never seen before. You heard a growl in the
+distance. Better continue moving, whoever or whatever is out there doesn't
+sounds friendly.~
+247 ROOM_NO_RECALL|ROOM_NO_SAVE SECT_FOREST
+DDIR_NORTH
+~
+~
+0 -1 24760
+DDIR_EAST
+~
+~
+0 -1 24758
+DDIR_SOUTH
+~
+~
+0 -1 24755
+DDIR_WEST
+~
+~
+0 -1 24757
+S
+#24757
+Jungle~
+You notice that the plants in this region is larger. You take a look at a
+plant. It's a new species you never seen before. You heard a growl in the
+distance. Better continue moving, whoever or whatever is out there doesn't
+sounds friendly.~
+247 ROOM_NO_RECALL|ROOM_NO_SAVE SECT_FOREST
+DDIR_NORTH
+~
+~
+0 -1 24761
+DDIR_EAST
+~
+~
+0 -1 24756
+S
+#24758
+Jungle~
+You notice that the plants in this region is larger. You take a look at a
+plant. It's a new species you never seen before. You heard a growl in the
+distance. Better continue moving, whoever or whatever is out there doesn't
+sounds friendly.~
+247 ROOM_NO_RECALL|ROOM_NO_SAVE SECT_FOREST
+DDIR_NORTH
+~
+~
+0 -1 24759
+DDIR_EAST
+~
+~
+0 -1 24765
+DDIR_WEST
+~
+~
+0 -1 24756
+S
+#24759
+Before The Entryway~
+You are standing before the entrance to a city. The stone structure looks very
+old, but yet it's still standing. Whoever built it sure knows what they were
+doing. Maybe by studying it, you'll learn to built sturdier structures.~
+247 ROOM_NO_RECALL|ROOM_NO_SAVE SECT_FOREST
+DDIR_NORTH
+~
+~
+0 -1 24774
+DDIR_EAST
+~
+~
+0 -1 24764
+DDIR_SOUTH
+~
+~
+0 -1 24758
+DDIR_WEST
+~
+~
+0 -1 24760
+S
+#24760
+Jungle~
+You notice that the plants in this region is larger. You take a look at a
+plant. It's a new species you never seen before. You heard a growl in the
+distance. Better continue moving, whoever or whatever is out there doesn't
+sounds friendly.~
+247 ROOM_NO_RECALL|ROOM_NO_SAVE SECT_FOREST
+DDIR_EAST
+~
+~
+0 -1 24759
+DDIR_SOUTH
+~
+~
+0 -1 24756
+DDIR_WEST
+~
+~
+0 -1 24761
+S
+#24761
+Jungle~
+You notice that the plants in this region is larger. You take a look at a
+plant. It's a new species you never seen before. You heard a growl in the
+distance. Better continue moving, whoever or whatever is out there doesn't
+sounds friendly.~
+247 ROOM_NO_RECALL|ROOM_NO_SAVE SECT_FOREST
+DDIR_EAST
+~
+~
+0 -1 24760
+DDIR_SOUTH
+~
+~
+0 -1 24757
+DDIR_WEST
+~
+~
+0 -1 24762
+S
+#24762
+Jungle~
+You notice that the plants in this region is larger. You take a look at a
+plant. It's a new species you never seen before. You heard a growl in the
+distance. Better continue moving, whoever or whatever is out there doesn't
+sounds friendly.~
+247 ROOM_NO_RECALL|ROOM_NO_SAVE SECT_FOREST
+DDIR_NORTH
+~
+~
+0 -1 24763
+DDIR_EAST
+~
+~
+0 -1 24761
+S
+#24763
+Jungle~
+You notice that the plants in this region is larger. You take a look at a
+plant. It's a new species you never seen before. You heard a growl in the
+distance. Better continue moving, whoever or whatever is out there doesn't
+sounds friendly.~
+247 ROOM_NO_RECALL|ROOM_NO_SAVE SECT_FOREST
+DDIR_SOUTH
+~
+~
+0 -1 24762
+S
+#24764
+Jungle~
+You notice that the plants in this region is larger. You take a look at a
+plant. It's a new species you never seen before. You heard a growl in the
+distance. Better continue moving, whoever or whatever is out there doesn't
+sounds friendly.~
+247 ROOM_NO_RECALL|ROOM_NO_SAVE SECT_FOREST
+DDIR_SOUTH
+~
+~
+0 -1 24765
+DDIR_WEST
+~
+~
+0 -1 24759
+S
+#24765
+Jungle~
+You notice that the plants in this region is larger. You take a look at a
+plant. It's a new species you never seen before. You heard a growl in the
+distance. Better continue moving, whoever or whatever is out there doesn't
+sounds friendly.~
+247 ROOM_NO_RECALL|ROOM_NO_SAVE SECT_FOREST
+DDIR_NORTH
+~
+~
+0 -1 24764
+DDIR_EAST
+~
+~
+0 -1 24769
+DDIR_SOUTH
+~
+~
+0 -1 24766
+DDIR_WEST
+~
+~
+0 -1 24758
+S
+#24766
+Jungle~
+You notice that the plants in this region is larger. You take a look at a
+plant. It's a new species you never seen before. You heard a growl in the
+distance. Better continue moving, whoever or whatever is out there doesn't
+sounds friendly.~
+247 ROOM_NO_RECALL|ROOM_NO_SAVE SECT_FOREST
+DDIR_NORTH
+~
+~
+0 -1 24765
+DDIR_EAST
+~
+~
+0 -1 24767
+S
+#24767
+Jungle~
+You notice that the plants in this region is larger. You take a look at a
+plant. It's a new species you never seen before. You heard a growl in the
+distance. Better continue moving, whoever or whatever is out there doesn't
+sounds friendly.~
+247 ROOM_NO_RECALL|ROOM_NO_SAVE SECT_FOREST
+DDIR_NORTH
+~
+~
+0 -1 24769
+DDIR_EAST
+~
+~
+0 -1 24768
+DDIR_WEST
+~
+~
+0 -1 24766
+S
+#24768
+Jungle~
+You notice that the plants in this region is larger. You take a look at a
+plant. It's a new species you never seen before. You heard a growl in the
+distance. Better continue moving, whoever or whatever is out there doesn't
+sounds friendly.~
+247 ROOM_NO_RECALL|ROOM_NO_SAVE SECT_FOREST
+DDIR_NORTH
+~
+~
+0 -1 24770
+DDIR_EAST
+~
+~
+0 -1 0
+DDIR_WEST
+~
+~
+0 -1 24767
+S
+#24769
+Jungle~
+You notice that the plants in this region is larger. You take a look at a
+plant. It's a new species you never seen before. You heard a growl in the
+distance. Better continue moving, whoever or whatever is out there doesn't
+sounds friendly.~
+247 ROOM_NO_RECALL|ROOM_NO_SAVE SECT_FOREST
+DDIR_EAST
+~
+~
+0 -1 24770
+DDIR_SOUTH
+~
+~
+0 -1 24767
+DDIR_WEST
+~
+~
+0 -1 24765
+S
+#24770
+Before A Cave~
+You are standing before a cave entrance. You can't see very far into it, 
+so watch your step. It looks man-made. With that, you wonder who/what use
+to or still lives here.~
+247 ROOM_NO_RECALL|ROOM_NO_SAVE SECT_FOREST
+DDIR_NORTH
+~
+~
+0 -1 24773
+DDIR_EAST
+~
+~
+0 -1 24771
+DDIR_SOUTH
+~
+~
+0 -1 24768
+DDIR_WEST
+~
+~
+0 -1 24769
+S
+#24771
+Cave~
+You notice a few cracks along the wall. Another couple of those earthquakes
+and this place will fall apart. Better hurry up and explore this place before
+that happens otherwise you'll never know what secrets lies in here.~
+247 ROOM_DARK|ROOM_NO_RECALL|ROOM_NO_SAVE|ROOM_NO_MOB|ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+~
+~
+0 -1 24772
+DDIR_WEST
+~
+~
+0 -1 24770
+S
+#24772
+Before The Statue~
+You have reach the end of the cave. There's a statue in here that 
+appears to look like a shaman. It doesn't look very friendly. Though
+you notice that his hands looks like it is grasping something, 
+but that something isn't there. Maybe there's an item you could insert here.~
+247 ROOM_DARK|ROOM_NO_RECALL|ROOM_NO_SAVE|ROOM_INDOORS SECT_INSIDE
+DDIR_WEST
+~
+~
+0 -1 24771
+S
+#24773
+Jungle~
+You notice that the plants in this region is larger. You take a look at a
+plant. It's a new species you never seen before. You heard a growl in the
+distance. Better continue moving, whoever or whatever is out there doesn't
+sounds friendly.~
+247 ROOM_NO_RECALL|ROOM_NO_SAVE SECT_FOREST
+DDIR_SOUTH
+~
+~
+0 -1 24770
+S
+#24774
+Entryway~
+You are standing in the entryway. You notice many weird symbols line up the
+wall here. You tries to figure out what the symbols stand for. After several
+hours, you figure out a rough translation. It says "We're watching you!"~
+247 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 24777
+DDIR_SOUTH
+~
+~
+0 -1 24759
+S
+#24775
+Courtyard~
+You are standing at the courtyard of a very old city. Whoever use to lives
+here aren't here anymore more. You couldn't find a trace of anyone being
+here for quite a while. Looking around you, the area seems to be untouched
+by any trespasser except for the creatures that lives here.~
+247 ROOM_NO_RECALL|ROOM_NO_SAVE SECT_FIELD
+DDIR_NORTH
+~
+~
+0 -1 24779
+DDIR_EAST
+~
+~
+0 -1 24776
+S
+#24776
+Courtyard~
+You are standing at the courtyard of a very old city. Whoever use to lives
+here aren't here anymore more. You couldn't find a trace of anyone being
+here for quite a while. Looking around you, the area seems to be untouched
+by any trespasser except for the creatures that lives here.~
+247 ROOM_NO_RECALL|ROOM_NO_SAVE SECT_FIELD
+DDIR_NORTH
+~
+~
+0 -1 24782
+DDIR_EAST
+~
+~
+0 -1 24777
+DDIR_WEST
+~
+~
+0 -1 24775
+S
+#24777
+Courtyard~
+You are standing at the courtyard of a very old city. Whoever use to lives
+here aren't here anymore more. You couldn't find a trace of anyone being
+here for quite a while. Looking around you, the area seems to be untouched
+by any trespasser except for the creatures that lives here.~
+247 ROOM_NO_RECALL|ROOM_NO_SAVE SECT_FIELD
+DDIR_NORTH
+~
+~
+0 -1 24783
+DDIR_EAST
+~
+~
+0 -1 24778
+DDIR_SOUTH
+~
+~
+0 -1 24774
+DDIR_WEST
+~
+~
+0 -1 24776
+S
+#24778
+Courtyard~
+You are standing at the courtyard of a very old city. Whoever use to lives
+here aren't here anymore more. You couldn't find a trace of anyone being
+here for quite a while. Looking around you, the area seems to be untouched
+by any trespasser except for the creatures that lives here.~
+247 ROOM_NO_RECALL|ROOM_NO_SAVE SECT_FIELD
+DDIR_NORTH
+~
+~
+0 -1 24784
+DDIR_WEST
+~
+~
+0 -1 24777
+S
+#24779
+Courtyard~
+You are standing at the courtyard of a very old city. Whoever use to lives
+here aren't here anymore more. You couldn't find a trace of anyone being
+here for quite a while. Looking around you, the area seems to be untouched
+by any trespasser except for the creatures that lives here.~
+247 ROOM_NO_RECALL|ROOM_NO_SAVE SECT_FIELD
+DDIR_EAST
+~
+~
+0 -1 24782
+DDIR_SOUTH
+~
+~
+0 -1 24775
+DDIR_WEST
+~
+~
+0 -1 24780
+S
+#24780
+Courtyard~
+You are standing at the courtyard of a very old city. Whoever use to lives
+here aren't here anymore more. You couldn't find a trace of anyone being
+here for quite a while. Looking around you, the area seems to be untouched
+by any trespasser except for the creatures that lives here.~
+247 ROOM_NO_RECALL|ROOM_NO_SAVE SECT_FIELD
+DDIR_NORTH
+~
+~
+0 -1 24781
+DDIR_EAST
+~
+~
+0 -1 24779
+S
+#24781
+Courtyard~
+You are standing at the courtyard of a very old city. Whoever use to lives
+here aren't here anymore more. You couldn't find a trace of anyone being
+here for quite a while. Looking around you, the area seems to be untouched
+by any trespasser except for the creatures that lives here.~
+247 ROOM_NO_RECALL|ROOM_NO_SAVE SECT_FIELD
+DDIR_SOUTH
+~
+~
+0 -1 24780
+S
+#24782
+Before A Entrance~
+You see a way north from here. It looks to be a very old building of some 
+sort. You can't seem to make out what this building is used for standing out
+here. Better go inside and take a look around. Maybe you'll find something...~
+247 ROOM_NO_RECALL|ROOM_NO_SAVE SECT_FIELD
+DDIR_NORTH
+~
+~
+0 -1 24786
+DDIR_EAST
+~
+~
+0 -1 24783
+DDIR_SOUTH
+~
+~
+0 -1 24776
+DDIR_WEST
+~
+~
+0 -1 24779
+S
+#24783
+Courtyard~
+You are standing at the courtyard of a very old city. Whoever use to lives
+here aren't here anymore more. You couldn't find a trace of anyone being
+here for quite a while. Looking around you, the area seems to be untouched
+by any trespasser except for the creatures that lives here.~
+247 ROOM_NO_RECALL|ROOM_NO_SAVE SECT_FIELD
+DDIR_EAST
+~
+~
+0 -1 24784
+DDIR_SOUTH
+~
+~
+0 -1 24777
+DDIR_WEST
+~
+~
+0 -1 24782
+S
+#24784
+Courtyard~
+You are standing at the courtyard of a very old city. Whoever use to lives
+here aren't here anymore more. You couldn't find a trace of anyone being
+here for quite a while. Looking around you, the area seems to be untouched
+by any trespasser except for the creatures that lives here.~
+247 ROOM_NO_RECALL|ROOM_NO_SAVE SECT_FIELD
+DDIR_NORTH
+~
+~
+0 -1 24785
+DDIR_SOUTH
+~
+~
+0 -1 24778
+DDIR_WEST
+~
+~
+0 -1 24783
+S
+#24785
+Courtyard~
+You are standing at the courtyard of a very old city. Whoever use to lives
+here aren't here anymore more. You couldn't find a trace of anyone being
+here for quite a while. Looking around you, the area seems to be untouched
+by any trespasser except for the creatures that lives here.~
+247 ROOM_NO_RECALL|ROOM_NO_SAVE SECT_FIELD
+DDIR_SOUTH
+~
+~
+0 -1 24784
+S
+#24786
+A Hallway~
+You are standing in the hallway. You glance around and notice this whole
+structure is made from rocks. It must of took and a lot of man power and time
+to build this one building. No wonder it survive so long with mother nature
+trying to destroy it.~
+247 ROOM_INDOORS|ROOM_NO_SAVE|ROOM_NO_RECALL SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 24787
+DDIR_SOUTH
+~
+~
+0 -1 24782
+S
+#24787
+Shrine~
+You seem to be in a shrine of some sort. Along both walls are statues.
+Those must be statues of the previous inhabitants. They look like priest
+of some sort with robes on. To the north you see a grand statue of a
+shaman guarding a doorway.~
+247 ROOM_NO_MOB|ROOM_INDOORS|ROOM_NO_SAVE|ROOM_NO_RECALL SECT_INSIDE
+DDIR_NORTH
+~
+door~
+EX_ISDOOR|EX_CLOSED -1 24788
+DDIR_EAST
+~
+~
+0 -1 24789
+DDIR_SOUTH
+~
+~
+0 -1 24786
+S
+#24788
+Mictlan Private Room~
+As you enter this place you feel a strong presence here. It seem to be
+radiating from the wood lying in the corner of the room. Besides the wood, you
+see some furniture also. A few chairs, what use to be a table, and lots of
+worn out scrolls spread out.~
+247 ROOM_INDOORS|ROOM_NO_SAVE|ROOM_NO_RECALL SECT_INSIDE
+DDIR_SOUTH
+~
+door~
+EX_ISDOOR -1 24787
+S
+#24789
+A Hallway~
+You are standing in another hallway. The cave-in block off your path. You tries
+to clear the rubbles but they seem to be too heavy for you to move. Maybe
+there's another way.~
+247 ROOM_INDOORS|ROOM_NO_SAVE|ROOM_NO_RECALL SECT_INSIDE
+DDIR_WEST
+~
+~
+0 -1 24787
+S
+#24790
+Pinnacle~
+You are standing in the center of this maze. There seems to be a presence here,
+haunting this room or maybe it's just your imaginations. Searching carefully,
+you find out that there is four exits from this room.~
+247 ROOM_NO_MOB|ROOM_INDOORS|ROOM_NO_RECALL|ROOM_NO_SAVE SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 24791
+DDIR_EAST
+~
+~
+0 -1 24803
+DDIR_SOUTH
+~
+~
+0 -1 24836
+DDIR_WEST
+~
+~
+0 -1 24819
+S
+#24791
+Air Elemental Statue~
+As you step into the room, you notice a statue depicting a air elemental, as
+far as you can make it out. Looking carefully at the statue, you see a sign
+on its hand. After reading it, you found out that this is the beginning to the
+test of air elements.~
+247 ROOM_NO_MOB|ROOM_INDOORS|ROOM_NO_RECALL|ROOM_NO_SAVE SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 24792
+DDIR_SOUTH
+~
+~
+0 -1 24790
+S
+#24792
+In The Air~
+You are inside a very long hallway. There seems to be no ground beneath or
+above you. Looking up and down, you can't seem to see a solid foundation. You
+try to reach some type of solid pavements, but after countless hours of
+flying up and down, you can't find any.~
+247 ROOM_INDOORS|ROOM_NO_RECALL|ROOM_NO_SAVE SECT_AIR
+DDIR_NORTH
+~
+~
+0 -1 24793
+DDIR_SOUTH
+~
+~
+0 -1 24791
+S
+#24793
+In The Air~
+You are inside a very long hallway. There seems to be no ground beneath or
+above you. Looking up and down, you can't seem to see a solid foundation. You
+try to reach some type of solid pavements, but after countless hours of
+flying up and down, you can't find any.~
+247 ROOM_INDOORS|ROOM_NO_RECALL|ROOM_NO_SAVE SECT_AIR
+DDIR_NORTH
+~
+~
+0 -1 24794
+DDIR_SOUTH
+~
+~
+0 -1 24792
+DDIR_WEST
+~
+~
+0 -1 24797
+S
+#24794
+In The Air~
+You are inside a very long hallway. There seems to be no ground beneath or
+above you. Looking up and down, you can't seem to see a solid foundation. You
+try to reach some type of solid pavements, but after countless hours of
+flying up and down, you can't find any.~
+247 ROOM_INDOORS|ROOM_NO_RECALL|ROOM_NO_SAVE SECT_AIR
+DDIR_NORTH
+~
+~
+0 -1 24795
+DDIR_SOUTH
+~
+~
+0 -1 24793
+S
+#24795
+In The Air~
+You are inside a very long hallway. There seems to be no ground beneath or
+above you. Looking up and down, you can't seem to see a solid foundation. You
+try to reach some type of solid pavements, but after countless hours of
+flying up and down, you can't find any.~
+247 ROOM_INDOORS|ROOM_NO_RECALL|ROOM_NO_SAVE SECT_AIR
+DDIR_EAST
+~
+~
+0 -1 24796
+DDIR_SOUTH
+~
+~
+0 -1 24794
+S
+#24796
+Elemental Guardian~
+You flew into a very spacious cavern. As you enter the cavern, the exits behind
+you close up and there now exist a wall. There seems to be no way out of this
+room except for maybe a miracle.~
+247 ROOM_NO_MOB|ROOM_INDOORS|ROOM_NO_RECALL|ROOM_NO_SAVE|ROOM_DARK SECT_FIELD
+DDIR_WEST
+~
+~
+0 -1 0
+S
+#24797
+In The Air~
+You are inside a very long hallway. There seems to be no ground beneath or
+above you. Looking up and down, you can't seem to see a solid foundation. You
+try to reach some type of solid pavements, but after countless hours of
+flying up and down, you can't find any.~
+247 ROOM_INDOORS|ROOM_NO_RECALL|ROOM_NO_SAVE SECT_AIR
+DDIR_EAST
+~
+~
+0 -1 24793
+DDIR_WEST
+~
+~
+0 -1 24798
+S
+#24798
+In The Air~
+You are inside a very long hallway. There seems to be no ground beneath or
+above you. Looking up and down, you can't seem to see a solid foundation. You
+try to reach some type of solid pavements, but after countless hours of
+flying up and down, you can't find any.~
+247 ROOM_INDOORS|ROOM_NO_RECALL|ROOM_NO_SAVE SECT_AIR
+DDIR_EAST
+~
+~
+0 -1 24797
+DDIR_WEST
+~
+~
+0 -1 24799
+S
+#24799
+In The Air~
+You are inside a very long hallway. There seems to be no ground beneath or
+above you. Looking up and down, you can't seem to see a solid foundation. You
+try to reach some type of solid pavements, but after countless hours of
+flying up and down, you can't find any.~
+247 ROOM_INDOORS|ROOM_NO_RECALL|ROOM_NO_SAVE SECT_AIR
+DDIR_NORTH
+~
+~
+0 -1 24800
+DDIR_EAST
+~
+~
+0 -1 24798
+S
+#24800
+In The Air~
+You are inside a very long hallway. There seems to be no ground beneath or
+above you. Looking up and down, you can't seem to see a solid foundation. You
+try to reach some type of solid pavements, but after countless hours of
+flying up and down, you can't find any.~
+247 ROOM_INDOORS|ROOM_NO_RECALL|ROOM_NO_SAVE SECT_AIR
+DDIR_NORTH
+~
+~
+0 -1 24801
+DDIR_SOUTH
+~
+~
+0 -1 24799
+S
+#24801
+In The Air~
+You are inside a very long hallway. There seems to be no ground beneath or
+above you. Looking up and down, you can't seem to see a solid foundation. You
+try to reach some type of solid pavements, but after countless hours of
+flying up and down, you can't find any.~
+247 ROOM_INDOORS|ROOM_NO_RECALL|ROOM_NO_SAVE SECT_AIR
+DDIR_EAST
+~
+~
+0 -1 24802
+DDIR_SOUTH
+~
+~
+0 -1 24800
+S
+#24802
+Elemental Guardian~
+You flew into a very spacious cavern. As you enter the cavern, the exits behind
+you close up and there now exist a wall. There seems to be no way out of this
+room except for maybe a miracle.~
+247 ROOM_NO_MOB|ROOM_INDOORS|ROOM_NO_RECALL|ROOM_NO_SAVE SECT_FIELD
+DDIR_WEST
+~
+~
+0 -1 0
+S
+#24803
+Earth Elemental Statue~
+As you step into the room, you notice a statue depicting a earth elemental, as
+far as you can make it out. Looking carefully at the statue, you see a sign
+on its hand. After reading it, you found out that this is the beginning to the
+test of earth elements.~
+247 ROOM_NO_MOB|ROOM_INDOORS|ROOM_NO_RECALL|ROOM_NO_SAVE SECT_MOUNTAIN
+DDIR_EAST
+~
+~
+0 -1 24804
+DDIR_WEST
+~
+~
+0 -1 24790
+S
+#24804
+Rock Caverns~
+You are inside a cavern. Its wall are align with solid rocks, making it very
+very dark. You can't see two feet in front of you if your life depends on it.
+This darkness also allows the cool air to exist, making it almost bearable.~
+247 ROOM_INDOORS|ROOM_NO_RECALL|ROOM_NO_SAVE|ROOM_DARK SECT_MOUNTAIN
+DDIR_EAST
+~
+~
+0 -1 24805
+DDIR_WEST
+~
+~
+0 -1 24803
+S
+#24805
+Rock Caverns~
+You are inside a cavern. Its wall are align with solid rocks, making it very
+very dark. You can't see two feet in front of you if your life depends on it.
+This darkness also allows the cool air to exist, making it almost bearable.~
+247 ROOM_INDOORS|ROOM_NO_RECALL|ROOM_NO_SAVE|ROOM_DARK SECT_MOUNTAIN
+DDIR_EAST
+~
+~
+0 -1 24806
+DDIR_SOUTH
+~
+~
+0 -1 24813
+DDIR_WEST
+~
+~
+0 -1 24804
+S
+#24806
+Rock Caverns~
+You are inside a cavern. Its wall are align with solid rocks, making it very
+very dark. You can't see two feet in front of you if your life depends on it.
+This darkness also allows the cool air to exist, making it almost bearable.~
+247 ROOM_INDOORS|ROOM_NO_RECALL|ROOM_NO_SAVE|ROOM_DARK SECT_MOUNTAIN
+DDIR_NORTH
+~
+~
+0 -1 24807
+DDIR_WEST
+~
+~
+0 -1 24805
+S
+#24807
+Rock Caverns~
+You are inside a cavern. Its wall are align with solid rocks, making it very
+very dark. You can't see two feet in front of you if your life depends on it.
+This darkness also allows the cool air to exist, making it almost bearable.~
+247 ROOM_INDOORS|ROOM_NO_RECALL|ROOM_NO_SAVE|ROOM_DARK SECT_MOUNTAIN
+DDIR_NORTH
+~
+~
+0 -1 24808
+DDIR_SOUTH
+~
+~
+0 -1 24806
+S
+#24808
+Rock Caverns~
+You are inside a cavern. Its wall are align with solid rocks, making it very
+very dark. You can't see two feet in front of you if your life depends on it.
+This darkness also allows the cool air to exist, making it almost bearable.~
+247 ROOM_INDOORS|ROOM_NO_RECALL|ROOM_NO_SAVE|ROOM_DARK SECT_MOUNTAIN
+DDIR_SOUTH
+~
+~
+0 -1 24807
+DDIR_WEST
+~
+~
+0 -1 24809
+S
+#24809
+Rock Caverns~
+You are inside a cavern. Its wall are align with solid rocks, making it very
+very dark. You can't see two feet in front of you if your life depends on it.
+This darkness also allows the cool air to exist, making it almost bearable.~
+247 ROOM_INDOORS|ROOM_NO_RECALL|ROOM_NO_SAVE|ROOM_DARK SECT_MOUNTAIN
+DDIR_EAST
+~
+~
+0 -1 24808
+DDIR_WEST
+~
+~
+0 -1 24810
+S
+#24810
+Rock Caverns~
+You are inside a cavern. Its wall are align with solid rocks, making it very
+very dark. You can't see two feet in front of you if your life depends on it.
+This darkness also allows the cool air to exist, making it almost bearable.~
+247 ROOM_INDOORS|ROOM_NO_RECALL|ROOM_NO_SAVE|ROOM_DARK SECT_MOUNTAIN
+DDIR_EAST
+~
+~
+0 -1 24809
+DDIR_SOUTH
+~
+~
+0 -1 24811
+S
+#24811
+Rock Caverns~
+You are inside a cavern. Its wall are align with solid rocks, making it very
+very dark. You can't see two feet in front of you if your life depends on it.
+This darkness also allows the cool air to exist, making it almost bearable.~
+247 ROOM_INDOORS|ROOM_NO_RECALL|ROOM_NO_SAVE|ROOM_DARK SECT_MOUNTAIN
+DDIR_NORTH
+~
+~
+0 -1 24810
+DDIR_EAST
+~
+~
+0 -1 24812
+S
+#24812
+Elemental Guardian~
+You walk into the room, as you took the last step inside, you could heard
+some noises like stones are moving behind you. You quickly turn around and
+saw the door, made of solid rocks, slam shut. Looking around, you could see
+it's a very spacious cavern, and there seems to be no other exits.~
+247 ROOM_NO_MOB|ROOM_INDOORS|ROOM_NO_RECALL|ROOM_NO_SAVE|ROOM_DARK SECT_MOUNTAIN
+DDIR_WEST
+~
+~
+0 -1 0
+S
+#24813
+Rock Caverns~
+You are inside a cavern. Its wall are align with solid rocks, making it very
+very dark. You can't see two feet in front of you if your life depends on it.
+This darkness also allows the cool air to exist, making it almost bearable.~
+247 ROOM_INDOORS|ROOM_NO_RECALL|ROOM_NO_SAVE|ROOM_DARK SECT_MOUNTAIN
+DDIR_NORTH
+~
+~
+0 -1 24805
+DDIR_SOUTH
+~
+~
+0 -1 24814
+S
+#24814
+Rock Caverns~
+You are inside a cavern. Its wall are align with solid rocks, making it very
+very dark. You can't see two feet in front of you if your life depends on it.
+This darkness also allows the cool air to exist, making it almost bearable.~
+247 ROOM_INDOORS|ROOM_NO_RECALL|ROOM_NO_SAVE|ROOM_DARK SECT_MOUNTAIN
+DDIR_NORTH
+~
+~
+0 -1 24813
+DDIR_EAST
+~
+~
+0 -1 24815
+S
+#24815
+Rock Caverns~
+You are inside a cavern. Its wall are align with solid rocks, making it very
+very dark. You can't see two feet in front of you if your life depends on it.
+This darkness also allows the cool air to exist, making it almost bearable.~
+247 ROOM_INDOORS|ROOM_NO_RECALL|ROOM_NO_SAVE|ROOM_DARK SECT_MOUNTAIN
+DDIR_EAST
+~
+~
+0 -1 24816
+DDIR_WEST
+~
+~
+0 -1 24814
+S
+#24816
+Rock Caverns~
+You are inside a cavern. Its wall are align with solid rocks, making it very
+very dark. You can't see two feet in front of you if your life depends on it.
+This darkness also allows the cool air to exist, making it almost bearable.~
+247 ROOM_INDOORS|ROOM_NO_RECALL|ROOM_NO_SAVE|ROOM_DARK SECT_MOUNTAIN
+DDIR_NORTH
+~
+~
+0 -1 24817
+DDIR_WEST
+~
+~
+0 -1 24815
+S
+#24817
+Rock Caverns~
+You are inside a cavern. Its wall are align with solid rocks, making it very
+very dark. You can't see two feet in front of you if your life depends on it.
+This darkness also allows the cool air to exist, making it almost bearable.~
+247 ROOM_INDOORS|ROOM_NO_RECALL|ROOM_NO_SAVE|ROOM_DARK SECT_MOUNTAIN
+DDIR_SOUTH
+~
+~
+0 -1 24816
+DDIR_WEST
+~
+~
+0 -1 24818
+S
+#24818
+Elemental Guardian~
+You walk into the room, as you took the last step inside, you could heard
+some noises like stones are moving behind you. You quickly turn around and
+saw the door, made of solid rocks, slam shut. Looking around, you could see
+it's a very spacious cavern, and there seems to be no other exits.~
+247 ROOM_NO_MOB|ROOM_INDOORS|ROOM_NO_RECALL|ROOM_NO_SAVE|ROOM_DARK SECT_MOUNTAIN
+DDIR_EAST
+~
+~
+0 -1 0
+S
+#24819
+Water Elemental Statue~
+As you step into the room, you notice a statue depicting a water elemental, as
+far as you can make it out. Looking carefully at the statue, you see a sign
+on its hand. After reading it, you found out that this is the beginning to the
+test of earth elements.~
+247 ROOM_NO_MOB|ROOM_INDOORS|ROOM_NO_RECALL|ROOM_NO_SAVE SECT_INSIDE
+DDIR_EAST
+~
+~
+0 -1 24790
+DDIR_WEST
+~
+~
+0 -1 24820
+S
+#24820
+Underwater Caverns~
+You are standing in a underwater cavern. The water here seems to be very calm.
+You can't tell which way the water flows. Also you notice that there aren't
+any sea creatures around, maybe that's a good sign. Be sure you have enough
+oxygen to last. You don't want to drown down here.~
+247 ROOM_INDOORS|ROOM_NO_RECALL|ROOM_NO_SAVE SECT_UNDER_WATER
+DDIR_EAST
+~
+~
+0 -1 24819
+DDIR_WEST
+~
+~
+0 -1 24821
+S
+#24821
+Underwater Caverns~
+You are standing in a underwater cavern. The water here seems to be very calm.
+You can't tell which way the water flows. Also you notice that there aren't
+any sea creatures around, maybe that's a good sign. Be sure you have enough
+oxygen to last. You don't want to drown down here.~
+247 ROOM_INDOORS|ROOM_NO_RECALL|ROOM_NO_SAVE SECT_UNDER_WATER
+DDIR_NORTH
+~
+~
+0 -1 24822
+DDIR_EAST
+~
+~
+0 -1 24820
+DDIR_SOUTH
+~
+~
+0 -1 24829
+S
+#24822
+Underwater Caverns~
+You are standing in a underwater cavern. The water here seems to be very calm.
+You can't tell which way the water flows. Also you notice that there aren't
+any sea creatures around, maybe that's a good sign. Be sure you have enough
+oxygen to last. You don't want to drown down here.~
+247 ROOM_INDOORS|ROOM_NO_RECALL|ROOM_NO_SAVE SECT_UNDER_WATER
+DDIR_NORTH
+~
+~
+0 -1 24823
+DDIR_SOUTH
+~
+~
+0 -1 24821
+S
+#24823
+Underwater Caverns~
+You are standing in a underwater cavern. The water here seems to be very calm.
+You can't tell which way the water flows. Also you notice that there aren't
+any sea creatures around, maybe that's a good sign. Be sure you have enough
+oxygen to last. You don't want to drown down here.~
+247 ROOM_INDOORS|ROOM_NO_RECALL|ROOM_NO_SAVE SECT_UNDER_WATER
+DDIR_SOUTH
+~
+~
+0 -1 24822
+DDIR_WEST
+~
+~
+0 -1 24824
+S
+#24824
+Underwater Caverns~
+You are standing in a underwater cavern. The water here seems to be very calm.
+You can't tell which way the water flows. Also you notice that there aren't
+any sea creatures around, maybe that's a good sign. Be sure you have enough
+oxygen to last. You don't want to drown down here.~
+247 ROOM_INDOORS|ROOM_NO_RECALL|ROOM_NO_SAVE SECT_UNDER_WATER
+DDIR_EAST
+~
+~
+0 -1 24823
+DDIR_WEST
+~
+~
+0 -1 24825
+S
+#24825
+Underwater Caverns~
+You are standing in a underwater cavern. The water here seems to be very calm.
+You can't tell which way the water flows. Also you notice that there aren't
+any sea creatures around, maybe that's a good sign. Be sure you have enough
+oxygen to last. You don't want to drown down here.~
+247 ROOM_INDOORS|ROOM_NO_RECALL|ROOM_NO_SAVE SECT_UNDER_WATER
+DDIR_EAST
+~
+~
+0 -1 24824
+DDIR_SOUTH
+~
+~
+0 -1 24826
+S
+#24826
+Underwater Caverns~
+You are standing in a underwater cavern. The water here seems to be very calm.
+You can't tell which way the water flows. Also you notice that there aren't
+any sea creatures around, maybe that's a good sign. Be sure you have enough
+oxygen to last. You don't want to drown down here.~
+247 ROOM_INDOORS|ROOM_NO_RECALL|ROOM_NO_SAVE SECT_UNDER_WATER
+DDIR_NORTH
+~
+~
+0 -1 24825
+DDIR_SOUTH
+~
+~
+0 -1 24827
+S
+#24827
+Underwater Caverns~
+You are standing in a underwater cavern. The water here seems to be very calm.
+You can't tell which way the water flows. Also you notice that there aren't
+any sea creatures around, maybe that's a good sign. Be sure you have enough
+oxygen to last. You don't want to drown down here.~
+247 ROOM_INDOORS|ROOM_NO_RECALL|ROOM_NO_SAVE SECT_UNDER_WATER
+DDIR_NORTH
+~
+~
+0 -1 24826
+DDIR_EAST
+~
+~
+0 -1 24828
+S
+#24828
+Elemental Guardian~
+You found yourself in a very spacious cavern. After searching the room carefully
+you can't seem to find a exits, not even the walls have cracks in it that you
+can exploit. Better find another way out quick before you run out of oxygen.~
+247 ROOM_NO_MOB|ROOM_INDOORS|ROOM_NO_RECALL|ROOM_NO_SAVE|ROOM_DARK SECT_WATER_SWIM
+DDIR_WEST
+~
+~
+0 -1 0
+S
+#24829
+Underwater Caverns~
+You are standing in a underwater cavern. The water here seems to be very calm.
+You can't tell which way the water flows. Also you notice that there aren't
+any sea creatures around, maybe that's a good sign. Be sure you have enough
+oxygen to last. You don't want to drown down here.~
+247 ROOM_INDOORS|ROOM_NO_RECALL|ROOM_NO_SAVE SECT_UNDER_WATER
+DDIR_NORTH
+~
+~
+0 -1 24821
+DDIR_SOUTH
+~
+~
+0 -1 24830
+S
+#24830
+Underwater Caverns~
+You are standing in a underwater cavern. The water here seems to be very calm.
+You can't tell which way the water flows. Also you notice that there aren't
+any sea creatures around, maybe that's a good sign. Be sure you have enough
+oxygen to last. You don't want to drown down here.~
+247 ROOM_INDOORS|ROOM_NO_RECALL|ROOM_NO_SAVE SECT_UNDER_WATER
+DDIR_NORTH
+~
+~
+0 -1 24829
+DDIR_WEST
+~
+~
+0 -1 24831
+S
+#24831
+Underwater Caverns~
+You are standing in a underwater cavern. The water here seems to be very calm.
+You can't tell which way the water flows. Also you notice that there aren't
+any sea creatures around, maybe that's a good sign. Be sure you have enough
+oxygen to last. You don't want to drown down here.~
+247 ROOM_INDOORS|ROOM_NO_RECALL|ROOM_NO_SAVE SECT_UNDER_WATER
+DDIR_EAST
+~
+~
+0 -1 24830
+DDIR_WEST
+~
+~
+0 -1 24832
+S
+#24832
+Underwater Caverns~
+You are standing in a underwater cavern. The water here seems to be very calm.
+You can't tell which way the water flows. Also you notice that there aren't
+any sea creatures around, maybe that's a good sign. Be sure you have enough
+oxygen to last. You don't want to drown down here.~
+247 ROOM_INDOORS|ROOM_NO_RECALL|ROOM_NO_SAVE SECT_UNDER_WATER
+DDIR_EAST
+~
+~
+0 -1 24831
+DDIR_SOUTH
+~
+~
+0 -1 24833
+S
+#24833
+Underwater Caverns~
+You are standing in a underwater cavern. The water here seems to be very calm.
+You can't tell which way the water flows. Also you notice that there aren't
+any sea creatures around, maybe that's a good sign. Be sure you have enough
+oxygen to last. You don't want to drown down here.~
+247 ROOM_INDOORS|ROOM_NO_RECALL|ROOM_NO_SAVE SECT_UNDER_WATER
+DDIR_NORTH
+~
+~
+0 -1 24832
+DDIR_SOUTH
+~
+~
+0 -1 24834
+S
+#24834
+Underwater Caverns~
+You are standing in a underwater cavern. The water here seems to be very calm.
+You can't tell which way the water flows. Also you notice that there aren't
+any sea creatures around, maybe that's a good sign. Be sure you have enough
+oxygen to last. You don't want to drown down here.~
+247 ROOM_INDOORS|ROOM_NO_RECALL|ROOM_NO_SAVE SECT_UNDER_WATER
+DDIR_NORTH
+~
+~
+0 -1 24833
+DDIR_EAST
+~
+~
+0 -1 24835
+S
+#24835
+Elemental Guardian~
+You found yourself in a very spacious cavern. After searching the room carefully
+you can't seem to find a exits, not even the walls have cracks in it that you
+can exploit. Better find another way out quick before you run out of oxygen.~
+247 ROOM_NO_MOB|ROOM_INDOORS|ROOM_NO_RECALL|ROOM_NO_SAVE SECT_WATER_SWIM
+DDIR_WEST
+~
+~
+0 -1 0
+S
+#24836
+Fire Elemental Statue~
+As you step into the room, you notice a statue depicting a fire elemental, as
+far as you can make it out. Looking carefully at the statue, you see a sign
+on its hand. After reading it, you found out that this is the beginning to the
+test of fire elements.~
+247 ROOM_NO_MOB|ROOM_INDOORS|ROOM_NO_RECALL|ROOM_NO_SAVE SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 24790
+DDIR_SOUTH
+~
+~
+0 -1 24837
+S
+#24837
+Fiery Caverns~
+You walk endlessly in this furnace. Looking around in this room, you notice
+it's the same as the others. The walls and floors are molten lava, making it
+very painful to walk through or stand still. You wonder when are you gonna find
+a way out of this hell.~
+247 ROOM_INDOORS|ROOM_NO_RECALL|ROOM_NO_SAVE SECT_LAVA
+DDIR_NORTH
+~
+~
+0 -1 24836
+DDIR_SOUTH
+~
+~
+0 -1 24838
+S
+#24838
+Fiery Caverns~
+You walk endlessly in this furnace. Looking around in this room, you notice
+it's the same as the others. The walls and floors are molten lava, making it
+very painful to walk through or stand still. You wonder when are you gonna find
+a way out of this hell.~
+247 ROOM_INDOORS|ROOM_NO_RECALL|ROOM_NO_SAVE SECT_LAVA
+DDIR_NORTH
+~
+~
+0 -1 24837
+DDIR_EAST
+~
+~
+0 -1 24848
+DDIR_SOUTH
+~
+~
+0 -1 24839
+DDIR_WEST
+~
+~
+0 -1 24842
+S
+#24839
+Fiery Caverns~
+You walk endlessly in this furnace. Looking around in this room, you notice
+it's the same as the others. The walls and floors are molten lava, making it
+very painful to walk through or stand still. You wonder when are you gonna find
+a way out of this hell.~
+247 ROOM_INDOORS|ROOM_NO_RECALL|ROOM_NO_SAVE SECT_LAVA
+DDIR_NORTH
+~
+~
+0 -1 24838
+DDIR_SOUTH
+~
+~
+0 -1 24840
+S
+#24840
+Fiery Caverns~
+You walk endlessly in this furnace. Looking around in this room, you notice
+it's the same as the others. The walls and floors are molten lava, making it
+very painful to walk through or stand still. You wonder when are you gonna find
+a way out of this hell.~
+247 ROOM_INDOORS|ROOM_NO_RECALL|ROOM_NO_SAVE SECT_LAVA
+DDIR_NORTH
+~
+~
+0 -1 24839
+DDIR_SOUTH
+~
+~
+0 -1 24841
+S
+#24841
+Elemental Guardian~
+You found yourself in a very spacious cavern. The walls here seems to be cool
+off, making it almost cool in here. Looking around, you notice the way you came
+from seems to be block off, the walls melted and seal off your exit. But at
+least you gotten away from that hell, or did you?~
+247 ROOM_NO_MOB|ROOM_INDOORS|ROOM_NO_RECALL|ROOM_NO_SAVE|ROOM_DARK SECT_DESERT
+DDIR_NORTH
+~
+~
+0 -1 0
+S
+#24842
+Fiery Caverns~
+You walk endlessly in this furnace. Looking around in this room, you notice
+it's the same as the others. The walls and floors are molten lava, making it
+very painful to walk through or stand still. You wonder when are you gonna find
+a way out of this hell.~
+247 ROOM_INDOORS|ROOM_NO_RECALL|ROOM_NO_SAVE SECT_LAVA
+DDIR_EAST
+~
+~
+0 -1 24838
+DDIR_WEST
+~
+~
+0 -1 24843
+S
+#24843
+Fiery Caverns~
+You walk endlessly in this furnace. Looking around in this room, you notice
+it's the same as the others. The walls and floors are molten lava, making it
+very painful to walk through or stand still. You wonder when are you gonna find
+a way out of this hell.~
+247 ROOM_INDOORS|ROOM_NO_RECALL|ROOM_NO_SAVE SECT_LAVA
+DDIR_EAST
+~
+~
+0 -1 24842
+DDIR_SOUTH
+~
+~
+0 -1 24844
+S
+#24844
+Fiery Caverns~
+You walk endlessly in this furnace. Looking around in this room, you notice
+it's the same as the others. The walls and floors are molten lava, making it
+very painful to walk through or stand still. You wonder when are you gonna find
+a way out of this hell.~
+247 ROOM_INDOORS|ROOM_NO_RECALL|ROOM_NO_SAVE SECT_LAVA
+DDIR_NORTH
+~
+~
+0 -1 24843
+DDIR_SOUTH
+~
+~
+0 -1 24845
+S
+#24845
+Fiery Caverns~
+You walk endlessly in this furnace. Looking around in this room, you notice
+it's the same as the others. The walls and floors are molten lava, making it
+very painful to walk through or stand still. You wonder when are you gonna find
+a way out of this hell.~
+247 ROOM_INDOORS|ROOM_NO_RECALL|ROOM_NO_SAVE SECT_LAVA
+DDIR_NORTH
+~
+~
+0 -1 24844
+DDIR_SOUTH
+~
+~
+0 -1 24846
+S
+#24846
+Fiery Caverns~
+You walk endlessly in this furnace. Looking around in this room, you notice
+it's the same as the others. The walls and floors are molten lava, making it
+very painful to walk through or stand still. You wonder when are you gonna find
+a way out of this hell.~
+247 ROOM_INDOORS|ROOM_NO_RECALL|ROOM_NO_SAVE SECT_LAVA
+DDIR_NORTH
+~
+~
+0 -1 24845
+DDIR_WEST
+~
+~
+0 -1 24847
+S
+#24847
+Elemental Guardian~
+You found yourself in a very spacious cavern. The walls here seems to be cool
+off, making it almost cool in here. Looking around, you notice the way you came
+from seems to be block off, the walls melted and seal off your exit. But at
+least you gotten away from that hell, or did you?~
+247 ROOM_NO_MOB|ROOM_INDOORS|ROOM_NO_RECALL|ROOM_NO_SAVE SECT_DESERT
+DDIR_EAST
+~
+~
+0 -1 0
+S
+#24848
+Fiery Caverns~
+You walk endlessly in this furnace. Looking around in this room, you notice
+it's the same as the others. The walls and floors are molten lava, making it
+very painful to walk through or stand still. You wonder when are you gonna find
+a way out of this hell.~
+247 ROOM_INDOORS|ROOM_NO_RECALL|ROOM_NO_SAVE SECT_LAVA
+DDIR_EAST
+~
+~
+0 -1 24849
+DDIR_WEST
+~
+~
+0 -1 24838
+S
+#24849
+Fiery Caverns~
+You walk endlessly in this furnace. Looking around in this room, you notice
+it's the same as the others. The walls and floors are molten lava, making it
+very painful to walk through or stand still. You wonder when are you gonna find
+a way out of this hell.~
+247 ROOM_INDOORS|ROOM_NO_RECALL|ROOM_NO_SAVE SECT_LAVA
+DDIR_EAST
+~
+~
+0 -1 24850
+DDIR_WEST
+~
+~
+0 -1 24848
+S
+#24850
+Fiery Caverns~
+You walk endlessly in this furnace. Looking around in this room, you notice
+it's the same as the others. The walls and floors are molten lava, making it
+very painful to walk through or stand still. You wonder when are you gonna find
+a way out of this hell.~
+247 ROOM_INDOORS|ROOM_NO_RECALL|ROOM_NO_SAVE SECT_LAVA
+DDIR_SOUTH
+~
+~
+0 -1 24851
+DDIR_WEST
+~
+~
+0 -1 24849
+S
+#24851
+Fiery Caverns~
+You walk endlessly in this furnace. Looking around in this room, you notice
+it's the same as the others. The walls and floors are molten lava, making it
+very painful to walk through or stand still. You wonder when are you gonna find
+a way out of this hell.~
+247 ROOM_INDOORS|ROOM_NO_RECALL|ROOM_NO_SAVE SECT_LAVA
+DDIR_NORTH
+~
+~
+0 -1 24850
+DDIR_SOUTH
+~
+~
+0 -1 24852
+S
+#24852
+Fiery Caverns~
+You walk endlessly in this furnace. Looking around in this room, you notice
+it's the same as the others. The walls and floors are molten lava, making it
+very painful to walk through or stand still. You wonder when are you gonna find
+a way out of this hell.~
+247 ROOM_INDOORS|ROOM_NO_RECALL|ROOM_NO_SAVE SECT_LAVA
+DDIR_NORTH
+~
+~
+0 -1 24851
+DDIR_SOUTH
+~
+~
+0 -1 24853
+S
+#24853
+Fiery Caverns~
+You walk endlessly in this furnace. Looking around in this room, you notice
+it's the same as the others. The walls and floors are molten lava, making it
+very painful to walk through or stand still. You wonder when are you gonna find
+a way out of this hell.~
+247 ROOM_INDOORS|ROOM_NO_RECALL|ROOM_NO_SAVE SECT_LAVA
+DDIR_NORTH
+~
+~
+0 -1 24852
+DDIR_WEST
+~
+~
+0 -1 24854
+S
+#24854
+Fiery Caverns~
+You walk endlessly in this furnace. Looking around in this room, you notice
+it's the same as the others. The walls and floors are molten lava, making it
+very painful to walk through or stand still. You wonder when are you gonna find
+a way out of this hell.~
+247 ROOM_INDOORS|ROOM_NO_RECALL|ROOM_NO_SAVE SECT_LAVA
+DDIR_EAST
+~
+~
+0 -1 24853
+DDIR_WEST
+~
+~
+0 -1 24855
+S
+#24855
+Fiery Caverns~
+You walk endlessly in this furnace. Looking around in this room, you notice
+it's the same as the others. The walls and floors are molten lava, making it
+very painful to walk through or stand still. You wonder when are you gonna find
+a way out of this hell.~
+247 ROOM_INDOORS|ROOM_NO_RECALL|ROOM_NO_SAVE SECT_LAVA
+DDIR_NORTH
+~
+~
+0 -1 24856
+DDIR_EAST
+~
+~
+0 -1 24854
+S
+#24856
+Elemental Guardian~
+You found yourself in a very spacious cavern. The walls here seems to be cool
+off, making it almost cool in here. Looking around, you notice the way you came
+from seems to be block off, the walls melted and seal off your exit. But at
+least you gotten away from that hell, or did you?~
+247 ROOM_NO_MOB|ROOM_INDOORS|ROOM_NO_RECALL|ROOM_NO_SAVE SECT_DESERT
+DDIR_SOUTH
+~
+~
+0 -1 0
+S
+#24857
+Mictlan Private Study~
+This room is a mess. You see many books line up the walls and floors here.
+But it looks dust free, unlike any magician rooms you know off. This guy
+must also enjoy cleanliness. Who could work in a dirty room?~
+247 ROOM_NO_MOB|ROOM_INDOORS|ROOM_NO_RECALL|ROOM_NO_SAVE SECT_INSIDE
+S
+#24858
+Secret Trail~
+You are standing on a trial, made of dirt and pebbles, that looks like it
+hasn't been trespass in years. Wonder where does it leads to? Well only one
+to find out, maybe it'll take you to that village Mictlan told you about.~
+247 ROOM_NO_RECALL|ROOM_NO_SAVE SECT_MOUNTAIN
+DDIR_EAST
+~
+~
+0 -1 24859
+S
+#24859
+Secret Trail~
+The trail continues downward. Watch your steps, one mistake and you'll be
+tumbling down the side of this mountain. I wouldn't want to roll the rest of
+the way down, tread carefully.~
+247 ROOM_NO_RECALL|ROOM_NO_SAVE SECT_MOUNTAIN
+DDIR_SOUTH
+~
+~
+0 -1 24860
+DDIR_WEST
+~
+~
+0 -1 24858
+S
+#24860
+Secret Trail~
+The trail continues downward. Watch your steps, one mistake and you'll be
+tumbling down the side of this mountain. I wouldn't want to roll the rest of
+the way down, tread carefully.~
+247 ROOM_NO_RECALL|ROOM_NO_SAVE SECT_MOUNTAIN
+DDIR_NORTH
+~
+~
+0 -1 24859
+DDIR_SOUTH
+~
+~
+0 -1 24861
+S
+#24861
+Secret Trail~
+The trail continues downward. Watch your steps, one mistake and you'll be
+tumbling down the side of this mountain. I wouldn't want to roll the rest of
+the way down, tread carefully.~
+247 ROOM_NO_RECALL|ROOM_NO_SAVE SECT_HILLS
+DDIR_NORTH
+~
+~
+0 -1 24860
+DDIR_EAST
+~
+~
+0 -1 24862
+S
+#24862
+Secret Trail~
+The trail continues downward. Watch your steps, one mistake and you'll be
+tumbling down the side of this mountain. I wouldn't want to roll the rest of
+the way down, tread carefully.~
+247 ROOM_NO_RECALL|ROOM_NO_SAVE SECT_HILLS
+DDIR_NORTH
+~
+~
+0 -1 24863
+DDIR_WEST
+~
+~
+0 -1 24861
+S
+#24863
+Secret Trail~
+The trail continues downward. Watch your steps, one mistake and you'll be
+tumbling down the side of this mountain. I wouldn't want to roll the rest of
+the way down, tread carefully.~
+247 ROOM_NO_RECALL|ROOM_NO_SAVE SECT_HILLS
+DDIR_EAST
+~
+~
+0 -1 24864
+DDIR_SOUTH
+~
+~
+0 -1 24862
+S
+#24864
+Secret Trail~
+You are at the bottom of the mountain. The trail continues north into
+a jungle. What another jungle? After this if I see another jungle, I burn
+them all down.~
+247 ROOM_NO_RECALL|ROOM_NO_SAVE SECT_FOREST
+DDIR_NORTH
+~
+~
+0 -1 24865
+DDIR_WEST
+~
+~
+0 -1 24863
+S
+#24865
+Secret Trail~
+Still inside the jungle. It's a jungle like any other jungle. With many plants
+surrounding you and don't forget the wildlife that inhabits here. Who could
+forget those fearsome beast.~
+247 ROOM_NO_RECALL|ROOM_NO_SAVE SECT_FOREST
+DDIR_EAST
+~
+~
+0 -1 24866
+DDIR_SOUTH
+~
+~
+0 -1 24864
+S
+#24866
+Secret Trail~
+Still inside the jungle. It's a jungle like any other jungle. With many plants
+surrounding you and don't forget the wildlife that inhabits here. Who could
+forget those fearsome beast.~
+247 ROOM_NO_RECALL|ROOM_NO_SAVE SECT_FOREST
+DDIR_SOUTH
+~
+~
+0 -1 24867
+DDIR_WEST
+~
+~
+0 -1 24865
+S
+#24867
+Secret Trail~
+Still inside the jungle. It's a jungle like any other jungle. With many plants
+surrounding you and don't forget the wildlife that inhabits here. Who could
+forget those fearsome beast.~
+247 ROOM_NO_RECALL|ROOM_NO_SAVE SECT_FOREST
+DDIR_NORTH
+~
+~
+0 -1 24866
+DDIR_SOUTH
+~
+~
+0 -1 24868
+S
+#24868
+Secret Trail~
+Still inside the jungle. It's a jungle like any other jungle. With many plants
+surrounding you and don't forget the wildlife that inhabits here. Who could
+forget those fearsome beast.~
+247 ROOM_NO_RECALL|ROOM_NO_SAVE SECT_FOREST
+DDIR_NORTH
+~
+~
+0 -1 24867
+DDIR_EAST
+~
+~
+0 -1 24869
+S
+#24869
+Secret Trail~
+Still inside the jungle. It's a jungle like any other jungle. With many plants
+surrounding you and don't forget the wildlife that inhabits here. Who could
+forget those fearsome beast.~
+247 ROOM_NO_RECALL|ROOM_NO_SAVE SECT_FOREST
+DDIR_EAST
+~
+~
+0 -1 24870
+DDIR_WEST
+~
+~
+0 -1 24868
+S
+#24870
+Secret Trail~
+You are standing at the outskirts of the jungle. You can see a clearing 
+ahead of you. Inside the clearing is a campground. Who could live in a place
+like this? With jungles and mountains all around you. And don't forget the
+fearsome wildlife.~
+247 ROOM_NO_RECALL|ROOM_NO_SAVE SECT_FOREST
+DDIR_EAST
+~
+~
+0 -1 24871
+DDIR_WEST
+~
+~
+0 -1 24869
+S
+#24871
+Clearing~
+You reach a campground. To the north you notice a bazaar, from the noises you
+here coming from that direction, you assume it's a bazaar. To the south is the
+burial ground, kind hard to miss with all those tombstone. While to the east,
+is the sleeping quarters.~
+247 ROOM_NO_MOB|ROOM_SAFE|ROOM_RIP SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 24872
+DDIR_EAST
+~
+~
+0 -1 24882
+DDIR_SOUTH
+~
+~
+0 -1 24877
+DDIR_WEST
+~
+~
+0 -1 0
+S
+#24872
+Secret Trail~
+The trail leads to a bazaar at the outskirts of the camp.~
+247 ROOM_NO_RECALL|ROOM_NO_SAVE SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 24873
+DDIR_SOUTH
+~
+~
+0 -1 24871
+S
+#24873
+Bazaar~
+You reach the center of the bazaar. You can hear many people voices shouting
+here trying to get the best deal possible. This room looks safe enough to
+rest in without having people trample all over you.~
+247 ROOM_NO_RECALL|ROOM_NO_SAVE SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 24874
+DDIR_EAST
+~
+~
+0 -1 24875
+DDIR_SOUTH
+~
+~
+0 -1 24872
+DDIR_WEST
+~
+~
+0 -1 24876
+S
+#24874
+Zotizilaha Magical Tent~
+You see many items line up the tent, scrolls, potions, wand, and staffs. And
+many other item people brought you to sell. Hope you find what you're looking
+for, if not tough luck.~
+247 ROOM_INDOORS|ROOM_NO_RECALL|ROOM_NO_SAVE SECT_INSIDE
+DDIR_SOUTH
+~
+~
+0 -1 24873
+S
+#24875
+Tlazoteotl's Grub~
+You can smell something wondering is cooking in here. There's a fire cooking in
+the back, looks like a boar is roasting over that fire. You ask yourself when
+was the last time you have a decent meal.~
+247 ROOM_INDOORS|ROOM_NO_RECALL|ROOM_NO_SAVE SECT_INSIDE
+DDIR_WEST
+~
+~
+0 -1 24873
+S
+#24876
+Huraka's Survival Tent~
+Weapons and armor are on display throughout the tent. Nothing special about
+them, but they do provide more armor than a cloth would. And the smith looks
+like he knows what he's doing when he made them.~
+247 ROOM_INDOORS|ROOM_NO_RECALL|ROOM_NO_SAVE SECT_INSIDE
+DDIR_EAST
+~
+~
+0 -1 24873
+S
+#24877
+Secret Trail~
+The trail leads to the cemetery.~
+247 ROOM_NO_RECALL|ROOM_NO_SAVE SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 24871
+DDIR_SOUTH
+~
+~
+0 -1 24878
+S
+#24878
+Burial Ground~
+You are standing at the center of the burial ground. You can see many tombstone
+in the distance. All around you are signs of a battleground. What a fitting
+place it is to fight and to be bury here.~
+247 ROOM_NO_SAVE|ROOM_NO_RECALL SECT_FIELD
+DDIR_NORTH
+~
+~
+0 -1 24877
+DDIR_EAST
+~
+~
+0 -1 24880
+DDIR_SOUTH
+~
+~
+0 -1 24879
+DDIR_WEST
+~
+~
+0 -1 24881
+S
+#24879
+Burial Ground~
+You see many graves line up here. It looks like someone been digging up the
+graves. Who would do such a thing. If you find that person, you'll personally
+strangle them to death or maybe just bury them alive.~
+247 ROOM_NO_SAVE SECT_FIELD
+DDIR_NORTH
+~
+~
+0 -1 24878
+S
+#24880
+Burial Ground~
+You see many graves line up here. It looks like someone been digging up the
+graves. Who would do such a thing. If you find that person, you'll personally
+strangle them to death or maybe just bury them alive.~
+247 ROOM_NO_SAVE SECT_FIELD
+DDIR_WEST
+~
+~
+0 -1 24878
+S
+#24881
+Burial Ground~
+You see many graves line up here. It looks like someone been digging up the
+graves. Who would do such a thing. If you find that person, you'll personally
+strangle them to death or maybe just bury them alive.~
+247 ROOM_NO_SAVE SECT_FIELD
+DDIR_EAST
+~
+~
+0 -1 24878
+S
+#24882
+Secret Trail~
+You are on a trial. The ground here are beginning to break up. Many people
+seems to travel this path a lot. Maybe you'll find the native if you follow
+this trail or maybe those native aren't native, but gruesome beast.~
+247 ROOM_NO_RECALL|ROOM_NO_SAVE SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 24883
+DDIR_WEST
+~
+~
+0 -1 24871
+S
+#24883
+Secret Trail~
+You reach the outskirts of the sleeping quarters. You see many tents line up
+here. But you can't seem to see anyone nearby. Wonder where they all went?
+Maybe they are all at that arena you saw off in the distance.~
+247 ROOM_NO_RECALL|ROOM_NO_SAVE SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 24884
+DDIR_WEST
+~
+~
+0 -1 24882
+S
+#24884
+Secret Trail~
+You see many tents all around you, big, small, round, and even square ones. But
+you still don't see anyone around. Looking at the tents, you don't see any kind
+of lock, preventing anyone from just walking in and taking whatever they want.~
+247 ROOM_NO_RECALL|ROOM_NO_SAVE SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 24885
+DDIR_EAST
+~
+~
+0 -1 24887
+DDIR_SOUTH
+~
+~
+0 -1 24886
+DDIR_WEST
+~
+~
+0 -1 24883
+S
+#24885
+A Tent~
+You are inside a semi-spacious tent. Some furniture are here, nothing fancy,
+but enough to call it a home. There seems to be nothing attracting your
+attention. This tent is just to plain for you, better go search the others.~
+247 ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_SOUTH
+~
+~
+0 -1 24884
+S
+#24886
+A Tent~
+You are inside a semi-spacious tent. Some furniture are here, nothing fancy,
+but enough to call it a home. There seems to be nothing attracting your
+attention. This tent is just to plain for you, better go search the others.~
+247 ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 24884
+S
+#24887
+Secret Trail~
+You see many tents all around you, big, small, round, and even square ones. But
+you still don't see anyone around. Looking at the tents, you don't see any kind
+of lock, preventing anyone from just walking in and taking whatever they want.~
+247 ROOM_NO_RECALL|ROOM_NO_SAVE SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 24888
+DDIR_EAST
+~
+~
+0 -1 24890
+DDIR_SOUTH
+~
+~
+0 -1 24889
+DDIR_WEST
+~
+~
+0 -1 24884
+S
+#24888
+A Tent~
+You are inside a semi-spacious tent. Some furniture are here, nothing fancy,
+but enough to call it a home. There seems to be nothing attracting your
+attention. This tent is just to plain for you, better go search the others.~
+247 ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_SOUTH
+~
+~
+0 -1 24887
+S
+#24889
+A Tent~
+You are inside a semi-spacious tent. Some furniture are here, nothing fancy,
+but enough to call it a home. There seems to be nothing attracting your
+attention. This tent is just to plain for you, better go search the others.~
+247 ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 24887
+S
+#24890
+Secret Trail~
+You see many tents all around you, but one tent draws your attention. It looks
+like it's the largest one here. I guess whoever occupy that tent is the leader
+of this group. Maybe you'll find native are in there.~
+247 ROOM_NO_RECALL|ROOM_NO_SAVE SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 24891
+DDIR_EAST
+~
+~
+0 -1 24893
+DDIR_SOUTH
+~
+~
+0 -1 24892
+DDIR_WEST
+~
+~
+0 -1 24887
+S
+#24891
+A Tent~
+You are inside a semi-spacious tent. Some furniture are here, nothing fancy,
+but enough to call it a home. There seems to be nothing attracting your
+attention. This tent is just to plain for you, better go search the others.~
+247 ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_SOUTH
+~
+~
+0 -1 24890
+S
+#24892
+A Tent~
+You are inside a semi-spacious tent. Some furniture are here, nothing fancy,
+but enough to call it a home. There seems to be nothing attracting your
+attention. This tent is just to plain for you, better go search the others.~
+247 ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 24890
+S
+#24893
+Rhialle's Tent~
+You are inside the largest tent in the area. It is very spacious and 
+probably can fit up to 30 people in here. A good place to hold a meeting 
+if the needs arises.~
+247 ROOM_NO_MOB|ROOM_INDOORS|ROOM_NO_RECALL|ROOM_NO_SAVE|ROOM_SAFE|ROOM_PRIVATE SECT_INSIDE
+DDIR_WEST
+~
+~
+0 -1 24890
+S
+#24894
+Mob~
+Mob decomposes room~
+247 ROOM_NO_MOB SECT_INSIDE
+S
+#24895
+The Arena~
+You are standing in the middle of the arena. It is a very large stadium
+that can sit 5,000 spectators. As you see, it is pack today. They're
+all coming out to see the battle of the century, which happen to be you
+against Rhialle.~
+247 ROOM_SOLITARY|ROOM_NO_RECALL|ROOM_NO_SAVE SECT_FIELD
+S
+#24896
+Guardian Shrine~
+This is the place where all the elementals comes too when they died. It's not
+like any other place in the realm, for this place is where all four elements
+are the strongest. Here, you can feel each of the element at it peaks.~
+247 ROOM_NO_RECALL|ROOM_NO_SAVE SECT_FIELD
+DDIR_DOWN
+~
+~
+0 -1 24790
+S
+#24897
+The Arena~
+You are standing in the middle of the arena. It is a very large stadium
+that can sit 5,000 spectators. As you see, it is pack today. They're
+all coming out to see the battle of the century, which happen to be you
+against Rhialle.~
+247 ROOM_PRIVATE|ROOM_NO_RECALL|ROOM_NO_SAVE|ROOM_INDOORS SECT_INSIDE
+S
+#24898
+Crossworlds~
+You are in the dream world of your mind. Here, the mind is stronger than
+the body. But beware of the creatures that dwells. If your mind is destroy,
+so is your body and they will destroy your mind if they find you. There are
+two possible exits out of here, north and south. One leads to salvation and
+the other to damnation. Choose wisely for it could be the last choice you'll
+ever make.
+~
+0 1|4|8|8192 0
+D0
+~
+~
+0 -1 24899
+D2
+~
+~
+0 -1 24910
+S
+#24899
+Salvation Path~
+You have step onto the path of salvation. But in this realm, not all is as it
+seems. This may or may not lead you to the place you seek, but you have no
+other choice to follow through with it for your way back is seal off. There
+is an exit to the east.
+~
+0 1|8|8192 0
+D1
+~
+~
+0 -1 24900
+S
+#24900
+Salvation Path~
+You peer around this around and see nothing that strikes you out of the
+ordinarily. All the rooms seems alike to you, wonder if you're going the
+right way. Right or wrong, there's only one way you can go. Possible
+exits: east.
+~
+0 1|8|8192 0
+D1
+~
+~
+0 -1 24901
+S
+#24901
+Salvation Path~
+You peer around this around and see nothing that strikes you out of the
+ordinarily. All the rooms seems alike to you, wonder if you're going the
+right way. Right or wrong, there's only one way you can go. Possible
+exits: north.
+~
+0 1|8|8192 0
+D0
+~
+~
+0 -1 24902
+S
+#24902
+Salvation Path~
+You peer around this around and see nothing that strikes you out of the
+ordinarily. All the rooms seems alike to you, wonder if you're going the
+right way. Right or wrong, there's only one way you can go. Possible
+exits: west.
+~
+0 1|8|8192 0
+D3
+~
+~
+0 -1 24903
+S
+#24903
+Salvation Path~
+You peer around this around and see nothing that strikes you out of the
+ordinarily. All the rooms seems alike to you, wonder if you're going the
+right way. Right or wrong, there's only one way you can go. Possible
+exits: north.
+~
+0 1|8|8192 0
+D0
+~
+~
+0 -1 24904
+S
+#24904
+Salvation Path~
+You peer around this around and see nothing that strikes you out of the
+ordinarily. All the rooms seems alike to you, wonder if you're going the
+right way. Right or wrong, there's only one way you can go. Possible
+exits: west.
+~
+0 1|8|8192 0
+D3
+~
+~
+0 -1 24905
+S
+#24905
+Salvation Path~
+You peer around this around and see nothing that strikes you out of the
+ordinarily. All the rooms seems alike to you, wonder if you're going the
+right way. Right or wrong, there's only one way you can go. Possible
+exits: north.
+~
+0 1|8|8192 0
+D0
+~
+~
+0 -1 24906
+S
+#24906
+Salvation Path~
+You peer around this around and see nothing that strikes you out of the
+ordinarily. All the rooms seems alike to you, wonder if you're going the
+right way. Right or wrong, there's only one way you can go. Possible
+exits: east.
+~
+0 1|8|8192 0
+D1
+~
+~
+0 -1 24907
+S
+#24907
+Salvation Path~
+You peer around this around and see nothing that strikes you out of the
+ordinarily. All the rooms seems alike to you, wonder if you're going the
+right way. Right or wrong, there's only one way you can go. Possible
+exits: east.
+~
+0 1|8|8192 0
+D1
+~
+~
+0 -1 24908
+S
+#24908
+Salvation Path~
+You peer around this around and see nothing that strikes you out of the
+ordinarily. All the rooms seems alike to you, wonder if you're going the
+right way. Right or wrong, there's only one way you can go. Possible
+exits: south.
+~
+0 1|8|8192 0
+D2
+~
+~
+0 -1 24909
+S
+#24909
+Salvation~
+You have reach the end of your destination. This room looks no different
+than the other previous room you been to. You wonder if you made the right
+choice. Was the other path the correct one. This will haunt you for the
+rest of your stay here. Is salvation the sums of ones belief? Well, you
+have an eternity to ponder that question.
+~
+0 1|8|8192 0
+S
+#24910
+Damnation Path~
+As you step into the room, a flood of painful memories engulf your mind.
+You scream in agony reliving each of those moments. You wonder if you made
+the right decision, would the road to salvation lain with pains and suffering?
+But you can't turn back now for there is no way back. Forward is the path you
+choose and must take.
+~
+0 1|8|8192 0
+D3
+~
+~
+0 -1 24911
+S
+#24911
+Damnation Path~
+Each step you take, the pain becomes more and more unbearable. If this
+countinue on, you might not make it through. You're starting to doubt
+whether this is the path to salvation. The further you travel, the worst
+the memories are. With the last trace of the fleeing memory in your mind,
+you wonder if it can get any worse.
+~
+0 1|8|8192 0
+D2
+~
+~
+0 -1 24912
+S
+#24912
+Damnation Path~
+Each step you take, the pain becomes more and more unbearable. If this
+countinue on, you might not make it through. You're starting to doubt
+whether this is the path to salvation. The further you travel, the worst
+the memories are. With the last trace of the fleeing memory in your mind,
+you wonder if it can get any worse.
+~
+0 1|8|8192 0
+D3
+~
+~
+0 -1 24913
+S
+#24913
+Damnation Path~
+Each step you take, the pain becomes more and more unbearable. If this
+countinue on, you might not make it through. You're starting to doubt
+whether this is the path to salvation. The further you travel, the worst
+the memories are. With the last trace of the fleeing memory in your mind,
+you wonder if it can get any worse.
+~
+0 1|4|8|8192 0
+D0
+~
+~
+0 -1 24914
+S
+#24914
+Damnation Path~
+Each step you take, the pain becomes more and more unbearable. If this
+countinue on, you might not make it through. You're starting to doubt
+whether this is the path to salvation. The further you travel, the worst
+the memories are. With the last trace of the fleeing memory in your mind,
+ you wonder if it can get any worse.
+~
+0 1|8|8192 0
+D0
+~
+~
+0 -1 24915
+S
+#24915
+Damnation Path~
+Each step you take, the pain becomes more and more unbearable. If this
+countinue on, you might not make it through. You're starting to doubt
+whether this is the path to salvation. The further you travel, the worst
+the memories are. With the last trace of the fleeing memory in your mind,
+you wonder if it can get any worse.
+~
+0 1|8|8192 0
+D1
+~
+~
+0 -1 24916
+S
+#24916
+Damnation Path~
+Each step you take, the pain becomes more and more unbearable. If this
+countinue on, you might not make it through. You're starting to doubt
+whether this is the path to salvation. The further you travel, the worst
+the memories are. With the last trace of the fleeing memory in your mind,
+you wonder if it can get any worse.
+~
+0 1|8|8192 0
+D0
+~
+~
+0 -1 24917
+S
+#24917
+Damnation Path~
+Each step you take, the pain becomes more and more unbearable. If this
+countinue on, you might not make it through. You're starting to doubt
+whether this is the path to salvation. The further you travel, the worst
+the memories are. With the last trace of the fleeing memory in your mind,
+you wonder if it can get any worse.
+~
+0 1|8|8192 0
+D3
+~
+~
+0 -1 24918
+S
+#24918
+Damnation Path~
+Each step you take, the pain becomes more and more unbearable. If this
+countinue on, you might not make it through. You're starting to doubt
+whether this is the path to salvation. The further you travel, the worst
+the memories are. With the last trace of the fleeing memory in your mind,
+you wonder if it can get any worse.
+~
+0 1|8|8192 0
+D0
+~
+~
+0 -1 24919
+S
+#24919
+Damnation Path~
+Each step you take, the pain becomes more and more unbearable. If this
+countinue on, you might not make it through. You're starting to doubt
+whether this is the path to salvation. The further you travel, the worst
+the memories are. With the last trace of the fleeing memory in your mind,
+you wonder if it can get any worse.
+~
+0 1|8|8192 0
+D1
+~
+~
+0 -1 24920
+S
+#24920
+Damnation Path~
+Each step you take, the pain becomes more and more unbearable. If this
+countinue on, you might not make it through. You're starting to doubt
+whether this is the path to salvation. The further you travel, the worst
+the memories are. With the last trace of the fleeing memory in your mind,
+you wonder if it can get any worse.
+~
+0 1|8|8192 0
+D1
+~
+~
+0 -1 24921
+S
+#24921
+Damnation~
+You have reach the end of your destination. Searching around the room
+carefully, you can't find a trace of a way out of here. Was the path
+travel in vain? Did I relive those painful memories for nothing? Suddenly,
+you remember this is all in your mind. You shall find salvation when you
+defeat this evil.
+~
+0 1|8|8192 0
+S
+#0
+
+
+
+
+#RESETS
+R 0 24700 4;
+R 0 24701 4;
+R 0 24702 4;
+R 0 24703 4;
+R 0 24704 4;
+R 0 24705 4;
+R 0 24706 4;
+R 0 24707 4;
+R 0 24708 4;
+R 0 24709 4;
+R 0 24710 4;
+R 0 24711 4;
+R 0 24723 4;
+R 0 24724 4;
+R 0 24725 4;
+R 0 24726 4;
+R 0 24727 4;
+R 0 24728 4;
+R 0 24729 4;
+R 0 24730 4;
+R 0 24718 4;
+R 0 24747 4;
+R 0 24748 4;
+O 0 24741   1 24788 ;        staff in Mictlan Private Room
+M 0 24719   1 24871 ;        ethexit in Clearing
+M 0 24726   1 24772 ;        load EthStaff in Statue Room
+M 0 24704   3 24794 ;        the air elemental in In The Air
+M 0 24704   3 24797 ;        the air elemental in In The Air
+M 0 24704   3 24799 ;        the air elemental in In The Air
+M 0 24705   3 24813 ;      the earth elemental in Rock Caverns
+M 0 24705   3 24806 ;      the earth elemental in Rock Caverns
+M 0 24705   3 24809 ;      the earth elemental in Rock Caverns
+M 0 24707   3 24822 ;      the water elemental in Underwater Caverns
+M 0 24707   3 24829 ;      the water elemental in Underwater Caverns
+M 0 24707   3 24832 ;      the water elemental in Underwater Caverns
+M 0 24706   4 24842 ;       the fire elemental in Fiery Caverns
+M 0 24706   4 24839 ;       the fire elemental in Fiery Caverns
+M 0 24706   4 24848 ;       the fire elemental in Fiery Caverns
+M 0 24706   4 24852 ;       the fire elemental in Fiery Caverns
+M 0 24712   1 24857 ;       Mictlan in Mictlan Private Study
+E 1 24749  1 12     ;equip a robe of Mictlan
+E 1 24747  1 16     ;equip a quarterstaff of Mictlan
+E 1 24748  1 17     ;equip the spellbook of Mictlan
+G 1 24750  1        ; a Diadem of Lady Armatha
+E 1 24746  1 ITEM_WEAR_FINGER ;equip Mictlan Ring
+M 0 24729   1 24790 ;          Ghost in Pinnacle
+M 0 24700  16 24702 ;                the hyena in Lost in The Jungle
+M 0 24700  16 24702 ;                the hyena in Lost in The Jungle
+M 0 24700  16 24704 ;                the hyena in Lost in The Jungle
+M 0 24700  16 24704 ;                the hyena in Lost in The Jungle
+M 0 24700  16 24706 ;                the hyena in Lost in The Jungle
+M 0 24700  16 24706 ;                the hyena in Lost in The Jungle
+M 0 24700  16 24708 ;                the hyena in Lost in The Jungle
+M 0 24700  16 24708 ;                the hyena in Lost in The Jungle
+M 0 24701  28 24703 ;      the boa constrictor in Lost in The Jungle
+M 0 24701  28 24705 ;      the boa constrictor in Lost in The Jungle
+M 0 24701  28 24707 ;      the boa constrictor in Lost in The Jungle
+M 0 24701  28 24709 ;      the boa constrictor in Lost in The Jungle
+M 0 24701  28 24723 ;      the boa constrictor in In The River
+M 0 24701  28 24725 ;      the boa constrictor in In The River
+M 0 24701  28 24727 ;      the boa constrictor in In The River
+M 0 24701  28 24729 ;      the boa constrictor in In The River
+M 0 24701  28 24733 ;      the boa constrictor in Underwater
+M 0 24701  28 24737 ;      the boa constrictor in Underwater
+M 0 24701  28 24741 ;      the boa constrictor in Underwater
+M 0 24701  28 24745 ;      the boa constrictor in Underwater
+M 0 24701  28 24749 ;      the boa constrictor in Underwater
+M 0 24701  28 24753 ;      the boa constrictor in Underwater
+M 0 24702  20 24724 ;            the alligator in In The River
+M 0 24702  20 24726 ;            the alligator in In The River
+M 0 24702  20 24728 ;            the alligator in In The River
+M 0 24702  20 24730 ;            the alligator in In The River
+M 0 24702  20 24732 ;            the alligator in Underwater
+M 0 24702  20 24736 ;            the alligator in Underwater
+M 0 24702  20 24740 ;            the alligator in Underwater
+M 0 24702  20 24744 ;            the alligator in Underwater
+M 0 24702  20 24748 ;            the alligator in Underwater
+M 0 24702  20 24752 ;            the alligator in Underwater
+M 0 24703  40 24756 ;         the grey gorilla in Jungle
+M 0 24703  40 24756 ;         the grey gorilla in Jungle
+M 0 24703  40 24760 ;         the grey gorilla in Jungle
+M 0 24703  40 24760 ;         the grey gorilla in Jungle
+M 0 24703  40 24764 ;         the grey gorilla in Jungle
+M 0 24703  40 24764 ;         the grey gorilla in Jungle
+M 0 24703  40 24768 ;         the grey gorilla in Jungle
+M 0 24703  40 24768 ;         the grey gorilla in Jungle
+M 0 24703  40 24770 ;         the grey gorilla in Before A Cave
+M 0 24703  40 24770 ;         the grey gorilla in Before A Cave
+M 0 24703  40 24773 ;         the grey gorilla in Jungle
+M 0 24703  40 24773 ;         the grey gorilla in Jungle
+M 0 24703  40 24777 ;         the grey gorilla in Courtyard
+M 0 24703  40 24777 ;         the grey gorilla in Courtyard
+M 0 24703  40 24781 ;         the grey gorilla in Courtyard
+M 0 24703  40 24781 ;         the grey gorilla in Courtyard
+M 0 24703  40 24775 ;         the grey gorilla in Courtyard
+M 0 24703  40 24775 ;         the grey gorilla in Courtyard
+M 0 24703  40 24785 ;         the grey gorilla in Courtyard
+M 0 24703  40 24785 ;         the grey gorilla in Courtyard
+M 0 24700  16 24702 ;                the hyena in Lost in The Jungle
+M 0 24700  16 24702 ;                the hyena in Lost in The Jungle
+M 0 24700  16 24704 ;                the hyena in Lost in The Jungle
+M 0 24700  16 24704 ;                the hyena in Lost in The Jungle
+M 0 24700  16 24706 ;                the hyena in Lost in The Jungle
+M 0 24700  16 24706 ;                the hyena in Lost in The Jungle
+M 0 24700  16 24708 ;                the hyena in Lost in The Jungle
+M 0 24700  16 24708 ;                the hyena in Lost in The Jungle
+M 0 24701  28 24703 ;      the boa constrictor in Lost in The Jungle
+M 0 24701  28 24705 ;      the boa constrictor in Lost in The Jungle
+M 0 24701  28 24707 ;      the boa constrictor in Lost in The Jungle
+M 0 24701  28 24709 ;      the boa constrictor in Lost in The Jungle
+M 0 24701  28 24723 ;      the boa constrictor in In The River
+M 0 24701  28 24725 ;      the boa constrictor in In The River
+M 0 24701  28 24727 ;      the boa constrictor in In The River
+M 0 24701  28 24729 ;      the boa constrictor in In The River
+M 0 24701  28 24733 ;      the boa constrictor in Underwater
+M 0 24701  28 24737 ;      the boa constrictor in Underwater
+M 0 24701  28 24741 ;      the boa constrictor in Underwater
+M 0 24701  28 24745 ;      the boa constrictor in Underwater
+M 0 24701  28 24749 ;      the boa constrictor in Underwater
+M 0 24701  28 24753 ;      the boa constrictor in Underwater
+M 0 24702  20 24724 ;            the alligator in In The River
+M 0 24702  20 24726 ;            the alligator in In The River
+M 0 24702  20 24728 ;            the alligator in In The River
+M 0 24702  20 24730 ;            the alligator in In The River
+M 0 24702  20 24732 ;            the alligator in Underwater
+M 0 24702  20 24736 ;            the alligator in Underwater
+M 0 24702  20 24740 ;            the alligator in Underwater
+M 0 24702  20 24744 ;            the alligator in Underwater
+M 0 24702  20 24748 ;            the alligator in Underwater
+M 0 24702  20 24752 ;            the alligator in Underwater
+M 0 24703  40 24756 ;         the grey gorilla in Jungle
+M 0 24703  40 24756 ;         the grey gorilla in Jungle
+M 0 24703  40 24760 ;         the grey gorilla in Jungle
+M 0 24703  40 24760 ;         the grey gorilla in Jungle
+M 0 24703  40 24764 ;         the grey gorilla in Jungle
+M 0 24703  40 24764 ;         the grey gorilla in Jungle
+M 0 24703  40 24768 ;         the grey gorilla in Jungle
+M 0 24703  40 24768 ;         the grey gorilla in Jungle
+M 0 24703  40 24770 ;         the grey gorilla in Before A Cave
+M 0 24703  40 24770 ;         the grey gorilla in Before A Cave
+M 0 24703  40 24773 ;         the grey gorilla in Jungle
+M 0 24703  40 24773 ;         the grey gorilla in Jungle
+M 0 24703  40 24777 ;         the grey gorilla in Courtyard
+M 0 24703  40 24777 ;         the grey gorilla in Courtyard
+M 0 24703  40 24781 ;         the grey gorilla in Courtyard
+M 0 24703  40 24781 ;         the grey gorilla in Courtyard
+M 0 24703  40 24775 ;         the grey gorilla in Courtyard
+M 0 24703  40 24775 ;         the grey gorilla in Courtyard
+M 0 24703  40 24785 ;         the grey gorilla in Courtyard
+M 0 24703  40 24785 ;         the grey gorilla in Courtyard
+M 0 24720   1 24718 ;       the ethtrail in Top of The Mountain
+*
+M 0 24721   1 24876 ;                Huraka in Huraka's Survival Tent
+G 1 24753 100       ;                a shovel
+G 1 24755 100       ;                a sword
+*
+M 0 24722   1 24874 ;                Zotzilaha in Zotizilaha Magical Tent
+G 1 24756 100       ;                a Zotzilaha's spellbook
+G 1 24757 100       ;                a Zotzilaha's scroll
+G 1 24758 100       ;                a Zotzilaha's potion
+*
+M 0 24723   1 24875 ;               Tlazoteotl in Tlazoteotl's Grub
+G 1 24771 100       ;               Money Brain
+G 1 24772 100       ;               Boa Meat
+G 1 24773 100       ;               Hyena Jerky
+G 1 24774 100       ;               Jug of Water
+*
+M 0 24728  1 24763  ;
+M 0 24724  1 24893 ;               Rhialle in Rhialle's Tent
+E 1 24775  1 16     ;equip ( Long ) a Blades of Rhia
+E 1 24778  1 5      ;equip a Rhialle's battlearmor
+E 1 24779  1 7      ;equip a Rhialle's leggings
+E 1 24780  1 11     ;equip a Rhialle's shield
+*
+M 0 24734  1 24909  ;
+M 0 24734  1 24921  ;
+M 0 24735  1 24789  ;
+M 0 24737  21 24899  ;
+M 0 24737  21 24900  ;
+M 0 24737  21 24901  ;
+M 0 24737  21 24902  ;
+M 0 24737  21 24903  ;
+M 0 24737  21 24904  ;
+M 0 24737  21 24905  ;
+M 0 24737  21 24906  ;
+M 0 24737  21 24907  ;
+M 0 24737  21 24908  ;
+M 0 24737  21 24910  ;
+M 0 24737  21 24911  ;
+M 0 24737  21 24912  ;
+M 0 24737  21 24913  ;
+M 0 24737  21 24914  ;
+M 0 24737  21 24915  ;
+M 0 24737  21 24916  ;
+M 0 24737  21 24917  ;
+M 0 24737  21 24918  ;
+M 0 24737  21 24919  ;
+M 0 24737  21 24920  ;
+S
+
+
+
+
+#SHOPS
+24721 ITEM_TYPE_WEAPON ITEM_TYPE_ARMOR ITEM_TYPE_LIGHT ITEM_TYPE_CONTAINER
+     ITEM_TYPE_BOAT 100  50  0 23    ;Huraka
+24722 ITEM_TYPE_SCROLL ITEM_TYPE_WAND ITEM_TYPE_STAFF ITEM_TYPE_POTION
+     ITEM_TYPE_PILL 100  50  0 23    ;Zotzilaha
+24723 ITEM_TYPE_DRINK_CON ITEM_TYPE_FOOD ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING
+     ITEM_TYPE_NOTHING 100  50  0 23 ;Tlazoteotl
+0
+
+
+
+#SPECIALS
+S
+
+
+
+#$

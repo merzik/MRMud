@@ -1,0 +1,5375 @@
+#AREA Ethshar~
+#AUTHORS Jaxom  ~
+
+
+
+
+
+#HELPS
+-1 ETHSHAR~
+ETHSHAR
+The Hegemony of Ethshar was founded by the three surviving generals
+after the Great War ended.  The largest and grandest of the three
+Ethshars is Ethshar of the Spices, which was founded and ruled by
+Admiral Azrad.  Ethshar lies off of the Gulf of the East on the
+continent of Toril.
+.
+.     (a) Jaxom
+.
+Last updated August 20, 1998
+
+{a}JAXOM
+~
+0 $~
+
+
+
+
+#RANGES 75 95 0 99
+#MOBILES
+#7500
+valdermob innkeeper~
+Valder~
+Valder the Innkeeper is here.~
+He is a young man who is fairly fit.  He looks at you as though you are
+a child.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_SANCTUARY|AFF_UNDERSTAND
+500 S
+95 BODY_HAND BODY_HAND 20d10+12000 4d5+90
+356351 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 100~
+say Greetings, $n, I am Valder the Innkeeper.
+if rand(20)
+  say I am sometimes known as Valder of the Magic Sword.
+endif
+~
+>speech_prog sword wirikidor~
+say You wish to know the story of my sword, Wirikidor?
+mpecho Valder pauses to decide where to begin.
+say Long ago during the Great War, I was a scout in the Army.
+say On a mission in the north I was cut off and trapped.
+say It was then that I met a hermit that happened to be a wizard.
+say He enchanted my sword in order to get rid of me.  
+say Unfortunately his spell misfired and the enchantment on the 
+say sword didn't quite work out right.  I figure I have about
+say 14 uses of the sword left.
+~
+>fight_prog 15~
+if rand(10)
+  mpechoat $n To late you see Wirikidor coming for your head!
+  if quest(24, 4, $n) < 14
+    mpmadd $n quest 24 4 1
+  endif
+  slay $n
+else
+  mpechoat $n You barely avoid a vicious slash.  This guy is good!
+endif
+~
+>death_prog 100~
+if quest(24, 4, $n) == 14
+  mpoload 7502
+  mpmset $n quest 24 4 15
+else
+  if quest(24, 4, $n) == 15
+  else
+    mpmadd $n quest 24 4 1
+    mpecho Valder falls to the ground motionless, but you cant get his sword.
+  endif
+endif
+~
+|
+#7501
+seremquestmob wise wizard~
+Serem~
+Serem the Wise is here.~
+He is an aging wizard, but from the richness of his clothes you would
+guess he is a master of his craft.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_TONGUES
+0 S
+95 BODY_HAND BODY_HAND 20d10+12000 4d5+90
+364841 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 100~
+mpecho Serem turns and sees you spying on him.
+say What are you doing in my house?? You will die for
+say trying to divine the secrets of the Wizard's Guild!
+mpkill $n
+~
+>all_greet_prog 100~
+if time() == 0
+  if quest(15, 4, $n) == 0
+    mpecho You are amazed at your luck as Serem begins to teach his
+    mpecho apprentice the secret of the athame.
+    say You must have a place where you will be uninterupted.
+    say You need a fine silver dagger with no imperfections.
+    mpecho Serem explains to his apprentice how to CLEAN the dagger to get
+    mpecho it ready for the ritual.
+    mpmset $n quest 15 4 1
+  else
+    if quest(15, 4, $n) == 2
+      mpecho You settle down to watch Serem at his instruction.
+      mpecho This part of the ritual involves lighting a candle and
+      mpecho the gestures involved in the second stage, including how
+      mpecho to DRAW on the candles with dragon's blood.
+      mpmset $n quest 15 4 3
+    else
+      if quest(15, 4, $n) == 4
+        mpecho Serem reviews the ritual with his apprentice before teaching
+        mpecho her the final words that she must speak.
+        mpmset $n quest 15 4 5
+      endif
+    endif
+  endif
+else
+  if quest(15, 4, $n) == 0
+    mpecho You overhear Serem the Wise telling his apprentice that her
+    mpecho lesson will begin at midnight tonight.
+  endif
+~
+>rand_prog 25~
+if quest(15, 4, $r) == 1
+  say We will continue with the lesson tomorrow night.  
+  mpmset $r quest 15 4 2
+else
+  if quest(15, 4, $r) == 3
+    say Once you are holding the dagger and have lit the candle, you
+    say recite the final verbal part of the ritual, but that will have
+    say to wait until tomorrow night
+    mpmset $r quest 15 4 4
+  else
+    if quest(15, 4, $r) == 5
+      say falkmun awoglik olbaird varerel
+      mpecho You watch as the apprentice goes through the entire ritual.
+      mpmset $r quest 15 4 6
+    else
+      if quest(15, 4, $r) == 6
+        mpecho As the apprentice finishes the ritual the dagger begins to glow.
+        mpecho Serem the Wise glances up as his apprentice finishes
+        mpecho creating her athame and sees you.
+        say You will die for daring to learn the secrets of
+        say the Wizard's Guild.
+        mpmset $r quest 15 4 7
+        mpkill $r
+      endif
+    endif
+  endif
+~
+>fight_prog 40~
+cast 'acid blast' $n
+cast 'tremor' $r
+~
+>death_prog 100~
+if quest(15, 4, $n) == 7
+  if quest(24, 1, $n) == 0
+    mpoload 7520
+    mpoload 7521
+    mpmset $n quest 24 1 1
+  endif
+endif
+~
+|
+#7502
+tobasmob innkeeper~
+Tobas~
+Tobas the Innkeeper is here.~
+He is a thin young man who doesn't look the sort to run an inn.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_SANCTUARY|AFF_UNDERSTAND
+500 S
+95 BODY_HAND BODY_HAND 20d10+12000 4d5+90
+374781 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 100~
+say Greetings stranger!
+if rand(40)
+  if quest(15, 4, $n) < 8
+    say I rent a room upstairs if you are interested.
+    say For 5,000 gold coins, I can make sure nobody bothers you.
+  endif
+endif
+~
+>speech_prog athame~
+mpmset $n quest 15 4 0
+say I guess you would start by finding a master wizard.
+~
+>bribe_prog 5000~
+if quest(15, 4, $n) ==  7
+  say The room upstairs is all yours.
+  say I will see to it that you are not disturbed.
+  mpmset $n quest 15 4 8
+endif
+~
+|
+#7503
+dragon~
+a Dragon~
+A dragon is here.~
+          {110}_________,---------.____------.___
+        /_______    `--._______  `--.____ \\
+         /__.-' `-----.____    `--.____\\`_/_
+         ,'       ___      `---.___ ___//    `-.
+        /     _.-'   )'           ``---'     \  \
+       |     /       |           . '             |
+      /    /     /   |          '    ___  )   |  |
+      |   |     |  _/` _        ` _,' _ `/) '    |
+       \_  `--._\__`--'_\-___ _,-'   '-`  ___   _/
+         `---.____ `--.__-_  /_)____,  __/  ,`-'
+                  `------__>  `-------(/(/-'-\)\){300}~
+ACT_SENTINEL|ACT_AGGRESSIVE|ACT_SMART|ACT_BODY|ACT_RACE
+0
+-500 S
+95 0 BODY_MOUTH 20d10+12000 4d5+90
+331868 RACE_DROW
+POS_RESTING POS_RESTING SEX_MALE
+>greet_prog 100~
+if quest(8, 2, $n) == 1
+  rescale 7503 $n 100
+  growl $n
+else
+  rescale 7503 $n 150
+endif
+~
+>death_prog 100~
+if quest(8, 2, $n) == 1
+  mpechoat $n After the dragon is dead, you cut off its head and collect some of its blood.
+  mpquiet on
+  mpoload 7503
+  mpoload 7513
+  give i7503 $n
+  give i7513 $n
+  drop i7503
+  drop i7513
+  mpquiet off
+  mpmset $n quest 8 2 2
+endif
+~
+|
+#7504
+privateer pirate~
+a privateer~
+A Privateer is here.~
+He is a Privateer, or as most people know them, a Pirate.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+0
+0 S
+95 BODY_HAND BODY_HAND 20d10+12000 4d5+90
+389388 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>rand_prog 100~
+if rand(10)
+  connect 3 7586 both
+  mpat 7586 mpecho A pirate ship approaches.
+  mpat 7607 connect 1 7610
+  mpat 7588 connect 1 7602
+else
+  if rand(10)
+    connect 3 7607 both
+    mpat 7607 mpecho A pirate ship approaches.
+    mpat 7586 connect 1 7600
+    mpat 7588 connect 1 7602
+  else
+    if rand(10)
+      connect 3 7588 both
+      mpat 7588 mpecho A pirate ship approaches.
+      mpat 7586 connect 1 7600
+      mpat 7607 connect 1 7610
+    endif
+  endif
+endif
+~
+>death_prog 100~
+if quest(15, 4, $n) == 9
+  if quest(23, 1, $n) == 0
+  mpmset $n quest 23 1 1
+  mpjunk all
+  mpoload 7528
+  mpoload 7529
+  mpechoat $n You have ridden the gulf of a terrible scourge.
+else
+  mpjunk all
+endif
+~
+|
+#7505
+recruiter~
+a Recruiter~
+A Recruiter is here shouting to all who will listen.~
+He is a large man with an even larger voice.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_TONGUES
+0 S
+95 BODY_HAND BODY_HAND 20d10+12000 4d5+90
+386387 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>rand_prog 100~
+if rand(15)
+  say Brave adventurers needed!
+  say Sign up here!
+else
+  if rand(15)
+    say Experienced dragon hunters wanted!
+    say Sign up here!
+  endif
+endif
+~
+>speech_prog p sign up~
+emote mutters 'finally!'
+say A dragon has been rampaging and destroying crops and
+say livestock in the vicinity of Akalla of the Diamond.  A heroic
+say dragon slayer is wanted to track down and destroy the beast.
+say I will pay you 2 million gold coins if on delivery of proof
+say of a dead dragon.
+mpmset $n quest 8 2 1
+endif
+~
+>give_prog i7513~
+if quest(8, 2, $n) == 2
+  say You have indeed slain the dragon.  Here is the pay you were promised.
+  mpoload 7518
+  give diamond $n
+  mpoload 7519
+  give diamond $n
+  smirk 
+  say There you go.  2 million gold worth.
+  mpjunk all
+endif
+~
+|
+#7506
+ethshar guardsman~
+an Ethshar Guardsman~
+A Guardsman of the city of Ethshar is here.~
+He is fairly muscular and wearing a kilt and breastplate.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+0
+0 S
+95 BODY_HAND BODY_HAND 20d10+8000 4d5+62
+100000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 100~
+if quest(15, 4, $n) == 9
+  rescale 7506 $n 150
+  mpechoat $n The guardsman senses the taint of the black dagger and eyes you warily.
+  mpechoaround $n The guardsman senses the taint of the black dagger and eyes $n warily.
+else
+  rescale 7506 $n 100
+endif
+~
+>death_prog 100~
+if quest(15, 4, $n) == 9
+  if actorhasobjnum(7501)
+    mpquiet on
+    cast 'giant strength' $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    mpquiet off
+    mpechoat $n You feel strength flow through you.
+  endif
+endif
+~
+|
+#7507
+beggar crippled~
+a beggar~
+A crippled beggar is here asking for money.~
+He is old and crippled, and he is asking you for money.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+0
+0 S
+80 BODY_HAND BODY_HAND 20d10+3900 3d5+50
+1000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>death_prog 100~
+if quest(15, 4, $n) == 9
+  if actorhasobjnum(7501)
+    mpquiet on
+    cast 'giant strength' $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    mpquiet off
+    mpechoat $n You feel strength flow through you.
+  endif
+endif
+~
+|
+#7508
+ethshar citizen~
+a citizen of Ethshar~
+A citizen of Ethshar is here minding his business.~
+He is an average citizen that wouldn't be caught dead in the One
+hundred foot field.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+0
+0 S
+95 BODY_HAND BODY_HAND 2d10+8000 1d1+73
+271748 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 100~
+if quest(15, 4, $n) == 9
+  rescale 7508 $n 125
+  mpechoat $n The ethsharite backs away from your foul presence.
+  mpechoaround $n The ethsharite backs away from $n's foul presence.
+else
+  rescale 7508 $n 90
+endif
+~
+>death_prog 100~
+if quest(15, 4, $n) == 9
+  if actorhasobjnum(7501)
+    mpquiet on
+    cast 'giant strength' $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    mpquiet off
+    mpechoat $n You feel strength flow through you.
+  endif
+endif
+~
+|
+#7509
+ethsharitic sailor~
+An Ethsharitic Sailor~
+An Ethsharitic Sailor is here.~
+He is barefoot, and wears a blue tunic and kilt.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+0
+0 S
+95 BODY_HAND BODY_HAND 1d10+8000 1d1+73
+10000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>death_prog 100~
+if quest(15, 4, $n) == 9
+  if actorhasobjnum(7501)
+    mpquiet on
+    cast 'giant strength' $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    mpquiet off
+    mpechoat $n You feel strength flow through you.
+  endif
+endif
+~
+|
+#7510
+heremonmob mage~
+Heremon~
+Heremon the Mage is here minding the shop.~
+He is an aging mage who has been a very successful business man.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+0
+0 S
+1 BODY_HAND BODY_HAND 1d1+33 1d1+20
+27 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 20~
+emote glances up as you walk in.
+say See anything you like?
+mpforce $n list
+~
+|
+#7511
+iridithmob jeweller~
+Iridith~
+Iridith the Jeweller is here minding shop.~
+She is a beautiful young woman, and you think she may be a mage as well.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+0
+0 S
+1 BODY_HAND BODY_HAND 1d1+39 1d1+18
+24 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_FEMALE
+>greet_prog 100~
+if quest(15, 4, $n) == 9
+  if quest(19, 3, $n) == 0
+    say You look like someone that can help me.  One of my
+    say enemies has cast a death spell on a friend of mine.
+    say Please find where they put the death mark for me.
+    say If you need, one of my polished diamonds may help you.
+    mpmset $n quest 19 3 1
+  else
+    if quest(19, 3, $n) == 1
+      say Have you located the death mark yet?
+    else
+      if quest(19, 3, $n) == 2
+        say Have you located the death mark yet?
+      else
+        if rand(20)
+          emote greets you as you walk in.
+          say Is there anything I can show you?
+          mpforce $n list
+        endif
+      endif
+    endif
+  endif
+endif
+~
+>speech_prog heremon~
+if quest(19, 3, $n) == 2
+  if quest(15, 4, $n) == 9
+    if quest(22, 1, $n) == 0
+      say Thank you!  Now I will be able to remove it and save a life.
+      mpmset $n quest 19 3 3
+      say Here, take this as a reward for your services.
+      mpoload 7531
+      give i7531 $n
+      mpmset $n quest 22 1 1
+    endif
+  endif
+endif
+~
+|
+#7512
+keldermob armorer~
+Kelder~
+Kelder the Armorer is here selling his wares.~
+He is a strong young man and looks as though he could use any item in
+his shop.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+0
+0 S
+1 BODY_HAND BODY_HAND 1d1+32 1d1+19
+24 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 20~
+emote doesn't seem to notice your entrance.
+~
+|
+#7513
+apprentice wizards~
+an Apprentice~
+A wizard's apprentice is here learning spells.~
+She is a young thin woman just into her teens.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+0
+0 S
+95 BODY_HAND BODY_HAND 20d10+10000 4d5+80
+395541 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_FEMALE
+#7514
+vendor street~
+a street vendor~
+A street vendor is here selling things.~
+He is middle aged and has a growing paunch.  He has a very loud voice too.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+0
+0 S
+1 BODY_HAND BODY_HAND 1d1+35 1d1+18
+24 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 15~
+shout I got whatcha need right here!  What'll it be?
+~
+|
+#7515
+spriggan~
+a spriggan~
+A spriggan plays here.~
+It is a small green humanoid about the size of a cat.~
+ACT_SMART|ACT_BODY|ACT_RACE
+0
+0 S
+5 0 0 1d5+45 1d7+2
+100 RACE_ELF
+POS_STANDING POS_STANDING SEX_MALE
+#7516
+traveller~
+a traveller~
+A traveller of the Great Highway is here.~
+He is a normal merchant travelling between the kingdoms.~
+ACT_SMART|ACT_BODY|ACT_RACE
+0
+0 S
+80 BODY_HAND BODY_HAND 20d10+3900 3d5+50
+272673 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>death_prog 100~
+if quest(15, 4, $n) == 9
+  if actorhasobjnum(7501)
+    mpquiet on
+    cast 'giant strength' $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    mpquiet off
+    mpechoat $n You feel strength flow through you.
+  endif
+endif
+~
+|
+#7517
+atticquestmob~
+atticquestmob~
+Atticquestmob is here.~
+Quest mob for black dagger~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_ETHEREAL
+0 S
+1 BODY_HAND BODY_HAND 1d1+38 1d5+15
+27 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>speech_prog p falkmun awoglik olbaird varerel~
+if quest(15, 4, $n) == 8
+  if actorhasobjnum(7530)
+    if actorhasobjnum(7500)
+      mpechoat $n As you finish the final words to the ritual, you know something
+      mpechoat $n has gone wrong.  The dagger is not glowing as the apprentice's
+      mpechoat $n did, but instead has gone completely black absorbing all light.
+      mpechoat $n You wonder what could have gone wrong.
+      mpquiet on
+      mpforce $n drop i7500
+      mpforce $n drop i7510
+      mppurge i7500
+      mppurge i7510
+      mpoload 7501
+      give i7501 $n
+      mpquiet off
+      mpmset $n quest 15 4 9
+    endif
+  endif
+endif
+~
+|
+#7518
+gladiatormobone~
+a gladiator~
+A Gladiator duels here.~
+He is muscular and wears scraps of armor that
+leaves him unprotected for the most part.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+0
+0 S
+95 BODY_HAND BODY_HAND 20d10+12000 4d5+100
+376629 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>rand_prog 100~
+if rand(20)
+  mpecho A gladiator performs a dazzling display of swordplay.
+else
+  if rand(20)
+    mpecho A gladiator performs various tumbling exercises.
+  else
+    if rand(5)
+      if quest(22, 1, self) == 0
+        mpecho A second gladiator approaches and the two begin to duel.
+        mpkill gladiatormobtwo
+        mpmset self quest 22 1 1
+      endif
+    endif
+  endif
+endif
+~
+|
+#7519
+magician~
+a magician~
+A magician performs here.~
+He wears robes that are covered in moons and stars.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+0
+0 S
+95 BODY_HAND BODY_HAND 20d10+10000 4d5+80
+100000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>rand_prog 100~
+if rand(20)
+  mpecho A magician performs for the crowd here.
+else
+  if rand(20)
+    mpecho A magician pulls rabbits from a hat.
+  else
+    if rand(20)
+      mpecho A magician makes a chick turn into a dove
+    else
+      if rand(5)
+        mpecho As a finale, The magician walks up an invisible stair and disappears.
+        mppurge $i
+      endif
+    endif
+  endif
+endif
+~
+>fight_prog 40~
+cast 'acid blast' $n
+~
+|
+#7520
+ethshar guardsman~
+an Ethshar Guardsman~
+A Guardsman of the city of Ethshar is here.~
+He is fairly muscular and wearing a kilt and breastplate.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+0
+0 S
+95 BODY_HAND BODY_HAND 20d10+8000 4d5+62
+100000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 100~
+if quest(15, 4, $n) == 9
+  rescale 7520 $n 150
+  mpechoat $n The guardsman senses the taint of the black dagger and eyes you warily.
+  mpechoaround $n The guardsman senses the taint of the black dagger and eyes $n warily.
+else
+  rescale 7520 $n 100
+endif
+~
+>death_prog 100~
+if quest(15, 4, $n) == 9
+  if actorhasobjnum(7501)
+    mpquiet on
+    cast 'giant strength' $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    mpquiet off
+    mpechoat $n You feel strength flow through you.
+  endif
+endif
+~
+|
+#7521
+ethshar guardsman~
+an Ethshar Guardsman~
+A Guardsman of the city of Ethshar is here.~
+He is fairly muscular and wearing a kilt and breastplate.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+0
+0 S
+95 BODY_HAND BODY_HAND 20d10+8000 4d5+62
+100000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 100~
+if quest(15, 4, $n) == 9
+  rescale 7521 $n 150
+  mpechoat $n The guardsman senses the taint of the black dagger and eyes you warily.
+  mpechoaround $n The guardsman senses the taint of the black dagger and eyes $n warily.
+else
+  rescale 7521 $n 100
+endif
+~
+>death_prog 100~
+if quest(15, 4, $n) == 9
+  if actorhasobjnum(7501)
+    mpquiet on
+    cast 'giant strength' $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    mpquiet off
+    mpechoat $n You feel strength flow through you.
+  endif
+endif
+~
+|
+#7522
+ethshar guardsman~
+an Ethshar Guardsman~
+A Guardsman of the city of Ethshar is here.~
+He is fairly muscular and wearing a kilt and breastplate.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+0
+0 S
+95 BODY_HAND BODY_HAND 20d10+8000 4d5+62
+100000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 100~
+if quest(15, 4, $n) == 9
+  rescale 7522 $n 150
+  mpechoat $n The guardsman senses the taint of the black dagger and eyes you warily.
+  mpechoaround $n The guardsman senses the taint of the black dagger and eyes $n warily.
+else
+  rescale 7522 $n 100
+endif
+~
+>death_prog 100~
+if quest(15, 4, $n) == 9
+  if actorhasobjnum(7501)
+    mpquiet on
+    cast 'giant strength' $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    mpquiet off
+    mpechoat $n You feel strength flow through you.
+  endif
+endif
+~
+|
+#7523
+ethshar guardsman~
+an Ethshar Guardsman~
+A Guardsman of the city of Ethshar is here.~
+He is fairly muscular and wearing a kilt and breastplate.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+0
+0 S
+95 BODY_HAND BODY_HAND 20d10+8000 4d5+62
+100000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 100~
+if quest(15, 4, $n) == 9
+  rescale 7523 $n 150
+  mpechoat $n The guardsman senses the taint of the black dagger and eyes you warily.
+  mpechoaround $n The guardsman senses the taint of the black dagger and eyes $n warily.
+else
+  rescale 7523 $n 100
+endif
+~
+>death_prog 100~
+if quest(15, 4, $n) == 9
+  if actorhasobjnum(7501)
+    mpquiet on
+    cast 'giant strength' $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    mpquiet off
+    mpechoat $n You feel strength flow through you.
+  endif
+endif
+~
+|
+#7524
+ethshar guardsman~
+an Ethshar Guardsman~
+A Guardsman of the city of Ethshar is here.~
+He is fairly muscular and wearing a kilt and breastplate.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+0
+0 S
+95 BODY_HAND BODY_HAND 20d10+8000 4d5+62
+100000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 100~
+if quest(15, 4, $n) == 9
+  rescale 7524 $n 150
+  mpechoat $n The guardsman senses the taint of the black dagger and eyes you warily.
+  mpechoaround $n The guardsman senses the taint of the black dagger and eyes $n warily.
+else
+  rescale 7524 $n 100
+endif
+~
+>death_prog 100~
+if quest(15, 4, $n) == 9
+  if actorhasobjnum(7501)
+    mpquiet on
+    cast 'giant strength' $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    mpquiet off
+    mpechoat $n You feel strength flow through you.
+  endif
+endif
+~
+|
+#7525
+ethshar guardsman~
+an Ethshar Guardsman~
+A Guardsman of the city of Ethshar is here.~
+He is fairly muscular and wearing a kilt and breastplate.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+0
+0 S
+95 BODY_HAND BODY_HAND 20d10+8000 4d5+62
+100000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 100~
+if quest(15, 4, $n) == 9
+  rescale 7525 $n 150
+  mpechoat $n The guardsman senses the taint of the black dagger and eyes you warily.
+  mpechoaround $n The guardsman senses the taint of the black dagger and eyes $n warily.
+else
+  rescale 7525 $n 100
+endif
+~
+>death_prog 100~
+if quest(15, 4, $n) == 9
+  if actorhasobjnum(7501)
+    mpquiet on
+    cast 'giant strength' $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    mpquiet off
+    mpechoat $n You feel strength flow through you.
+  endif
+endif
+~
+|
+#7526
+ethshar guardsman~
+an Ethshar Guardsman~
+A Guardsman of the city of Ethshar is here.~
+He is fairly muscular and wearing a kilt and breastplate.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+0
+0 S
+95 BODY_HAND BODY_HAND 20d10+8000 4d5+62
+100000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 100~
+if quest(15, 4, $n) == 9
+  rescale 7526 $n 150
+  mpechoat $n The guardsman senses the taint of the black dagger and eyes you warily.
+  mpechoaround $n The guardsman senses the taint of the black dagger and eyes $n warily.
+else
+  rescale 7526 $n 100
+endif
+~
+>death_prog 100~
+if quest(15, 4, $n) == 9
+  if actorhasobjnum(7501)
+    mpquiet on
+    cast 'giant strength' $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    mpquiet off
+    mpechoat $n You feel strength flow through you.
+  endif
+endif
+~
+|
+#7527
+ethshar guardsman~
+an Ethshar Guardsman~
+A Guardsman of the city of Ethshar is here.~
+He is fairly muscular and wearing a kilt and breastplate.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+0
+0 S
+95 BODY_HAND BODY_HAND 20d10+8000 4d5+62
+100000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 100~
+if quest(15, 4, $n) == 9
+  rescale 7527 $n 150
+  mpechoat $n The guardsman senses the taint of the black dagger and eyes you warily.
+  mpechoaround $n The guardsman senses the taint of the black dagger and eyes $n warily.
+else
+  rescale 7527 $n 100
+endif
+~
+>death_prog 100~
+if quest(15, 4, $n) == 9
+  if actorhasobjnum(7501)
+    mpquiet on
+    cast 'giant strength' $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    mpquiet off
+    mpechoat $n You feel strength flow through you.
+  endif
+endif
+~
+|
+#7528
+ethshar guardsman~
+an Ethshar Guardsman~
+A Guardsman of the city of Ethshar is here.~
+He is fairly muscular and wearing a kilt and breastplate.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+0
+0 S
+95 BODY_HAND BODY_HAND 20d10+8000 4d5+62
+100000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 100~
+if quest(15, 4, $n) == 9
+  rescale 7528 $n 150
+  mpechoat $n The guardsman senses the taint of the black dagger and eyes you warily.
+  mpechoaround $n The guardsman senses the taint of the black dagger and eyes $n warily.
+else
+  rescale 7528 $n 100
+endif
+~
+>death_prog 100~
+if quest(15, 4, $n) == 9
+  if actorhasobjnum(7501)
+    mpquiet on
+    cast 'giant strength' $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    mpquiet off
+    mpechoat $n You feel strength flow through you.
+  endif
+endif
+~
+|
+#7529
+ethshar guardsman~
+an Ethshar Guardsman~
+A Guardsman of the city of Ethshar is here.~
+He is fairly muscular and wearing a kilt and breastplate.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+0
+0 S
+95 BODY_HAND BODY_HAND 20d10+8000 4d5+62
+100000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 100~
+if quest(15, 4, $n) == 9
+  rescale 7529 $n 150
+  mpechoat $n The guardsman senses the taint of the black dagger and eyes you warily.
+  mpechoaround $n The guardsman senses the taint of the black dagger and eyes $n warily.
+else
+  rescale 7529 $n 100
+endif
+~
+>death_prog 100~
+if quest(15, 4, $n) == 9
+  if actorhasobjnum(7501)
+    mpquiet on
+    cast 'giant strength' $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    mpquiet off
+    mpechoat $n You feel strength flow through you.
+  endif
+endif
+~
+|
+#7530
+ethshar guardsman~
+an Ethshar Guardsman~
+A Guardsman of the city of Ethshar is here.~
+He is fairly muscular and wearing a kilt and breastplate.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+0
+0 S
+95 BODY_HAND BODY_HAND 20d10+8000 4d5+62
+100000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 100~
+if quest(15, 4, $n) == 9
+  rescale 7530 $n 150
+  mpechoat $n The guardsman senses the taint of the black dagger and eyes you warily.
+  mpechoaround $n The guardsman senses the taint of the black dagger and eyes $n warily.
+else
+  rescale 7530 $n 100
+endif
+~
+>death_prog 100~
+if quest(15, 4, $n) == 9
+  if actorhasobjnum(7501)
+    mpquiet on
+    cast 'giant strength' $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    mpquiet off
+    mpechoat $n You feel strength flow through you.
+  endif
+endif
+~
+|
+#7531
+ethshar guardsman~
+an Ethshar Guardsman~
+A Guardsman of the city of Ethshar is here.~
+He is fairly muscular and wearing a kilt and breastplate.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+0
+0 S
+95 BODY_HAND BODY_HAND 20d10+8000 4d5+62
+100000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 100~
+if quest(15, 4, $n) == 9
+  rescale 7531 $n 150
+  mpechoat $n The guardsman senses the taint of the black dagger and eyes you warily.
+  mpechoaround $n The guardsman senses the taint of the black dagger and eyes $n warily.
+else
+  rescale 7531 $n 100
+endif
+~
+>death_prog 100~
+if quest(15, 4, $n) == 9
+  if actorhasobjnum(7501)
+    mpquiet on
+    cast 'giant strength' $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    mpquiet off
+    mpechoat $n You feel strength flow through you.
+  endif
+endif
+~
+|
+#7532
+ethshar guardsman~
+an Ethshar Guardsman~
+A Guardsman of the city of Ethshar is here.~
+He is fairly muscular and wearing a kilt and breastplate.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+0
+0 S
+95 BODY_HAND BODY_HAND 20d10+8000 4d5+62
+100000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 100~
+if quest(15, 4, $n) == 9
+  rescale 7532 $n 150
+  mpechoat $n The guardsman senses the taint of the black dagger and eyes you warily.
+  mpechoaround $n The guardsman senses the taint of the black dagger and eyes $n warily.
+else
+  rescale 7532 $n 100
+endif
+~
+>death_prog 100~
+if quest(15, 4, $n) == 9
+  if actorhasobjnum(7501)
+    mpquiet on
+    cast 'giant strength' $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    mpquiet off
+    mpechoat $n You feel strength flow through you.
+  endif
+endif
+~
+|
+#7533
+ethshar guardsman~
+an Ethshar Guardsman~
+A Guardsman of the city of Ethshar is here.~
+He is fairly muscular and wearing a kilt and breastplate.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+0
+0 S
+95 BODY_HAND BODY_HAND 20d10+8000 4d5+62
+100000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 100~
+if quest(15, 4, $n) == 9
+  rescale 7533 $n 150
+  mpechoat $n The guardsman senses the taint of the black dagger and eyes you warily.
+  mpechoaround $n The guardsman senses the taint of the black dagger and eyes $n warily.
+else
+  rescale 7533 $n 100
+endif
+~
+>death_prog 100~
+if quest(15, 4, $n) == 9
+  if actorhasobjnum(7501)
+    mpquiet on
+    cast 'giant strength' $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    mpquiet off
+    mpechoat $n You feel strength flow through you.
+  endif
+endif
+~
+|
+#7534
+ethshar guardsman~
+an Ethshar Guardsman~
+A Guardsman of the city of Ethshar is here.~
+He is fairly muscular and wearing a kilt and breastplate.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+0
+0 S
+95 BODY_HAND BODY_HAND 20d10+8000 4d5+62
+100000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 100~
+if quest(15, 4, $n) == 9
+  rescale 7534 $n 150
+  mpechoat $n The guardsman senses the taint of the black dagger and eyes you warily.
+  mpechoaround $n The guardsman senses the taint of the black dagger and eyes $n warily.
+else
+  rescale 7534 $n 100
+endif
+~
+>death_prog 100~
+if quest(15, 4, $n) == 9
+  if actorhasobjnum(7501)
+    mpquiet on
+    cast 'giant strength' $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    mpquiet off
+    mpechoat $n You feel strength flow through you.
+  endif
+endif
+~
+|
+#7535
+ethshar guardsman~
+an Ethshar Guardsman~
+A Guardsman of the city of Ethshar is here.~
+He is fairly muscular and wearing a kilt and breastplate.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+0
+0 S
+95 BODY_HAND BODY_HAND 20d10+8000 4d5+62
+100000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 100~
+if quest(15, 4, $n) == 9
+  rescale 7535 $n 150
+  mpechoat $n The guardsman senses the taint of the black dagger and eyes you warily.
+  mpechoaround $n The guardsman senses the taint of the black dagger and eyes $n warily.
+else
+  rescale 7535 $n 100
+endif
+~
+>death_prog 100~
+if quest(15, 4, $n) == 9
+  if actorhasobjnum(7501)
+    mpquiet on
+    cast 'giant strength' $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    mpquiet off
+    mpechoat $n You feel strength flow through you.
+  endif
+endif
+~
+|
+#7536
+ethshar guardsman~
+an Ethshar Guardsman~
+A Guardsman of the city of Ethshar is here.~
+He is fairly muscular and wearing a kilt and breastplate.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+0
+0 S
+95 BODY_HAND BODY_HAND 20d10+8000 4d5+62
+100000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 100~
+if quest(15, 4, $n) == 9
+  rescale 7536 $n 150
+  mpechoat $n The guardsman senses the taint of the black dagger and eyes you warily.
+  mpechoaround $n The guardsman senses the taint of the black dagger and eyes $n warily.
+else
+  rescale 7536 $n 100
+endif
+~
+>death_prog 100~
+if quest(15, 4, $n) == 9
+  if actorhasobjnum(7501)
+    mpquiet on
+    cast 'giant strength' $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    mpquiet off
+    mpechoat $n You feel strength flow through you.
+  endif
+endif
+~
+|
+#7537
+ethshar guardsman~
+an Ethshar Guardsman~
+A Guardsman of the city of Ethshar is here.~
+He is fairly muscular and wearing a kilt and breastplate.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+0
+0 S
+95 BODY_HAND BODY_HAND 20d10+8000 4d5+62
+100000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 100~
+if quest(15, 4, $n) == 9
+  rescale 7537 $n 150
+  mpechoat $n The guardsman senses the taint of the black dagger and eyes you warily.
+  mpechoaround $n The guardsman senses the taint of the black dagger and eyes $n warily.
+else
+  rescale 7537 $n 100
+endif
+~
+>death_prog 100~
+if quest(15, 4, $n) == 9
+  if actorhasobjnum(7501)
+    mpquiet on
+    cast 'giant strength' $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    mpquiet off
+    mpechoat $n You feel strength flow through you.
+  endif
+endif
+~
+|
+#7538
+ethshar guardsman~
+an Ethshar Guardsman~
+A Guardsman of the city of Ethshar is here.~
+He is fairly muscular and wearing a kilt and breastplate.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+0
+0 S
+95 BODY_HAND BODY_HAND 20d10+8000 4d5+62
+100000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 100~
+if quest(15, 4, $n) == 9
+  rescale 7538 $n 150
+  mpechoat $n The guardsman senses the taint of the black dagger and eyes you warily.
+  mpechoaround $n The guardsman senses the taint of the black dagger and eyes $n warily.
+else
+  rescale 7538 $n 100
+endif
+~
+>death_prog 100~
+if quest(15, 4, $n) == 9
+  if actorhasobjnum(7501)
+    mpquiet on
+    cast 'giant strength' $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    mpquiet off
+    mpechoat $n You feel strength flow through you.
+  endif
+endif
+~
+|
+#7539
+ethshar guardsman~
+an Ethshar Guardsman~
+A Guardsman of the city of Ethshar is here.~
+He is fairly muscular and wearing a kilt and breastplate.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+0
+0 S
+95 BODY_HAND BODY_HAND 20d10+8000 4d5+62
+100000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 100~
+if quest(15, 4, $n) == 9
+  rescale 7539 $n 150
+  mpechoat $n The guardsman senses the taint of the black dagger and eyes you warily.
+  mpechoaround $n The guardsman senses the taint of the black dagger and eyes $n warily.
+else
+  rescale 7539 $n 100
+endif
+~
+>death_prog 100~
+if quest(15, 4, $n) == 9
+  if actorhasobjnum(7501)
+    mpquiet on
+    cast 'giant strength' $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    mpquiet off
+    mpechoat $n You feel strength flow through you.
+  endif
+endif
+~
+|
+#7540
+ethshar guardsman~
+an Ethshar Guardsman~
+A Guardsman of the city of Ethshar is here.~
+He is fairly muscular and wearing a kilt and breastplate.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+0
+0 S
+95 BODY_HAND BODY_HAND 20d10+8000 4d5+62
+100000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 100~
+if quest(15, 4, $n) == 9
+  rescale 7540 $n 150
+  mpechoat $n The guardsman senses the taint of the black dagger and eyes you warily.
+  mpechoaround $n The guardsman senses the taint of the black dagger and eyes $n warily.
+else
+  rescale 7540 $n 100
+endif
+~
+>death_prog 100~
+if quest(15, 4, $n) == 9
+  if actorhasobjnum(7501)
+    mpquiet on
+    cast 'giant strength' $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    mpquiet off
+    mpechoat $n You feel strength flow through you.
+  endif
+endif
+~
+|
+#7541
+ethshar citizen~
+a citizen of Ethshar~
+A citizen of Ethshar is here minding his business.~
+He is an average citizen that wouldn't be caught dead in the One
+hundred foot field.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+0
+0 S
+95 BODY_HAND BODY_HAND 20d10+9000 3d5+85
+302787 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 100~
+if quest(15, 4, $n) == 9
+  rescale 7541 $n 125
+  mpechoat $n The ethsharite backs away from your foul presence.
+  mpechoaround $n The ethsharite backs away from $n's foul presence.
+else
+  rescale 7541 $n 90
+endif
+~
+>death_prog 100~
+if quest(15, 4, $n) == 9
+  if actorhasobjnum(7501)
+    mpquiet on
+    cast 'giant strength' $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    mpquiet off
+    mpechoat $n You feel strength flow through you.
+  endif
+endif
+~
+|
+#7542
+ethshar citizen~
+a citizen of Ethshar~
+A citizen of Ethshar is here minding his business.~
+He is an average citizen that wouldn't be caught dead in the One
+hundred foot field.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+0
+0 S
+95 BODY_HAND BODY_HAND 20d10+9000 3d5+85
+288148 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 100~
+if quest(15, 4, $n) == 9
+  rescale 7542 $n 125
+  mpechoat $n The ethsharite backs away from your foul presence.
+  mpechoaround $n The ethsharite backs away from $n's foul presence.
+else
+  rescale 7542 $n 90
+endif
+~
+>death_prog 100~
+if quest(15, 4, $n) == 9
+  if actorhasobjnum(7501)
+    mpquiet on
+    cast 'giant strength' $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    mpquiet off
+    mpechoat $n You feel strength flow through you.
+  endif
+endif
+~
+|
+#7543
+ethshar citizen~
+a citizen of Ethshar~
+A citizen of Ethshar is here minding his business.~
+He is an average citizen that wouldn't be caught dead in the One
+hundred foot field.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+0
+0 S
+95 BODY_HAND BODY_HAND 20d10+9000 3d5+85
+307768 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 100~
+if quest(15, 4, $n) == 9
+  rescale 7543 $n 125
+  mpechoat $n The ethsharite backs away from your foul presence.
+  mpechoaround $n The ethsharite backs away from $n's foul presence.
+else
+  rescale 7543 $n 90
+endif
+~
+>death_prog 100~
+if quest(15, 4, $n) == 9
+  if actorhasobjnum(7501)
+    mpquiet on
+    cast 'giant strength' $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    mpquiet off
+    mpechoat $n You feel strength flow through you.
+  endif
+endif
+~
+|
+#7544
+ethshar citizen~
+a citizen of Ethshar~
+A citizen of Ethshar is here minding his business.~
+He is an average citizen that wouldn't be caught dead in the One
+hundred foot field.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+0
+0 S
+95 BODY_HAND BODY_HAND 20d10+9000 3d5+85
+281058 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 100~
+if quest(15, 4, $n) == 9
+  rescale 7544 $n 125
+  mpechoat $n The ethsharite backs away from your foul presence.
+  mpechoaround $n The ethsharite backs away from $n's foul presence.
+else
+  rescale 7544 $n 90
+endif
+~
+>death_prog 100~
+if quest(15, 4, $n) == 9
+  if actorhasobjnum(7501)
+    mpquiet on
+    cast 'giant strength' $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    mpquiet off
+    mpechoat $n You feel strength flow through you.
+  endif
+endif
+~
+|
+#7545
+ethshar citizen~
+a citizen of Ethshar~
+A citizen of Ethshar is here minding his business.~
+He is an average citizen that wouldn't be caught dead in the One
+hundred foot field.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+0
+0 S
+95 BODY_HAND BODY_HAND 20d10+9000 3d5+85
+269052 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 100~
+if quest(15, 4, $n) == 9
+  rescale 7545 $n 125
+  mpechoat $n The ethsharite backs away from your foul presence.
+  mpechoaround $n The ethsharite backs away from $n's foul presence.
+else
+  rescale 7545 $n 90
+endif
+~
+>death_prog 100~
+if quest(15, 4, $n) == 9
+  if actorhasobjnum(7501)
+    mpquiet on
+    cast 'giant strength' $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    mpquiet off
+    mpechoat $n You feel strength flow through you.
+  endif
+endif
+~
+|
+#7546
+ethshar citizen~
+a citizen of Ethshar~
+A citizen of Ethshar is here minding his business.~
+He is an average citizen that wouldn't be caught dead in the One
+hundred foot field.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+0
+0 S
+95 BODY_HAND BODY_HAND 20d10+9000 3d5+85
+273023 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 100~
+if quest(15, 4, $n) == 9
+  rescale 7546 $n 125
+  mpechoat $n The ethsharite backs away from your foul presence.
+  mpechoaround $n The ethsharite backs away from $n's foul presence.
+else
+  rescale 7546 $n 90
+endif
+~
+>death_prog 100~
+if quest(15, 4, $n) == 9
+  if actorhasobjnum(7501)
+    mpquiet on
+    cast 'giant strength' $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    mpquiet off
+    mpechoat $n You feel strength flow through you.
+  endif
+endif
+~
+|
+#7547
+ethshar citizen~
+a citizen of Ethshar~
+A citizen of Ethshar is here minding his business.~
+He is an average citizen that wouldn't be caught dead in the One
+hundred foot field.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+0
+0 S
+95 BODY_HAND BODY_HAND 20d10+9000 3d5+85
+264179 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 100~
+if quest(15, 4, $n) == 9
+  rescale 7547 $n 125
+  mpechoat $n The ethsharite backs away from your foul presence.
+  mpechoaround $n The ethsharite backs away from $n's foul presence.
+else
+  rescale 7547 $n 90
+endif
+~
+>death_prog 100~
+if quest(15, 4, $n) == 9
+  if actorhasobjnum(7501)
+    mpquiet on
+    cast 'giant strength' $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    mpquiet off
+    mpechoat $n You feel strength flow through you.
+  endif
+endif
+~
+|
+#7548
+ethshar citizen~
+a citizen of Ethshar~
+A citizen of Ethshar is here minding his business.~
+He is an average citizen that wouldn't be caught dead in the One
+hundred foot field.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+0
+0 S
+95 BODY_HAND BODY_HAND 20d10+9000 3d5+85
+282965 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 100~
+if quest(15, 4, $n) == 9
+  rescale 7548 $n 125
+  mpechoat $n The ethsharite backs away from your foul presence.
+  mpechoaround $n The ethsharite backs away from $n's foul presence.
+else
+  rescale 7548 $n 90
+endif
+~
+>death_prog 100~
+if quest(15, 4, $n) == 9
+  if actorhasobjnum(7501)
+    mpquiet on
+    cast 'giant strength' $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    mpquiet off
+    mpechoat $n You feel strength flow through you.
+  endif
+endif
+~
+|
+#7549
+ethshar citizen~
+a citizen of Ethshar~
+A citizen of Ethshar is here minding his business.~
+He is an average citizen that wouldn't be caught dead in the One
+hundred foot field.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+0
+0 S
+95 BODY_HAND BODY_HAND 20d10+9000 3d5+85
+264714 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 100~
+if quest(15, 4, $n) == 9
+  rescale 7549 $n 125
+  mpechoat $n The ethsharite backs away from your foul presence.
+  mpechoaround $n The ethsharite backs away from $n's foul presence.
+else
+  rescale 7549 $n 90
+endif
+~
+>death_prog 100~
+if quest(15, 4, $n) == 9
+  if actorhasobjnum(7501)
+    mpquiet on
+    cast 'giant strength' $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    mpquiet off
+    mpechoat $n You feel strength flow through you.
+  endif
+endif
+~
+|
+#7550
+ethshar citizen~
+a citizen of Ethshar~
+A citizen of Ethshar is here minding his business.~
+He is an average citizen that wouldn't be caught dead in the One
+hundred foot field.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+0
+0 S
+95 BODY_HAND BODY_HAND 20d10+9000 3d5+85
+285865 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 100~
+if quest(15, 4, $n) == 9
+  rescale 7550 $n 125
+  mpechoat $n The ethsharite backs away from your foul presence.
+  mpechoaround $n The ethsharite backs away from $n's foul presence.
+else
+  rescale 7550 $n 90
+endif
+~
+>death_prog 100~
+if quest(15, 4, $n) == 9
+  if actorhasobjnum(7501)
+    mpquiet on
+    cast 'giant strength' $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    mpquiet off
+    mpechoat $n You feel strength flow through you.
+  endif
+endif
+~
+|
+#7551
+ethshar citizen~
+a citizen of Ethshar~
+A citizen of Ethshar is here minding his business.~
+He is an average citizen that wouldn't be caught dead in the One
+hundred foot field.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+0
+0 S
+95 BODY_HAND BODY_HAND 20d10+9000 3d5+85
+296341 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 100~
+if quest(15, 4, $n) == 9
+  rescale 7551 $n 125
+  mpechoat $n The ethsharite backs away from your foul presence.
+  mpechoaround $n The ethsharite backs away from $n's foul presence.
+else
+  rescale 7551 $n 90
+endif
+~
+>death_prog 100~
+if quest(15, 4, $n) == 9
+  if actorhasobjnum(7501)
+    mpquiet on
+    cast 'giant strength' $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    mpquiet off
+    mpechoat $n You feel strength flow through you.
+  endif
+endif
+~
+|
+#7552
+ethshar citizen~
+a citizen of Ethshar~
+A citizen of Ethshar is here minding his business.~
+He is an average citizen that wouldn't be caught dead in the One
+hundred foot field.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+0
+0 S
+95 BODY_HAND BODY_HAND 20d10+9000 3d5+85
+300075 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 100~
+if quest(15, 4, $n) == 9
+  rescale 7552 $n 125
+  mpechoat $n The ethsharite backs away from your foul presence.
+  mpechoaround $n The ethsharite backs away from $n's foul presence.
+else
+  rescale 7552 $n 90
+endif
+~
+>death_prog 100~
+if quest(15, 4, $n) == 9
+  if actorhasobjnum(7501)
+    mpquiet on
+    cast 'giant strength' $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    mpquiet off
+    mpechoat $n You feel strength flow through you.
+  endif
+endif
+~
+|
+#7553
+ethshar citizen~
+a citizen of Ethshar~
+A citizen of Ethshar is here minding his business.~
+He is an average citizen that wouldn't be caught dead in the One
+hundred foot field.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+0
+0 S
+95 BODY_HAND BODY_HAND 20d10+9000 3d5+85
+275914 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 100~
+if quest(15, 4, $n) == 9
+  rescale 7553 $n 125
+  mpechoat $n The ethsharite backs away from your foul presence.
+  mpechoaround $n The ethsharite backs away from $n's foul presence.
+else
+  rescale 7553 $n 90
+endif
+~
+>death_prog 100~
+if quest(15, 4, $n) == 9
+  if actorhasobjnum(7501)
+    mpquiet on
+    cast 'giant strength' $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    mpquiet off
+    mpechoat $n You feel strength flow through you.
+  endif
+endif
+~
+|
+#7554
+ethshar citizen~
+a citizen of Ethshar~
+A citizen of Ethshar is here minding his business.~
+He is an average citizen that wouldn't be caught dead in the One
+hundred foot field.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+0
+0 S
+95 BODY_HAND BODY_HAND 20d10+9000 3d5+85
+256215 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 100~
+if quest(15, 4, $n) == 9
+  rescale 7554 $n 125
+  mpechoat $n The ethsharite backs away from your foul presence.
+  mpechoaround $n The ethsharite backs away from $n's foul presence.
+else
+  rescale 7554 $n 90
+endif
+~
+>death_prog 100~
+if quest(15, 4, $n) == 9
+  if actorhasobjnum(7501)
+    mpquiet on
+    cast 'giant strength' $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    mpquiet off
+    mpechoat $n You feel strength flow through you.
+  endif
+endif
+~
+|
+#7555
+ethshar citizen~
+a citizen of Ethshar~
+A citizen of Ethshar is here minding his business.~
+He is an average citizen that wouldn't be caught dead in the One
+hundred foot field.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+0
+0 S
+95 BODY_HAND BODY_HAND 20d10+9000 3d5+85
+301950 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 100~
+if quest(15, 4, $n) == 9
+  rescale 7555 $n 125
+  mpechoat $n The ethsharite backs away from your foul presence.
+  mpechoaround $n The ethsharite backs away from $n's foul presence.
+else
+  rescale 7555 $n 90
+endif
+~
+>death_prog 100~
+if quest(15, 4, $n) == 9
+  if actorhasobjnum(7501)
+    mpquiet on
+    cast 'giant strength' $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    mpquiet off
+    mpechoat $n You feel strength flow through you.
+  endif
+endif
+~
+|
+#7556
+ethshar citizen~
+a citizen of Ethshar~
+A citizen of Ethshar is here minding his business.~
+He is an average citizen that wouldn't be caught dead in the One
+hundred foot field.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+0
+0 S
+95 BODY_HAND BODY_HAND 20d10+9000 3d5+85
+265396 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 100~
+if quest(15, 4, $n) == 9
+  rescale 7556 $n 125
+  mpechoat $n The ethsharite backs away from your foul presence.
+  mpechoaround $n The ethsharite backs away from $n's foul presence.
+else
+  rescale 7556 $n 90
+endif
+~
+>death_prog 100~
+if quest(15, 4, $n) == 9
+  if actorhasobjnum(7501)
+    mpquiet on
+    cast 'giant strength' $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    mpquiet off
+    mpechoat $n You feel strength flow through you.
+  endif
+endif
+~
+|
+#7557
+ethshar citizen~
+a citizen of Ethshar~
+A citizen of Ethshar is here minding his business.~
+He is an average citizen that wouldn't be caught dead in the One
+hundred foot field.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+0
+0 S
+95 BODY_HAND BODY_HAND 20d10+9000 3d5+85
+258732 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 100~
+if quest(15, 4, $n) == 9
+  rescale 7557 $n 125
+  mpechoat $n The ethsharite backs away from your foul presence.
+  mpechoaround $n The ethsharite backs away from $n's foul presence.
+else
+  rescale 7557 $n 90
+endif
+~
+>death_prog 100~
+if quest(15, 4, $n) == 9
+  if actorhasobjnum(7501)
+    mpquiet on
+    cast 'giant strength' $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    mpquiet off
+    mpechoat $n You feel strength flow through you.
+  endif
+endif
+~
+|
+#7558
+ethshar citizen~
+a citizen of Ethshar~
+A citizen of Ethshar is here minding his business.~
+He is an average citizen that wouldn't be caught dead in the One
+hundred foot field.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+0
+0 S
+95 BODY_HAND BODY_HAND 20d10+9000 3d5+85
+258270 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 100~
+if quest(15, 4, $n) == 9
+  rescale 7558 $n 125
+  mpechoat $n The ethsharite backs away from your foul presence.
+  mpechoaround $n The ethsharite backs away from $n's foul presence.
+else
+  rescale 7558 $n 90
+endif
+~
+>death_prog 100~
+if quest(15, 4, $n) == 9
+  if actorhasobjnum(7501)
+    mpquiet on
+    cast 'giant strength' $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    mpquiet off
+    mpechoat $n You feel strength flow through you.
+  endif
+endif
+~
+|
+#7559
+ethshar citizen~
+a citizen of Ethshar~
+A citizen of Ethshar is here minding his business.~
+He is an average citizen that wouldn't be caught dead in the One
+hundred foot field.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+0
+0 S
+95 BODY_HAND BODY_HAND 20d10+9000 3d5+85
+297584 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 100~
+if quest(15, 4, $n) == 9
+  rescale 7559 $n 125
+  mpechoat $n The ethsharite backs away from your foul presence.
+  mpechoaround $n The ethsharite backs away from $n's foul presence.
+else
+  rescale 7559 $n 90
+endif
+~
+>death_prog 100~
+if quest(15, 4, $n) == 9
+  if actorhasobjnum(7501)
+    mpquiet on
+    cast 'giant strength' $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    mpquiet off
+    mpechoat $n You feel strength flow through you.
+  endif
+endif
+~
+|
+#7560
+ethshar citizen~
+a citizen of Ethshar~
+A citizen of Ethshar is here minding his business.~
+He is an average citizen that wouldn't be caught dead in the One
+hundred foot field.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+0
+0 S
+95 BODY_HAND BODY_HAND 20d10+9000 3d5+85
+301617 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 100~
+if quest(15, 4, $n) == 9
+  rescale 7560 $n 125
+  mpechoat $n The ethsharite backs away from your foul presence.
+  mpechoaround $n The ethsharite backs away from $n's foul presence.
+else
+  rescale 7560 $n 90
+endif
+~
+>death_prog 100~
+if quest(15, 4, $n) == 9
+  if actorhasobjnum(7501)
+    mpquiet on
+    cast 'giant strength' $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    mpquiet off
+    mpechoat $n You feel strength flow through you.
+  endif
+endif
+~
+|
+#7561
+ethshar citizen~
+a citizen of Ethshar~
+A citizen of Ethshar is here minding his business.~
+He is an average citizen that wouldn't be caught dead in the One
+hundred foot field.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+0
+0 S
+95 BODY_HAND BODY_HAND 20d10+9000 3d5+85
+288579 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 100~
+if quest(15, 4, $n) == 9
+  rescale 7561 $n 125
+  mpechoat $n The ethsharite backs away from your foul presence.
+  mpechoaround $n The ethsharite backs away from $n's foul presence.
+else
+  rescale 7561 $n 90
+endif
+~
+>death_prog 100~
+if quest(15, 4, $n) == 9
+  if actorhasobjnum(7501)
+    mpquiet on
+    cast 'giant strength' $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    mpquiet off
+    mpechoat $n You feel strength flow through you.
+  endif
+endif
+~
+|
+#7562
+ethshar citizen~
+a citizen of Ethshar~
+A citizen of Ethshar is here minding his business.~
+He is an average citizen that wouldn't be caught dead in the One
+hundred foot field.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+0
+0 S
+95 BODY_HAND BODY_HAND 20d10+9000 3d5+85
+255267 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 100~
+if quest(15, 4, $n) == 9
+  rescale 7562 $n 125
+  mpechoat $n The ethsharite backs away from your foul presence.
+  mpechoaround $n The ethsharite backs away from $n's foul presence.
+else
+  rescale 7562 $n 90
+endif
+~
+>death_prog 100~
+if quest(15, 4, $n) == 9
+  if actorhasobjnum(7501)
+    mpquiet on
+    cast 'giant strength' $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    mpquiet off
+    mpechoat $n You feel strength flow through you.
+  endif
+endif
+~
+|
+#7563
+ethshar citizen~
+a citizen of Ethshar~
+A citizen of Ethshar is here minding his business.~
+He is an average citizen that wouldn't be caught dead in the One
+hundred foot field.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+0
+0 S
+95 BODY_HAND BODY_HAND 20d10+9000 3d5+85
+289609 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 100~
+if quest(15, 4, $n) == 9
+  rescale 7563 $n 125
+  mpechoat $n The ethsharite backs away from your foul presence.
+  mpechoaround $n The ethsharite backs away from $n's foul presence.
+else
+  rescale 7563 $n 90
+endif
+~
+>death_prog 100~
+if quest(15, 4, $n) == 9
+  if actorhasobjnum(7501)
+    mpquiet on
+    cast 'giant strength' $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    cast heal $n
+    mpquiet off
+    mpechoat $n You feel strength flow through you.
+  endif
+endif
+~
+|
+#7564
+gladiatormobtwo~
+a gladiator~
+A Gladiator duels here.~
+He is muscular and wears scraps of armor that
+leaves him unprotected for the most part.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+0
+0 S
+80 BODY_HAND BODY_HAND 20d10+4000 4d5+60
+0 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>rand_prog 100~
+if quest(22, 1, gladiatormobone) == 1
+  mpmset gladiatormobone quest 22 1 0
+  mpmset self quest 23 1 1
+endif
+if rand(20)
+  mpecho A gladiator performs a dazzling display of swordplay.
+else
+  if rand(20)
+    mpecho A gladiator performs various tumbling exercises.
+  endif
+endif
+~
+>fight_prog 100~
+if name($n) == gladiatormobone
+  mpmset self hp 1
+endif
+~
+>death_prog 100~
+mpmset self quest 23 1 0
+mpquiet on
+cast heal gladiatormobone
+cast heal gladiatormobone
+cast heal gladiatormobone
+cast heal gladiatormobone
+cast heal gladiatormobone
+cast heal gladiatormobone
+cast heal gladiatormobone
+cast heal gladiatormobone
+cast heal gladiatormobone
+cast heal gladiatormobone
+mpquiet off
+~
+|
+#0
+
+
+
+
+#OBJECTS
+#7500
+fine silver dagger~
+a silver dagger~
+A fine silver dagger lies here.~
+It is well made and very expensive.~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 6 10 WEAPON_PIERCE
+5 500000 65
+C
+pierce~
+127
+P 1
+TRIG_UNKNOWN 100 clean
+OPROG_IF OIF_USER_ROOM_NUM = 7597 2 0
+P 2
+TRIG_VOID
+OPROG_ECHO
+You clean the dagger until it reaches a brilliant sheen.~
+#7501
+black dagger~
+the black dagger~
+A black dagger lies here absorbing all the light.~
+It looks like volcanic glass but it is as strong as steel.~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_DARK|ITEM_FLAG_MAGIC|ITEM_FLAG_ANTI_GOOD|ITEM_FLAG_NOREMOVE|ITEM_FLAG_LEVEL|ITEM_FLAG_AUTO_ENGRAVE
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 10 9 WEAPON_PIERCE
+1 1000000 80
+A
+APPLY_AC 11
+#7502
+wirikidor magic sword~
+wirikidor~
+A magic sword lies on the ground.~
+It looks like an ordinary military issue blade.~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_MAGIC|ITEM_FLAG_ANTI_EVIL|ITEM_FLAG_NOREMOVE|ITEM_FLAG_LEVEL|ITEM_FLAG_AUTO_ENGRAVE
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 12 8 WEAPON_SLICE
+5 100000 85
+A
+APPLY_AC 11
+C
+slice~
+127
+#7503
+blood dragons flask~
+a flask of Dragon's Blood~
+A flask lies here.~
+It is a small stoppered flask filled with dragon's blood.~
+ITEM_TYPE_DRINK_CON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+5 3 LIQ_BLOOD NOT_POISONED
+1 500000 50
+P 1
+TRIG_UNKNOWN 100 draw
+OPROG_IF_HAS_OBJECT 7510 2 0
+P 2
+TRIG_VOID
+OPROG_IF_HAS_OBJECT 7500 3 0
+P 3
+TRIG_VOID
+OPROG_IF OIF_USER_ROOM_NUM = 7597 4 0
+P 4
+TRIG_VOID
+OPROG_GOD_COMMAND
+MPOLOAD 7530~
+P 4
+TRIG_VOID
+OPROG_ECHO
+You draw on the candle with dragon's blood.~
+P 4
+TRIG_VOID
+OPROG_JUNK
+#7504
+kilt red~
+a red kilt~
+A red kilt lies on the ground here.~
+It is a red kilt like the guards of Ethshar wear.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_LEGS
+16 0 0 0
+5 100000 60
+#7505
+tunic green~
+a green tunic~
+A green tunic lies on the ground here.~
+It is a green tunic like the guard of Ethshar wear.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_BODY
+16 0 0 0
+5 100000 60
+#7506
+breastplate guardsmans~
+a guardsman's breastplate~
+A guardsman's breastplate lies here.~
+It is a steel breastplate.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_BODY
+15 0 0 0
+10 100000 60
+#7507
+fountain marble~
+a marble fountain~
+A marble fountain gurgles here.~
+It is a marble fountain with leaping dolphins in the center.~
+ITEM_TYPE_FOUNTAIN
+ITEM_FLAG_LEVEL
+0
+0 0 0 0
+1000 1 99
+#7508
+knife belt~
+a belt knife~
+A belt knife lies here.~
+It is a common belt knife that any peasant would carry around.~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 9 5 WEAPON_STAB
+1 10000 60
+#7509
+feathered cap~
+a feathered cap~
+A feathered cap lies here.~
+It is a pointed felt cap with a feather in it.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HEAD
+14 0 0 0
+1 100000 50
+#7510
+candle black~
+a black candle~
+A black candle burns here.~
+It is a low wide candle of black wax.~
+ITEM_TYPE_LIGHT
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 -1 0
+1 10000 60
+#7511
+kilt blue sailors~
+a blue sailor's kilt~
+A blue kilt lies on the ground here.~
+It is a blue kilt commonly worn by sailors in Ethshar.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_LEGS
+14 0 0 0
+5 50000 50
+#7512
+blanket wool~
+a blanket~
+A blanket made of wool lies here.~
+It is a rectangular piece of wool.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_ABOUT
+14 0 0 0
+5 5000 50
+#7513
+head dragons~
+a Dragon's Head~
+A Dragon's head lies here looking at you.~
+It is the head of a large dragon that you have decapitated.~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 0 0
+50 1000 60
+#7514
+scroll recall~
+a scroll of recall~
+A scroll lies on the ground here.~
+It is a scroll written on parchment.~
+ITEM_TYPE_SCROLL
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+10 SPELL_WORD_OF_RECALL SPELL_NONE SPELL_NONE
+1 1000 10
+#7515
+fendels elixir~
+fendel's elixir~
+Fendel's elixir lies on the ground.~
+It is an ordinary vial with some unusual liquid in it.~
+ITEM_TYPE_POTION
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+55 SPELL_HEAL SPELL_PROTECTION_EVIL SPELL_SANCTUARY
+1 10000 60
+#7516
+fendels scroll~
+fendel's scroll~
+Fendel's scroll lies here.~
+It is a rolled up parchment.~
+ITEM_TYPE_SCROLL
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+55 SPELL_PASS_DOOR SPELL_DETECT_INVIS SPELL_DETECT_HIDDEN
+1 10000 60
+#7517
+fendels pill~
+fendel's pill~
+Fendel's pill lies here.~
+It is a small blue pill.~
+ITEM_TYPE_PILL
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+55 SPELL_DETECT_HIDDEN SPELL_PROTECTION_EVIL SPELL_PASS_DOOR
+1 10000 60
+#7518
+diamond bracelet~
+a diamond bracelet~
+A diamond bracelet sparkles here.~
+It is shaped like a dragon and is studded with diamonds.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_ANTI_EVIL|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WRIST
+5 0 0 0
+1 1000000 30
+A
+APPLY_INT 2
+A
+APPLY_CON 3
+A
+APPLY_WIS 3
+#7519
+diamond necklace~
+a diamond necklace~
+A diamond necklace sparkles here.~
+It's pendant is shaped like a dragon and is studded with diamonds.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_ANTI_EVIL|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_NECK
+5 0 0 0
+1 1000000 30
+A
+APPLY_CON 2
+A
+APPLY_WIS 3
+A
+APPLY_INT 3
+#7520
+athame silver knife~
+an athame~
+A silver knife lies on the ground here.~
+It is a fine silver knife that hums and glows.~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_GLOW|ITEM_FLAG_HUM|ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 3 10 WEAPON_PIERCE
+5 200000 80
+A
+APPLY_MANA 120
+C
+pierce~
+FLAG_CLASS_ILLUSIONIST|FLAG_CLASS_ELEMENTALIST|FLAG_CLASS_NECROMANCER|FLAG_CLASS_CLERIC
+#7521
+wizards robe~
+a wizard's robe~
+A wizard's robe is crumpled on the ground.~
+It is a dark rich fabric and has a hood.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_NOREMOVE|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_ABOUT
+13 0 0 0
+5 20000 80
+A
+APPLY_MANA 120
+#7522
+spriggan mirror~
+a spriggan mirror~
+A mirror lies on the ground here.~
+It is gold rimmed and brightly polished.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+5 0 0 0
+1 1000000 90
+P 1
+TRIG_TICK 50
+OPROG_IF OIF_WEAR_LOC ! WEAR_NONE 2 0
+P 2
+TRIG_VOID
+OPROG_IF OIF_USER_AREA = 7500 3 0
+P 3
+TRIG_VOID
+OPROG_ECHO
+A Spriggan hops out of the mirror.~
+P 3
+TRIG_VOID
+OPROG_GOD_COMMAND mpquiet on & MLOAD 7515 & mpquiet off~
+P 3
+TRIG_VOID
+OPROG_QUEST_ADD 10 4 1
+P 4
+TRIG_TICK 50
+OPROG_OBJECT_QUEST_IF 10 4  > 14 5 0
+P 5
+TRIG_VOID
+OPROG_ECHO
+The Mirror shatters behind the last spriggan to jump out!~
+P 5
+TRIG_VOID
+OPROG_QUEST_SET 10 4 0
+P 5
+TRIG_VOID
+OPROG_JUNK
+#7523
+uncut diamond~
+an uncut diamond~
+An uncut diamond lies here.~
+It is uncut and looks like a rock.~
+ITEM_TYPE_TREASURE
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+0 0 0 0
+1 100000 5
+#7524
+polished diamond~
+a polished diamond~
+A polished diamond glints here.~
+It is a round diamond that has been polished to sparkle.
+It could possibly be used to FIND death marks.~
+ITEM_TYPE_TREASURE
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+0 0 0 0
+1 500000 5
+P 1
+TRIG_UNKNOWN 100 find
+OPROG_IF OIF_USER_ROOM_NUM = 7536 2 3
+P 2
+TRIG_VOID
+OPROG_ECHO
+You find a death mark here at the entrance to Heremon's shop!~
+P 2
+TRIG_VOID
+OPROG_GOD_COMMAND
+MPMSET $ questr 7500 19 3 2~
+P 3
+TRIG_VOID
+OPROG_ECHO
+You search for a death mark here, but find no sign of one.~
+#7526
+ethshar history book~
+a History of Ethshar~
+A book lies here.~
+The History of Ethshar.
+As long as can be remembered, Ethshar was at war with the Northern Empire.
+The one day,  the demonologists of the north summoned the demons of hell
+to help them in the war against their enemy, ethsher, for they were
+losing.  The unleashed demons ravaged the eastern part of ethshar leaving
+nothing but a blasted desert, but then the Gods in heaven intervened
+and chased the demons back to hell and the northerners with them, and
+the Great War was over.  The Three remaining leader of Ethshar's army
+decided to form their own empire for, in the time that the Great War went
+on, Old Ethshar had fragmented and become hundreds of squabbling little
+kingdoms each claiming to be the REAL Ethshar.  Thus, The Hegemony of
+Ethshar was created.  Generals Gor and Anaran both started building cities
+around the fortress' they protected, Gor calling his Ethshar on the Rocks,
+and Anaran calling his Ethshar of the Sands.  Admiral Azrad, who alread
+based in a great city simply stayed where he was.  In time the  Azrad's
+Ethshar came to be known as Ethshar of the Spices.
+.
+By Lawrence Watt Evans~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 0 0
+5 100 1
+#7527
+frond palm animated~
+an animated palm frond~
+A palm frond is here.~
+It has been magically animated to wave by itself cooling whoever owns it.~
+ITEM_TYPE_TREASURE
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+0 0 0 0
+5 500000 10
+P 1
+TRIG_TICK 15
+OPROG_ECHO
+The palm waves at you as you feel its cooling breeze.~
+P 1
+TRIG_VOID
+OPROG_APPLY OAPPLY_MOVE 10
+#7528
+pirate's breeches~
+pirate's breeches~
+A pair of breeches lies here.~
+They are linen and cut for sailors.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_ANTI_GOOD|ITEM_FLAG_NOREMOVE|ITEM_FLAG_LEVEL|ITEM_FLAG_AUTO_ENGRAVE
+ITEM_WEAR_TAKE|ITEM_WEAR_LEGS
+18 0 0 0
+5 20000 90
+A
+APPLY_DAMROLL -5
+A
+APPLY_MANA 120
+#7529
+belt frayed rope~
+a frayed rope belt~
+A frayed rope is here.~
+It is a length of rope that is about the size of a man's waist.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_ANTI_GOOD|ITEM_FLAG_NOREMOVE|ITEM_FLAG_LEVEL|ITEM_FLAG_AUTO_ENGRAVE
+ITEM_WEAR_TAKE|ITEM_WEAR_WAIST
+18 0 0 0
+1 20000 90
+A
+APPLY_DAMROLL -5
+A
+APPLY_MANA 120
+#7530
+candle bloody~
+a bloody candle~
+A bloody candle burns here.~
+It is a low wide candle of black wax, painted with dragon's blood.~
+ITEM_TYPE_LIGHT
+ITEM_FLAG_MAGIC|ITEM_FLAG_ANTI_GOOD|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 -1 0
+1 10000 60
+A
+APPLY_AC -11
+A
+APPLY_MANA 85
+#7531
+diamond glittering~
+a glittering diamond~
+A glittering diamond sparkles here.~
+It is a large diamond shaped like a dragon.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_ANTI_GOOD|ITEM_FLAG_ANTI_EVIL|ITEM_FLAG_NOREMOVE|ITEM_FLAG_LEVEL|ITEM_FLAG_AUTO_ENGRAVE
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+20 0 0 0
+1 1000000 90
+A
+APPLY_HIT 40
+#7532
+ring suspension~
+a ring of suspension~
+A ring of suspension lies here.~
+It is a simple gold band with the word 'crebarg' engraved on the
+inside of it.~
+ITEM_TYPE_TREASURE
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_FINGER
+0 0 0 0
+1 500000 90
+P 1
+TRIG_UNKNOWN 100 crebarg
+OPROG_IF OIF_WEAR_LOC ! WEAR_NONE 2 0
+P 2
+TRIG_VOID
+OPROG_IF OIF_USER_GOLD > 500000 4 3
+P 3
+TRIG_VOID
+OPROG_ECHO You do not have enough gold for that!~
+P 4
+TRIG_VOID
+OPROG_IF_HAS_OBJECT 7533 5 6
+P 5
+TRIG_VOID
+OPROG_ECHO You already have one!~
+P 6
+TRIG_VOID
+OPROG_GOD_COMMAND mpmadd $ gold -500000 & mpoload 7533~
+P 6
+TRIG_VOID
+OPROG_ECHO Using some gold coins you create a suspension disk!~
+#7533
+disk suspension~
+a suspension disk~
+A suspension disk floats here.~
+It is a round disk which glows with a soft light.~
+ITEM_TYPE_BOAT
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL|ITEM_FLAG_GLOW
+ITEM_WEAR_TAKE
+0 0 0 0
+1 1000 1
+#7575
+shelves wooden shelf~
+wooden shelves~
+Wooden Shelves line the walls.~
+They are wooden and hold an amazing amount of junk.~
+ITEM_TYPE_CONTAINER
+ITEM_FLAG_LEVEL
+0
+1000 0 -1 0
+1000 1 99
+#0
+
+
+
+
+#ROOMS
+#7500
+Grandgate~
+This is the northern gate to the great city of Ethshar.  To the north
+lies the road that travels throughout the realms.  Spread before you
+to the south is about the largest city you have ever seen.~
+75 ROOM_NO_MOB SECT_CITY
+DDIR_NORTH
+Roads of Toril~
+~
+0 -1 7649
+DDIR_SOUTH
+One Hundred Foot Field~
+~
+0 -1 7501
+DDIR_UP
+Grandgate Barracks~
+~
+0 -1 7594
+S
+#7501
+Grand Street~
+This is one of the two biggest streets in the city, running north and
+south strait down the center.  Shops and homes line the streets on each
+side.  You have difficulty navigating the crowded walks.~
+75 0 SECT_CITY
+DDIR_NORTH
+Grandgate~
+~
+0 -1 7500
+DDIR_EAST
+One Hundred Foot Field~
+~
+0 -1 7522
+DDIR_SOUTH
+Grand Street~
+~
+0 -1 7555
+DDIR_WEST
+One Hundred Foot Field~
+~
+0 -1 7502
+S
+#7502
+One Hundred Foot Field~
+This field runs from the city walls for a bout one hundred feet.  The
+distance is fairly constant all along the walls length.  Beyond the
+field are the homes and shops that any city of this size has.~
+75 0 SECT_FIELD
+DDIR_EAST
+Grand Street~
+~
+0 -1 7501
+DDIR_WEST
+One Hundred Foot Field~
+~
+0 -1 7503
+S
+#7503
+One Hundred Foot Field~
+This field has remained clear of permanent structures of any kind.  That
+is because it is law.  Azrad decreed that the one hundred feet in front
+of the walls must remain free for troop movements in case the city were
+to be attacked.~
+75 0 SECT_FIELD
+DDIR_EAST
+One Hundred Foot Field~
+~
+0 -1 7502
+DDIR_SOUTH
+High Street~
+~
+0 -1 7564
+DDIR_WEST
+One Hundred Foot Field~
+~
+0 -1 7504
+S
+#7504
+One Hundred Foot Field~
+This field runs from the city walls for a bout one hundred feet.  The
+distance is fairly constant all along the walls length.  Beyond the field
+are the homes and shops that any city of this size has.~
+75 0 SECT_FIELD
+DDIR_EAST
+One Hundred Foot Field~
+~
+0 -1 7503
+DDIR_WEST
+One Hundred Foot Field~
+~
+0 -1 7505
+S
+#7505
+One Hundred Foot Field~
+This field has remained clear of permanent structures of any kind.  That
+is because it is law.  Azrad decreed that the one hundred feet in front
+of the walls must remain free for troop movements in case the city were
+to be attacked.  The wall lies to the north and to the west.~
+75 0 SECT_FIELD
+DDIR_EAST
+One Hundred Foot Field~
+~
+0 -1 7504
+DDIR_SOUTH
+One Hundred Foot Field~
+~
+0 -1 7506
+S
+#7506
+One Hundred Foot Field~
+This field has remained clear of permanent structures of any kind.
+That is because it is law.  Azrad decreed that the one hundred feet
+in front of the walls must remain free for troop movements in case
+the city were to be attacked.  The wall lies to the west.~
+75 0 SECT_FIELD
+DDIR_NORTH
+One Hundred Foot Field~
+~
+0 -1 7505
+DDIR_SOUTH
+One Hundred Foot Field~
+~
+0 -1 7507
+S
+#7507
+One Hundred Foot Field~
+This field has remained clear of permanent structures of any kind.
+That is because it is law.  Azrad decreed that the one hundred feet in
+front of the walls must remain free for troop movements in case the city
+were to be attacked. The wall lies to the west.~
+75 0 SECT_FIELD
+DDIR_NORTH
+One Hundred Foot Field~
+~
+0 -1 7506
+DDIR_EAST
+Arena Street~
+~
+0 -1 7554
+DDIR_SOUTH
+One Hundred Foot Field~
+~
+0 -1 7508
+S
+#7508
+One Hundred Foot Field~
+This field has remained clear of permanent structures of any kind.
+That is because it is law.  Azrad decreed that the one hundred
+feet in front of the walls must remain free for troop movements in case
+the city were to be attacked.  The wall lies to the west.~
+75 0 SECT_FIELD
+DDIR_NORTH
+One Hundred Foot Field~
+~
+0 -1 7507
+DDIR_SOUTH
+Main Street~
+~
+0 -1 7509
+S
+#7509
+Main Street~
+This is the main street that runs east and west through the center of
+the city.  It is thronged with people and you find that you are constantly
+bumping into people of all types.~
+75 0 SECT_CITY
+DDIR_NORTH
+One Hundred Foot Field~
+~
+0 -1 7508
+DDIR_EAST
+Main Street~
+~
+0 -1 7568
+DDIR_SOUTH
+One Hundred Foot Field~
+~
+0 -1 7510
+DDIR_WEST
+Westgate~
+~
+0 -1 7569
+S
+#7510
+One Hundred Foot Field~
+This field has remained clear of permanent structures of any kind.
+That is because it is law.  Azrad decreed that the one hundred feet
+in front of the walls must remain free for troop movements in case
+the city were to be attacked.  The wall lies to the west.~
+75 0 SECT_FIELD
+DDIR_NORTH
+Main Street~
+~
+0 -1 7509
+DDIR_SOUTH
+One Hundred Foot Field~
+~
+0 -1 7511
+S
+#7511
+One Hundred Foot Field~
+This field has remained clear of permanent structures of any kind.
+That is because it is law.  Azrad decreed that the one hundred feet
+in front of the walls must remain free for troop movements in case the
+city were to be attacked. The wall lies to the west.~
+75 0 SECT_FIELD
+DDIR_NORTH
+One Hundred Foot Field~
+~
+0 -1 7510
+DDIR_EAST
+Wizard Street~
+~
+0 -1 7536
+DDIR_SOUTH
+One Hundred Foot Field~
+~
+0 -1 7512
+S
+#7512
+One Hundred Foot Field~
+This field has remained clear of permanent structures of any kind.  That
+is because it is law.  Azrad decreed that the one hundred feet in front
+of the walls must remain free for troop movements in case the city were
+to be attacked. The wall lies to the west.~
+75 0 SECT_FIELD
+DDIR_NORTH
+One Hundred Foot Field~
+~
+0 -1 7511
+DDIR_SOUTH
+One Hundred Foot Field~
+~
+0 -1 7513
+S
+#7513
+One Hundred Foot Field~
+This field has remained clear of permanent structures of any kind.  That
+is because it is law.  Azrad decreed that the one hundred feet in front
+of the walls must remain free for troop movements in case the city were
+to be attacked. The wall lies to the west and to the south.~
+75 0 SECT_FIELD
+DDIR_NORTH
+One Hundred Foot Field~
+~
+0 -1 7512
+DDIR_EAST
+One Hundred Foot Field~
+~
+0 -1 7514
+S
+#7514
+One Hundred Foot Field~
+This field has remained clear of permanent structures of any kind.
+That is because it is law.  Azrad decreed that the one hundred feet in
+front of the walls must remain free for troop movements in case the city
+were to be attacked. The wall lies to the south.~
+75 0 SECT_FIELD
+DDIR_EAST
+One Hundred Foot Field~
+~
+0 -1 7515
+DDIR_WEST
+One Hundred Foot Field~
+~
+0 -1 7513
+S
+#7515
+One Hundred Foot Field~
+This field has remained clear of permanent structures of any kind.  That
+is because it is law.  Azrad decreed that the one hundred feet in front
+of the walls must remain free for troop movements in case the city were
+to be attacked. The wall lies to the south.~
+75 0 SECT_FIELD
+DDIR_NORTH
+High Street~
+~
+0 -1 7560
+DDIR_EAST
+One Hundred Foot Field~
+~
+0 -1 7516
+DDIR_WEST
+One Hundred Foot Field~
+~
+0 -1 7514
+S
+#7516
+One Hundred Foot Field~
+This field has remained clear of permanent structures of any kind.  That
+is because it is law.  Azrad decreed that the one hundred feet in front
+of the walls must remain free for troop movements in case the city were
+to be attacked. The wall lies to the south.~
+75 0 SECT_FIELD
+DDIR_EAST
+One Hundred Foot Field~
+~
+0 -1 7517
+DDIR_WEST
+One Hundred Foot Field~
+~
+0 -1 7515
+S
+#7517
+One Hundred Foot Field~
+This field has remained clear of permanent structures of any kind.
+That is because it is law.  Azrad decreed that the one hundred feet in
+front of the walls must remain free for troop movements in case the city
+were to be attacked. The wall lies to the south.~
+75 0 SECT_FIELD
+DDIR_NORTH
+Grand Street~
+~
+0 -1 7559
+DDIR_EAST
+One Hundred Foot Field~
+~
+0 -1 7518
+DDIR_WEST
+One Hundred Foot Field~
+~
+0 -1 7516
+S
+#7518
+One Hundred Foot Field~
+This field has remained clear of permanent structures of any kind.
+That is because it is law.  Azrad decreed that the one hundred
+feet in front of the walls must remain free for troop movements in case
+the city were to be attacked. The wall lies to the south.~
+75 0 SECT_FIELD
+DDIR_EAST
+One Hundred Foot Field~
+~
+0 -1 7519
+DDIR_WEST
+One Hundred Foot Field~
+~
+0 -1 7517
+S
+#7519
+One Hundred Foot Field~
+This field has remained clear of permanent structures of any kind.
+That is because it is law.  Azrad decreed that the one hundred feet
+in front of the walls must remain free for troop movements in case
+the city were to be attacked. The wall lies to the south.~
+75 0 SECT_FIELD
+DDIR_NORTH
+Shiphaven Market~
+~
+0 -1 7534
+DDIR_EAST
+One Hundred Foot Field~
+~
+0 -1 7520
+DDIR_WEST
+One Hundred Foot Field~
+~
+0 -1 7518
+S
+#7520
+One Hundred Foot Field~
+This field has remained clear of permanent structures of any kind.
+That is because it is law.  Azrad decreed that the one hundred feet
+in front of the walls must remain free for troop movements in case
+the city were to be attacked. The wall lies to the south.~
+75 0 SECT_FIELD
+DDIR_NORTH
+Shiphaven Market~
+~
+0 -1 7533
+DDIR_EAST
+One Hundred Foot Field~
+~
+0 -1 7521
+DDIR_WEST
+One Hundred Foot Field~
+~
+0 -1 7519
+S
+#7521
+One Hundred Foot Field~
+This field has remained clear of permanent structures of any kind.
+That is because it is law.  Azrad decreed that the one hundred feet
+in front of the walls must remain free for troop movements in case
+the city were to be attacked. The wall lies to the south.~
+75 0 SECT_FIELD
+DDIR_NORTH
+Harbor Street~
+~
+0 -1 7532
+DDIR_WEST
+One Hundred Foot Field~
+~
+0 -1 7520
+S
+#7522
+One Hundred Foot Field~
+This field has remained clear of permanent structures of any kind.
+That is because it is law.  Azrad decreed that the one hundred feet
+in front of the walls must remain free for troop movements in case
+the city were to be attacked. The wall lies to the north.~
+75 0 SECT_FIELD
+DDIR_EAST
+One Hundred Foot Field~
+~
+0 -1 7523
+DDIR_WEST
+Grand Street~
+~
+0 -1 7501
+S
+#7523
+One Hundred Foot Field~
+This field has remained clear of permanent structures of any kind.
+That is because it is law.  Azrad decreed that the one hundred feet
+in front of the walls must remain free for troop movements in case
+the city were to be attacked. The wall lies to the north.~
+75 0 SECT_FIELD
+DDIR_EAST
+One Hundred Foot Field~
+~
+0 -1 7524
+DDIR_WEST
+One Hundred Foot Field~
+~
+0 -1 7522
+S
+#7524
+One Hundred Foot Field~
+This field has remained clear of permanent structures of any kind.
+That is because it is law.  Azrad decreed that the one hundred feet
+in front of the walls must remain free for troop movements in case
+the city were to be attacked. The wall lies to the north.~
+75 0 SECT_FIELD
+DDIR_EAST
+One Hundred Foot Field~
+~
+0 -1 7525
+DDIR_WEST
+One Hundred Foot Field~
+~
+0 -1 7523
+S
+#7525
+One Hundred Foot Field~
+This field has remained clear of permanent structures of any kind.
+That is because it is law.  Azrad decreed that the one hundred feet
+in front of the walls must remain free for troop movements in case
+the city were to be attacked. The wall lies to the north.~
+75 0 SECT_FIELD
+DDIR_SOUTH
+Harbor Street~
+~
+0 -1 7526
+DDIR_WEST
+One Hundred Foot Field~
+~
+0 -1 7524
+S
+#7526
+Harbor Street~
+You walk on the street that runs the length of the harbor.  Docks jut
+out occasionally to the east and the west side of the street is lined
+with shops and warehouses.  The people look about like they do in the
+rest of the city, though they do tend to smell of fish.~
+75 0 SECT_CITY
+DDIR_NORTH
+One Hundred Foot Field~
+~
+0 -1 7525
+DDIR_SOUTH
+Harbor Street~
+~
+0 -1 7527
+S
+#7527
+Harbor Street~
+You walk on the street that runs the length of the harbor.  Docks jut out
+occasionally to the east and the west side of the street is lined with
+shops and warehouses.  The people look about like they do in the rest
+of the city, though they do tend to smell of fish.~
+75 0 SECT_CITY
+DDIR_NORTH
+Harbor Street~
+~
+0 -1 7526
+DDIR_SOUTH
+Harbor Street~
+~
+0 -1 7528
+DDIR_WEST
+Arena Street~
+~
+0 -1 7549
+S
+#7528
+Harbor Street~
+You walk on the street that runs the length of the harbor.  Docks
+jut out occasionally to the east and the west side of the street
+is lined with shops and warehouses.  The people look about like they
+do in the rest of the city, though they do tend to smell of fish.~
+75 0 SECT_CITY
+DDIR_NORTH
+Harbor Street~
+~
+0 -1 7527
+DDIR_SOUTH
+Harbor Street~
+~
+0 -1 7529
+S
+#7529
+Harbor Street~
+You walk on the street that runs the length of the harbor.  Docks jut out
+occasionally to the east and the west side of the street is lined with
+shops and warehouses.  The people look about like they do in the rest
+of the city, though they do tend to smell of fish.~
+75 0 SECT_CITY
+DDIR_NORTH
+Harbor Street~
+~
+0 -1 7528
+DDIR_SOUTH
+Harbor Street~
+~
+0 -1 7530
+DDIR_WEST
+Main Street~
+~
+0 -1 7565
+S
+#7530
+Harbor Street~
+You walk on the street that runs the length of the harbor.  Docks
+jut out occasionally to the east and the west side of the street is
+lined with shops and warehouses.  The people look about like they
+do in the rest of the city, though they do tend to smell of fish.~
+75 0 SECT_CITY
+DDIR_NORTH
+Harbor Street~
+~
+0 -1 7529
+DDIR_SOUTH
+Harbor Street~
+~
+0 -1 7531
+S
+#7531
+Harbor Street~
+You walk on the street that runs the length of the harbor.  Docks jut
+out occasionally to the east and the west side of the street is lined
+with shops and warehouses.  The people look about like they do in the
+rest of the city, though they do tend to smell of fish.~
+75 0 SECT_CITY
+DDIR_NORTH
+Harbor Street~
+~
+0 -1 7530
+DDIR_EAST
+Ethshar Docks~
+~
+0 -1 7593
+DDIR_SOUTH
+Harbor Street~
+~
+0 -1 7532
+S
+#7532
+Harbor Street~
+You walk on the street that runs the length of the harbor.  Docks jut
+out occasionally to the east and the west side of the street is lined
+with shops and warehouses.  The people look about like they do in
+the rest of the city, though they do tend to smell of fish.~
+75 0 SECT_CITY
+DDIR_NORTH
+Harbor Street~
+~
+0 -1 7531
+DDIR_SOUTH
+One Hundred Foot Field~
+~
+0 -1 7521
+DDIR_WEST
+Shiphaven Market~
+~
+0 -1 7533
+S
+#7533
+Shiphaven Market~
+You have entered Shiphaven market, a large bustling square nestled
+between Harbor Street and the One Hundred Foot Field.  Recruiters shout
+for people attention next to vendors selling rope and other general goods.~
+75 0 SECT_CITY
+DDIR_NORTH
+Shiphaven Market~
+~
+0 -1 7535
+DDIR_EAST
+Harbor Street~
+~
+0 -1 7532
+DDIR_SOUTH
+One Hundred Foot Field~
+~
+0 -1 7520
+DDIR_WEST
+Shiphaven Market~
+~
+0 -1 7534
+S
+#7534
+Shiphaven Market~
+You have entered Shiphaven market, a large bustling square nestled
+between Harbor Street and the One Hundred Foot Field.  Recruiters
+shout for people attention next to vendors selling rope and other
+general goods.~
+75 0 SECT_CITY
+DDIR_NORTH
+Wizard Street~
+~
+0 -1 7541
+DDIR_EAST
+Shiphaven Market~
+~
+0 -1 7533
+DDIR_SOUTH
+One Hundred Foot Field~
+~
+0 -1 7519
+S
+#7535
+Shiphaven Market~
+You have entered Shiphaven market, a large bustling square nestled
+between Harbor Street and the One Hundred Foot Field.  Recruiters shout
+for people attention next to vendors selling rope and other general goods.~
+75 0 SECT_CITY
+DDIR_EAST
+Harbor Street~
+~
+0 -1 7531
+DDIR_SOUTH
+Shiphaven Market~
+~
+0 -1 7533
+DDIR_WEST
+Wizard Street~
+~
+0 -1 7541
+S
+#7536
+Wizard Street~
+You walk along a street that is in an average or better part of the city.
+Shops line the sides of the streets with colorful signboards depicting
+all sorts of magical symbols and artifacts.  This is obviously where
+to find wizards.~
+75 0 SECT_CITY
+DDIR_EAST
+Corner of High and Wizard Streets~
+~
+0 -1 7537
+DDIR_SOUTH
+Heremon's Magic Shop~
+~
+0 -1 7595
+DDIR_WEST
+One Hundred Foot Field~
+~
+0 -1 7511
+S
+#7537
+Corner of High and Wizard Streets~
+You enter a square that is formed by two intersecting streets.  High
+Street Runs north and south from here, while Wizard Street runs east
+and west from here.~
+75 0 SECT_CITY
+DDIR_NORTH
+High Street~
+~
+0 -1 7561
+DDIR_EAST
+Wizard Street~
+~
+0 -1 7538
+DDIR_SOUTH
+High Street~
+~
+0 -1 7560
+DDIR_WEST
+Wizard Street~
+~
+0 -1 7536
+S
+#7538
+Wizard Street~
+You walk along a street that is in an average or better part of the city.
+Shops line the sides of the streets with colorful signboards depicting
+all sorts of magical symbols and artifacts.  This is obviously
+where to find wizards.~
+75 0 SECT_CITY
+DDIR_NORTH
+Serem's House~
+~
+0 -1 7574
+DDIR_EAST
+Corner of Grand and Wizard Streets~
+~
+0 -1 7539
+DDIR_WEST
+Corner of High and Wizard Streets~
+~
+0 -1 7537
+S
+#7539
+Corner of Grand and Wizard Streets~
+You enter a square that is formed by two intersecting streets.
+Grand Street Runs north and south from here, while Wizard Street
+runs east and west from here.  There is a big house on the corner
+here that can be accessed by an alley to the west.~
+75 0 SECT_CITY
+DDIR_NORTH
+Grand Street~
+~
+0 -1 7558
+DDIR_EAST
+Wizard Street~
+~
+0 -1 7540
+DDIR_SOUTH
+Grand Street~
+~
+0 -1 7559
+DDIR_WEST
+Wizard Street~
+~
+0 -1 7538
+S
+#7540
+Wizard Street~
+You walk along a street that is in an average or better part of the city.
+Shops line the sides of the streets with colorful signboards depicting
+all sorts of magical symbols and artifacts.  This is obviously where
+to find wizards.~
+75 0 SECT_CITY
+DDIR_EAST
+Wizard Street~
+~
+0 -1 7541
+DDIR_WEST
+Corner of Grand and Wizard Streets~
+~
+0 -1 7539
+S
+#7541
+Wizard Street~
+You walk along a street that is in an average or better part of the city.
+Shops line the sides of the streets with colorful signboards
+depicting all sorts of magical symbols and artifacts.  This is obviously
+where to find wizards.~
+75 0 SECT_CITY
+DDIR_NORTH
+Wizard Street~
+~
+0 -1 7542
+DDIR_EAST
+Shiphaven Market~
+~
+0 -1 7535
+DDIR_SOUTH
+Shiphaven Market~
+~
+0 -1 7534
+DDIR_WEST
+Wizard Streets~
+~
+0 -1 7540
+S
+#7542
+Wizard Street~
+You walk along a street that is in an average or better part of the
+city.  Shops line the sides of the streets with colorful signboards
+depicting all sorts of magical symbols and artifacts.  This is obviously
+where to find wizards.~
+75 0 SECT_CITY
+DDIR_NORTH
+Corner of Main and Wizard Streets~
+~
+0 -1 7543
+DDIR_SOUTH
+Wizard Street~
+~
+0 -1 7541
+S
+#7543
+Corner of Main and Wizard Streets~
+You enter a square that is formed by two intersecting streets.
+Wizard Street Runs north and south from here, while Main Street
+runs east and west from here.~
+75 0 SECT_CITY
+DDIR_NORTH
+Wizard Street~
+~
+0 -1 7544
+DDIR_EAST
+Main Street~
+~
+0 -1 7565
+DDIR_SOUTH
+Wizard Street~
+~
+0 -1 7542
+DDIR_WEST
+Main Street~
+~
+0 -1 7566
+S
+#7544
+Wizard Street~
+You walk along a street that is in an average or better part of the city.
+Shops line the sides of the streets with colorful signboards depicting
+all sorts of magical symbols and artifacts.  This is obviously where to
+find wizards.~
+75 0 SECT_CITY
+DDIR_NORTH
+Corner of Arena and Wizard Streets~
+~
+0 -1 7545
+DDIR_SOUTH
+Corner of Main and Wizard Streets~
+~
+0 -1 7543
+S
+#7545
+Corner of Arena and Wizard Streets~
+You enter a square that is formed by two intersecting streets.
+Wizard Street Runs south from here, while Arena Street runs east and
+west from here.~
+75 0 SECT_CITY
+DDIR_NORTH
+Ethshar Arena~
+~
+0 -1 7546
+DDIR_EAST
+Arena Street~
+~
+0 -1 7549
+DDIR_SOUTH
+Wizard Street~
+~
+0 -1 7544
+DDIR_WEST
+Arena Street~
+~
+0 -1 7550
+S
+#7546
+Ethshar Arena~
+This is the great arena in Ethshar of the Spices.  Sand covers the ground
+here, and you see a few bloods stains in it where people have bled on it.
+Performers entertain the crowd here.~
+75 0 SECT_DESERT
+DDIR_EAST
+Ethshar Arena~
+~
+0 -1 7548
+DDIR_SOUTH
+Corner of Arena and Wizard Streets~
+~
+0 -1 7545
+DDIR_WEST
+Ethshar Arena~
+~
+0 -1 7547
+S
+#7547
+Ethshar Arena~
+This is the great arena in Ethshar of the Spices.  Sand covers the
+ground here, and you see a few bloods stains in it where people have
+bled on it.  Performers entertain the crowd here.~
+75 0 SECT_DESERT
+DDIR_EAST
+Ethshar Arena~
+~
+0 -1 7546
+S
+#7548
+Ethshar Arena~
+This is the great arena in Ethshar of the Spices.  Sand covers the ground
+here, and you see a few bloods stains in it where people have bled on it.
+Performers entertain the crowd here.~
+75 0 SECT_DESERT
+DDIR_WEST
+Ethshar Arena~
+~
+0 -1 7546
+S
+#7549
+Arena Street~
+This street is so named because dominating one end of it is the grand
+Ethshar Arena.  It runs up from the harbor through the city to the west
+and east.  As with most of the streets in the city, shops and homes
+line the sides of it.~
+75 0 SECT_CITY
+DDIR_EAST
+Harbor Street~
+~
+0 -1 7527
+DDIR_WEST
+Corner of Arena and Wizard Streets~
+~
+0 -1 7545
+S
+#7550
+Arena Street~
+This street is so named because dominating one end of it is the grand
+Ethshar Arena.  It runs up from the harbor through the city to the
+west and east.  As with most of the streets in the city, shops and homes
+line the sides of it.~
+75 0 SECT_CITY
+DDIR_EAST
+Corner of Arena and Wizard Streets~
+~
+0 -1 7545
+DDIR_WEST
+Corner of Grand and Arena Streets~
+~
+0 -1 7551
+S
+#7551
+Corner of Grand and Arena Streets~
+You enter a square that is formed by two intersecting streets.
+Grand Street Runs north and south from here, while Arena Street
+runs east and west from here.~
+75 0 SECT_CITY
+DDIR_NORTH
+Grand Street~
+~
+0 -1 7555
+DDIR_EAST
+Arena Street~
+~
+0 -1 7550
+DDIR_SOUTH
+Grand Street~
+~
+0 -1 7556
+DDIR_WEST
+Arena Street~
+~
+0 -1 7552
+S
+#7552
+Arena Street~
+This street is so named because dominating one end of it is the grand
+Ethshar Arena.  It runs up from the harbor through the city to the
+west and east.  As with most of the streets in the city, shops and
+homes line the sides of it.~
+75 0 SECT_CITY
+DDIR_EAST
+Corner of Grand and Arena Streets~
+~
+0 -1 7551
+DDIR_SOUTH
+Kelder's Armory~
+~
+0 -1 7572
+DDIR_WEST
+Corner of High and Arena Streets~
+~
+0 -1 7553
+S
+#7553
+Corner of High and Arena Streets~
+You enter a square that is formed by two intersecting streets.
+High Street Runs north and south from here, while Arena Street runs
+east and west from here.~
+75 0 SECT_CITY
+DDIR_NORTH
+High Street~
+~
+0 -1 7564
+DDIR_EAST
+Arena Street~
+~
+0 -1 7552
+DDIR_SOUTH
+High Street~
+~
+0 -1 7563
+DDIR_WEST
+Arena Street~
+~
+0 -1 7554
+S
+#7554
+Arena Street~
+This street is so named because dominating one end of it is the grand
+Ethshar Arena.  It runs up from the harbor through the city to the
+west and east.  As with most of the streets in the city, shops and
+homes line the sides of it.~
+75 0 SECT_CITY
+DDIR_EAST
+Corner of High and Arena Streets~
+~
+0 -1 7553
+DDIR_WEST
+One Hundred Foot Field~
+~
+0 -1 7507
+S
+#7555
+Grand Street~
+This is one of the two biggest streets in the city, running north
+and south strait down the center.  Shops and homes line the streets
+on each side.  You have difficulty navigating the crowded walks.~
+75 0 SECT_CITY
+DDIR_NORTH
+Grand Street~
+~
+0 -1 7501
+DDIR_SOUTH
+Cornder of Grand and Arena Streets~
+~
+0 -1 7551
+S
+#7556
+Grand Street~
+This is one of the two biggest streets in the city, running north
+and south strait down the center.  Shops and homes line the
+streets on each side.  You have difficulty navigating the crowded walks.~
+75 0 SECT_CITY
+DDIR_NORTH
+Corner of Grand and Arena Streets~
+~
+0 -1 7551
+DDIR_EAST
+Iridith's Jewelry~
+~
+0 -1 7573
+DDIR_SOUTH
+Great Central Square~
+~
+0 -1 7557
+DDIR_WEST
+Kelder's Armory~
+~
+0 -1 7572
+S
+#7557
+Great Central Square~
+This is the great central square in the city of Ethshar of the Spices.
+A huge burbling fountain dominates the center of it and people hustle
+about on there own personal errands.~
+75 ROOM_SAFE SECT_CITY
+DDIR_NORTH
+Grand Street~
+~
+0 -1 7556
+DDIR_EAST
+Main Street~
+~
+0 -1 7566
+DDIR_SOUTH
+Grand Street~
+~
+0 -1 7558
+DDIR_WEST
+Main Street~
+~
+0 -1 7567
+S
+#7558
+Grand Street~
+This is one of the two biggest streets in the city, running north and
+south strait down the center.  Shops and homes line the streets on
+each side.  You have difficulty navigating the crowded walks.~
+75 0 SECT_CITY
+DDIR_NORTH
+Great Central Square~
+~
+0 -1 7557
+DDIR_SOUTH
+Corner of Grand and Wizard Streets~
+~
+0 -1 7539
+S
+#7559
+Grand Street~
+This is one of the two biggest streets in the city, running north and
+south strait down the center.  Shops and homes line the streets on each
+side.  You have difficulty navigating the crowded walks.~
+75 0 SECT_CITY
+DDIR_NORTH
+Corner of Grand and Wizard Streets~
+~
+0 -1 7539
+DDIR_SOUTH
+One Hundred Foot Field~
+~
+0 -1 7517
+S
+#7560
+High Street~
+You are on the highest street in the city, hence its name.  It is
+like any other street, though the people and shops along it are a bit
+wealthier than most.  It runs north and south.~
+75 0 SECT_CITY
+DDIR_NORTH
+Corner of High and Wizard Streets~
+~
+0 -1 7537
+DDIR_SOUTH
+One Hundred Foot Field~
+~
+0 -1 7515
+DDIR_WEST
+Heremon's Magic Shop~
+~
+0 -1 7595
+S
+#7561
+High Street~
+You are on the highest street in the city, hence its name.  It is like
+any other street, though the people and shops along it are a bit wealthier
+than most.  It runs north and south.~
+75 0 SECT_CITY
+DDIR_NORTH
+Corner of High and Main Streets~
+~
+0 -1 7562
+DDIR_SOUTH
+Corner of High and Wizard Streets~
+~
+0 -1 7537
+S
+#7562
+Corner of High and Main Streets~
+You enter a square that is formed by two intersecting streets.  High
+Street Runs north and south from here, while Main Street runs east
+and west from here.~
+75 0 SECT_CITY
+DDIR_NORTH
+High Street~
+~
+0 -1 7563
+DDIR_EAST
+Main Street~
+~
+0 -1 7567
+DDIR_SOUTH
+High Street~
+~
+0 -1 7561
+DDIR_WEST
+Main Street~
+~
+0 -1 7568
+S
+#7563
+High Street~
+You are on the highest street in the city, hence its name.  It is
+like any other street, though the people and shops along it are a
+bit wealthier than most.  It runs north and south.~
+75 0 SECT_CITY
+DDIR_NORTH
+Corner of High and Arena Streets~
+~
+0 -1 7553
+DDIR_SOUTH
+Corner of High and Main Streets~
+~
+0 -1 7562
+DDIR_WEST
+Cup and Dagger Inn~
+~
+0 -1 7571
+S
+#7564
+High Street~
+You are on the highest street in the city, hence its name.  It is
+like any other street, though the people and shops along it are a
+bit wealthier than most.  It runs north and south.~
+75 0 SECT_CITY
+DDIR_NORTH
+One Hundred Foot Field~
+~
+0 -1 7503
+DDIR_SOUTH
+Corner of High and Arena Streets~
+~
+0 -1 7553
+S
+#7565
+Main Street~
+This street runs east and west through the center of Ethshar of the
+Spices.  It is bustling with traffic and is the main passage for
+people travelling from the harbor out of the city.~
+75 0 SECT_CITY
+DDIR_EAST
+Harbor Street~
+~
+0 -1 7529
+DDIR_WEST
+Corner of Main and Wizard Streets~
+~
+0 -1 7543
+S
+#7566
+Main Street~
+This street runs east and west through the center of Ethshar of the
+Spices.  It is bustling with traffic and is the main passage for people
+travelling from the harbor out of the city.~
+75 0 SECT_CITY
+DDIR_NORTH
+Iridith's Jewellery~
+~
+0 -1 7573
+DDIR_EAST
+Corner of Main and Wizard Streets~
+~
+0 -1 7543
+DDIR_WEST
+Great Central Square~
+~
+0 -1 7557
+S
+#7567
+Main Street~
+This street runs east and west through the center of Ethshar of the
+Spices.  It is bustling with traffic and is the main passage for people
+travelling from the harbor out of the city.~
+75 0 SECT_CITY
+DDIR_EAST
+Great Central Square~
+~
+0 -1 7557
+DDIR_WEST
+Corner of High and Main Streets~
+~
+0 -1 7562
+S
+#7568
+Main Street~
+This street runs east and west through the center of Ethshar of
+the Spices.  It is bustling with traffic and is the main passage
+for people travelling from the harbor out of the city.~
+75 0 SECT_CITY
+DDIR_NORTH
+Cup and Dagger Inn~
+~
+0 -1 7571
+DDIR_EAST
+Corner of High and Main Streets~
+~
+0 -1 7562
+DDIR_WEST
+Main Street~
+~
+0 -1 7509
+S
+#7569
+Westgate~
+This is the western gate of Ethshar of the Spices.  The Road beyond
+leads to the other cities of the Hegemony of Ethshar and to the Small
+Kingdoms, also known as Old Ethshar.  Traffic is heavy through the gate.
+Above the gate is one of the barracks of the city guard.~
+75 ROOM_NO_MOB SECT_CITY
+DDIR_EAST
+Main Street~
+~
+0 -1 7509
+DDIR_WEST
+Great Highway~
+~
+0 -1 7576
+DDIR_UP
+Westgate Barracks~
+~
+0 -1 7570
+S
+#7570
+Westgate Barracks~
+This one of the two barracks for the city guard in Ethshar of the Spices.
+Bunks line the walls and chests lie at the foot of each bed.  A
+few guardsmen can be found relaxing or playing dice.~
+75 ROOM_INDOORS SECT_INSIDE
+DDIR_DOWN
+Westgate~
+~
+0 -1 7569
+S
+#7571
+Cup and Dagger Inn~
+This in is well furnished and is set up to take advantage of travellers
+coming in through Westgate.  The common room is full of scarred wooden
+tables, and each of the private rooms has a small but clean bed.~
+75 ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+High Street~
+~
+0 -1 7563
+DDIR_SOUTH
+Main Street~
+~
+0 -1 7568
+DDIR_UP
+Attic Room~
+~
+0 -1 7597
+S
+#7572
+Kelder's Armory~
+This shop is full of arms and armor of all sorts.  The walls are
+lined with full suits on stands, and shield hanging directly on the wall.
+Large crates in the middle of the room contain common weapons, while the
+more rare and expensive arms, are locked in a glass case near the back wall.~
+75 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+Arena Street~
+~
+0 -1 7552
+DDIR_EAST
+Grand Street~
+~
+0 -1 7556
+S
+#7573
+Iridith's Jewellery~
+You enter a shop that is richly appointed and has glass cases along all
+the walls.  Looking at the cases you see a number of very expensive pieces
+of jewellery as well as solitary gems and even a few uncut gems.~
+75 ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+Main Street~
+~
+0 -1 7566
+DDIR_WEST
+Grand Street~
+~
+0 -1 7556
+S
+#7574
+Serem's House~
+This is the house of a rich wizard.  The rooms are richly decorated and
+you are surprised by a few of the normally mundane items you fine
+throughout the house.  A set of stairs leads down into the basement and
+Wizard Street can be reached through an ornate portal opening to the south.~
+75 ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+Wizard Street~
+~
+0 -1 7538
+DDIR_DOWN
+Serem's Workroom~
+~
+0 -1 7575
+S
+#7575
+Serem's Workroom~
+This basement is made up to be a wizard's workroom.  There is a large work
+table along one wall.  The other walls contain shelves full of the most
+disgusting ingredients you have ever seen.  In the center of the work table
+is a large tome, that must be Serem's spell book.~
+75 ROOM_INDOORS SECT_INSIDE
+DDIR_UP
+Serem's House~
+~
+0 -1 7574
+S
+#7576
+Great Highway~
+You are travelling on the Great Highway that wanders through the Small
+Kingdoms.  The western end of the highway end at Ethshar of the
+Spices, while if you were to travel to the extreme eastern end, you
+would find yourself in Shan on the Desert.~
+75 0 SECT_CITY
+DDIR_NORTH
+Great Highway~
+~
+0 -1 7577
+DDIR_EAST
+Westgate~
+~
+0 -1 7569
+S
+#7577
+Great Highway~
+You are travelling on the Great Highway that wanders through the Small
+Kingdoms.  The western end of the highway end at Ethshar of the Spices,
+while if you were to travel to the extreme eastern end, you would find
+yourself in Shan on the Desert.~
+75 0 SECT_CITY
+DDIR_NORTH
+Inn at the Bridge~
+~
+0 -1 7582
+DDIR_EAST
+Great Highway~
+~
+0 -1 7578
+DDIR_SOUTH
+Great Highway~
+~
+0 -1 7576
+S
+#7578
+Great Highway~
+You are travelling on the Great Highway that wanders through the Small
+Kingdoms.  The western end of the highway end at Ethshar of the Spices,
+while if you were to travel to the extreme eastern end, you would find
+yourself in Shan on the Desert.~
+75 0 SECT_CITY
+DDIR_EAST
+Great Highway~
+~
+0 -1 7579
+DDIR_WEST
+Great Highway~
+~
+0 -1 7577
+S
+#7579
+Great Highway~
+You are travelling on the Great Highway that wanders through the
+Small Kingdoms.  The western end of the highway end at Ethshar of
+the Spices, while if you were to travel to the extreme eastern end,
+you would find yourself in Shan on the Desert.~
+75 0 SECT_CITY
+DDIR_EAST
+Great Highway~
+~
+0 -1 7580
+DDIR_WEST
+Great Highway~
+~
+0 -1 7578
+S
+#7580
+Great Highway~
+You are travelling on the Great Highway that wanders through the
+Small Kingdoms.  The western end of the highway end at Ethshar of the
+Spices, while if you were to travel to the extreme eastern end, you would
+find yourself in Shan on the Desert.~
+75 0 SECT_CITY
+DDIR_EAST
+Akalla of the Diamonds~
+~
+0 -1 7581
+DDIR_WEST
+Great Highway~
+~
+0 -1 7579
+S
+#7581
+Akalla of the Diamonds~
+You have reached the kingdom of Akalla of the Diamonds.  This is one
+of the larger kingdoms along the great highway and one of the few ports
+on it as well.~
+75 ROOM_NO_MOB SECT_CITY
+DDIR_NORTH
+Hills of Akalla~
+~
+0 -1 7583
+DDIR_SOUTH
+Gulf of the East~
+~
+0 -1 7585
+DDIR_WEST
+Great Highway~
+~
+0 -1 7580
+S
+#7582
+Inn at the Bridge~
+This is a comfy little in situated at a fork in the Great Highway
+exactly one days travel from Ethshar of the Spices.   The tables that
+people are eating at are scarred from years of use.  There is a stone
+hearth on one wall, and you can see pegs in the stone where something
+might be hung.~
+75 ROOM_NO_MOB|ROOM_INDOORS SECT_INN
+DDIR_SOUTH
+Great Highway~
+~
+0 -1 7577
+S
+#7583
+Hills of Akalla~
+These hills spread north from the town of Akalla in the kingdom of Akalla
+of the Diamonds.  They are lightly wooded and caves can be found throughout.~
+75 0 SECT_HILLS
+DDIR_NORTH
+Cave in the Hills~
+~
+0 -1 7584
+DDIR_SOUTH
+Akalla of the Diamonds~
+~
+0 -1 7581
+S
+#7584
+Cave in the Hills~
+You enter a large cave set into the back of a large hill.  You
+notice that most of the vegetation near the cave has been burned away
+and there are bones heaped in one corner.  Bits of rags cover some of
+the bones and you can see that they once belonged to peasants, probably
+from Akalla or one of the other Small Kingdoms around here.~
+75 ROOM_DARK|ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+Hills of Akalla~
+~
+0 -1 7583
+S
+#7585
+Gulf of the East~
+This great body of water is inhabited by pirates from the Pirate Towns.
+The deep blue sea is fairly peaceful on most days, but you would not
+want to be in the vicinity when a pirate ship arrives.  Most ships that
+travel the gulf do so heavily armed or carrying a magician of some sort.~
+75 0 SECT_WATER_NOSWIM
+DDIR_NORTH
+Akalla of the Diamonds~
+~
+0 -1 7581
+DDIR_EAST
+Gulf of the East~
+~
+0 -1 7585
+DDIR_SOUTH
+Gulf of the East~
+~
+0 -1 7586
+DDIR_WEST
+Gulf of the East~
+~
+0 -1 7592
+S
+#7586
+Gulf of the East~
+This great body of water is inhabited by pirates from the Pirate Towns.
+The deep blue sea is fairly peaceful on most days, but you would not
+want to be in the vicinity when a pirate ship arrives.  Most ships
+that travel the gulf do so heavily armed or carrying a magician of
+some sort.~
+75 0 SECT_WATER_NOSWIM
+DDIR_NORTH
+Gulf of the East~
+~
+0 -1 7585
+DDIR_EAST
+Gulf of the East~
+~
+0 -1 7598
+DDIR_SOUTH
+Gulf of the East~
+~
+0 -1 7587
+DDIR_WEST
+Gulf of the East~
+~
+0 -1 7591
+S
+#7587
+Gulf of the East~
+This great body of water is inhabited by pirates from the Pirate Towns.
+The deep blue sea is fairly peaceful on most days, but you would not want
+to be in the vicinity when a pirate ship arrives.  Most ships that
+travel the gulf do so heavily armed or carrying a magician of some sort.~
+75 0 SECT_WATER_NOSWIM
+DDIR_NORTH
+Gulf of the East~
+~
+0 -1 7586
+DDIR_EAST
+Gulf of the East~
+~
+0 -1 7587
+DDIR_SOUTH
+Gulf of the East~
+~
+0 -1 7588
+DDIR_WEST
+Gulf of the East~
+~
+0 -1 7590
+S
+#7588
+Gulf of the East~
+This great body of water is inhabited by pirates from the Pirate Towns.
+The deep blue sea is fairly peaceful on most days, but you would not want
+to be in the vicinity when a pirate ship arrives.  Most ships that
+travel the gulf do so heavily armed or carrying a magician of some sort.~
+75 0 SECT_WATER_NOSWIM
+DDIR_NORTH
+Gulf of the East~
+~
+0 -1 7587
+DDIR_EAST
+Gulf of the East~
+~
+0 -1 7602
+DDIR_SOUTH
+Gulf of the East~
+~
+0 -1 7588
+DDIR_WEST
+Gulf of the East~
+~
+0 -1 7589
+S
+#7589
+Gulf of the East~
+This great body of water is inhabited by pirates from the Pirate Towns.
+The deep blue sea is fairly peaceful on most days, but you would not
+want to be in the vicinity when a pirate ship arrives.  Most ships that
+travel the gulf do so heavily armed or carrying a magician of some sort.~
+75 0 SECT_WATER_NOSWIM
+DDIR_NORTH
+Gulf of the East~
+~
+0 -1 7590
+DDIR_EAST
+Gulf of the East~
+~
+0 -1 7588
+DDIR_SOUTH
+Gulf of the East~
+~
+0 -1 7589
+DDIR_WEST
+Gulf of the East~
+~
+0 -1 7596
+S
+#7590
+Gulf of the East~
+This great body of water is inhabited by pirates from the Pirate Towns.
+The deep blue sea is fairly peaceful on most days, but you would not
+want to be in the vicinity when a pirate ship arrives.  Most ships that
+travel the gulf do so heavily armed or carrying a magician of some sort.~
+75 0 SECT_WATER_NOSWIM
+DDIR_NORTH
+Gulf of the East~
+~
+0 -1 7591
+DDIR_EAST
+Gulf of the East~
+~
+0 -1 7587
+DDIR_SOUTH
+Gulf of the East~
+~
+0 -1 7589
+DDIR_WEST
+Gulf of the East~
+~
+0 -1 7590
+S
+#7591
+Gulf of the East~
+This great body of water is inhabited by pirates from the Pirate Towns.
+The deep blue sea is fairly peaceful on most days, but you would not
+want to be in the vicinity when a pirate ship arrives.  Most ships that
+travel the gulf do so heavily armed or carrying a magician of some sort.~
+75 0 SECT_WATER_NOSWIM
+DDIR_NORTH
+Gulf of the East~
+~
+0 -1 7592
+DDIR_EAST
+Gulf of the East~
+~
+0 -1 7586
+DDIR_SOUTH
+Gulf of the East~
+~
+0 -1 7590
+DDIR_WEST
+Gulf of the East~
+~
+0 -1 7591
+S
+#7592
+Gulf of the East~
+This great body of water is inhabited by pirates from the Pirate Towns.
+The deep blue sea is fairly peaceful on most days, but you would not want
+to be in the vicinity when a pirate ship arrives.  Most ships that travel
+the gulf do so heavily armed or carrying a magician of some sort.~
+75 0 SECT_WATER_NOSWIM
+DDIR_NORTH
+Gulf of the East~
+~
+0 -1 7592
+DDIR_EAST
+Gulf of the East~
+~
+0 -1 7585
+DDIR_SOUTH
+Gulf of the East~
+~
+0 -1 7591
+DDIR_WEST
+Gulf of the East~
+~
+0 -1 7592
+S
+#7593
+Ethshar Docks~
+You are standing on one of the many docks along the harbor of Ethshar
+of the Sands.  It juts out into the Gulf of the East, and can be reached
+by way of Harbor Street.  Sailors are everywhere.~
+75 0 SECT_CITY
+DDIR_EAST
+Gulf of the East~
+~
+0 -1 7596
+DDIR_WEST
+Harbor Street~
+~
+0 -1 7531
+S
+#7594
+Grandgate Barracks~
+This one of the two barracks for the city guard in Ethshar of the
+Spices.  Bunks line the walls and chests lie at the foot of each bed.
+A few guardsmen can be found relaxing or playing dice.~
+75 ROOM_INDOORS SECT_INSIDE
+DDIR_DOWN
+Grandgate~
+~
+0 -1 7500
+S
+#7595
+Heremon's Magic Shop~
+This magic shop is cluttered with various jars and bottles, scrolls
+and wands.  Every inch of floor space is covered and most of the wall
+space as well.  There is a small desk in one corner of the room that
+once you peer over the stack of paper there, you can see the proprietor
+behind.~
+75 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+Wizard Street~
+~
+0 -1 7536
+DDIR_EAST
+High Street~
+~
+0 -1 7560
+S
+#7596
+Gulf of the East~
+This great body of water is inhabited by pirates from the Pirate Towns.
+The deep blue sea is fairly peaceful on most days, but you would not
+want to be in the vicinity when a pirate ship arrives.  Most ships
+that travel the gulf do so heavily armed or carrying a magician of
+some sort.~
+75 0 SECT_WATER_NOSWIM
+DDIR_NORTH
+Gulf of the East~
+~
+0 -1 7596
+DDIR_EAST
+Gulf of the East~
+~
+0 -1 7589
+DDIR_SOUTH
+Gulf of the East~
+~
+0 -1 7596
+DDIR_WEST
+Gulf of the East~
+~
+0 -1 7596
+S
+#7597
+Attic Room~
+This is a small cramped attic that has been converted into an extra room
+for the Cup and Dagger Inn.  It sells cheap, and is out of the way, so it
+is often used by wizards when performing their experiments.~
+75 ROOM_INDOORS SECT_INN
+DDIR_DOWN
+Cup and Dagger Inn~
+~
+0 -1 7571
+S
+#7598
+Pirate Ship~
+This is a small fast ship designed to cut through waves and quickly
+strike slower merchant vessels.  It is rigged for speed and carries a
+large crew of men of low moral fiber.~
+75 0 SECT_CITY
+DDIR_WEST
+Gulf of the East~
+~
+0 -1 7586
+S
+#7599
+Gulf of the East~
+This great body of water is inhabited by pirates from the Pirate Towns.
+The deep blue sea is fairly peaceful on most days, but you would not
+want to be in the vicinity when a pirate ship arrives.  Most ships
+that travel the gulf do so heavily armed or carrying a magician of
+some sort.~
+75 0 SECT_WATER_NOSWIM
+DDIR_NORTH
+Gulf of the East~
+~
+0 -1 7603
+DDIR_EAST
+Gulf of the East~
+~
+0 -1 7608
+DDIR_SOUTH
+Gulf of the East~
+~
+0 -1 7600
+DDIR_WEST
+Gulf of the East~
+~
+0 -1 7585
+S
+#7600
+Gulf of the East~
+This great body of water is inhabited by pirates from the Pirate Towns.
+The deep blue sea is fairly peaceful on most days, but you would not
+want to be in the vicinity when a pirate ship arrives.  Most ships
+that travel the gulf do so heavily armed or carrying a magician of
+some sort.~
+75 0 SECT_WATER_NOSWIM
+DDIR_NORTH
+Gulf of the East~
+~
+0 -1 7599
+DDIR_EAST
+Gulf of the East~
+~
+0 -1 7607
+DDIR_SOUTH
+Gulf of the East~
+~
+0 -1 7601
+DDIR_WEST
+Gulf of the East~
+~
+0 -1 7586
+S
+#7601
+Gulf of the East~
+This great body of water is inhabited by pirates from the Pirate Towns.
+The deep blue sea is fairly peaceful on most days, but you would not
+want to be in the vicinity when a pirate ship arrives.  Most ships
+that travel the gulf do so heavily armed or carrying a magician of
+some sort.~
+75 0 SECT_WATER_NOSWIM
+DDIR_NORTH
+Gulf of the East~
+~
+0 -1 7600
+DDIR_EAST
+Gulf of the East~
+~
+0 -1 7606
+DDIR_SOUTH
+Gulf of the East~
+~
+0 -1 7602
+DDIR_WEST
+Gulf of the East~
+~
+0 -1 7587
+S
+#7602
+Gulf of the East~
+This great body of water is inhabited by pirates from the Pirate Towns.
+The deep blue sea is fairly peaceful on most days, but you would not
+want to be in the vicinity when a pirate ship arrives.  Most ships
+that travel the gulf do so heavily armed or carrying a magician of
+some sort.~
+75 0 SECT_WATER_NOSWIM
+DDIR_NORTH
+Gulf of the East~
+~
+0 -1 7601
+DDIR_EAST
+Gulf of the East~
+~
+0 -1 7605
+DDIR_SOUTH
+Gulf of the East~
+~
+0 -1 7603
+DDIR_WEST
+Gulf of the East~
+~
+0 -1 7588
+S
+#7603
+Gulf of the East~
+This great body of water is inhabited by pirates from the Pirate Towns.
+The deep blue sea is fairly peaceful on most days, but you would not
+want to be in the vicinity when a pirate ship arrives.  Most ships
+that travel the gulf do so heavily armed or carrying a magician of
+some sort.~
+75 0 SECT_WATER_NOSWIM
+DDIR_NORTH
+Gulf of the East~
+~
+0 -1 7602
+DDIR_EAST
+Gulf of the East~
+~
+0 -1 7604
+DDIR_SOUTH
+Gulf of the East~
+~
+0 -1 7599
+S
+#7604
+Gulf of the East~
+This great body of water is inhabited by pirates from the Pirate Towns.
+The deep blue sea is fairly peaceful on most days, but you would not
+want to be in the vicinity when a pirate ship arrives.  Most ships
+that travel the gulf do so heavily armed or carrying a magician of
+some sort.~
+75 0 SECT_WATER_NOSWIM
+DDIR_NORTH
+Gulf of the East~
+~
+0 -1 7605
+DDIR_EAST
+Gulf of the East~
+~
+0 -1 7613
+DDIR_SOUTH
+Gulf of the East~
+~
+0 -1 7608
+DDIR_WEST
+Gulf of the East~
+~
+0 -1 7603
+S
+#7605
+Gulf of the East~
+This great body of water is inhabited by pirates from the Pirate Towns.
+The deep blue sea is fairly peaceful on most days, but you would not
+want to be in the vicinity when a pirate ship arrives.  Most ships
+that travel the gulf do so heavily armed or carrying a magician of
+some sort.~
+75 0 SECT_WATER_NOSWIM
+DDIR_NORTH
+Gulf of the East~
+~
+0 -1 7606
+DDIR_EAST
+Gulf of the East~
+~
+0 -1 7612
+DDIR_SOUTH
+Gulf of the East~
+~
+0 -1 7604
+DDIR_WEST
+Gulf of the East~
+~
+0 -1 7602
+S
+#7606
+Gulf of the East~
+This great body of water is inhabited by pirates from the Pirate Towns.
+The deep blue sea is fairly peaceful on most days, but you would not
+want to be in the vicinity when a pirate ship arrives.  Most ships
+that travel the gulf do so heavily armed or carrying a magician of
+some sort.~
+75 0 SECT_WATER_NOSWIM
+DDIR_NORTH
+Gulf of the East~
+~
+0 -1 7607
+DDIR_EAST
+Gulf of the East~
+~
+0 -1 7611
+DDIR_SOUTH
+Gulf of the East~
+~
+0 -1 7605
+DDIR_WEST
+Gulf of the East~
+~
+0 -1 7601
+S
+#7607
+Gulf of the East~
+This great body of water is inhabited by pirates from the Pirate Towns.
+The deep blue sea is fairly peaceful on most days, but you would not
+want to be in the vicinity when a pirate ship arrives.  Most ships
+that travel the gulf do so heavily armed or carrying a magician of
+some sort.~
+75 0 SECT_WATER_NOSWIM
+DDIR_NORTH
+Gulf of the East~
+~
+0 -1 7608
+DDIR_EAST
+Gulf of the East~
+~
+0 -1 7610
+DDIR_SOUTH
+Gulf of the East~
+~
+0 -1 7606
+DDIR_WEST
+Gulf of the East~
+~
+0 -1 7600
+S
+#7608
+Gulf of the East~
+This great body of water is inhabited by pirates from the Pirate Towns.
+The deep blue sea is fairly peaceful on most days, but you would not
+want to be in the vicinity when a pirate ship arrives.  Most ships
+that travel the gulf do so heavily armed or carrying a magician of
+some sort.~
+75 0 SECT_WATER_NOSWIM
+DDIR_NORTH
+Gulf of the East~
+~
+0 -1 7604
+DDIR_EAST
+Gulf of the East~
+~
+0 -1 7609
+DDIR_SOUTH
+Gulf of the East~
+~
+0 -1 7607
+DDIR_WEST
+Gulf of the East~
+~
+0 -1 7599
+S
+#7609
+Gulf of the East~
+This great body of water is inhabited by pirates from the Pirate Towns.
+The deep blue sea is fairly peaceful on most days, but you would not
+want to be in the vicinity when a pirate ship arrives.  Most ships
+that travel the gulf do so heavily armed or carrying a magician of
+some sort.~
+75 0 SECT_WATER_NOSWIM
+DDIR_NORTH
+Gulf of the East~
+~
+0 -1 7613
+DDIR_SOUTH
+Gulf of the East~
+~
+0 -1 7610
+DDIR_WEST
+Gulf of the East~
+~
+0 -1 7608
+S
+#7610
+Gulf of the East~
+This great body of water is inhabited by pirates from the Pirate Towns.
+The deep blue sea is fairly peaceful on most days, but you would not
+want to be in the vicinity when a pirate ship arrives.  Most ships
+that travel the gulf do so heavily armed or carrying a magician of
+some sort.~
+75 0 SECT_WATER_NOSWIM
+DDIR_NORTH
+Gulf of the East~
+~
+0 -1 7609
+DDIR_EAST
+Gulf of the East~
+~
+0 -1 7617
+DDIR_SOUTH
+Gulf of the East~
+~
+0 -1 7611
+DDIR_WEST
+Gulf of the East~
+~
+0 -1 7607
+S
+#7611
+Gulf of the East~
+This great body of water is inhabited by pirates from the Pirate Towns.
+The deep blue sea is fairly peaceful on most days, but you would not
+want to be in the vicinity when a pirate ship arrives.  Most ships
+that travel the gulf do so heavily armed or carrying a magician of
+some sort.~
+75 0 SECT_WATER_NOSWIM
+DDIR_NORTH
+Gulf of the East~
+~
+0 -1 7610
+DDIR_EAST
+Gulf of the East~
+~
+0 -1 7616
+DDIR_SOUTH
+Gulf of the East~
+~
+0 -1 7612
+DDIR_WEST
+Gulf of the East~
+~
+0 -1 7606
+S
+#7612
+Gulf of the East~
+This great body of water is inhabited by pirates from the Pirate Towns.
+The deep blue sea is fairly peaceful on most days, but you would not
+want to be in the vicinity when a pirate ship arrives.  Most ships
+that travel the gulf do so heavily armed or carrying a magician of
+some sort.~
+75 0 SECT_WATER_NOSWIM
+DDIR_NORTH
+Gulf of the East~
+~
+0 -1 7611
+DDIR_EAST
+Gulf of the East~
+~
+0 -1 7615
+DDIR_SOUTH
+Gulf of the East~
+~
+0 -1 7613
+DDIR_WEST
+Gulf of the East~
+~
+0 -1 7605
+S
+#7613
+Gulf of the East~
+This great body of water is inhabited by pirates from the Pirate Towns.
+The deep blue sea is fairly peaceful on most days, but you would not
+want to be in the vicinity when a pirate ship arrives.  Most ships
+that travel the gulf do so heavily armed or carrying a magician of
+some sort.~
+75 0 SECT_WATER_NOSWIM
+DDIR_NORTH
+Gulf of the East~
+~
+0 -1 7612
+DDIR_EAST
+Gulf of the East~
+~
+0 -1 7614
+DDIR_SOUTH
+Gulf of the East~
+~
+0 -1 7609
+DDIR_WEST
+Gulf of the East~
+~
+0 -1 7604
+S
+#7614
+Gulf of the East~
+This great body of water is inhabited by pirates from the Pirate Towns.
+The deep blue sea is fairly peaceful on most days, but you would not
+want to be in the vicinity when a pirate ship arrives.  Most ships
+that travel the gulf do so heavily armed or carrying a magician of
+some sort.~
+75 0 SECT_WATER_NOSWIM
+DDIR_NORTH
+Gulf of the East~
+~
+0 -1 7615
+DDIR_SOUTH
+Gulf of the East~
+~
+0 -1 7617
+DDIR_WEST
+Gulf of the East~
+~
+0 -1 7613
+S
+#7615
+Gulf of the East~
+This great body of water is inhabited by pirates from the Pirate Towns.
+The deep blue sea is fairly peaceful on most days, but you would not
+want to be in the vicinity when a pirate ship arrives.  Most ships
+that travel the gulf do so heavily armed or carrying a magician of
+some sort.~
+75 0 SECT_WATER_NOSWIM
+DDIR_NORTH
+Gulf of the East~
+~
+0 -1 7616
+DDIR_EAST
+Gulf of the East~
+~
+0 -1 7619
+DDIR_SOUTH
+Gulf of the East~
+~
+0 -1 7614
+DDIR_WEST
+Gulf of the East~
+~
+0 -1 7612
+S
+#7616
+Gulf of the East~
+This great body of water is inhabited by pirates from the Pirate Towns.
+The deep blue sea is fairly peaceful on most days, but you would not
+want to be in the vicinity when a pirate ship arrives.  Most ships
+that travel the gulf do so heavily armed or carrying a magician of
+some sort.~
+75 0 SECT_WATER_NOSWIM
+DDIR_NORTH
+Gulf of the East~
+~
+0 -1 7617
+DDIR_EAST
+Gulf of the East~
+~
+0 -1 7618
+DDIR_SOUTH
+Gulf of the East~
+~
+0 -1 7615
+DDIR_WEST
+Gulf of the East~
+~
+0 -1 7611
+S
+#7617
+Gulf of the East~
+This great body of water is inhabited by pirates from the Pirate Towns.
+The deep blue sea is fairly peaceful on most days, but you would not
+want to be in the vicinity when a pirate ship arrives.  Most ships
+that travel the gulf do so heavily armed or carrying a magician of
+some sort.~
+75 0 SECT_WATER_NOSWIM
+DDIR_NORTH
+Gulf of the East~
+~
+0 -1 7614
+DDIR_EAST
+Gulf of the East~
+~
+0 -1 7620
+DDIR_SOUTH
+Gulf of the East~
+~
+0 -1 7616
+DDIR_WEST
+Gulf of the East~
+~
+0 -1 7610
+S
+#7618
+Gulf of the East~
+This great body of water is inhabited by pirates from the Pirate Towns.
+The deep blue sea is fairly peaceful on most days, but you would not
+want to be in the vicinity when a pirate ship arrives.  Most ships
+that travel the gulf do so heavily armed or carrying a magician of
+some sort.~
+75 0 SECT_WATER_NOSWIM
+DDIR_NORTH
+Gulf of the East~
+~
+0 -1 7620
+DDIR_EAST
+Beach of the East~
+~
+0 -1 7621
+DDIR_SOUTH
+Gulf of the East~
+~
+0 -1 7619
+DDIR_WEST
+Gulf of the East~
+~
+0 -1 7616
+S
+#7619
+Gulf of the East~
+This great body of water is inhabited by pirates from the Pirate Towns.
+The deep blue sea is fairly peaceful on most days, but you would not
+want to be in the vicinity when a pirate ship arrives.  Most ships
+that travel the gulf do so heavily armed or carrying a magician of
+some sort.~
+75 0 SECT_WATER_NOSWIM
+DDIR_NORTH
+Gulf of the East~
+~
+0 -1 7618
+DDIR_SOUTH
+Gulf of the East~
+~
+0 -1 7620
+DDIR_WEST
+Gulf of the East~
+~
+0 -1 7615
+DDIR_EAST
+Beach of Crydee~
+~
+0 -1 1793
+S
+#7620
+Gulf of the East~
+This great body of water is inhabited by pirates from the Pirate Towns.
+The deep blue sea is fairly peaceful on most days, but you would not
+want to be in the vicinity when a pirate ship arrives.  Most ships
+that travel the gulf do so heavily armed or carrying a magician of
+some sort.~
+75 0 SECT_WATER_NOSWIM
+DDIR_NORTH
+Gulf of the East~
+~
+0 -1 7619
+DDIR_SOUTH
+Gulf of the East~
+~
+0 -1 7618
+DDIR_WEST
+Gulf of the East~
+~
+0 -1 7617
+S
+#7621
+Beach of the East~
+This beach runs along the Gulf of the East in a north-south direction.
+The water to the west is a greeny blue and the sand on the beach
+is a yellowish white.  Across the gulf from here lies the continent
+of Toril.~
+75 ROOM_NO_MOB SECT_DESERT
+DDIR_EAST
+Roads of the Realm~
+~
+0 -1 17648
+DDIR_WEST
+Gulf of the East~
+~
+0 -1 7620
+S
+#0
+
+
+
+
+#RESETS
+M 0  7500   1  7582 ;                   Valder in Inn at the Bridge        
+M 0  7501   1  7575 ;                    Serem in Serem's Workroom         
+M 0  7502   1  7571 ;                    Tobas in Cup and Dagger Inn       
+M 0  7503   1  7584 ;                 a Dragon in Cave in the Hills        
+M 0  7504   1  7598 ;              a privateer in Pirate Ship              
+E 1  7528 500 7 ;equip pirate's breeches        
+E 1  7529 500 13 ;equip a frayed rope belt       
+M 0  7505   1  7533 ;              a Recruiter in Shiphaven Market         
+M 0  7506   1  7570 ;     an Ethshar Guardsman in Westgate Barracks        
+M 0  7520   1  7594 ;     an Ethshar Guardsman in Grandgate Barracks       
+E 1  7504 500 7 ;equip a red kilt               
+M 0  7521   1  7500 ;     an Ethshar Guardsman in Grandgate                
+M 0  7522   1  7569 ;     an Ethshar Guardsman in Westgate                 
+M 0  7523   1  7502 ;     an Ethshar Guardsman in One Hundred Foot Field   
+E 1  7505 500 5 ;equip a green tunic            
+M 0  7524   1  7505 ;     an Ethshar Guardsman in One Hundred Foot Field   
+E 1  7505 500 5 ;equip a green tunic            
+M 0  7525   1  7508 ;     an Ethshar Guardsman in One Hundred Foot Field   
+E 1  7504 500 7 ;equip a red kilt               
+M 0  7526   1  7511 ;     an Ethshar Guardsman in One Hundred Foot Field   
+M 0  7527   1  7513 ;     an Ethshar Guardsman in One Hundred Foot Field   
+M 0  7528   1  7516 ;     an Ethshar Guardsman in One Hundred Foot Field   
+E 1  7505 500 5 ;equip a green tunic            
+M 0  7529   1  7518 ;     an Ethshar Guardsman in One Hundred Foot Field   
+M 0  7530   1  7521 ;     an Ethshar Guardsman in One Hundred Foot Field   
+E 1  7504 500 7 ;equip a red kilt               
+M 0  7531   1  7522 ;     an Ethshar Guardsman in One Hundred Foot Field   
+M 0  7532   1  7525 ;     an Ethshar Guardsman in One Hundred Foot Field   
+E 1  7505 500 5 ;equip a green tunic            
+M 0  7533   1  7553 ;     an Ethshar Guardsman in Corner of High and Arena 
+M 0  7534   1  7562 ;     an Ethshar Guardsman in Corner of High and Main S
+E 1  7504 500 7 ;equip a red kilt               
+M 0  7535   1  7537 ;     an Ethshar Guardsman in Corner of High and Wizard
+M 0  7536   1  7551 ;     an Ethshar Guardsman in Corner of Grand and Arena
+E 1  7505 500 5 ;equip a green tunic            
+M 0  7537   1  7557 ;     an Ethshar Guardsman in Great Central Square     
+M 0  7538   1  7539 ;     an Ethshar Guardsman in Corner of Grand and Wizar
+M 0  7539   1  7545 ;     an Ethshar Guardsman in Corner of Arena and Wizar
+E 1  7504 500 7 ;equip a red kilt               
+M 0  7540   1  7543 ;     an Ethshar Guardsman in Corner of Main and Wizard
+M 0  7507  12  7503 ;                 a beggar in One Hundred Foot Field   
+M 0  7507  12  7504 ;                 a beggar in One Hundred Foot Field   
+M 0  7507  12  7506 ;                 a beggar in One Hundred Foot Field   
+M 0  7507  12  7507 ;                 a beggar in One Hundred Foot Field   
+M 0  7507  12  7510 ;                 a beggar in One Hundred Foot Field   
+M 0  7507  12  7512 ;                 a beggar in One Hundred Foot Field   
+M 0  7507  12  7514 ;                 a beggar in One Hundred Foot Field   
+M 0  7507  12  7515 ;                 a beggar in One Hundred Foot Field   
+M 0  7507  12  7519 ;                 a beggar in One Hundred Foot Field   
+M 0  7507  12  7520 ;                 a beggar in One Hundred Foot Field   
+M 0  7507  12  7523 ;                 a beggar in One Hundred Foot Field   
+M 0  7507  12  7524 ;                 a beggar in One Hundred Foot Field   
+M 0  7508   1  7501 ;     a citizen of Ethshar in Grand Street             
+M 0  7541   1  7509 ;     a citizen of Ethshar in Main Street              
+M 0  7542   1  7568 ;     a citizen of Ethshar in Main Street              
+M 0  7543   1  7563 ;     a citizen of Ethshar in High Street              
+M 0  7544   1  7564 ;     a citizen of Ethshar in High Street              
+M 0  7545   1  7561 ;     a citizen of Ethshar in High Street              
+M 0  7546   1  7560 ;     a citizen of Ethshar in High Street              
+M 0  7547   1  7536 ;     a citizen of Ethshar in Wizard Street            
+M 0  7548   1  7534 ;     a citizen of Ethshar in Shiphaven Market         
+M 0  7549   1  7552 ;     a citizen of Ethshar in Arena Street             
+M 0  7550   1  7567 ;     a citizen of Ethshar in Main Street              
+M 0  7551   1  7538 ;     a citizen of Ethshar in Wizard Street            
+M 0  7552   1  7555 ;     a citizen of Ethshar in Grand Street             
+M 0  7553   1  7556 ;     a citizen of Ethshar in Grand Street             
+M 0  7554   1  7558 ;     a citizen of Ethshar in Grand Street             
+M 0  7555   1  7559 ;     a citizen of Ethshar in Grand Street             
+M 0  7556   1  7550 ;     a citizen of Ethshar in Arena Street             
+M 0  7557   1  7566 ;     a citizen of Ethshar in Main Street              
+M 0  7558   1  7540 ;     a citizen of Ethshar in Wizard Street            
+M 0  7559   1  7544 ;     a citizen of Ethshar in Wizard Street            
+M 0  7560   1  7542 ;     a citizen of Ethshar in Wizard Street            
+M 0  7561   1  7549 ;     a citizen of Ethshar in Arena Street             
+M 0  7562   1  7565 ;     a citizen of Ethshar in Main Street              
+M 0  7563   1  7535 ;     a citizen of Ethshar in Shiphaven Market         
+M 0  7509   7  7526 ;    An Ethsharitic Sailor in Harbor Street            
+M 0  7509   7  7527 ;    An Ethsharitic Sailor in Harbor Street            
+E 1  7511 500 7 ;equip a blue sailor's kilt     
+M 0  7509   7  7528 ;    An Ethsharitic Sailor in Harbor Street            
+M 0  7509   7  7529 ;    An Ethsharitic Sailor in Harbor Street            
+E 1  7511 500 7 ;equip a blue sailor's kilt     
+M 0  7509   7  7530 ;    An Ethsharitic Sailor in Harbor Street            
+M 0  7509   7  7531 ;    An Ethsharitic Sailor in Harbor Street            
+E 1  7511 500 7 ;equip a blue sailor's kilt     
+M 0  7509   7  7532 ;    An Ethsharitic Sailor in Harbor Street            
+M 0  7510   1  7595 ;                  Heremon in Heremon's Magic Shop     
+G 1  7514 500       ;       a scroll of recall
+G 1  7515 500       ;          fendel's elixir
+G 1  7516 500       ;          fendel's scroll
+G 1  7517 500       ;            fendel's pill
+M 0  7511   1  7573 ;                  Iridith in Iridith's Jewellery      
+G 1  7522 500       ;        a spriggan mirror
+G 1  7523 500       ;         an uncut diamond
+G 1  7524 500       ;       a polished diamond
+G 1  7532 500       ;      a ring of suspension
+M 0  7512   1  7572 ;                   Kelder in Kelder's Armory
+G 1  7500 500       ;          a silver dagger
+G 1  7506 500       ;a guardsman's breastplate
+M 0  7513   1  7575 ;            an Apprentice in Serem's Workroom         
+M 0  7514   1  7534 ;          a street vendor in Shiphaven Market         
+G 1  7510 500       ;           a black candle
+G 1  7512 500       ;                a blanket
+M 0  7516   6  7576 ;              a traveller in Great Highway            
+E 1  7508 500 ITEM_WEAR_HEAD ;equip a belt knife             
+M 0  7516   6  7577 ;              a traveller in Great Highway            
+E 1  7509 500 6 ;equip a feathered cap          
+M 0  7516   6  7578 ;              a traveller in Great Highway            
+E 1  7508 500 ITEM_WEAR_HEAD ;equip a belt knife             
+M 0  7516   6  7579 ;              a traveller in Great Highway            
+E 1  7509 500 6 ;equip a feathered cap          
+M 0  7516   6  7580 ;              a traveller in Great Highway            
+E 1  7508 500 ITEM_WEAR_HEAD ;equip a belt knife             
+M 0  7517   1  7597 ;            atticquestmob in Attic Room               
+M 0  7519   1  7547 ;               a magician in Ethshar Arena            
+M 0  7519   1  7548 ;               a magician in Ethshar Arena            
+M 0  7564   4  7546 ;              a gladiator in Ethshar Arena            
+M 0  7518   4  7546 ;              a gladiator in Ethshar Arena            
+O 0  7507   1  7557 ;        a marble fountain in Great Central Square     
+O 0  7575   1  7575 ;           wooden shelves in Serem's Workroom         
+P 1  7526 500  7575 ;     a History of Ethshar in wooden shelves           
+O 1  7527 500  7574 ;   an animated palm frond in Serem's House            
+S
+
+
+
+
+#SHOPS
+7511 ITEM_TYPE_TREASURE ITEM_TYPE_ARMOR ITEM_TYPE_TRASH ITEM_TYPE_NOTHING
+     ITEM_TYPE_NOTHING 100  50  2 23 ;Iridith
+7510 ITEM_TYPE_POTION ITEM_TYPE_SCROLL ITEM_TYPE_PILL ITEM_TYPE_WAND
+     ITEM_TYPE_STAFF 100  50  2 23 ;Heremon
+7512 ITEM_TYPE_WEAPON ITEM_TYPE_ARMOR ITEM_TYPE_LIGHT ITEM_TYPE_CONTAINER
+     ITEM_TYPE_NOTHING 100  50  2 23 ;Kelder
+7514 ITEM_TYPE_LIGHT ITEM_TYPE_ARMOR ITEM_TYPE_CONTAINER ITEM_TYPE_TRASH
+     ITEM_TYPE_NOTHING 100  50  2 23 ;a street vendor
+0
+
+
+
+
+#SPECIALS
+S
+
+
+
+
+#$

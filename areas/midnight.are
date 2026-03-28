@@ -1,0 +1,5195 @@
+#AREA Midnight Mansion~ 
+#AUTHORS Tex~ 
+#RESETMSG Darkness covers the face of the earth as evil laughter echoes in your ears.~
+ 
+#HELPS
+-1 'MIDNIGHT MANSION' MIDNIGHT MANSION~
+MIDNIGHT MANSION
+----------------
+
+The area around the Midnight Mansion might once have been healthy and
+thriving, but if it was then it was centuries ago.  From the castle,
+you can just barely see Phoenix Peak off to the north, while if you look
+to the west you can see the sun glinting of the Gulf of the East.  In the
+Centuries since its fall however, Midnight Mansion has been cut off from
+most avenues of entrance and is now only accessable though a single road.
+
+This area was created by Mancha and was last updated on 9 April 2001
+~
+0 $~
+ 
+#OBJECTS 
+#18100 
+meat cleaver~ 
+meat cleaver~ 
+A bloody meat cleaver lies on the floor, discarded.~ 
+It is a bloody meat cleaver, a very blunt but destructive weapon.  The cook 
+gave you this item, with its protective spell undone, in payment for your 
+kindness. 
+~ 
+ITEM_TYPE_WEAPON ITEM_FLAG_MAGIC|ITEM_FLAG_HUM|ITEM_FLAG_LEVEL ITEM_WEAR_TAKE|ITEM_WEAR_WIELD 
+0 1 1 8 
+16 300000 25
+A
+APPLY_AC -8 
+A
+APPLY_INT 2
+A
+APPLY_SAVING_BREATH 6
+#18101 
+Gold locket~ 
+a gold locket~ 
+A gold locket is lost on the ground. ~ 
+The gold locket, once in the ownership of the queen, was a piece of jewelry 
+which she never let out of her sight. 
+~ 
+ITEM_TYPE_CONTAINER ITEM_FLAG_LEVEL|ITEM_FLAG_GLOW|ITEM_FLAG_INVENTORY ITEM_WEAR_TAKE|ITEM_WEAR_NECK
+300 1 -1 0
+1 100000 75 
+A APPLY_STR -5 
+A APPLY_DEX -6 
+#18102 
+ball chain~ 
+ball and chain~ 
+A ball and chain set is looking for a pair of ankles. ~ 
+They look dangerous to be near. 
+~ 
+ITEM_TYPE_ARMOR ITEM_FLAG_LEVEL|ITEM_FLAG_NOREMOVE|ITEM_FLAG_HUM ITEM_WEAR_TAKE|ITEM_WEAR_FEET 
+-100 0 0 0 
+45 10 1 
+P 0 
+TRIG_TICK 100 
+OPROG_IF OIF_WEAR_LOC = WEAR_FEET 1 0 
+P 1 
+TRIG_VOID 
+OPROG_APPLY OAPPLY_MOVE -100 
+#18103 
+handcuffs~ 
+the handcuffs~ 
+A set of handcuffs is here.~ 
+Do NOT put these on under ANY circumstances! 
+~ 
+ITEM_TYPE_ARMOR ITEM_FLAG_LEVEL|ITEM_FLAG_NOREMOVE ITEM_WEAR_TAKE|ITEM_WEAR_HANDS 
+0 0 0 0 
+1 10 1 
+P 0 
+TRIG_TICK 100 
+OPROG_IF OIF_WEAR_LOC = WEAR_HANDS 1 0 
+P 1 
+TRIG_VOID 
+OPROG_GOD_COMMAND 
+recho $ has been exiled to jail, indefinately. & goto 9755 & recho SPLAT! $ is dumped unceremoniously into the fountain. & mpjunk handcuffs 
+~ 
+#18104 
+token~ 
+a Token~ 
+There is a Token here!! ~ 
+Hail the world with this wonderful piece of jewelry that no one should 
+ever be without. 
+~ 
+ITEM_TYPE_TREASURE ITEM_FLAG_LEVEL ITEM_WEAR_TAKE|ITEM_WEAR_HOLD 
+0 0 0 0 
+1 10 1 
+P 0 
+TRIG_UNKNOWN 100 hail 
+OPROG_ECHO Why would you wanna do that?
+~ 
+#18105 
+shovel~ 
+a shovel~ 
+An abandoned shovel lies here. ~ 
+It is an ordinary shovel for digging in the ground. 
+~ 
+ITEM_TYPE_TRASH ITEM_FLAG_LEVEL ITEM_WEAR_TAKE|ITEM_WEAR_HOLD 
+0 0 0 0 
+15 10 1 
+P 0 
+TRIG_UNKNOWN 100 dig 
+OPROG_IF OIF_USER_ROOM_NUM = 18135 25 1 
+P 1 
+TRIG_VOID 
+OPROG_IF OIF_USER_ROOM_NUM = 18136 26 2 
+P 2 
+TRIG_VOID 
+OPROG_IF OIF_USER_ROOM_NUM = 18137 27 3 
+P 3 
+TRIG_VOID 
+OPROG_IF OIF_USER_ROOM_NUM = 18138 28 4 
+P 4 
+TRIG_VOID 
+OPROG_IF OIF_USER_ROOM_NUM = 18139 29 5 
+P 5 
+TRIG_VOID 
+OPROG_IF OIF_USER_ROOM_NUM = 18140 30 6 
+P 6 
+TRIG_VOID 
+OPROG_IF OIF_USER_ROOM_NUM = 18141 31 7 
+P 7 
+TRIG_VOID 
+OPROG_IF OIF_USER_ROOM_NUM = 18142 32 8 
+P 8 
+TRIG_VOID 
+OPROG_IF OIF_USER_ROOM_NUM = 18143 33 9 
+P 9 
+TRIG_VOID 
+OPROG_IF OIF_USER_ROOM_NUM = 18144 34 10 
+P 10 
+TRIG_VOID 
+OPROG_IF OIF_USER_ROOM_NUM = 18145 35 11 
+P 11 
+TRIG_VOID 
+OPROG_IF OIF_USER_ROOM_NUM = 18146 36 12 
+P 12 
+TRIG_VOID 
+OPROG_IF OIF_USER_ROOM_NUM = 18147 37 13 
+P 13 
+TRIG_VOID 
+OPROG_IF OIF_USER_ROOM_NUM = 18148 38 14 
+P 14 
+TRIG_VOID 
+OPROG_IF OIF_USER_ROOM_NUM = 18149 39 15 
+P 15 
+TRIG_VOID 
+OPROG_IF OIF_USER_ROOM_NUM = 18150 40 16 
+P 16 
+TRIG_VOID 
+OPROG_IF OIF_USER_ROOM_NUM = 18151 41 17 
+P 17 
+TRIG_VOID 
+OPROG_IF OIF_USER_ROOM_NUM = 18152 42 18 
+P 18 
+TRIG_VOID 
+OPROG_IF OIF_USER_ROOM_NUM = 18153 43 19 
+P 19 
+TRIG_VOID 
+OPROG_IF OIF_USER_ROOM_NUM = 18154 44 20 
+P 20 
+TRIG_VOID 
+OPROG_IF OIF_USER_ROOM_NUM = 18155 45 21 
+P 21 
+TRIG_VOID 
+OPROG_IF OIF_USER_ROOM_NUM = 18156 46 22 
+P 22 
+TRIG_VOID 
+OPROG_IF OIF_USER_ROOM_NUM = 18157 47 23 
+P 23 
+TRIG_VOID 
+OPROG_IF OIF_USER_ROOM_NUM = 18158 48 24 
+P 24 
+TRIG_VOID 
+OPROG_IF OIF_USER_ROOM_NUM = 18159 49 50 
+P 25 
+TRIG_VOID 
+OPROG_GOD_COMMAND mpoload 18106 & mpechoat $ You dig up a paper doll. ~ 
+P 26 
+TRIG_VOID 
+OPROG_ECHO You dig up some old bones and discard them.~ 
+P 27 
+TRIG_VOID 
+OPROG_ECHO You dig up...nothing.~
+P 28 
+TRIG_VOID 
+OPROG_ECHO You find a corpse with maggots crawling in it.  Yum. ~ 
+P 29 
+TRIG_VOID 
+OPROG_ECHO Try as you might, their ain't nuthin' in that grave.~
+P 30
+TRIG_VOID 
+OPROG_GOD_COMMAND mpoload 18114 & mpechoat $ You dig up a flask of whiskey. ~ 
+P 31 
+TRIG_VOID 
+OPROG_ECHO Search as you might, your digging results in nothing.~ 
+P 32 
+TRIG_VOID 
+OPROG_ECHO You can't find a thing.~
+P 33
+TRIG_VOID 
+OPROG_ECHO You don't find anything in the grave.~
+P 34
+TRIG_VOID 
+OPROG_ECHO You sing as you dig, then realize you've dug up nothing. ~ 
+P 35 
+TRIG_VOID 
+OPROG_ECHO You make a hole in the ground.~ 
+P 36 
+TRIG_VOID 
+OPROG_ECHO You find a skeleton. (Well, what did you expect?) ~ 
+P 37 
+TRIG_VOID 
+OPROG_GOD_COMMAND mpoload 18102 & mpechoat $ You dig up a set of ball and chains. ~ 
+P 38 
+TRIG_VOID 
+OPROG_ECHO You find nothing.~
+P 39 
+TRIG_VOID 
+OPROG_ECHO Sorry, nothing in this grave...better luck next time. ~ 
+P 40 
+TRIG_VOID 
+OPROG_ECHO As you wipe the sweat from your brow, you realize there is nothing here.~ 
+P 41 
+TRIG_VOID 
+OPROG_ECHO You don't find anything.~ 
+P 42 
+TRIG_VOID 
+OPROG_ECHO Your search yields absolutely nothing.~
+P 43 
+TRIG_VOID 
+OPROG_GOD_COMMAND mpoload 18104 & mpechoat $ You dig up a Token. 
+~ 
+P 44 
+TRIG_VOID 
+OPROG_ECHO You keep digging...and digging...and digging... 
+~ 
+P 45 
+TRIG_VOID 
+OPROG_GOD_COMMAND mpoload 18107 & mpechoat $ You dig up an iron fist. 
+~ 
+P 46 
+TRIG_VOID 
+OPROG_GOD_COMMAND mpoload 18116 & mpechoat $ You dig up a handful of dirt. 
+~ 
+P 47 
+TRIG_VOID 
+OPROG_ECHO Nothing, absolutely nothing, that's what you dig up. ~ 
+P 48 
+TRIG_VOID 
+OPROG_GOD_COMMAND mpoload 18108 & mpechoat $ You dig up a gold locket. ~ 
+P 49 
+TRIG_VOID 
+OPROG_ECHO Someone already dug a grave for you.~
+P 50
+TRIG_VOID
+OPROG_ECHO What are you digging for?~
+#18106 
+paper doll~ 
+a paper doll~ 
+A paper doll is lost on the ground. ~ 
+She is a beautiful doll, lost at one time by a princess, from whom the doll 
+gets its appearance. 
+~ 
+ITEM_TYPE_TREASURE ITEM_FLAG_LEVEL ITEM_WEAR_TAKE|ITEM_WEAR_HOLD 
+0 0 0 0 
+1 10 1 
+A APPLY_WIS 1
+A APPLY_INT 1
+A APPLY_CON 1
+#18107 
+iron fist~ 
+an iron fist~ 
+An iron fist is lost on the ground. ~ 
+This iron fist is a symbolic representation of the wisdom and leadership 
+portrayed by the king to whom it once belonged. 
+~ 
+ITEM_TYPE_ARMOR ITEM_FLAG_ANTI_NEUTRAL|ITEM_FLAG_ANTI_GOOD|ITEM_FLAG_LEVEL ITEM_WEAR_TAKE|ITEM_WEAR_HANDS 
+6 0 0 0 
+1 10 90
+A APPLY_DAMROLL 9
+A APPLY_HITROLL 4
+#18108 
+Gold locket~ 
+a gold locket~ 
+A gold locket is lost on the ground. ~ 
+The gold locket, once in the ownership of the queen, was a piece of jewelry 
+which she never let out of her sight. 
+~ 
+ITEM_TYPE_CONTAINER ITEM_FLAG_LEVEL ITEM_WEAR_TAKE|ITEM_WEAR_NECK 
+2 1 -1 0 
+1 10 75
+A APPLY_STR -5 
+A APPLY_DEX -6 
+#18109 
+picture~ 
+a picture~ 
+There is a picture here. ~ 
+The picture from the locket is a painting of the king and the princess. 
+~ 
+ITEM_TYPE_TREASURE ITEM_FLAG_LEVEL ITEM_WEAR_TAKE|ITEM_WEAR_NECK 
+0 0 0 0 
+1 10 1 
+#18110
+stick blue rose~
+a stick~
+A stick from the blue rose bush lies on the ground.~
+This stick comes from a blue rose bush.
+~
+ITEM_TYPE_TRASH ITEM_FLAG_LEVEL ITEM_WEAR_TAKE
+0 0 0 0
+1 10 1
+#18111 
+wizard staff~ 
+a wizard staff~ 
+A wizard staff is lost on the ground. ~ 
+This gnarled staff once belonged to the strongest magician to ever walk 
+this kingdom.   
+~ 
+ITEM_TYPE_WEAPON ITEM_FLAG_LEVEL ITEM_WEAR_TAKE|ITEM_WEAR_WIELD 
+0 0 0 8 
+1 10 1 
+C 
+zap~ 
+FLAG_CLASS_NECROMANCER|FLAG_CLASS_ILLUSIONIST|FLAG_CLASS_ELEMENTALIST 
+#18112 
+blue rose~ 
+a blue rose~ 
+A blue rose is lost on the ground. ~ 
+The blue rose, a rare find, is a special gift to be treasured forever. 
+~ 
+ITEM_TYPE_TREASURE ITEM_FLAG_LEVEL ITEM_WEAR_TAKE 
+0 0 0 0 
+1 10 1 
+P 1 
+TRIG_COMMAND 100 plant 
+OPROG_IF_HAS_OBJECT 18116 3 2 
+P 2 
+TRIG_VOID 
+OPROG_GOD_COMMAND mpechoat $ You find it difficult to plant the blue rose. 
+~ 
+P 3 
+TRIG_VOID 
+OPROG_IF OIF_USER_ROOM_NUM = 18108 5 4 
+P 4 
+TRIG_VOID 
+OPROG_GOD_COMMAND mpechoat $ You plant a blue rose in the ground. & mpechoaround $ $ plants a blue rose in the ground. & say Grow! & mpecho The blue rose whithers away and dies due to lack of sunlight.
+~ 
+P 4
+TRIG_VOID
+OPROG_JUNK
+P 5 
+TRIG_VOID 
+OPROG_GOD_COMMAND mpechoat $ You plant a blue rose in the ground. & mpechoaround $ $ plants a blue rose in the ground. & say Grow!
+~ 
+#18113 
+seed of discord~ 
+a seed of discord~ 
+A seed of discord is lost on the ground. ~ 
+A most dangerous item, the seed of discord can even disrupt the harmony 
+of the angels in the heavens so potent is its disease. 
+~ 
+ITEM_TYPE_TREASURE ITEM_FLAG_LEVEL ITEM_WEAR_TAKE 
+0 0 0 0 
+1 10 1 
+P 0
+TRIG_UNKNOWN 100 grind
+OPROG_IF_HAS_OBJECT 18125 1 4
+P 1
+TRIG_VOID
+OPROG_IF_HAS_OBJECT 18127 2 5
+P 2
+TRIG_VOID
+OPROG_PLAYER_QUEST_IF 31 5 ! 4 6 3
+P 3
+TRIG_VOID
+OPROG_GOD_COMMAND mpechoat $ You grind the Seed of Discord with the mortar and pestle. & mpechoat $ You place the powdered seed in the Erlenmeyer flask. & mpmset $ questr 18100 31 5 5 ~
+P 3
+TRIG_VOID
+OPROG_JUNK
+P 4
+TRIG_VOID
+OPROG_ECHO You have no way to grind the Seed of Discord.~
+P 5
+TRIG_VOID
+OPROG_ECHO You have nothing in which to put the ground Seed of Discord.~
+P 6
+TRIG_VOID
+OPROG_ECHO You have no reason to grind the Seed of Discord.~
+#18114 
+whiskey flask~ 
+a flask of whiskey~ 
+A flask of whiskey is lost on the ground. ~ 
+Aged to perfection, this whiskey is the very thing that killed the poor 
+fellow from whose grave it came. 
+~ 
+ITEM_TYPE_DRINK_CON ITEM_FLAG_LEVEL ITEM_WEAR_TAKE 
+12 12 LIQ_WHISKY 0 
+1 10 1 
+#18115 
+glass sword mmsword6049~ 
+a glass sword~ 
+A glass sword is lost on the ground. ~ 
+This glass sword once belonged to a great hero in the realm.  Unfortunately, 
+time has since washed his name from the peoples memories. 
+~ 
+ITEM_TYPE_WEAPON ITEM_FLAG_LEVEL ITEM_WEAR_TAKE|ITEM_WEAR_WIELD 
+0 8 7 2 
+1 10 64 
+C 
+slash~ 
+FLAG_CLASS_RANGER|FLAG_CLASS_ROGUE|FLAG_CLASS_ASSASSIN|FLAG_CLASS_MONK 
+#18116 
+handful of dirt~ 
+a handful of dirt~ 
+A handful of dirt is lost on the ground. ~ 
+That's all there seems to be to it...a handful of dirt. 
+~ 
+ITEM_TYPE_TRASH ITEM_FLAG_LEVEL ITEM_WEAR_TAKE 
+0 0 0 0 
+1 10 1 
+#18117 
+bone~ 
+a skeleton's bone~ 
+The bone of a poor skeleton litters the earth with its decay. ~ 
+This bone used to belong to a skeleton which was lost in the dungeon.  Unlike 
+the other bones in that pile, this bone is completely white, bright, and 
+almost shines.  There is something about this particular bone that is 
+unexplicably magic. 
+~ 
+ITEM_TYPE_TREASURE ITEM_FLAG_LEVEL|ITEM_FLAG_GLOW ITEM_WEAR_TAKE 
+0 0 0 0 
+5 10 90 
+P 0
+TRIG_UNKNOWN 100 splinter
+OPROG_IF_HAS_OBJECT 18127 2 3
+P 1
+TRIG_VOID
+OPROG_PLAYER_QUEST_IF 31 5 ! 5 3 2
+P 2
+TRIG_VOID
+OPROG_GOD_COMMAND mpechoat $ You splinter the magic bone into chips and place them in the Erlenmeyer flask. & mpmset $ questr 18100 31 5 6 ~
+P 2
+TRIG_VOID
+OPROG_JUNK
+P 3
+TRIG_VOID
+OPROG_ECHO You can't break the bone into chips yet.~
+#18118 
+skeleton~ 
+a skeleton~ 
+The skeleton of some poor soul lies here in the dungeon. ~ 
+What a pitiful way to die.  He apparently has been here for quite a while, 
+based on the fact that all muscle tissue has completely decayed, leaving only 
+dingy, brown bones behind. 
+~ 
+ITEM_TYPE_CONTAINER ITEM_FLAG_LEVEL 0 
+5 0 0 0 
+1 10 95 
+#18119
+meat cleaver~ 
+meat cleaver~ 
+A bloody meat cleaver lies on the floor, discarded. ~ 
+It is a bloody meat cleaver, a very blunt but destructive weapon.  The cook 
+from whom this cleaver came may be looking for it.  Do be so kind and return 
+that which is not yours to its rightful owner. 
+~ 
+ITEM_TYPE_WEAPON ITEM_FLAG_LEVEL ITEM_WEAR_TAKE|ITEM_WEAR_WIELD 
+0 1 4 8 
+1 30000 4 
+#18120 
+book spell spellbook~ 
+the ancient spellbook~ 
+The ancient book of mage's spells collects dust on the ground. ~ 
+The book is ancient indeed as the pages are torn and yellowed.  Most of the 
+spells you cannot make out the words on the page, but there are a few that 
+are of particular interest.  Looking in the index you see a list of spells 
+that might be of interest. 
+~ 
+ITEM_TYPE_TREASURE ITEM_FLAG_MAGIC|ITEM_FLAG_GLOW|ITEM_FLAG_ANTI_NEUTRAL|ITEM_FLAG_ANTI_GOOD|ITEM_FLAG_LEVEL ITEM_WEAR_TAKE|ITEM_WEAR_HOLD 
+0 0 0 0 
+1 10 80 
+A 
+APPLY_MANA 160
+A
+APPLY_AC -10
+E 
+index~ 
+You read the index of the ancient spellbook: 
+ 
+  IV  - Bin de Chaos aun atem 
+  V   - Lem podere de Order
+  XII - Aaar aogi aeugau qoirn
+  XX  - Creton of tavs
+  XV  - Illgo eun des vargotia
+~ 
+E
+XV~
+The spell is completely incomprehensible.
+~
+E
+XX~
+Turning to page XX in the ancient spellbook, you read:
+
+  CREATION OF STAVES
+
+The creation of a staff is a very personal thing and requires that the
+user be somewhat evil.  Due to the nature of the ingredients needed for 
+this staff, good-hearted people may shy away from making it.  Too bad
+for them.
+
+Ingredients:
+Seed of Discord
+A stick
+Glob of water
+Zombie skin
+Skeleton bone
+Erlenmeyer flask
+
+Procedure:
+  I. Grind the Seed of Discord and place it in the Erlenmeyer flask
+ II. Splinter the bone into chips and place them in the flask
+III. Fill the flask with water
+ IV. Heat the solution to boiling over a fireplace
+  V. Stretch the zombie skin over the stick
+ VI. Pour the solution over the zombie stick
+VII. Recite the following incantation:
+       "The waking dead, the dead to waking
+        Breaking harmony and harmony broken
+        This power to you-the one to taking
+        And sealing it with words so spoken"
+~
+E 
+IV~ 
+Turning to page IV in the ancient spellbook, you read: 
+ 
+  BINDING THE POWER OF CHAOS TO AN ITEM 
+
+Binding the power of Chaos to a weapon requires a weapon of heros.
+In the darkest of hours you must pray to your god that he will
+show you favor and bind himself to your weapon.
+~ 
+E 
+V~ 
+Turning to page V in the ancient spellbook, you read: 
+ 
+  BINDING THE POWER OF ORDER TO AN ITEM 
+
+To bind the power of Order to a weapon, you must start with a weapon
+of heros.  It can be made of anything but must be unsullied by the
+taint of dishonor.  Pray to your god when the sun is the brightest 
+and if he shows you favor he will bind himself to your weapon.
+~ 
+E 
+XII~ 
+The rest of the book is incomprehensable to you. 
+~
+#18121
+flowers bouquet~ 
+a bouquet of flowers~ 
+The bouquet of flowers adorns the tombstone.~ 
+The flowers are absolutely beautiful, surprising in this dismal environment.
+They look as if they were just picked.
+~ 
+ITEM_TYPE_CONTAINER ITEM_FLAG_LEVEL 0 
+5 0 0 0 
+1 10 95 
+#18122
+zombie skin~
+a piece of zombie skin~
+Zombie skin litters the earth.~
+Ick!  Its the skin from a dead zombie.
+~
+ITEM_TYPE_ARMOR ITEM_FLAG_ANTI_NEUTRAL|ITEM_FLAG_ANTI_GOOD|ITEM_FLAG_LEVEL ITEM_WEAR_TAKE|ITEM_WEAR_BODY
+20 0 0 0
+1 10 90
+P 0
+TRIG_UNKNOWN 100 stretch
+OPROG_IF_HAS_OBJECT 18110 1 3
+P 1
+TRIG_VOID
+OPROG_PLAYER_QUEST_IF 31 5 ! 8 4 2 
+P 2
+TRIG_VOID
+OPROG_GOD_COMMAND mpechoat $ You stretch the zombie skin over the stick. & mpmset $ questr 18100 31 5 9~
+P 2
+TRIG_VOID
+OPROG_JUNK
+P 3
+TRIG_VOID
+OPROG_ECHO What are you trying to stretch the zombie skin over?~
+P 4
+TRIG_VOID
+OPROG_ECHO It is not the right time to stretch the skin over the stick.~
+#18123
+glob water~
+a glob of water~
+A glob of murky water sits here.~
+The slimy water is just nasty, really nasty.
+~
+ITEM_TYPE_DRINK_CON ITEM_FLAG_LEVEL ITEM_WEAR_TAKE
+1 1 9 1
+1 10 1
+P 0 
+TRIG_COMMAND 100 fill
+OPROG_IF_HAS_OBJECT 18127 1 3
+P 1
+TRIG_VOID
+OPROG_PLAYER_QUEST_IF 31 5 ! 6 4 2
+P 2
+TRIG_VOID
+OPROG_GOD_COMMAND mpechoat $ You fill the Erlenmeyer flask with the glob of water. & mpmset $ questr 18100 31 5 7
+~
+P 2 
+TRIG_VOID
+OPROG_JUNK
+P 3
+TRIG_VOID
+OPROG_GOD_ARGUMENT fill~
+P 4
+TRIG_VOID
+OPROG_ECHO It is not time to fill the flask yet.~
+#18124
+well~ 
+a crumbling well~ 
+A crumbling well with slime-covered water is here.~ 
+The well is old and unused, the water stagnated to the point of disgusting.
+~ 
+ITEM_TYPE_CONTAINER ITEM_FLAG_LEVEL 0 
+2 0 0 0 
+1 10 95 
+#18125
+mortar pestle~
+a mortar and pestle set~
+An old mortar and pestle set lies about.~
+The mortar and pestle is used to grind things into a fine powder.
+~
+ITEM_TYPE_TREASURE ITEM_FLAG_LEVEL ITEM_WEAR_HOLD|ITEM_WEAR_TAKE
+0 0 0 0
+2 100000 70
+#18126
+fireplace~
+the fireplace~
+There is a fireplace in the corner of the room.~
+It warms the room and you too!
+~
+ITEM_TYPE_FURNITURE ITEM_FLAG_LEVEL 0
+0 0 0 0
+200 10 1
+#18127
+flask erlenmeyer~
+an Erlenmeyer flask~
+An Erlenmeyer flask sits here.~
+It is a flask used to mix chemicals and spell ingredients.
+~
+ITEM_TYPE_TREASURE ITEM_FLAG_LEVEL ITEM_WEAR_TAKE
+0 0 0 0
+2 10 70
+P 1
+TRIG_UNKNOWN 100 heat
+OPROG_IF OIF_USER_ROOM_NUM ! 18224 4 2
+P 2
+TRIG_VOID
+OPROG_PLAYER_QUEST_IF 31 5 ! 7 5 3
+P 3
+TRIG_VOID
+OPROG_GOD_COMMAND mpechoat $ You heat the Erlenmeyer flask until the water boils. & mpmset $ questr 18100 31 5 8~
+P 4
+TRIG_VOID
+OPROG_ECHO You have no way to heat the flask.~
+P 5
+TRIG_VOID
+OPROG_ECHO You should not heat the flask right now.~
+P 6
+TRIG_UNKNOWN 100 pour
+OPROG_PLAYER_QUEST_IF 31 5 ! 9 9 7
+P 7
+TRIG_VOID
+OPROG_IF_HAS_OBJECT 18110 8 10
+P 8
+TRIG_VOID
+OPROG_GOD_COMMAND mpechoat $ You pour the boiling solution over the stick. & mpmset $ questr 18100 31 5 10 ~
+P 8
+TRIG_VOID
+OPROG_JUNK
+P 9
+TRIG_VOID
+OPROG_ECHO You really shouldn't pour out the flask.~
+P 10
+TRIG_VOID
+OPROG_ECHO You don't have anything on which to pour the solution.~
+#18130
+rags~
+rags~
+Some rags lie in the dirt~
+These rags are really nasty.
+~
+ITEM_TYPE_ARMOR ITEM_FLAG_INVIS|ITEM_FLAG_LEVEL|ITEM_FLAG_NODROP|ITEM_FLAG_NOREMOVE ITEM_WEAR_TAKE|ITEM_WEAR_BODY
+0 0 0 0
+1 10 95
+A APPLY_SAVING_BREATH 16
+A APPLY_WIS 6
+A APPLY_CON 6
+#18131 
+wizard staff~ 
+a wizard staff of Demise~ 
+A wizard staff is lost on the ground. ~ 
+This gnarled staff once belonged to the strongest magician to ever walk 
+this kingdom.  It now resides in the possession of a new, greater mage.  
+~ 
+ITEM_TYPE_WEAPON ITEM_FLAG_LEVEL|ITEM_FLAG_AUTO_ENGRAVE|ITEM_FLAG_NOREMOVE ITEM_WEAR_TAKE|ITEM_WEAR_WIELD 
+0 1 1 8 
+1 10 90 
+A
+APPLY_AC -17
+A
+APPLY_MANA 120
+A
+APPLY_HITROLL -12
+C
+zap~ 
+FLAG_CLASS_NECROMANCER|FLAG_CLASS_ILLUSIONIST|FLAG_CLASS_ELEMENTALIST|FLAG_CLASS_MONK|FLAG_CLASS_RANGER|FLAG_CLASS_ROGUE|FLAG_CLASS_ASSASSIN
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_RANDOM_PERCENT = 50 2 5
+P 2
+TRIG_VOID
+OPROG_ECHO The dark energy of the wizard staff engulfs you.~
+P 2
+TRIG_VOID
+OPROG_IF OIF_USER_ALIGNMENT < -349 3 4
+P 3
+TRIG_VOID
+OPROG_ECHO Your spirit is restored by the dark energy!~
+P 3
+TRIG_VOID
+OPROG_APPLY OAPPLY_MANA 10000
+P 4
+TRIG_VOID
+OPROG_ECHO Your spirit is damaged by the evil aura!~
+P 4
+TRIG_VOID
+OPROG_APPLY OAPPLY_ALIGNMENT -10
+P 4
+TRIG_VOID
+OPROG_APPLY OAPPLY_MANA -300
+P 5
+TRIG_VOID
+OPROG_IF OIF_RANDOM_PERCENT > 89 6 7
+P 6
+TRIG_VOID
+OPROG_APPLY OAPPLY_MANA 50
+P 7
+TRIG_VOID
+OPROG_IF OIF_RANDOM_PERCENT < 61 8 9
+P 8
+TRIG_VOID
+OPROG_APPLY OAPPLY_MANA 5
+P 9
+TRIG_VOID
+OPROG_APPLY OAPPLY_MANA 20
+#18133 
+blue rose bush mmbush6474~ 
+a blue rose bush~ 
+The blue rose bush grows well here. ~ 
+Here in the bright sunlight the rose bush flourishes and grows beautifully. 
+~ 
+ITEM_TYPE_TREASURE ITEM_FLAG_LEVEL 0 
+0 0 0 0 
+1 10 1 
+#18135 
+glass sword mmsword6050~ 
+a glass sword~ 
+A glass sword is lost on the ground. ~ 
+This glass sword once belonged to a great hero in the realm.  Unfortunately, 
+time has since washed his name from the peoples memories. 
+~ 
+ITEM_TYPE_WEAPON ITEM_FLAG_LEVEL ITEM_WEAR_TAKE|ITEM_WEAR_WIELD 
+0 0 0 2 
+1 10 1 
+C 
+slash~ 
+FLAG_CLASS_RANGER|FLAG_CLASS_ROGUE|FLAG_CLASS_ASSASSIN|FLAG_CLASS_MONK 
+#18141 
+protective tunic~ 
+a protective tunic~ 
+The protective tunic litters the ground. ~ 
+This vest, a long lost treasure of lore, is said to have the mystic power 
+of absorbing an enemies attack.  However, this is merely lore, and proof of 
+this claim is forthcoming. 
+~ 
+ITEM_TYPE_ARMOR ITEM_FLAG_LEVEL|ITEM_FLAG_AUTO_ENGRAVE|ITEM_FLAG_HUM ITEM_WEAR_TAKE|ITEM_WEAR_BODY 
+19 0 0 0 
+50 1000 90 
+P 1 
+TRIG_HIT 60 
+OPROG_IF OIF_RANDOM_PERCENT < 91 2 5 
+P 2 
+TRIG_VOID 
+OPROG_IF OIF_RANDOM_PERCENT < 91 4 6 
+P 3 
+TRIG_VOID 
+OPROG_APPLY OAPPLY_HIT 29 
+P 3 
+TRIG_VOID 
+OPROG_GOD_COMMAND mpechoat $ Your protective vest absorbs 29hp. & mpechoaround $ $'s protective vest absorbs 29hp. 
+~ 
+P 4 
+TRIG_VOID 
+OPROG_APPLY OAPPLY_HIT 38 
+P 4 
+TRIG_VOID 
+OPROG_GOD_COMMAND mpechoat $ Your protective vest absorbs 38hp. & mpechoaround $ $'s protective vest absorbs 48hp. 
+~ 
+P 5 
+TRIG_VOID 
+OPROG_IF OIF_RANDOM_PERCENT < 91 3 7 
+P 6 
+TRIG_VOID 
+OPROG_APPLY OAPPLY_HIT 60 
+P 6 
+TRIG_VOID 
+OPROG_GOD_COMMAND mpechoat $ Your protective vest absorbs 60hp. & mpechoaround $ $'s protective vest absorbs 90hp. 
+~ 
+P 7 
+TRIG_VOID 
+OPROG_APPLY OAPPLY_HIT 98 
+P 7 
+TRIG_VOID 
+OPROG_GOD_COMMAND mpechoat $ Your protective vest absorbs 98hp! & mpechoaround $ $'s protective vest absorbs 98hp! 
+~ 
+#18142 
+glass sword questsword~ 
+a glass sword~ 
+A glass sword is lost on the ground.~ 
+This glass sword once belonged to a great hero in the realm.  Unfortunately, 
+time has since washed his name from the peoples memories. 
+~ 
+ITEM_TYPE_WEAPON ITEM_FLAG_LEVEL|ITEM_FLAG_AUTO_ENGRAVE ITEM_WEAR_TAKE|ITEM_WEAR_WIELD 
+0 12 7 2 
+10 10000 70
+A
+APPLY_WIS -5
+A
+APPLY_MANA -70
+C
+slash~ 
+FLAG_CLASS_RANGER|FLAG_CLASS_ROGUE|FLAG_CLASS_ASSASSIN|FLAG_CLASS_MONK|FLAG_CLASS_ILLUSIONIST|FLAG_CLASS_ELEMENTALIST|FLAG_CLASS_NECROMANCER
+P 1
+TRIG_UNKNOWN 100 bind
+OPROG_IF_HAS_OBJECT 18120 7 2
+P 2
+TRIG_VOID
+OPROG_IF OIF_USER_WHICH_GOD = 2 3 4
+P 3
+TRIG_VOID
+OPROG_ECHO Huh? Bind? ~
+P 4
+TRIG_VOID
+OPROG_IF OIF_USER_WHICH_GOD = 1 5 6
+P 5
+TRIG_VOID
+OPROG_ECHO Huh? Bind? ~
+P 6
+TRIG_VOID
+OPROG_ECHO You do not follow Chaos or Order.~
+P 7
+TRIG_VOID
+OPROG_IF OIF_USER_WHICH_GOD = 2 8 11
+P 8
+TRIG_VOID
+OPROG_IF OIF_TIME_OF_DAY = 5 10 9
+P 9
+TRIG_VOID
+OPROG_ECHO The light of the moon is too bright to do that.~
+P 10
+TRIG_VOID
+OPROG_ECHO You bind the power of Chaos to your glass sword.~
+P 10
+TRIG_VOID
+OPROG_GOD_COMMAND mpoload 18143~
+P 10
+TRIG_VOID
+OPROG_JUNK
+P 11
+TRIG_VOID
+OPROG_IF OIF_USER_WHICH_GOD = 1 12 15
+P 12
+TRIG_VOID
+OPROG_IF OIF_TIME_OF_DAY = 12 14 13
+P 13
+TRIG_VOID
+OPROG_ECHO It is not bright enough for that.~
+P 14
+TRIG_VOID
+OPROG_ECHO You bind the power of Order to your glass sword.~
+P 14
+TRIG_VOID
+OPROG_GOD_COMMAND mpoload 18144~
+P 14
+TRIG_VOID
+OPROG_JUNK
+P 15
+TRIG_VOID
+OPROG_ECHO You do not follow Chaos or Order~
+P 16 
+TRIG_HIT 62 
+OPROG_IF OIF_RANDOM_PERCENT < 61 17 20 
+P 17
+TRIG_VOID 
+OPROG_IF OIF_RANDOM_PERCENT < 61 18 19
+P 18
+TRIG_VOID 
+OPROG_APPLY OAPPLY_HIT 29 
+P 18
+TRIG_VOID 
+OPROG_GOD_COMMAND mpechoat $ Your glass sword softens the wound. 
+~ 
+P 19
+TRIG_VOID 
+OPROG_APPLY OAPPLY_HIT 38 
+P 19
+TRIG_VOID 
+OPROG_GOD_COMMAND mpechoat $ Your glass sword gives you strength. 
+~ 
+P 20
+TRIG_VOID 
+OPROG_IF OIF_RANDOM_PERCENT < 61 18 22
+P 21
+TRIG_VOID 
+OPROG_APPLY OAPPLY_HIT 60 
+P 21
+TRIG_VOID 
+OPROG_GOD_COMMAND mpechoat $ Your glass sword heals your body. 
+~ 
+P 22
+TRIG_VOID 
+OPROG_APPLY OAPPLY_HIT 98 
+P 22
+TRIG_VOID 
+OPROG_GOD_COMMAND mpechoat $ Your glass sword restores your health! 
+~ 
+#18143 
+glass sword chaossword~ 
+a glass sword of Chaos~ 
+A glass sword is lost on the ground.~ 
+This glass sword once belonged to a great hero in the realm.
+Now a new hero wields the weapon, fighting the minions of Order.
+~ 
+ITEM_TYPE_WEAPON ITEM_FLAG_LEVEL|ITEM_FLAG_AUTO_ENGRAVE ITEM_WEAR_TAKE|ITEM_WEAR_WIELD 
+0 20 5 2 
+10 10000 90
+A
+APPLY_WIS -5
+A
+APPLY_HIT -100
+C
+slash~ 
+FLAG_CLASS_RANGER|FLAG_CLASS_ROGUE|FLAG_CLASS_ASSASSIN|FLAG_CLASS_MONK|FLAG_CLASS_ILLUSIONIST|FLAG_CLASS_ELEMENTALIST|FLAG_CLASS_NECROMANCER
+P 1 
+TRIG_HIT 72 
+OPROG_IF OIF_RANDOM_PERCENT < 81 2 5 
+P 2 
+TRIG_VOID 
+OPROG_IF OIF_RANDOM_PERCENT < 81 3 4 
+P 3 
+TRIG_VOID 
+OPROG_APPLY OAPPLY_HIT 29 
+P 3 
+TRIG_VOID 
+OPROG_GOD_COMMAND mpechoat $ Your glass sword softens the wound. 
+~ 
+P 4 
+TRIG_VOID 
+OPROG_APPLY OAPPLY_HIT 38 
+P 4 
+TRIG_VOID 
+OPROG_GOD_COMMAND mpechoat $ Your glass sword gives you strength. 
+~ 
+P 5 
+TRIG_VOID 
+OPROG_IF OIF_RANDOM_PERCENT < 81 3 7 
+P 6 
+TRIG_VOID 
+OPROG_APPLY OAPPLY_HIT 60 
+P 6 
+TRIG_VOID 
+OPROG_GOD_COMMAND mpechoat $ Your glass sword heals your body. 
+~ 
+P 7 
+TRIG_VOID 
+OPROG_APPLY OAPPLY_HIT 98 
+P 7 
+TRIG_VOID 
+OPROG_GOD_COMMAND mpechoat $ Your glass sword restores your health! 
+~ 
+#18144 
+glass sword ordersword~ 
+a glass sword of Order~ 
+A glass sword is lost on the ground.~ 
+This glass sword once belonged to a great hero in the realm. 
+Now a new hero wield the weapon, fighting the minions of Chaos.
+~ 
+ITEM_TYPE_WEAPON ITEM_FLAG_LEVEL|ITEM_FLAG_AUTO_ENGRAVE ITEM_WEAR_TAKE|ITEM_WEAR_WIELD 
+0 20 5 2 
+10 10000 90
+A
+APPLY_WIS -5
+A
+APPLY_HIT -100
+C
+slash~ 
+FLAG_CLASS_RANGER|FLAG_CLASS_ROGUE|FLAG_CLASS_ASSASSIN|FLAG_CLASS_MONK|FLAG_CLASS_ILLUSIONIST|FLAG_CLASS_ELEMENTALIST|FLAG_CLASS_NECROMANCER
+P 1 
+TRIG_HIT 72 
+OPROG_IF OIF_RANDOM_PERCENT < 81 2 5 
+P 2 
+TRIG_VOID 
+OPROG_IF OIF_RANDOM_PERCENT < 81 3 4 
+P 3 
+TRIG_VOID 
+OPROG_APPLY OAPPLY_HIT 29 
+P 3 
+TRIG_VOID 
+OPROG_GOD_COMMAND mpechoat $ Your glass sword softens the wound. 
+~ 
+P 4 
+TRIG_VOID 
+OPROG_APPLY OAPPLY_HIT 38 
+P 4 
+TRIG_VOID 
+OPROG_GOD_COMMAND mpechoat $ Your glass sword gives you strength. 
+~ 
+P 5 
+TRIG_VOID 
+OPROG_IF OIF_RANDOM_PERCENT < 81 3 7 
+P 6 
+TRIG_VOID 
+OPROG_APPLY OAPPLY_HIT 60 
+P 6 
+TRIG_VOID 
+OPROG_GOD_COMMAND mpechoat $ Your glass sword heals your body. 
+~ 
+P 7 
+TRIG_VOID 
+OPROG_APPLY OAPPLY_HIT 98 
+P 7 
+TRIG_VOID 
+OPROG_GOD_COMMAND mpechoat $ Your glass sword restores your health! 
+~ 
+#0
+ 
+#RANGES 80 95 0 99
+#MOBILES 
+#18100 
+ghoul~ 
+the gruesome ghoul~ 
+A hideous looking ghoul floats about here. 
+~ 
+He is the ugliest creature, dead or living, upon which you have ever laid 
+your eyes.  It is all you can do to keep from wretching. 
+~ 
+ACT_RACE|ACT_UNDEAD|ACT_SENTINEL|ACT_ONE_FIGHT AFF_FLYING 0 S 
+76 BODY_CLAW BODY_CLAW 21d200+3500 6d11+17 
+463728 RACE_OGRE 
+POS_STANDING POS_STANDING SEX_MALE 
+>greet_prog 45~ 
+if class($n) == 5 
+  mpechoaround $n The gruesome ghoul cringes away from $n. 
+  mpechoat $n The gruesome ghoul cringes away from you. 
+endif 
+~ 
+| 
+#18101 
+cook~ 
+the cook~ 
+The cook stands here lording over a dead corpse. 
+~ 
+The glint in his eye and the sneer on his face warn you of the danger of 
+messing with this fellow. 
+~ 
+ACT_RACE|ACT_UNDEAD|ACT_SMART|ACT_SENTINEL AFF_PASS_DOOR 0 S 
+98 BODY_HAND BODY_HEAD 1d1+9999 7d16+15 
+845752 RACE_GNOME 
+POS_STANDING POS_STANDING SEX_MALE 
+>death_prog 80~ 
+if class($n) == 5 
+  mpoload 18119 
+  mpquiet on
+    drop i18119
+  mpquiet off
+endif 
+~ 
+>give_prog i18119~ 
+mpjunk all
+emote looks at the meat cleaver in wonder.
+say You killed me before, and yet you are returning my favored meat cleaver.  Why?
+mpechoat $n You start to reply, but are cut short. 
+mpechoaround $n $n looks as though $e is about to reply but the cook resumes. 
+say No, I don't need to know.  However, since you have been so kind to me, I will in return be kind to you.  This meat cleaver can only be enchanted by a spell which only I know.  Once I have invoked the spell, I can then give you the cleaver and the spel
+l will remain in full effect. It is the least I can do for you.' 
+mpoload 18100 
+give i18100 $n 
+thank $n 
+mppurge $i
+~
+| 
+#18102 
+king regal~ 
+the king~ 
+The regal king wanders about, distressed.~ 
+His regal attire and the distressed countenance do not seem to match in this, 
+the greatest king to ever rule this land.  Perhaps he is searching for 
+something which he has lost during the Time of Great Darkness. 
+~ 
+ACT_RACE|ACT_UNDEAD|ACT_SENTINEL|ACT_SMART AFF_UNDERSTAND|AFF_TONGUES 1000 S 
+103 BODY_HAND BODY_HEAD 1d1+10563 14d8+18 
+1247563 RACE_HUMAN 
+POS_STANDING POS_STANDING SEX_MALE
+>give_prog i18107~
+if quest(31,5,$n) == 14
+  wear i18107
+  bow $n
+  say I am most honored that you have returned my Iron Fist
+  say You are certainly a great hero, and heroes deserve a hero's weapon
+  mpoload 18142
+  give i18142 $n
+  mpmset $n quest 31 5 15
+else
+  mpquiet on
+  drop i18107
+  mpquiet off
+  mpecho The king fades from view.
+  mppurge $i
+endif
+~
+|
+#18103 
+queen lovely~ 
+the queen~ 
+The lovely queen cries softly to herself.~ 
+With bleary eyes she watches as you examine her.  She is sorrowful, for some 
+unknown reason.  If there were a way to help her, she would be much happier. 
+~ 
+ACT_RACE|ACT_UNDEAD|ACT_SENTINEL|ACT_SMART AFF_UNDERSTAND|AFF_TONGUES -500 S 
+99 BODY_HAND BODY_HEAD 12d544+5938 10d14+10 
+1247563 RACE_HUMAN 
+POS_STANDING POS_STANDING SEX_FEMALE 
+>rand_prog 3~
+mpecho The queen crys softly to herself.
+~
+>speech_prog p I am trustworthy~
+if quest(31,5,$n) > 2
+  if quest(15,1,$n) == 0
+    mpechoat $n The queen ponders your worth.
+    if isevil($n)
+      mpoload 18113
+      mpquiet on
+        give i18113 $n
+      mpquiet off
+      mpechoat $n The queen secretly gives you the Seed of Discord.
+      tell $n My lover told me to give this to one who would help.  I do not know what it's purpose is...you should go ask him.
+      say Fare thee well, $n
+      mpmset $n quest 15 1 1
+    else
+      tell $n No, I'm afraid you aren't trustworthy enough.
+    endif
+    mpecho The queen fades from view. 
+    if hasobjnum(18109)
+      mpjunk i18109 
+      mpoload 18101
+      mpquiet on
+        drop i18101
+      mpquiet off
+    endif
+    mppurge $i
+  endif
+endif
+~
+>speech_prog p the wizard~
+if quest(31,5,$n) == 2
+  glare $n
+  say Don't talk to me, I'm too upset!
+endif
+~
+>give_prog i18108~
+if quest(31,5,$n) == 2
+  open locket 
+  get picture locket 
+  if hasobjnum(18109) 
+    mpecho The queen gazes longingly at the picture. 
+    look $n 
+    say Thank you, $n, for returning my locket. 
+    smile 
+    tell $n I have a secret...but I feel I can trust you.
+    tell $n You want to know about the wizard, right?
+    mpforce $n reply Yes
+    mpechoat $n The queen glances about the room.
+    tell $n He shares my bed, but the king does not know.
+    tell $n My husband is a fool...without his Iron Fist he cannot rule this nation.
+    tell $n You must help us de-throne him!
+    say Are you trustwory?
+    mpmset $n quest 31 5 3
+  else
+    scream 
+    say My picture!  My precious picture!! 
+    growl $n 
+    shout $n is a bloody thief! 
+    mpkill $n 
+  endif 
+else
+  mpecho The queen fades from view.
+  mpjunk i18108
+  mppurge $i
+endif
+~ 
+>give_prog i18109~ 
+if quest(31,5,$n) == 2
+  say Where did you get this picture?! 
+  shout $n is a bloody thief! 
+  mpjunk i18109
+  mpkill $n 
+endif
+~ 
+| 
+#18104 
+princess~ 
+the princess~ 
+The angelic princess peers intently at you. 
+~ 
+She is absolutely beautiful.  She is only a child, barely eight years old, 
+and yet she possesses a beauty far beyond her years.  Unfortunately, she met 
+an early demise when the darkness fell over this kingdom and never had the 
+chance to find her prince and make him happy. 
+~ 
+ACT_RACE|ACT_UNDEAD|ACT_SENTINEL|ACT_SMART AFF_UNDERSTAND|AFF_TONGUES 1000 S 
+91 BODY_HAND BODY_HEAD 12d144+5938 8d14+10 
+1247563 RACE_HUMAN 
+POS_STANDING POS_STANDING SEX_FEMALE 
+>fight_prog 65~
+if hasobjnum(18125)
+  mpecho A mortar and pestle shatter in combat.
+  mpjunk i18125
+endif
+~
+>give_prog i18106~ 
+wear doll 
+say My dolly!! You found her! 
+hug $n 
+if sex($n) == 1 
+  say Thank you, Mr. Man! 
+else
+  if sex($n) == 2 
+    say Thank you, Lady! 
+  else
+    say Thank you, Mr. Thing! 
+  endif 
+endif 
+mpjunk 18106 
+mpquiet on
+  remove i18125
+  drop i18125
+mpquiet off
+mpecho The princess fades from view.
+mppurge $i
+~
+| 
+#18105 
+prince~ 
+the prince~ 
+The bratty prince glares about in anger. 
+~ 
+Mean spirited, hateful, vengeful.  The prince, who once was the oldest child 
+in the castle, ran away from his family to live life on his own.  He soon 
+discovered that he could not keep his identity a secret and was later 
+murdered.   
+~ 
+ACT_RACE|ACT_UNDEAD|ACT_SMART AFF_UNDERSTAND|AFF_TONGUES -500 S 
+96 BODY_HAND BODY_HEAD 12d144+8938 8d19+10 
+1247563 RACE_HUMAN 
+POS_STANDING POS_STANDING SEX_MALE 
+#18106 
+zombie~ 
+the rotting zombie~ 
+The zombie drops pieces of flesh all around him. 
+~ 
+Not quite dead, yet not quite living, the zombie is in a state of flux.  He 
+was dead, but he cannot be killed.  It is the mystery of magic. 
+~ 
+ACT_SENTINEL|ACT_RACE|ACT_UNDEAD|ACT_ONE_FIGHT 0 0 S 
+96 BODY_CLAW BODY_CLAW 21d400+4000 6d15+26 
+463728 RACE_DROW 
+POS_STANDING POS_STANDING SEX_MALE 
+>death_prog 25~
+  if class($n) == 5
+    mpoload 18122
+    mpecho A piece of zombie flesh falls to the earth.
+  else
+    if rand(20)
+      mpoload 18122
+      mpecho A piece of zombie flesh falls to the earth.
+    endif
+  endif
+~
+>greet_prog 45~ 
+if class($n) == 5 
+  mpechoaround $n The rotting zombie glares at $n with half eaten eyeballs. 
+  mpechoat $n The rotting zombie glares at you with half eaten eyeballs. 
+endif 
+~ 
+| 
+#18107 
+apparition~ 
+the mysterious apparition~ 
+The apparition flickers in and out of sight. 
+~ 
+The apparition keeps flickering in and out of existence, making it difficult 
+to get a fix on what he looks like.  
+~ 
+ACT_RACE|ACT_UNDEAD|ACT_SENTINEL AFF_HIDE|AFF_SNEAK|AFF_FLYING 0 S 
+86 BODY_CLAW BODY_CLAW 21d401+2000 6d11+27 
+463728 RACE_DROW 
+POS_STANDING POS_STANDING SEX_MALE 
+>greet_prog 45~ 
+if class($n) == 5 
+  mpechoaround $n The mysterious apparition cringes further away from $n. 
+  mpechoat $n The mysterious apparition cringes further away from you. 
+endif 
+~ 
+| 
+#18108 
+corpse~ 
+the living corpse~ 
+The corpse of a man is here. 
+~ 
+The corpse is decaying away, and yet it is able to defend itself against 
+any attacks. 
+~ 
+ACT_RACE|ACT_UNDEAD|ACT_SENTINEL AFF_HIDE|AFF_SNEAK|AFF_FLYING 0 S 
+91 BODY_CLAW BODY_CLAW 21d300+3500 7d11+26 
+463728 RACE_DROW 
+POS_STANDING POS_STANDING SEX_MALE 
+>greet_prog 45~ 
+if class($n) == 5 
+  mpechoaround $n The living corpse tries to ignore $n. 
+  mpechoat $n The living corpse tries to ignore you. 
+endif 
+~ 
+| 
+#18109 
+zombie gardener~ 
+the zombie gardener~ 
+The zombified gardener wanders about, tending the flowers.~ 
+This is the gardener who took care of the castle grounds for the king.
+Unfortunately, (for him), he became a zombie rather than a ghost as every
+other member of the castle became.  Perhaps you should ask him to tell you
+about the royal family?
+~ 
+ACT_RACE|ACT_UNDEAD|ACT_SMART AFF_UNDERSTAND|AFF_TONGUES 0 S 
+103 BODY_HAND BODY_HEAD 1d1+10563 14d8+18 
+1247563 RACE_HUMAN 
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if quest(31,5,$n) == 4
+  say You are helping the wizard?
+endif
+~
+>speech_prog p zombie skin~
+if quest(31,5,$n) == 4
+  growl $n
+  say Don't even THINK about it...I barely have any skin left!
+endif
+~
+>speech_prog p skeleton bone~
+if quest(31,5,$n) == 4
+  say Find a skeleton, take a bone
+endif
+~
+>speech_prog p erlenmeyer flask~
+if quest(31,5,$n) == 4
+  say Dunno about that one
+endif
+~
+>speech_prog p yes~
+if quest(31,5,$n) == 4
+  say Very well, I suppose I can help...though you did dig up those graves.
+  say Of all the items you need, which can I help you find?
+endif
+~
+>speech_prog p a stick~
+if quest(31,5,$n) == 4
+  say A blue rose, if planted in dirt with plenty of sunshine, will grow into a bush at your command.
+endif
+~
+>speech_prog p glob of water~
+if quest(31,5,$n) == 4
+  say Think about it...where can you find water?
+endif
+~
+>speech_prog p seed of discord~
+if quest(31,5,$n) == 4
+  say Uh...don't you already have it?
+endif
+~
+>rand_prog 15~
+  if quest(31,5,$r) == 1
+    say If you wish to help the royal family, I will give you a shovel and you can dig up their graves.
+  endif
+~
+>speech_prog why~
+  if quest(31,5,$n) == 1
+    say Don't ask why, kid
+  else
+    say Go away, don't bother me
+  endif
+~
+>speech_prog p wish to help the royal family~
+  if quest(31,5,$n) == 1
+    if sex($n) == 1
+      say Very noble, good Sir
+    else 
+      if sex($n) == 2
+        say Very noble, fair Maiden
+      else
+        say Very noble...um...whatever you are
+      endif
+    endif
+    say Take this shovel and dig up their graves
+    say You realize, of course, this goes against everything in me that is a gardener...but if you must, do it and leave me alone
+    mpoload 18105
+    give i18105 $n
+    mpmset $n quest 31 5 2
+  endif
+~
+>speech_prog p tell me about the royal family~
+  if quest(31,5,$n) == 0
+    say Ah yes, the royal family.
+    chuckle
+    mpmset $n quest 31 5 1
+    say Well, of whom do you wish me to speak?
+  else
+    say Go away, don't bother me
+  endif
+~
+>speech_prog p the king~
+  if quest(31,5,$n) == 1
+    say The King, you ask...
+    say 'Tis a sad story indeed, if you will indulge me
+    say The king used to be a noble man, who ruled with an Iron Fist
+    say However, he lost that Fist when he discovered that his wizard...
+    say Um...perhaps I shouldn't divulge that information.
+  else
+    say Go away, don't bother me
+  endif
+~
+>speech_prog p the queen~
+  if quest(31,5,$n) == 1
+    say She got involved in something which I dare not speak.
+    say I suggest you talk to her directly if you want to know.
+  else
+    say Go away, don't bother me
+  endif
+~
+>speech_prog p the wizard~
+  if quest(31,5,$n) == 1
+    say Heh, the wizard...
+    say He was the most powerful wizard in the land, but he had an evil streak in him
+    say His evil and mischief caused the downfall of the king
+    say And to forstall the predictable "Why?" question, all I am allowed to say is you should ask the queen to tell you about the wizard
+  else
+    say Go away, don't bother me
+  endif
+~
+>speech_prog p the princess~
+  if quest(31,5,$n) == 1
+    say Oh!  The princess was the most adorable little thing you could ever see!
+    say She used to come to my garden and gaze lovingly at the flowers.
+    giggle
+    say Her and her doll, that is.  She never went anywhere without it
+  else
+    say Go away, don't bother me
+  endif
+~
+>speech_prog p the prince~
+  if quest(31,5,$n) == 1
+    say Shhh! Don't speak too loudly of the prince.
+    emote shudders.
+    say The king would have you beheaded if you reminded him of how his oldest and only son ran off to a foreign land with part of his inheritance and squandered it
+    say That's not the worst part, though.  He also stole his mother's beloved picture of the princess and the king...right out of her locket!
+  else
+    say Go away, don't bother me
+  endif
+~
+>speech_prog p the cook~
+  if quest(31,5,$n) == 1
+    say There's not much to say about the cook.
+    say He did have this meat cleaver, never let it out of his sight.
+  else
+    say Go away, don't bother me
+  endif
+~
+>speech_prog p the gardener~
+  if quest(31,5,$n) == 1
+    say I'm flattered that you want to know about me, but I'll tell you a secret
+    say None of the ghosts know they are dead.
+    say Apparently only I realize this because I became a zombie...don't ask how, I don't know.  All I can say is, be careful as you walk around...they are acting as if they are alive.
+  else
+    say Go away, don't bother me
+  endif
+~
+|
+#18110
+mansion ghost centurion knight~
+a Mansion centurion~
+a Mansion centurion stands guard.~
+The ghostly centurion floats about here, the scene of his unfortunate death.
+~
+ACT_RACE|ACT_SENTINEL AFF_FLYING|AFF_PASS_DOOR 0 S
+70 BODY_HAND|BODY_FOOT|63 BODY_HAND|BODY_FOOT|63 1d5600+1000 5d10+30
+48365 RACE_DROW
+7 7 0
+>death_prog 100~
+mpechoat $n You receive 48365 coins.
+mpechoaround $n $n receives 48365 coins.
+mpquiet on
+  give 48365 coin $n
+  rem all
+  drop all
+mpquiet off
+mpforce $n split 48365
+if rand(5)
+  mpecho {010}Another centurion appears!
+  mpmload 18110
+else
+  mpecho {070}a Mansion centurion screams a lifeless scream.
+endif
+mpgoto 18250
+mppurge $i  
+~
+|
+#18112
+mansion ghost centurion knight~
+a Mansion centurion~
+a Mansion centurion stands guard.~
+The ghostly centurion floats about here, the scene of his unfortunate death.
+~
+ACT_RACE|ACT_SENTINEL AFF_FLYING|AFF_PASS_DOOR 0 S
+70 BODY_HAND|BODY_FOOT|63 BODY_HAND|BODY_FOOT|63 1d5600+1000 5d10+30
+48365 RACE_DROW
+7 7 0
+>death_prog 70~
+mpquiet on
+  give 48365 coin $n
+  rem all
+  drop all
+mpquiet off
+if rand(8)
+  mpecho Another centurion appears!
+  mpmload 18113
+else
+  emote screams a lifeless scream.
+endif
+mpgoto 18250
+mppurge $i
+~
+|
+#18113
+mansion ghost centurion knight~
+a Mansion centurion~
+a Mansion centurion stands guard.~
+The ghostly centurion floats about here, the scene of his unfortunate death.
+~
+ACT_RACE|ACT_SENTINEL AFF_FLYING|AFF_PASS_DOOR 0 S
+70 BODY_HAND|BODY_FOOT|63 BODY_HAND|BODY_FOOT|63 1d5600+1000 5d10+30
+48365 RACE_DROW
+7 7 0
+>death_prog 100~
+mpquiet on
+  give 48365 coin $n
+  rem all
+  drop all
+mpquiet off
+emote screams a lifeless scream.
+mpgoto 18250
+mppurge $i
+~
+|
+#18111 
+ghost wizard~ 
+the wizard~ 
+The king's wizard stands here, scheming against his liege.~ 
+The wizard, jealous of the king's power, plots revenge for supposed
+injustice against him.
+~ 
+ACT_RACE|ACT_SENTINEL|ACT_UNDEAD|ACT_SMART AFF_UNDERSTAND|AFF_TONGUES -1000 S 
+103 BODY_HAND BODY_HEAD 1d1+10563 14d8+18 
+1247563 RACE_HUMAN 
+POS_STANDING POS_STANDING SEX_MALE
+>social_prog pray~
+  if quest(31,5,15)
+    mset $n quest 20 1 1
+    tell $n My humble servant, you need my help?
+  endif
+~
+>speech_prog p My lord, I have lost my sword~
+  if quest(20,1,$n) == 1
+    tell $n Impotent fool!
+    if actorhasobjnum(18142)
+      tell $n Do not attempt to trick me, young one.  I suggest you return to your travels
+    else
+      tell $n Very well, I shall supply you with a new one.
+      mpoload 18142
+      give 18142 $n
+    endif
+  endif
+~
+>speech_prog p My lord, I have lost my staff~
+  if quest(20,1,$n) == 1
+    tell $n Impotent fool!
+    if actorhasobjnum(18131)
+      tell $n Do not attempt to trick me, young one.  I suggest you return to your travels
+    else
+      tell $n Very well, I shall supply you with a new one.
+      mpoload 18131
+      give 18131 $n
+    endif
+  endif
+~
+>rand_prog 100~
+  if quest(3,1,$i) == 1
+    mpmset self quest 3 1 0
+    say Well done, you have almost completed the staff.
+    ponder
+    say However, only a true wizard can bestow ultimate power. Bring me the king's Iron Fist and you shall have my power!
+  endif
+~
+>all_greet_prog 100~
+if quest(15,1,$n) == 1
+  say So the queen trusts you...
+  emote ponders you and your loyalty.
+  say Very well, let us begin plotting to overthrow that dictator on the throne.
+  mpoload 18120
+  say I bestow upon you this spellbook, to assist you.
+  mpquiet on
+    give i18120 $n
+  mpquiet off
+  say In order to thwart the king, you need to make a staff.
+  say Use that book to help.
+  mpmset $n quest 31 5 4
+endif
+~
+>give_prog i18107~
+if quest(31,5,$n) == 14
+  cackle
+  mpecho The wizard reveals his true self!
+  mpmset $i short Lord Demise
+  bow
+  say You have done well, my child
+  mpecho Lord Demise lifts his hands in the air, and your stick is transformed.
+  if class($n) == 0
+  or class($n) == 1
+  or class($n) == 4
+  or class($n) == 5
+    mpquiet on
+      c rem $n
+      c rem $n
+      c rem $n
+      c rem $n
+      c rem $n
+      c rem $n
+      c rem $n
+      c rem $n
+      mpoload 18131
+      mpforce $n mpjunk i18110
+      give i18131 $n
+    mpquiet off
+    mpforce $n wield i18131
+  else
+    mpquiet on
+      c rem $n
+      c rem $n
+      c rem $n
+      c rem $n
+      c rem $n
+      c rem $n
+      c rem $n
+      c rem $n
+      c rem $n
+      c rem $n
+      mpoload 18142
+      mpforce $n mpjunk i18110
+      give i18142 $n
+    mpquiet off
+    mpforce $n wield i18142
+  endif
+  say Fare thee well, $n
+  mpecho Lord Demise fades into the darkness.
+  mpmset $n quest 31 5 15
+  mppurge $i
+endif
+~
+>speech_prog p The waking dead, the dead to waking~
+if quest(31,5,$n) == 10
+  mpmset $n quest 31 5 11
+  mpecho The room grows dark as the forces of evil gather.
+endif
+~
+>speech_prog p Breaking harmony and harmony broken~
+if quest(31,5,$n) == 11
+  mpmset $n quest 31 5 12
+  mpecho Colors swirl, mix, and separate.
+endif
+~
+>speech_prog p This power to you-the one to taking~
+if quest(31,5,$n) == 12
+  mpmset $n quest 31 5 13
+  mpecho A dark, glowing energy surrounds the wizard staff.
+endif
+~
+>speech_prog p And sealing it with words so spoken~
+if quest(31,5,$n) == 13
+  mpmset $n quest 31 5 14
+  mpecho Screams echo about the room, then all is normal.
+  mpmset self quest 3 1 1
+endif
+~
+|
+#18131 
+The Blue Rose Bush~ 
+The blue rose bush~ 
+The Blue Rose Bush 
+~ 
+The Blue Rose Bush
+~ 
+ACT_RACE|ACT_UNDEAD|ACT_SENTINEL AFF_ETHEREAL 0 S 
+91 BODY_CLAW BODY_CLAW 21d300+3500 7d11+26 
+463728 RACE_DROW 
+POS_STANDING POS_STANDING SEX_MALE 
+>rand_prog 100~ 
+if quest(0,8,self) > 0 
+  if isnight()
+    mpmset self quest 0 8 0
+    mppurge i18133
+    mpecho The blue rose bush dies due to lack of sunlight. 
+  endif 
+endif 
+~ 
+>speech_prog p grow!~ 
+if actorhasobjnum(18112) 
+  if quest(0,8,self) > 0
+    mpecho There is already a blue rose bush growing here.
+  else
+    if isday()
+      mpoload 18133 
+      mpoload 18110
+      mpquiet on
+        mpforce $n drop i18112
+        mpforce $n drop i18116
+        mpjunk i18112
+        mpjunk i18116
+      mpquiet off
+      mpmset self quest 0 8 20 
+      mpecho The blue rose grows and flourishes in the bright sunlight. 
+      mpquiet on 
+        drop i18110
+      mpquiet off 
+      mpecho Suddenly, the sun becomes even brighter, so bright even that you are blinded. 
+      mpecho After a few moments, the sunlight returns to normal.
+    else
+      mpechoat $n Perhaps you should wait until daylight?
+  endif 
+endif 
+~ 
+| 
+#18132
+Entry Mob~ 
+Entry Mob~ 
+Entry Mob 
+~ 
+Entry Mob 
+~ 
+ACT_RACE|ACT_UNDEAD|ACT_SENTINEL AFF_ETHEREAL 0 S 
+91 BODY_CLAW BODY_CLAW 21d300+3500 7d11+26 
+463728 RACE_DROW 
+POS_STANDING POS_STANDING SEX_MALE 
+>all_greet_prog 100~
+if quest(11,1,$n) == 0
+  resetquest $n 18100
+  mpechoat $n You look at the large stone.
+  mpforce $n look large
+  mpforce $n look small
+  mpmset $n quest 11 1 1
+endif
+~
+|
+#0 
+ 
+#ROOMS 
+#18100 
+Dark Pathway~ 
+{020}You step off the road into complete darkness.  All around you, the forest 
+is closing in and darkness reigns supreme.  The darkness is thickest to the 
+west, through impassable brush.  A small trail seems to lead north and
+south.{300}
+     Two stones, one small and one large, sit here.
+~ 
+181 ROOM_DARK SECT_FOREST 
+DDIR_EAST 
+The Road stretches to the east. 
+~ 
+~ 
+0 0 17647 
+DDIR_NORTH 
+A small trail leads to the north. 
+~ 
+~ 
+0 0 18101 
+DDIR_SOUTH 
+A small trail leads to the south. 
+~ 
+~ 
+0 0 18131 
+E 
+large stone~ 
+The large stone is old and seems overgrown with weeds:
+ 
+   BEWARE YE WHO ENTER! 
+    
+   THE MIDNIGHT MANSION IS A PLACE OF GRAVE HORRORS! 
+ 
+~ 
+E 
+small~ 
+The small stone reads:
+ 
+  Midnight Mansion, v2.01, Mancha 
+ 
+~ 
+S 
+#18101 
+Down a small, dark trail~ 
+{020}The trail is dark and within the borders of the surrounding forest you can 
+feel the presence of hideous monsters, lurking and sniffing for the slightest 
+hint of blood. 
+~ 
+181 ROOM_DARK SECT_FOREST 
+DDIR_NORTH 
+A small trail leads to the north. 
+~ 
+~ 
+0 0 18102 
+DDIR_SOUTH 
+A small trail leads to the south. 
+~ 
+~ 
+0 0 18100 
+S 
+#18102 
+Further down a dark trail~ 
+{020}Even deeper into the forest, you notice that no sunlight has ever reached 
+this area.  The underbrush is dead from lack of sufficient light, while 
+tall trees tower high above your head, making you feel puny and nonexistant. 
+~ 
+181 ROOM_DARK SECT_FOREST 
+DDIR_NORTH 
+The trail seems to get less used to the north. 
+~ 
+~ 
+0 0 18103 
+DDIR_SOUTH 
+A small trail leads to the south. 
+~ 
+~ 
+0 0 18101 
+S 
+#18103 
+A diminishing trail~ 
+{020}The path here seems to be almost gone, as though nothing living has travelled 
+this way in quite some time.  Gathering your bearings, you notice that nearly 
+impassable brush lies to the north, while the trail veers of in an easterly 
+direction. 
+~ 
+181 ROOM_DARK SECT_FOREST 
+DDIR_NORTH 
+Dense forest awaits you to the north. 
+~ 
+~ 
+0 0 18104 
+DDIR_EAST 
+The path continues east. 
+~ 
+~ 
+0 0 18123 
+DDIR_SOUTH 
+A small trail leads to the south. 
+~ 
+~ 
+0 0 18102 
+S 
+#18104 
+Unclear pathway in the forest~ 
+{020}This part of the forest is completely surrounded by tall trees.  No sunlight 
+is visible in the sky, even at high noon.  You ponder the wisdom of continuing 
+further into the forest. 
+~ 
+181 ROOM_DARK SECT_FOREST 
+DDIR_NORTH 
+More forest is in the north. 
+~ 
+~ 
+0 0 18105 
+DDIR_SOUTH 
+The end of a small trail is to the south. 
+~ 
+~ 
+0 0 18103 
+S 
+#18105 
+Dark, dense forest~ 
+{020}You stand in a dark part of the forest, surrounded on all sides by tall trees. 
+How the trees have ever managed to grow that tall makes you gaze in awe, but 
+the utter darkness which the tall trees bring make you feel a twinge of fear. 
+~ 
+181 ROOM_DARK SECT_FOREST 
+DDIR_NORTH 
+A darker part of the forest is to the north. 
+~ 
+~ 
+0 0 18106 
+DDIR_SOUTH 
+A lighter part of the forest is to the south. 
+~ 
+~ 
+0 0 18104 
+S 
+#18106 
+Dense forest~ 
+{020}This is the darkest forest you have ever seen.  You can barely see in front 
+of you for it seems that all light is being siphoned away, but to where you 
+cannot tell.  You only notice the extreme darkness. 
+~ 
+181 ROOM_DARK SECT_FOREST 
+DDIR_EAST 
+The forest thins to the east. 
+~ 
+~ 
+0 0 18107 
+DDIR_SOUTH 
+The forest thins to the south. 
+~ 
+~ 
+0 0 18105 
+S 
+#18107 
+A lighter part of the forest~ 
+{020}A single, solitary ray of sunshine manages to make its way down from the tall 
+trees into one tiny patch in the grass.  In that one part, small underbrush is 
+thriving as is by magic.  Yet even as you look upward to see the source of the 
+sunshine you cannot see a break in the trees. 
+~ 
+181 ROOM_DARK SECT_FOREST 
+DDIR_EAST 
+There is a small clearing to the east. 
+~ 
+~ 
+0 0 18108 
+DDIR_WEST 
+The darkest part of the forest is to the west. 
+~ 
+~ 
+0 0 18106 
+S 
+#18108 
+A small clearing~ 
+{120}You step into a small clearing with a smile.  This area is brightly lit, the 
+brightest area in the entire forest even.  The beauty which once belonged to 
+the forest can be seen in the bright colors and splendid sunlight.  You feel 
+as though you could sleep here for an eternity. 
+~ 
+181 0 SECT_FOREST 
+DDIR_EAST 
+Dense forest lies to the east. 
+~ 
+~ 
+0 0 18109 
+DDIR_WEST 
+There is more forest to the west. 
+~ 
+~ 
+0 0 18107 
+S 
+#18109 
+Slighty broken forest~ 
+{020}Here the forest seems slighty broken up, as if some magic has prevented the 
+forest from completely enclosing the part of the forest.  Perhaps there is 
+some sort of magical enchantment on this area that makes it so. 
+~ 
+181 ROOM_DARK SECT_FOREST 
+DDIR_EAST 
+Darker, gloomier forest is to the east. 
+~ 
+~ 
+0 0 18110 
+DDIR_SOUTH 
+Dense forest is to the south. 
+~ 
+~ 
+0 0 18119 
+DDIR_WEST 
+A small clearing is to the west. 
+~ 
+~ 
+0 0 18108 
+S 
+#18110 
+Dark forest~ 
+{020}The slightly broken forest gives way to dark, gloomy, dense foliage.  Try as 
+you might, your eyes cannot penetrate beyond the darkness to the south. 
+The best bet is to go west and save yourself from doom. 
+~ 
+181 ROOM_DARK SECT_FOREST 
+DDIR_WEST 
+The forest path goes west. 
+~ 
+~ 
+0 0 18109 
+DDIR_SOUTH 
+The forest path goes east. 
+~ 
+~ 
+0 0 18111 
+S 
+#18111 
+Dark forest~ 
+{020}Stumbling blindly through the forest you manage to make your way to a fork 
+in the road, if it could be called that.  There is not much of a trail in 
+any known direction. 
+~ 
+181 ROOM_DARK SECT_FOREST 
+DDIR_NORTH 
+The gloomy forest goes north. 
+~ 
+~ 
+0 0 18110 
+DDIR_SOUTH 
+The gloomy forest goes south. 
+~ 
+~ 
+0 0 18115 
+DDIR_EAST 
+The gloomy path goes east. 
+~ 
+~ 
+0 0 18112 
+S 
+#18112 
+Gloomy path~ 
+{020}This gloomy path, though it seems little used, used to be a major route for 
+the people of this fair land.  For what reason, you care not to speculate, 
+lest you make an ass of yourself. 
+~ 
+181 ROOM_DARK SECT_FOREST 
+DDIR_EAST 
+The gloomy path goes east. 
+~ 
+~ 
+0 0 18113 
+DDIR_WEST 
+The the gloomy forest goes west. 
+~ 
+~ 
+0 0 18111 
+S 
+#18113 
+Gloomy path~ 
+{020}The path bends here, going west and south.  A sense of impending doom, as 
+well as a twinge of loss, suddenly play on your emotions.  Where these 
+feelings come from is a mystery. 
+~ 
+181 ROOM_DARK SECT_FOREST 
+DDIR_WEST 
+The forest path goes west. 
+~ 
+~ 
+0 0 18112 
+DDIR_SOUTH 
+The forest path goes east. 
+~ 
+~ 
+0 0 18114 
+S 
+#18114 
+Before a decrepit cemetary~ 
+{020}You stand in front of a gate which leads to an old, abandoned cemetary.  The 
+gate is almost completely rusted shut and the gravestones do not look in 
+much better condition.~ 
+181 ROOM_DARK SECT_FOREST 
+DDIR_SOUTH 
+The decrepit cemetary is to the south. 
+~ 
+gate~ 
+EX_ISDOOR|EX_CLOSED -1 18136 
+DDIR_NORTH 
+The darkness continues to the north. 
+~ 
+~ 
+0 0 18113 
+S 
+#18115 
+Dense forest~ 
+{020}The forest is very dense in this portion and not very inviting.  To the west 
+you see the beginning of a boardwalk, and to the north, even denser forest. 
+It is a dilemna, deciding whether to risk the boardwalk or risk the trees.~ 
+181 ROOM_DARK SECT_FOREST 
+DDIR_WEST 
+A boardwalk is to the west. 
+~ 
+~ 
+0 0 18116 
+DDIR_NORTH 
+Dense forest continues to the north. 
+~ 
+~ 
+0 0 18111 
+S 
+#18116 
+Beginning of a long boardwalk~ 
+{020}You are standing at what appears to be the beginning of a long, run-down 
+boardwalk.  The planks have long since splintered and the general area looks 
+like a pile of garbage wasting away in the darkness.  A raunchy smell adds 
+to the nasty decorum. 
+~ 
+181 ROOM_DARK SECT_FOREST 
+DDIR_EAST 
+Dark, gloomy forest is to the east. 
+~ 
+~ 
+0 0 18115 
+DDIR_SOUTH 
+The boardwalk continues south. 
+~ 
+~ 
+0 0 18117 
+S 
+#18117 
+Middle of a long boardwalk~ 
+{020}Here in the middle of the boardwalk you cannot decide if the forest was 
+better coming or going.  Both of them are gloomy and droll, nothing which 
+anyone in his right mind would consider beauty. 
+~ 
+181 ROOM_DARK SECT_FOREST 
+DDIR_SOUTH 
+The end of the boardwalk is to the south. 
+~ 
+~ 
+0 0 18118 
+DDIR_NORTH 
+The beginning of the boardwalk is to the north. 
+~ 
+~ 
+0 0 18116 
+S 
+#18118 
+Before a majestic castle~ 
+{100}You are standing at the end of the boardwalk in front of a run-down, shabby 
+home which appears to have been a castle at one time or another.  Four tall 
+spires poke up above the forest, taller even than the trees surrounding you. 
+It looks as though no one has lived here in a very long time. 
+~ 
+181 0 SECT_CITY 
+DDIR_SOUTH 
+The castle is to the south. 
+~ 
+~ 
+0 0 18160 
+DDIR_NORTH 
+The boardwalk is to the north. 
+~ 
+~ 
+0 0 18117 
+S 
+#18119 
+Dense, dark forest~ 
+{020}More dense forest surrounds you as you wander through this area.  You ponder 
+at how anything can live here.  Yet even as that though enters your mind you 
+wonder *if* anything lives here. 
+~ 
+181 ROOM_DARK SECT_FOREST 
+DDIR_NORTH 
+More dark forest is to the north. 
+~ 
+~ 
+0 0 18109 
+DDIR_WEST 
+The dense forest is broken only by a small footpath to the west. 
+~ 
+~ 
+0 0 18120 
+S 
+#18120 
+Small footpath~ 
+{020}This small footpath is barely visible and even less barely travelled.  It 
+is marked only by the occasional snapped twig, indicating that something may 
+have passed by here recently. 
+~ 
+181 ROOM_DARK SECT_FOREST 
+DDIR_EAST 
+Only dense forest leads eastward. 
+~ 
+~ 
+0 0 18119 
+DDIR_SOUTH 
+The footpath continues to the south. 
+~ 
+~ 
+0 0 18126 
+DDIR_WEST 
+The footpath grows weaker to the west. 
+~ 
+~ 
+0 0 18121 
+S 
+#18121 
+Untravelled footpath~ 
+{020}The footpath here is very faint and difficult to make out.  It is very likely 
+that nothing living, or at least nothing truly living, has passed by here in 
+decades. 
+~ 
+181 ROOM_DARK SECT_FOREST 
+DDIR_EAST 
+The footpath grows stronger to the east. 
+~ 
+~ 
+0 0 18120 
+DDIR_SOUTH 
+Dense, seemingly impassable forest lies to the south. 
+~ 
+~ 
+0 0 18122 
+S 
+#18122 
+Small pathway~ 
+{020}This small pathway seems to be somewhat well travelled.  The underbrush is 
+smashed, stomped by the feet of something in the area.  It is most prominent 
+to the south but seems to peter out in the north. 
+~ 
+181 ROOM_DARK SECT_FOREST 
+DDIR_NORTH 
+The footpath peters out to the north. 
+~ 
+~ 
+0 0 18121 
+DDIR_SOUTH 
+A small trail is to the south. 
+~ 
+~ 
+0 0 18123 
+S 
+#18123 
+A small trail in the forest~ 
+{020}This path is a bit more travelled than its westward companion, however, to 
+the south the trail is remarkably well groomed.  Its as though someone or 
+something has been keeping the trail prepared to accept any wandering souls 
+who seek rest.  You feel a strange attraction to the south. 
+~ 
+181 ROOM_DARK SECT_FOREST 
+DDIR_SOUTH 
+A beautiful trail leads south. 
+~ 
+~ 
+0 0 18124 
+DDIR_NORTH 
+Dense, almost impassable forest is in the north. 
+~ 
+~ 
+0 0 18122 
+DDIR_WEST 
+The small trail goes west. 
+~ 
+~ 
+0 0 18103 
+S 
+#18124 
+A beautiful trail~ 
+{120}The trail in this area is well groomed by a master gardener.  It is the most 
+lovely walkway you have ever had the pleasure of viewing.  Trees, flowers, 
+even the forest animals seem brighter, more alive here than anywhere else. 
+~ 
+181 0 SECT_CITY 
+DDIR_SOUTH 
+The beautiful trail continues southward. 
+~ 
+~ 
+0 0 18125 
+DDIR_NORTH 
+The beautiful trail goes northward. 
+~ 
+~ 
+0 0 18123 
+S 
+#18125 
+Before a majestic castle~ 
+{120}You find yourself at the end of the beautiful trail, standing before a 
+majestic castle.  Even the splendid walkway upon which you travelled looks 
+like an ordinary trail in light of this castle. 
+~ 
+181 0 SECT_CITY 
+DDIR_DOWN
+The inside of the castle lies down. 
+~ 
+~ 
+0 0 18218
+DDIR_NORTH 
+The beautiful trail goes north, away from the castle. 
+~ 
+~ 
+0 0 18124 
+S 
+#18126 
+Small, lightly travelled footpath~ 
+{020}Looking from south to north, the footpath grows less and less travelled. 
+Apparently something lives to the south, since the heaviest footprints 
+are in that direction. 
+~ 
+181 ROOM_DARK SECT_FOREST 
+DDIR_SOUTH 
+The footpath grows stronger to the south. 
+~ 
+~ 
+0 0 18127 
+DDIR_NORTH 
+The footpath grows weaker to the north. 
+~ 
+~ 
+0 0 18120 
+S 
+#18127 
+Footpath in the forest~ 
+{020}Something recently travelled this way, you think to yourself as you observe 
+your surroundings.  Although you are not sure what might be lurking in 
+the shadows, watching your every move, you shore up your courage and prepare 
+to move forward. 
+~ 
+181 ROOM_DARK SECT_FOREST 
+DDIR_SOUTH 
+The footpath grows stronger to the south. 
+~ 
+~ 
+0 0 18128 
+DDIR_NORTH 
+The footpath grows weaker to the north. 
+~ 
+~ 
+0 0 18126 
+S 
+#18128 
+Along the footpath~ 
+{020}Large footprints in the dirt beneath the trees are the most noticeable feature 
+of this part of the forest.  It appears as though something *huge* may be 
+living here.  From the size of the footprints, it may be several meters tall. 
+~ 
+181 ROOM_DARK SECT_FOREST 
+DDIR_SOUTH 
+The footpath grows stronger to the south. 
+~ 
+~ 
+0 0 18129 
+DDIR_NORTH 
+The footpath grows weaker to the north. 
+~ 
+~ 
+0 0 18127 
+S 
+#18129 
+Curve in the footpath~ 
+{020}Here the footpath bends, going north and east.  Casually glancing upward into 
+the forest you notice a tall, dark structure to the northeast, as though the 
+path bends around this mysterious building. 
+~ 
+181 ROOM_DARK SECT_FOREST 
+DDIR_EAST 
+The footpath is strongest to the east. 
+~ 
+~ 
+0 0 18130 
+DDIR_NORTH 
+The footpath grows weaker to the north. 
+~ 
+~ 
+0 0 18128 
+S 
+#18130 
+Before a majestic castle~ 
+{100}You stand before a large, majestic castle.  It seems to have been recently 
+unoccupied, for as you peek through the doorway you see many of the items 
+of a lived-in abode but no people, not even the sound of people. 
+~ 
+181 0 SECT_CITY 
+DDIR_WEST 
+The footpath weakens to the west. 
+~ 
+~ 
+0 0 18129
+DDIR_NORTH
+The servant's entrance is to the north.
+~
+~
+0 0 18169
+S 
+#18131 
+Forest Path~ 
+{020}A small, barren pathway runs north and east.  At the north end, you can see 
+where the forest encroaches on the surrounding road.  Going off in the east 
+the path disappears into ever darkening forestry as if hiding a deep 
+and mysterious secret. 
+~ 
+181 ROOM_DARK SECT_FOREST 
+DDIR_NORTH 
+A dark path is to the north. 
+~ 
+~ 
+0 0 18100 
+DDIR_EAST 
+The forest path goes east. 
+~ 
+~ 
+0 0 18132 
+S 
+#18132 
+Forest Path~ 
+{020}The forest path continues to make its way between the trees, though at times 
+it seems to be losing the battle for ground space, as it were.  How the path 
+can seem so barren but look so well used is beyond your meager comprehension. 
+~ 
+181 ROOM_DARK SECT_FOREST 
+DDIR_WEST 
+The forest path goes west. 
+~ 
+~ 
+0 0 18131 
+DDIR_EAST 
+The forest path goes east. 
+~ 
+~ 
+0 0 18133 
+S 
+#18133 
+Forest Path~ 
+{020}Varying patterns of light strike the forest floor as the tree leaves rustle 
+in the wind.  Though not as thick as most of the forest, this small area is 
+still fairly thick in vegetation and impassable off the beaten path. 
+~ 
+181 ROOM_DARK SECT_FOREST 
+DDIR_WEST 
+The forest path goes west. 
+~ 
+~ 
+0 0 18132 
+DDIR_EAST 
+The forest path goes east. 
+~ 
+~ 
+0 0 18134 
+S 
+#18134 
+Forest Path~ 
+{020}Outside of a rusted iron gate, you peer to the east and see row after row 
+of crumbling, broken tombstones, the leftovers of what was once a beautiful 
+resting place.  To the west you see a small path meandering into the forest. 
+~ 
+181 ROOM_DARK SECT_FOREST 
+DDIR_WEST 
+The forest path goes west. 
+~ 
+~ 
+0 0 18133 
+DDIR_EAST 
+A large, overrun cemetary is to the east. 
+~ 
+gate~ 
+EX_ISDOOR|EX_CLOSED -1 18155 
+S 
+#18135 
+Northwest corner of a cemetary~ 
+{100}You are standing in the northwest corner of the cemetary behind an old 
+mansion.  A fence borders the cemetary to the north and west.  You see a 
+tombstone in the ground. 
+~ 
+181 ROOM_DARK SECT_FIELD 
+DDIR_EAST 
+More gravestones lie in that direction. 
+~ 
+~ 
+0 0 18136 
+DDIR_SOUTH 
+More gravestones lie in that direction. 
+~ 
+~ 
+0 0 18140 
+E 
+tombstone gravestone stone~ 
+The stone:
+You read the tombstone: 
+
+   So wonderful a child, a perfect angel, 
+   So sweet a voice, as the ringing of a bell. 
+   She occupied the castle and filled it with love, 
+   Sent here from heaven, a light from above. 
+ 
+~ 
+S 
+#18136 
+North entrance to the cemetary~ 
+{100}Here is the northern entrance to the cemetary.  All around you are
+gravestone marking the death of many individuals.  You are standing in
+front of one such gravestone. 
+~ 
+181 ROOM_DARK SECT_FIELD 
+DDIR_EAST 
+More gravestones lie in that direction. 
+~ 
+~ 
+0 0 18137 
+DDIR_WEST 
+More gravestones lie in that direction. 
+~ 
+~ 
+0 0 18135 
+DDIR_SOUTH 
+More gravestones lie in that direction. 
+~ 
+~ 
+0 0 18141 
+DDIR_NORTH 
+The forest is to the north. 
+~ 
+gate~ 
+EX_ISDOOR|EX_CLOSED -1 18114 
+E 
+tombstone gravestone stone~ 
+You read the tombstone: 
+ 
+  A shallow grave 
+  For a shallow man. 
+ 
+~ 
+S 
+#18137 
+North side of a cemetary~ 
+{100}Along the northern side of the cemetary you see many a gravestone set in to 
+the ground.  To the north there is a chain link fence, but in every other 
+direction there are gravestones, marking the site of the burial of various 
+and sundry individuals. 
+~ 
+181 ROOM_DARK SECT_FIELD 
+DDIR_EAST 
+More gravestones lie in that direction. 
+~ 
+~ 
+0 0 18138 
+DDIR_SOUTH 
+More gravestones lie in that direction. 
+~ 
+~ 
+0 0 18142 
+DDIR_WEST 
+More gravestones lie in that direction. 
+~ 
+~ 
+0 0 18136 
+E 
+tombstone gravestone stone~ 
+You read the tombstone: 
+ 
+  A wiser man could ne'er be found, 
+  And to this kingdom was he e'er bound. 
+ 
+~ 
+S 
+#18138 
+North side of a cemetary~ 
+{100}Tombstone after tombstone are lined up in the cemetary.  Some of the stones 
+are in quite horrible repair while others appear as though they were just 
+recently laid to rest. 
+~ 
+181 ROOM_DARK SECT_FIELD 
+DDIR_EAST 
+More gravestones lie in that direction. 
+~ 
+~ 
+0 0 18139 
+DDIR_SOUTH 
+More gravestones lie in that direction. 
+~ 
+~ 
+0 0 18143 
+DDIR_WEST 
+More gravestones lie in that direction. 
+~ 
+~ 
+0 0 18137 
+E 
+tombstone gravestone stone~ 
+You read the tombstone: 
+ 
+  It is a simple wooden sign with nothing written on it. 
+ 
+~ 
+S 
+#18139 
+Northeast corner of a cemetary~ 
+{100}You are surrounded on two sides by a fence and the other two sides by 
+tombstones.  You sense a feeling of dread come over you as you stand tall 
+among the sleepers. 
+~ 
+181 ROOM_DARK SECT_FIELD 
+DDIR_WEST 
+More gravestones lie in that direction. 
+~ 
+~ 
+0 0 18138 
+DDIR_SOUTH 
+More gravestones lie in that direction. 
+~ 
+~ 
+0 0 18144 
+E 
+gravestone tombstone stone~ 
+You read the tombstone: 
+ 
+  Here lies a small and precious child, 
+  Whose countenance was tender, meek, and mild. 
+  She was ripped ever so violently from her mothers womb 
+  To live down below in this rotten tomb. 
+ 
+~ 
+S 
+#18140 
+West side of a cemetary~ 
+{100}Row after neat row of stones makes your stomach churn when you realize that 
+every single stone represents a love lost, a life which is no longer living, 
+or a hope which crumbled away at the foundation. 
+~ 
+181 ROOM_DARK SECT_FIELD 
+DDIR_NORTH 
+More gravestones lie in that direction. 
+~ 
+~ 
+0 0 18135 
+DDIR_EAST 
+More gravestones lie in that direction. 
+~ 
+~ 
+0 0 18141 
+DDIR_SOUTH 
+More gravestones lie in that direction. 
+~ 
+~ 
+0 0 18145 
+E 
+gravestone tombstone stone~ 
+You read the tombstone: 
+ 
+  A drunken bastard, 
+  A lonely fool. 
+  Too bad for that kick 
+  From his solitary mule. 
+ 
+~ 
+S 
+#18141 
+Wandering in a graveyard~ 
+{100}You wander aimlessly among the dead, knowing that one day you will join 
+them.  That day, however, may end up coming sooner that you would like for 
+yourself to believe.  Then again, it may not come for a long time. 
+~ 
+181 ROOM_DARK SECT_FIELD 
+DDIR_NORTH 
+More gravestones lie in that direction. 
+~ 
+~ 
+0 0 18136 
+DDIR_EAST 
+More gravestones lie in that direction. 
+~ 
+~ 
+0 0 18142 
+DDIR_WEST 
+More gravestones lie in that direction. 
+~ 
+~ 
+0 0 18140 
+DDIR_SOUTH 
+More gravestones lie in that direction. 
+~ 
+~ 
+0 0 18146 
+E 
+gravestone tombstone stone~ 
+You read the tombstone: 
+ 
+  You see very large, beautiful flowers which replace the headstone. 
+  They are the most wonderful looking and smelling flowers 
+  you have ever encountered anywhere in the world. 
+ 
+~ 
+S 
+#18142 
+Wandering in a graveyard~ 
+{100}The gravestones seem to stretch endlessly in every direction about you.  You 
+wonder about how there can be so many dead people residing in this cemetary. 
+The castle next to the yard is not large enough to hold everyone in the 
+ground. 
+~ 
+181 ROOM_DARK SECT_FIELD 
+DDIR_NORTH 
+More gravestones lie in that direction. 
+~ 
+~ 
+0 0 18137 
+DDIR_SOUTH 
+More gravestones lie in that direction. 
+~ 
+~ 
+0 0 18147 
+DDIR_EAST 
+More gravestones lie in that direction. 
+~ 
+~ 
+0 0 18143 
+DDIR_WEST 
+More gravestones lie in that direction. 
+~ 
+~ 
+0 0 18141 
+E 
+gravestone tombstone stone~ 
+You read the tombstone: 
+ 
+  To a watery grave 
+  Did her lover go. 
+  How soon she did follow 
+  To be with him below. 
+ 
+~ 
+S 
+#18143 
+Wandering in a graveyard~ 
+{100}Here, there, and everywhere around you is death.  Reminders of those who have 
+gone before and those who have been left behind litter the cemetary in a 
+haphazard manner. 
+~ 
+181 ROOM_DARK SECT_FIELD 
+DDIR_NORTH 
+More gravestones lie in that direction. 
+~ 
+~ 
+0 0 18138 
+DDIR_SOUTH 
+More gravestones lie in that direction. 
+~ 
+~ 
+0 0 18148 
+DDIR_EAST 
+More gravestones lie in that direction. 
+~ 
+~ 
+0 0 18144 
+DDIR_WEST 
+More gravestones lie in that direction. 
+~ 
+~ 
+0 0 18142 
+E 
+gravestone tombstone stone~ 
+You read the tombstone: 
+ 
+  Mother of twelve, 
+  Husband of none. 
+ 
+~ 
+S 
+#18144 
+East side of a graveyard~ 
+{100}A tall fence blocks passage to the east, marking the edge of the cemetary. 
+In all other directions gravestones mark the passing of a loved one.  The 
+stench from the ground is overwhelming. 
+~ 
+181 ROOM_DARK SECT_FIELD 
+DDIR_NORTH 
+More gravestones lie in that direction. 
+~ 
+~ 
+0 0 18139 
+DDIR_SOUTH 
+More gravestones lie in that direction. 
+~ 
+~ 
+0 0 18149 
+DDIR_WEST 
+More gravestones lie in that direction. 
+~ 
+~ 
+0 0 18143 
+E 
+gravestone tombstone stone~ 
+You read the tombstone: 
+ 
+  This favorite of pets, 
+  The love of the princess, 
+  Departed this world 
+  In a time of distress. 
+ 
+~ 
+S 
+#18145 
+West side of a graveyard~ 
+{100}Death, gloom, and rot.  The west side of the cemetary is just like any part 
+of the cemetary proper -- ancient and crumbling.  You manage to keep your 
+rising gorge down as you peer about you in utter disgust. 
+~ 
+181 ROOM_DARK SECT_FIELD 
+DDIR_NORTH 
+More gravestones lie in that direction. 
+~ 
+~ 
+0 0 18140 
+DDIR_SOUTH 
+More gravestones lie in that direction. 
+~ 
+~ 
+0 0 18150 
+DDIR_EAST 
+More gravestones lie in that direction. 
+~ 
+~ 
+0 0 18146 
+E 
+gravestone tombstone stone~ 
+You read the tombstone: 
+ 
+  R. I. P. 
+ 
+~ 
+S 
+#18146 
+Wandering in a graveyard~ 
+{100}Death reeks in every facet of this area.  Tangible as it may seem, death has 
+not yet claimed all living things in this graveyard, for you are standing 
+in it.  However, Death's choking grip on your neck makes you wonder how 
+much longer this will be true. 
+~ 
+181 ROOM_DARK SECT_FIELD 
+DDIR_NORTH 
+More gravestones lie in that direction. 
+~ 
+~ 
+0 0 18141 
+DDIR_SOUTH 
+More gravestones lie in that direction. 
+~ 
+~ 
+0 0 18151 
+DDIR_EAST 
+More gravestones lie in that direction. 
+~ 
+~ 
+0 0 18147 
+DDIR_WEST 
+More gravestones lie in that direction. 
+~ 
+~ 
+0 0 18145 
+E 
+gravestone tombstone stone~ 
+You read the tombstone: 
+ 
+  The servant boy 
+  No one would want 
+  Now rests in peace 
+  Which was his wont. 
+ 
+~ 
+S 
+#18147 
+Center of a graveyard~ 
+{100}The very center of the cemetary.  The heart, if you will, of the
+whole place. Rotting flesh, skinned bones, and other, indescribible
+smells, surround you as you stand.  The stench is nearly overwhelming. 
+~ 
+181 ROOM_DARK SECT_FIELD 
+DDIR_NORTH 
+More gravestones lie in that direction. 
+~ 
+~ 
+0 0 18142 
+DDIR_SOUTH 
+More gravestones lie in that direction. 
+~ 
+~ 
+0 0 18152 
+DDIR_EAST 
+More gravestones lie in that direction. 
+~ 
+~ 
+0 0 18148 
+DDIR_WEST 
+More gravestones lie in that direction. 
+~ 
+~ 
+0 0 18146 
+E 
+gravestone tombstone stone~ 
+You read the tombstone: 
+ 
+  His love of women 
+  Finally killed him. 
+ 
+~ 
+S 
+#18148 
+Wandering in a graveyard~ 
+{100}Sometimes in a neat row, but more often in a careless manner, the headstones 
+are set into the ground with such lack of respect you cannot decide if this 
+was intentional or if some malicious force moved them. 
+~ 
+181 ROOM_DARK SECT_FIELD 
+DDIR_NORTH 
+More gravestones lie in that direction. 
+~ 
+~ 
+0 0 18143 
+DDIR_SOUTH 
+More gravestones lie in that direction. 
+~ 
+~ 
+0 0 18153 
+DDIR_EAST 
+More gravestones lie in that direction. 
+~ 
+~ 
+0 0 18149 
+DDIR_WEST 
+More gravestones lie in that direction. 
+~ 
+~ 
+0 0 18147 
+E 
+gravestone tombstone stone~ 
+You read the tombstone: 
+ 
+  He was born and he died 
+  But did nothing else in this world. 
+ 
+~ 
+S 
+#18149 
+East side of a graveyard~ 
+{100}Death, death everywhere, and not a soul alive, besides you, that is.  The 
+cemetary is overrun with death, destruction, and decay.  How this could have 
+at one time been a great, majestic area seems impossible. 
+~ 
+181 ROOM_DARK SECT_FIELD 
+DDIR_NORTH 
+More gravestones lie in that direction. 
+~ 
+~ 
+0 0 18144 
+DDIR_SOUTH 
+More gravestones lie in that direction. 
+~ 
+~ 
+0 0 18154 
+DDIR_WEST 
+More gravestones lie in that direction. 
+~ 
+~ 
+0 0 18148 
+E 
+gravestone tombstone stone~ 
+You read the tombstone: 
+ 
+  A mothers love and a fathers heart 
+  Could not keep him from growing apart. 
+ 
+~ 
+S 
+#18150 
+West side of a graveyard~ 
+{100}Darkness shroud's the earth around this plot, as though something beyond evil 
+resides in this space.  Morbid though it may be, your curiosity is piqued 
+at the thought of who might be under the ground. 
+~ 
+181 ROOM_DARK SECT_FIELD 
+DDIR_NORTH 
+More gravestones lie in that direction. 
+~ 
+~ 
+0 0 18145 
+DDIR_SOUTH 
+More gravestones lie in that direction. 
+~ 
+~ 
+0 0 18155 
+DDIR_EAST 
+More gravestones lie in that direction. 
+~ 
+~ 
+0 0 18151 
+E 
+gravestone tombstone stone~ 
+You read the tombstone: 
+ 
+  Beneath this tomb lies one so cruel, 
+  Destruction was her meat, despair her fuel. 
+ 
+~ 
+S 
+#18151 
+Wandering in a graveyard~ 
+{100}The Grim Reaper must have worked overtime in harvesting all the souls which 
+have been laid to rest in this cemetary.  Were the effort not done for such 
+a disgusting task you would surely marvel at the Reaper's handiwork. 
+~ 
+181 ROOM_DARK SECT_FIELD 
+DDIR_NORTH 
+More gravestones lie in that direction. 
+~ 
+~ 
+0 0 18146 
+DDIR_SOUTH 
+More gravestones lie in that direction. 
+~ 
+~ 
+0 0 18156 
+DDIR_EAST 
+More gravestones lie in that direction. 
+~ 
+~ 
+0 0 18152 
+DDIR_WEST 
+More gravestones lie in that direction. 
+~ 
+~ 
+0 0 18150 
+E 
+gravestone tombstone stone~ 
+You read the tombstone: 
+ 
+  Who lies below 
+  Is no mystery to me 
+  But those who see this grave 
+  Wonder who it could be. 
+ 
+~ 
+S 
+#18152 
+Wandering in a graveyard~ 
+{100}Decay.  There is no other word to describe this cemetary.  Decay, pure and 
+unadulterated.  Well, with the exception of death, which is a natural part 
+of any cemetary. 
+~ 
+181 ROOM_DARK SECT_FIELD 
+DDIR_NORTH 
+More gravestones lie in that direction. 
+~ 
+~ 
+0 0 18147 
+DDIR_SOUTH 
+More gravestones lie in that direction. 
+~ 
+~ 
+0 0 18157 
+DDIR_EAST 
+More gravestones lie in that direction. 
+~ 
+~ 
+0 0 18153 
+DDIR_WEST 
+More gravestones lie in that direction. 
+~ 
+~ 
+0 0 18151 
+E 
+gravestone tombstone stone~ 
+You read the tombstone: 
+ 
+  This tombstone has decayed beyond the point of readability. 
+ 
+~ 
+S 
+#18153 
+Wandering in a graveyard~ 
+{100}You stand in the middle of the graveyard, in front of, surprise, another 
+tombstone.  Will there never be an end to the supply of personnel to inhabit 
+the underground hotels? 
+~ 
+181 ROOM_DARK SECT_FIELD 
+DDIR_NORTH 
+More gravestones lie in that direction. 
+~ 
+~ 
+0 0 18148 
+DDIR_SOUTH 
+More gravestones lie in that direction. 
+~ 
+~ 
+0 0 18158 
+DDIR_EAST 
+More gravestones lie in that direction. 
+~ 
+~ 
+0 0 18154 
+DDIR_WEST 
+More gravestones lie in that direction. 
+~ 
+~ 
+0 0 18152 
+E 
+gravestone tombstone stone~ 
+You read the tombstone: 
+ 
+  Here lies one 
+  Who's story's untold 
+  Of courageous deeds 
+  Both dumb and bold. 
+ 
+~ 
+S 
+#18154 
+East side of a graveyard~ 
+{100}Passage to the east is blocked by a tall fence, beyond which is a dense 
+forest which very nearly acts as a fence.  You do notice a small break in 
+the fence, however, and wonder where it may lead. 
+~ 
+181 ROOM_DARK SECT_FIELD 
+DDIR_NORTH 
+More gravestones lie in that direction. 
+~ 
+~ 
+0 0 18149 
+DDIR_SOUTH 
+More gravestones lie in that direction. 
+~ 
+~ 
+0 0 18159 
+DDIR_WEST 
+More gravestones lie in that direction. 
+~ 
+~ 
+0 0 18153 
+E 
+gravestone tombstone stone~ 
+You read the tombstone: 
+ 
+  The tomestone simply says: "An unknown hero" 
+ 
+~ 
+S 
+#18155 
+Southwest corner of a graveyard~ 
+{100}Here is this corner of the graveyard there is a rusty iron gate on the fence 
+to the west.  Beyond the fence is a short path through the forest.  Whether 
+to stay in the cemetary or enter the forest is a tough choice. 
+~ 
+181 ROOM_DARK SECT_FIELD 
+DDIR_NORTH 
+More gravestones lie in that direction. 
+~ 
+~ 
+0 0 18150 
+DDIR_EAST 
+More gravestones lie in that direction. 
+~ 
+~ 
+0 0 18156 
+DDIR_WEST 
+The forest is to the west. 
+~ 
+gate~ 
+EX_ISDOOR|EX_CLOSED -1 18134 
+E 
+gravestone tombstone stone~ 
+You read the tombstone: 
+ 
+  The fairest of fair, the boldest of bold 
+  He led us into battle, he lavished us in gold 
+  His rulings were fair, his justice was swift 
+  And with the wings of eagles, this kingdom he did lift. 
+ 
+~ 
+S 
+#18156 
+Wandering in a graveyard~ 
+{100}The Grim Reaper must have worked overtime in harvesting all the souls which 
+have been laid to rest in this cemetary.  Were the effort not done for such 
+a disgusting task you would surely marvel at the Reaper's handiwork. 
+~
+181 ROOM_DARK SECT_FIELD 
+DDIR_NORTH 
+More gravestones lie in that direction. 
+~ 
+~ 
+0 0 18151 
+DDIR_EAST 
+More gravestones lie in that direction. 
+~ 
+~ 
+0 0 18157 
+DDIR_WEST 
+More gravestones lie in that direction. 
+~ 
+~ 
+0 0 18155 
+E 
+gravestone tombstone stone~ 
+You read the tombstone: 
+ 
+  This tombstone is missing. 
+~ 
+S 
+#18157 
+Wandering in a graveyard~ 
+{100}You stand in the middle of the graveyard, in front of, surprise, another 
+tombstone.  Will there never be an end to the supply of personnel to inhabit 
+the underground hotels? 
+~ 
+181 ROOM_DARK SECT_FIELD 
+DDIR_NORTH 
+More gravestones lie in that direction. 
+~ 
+~ 
+0 0 18152 
+DDIR_EAST 
+More gravestones lie in that direction. 
+~ 
+~ 
+0 0 18158 
+DDIR_WEST 
+More gravestones lie in that direction. 
+~ 
+~ 
+0 0 18156 
+E 
+gravestone tombstone stone~ 
+You read the tombstone: 
+ 
+  With magic in his hands 
+  And power in his staff 
+  Came his terrible demise 
+  Amidst a roaring laugh. 
+ 
+~ 
+S 
+#18158 
+Wandering in a graveyard~ 
+{100}Decay.  There is no other word to describe this cemetary.  Decay, pure and 
+unadulterated.  Well, with the exception of death, which is a natural part 
+of any cemetary. 
+~ 
+181 ROOM_DARK SECT_FIELD 
+DDIR_NORTH 
+More gravestones lie in that direction. 
+~ 
+~ 
+0 0 18153 
+DDIR_EAST 
+More gravestones lie in that direction. 
+~ 
+~ 
+0 0 18159 
+DDIR_WEST 
+More gravestones lie in that direction. 
+~ 
+~ 
+0 0 18157 
+E 
+gravestone tombstone stone~ 
+You read the tombstone: 
+ 
+  Her love she did give 
+  To family and friends alike 
+  Kept the castle and children warm 
+  Throughout the cold night. 
+ 
+~ 
+S 
+#18159 
+Southeast corner of a graveyard~ 
+{100}You are surrounded on two sides by a fence and the other two sides by 
+tombstones.  You sense a feeling of dread come over you as you stand tall 
+among the sleepers. 
+~ 
+181 ROOM_DARK SECT_FIELD 
+DDIR_NORTH 
+More gravestones lie in that direction. 
+~ 
+~ 
+0 0 18154 
+DDIR_WEST 
+More gravestones lie in that direction. 
+~ 
+~ 
+0 0 18158 
+E 
+gravestone tombstone stone~ 
+You read the tombstone: 
+ 
+  The tombstone is fresh, unengraved, resting at the head of a cleared plot 
+  as if expecting a new arrival. 
+ 
+~ 
+S 
+#18160 
+Grand Entryway~ 
+The entryway you have entered is expansive.  Off to the southwest and
+southeast you see stairs going up.  Between them is a beautifully rendered
+painting of a king, presumably the king prior to this castles demise.
+~
+181 ROOM_DARK SECT_INSIDE 
+DDIR_NORTH 
+The forest is to the north. 
+~ 
+~ 
+0 0 18118 
+DDIR_SOUTH 
+The castle entryway continues south.
+~ 
+~ 
+0 0 18162 
+DDIR_EAST
+The east side of the entryway is over there.
+~
+~
+0 0 18164
+DDIR_WEST
+The west side of the entryway is over there.
+~
+~
+0 0 18163
+S 
+#18161 
+Prison antichamber~ 
+You have entered the stone chamber that leads down into the prison.  This
+part of this castle once housed dangerous criminals and in darker times
+you suspect that it housed those that might have been innocent of the
+crimes they were accused of.
+~ 
+181 ROOM_DARK SECT_INSIDE 
+DDIR_UP
+The castle continues on. 
+~ 
+~ 
+0 0 18171
+DDIR_DOWN 
+The castle continues on. 
+~ 
+~ 
+0 0 18197 
+S 
+#18162 
+Middle of the entryway~ 
+You stand in amazement at the vast openness of the entryway to this 
+majestic and grand castle.  It is beautifully arrayed with a variety of 
+banners and trophies of wars fought long ago.  
+~ 
+181 ROOM_DARK SECT_INSIDE 
+DDIR_NORTH 
+The beginning of the entryway is there.
+~ 
+~ 
+0 0 18160 
+DDIR_EAST 
+The east side of the entryway is there.
+~ 
+~ 
+0 0 18166
+DDIR_SOUTH 
+The far end of the entryway is there.
+~ 
+~ 
+0 0 18170
+DDIR_WEST
+The west side of the entryway is there.
+~
+~
+0 0 18165
+S 
+#18163 
+Northwest Corner~ 
+The area is covered with cobwebs, roaches nests, and all sorts of 
+creepy crawling things.  Makes you wonder when the last time the maid 
+has done her job.
+~ 
+181 ROOM_DARK SECT_INSIDE 
+DDIR_EAST 
+The entrance of the castle is that way
+~ 
+~ 
+0 0 18160
+DDIR_SOUTH
+The entryway continues south.
+~
+~
+0 0 18165
+DDIR_WEST 
+A side passage around the castle is behind the door.
+~ 
+door~ 
+EX_ISDOOR|EX_CLOSED -1 18183 
+S 
+#18164 
+Northeast Corner~ 
+There is not much to speak of here.  The entryway is glorious, as befits 
+royalty.  Further south you can see a double staircase leading up on both
+sides.  To the east is a door that leads through the castle.
+~ 
+181 ROOM_DARK SECT_INSIDE 
+DDIR_EAST
+The castle continues on. 
+~ 
+door~ 
+EX_ISDOOR|EX_CLOSED -1 18184
+DDIR_SOUTH
+The entryway continues south.
+~
+~
+0 0 18166
+DDIR_WEST 
+The castle continues on. 
+~ 
+~ 
+0 0 18160 
+S 
+#18165 
+West Side of the Entryway~ 
+Along the side of the entryway you spy a the armour of a Grand Knight 
+who used to protect the king before his untimely demise.
+~ 
+181 ROOM_DARK SECT_INSIDE 
+DDIR_NORTH
+The entryway continues that way.
+~
+~
+0 0 18163
+DDIR_SOUTH 
+The castle continues on. 
+~ 
+~ 
+0 0 18167 
+DDIR_EAST
+The castle continues on. 
+~ 
+~ 
+0 0 18162 
+S 
+#18166 
+East Side of the Entryway~ 
+Here on the east side of the entryway you can see lots of trophies 
+of war...swords, lances, clubs, and various other weapons.  Prominent 
+among the decorations is a shield emblazoned with the royal coat of arms.
+~ 
+181 ROOM_DARK SECT_INSIDE 
+DDIR_NORTH 
+The castle continues on. 
+~ 
+~ 
+0 0 18164 
+DDIR_SOUTH 
+The castle continues on. 
+~ 
+~ 
+0 0 18168
+DDIR_WEST
+The entryway is that way.
+~
+~
+0 0 18162
+S 
+#18167 
+West Stairway~ 
+This stairway leads up to the second level of this majestic castle.  
+Due to disuse, however, a layer of dust covers everything, including 
+the stairs.
+~ 
+181 ROOM_DARK SECT_INSIDE 
+DDIR_NORTH 
+The castle continues on. 
+~ 
+~ 
+0 0 18165
+DDIR_EAST 
+The castle continues on. 
+~ 
+~ 
+0 0 18170 
+DDIR_UP
+The stairs lead up. 
+~ 
+~ 
+0 0 18206
+S 
+#18168 
+East Stairway~ 
+This stairway leads up to the second level of this majestic castle.  
+Due to disuse, however, a layer of dust covers everything, including 
+the stairs.
+~ 
+181 ROOM_DARK SECT_INSIDE 
+DDIR_NORTH 
+The castle continues on. 
+~ 
+~ 
+0 0 18166
+DDIR_WEST 
+The castle continues on. 
+~ 
+~ 
+0 0 18170
+DDIR_UP
+The stairs lead up.
+~
+~
+0 0 18208 
+S 
+#18169 
+Servant's Entrance~ 
+This is the servant's entrance, where the servants of the royal family left
+and entered as needed while running various errands.
+~ 
+181 ROOM_DARK SECT_INSIDE 
+DDIR_EAST 
+The castle continues on. 
+~ 
+~ 
+0 0 18189
+DDIR_WEST 
+The castle continues on. 
+~ 
+~ 
+0 0 18174 
+DDIR_SOUTH
+The footpath is south.
+~ 
+~ 
+0 0 18130
+S 
+#18170 
+Between the Stairs~ 
+You are standing between the stairways, both of which go up to a common
+landing.  A small door south of here leads to the back halls of the castle,
+where the servants run around and do their work.
+~ 
+181 ROOM_DARK SECT_INSIDE 
+DDIR_NORTH
+The castle continues on. 
+~ 
+~ 
+0 0 18162
+DDIR_EAST 
+The castle continues on. 
+~ 
+~ 
+0 0 18168 
+DDIR_SOUTH 
+The castle continues on. 
+~ 
+door~ 
+EX_ISDOOR|EX_CLOSED -1 18172 
+DDIR_WEST 
+The castle continues on. 
+~ 
+~ 
+0 0 18167 
+S 
+#18171 
+Stone Stairwell~ 
+The stone stairway spirals downward, forming a treacherous path which leads
+down to the dungeon.  Your footsteps echo off the walls as you set foot on
+the stairs.
+~ 
+181 ROOM_DARK SECT_INSIDE 
+DDIR_EAST
+The castle continues on. 
+~ 
+~ 
+0 0 18172 
+DDIR_DOWN 
+The castle continues on. 
+~ 
+~ 
+0 0 18161 
+S 
+#18172 
+Servant's Area~ 
+You are in the servant's area, just outside the castle's entryway.  Dust
+and dirt cover everything, from the unlit candles in the candle holders to
+the bare stone floor upon which you walk.
+~ 
+181 ROOM_DARK SECT_INSIDE 
+DDIR_NORTH
+The castle continues on. 
+~ 
+door~ 
+EX_ISDOOR|EX_CLOSED -1 18170
+DDIR_WEST 
+The castle continues on. 
+~ 
+~ 
+0 0 18171 
+DDIR_SOUTH
+The castle continues on. 
+~ 
+~ 
+0 0 18173
+S 
+#18173 
+Rear passageway~ 
+This is a crossway in the rear of the castle.  To the north is the entryway
+of the castle.  A ways east is the servant's entrance, and to the west the
+passageway stretches on.
+~ 
+181 ROOM_DARK SECT_INSIDE 
+DDIR_NORTH 
+The castle continues on. 
+~ 
+~ 
+0 0 18172
+DDIR_EAST 
+The castle continues on. 
+~ 
+~ 
+0 0 18174 
+DDIR_WEST 
+The castle continues on. 
+~ 
+~ 
+0 0 18176 
+S 
+#18174 
+Outside the Kitchen~ 
+Here outside the kitchen you imagine you smell delicious food cooking over
+a fireplace.  After a moments savoring, though, you realize that what you
+really smell is burnt flesh.
+~ 
+181 ROOM_DARK SECT_INSIDE 
+DDIR_NORTH
+The castle continues on. 
+~ 
+~ 
+0 0 18175
+DDIR_EAST 
+The castle continues on. 
+~ 
+~ 
+0 0 18169 
+DDIR_WEST 
+The castle continues on. 
+~ 
+~ 
+0 0 18173 
+S 
+#18175 
+Castle Kitchen~ 
+This is the crumbling remains of what was once the kitchen that fed this
+castle.  At some time in the past though, the fireplace caved in along
+with half the room.  
+~ 
+181 ROOM_DARK SECT_INSIDE 
+DDIR_SOUTH
+The castle continues on. 
+~ 
+~ 
+0 0 18174 
+S 
+#18176 
+Rear Passageway~ 
+Stretching east to west along the entire length of the castle is the rear
+passageway, used by the servants to travel about unnoticed.
+~ 
+181 ROOM_DARK SECT_INSIDE 
+DDIR_EAST 
+The castle continues on. 
+~ 
+~ 
+0 0 18173
+DDIR_WEST
+The castle continues on. 
+~ 
+~ 
+0 0 18177
+S 
+#18177 
+Rear Passageway~ 
+You are in the rear passageway, where servants once lived and worked.  Now,
+though, the only living thing residing here are the rats and roaches, and
+those are quickly dying due to lack of food.
+~ 
+181 ROOM_DARK SECT_INSIDE 
+DDIR_EAST 
+The castle continues on. 
+~ 
+~ 
+0 0 18176
+DDIR_WEST 
+The castle continues on. 
+~ 
+~ 
+0 0 18178
+S 
+#18178 
+Base of the Southwest Tower~
+Here at the base of the tower you look upward at the stone stairs which travel
+high to the top of the castle.  There is no handrail, though, so if you intend
+to go up there you had best watch your step.
+~ 
+181 ROOM_DARK SECT_INSIDE 
+DDIR_NORTH 
+The castle continues on. 
+~ 
+~ 
+0 0 18179
+DDIR_UP 
+The castle continues on. 
+~ 
+~ 
+0 0 18194
+DDIR_EAST
+The castle continues on. 
+~ 
+~ 
+0 0 18177
+S 
+#18179 
+West Side~ 
+The floor here has been worn smooth over the centuries that the castle was
+fully occupied.  Now, however, it is covered in a thick coating of dust and
+it looks as though it has not been used in years.
+~ 
+181 ROOM_DARK SECT_INSIDE 
+DDIR_NORTH 
+The castle continues on. 
+~ 
+~ 
+0 0 18180
+DDIR_SOUTH
+The castle continues on. 
+~ 
+~ 
+0 0 18178
+S 
+#18180 
+West Side~ 
+Listening really hard, you think you can make out the sound of shrieks and
+rattling chains.  However, in retrospect, you figure it's probably just
+your imagination.
+~ 
+181 ROOM_DARK SECT_INSIDE 
+DDIR_NORTH 
+The castle continues on. 
+~ 
+~ 
+0 0 18181
+DDIR_EAST
+The castle continues on. 
+~ 
+~ 
+0 0 18190
+DDIR_SOUTH
+The castle continues on. 
+~ 
+~ 
+0 0 18179 
+S 
+#18181 
+West Side~ 
+Your footsteps echo on the stone floor, the only sound in the entire castle.
+The constant tap-tap-tap is beginning to grate on your nerves.
+~ 
+181 ROOM_DARK SECT_INSIDE 
+DDIR_NORTH 
+The castle continues on. 
+~ 
+~ 
+0 0 18182 
+DDIR_SOUTH 
+The castle continues on. 
+~ 
+~ 
+0 0 18180
+S 
+#18182 
+Base of the Northwest Tower~ 
+Here at the base of the tower you look upward at the stone stairs which travel
+high to the top of the castle.  There is no handrail, though, so if you intend
+to go up there you had best watch your step.
+~ 
+181 ROOM_DARK SECT_INSIDE 
+DDIR_EAST
+The castle continues on. 
+~ 
+~ 
+0 0 18183
+DDIR_SOUTH
+The castle continues on. 
+~ 
+~ 
+0 0 18181
+DDIR_UP
+The castle continues on. 
+~ 
+~ 
+0 0 18193
+S 
+#18183 
+Just Outside the Entryway~ 
+You are just outside the grand entryway to the castle, in an area where servants
+once roamed the castle to attend to the needs of the royal family.
+~ 
+181 ROOM_DARK SECT_INSIDE 
+DDIR_EAST 
+The castle continues on. 
+~ 
+door~
+EX_ISDOOR|EX_CLOSED -1 18163
+DDIR_WEST 
+The castle continues on. 
+~ 
+~ 
+0 0 18182 
+S 
+#18184 
+Just Outside the Entryway~ 
+You are just outside the grand entryway to the castle, in an area where servants
+once roamed the castle to attend to the needs of the royal family.
+~ 
+181 ROOM_DARK SECT_INSIDE 
+DDIR_EAST 
+The castle continues on. 
+~ 
+~ 
+0 0 18185 
+DDIR_WEST
+The castle continues on. 
+~ 
+door~ 
+EX_ISDOOR|EX_CLOSED -1 18164
+S 
+#18185 
+Base of the Northeast Tower~ 
+Here at the base of the tower you look upward at the stone stairs which travel
+high to the top of the castle.  There is no handrail, though, so if you intend
+to go up there you had best watch your step.
+~ 
+181 ROOM_DARK SECT_INSIDE 
+DDIR_WEST
+The castle continues on. 
+~ 
+~ 
+0 0 18184 
+DDIR_SOUTH 
+The castle continues on. 
+~ 
+~ 
+0 0 18186 
+DDIR_UP
+The castle continues on. 
+~ 
+~ 
+0 0 18195
+S 
+#18186 
+East Hallway~ 
+A slight glimmer in the corner of your eye makes you wonder about the death
+of the members of this castle.  Perhaps they were killed in a tragic accident 
+and all became ghosts.
+~ 
+181 ROOM_DARK SECT_INSIDE 
+DDIR_NORTH 
+The castle continues on. 
+~ 
+~ 
+0 0 18185 
+DDIR_SOUTH
+The castle continues on. 
+~ 
+~ 
+0 0 18187 
+S 
+#18187 
+East Hallway~ 
+Furthur down the hallway you notice the same state of disrepair.  How many
+years, or even centuries, has it been since anyone ever occupied this castle?
+~ 
+181 ROOM_DARK SECT_INSIDE 
+DDIR_NORTH 
+The castle continues on. 
+~ 
+~ 
+0 0 18186
+DDIR_SOUTH 
+The castle continues on. 
+~ 
+~ 
+0 0 18188
+S 
+#18188 
+East Hallway~ 
+You have entered the east hallway, where servants used to scurry about on
+unknown errands.  The dust covering everything, though, belies the 
+disrepair of this majestic place.
+~ 
+181 ROOM_DARK SECT_INSIDE 
+DDIR_NORTH
+The castle continues on. 
+~ 
+~ 
+0 0 18187 
+DDIR_WEST
+The castle continues on.
+~
+~
+0 0 18191
+DDIR_SOUTH
+The castle continues on. 
+~ 
+~ 
+0 0 18189
+S 
+#18189 
+Base of the Southeast Tower~ 
+Here at the base of the tower you look upward at the stone stairs which travel
+high to the top of the castle.  There is no handrail, though, so if you intend
+to go up there you had best watch your step.
+~ 
+181 ROOM_DARK SECT_INSIDE 
+DDIR_NORTH 
+The castle continues on. 
+~ 
+~ 
+0 0 18188
+DDIR_WEST 
+The castle continues on. 
+~ 
+~ 
+0 0 18169 
+DDIR_UP
+The castle continues on. 
+~ 
+~ 
+0 0 18196
+S 
+#18190 
+Castle room~
+Down below you notice there is a secret tunnel, used by who knows whome to gain
+entrance to the castle without the notice of either the guards or the staff.
+~ 
+181 ROOM_DARK SECT_INSIDE 
+DDIR_DOWN
+The castle continues on.
+~
+~
+0 0 18217
+DDIR_WEST
+The castle continues on. 
+~ 
+~ 
+0 0 18180
+S 
+#18191 
+Side Passage~ 
+The passage off to the side of the east hallway shows signs of very little 
+traffic, as though no one ever went across this way to get to who knows where.
+~ 
+181 ROOM_DARK SECT_INSIDE 
+DDIR_NORTH 
+The castle continues on. 
+~ 
+~ 
+0 0 18192
+DDIR_EAST
+The castle continues on. 
+~ 
+~ 
+0 0 18188
+S 
+#18192 
+Outside the Wizard's Lab~ 
+Down through the hole in the floor you make out what appears to be a lab of
+some sort, where a powerful mage spent many a year perfecting the spells
+of his trade.
+~ 
+181 ROOM_DARK SECT_INSIDE 
+DDIR_SOUTH
+The castle continues on. 
+~ 
+~ 
+0 0 18191
+DDIR_DOWN
+The castle continues on. 
+~ 
+~ 
+0 0 18219
+S 
+#18193 
+Middle of Northwest Tower~ 
+Here in the middle of the tower you feel slightly claustrophobic, knowing
+that there is not a living soul in the whole castle who used to live here.
+~ 
+181 ROOM_DARK|ROOM_NO_MOB SECT_INSIDE 
+DDIR_UP
+The castle continues on. 
+~ 
+~ 
+0 0 18225
+DDIR_DOWN
+The castle continues on. 
+~ 
+~ 
+0 0 18182
+S 
+#18194
+Middle of Southwest Tower~ 
+Darkness all around makes it difficult to see.  You look up, you look down,
+but all you can see is darkness.
+~ 
+181 ROOM_DARK|ROOM_NO_MOB SECT_INSIDE 
+DDIR_UP
+The castle continues on. 
+~ 
+~ 
+0 0 18241
+DDIR_DOWN
+The castle continues on. 
+~ 
+~ 
+0 0 18178
+S 
+#18195
+Middle of the Northeast Tower~ 
+The stone steps spiral up and down, and your footsteps echo as you walk.
+The hollow sound reverberates in your ears.
+~ 
+181 ROOM_DARK|ROOM_NO_MOB SECT_INSIDE 
+DDIR_UP
+The castle continues on. 
+~ 
+~ 
+0 0 18231
+DDIR_DOWN
+The castle continues on. 
+~ 
+~ 
+0 0 18185
+S 
+#18196
+Middle of the Southeast Tower~ 
+The tower looks forlorn and empty, devoid of life and any decoration.
+Scratch that; the only life is the spider with the cobweb covering most
+of the area.
+~ 
+181 ROOM_DARK|ROOM_NO_MOB SECT_INSIDE 
+DDIR_UP
+The castle continues on. 
+~ 
+~ 
+0 0 18235
+DDIR_DOWN
+The castle continues on. 
+~ 
+~ 
+0 0 18189
+S 
+#18197 
+Dungeon~ 
+Oops.  Well, it seems you have wandered off the beaten path and found 
+yourself trapped in a dungeon.  The way back up is too high to reach and 
+at first glance there seems to be no way of escape. 
+~ 
+181 ROOM_DARK|ROOM_NO_RECALL SECT_INSIDE 
+DDIR_NORTH 
+The castle continues on. 
+~ 
+~ 
+0 0 18198 
+DDIR_EAST 
+The castle continues on. 
+~ 
+~ 
+0 0 18198 
+DDIR_SOUTH 
+The castle continues on. 
+~ 
+~ 
+0 0 18198 
+DDIR_WEST 
+The castle continues on. 
+~ 
+~ 
+0 0 18198 
+S 
+#18198 
+Dungeon~ 
+The dungeon continues, a spiralling circle which goes nowhere.  If there were 
+a way to get out, surely you would be able to find it.  But it seems that all 
+hope of leaving the dungeon is lost. 
+~ 
+181 ROOM_DARK|ROOM_NO_RECALL SECT_INSIDE 
+DDIR_NORTH 
+The dungeon continues on. 
+~ 
+~ 
+0 0 18199 
+DDIR_EAST 
+The dungeon continues on. 
+~ 
+~ 
+0 0 18199 
+DDIR_SOUTH 
+The dungeon continues on. 
+~ 
+~ 
+0 0 18199 
+DDIR_WEST 
+The dungeon continues on. 
+~ 
+~ 
+0 0 18199 
+S 
+#18199 
+Dungeon~ 
+Alas, there is no way out of the dungeon.  It is such a shame, though, that 
+you have managed to walk right into it.  Customarily a person is thrown into 
+it or banished to the dungeon for crimes committed.   
+~ 
+181 ROOM_DARK|ROOM_NO_RECALL SECT_INSIDE 
+DDIR_NORTH 
+The dungeon continues on. 
+~ 
+~ 
+0 0 18197 
+DDIR_EAST 
+The dungeon continues on. 
+~ 
+~ 
+0 0 18197 
+DDIR_SOUTH 
+The dungeon continues on. 
+~ 
+~ 
+0 0 18197 
+DDIR_WEST 
+The dungeon continues on. 
+~ 
+~ 
+0 0 18197 
+S 
+#18200
+Outside the Prince's Room~ 
+Again you notice that the maid did not do anything about this part of the 
+castle since the king's son ran off to a foreign nation.  There seems to be 
+some sort of awful smell coming from the bedroom.
+~ 
+181 ROOM_DARK SECT_INSIDE 
+DDIR_EAST
+The castle continues on. 
+~ 
+door~ 
+EX_ISDOOR|EX_CLOSED -1 18201
+DDIR_SOUTH
+The castle continues on. 
+~ 
+~ 
+0 0 18205
+S 
+#18201
+Prince's Room~
+Nasty, nasty, nasty!  This room has such a degree of filth that you wonder
+if pigs lived here instead of the prince.  And the stench that he left
+behind *still* lingers strongly.
+~ 
+181 ROOM_DARK SECT_INSIDE 
+DDIR_WEST
+The castle continues on. 
+~ 
+door~ 
+EX_ISDOOR|EX_CLOSED -1 18200
+S 
+#18202
+Lady's Quarters~
+Dainty and feminine, the Lady's quarters were once the envy of all the maids 
+and loyal serfs of the king and queen.  Now, though, the bed is musty, the
+floor covered in dust, and a partially full chamber pot reeks.
+~ 
+181 ROOM_DARK SECT_INSIDE 
+DDIR_EAST
+The castle continues on. 
+~ 
+door~ 
+EX_ISDOOR|EX_CLOSED -1 18204
+S 
+#18203
+Lord's Quarters~ 
+This spacious chamber is where the master of the castle would have slept.
+The remains of a large four poster bed lie in the center of the room while
+around the walls you see the faded remains of tapestries.  From what little
+you can make out, they were not happy scenes.
+~ 
+181 ROOM_DARK SECT_INSIDE 
+DDIR_SOUTH
+The castle continues on. 
+~ 
+door~ 
+EX_ISDOOR|EX_CLOSED -1 18204
+S 
+#18204
+Outside the Royal Quarters~ 
+Here the east corridor splits, going north and west.  The north bedroom is
+the Lord's quarters while west is where the Lady of the castle slept.
+Makes you wonder how they ever had children.
+~ 
+181 ROOM_DARK SECT_INSIDE 
+DDIR_NORTH
+The castle continues on. 
+~ 
+door~ 
+EX_ISDOOR|EX_CLOSED -1 18203
+DDIR_WEST
+The castle continues on. 
+~ 
+door~ 
+EX_ISDOOR|EX_CLOSED -1 18202
+DDIR_SOUTH
+The castle continues on. 
+~ 
+~ 
+0 0 18209
+S 
+#18205
+West Corridor~ 
+Filth and grime cover everything in sight.  Once upon a time the prince lived
+in the bedroom further north of here, but he left long before the demise of
+his family and the king ordered that no one shall enter his room.  
+Apparently they obeyed him.
+~ 
+181 ROOM_DARK SECT_INSIDE 
+DDIR_NORTH
+The castle continues on. 
+~ 
+~ 
+0 0 18200
+DDIR_SOUTH
+The castle continues on. 
+~ 
+~ 
+0 0 18210
+S 
+#18206
+Top of the East Stairway~ 
+The stairway curves upward to a common landing, which is just south of you.
+From there you can reach any of the royal bedrooms, the throne room, or 
+even the top of the castle.
+~ 
+181 ROOM_DARK SECT_INSIDE 
+DDIR_DOWN
+The castle continues on. 
+~ 
+~ 
+0 0 18167
+DDIR_EAST
+The castle continues on. 
+~ 
+~ 
+0 0 18207
+DDIR_SOUTH
+The castle continues on. 
+~ 
+~ 
+0 0 18211
+S 
+#18207
+Base of the Central Tower~ 
+The stairs at either side of you curve upward to the common landing, which then
+go upward to the central tower, which you can see above you.  Go ahead, climb
+the stairs.  I dare you.
+~ 
+181 ROOM_DARK SECT_INSIDE 
+DDIR_UP
+The castle continues on. 
+~ 
+~ 
+0 0 18245
+DDIR_EAST
+The castle continues on. 
+~ 
+~ 
+0 0 18208
+DDIR_WEST
+The castle continues on. 
+~ 
+~ 
+0 0 18206
+DDIR_SOUTH
+The castle continues on. 
+~ 
+~ 
+0 0 18212
+S 
+#18208
+Top of the East Stairway~ 
+At the top of the stairway is a common landing, leading to various rooms 
+belonging to the royal family.  
+~ 
+181 ROOM_DARK SECT_INSIDE 
+DDIR_DOWN
+The castle continues on. 
+~ 
+~ 
+0 0 18168
+DDIR_WEST 
+The castle continues on. 
+~ 
+~ 
+0 0 18207
+DDIR_SOUTH
+The castle continues on. 
+~ 
+~ 
+0 0 18213
+S 
+#18209
+East Corridor~ 
+You travel along the east corridor, close to the rooms that were once occupied
+by the Lord and Lady of the castle.  Now, though, all is still and quiet, 
+without a single servant moving about the place.
+~ 
+181 ROOM_DARK SECT_INSIDE 
+DDIR_NORTH
+The castle continues on. 
+~ 
+~ 
+0 0 18204
+DDIR_SOUTH
+The castle continues on. 
+~ 
+~ 
+0 0 18214
+S 
+#18210
+West Corridor~ 
+The west corrider leads north and south.  Cobwebs cover everything, making 
+travel through here somewhat difficult.  The princess's bedroom is south of
+here, while the prince's room is to the north.
+~ 
+181 ROOM_DARK SECT_INSIDE 
+DDIR_NORTH
+The castle continues on. 
+~ 
+~ 
+0 0 18205
+DDIR_EAST
+The castle continues on. 
+~ 
+door~ 
+EX_ISDOOR|EX_CLOSED -1 18211
+DDIR_SOUTH
+The castle continues on.
+~
+door~
+EX_ISDOOR|EX_CLOSED -1 18215
+S 
+#18211
+Common Landing~ 
+You are on the west side of the common landing on the second floor.  To the 
+north are the stairs which go back down to the entryway.  A door to the west
+leads to the children's bedrooms.
+~ 
+181 ROOM_DARK SECT_INSIDE 
+DDIR_NORTH
+The castle continues on. 
+~ 
+~ 
+0 0 18206
+DDIR_EAST
+The castle continues on. 
+~ 
+~ 
+0 0 18212
+DDIR_WEST
+The castle continues on. 
+~ 
+door~ 
+EX_ISDOOR|EX_CLOSED -1 18210
+S 
+#18212
+Common Landing~ 
+Here in the middle of the second floor landing you can go north to the roof
+of the castle or east and west to get to the stairs leading down or even to
+various other places in the castle.  South is the throne room.
+~ 
+181 ROOM_DARK SECT_INSIDE 
+DDIR_NORTH
+The castle continues on. 
+~ 
+~ 
+0 0 18207
+DDIR_EAST
+The castle continues on. 
+~ 
+~ 
+0 0 18213
+DDIR_WEST
+The castle continues on. 
+~ 
+~ 
+0 0 18211
+DDIR_SOUTH
+The castle continues on. 
+~ 
+~ 
+0 0 18216
+S 
+#18213
+Common Landing~ 
+This is the east side of the common landing.  To the north is the east stairwell
+and the landing continues west.  A door to the east leads to the king and queens
+quarters.
+~ 
+181 ROOM_DARK SECT_INSIDE 
+DDIR_NORTH
+The castle continues on. 
+~ 
+~ 
+0 0 18208
+DDIR_EAST
+The castle continues on. 
+~ 
+door~ 
+EX_ISDOOR|EX_CLOSED -1 18214
+DDIR_WEST
+The castle continues on. 
+~ 
+~ 
+0 0 18212
+S 
+#18214
+East Corridor~ 
+Over in the east corrider of the upstairs level are the rooms which once
+belonged to the king and queen.  A small hole in the floor overlooks the
+servant's entrance.  Watch your step.
+~ 
+181 ROOM_DARK SECT_INSIDE 
+DDIR_NORTH
+The castle continues on. 
+~ 
+~ 
+0 0 18209
+DDIR_WEST
+The castle continues on. 
+~ 
+door~ 
+EX_ISDOOR|EX_CLOSED -1 18213
+S 
+#18215
+Princess's room~ 
+These were once occupied by the princess that lived and grew in this castle.
+Now the only things that call this place home are rats and bugs.  You can
+see the remanents of childrens toys scattered throughout the room.
+~ 
+181 ROOM_DARK SECT_INSIDE 
+DDIR_NORTH
+The castle continues on. 
+~ 
+door~ 
+EX_ISDOOR|EX_CLOSED -1 18210
+S 
+#18216
+Throne Room~ 
+This is the throne room of the king of the castle, where he sat and made
+executive decisions, including but not limited to the death of citizens who
+had wronged him and his kingdom.
+~ 
+181 ROOM_DARK SECT_INSIDE 
+DDIR_NORTH
+The castle continues on. 
+~ 
+~ 
+0 0 18212
+S 
+#18217
+Underground Passage~
+From here in the underground passage you can either go up into the castle or
+go west and get back outside where the sun might shine.
+~ 
+181 ROOM_DARK SECT_INSIDE 
+DDIR_UP
+The castle continues on. 
+~ 
+~ 
+0 0 18190
+DDIR_WEST
+The castle continues on. 
+~ 
+~ 
+0 0 18218
+S 
+#18218
+Underground Passage~
+This underground passage leads between the center of the castle and the great
+outdoors.  No one knows why it is here, but it is.  Don't worry about it.
+~ 
+181 ROOM_DARK SECT_INSIDE 
+DDIR_UP
+You can see the forest up there.
+~ 
+~ 
+0 0 18125
+DDIR_EAST
+The castle continues on. 
+~ 
+~ 
+0 0 18217
+S
+#18219
+Wizard's Lab~ 
+You are at the entrance to the wizard's laboratory.  Here the great and fearful
+wizard worked his magic on the people...and the king.
+~ 
+181 ROOM_DARK SECT_INSIDE 
+DDIR_UP
+The castle continues on. 
+~ 
+~ 
+0 0 18192
+DDIR_EAST
+The castle continues on. 
+~ 
+~ 
+0 0 18220
+DDIR_SOUTH
+The castle continues on. 
+~ 
+~ 
+0 0 18222
+S
+#18220
+Wizard's Lab~ 
+Lining the walls of the lab are books of various sizes and topics.  Most of
+them are written in a language so archaic as to be foreign.
+~ 
+181 ROOM_DARK SECT_INSIDE 
+DDIR_EAST
+The castle continues on. 
+~ 
+~ 
+0 0 18221
+DDIR_SOUTH
+The castle continues on. 
+~ 
+~ 
+0 0 18223
+DDIR_WEST
+The castle continues on. 
+~ 
+~ 
+0 0 18219
+S
+#18221
+Wizard's Lab~ 
+A tome sits in the middle of the room, facing the wall, with a short stool
+in front of it.  It would appear that this tome is ancient as the pages are
+yellow and falling out.
+~ 
+181 ROOM_DARK SECT_INSIDE 
+DDIR_WEST
+The castle continues on. 
+~ 
+~ 
+0 0 18220
+DDIR_SOUTH
+The castle continues on. 
+~ 
+~ 
+0 0 18224
+S
+#18222
+Wizard's Lab~
+Various items of a magical nature litter the floor, all covered in a fine
+layer of dust which swirls in little dirt devils as you walk through it.
+~ 
+181 ROOM_DARK SECT_INSIDE 
+DDIR_NORTH
+The castle continues on. 
+~ 
+~ 
+0 0 18219
+DDIR_EAST
+The castle continues on. 
+~ 
+~ 
+0 0 18223
+S
+#18223
+Wizard's Lab~ 
+A gap in the wall shows the dirt on the other side of this basement lab.  
+The dirt has piles up close to the middle of the room, and you fear that
+it may collapse at any time.
+~ 
+181 ROOM_DARK SECT_INSIDE 
+DDIR_NORTH
+The castle continues on. 
+~ 
+~ 
+0 0 18220
+DDIR_EAST
+The castle continues on. 
+~ 
+~ 
+0 0 18224
+DDIR_WEST
+The castle continues on. 
+~ 
+~ 
+0 0 18222
+S
+#18224
+Wizard's Lab~
+In the corner of the lab is an old fireplace, remarkably well preserved in
+this ancient and overgrown castle.  It is still lit by an unearthly flame.
+~ 
+181 0 SECT_INSIDE 
+DDIR_NORTH
+The castle continues on. 
+~ 
+~ 
+0 0 18221
+DDIR_WEST
+The castle continues on. 
+~ 
+~ 
+0 0 18223
+S
+#18225
+Northwest Corner of the Castle Wall~
+You are standing high atop the castle wall where many a soldier has died in
+defense of this once great kingdom.  Now the ghosts of the many who have died
+are the only residents.~ 
+181 0 SECT_CITY 
+DDIR_EAST
+The castle continues on. 
+~ 
+~ 
+0 0 18226
+DDIR_SOUTH
+The castle continues on. 
+~ 
+~ 
+0 0 18244
+DDIR_DOWN
+The castle continues on. 
+~ 
+~ 
+0 0 18193
+S
+#18226
+Atop the Castle Wall~
+You are standing high atop the castle wall where many a soldier has died in
+defense of this once great kingdom.  Now the ghosts of the many who have died
+are the only residents.~ 
+181 0 SECT_CITY 
+DDIR_EAST
+The castle continues on. 
+~ 
+~ 
+0 0 18227
+DDIR_WEST
+The castle continues on. 
+~ 
+~ 
+0 0 18225
+S
+#18227
+Atop the Castle Wall~
+You are standing high atop the castle wall where many a soldier has died in
+defense of this once great kingdom.  Now the ghosts of the many who have died
+are the only residents.~ 
+181 0 SECT_CITY 
+DDIR_EAST
+The castle continues on. 
+~ 
+~ 
+0 0 18228
+DDIR_WEST
+The castle continues on. 
+~ 
+~ 
+0 0 18226
+S
+#18228
+Atop the Castle Wall~
+You are standing high atop the castle wall where many a soldier has died in
+defense of this once great kingdom.  Now the ghosts of the many who have died
+are the only residents.~ 
+181 0 SECT_CITY 
+DDIR_EAST
+The castle continues on. 
+~ 
+~ 
+0 0 18229
+DDIR_SOUTH
+The castle continues on.
+~
+~
+0 0 18245
+DDIR_WEST
+The castle continues on. 
+~ 
+~ 
+0 0 18227
+S
+#18229
+Atop the Castle Wall~
+You are standing high atop the castle wall where many a soldier has died in
+defense of this once great kingdom.  Now the ghosts of the many who have died
+are the only residents.~ 
+181 0 SECT_CITY 
+DDIR_EAST
+The castle continues on. 
+~ 
+~ 
+0 0 18230
+DDIR_WEST
+The castle continues on. 
+~ 
+~ 
+0 0 18228
+S
+#18230
+Atop the Castle Wall~
+You are standing high atop the castle wall where many a soldier has died in
+defense of this once great kingdom.  Now the ghosts of the many who have died
+are the only residents.~ 
+181 0 SECT_CITY 
+DDIR_EAST
+The castle continues on. 
+~ 
+~ 
+0 0 18231
+DDIR_WEST
+The castle continues on. 
+~ 
+~ 
+0 0 18229
+S
+#18231
+Northeast Corner of the Castle Wall~
+You are standing high atop the castle wall where many a soldier has died in
+defense of this once great kingdom.  Now the ghosts of the many who have died
+are the only residents.~ 
+181 0 SECT_CITY 
+DDIR_SOUTH
+The castle continues on. 
+~ 
+~ 
+0 0 18232
+DDIR_WEST
+The castle continues on. 
+~ 
+~ 
+0 0 18230
+DDIR_DOWN
+The castle continues on. 
+~ 
+~ 
+0 0 18195
+S
+#18232
+Atop the Castle Wall~
+You are standing high atop the castle wall where many a soldier has died in
+defense of this once great kingdom.  Now the ghosts of the many who have died
+are the only residents.~ 
+181 0 SECT_CITY 
+DDIR_NORTH
+The castle continues on. 
+~ 
+~ 
+0 0 18231
+DDIR_SOUTH
+The castle continues on. 
+~ 
+~ 
+0 0 18233
+S
+#18233
+Atop the Castle Wall~
+You are standing high atop the castle wall where many a soldier has died in
+defense of this once great kingdom.  Now the ghosts of the many who have died
+are the only residents.~ 
+181 0 SECT_CITY 
+DDIR_NORTH
+The castle continues on. 
+~ 
+~ 
+0 0 18232
+DDIR_SOUTH
+The castle continues on. 
+~ 
+~ 
+0 0 18234
+S
+#18234
+Atop the Castle Wall~
+You are standing high atop the castle wall where many a soldier has died in
+defense of this once great kingdom.  Now the ghosts of the many who have died
+are the only residents.~ 
+181 0 SECT_CITY 
+DDIR_NORTH
+The castle continues on. 
+~ 
+~ 
+0 0 18233
+DDIR_SOUTH
+The castle continues on. 
+~ 
+~ 
+0 0 18235
+S
+#18235
+Southeast Corner of the Castle Wall~
+You are standing high atop the castle wall where many a soldier has died in
+defense of this once great kingdom.  Now the ghosts of the many who have died
+are the only residents.~ 
+181 0 SECT_CITY 
+DDIR_NORTH
+The castle continues on. 
+~ 
+~ 
+0 0 18234
+DDIR_WEST
+The castle continues on. 
+~ 
+~ 
+0 0 18236
+DDIR_DOWN
+The castle continues on. 
+~ 
+~ 
+0 0 18196
+S
+#18236
+Atop the Castle Wall~
+You are standing high atop the castle wall where many a soldier has died in
+defense of this once great kingdom.  Now the ghosts of the many who have died
+are the only residents.~ 
+181 0 SECT_CITY 
+DDIR_EAST
+The castle continues on. 
+~ 
+~ 
+0 0 18235
+DDIR_WEST
+The castle continues on. 
+~ 
+~ 
+0 0 18237
+S
+#18237
+Atop the Castle Wall~
+You are standing high atop the castle wall where many a soldier has died in
+defense of this once great kingdom.  Now the ghosts of the many who have died
+are the only residents.~ 
+181 0 SECT_CITY 
+DDIR_EAST
+The castle continues on. 
+~ 
+~ 
+0 0 18236
+DDIR_WEST
+The castle continues on. 
+~ 
+~ 
+0 0 18238
+S
+#18238
+Atop the Castle Wall~
+You are standing high atop the castle wall where many a soldier has died in
+defense of this once great kingdom.  Now the ghosts of the many who have died
+are the only residents.~ 
+181 0 SECT_CITY 
+DDIR_EAST
+The castle continues on. 
+~ 
+~ 
+0 0 18237
+DDIR_NORTH
+The castle continues on.
+~
+~
+0 0 18245
+DDIR_WEST
+The castle continues on. 
+~ 
+~ 
+0 0 18239
+S
+#18239
+Atop the Castle Wall~
+You are standing high atop the castle wall where many a soldier has died in
+defense of this once great kingdom.  Now the ghosts of the many who have died
+are the only residents.~ 
+181 0 SECT_CITY 
+DDIR_EAST
+The castle continues on. 
+~ 
+~ 
+0 0 18238
+DDIR_WEST
+The castle continues on. 
+~ 
+~ 
+0 0 18240
+S
+#18240
+Atop the Castle Wall~
+You are standing high atop the castle wall where many a soldier has died in
+defense of this once great kingdom.  Now the ghosts of the many who have died
+are the only residents.~ 
+181 0 SECT_CITY 
+DDIR_EAST
+The castle continues on. 
+~ 
+~ 
+0 0 18239
+DDIR_WEST
+The castle continues on. 
+~ 
+~ 
+0 0 18241
+S
+#18241
+Southwest Corner of the Castle Wall~
+You are standing high atop the castle wall where many a soldier has died in
+defense of this once great kingdom.  Now the ghosts of the many who have died
+are the only residents.~ 
+181 0 SECT_CITY 
+DDIR_EAST
+The castle continues on. 
+~ 
+~ 
+0 0 18240
+DDIR_NORTH
+The castle continues on. 
+~ 
+~ 
+0 0 18242
+DDIR_DOWN
+The castle continues on. 
+~ 
+~ 
+0 0 18194
+S
+#18242
+Atop the Castle Wall~
+You are standing high atop the castle wall where many a soldier has died in
+defense of this once great kingdom.  Now the ghosts of the many who have died
+are the only residents.~ 
+181 0 SECT_CITY 
+DDIR_NORTH
+The castle continues on. 
+~ 
+~ 
+0 0 18243
+DDIR_SOUTH
+The castle continues on. 
+~ 
+~ 
+0 0 18241
+S
+#18243
+Atop the Castle Wall~
+You are standing high atop the castle wall where many a soldier has died in
+defense of this once great kingdom.  Now the ghosts of the many who have died
+are the only residents.~ 
+181 0 SECT_CITY 
+DDIR_NORTH
+The castle continues on. 
+~ 
+~ 
+0 0 18244
+DDIR_SOUTH
+The castle continues on. 
+~ 
+~ 
+0 0 18242
+S
+#18244
+Atop the Castle Wall~
+You are standing high atop the castle wall where many a soldier has died in
+defense of this once great kingdom.  Now the ghosts of the many who have died
+are the only residents.~ 
+181 0 SECT_CITY 
+DDIR_NORTH
+The castle continues on. 
+~ 
+~ 
+0 0 18225
+DDIR_SOUTH
+The castle continues on. 
+~ 
+~ 
+0 0 18243
+S
+#18245
+Center of the Castle Roof~ 
+This is the center tower of the roof.  It is the highest point on the 
+castle.  A walkway leads north and south to the outskirts of the roof,
+along the wall.
+~ 
+181 0 SECT_INSIDE 
+DDIR_UP
+The castle continues on. 
+~ 
+~ 
+0 0 18246
+DDIR_DOWN
+The castle continues on. 
+~ 
+~ 
+0 0 18207
+DDIR_SOUTH
+The castle continues on. 
+~ 
+~ 
+0 0 18238
+DDIR_NORTH
+The castle continues on. 
+~ 
+~ 
+0 0 18228
+S
+#18246
+High in the Castle Tower~ 
+Here in the castle tower you can see for miles in every direction.  The
+view is breathtaking...just be careful about walking too close to the edge.
+~ 
+181 0 SECT_INSIDE 
+DDIR_DOWN
+The castle continues on. 
+~ 
+~ 
+0 0 18245
+S
+#18250
+Secret Place~
+It's a secret place in the Midnight Mansion
+~
+181 ROOM_NO_RIP SECT_INSIDE
+S
+#0 
+ 
+ 
+ 
+ 
+#RESETS 
+D 0 18136 DIR_NORTH 1 
+D 0 18155 DIR_WEST 1 
+D 0 18134 DIR_EAST 1 
+D 0 18114 DIR_SOUTH 1
+M 0 18101 1 18175 ; cook in kitchen
+M 0 18102 1 18216 ; king in throne room
+M 0 18103 1 18202 ; queen in bedroom
+M 0 18104 1 18215 ; princess in bedroom
+E 1 18125 1 17    ; morter and pestle held by princess
+M 0 18105 1 18100 ; prince at beginning of area
+G 1 18109 1       ; picture for locket
+M 0 18110 100 18225 ; centurions on wall
+E 1 18130 100 5
+M 0 18110 100 18226 ; centurions on wall
+E 1 18130 100 5
+M 0 18110 100 18227 ; centurions on wall
+E 1 18130 100 5
+M 0 18110 100 18228 ; centurions on wall
+E 1 18130 100 5
+M 0 18110 100 18229 ; centurions on wall
+E 1 18130 100 5
+M 0 18110 100 18230 ; centurions on wall
+E 1 18130 100 5
+M 0 18110 100 18231 ; centurions on wall
+E 1 18130 100 5
+M 0 18110 100 18232 ; centurions on wall
+E 1 18130 100 5
+M 0 18110 100 18233 ; centurions on wall
+E 1 18130 100 5
+M 0 18110 100 18234 ; centurions on wall
+E 1 18130 100 5
+M 0 18110 100 18235 ; centurions on wall
+E 1 18130 100 5
+M 0 18110 100 18236 ; centurions on wall
+E 1 18130 100 5
+M 0 18110 100 18237 ; centurions on wall
+E 1 18130 100 5
+M 0 18110 100 18238 ; centurions on wall
+E 1 18130 100 5
+M 0 18110 100 18239 ; centurions on wall
+E 1 18130 100 5
+M 0 18110 100 18240 ; centurions on wall
+E 1 18130 100 5
+M 0 18110 100 18241 ; centurions on wall
+E 1 18130 100 5
+M 0 18110 100 18242 ; centurions on wall
+E 1 18130 100 5
+M 0 18110 100 18243 ; centurions on wall
+E 1 18130 100 5
+M 0 18110 100 18244 ; centurions on wall
+E 1 18130 100 5
+M 0 18110 100 18245 ; centurions on wall
+E 1 18130 100 5
+M 0 18106 25 18135 ; zombie 
+M 0 18106 25 18136
+M 0 18106 25 18137 
+M 0 18106 25 18138 
+M 0 18106 25 18139 
+M 0 18106 25 18140  
+M 0 18106 25 18141 
+M 0 18106 25 18142 
+M 0 18106 25 18143 
+M 0 18106 25 18144 
+M 0 18106 25 18145 
+M 0 18106 25 18146 
+M 0 18106 25 18147 
+M 0 18106 25 18148 
+M 0 18106 25 18149 
+M 0 18106 25 18150 
+M 0 18106 25 18151 
+M 0 18106 25 18152 
+M 0 18106 25 18153 
+M 0 18106 25 18154 
+M 0 18106 25 18155 
+M 0 18106 25 18156 
+M 0 18106 25 18157 
+M 0 18106 25 18158 
+M 0 18106 25 18159 
+M 0 18108 10 18121 ; corpse in forest
+M 0 18108 10 18122 
+M 0 18108 10 18123 
+M 0 18108 10 18124 
+M 0 18108 10 18125 
+M 0 18108 10 18126 
+M 0 18108 10 18127 
+M 0 18108 10 18128 
+M 0 18108 10 18129 
+M 0 18108 10 18130 
+M 0 18107 11 18134 ; apparition in path
+M 0 18107 11 18133 
+M 0 18107 11 18132 
+M 0 18107 11 18131 
+M 0 18107 11 18100 
+M 0 18107 11 18101 
+M 0 18107 11 18102 
+M 0 18107 11 18103 
+M 0 18107 11 18104 
+M 0 18107 11 18105 
+M 0 18107 11 18106 
+M 0 18100 12 18107 ; ghoul in forest
+M 0 18100 12 18108 
+M 0 18100 12 18109 
+M 0 18100 12 18110 
+M 0 18100 12 18111 
+M 0 18100 12 18112 
+M 0 18100 12 18113 
+M 0 18100 12 18114 
+M 0 18100 12 18115 
+M 0 18100 12 18116 
+M 0 18100 12 18117 
+M 0 18100 12 18118 
+M 0 18131 1 18108  ; Blue Rose Mob in path
+M 0 18132 1 18100  ; Entry Mob at entrance (duh!)
+O 0 18118 1 18199  ; skeleton in dungeon
+P 1 18117 5 18118  ; bone in skeleton
+O 0 18121 1 18141  ; bouquet of flowers
+P 1 18112 1 18121  ; blue rose in bouquet of flowers
+O 0 18124 1 18129  ; well at the bend
+P 1 18123 1 18124  ; glob of water in well
+M 0 18109 1 18147  ; zombie gardener in center of cemetary
+O 0 18126 1 18224  ; fireplace in the wizard's lab
+M 0 18111 1 18224  ; wizard by fireplace
+O 0 18127 1 18246  ; Erlenmeyer flask at top of castle
+S 
+ 
+#$ 

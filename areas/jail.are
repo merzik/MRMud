@@ -1,0 +1,1706 @@
+#AREA The Temple Dungeon~
+
+#AUTHORS MrMud~
+
+#HELPS
+-1 JAIL IMPRISONMENT MRPD DUNGEON 'THE DUNGEON'~
+All administrative players on MR have the ability to punish players by
+sending them to the Temple Dungeon. An imprisoned player will stay in the 
+Temple Dungeon and cannot communicate with the outside world until one's 
+prison sentence expires.  The duration of the sentence can be found in the 
+finger info of the captive.
+
+           (A) Policies and Punishments                         
+           (B) List of Legal and Illegal Practices
+
+
+  The temple dungeon updated to ensure 
+  prisoner captivity on 03 Dec 1999.
+
+
+{-}MRPD
+{a}MRPD1
+{b}MRPD0
+~
+-1 MRPD1 RULES~
+Rules of the Realm
+----------------------------------------------------------------------
+These rules are set up as a guideline for ensuring an enjoyable gaming
+environment.  Some actions are more severe than others, and methods of
+punishment is at the admin's discretion.  
+
+If a rule for a particular situation is not posted here, you should
+consider it as illegal until you find out otherwise.  Warnings are
+generally given, but not required, before punishments are handed out.
+
+              IGNORANCE OF THE RULES IS NOT AN EXCUSE!
+
+ (A) Multi-Playing        (E) Scripts and Triggers  (I) Spamming     
+ (B) Player Names         (F) Profanity             (J) Summoning Rules
+ (C) Harassment           (G) Punishment            (K) Pkill Rules
+ (D) Bug Abuse            (H) Sharing Characters    (L) Other
+
+
+{a}MRPD2
+{b}MRPD3
+{c}MRPD4
+{d}MRPD5
+{e}MRPD6
+{f}MRPD7
+{g}MRPD8
+{h}MRPD9
+{i}MRPDA1
+{j}MRPD0
+{k}PKILL
+{l}MRPD11
+~
+-1 PKILL 'PKILL RULES'~
+{110}                       --- Player Killing Rules ---
+{120}Assassination:
+{160}  Assistance from any other character is prohibited.  
+
+{120}Hunting Assassins:
+{160}  Assistance from other characters is allowed.  The only restrictions
+  are the hard coded level restrictions.
+
+{120}Clan Wars:
+{160}  Only assistance from other members of your clan's army is allowed.
+  Other "neutral" interaction is prohibited.
+
+{120}Race Wars:
+{160}  Only assistance from other members of your race's army is allowed.
+  Other "neutral" interaction is prohibited.
+
+{120}God Wars:
+{160}  Only assistance from other followers of your god is allowed.  Other
+  "neutral" interaction is prohibited.
+
+{120}** A "neutral" character {160}is defined as a character who is NOT an active
+   participant in the pkill venue in question.  (i.e.  A non-follower
+   can not help a follower in any way.  A non-clanarmy character can 
+   not help a clan army character.  And so on...)
+
+{120}** The ONLY exceptions to these rules are:
+{160}  - Using utilities to spell up the pkill characters
+  - Using a spy to gather information on targets
+
+{130}   (-) Back to Rules of the Realm{300}
+
+{-}MRPD1
+~
+-1 MRPD2 MULTIPLAY LIMIT~
+Multi-Playing:
+----------------------------------------------------------------------
+Multi-Playing is defined as one person having more than one character
+logged into the game at a time.  The current limit is FIVE characters
+MAXIMUM at any one time.  During heavy periods of lag an admin will
+notify players of a new limit.  The current limit for God followers
+is ONE character at a time.  Violation of this rule is justification
+for severe punishment.
+
+  (-) Back
+
+
+
+{-}MRPD1
+~
+-1 MRPD3~
+Player Names:
+----------------------------------------------------------------------------
+Suitable names are an essential part of maintaining a role-playing 
+environment.  Stupid names, names which involve profanity, or sexual 
+implications, or names that use illegal words will NOT be tolerated.
+
+eg: Double Words:  Blacklance, Lostgirl, Darkwarrior
+eg: Stupid names:  Buttmunch, Dorkone, Dorktwo, Tdork, BGut, FFFunnyyy
+eg: Illegal words: Lord, Lady, Sir, Miss, Maiden, Squire, Thee
+eg: Handles:       TheBigOne, LordHolio, SirNerd, FrogBoy
+eg: Similar names: Rhapsody and Rhapsodys
+
+Names from contemporary television programs and movies are illegal.
+We recognize that several current players have what would be considered
+illegal names under the new rules.  So this policy kicks in: 16-Nov-95.
+All players created before this date are considered exempt.  If you delete
+a character with an illegal name, that name is no longer exempt.
+
+Punishment for breaking this rule is immediate dungeoning until the character
+auto-deletes or is renamed by a high level admin. There will be no level limit 
+at which punishment will be waived.  If you want the equipment from the 
+dungeoned character, post a note to the officers, after removing the equipment 
+you must delete said character.
+
+  (-) Back
+
+
+
+{-}MRPD1
+~
+-1 MRPD4~
+Harassment:
+---------------------------------------------------------------------------
+Harassment is defined as one person going to extremes to make the game
+an unenjoyable place for another player.  What is "extreme" will be defined
+by the admin for each specific situation. 
+
+Player-killing, assassination, and steal are skills that can only be exercised 
+in a limited fashion. Name-calling, swearing, unwanted sexual overtures etc are 
+all forms of harassment that will not be tolerated.
+
+Anything you communicate on any channel (notes, talk, chat, say, tell) about
+someone else that is demeaning, degrading, or meant to humiliate may be
+considered harassment.  For example: The skill 'spy' was meant specifically
+as a help for assassination. What you overhear and tell to others by means of
+spy can be considered harassment.
+
+  (-) Back
+
+
+{-}MRPD1
+~
+-1 MRPD5~      
+Bug Abuse:
+-----------------------------------------------------------------------------
+Bugs are defined as quirks in the coding that allow you to do things that
+aren't intended as a part of game play.  This includes, but is not limited
+to, loading multiple mobiles in a room, abusing mob or object programs to
+load equipment, utilizing game code quirks to gain an advantage, such as
+speed, improper group formation, and so on.  Using a bug in any way is 
+considered abuse.  If you find a bug, report it IMMEDIATELY, so that it can
+be taken care of.  Failure to report a bug or the use of a bug even after it
+is reported is a severe offense and will get your character deleted!
+
+Joking or chatting about bug abuse will be assumed to be factual, and will
+carry the same action as witnessing the abuse in person.  Diversions or
+"smoke screens" will not be tolerated, nor will they be rifled through to
+determine their validity.
+
+The abuse of bugs, or "game quirks", is not up for interpretation.  Those
+who choose  to abuse such things are well aware of their actions as well
+as their eventual fate.  If there is _any_ question as to the validity of
+a feature in the game, it would be very wise to ask before using it.
+
+Punishment for bug abuse is DELETION.
+
+
+  (-) Back
+
+
+
+{-}MRPD1
+~
+-1 MRPD6~
+Scripts and Triggers:
+---------------------------------------------------------------------------
+Game activity while away from your computer is not allowed.  Any activity
+that benefits your characters in any way that is not attended will be
+considered AFK activity and will be jailed accordingly.  Extenuating
+circumstances such as attempts to cover up such activity may result in
+longer sentences to be determined by the admin.
+
+
+Scripting clients and triggers are allowed.  However, using scripts or
+triggers to autolevel any character is illegal.  Movement of the character
+(including fleeing and recalling) and the initiation of fights with 
+mobiles MUST be performed manually by the player.  An admin may choose, 
+but is not required, to test for the use of leveling scripts or triggers 
+in many different fashions.
+
+Punishment for scripting is AUTOMATIC DELETION, no questions asked.
+
+  (-) Back
+
+
+
+{-}MRPD1
+~
+-1 MRPD7~
+Profanity and Inappropriate Language (Any Visible Information):
+----------------------------------------------------------------------
+We want all visible information that can be seen by everyone in the 
+game to be as clean as possible.  No sexual implications, profanity, 
+racist remarks, etc. will be tolerated in titles, tactical indexes, 
+disguises, descriptions, email addresses, or any other form of 
+written communication.
+
+Punishment for inappropriate language will be determined by the
+particular admin according to the magnitude of the offense.
+
+  (-) Back
+
+
+
+{-}MRPD1
+~
+-1 MRPD8~
+Punishment:
+---------------------------------------------------------------------------
+Admins are expected to listen to your side of the story before any 
+punishment, except for bug abuse and scripting.  If you choose to be rude
+or have a bad attitude, the admin may slay, slaughter or execute you.
+
+  SLAY       - Kills your character without loss of experience.
+  SLAUGHTER  - Kills your character with loss of experience.
+  DISCONNECT - Makes your character lose link.
+
+Other options of punishment are:
+
+  FREEZE       - Prevents you performing any commands.
+  SILENCE      - Prevents you from speaking.
+  SACRIFICE    - The ordered sacrificing of all your character's possessions.
+  IMPRISONMENT - Keeps your character from doing anything productive for an
+                 indefinite time.
+  DELETION     - Deletion of character.
+  DENIAL       - Prevent future attempts to login.
+
+  NOTE: These jail terms for punishments are recommendations for jail
+        sentences. The actual jail time is at the discretion of the
+        jailer and may vary accordingly.
+
+  (-) Back
+
+
+
+{-}MRPD1
+~
+-1 MRPD9~
+Sharing Characters:
+------------------------------------------------------------------------
+Sharing characters is not authorized.  This means that any trouble caused
+by a character, even if it's not being used by the player who created it,
+will be paid for by the character.  Any disputes over ownership of a
+shared character will be settled by the players.  Asking for help from a
+god or officer to get a lost character back will not work.  The only way
+to ensure your characters are protected is to use good passwords and trust
+them to none other than yourself.  If you are going to share your character
+with someone else, please make sure you do not give out the password on
+the game.  Email or a phone call will protect you from having your password
+spied upon.
+
+The ONLY exception to this rule is in the case of a 1998 player file.
+Possession of passwords for such characters does not constitute ownership
+in this case.  This type of situation is subject to review by the admin, 
+and can result in the character being locked from use.
+
+  (-) Back
+
+
+
+{-}MRPD1
+~
+
+-1 MRPDA1~
+Spamming:
+------------------------------------------------------------------------
+Spamming is flooding another player with useless or irrelevant text. It is
+typically done by repeating a command numerous times.  This is illegal.
+It is legal to spam yourself if you think you are being spied upon.
+
+The limits of spamming are as follows:
+Any public channel (talk, chat, notes, etc.):  5 times.
+Any private channel (tells, says): 10 times.
+For player-killers who spam tintin users the limit is 15 times per
+kill attempt. Note that is 15 times all together, not 15 times for
+each tintin command.
+
+  (-) Back
+
+
+
+{-}MRPD1
+~
+
+-1 MRPD11~
+Other:
+------------------------------------------------------------------------
+There are a few other rules to be aware of.
+
+MUD MEETING ETIQUETTE - It is illegal to attack/assassinate/murder someone
+who is in the process of leaving the room where a town meeting or Mud
+meeting conducted by MR administrators is being held.
+
+PKILLING LINKDEAD PLAYERS - It is illegal to attack a player that is
+linklost/linkdead - even if you believe that the link was severed in order
+to purposefully avoid death.
+
+The punishments for these crimes are at the discretion of the
+administrator.
+
+  (-) Back
+
+
+
+{-}MRPD1
+~
+
+
+-1 MRPD0 'PKILL SUMMON'~
+Player Killing (What's legal and illegal?):
+------------------------------------------------------------------------------
+Summoning an assassin with a killer flag to a guard                      LEGAL
+Summoning an assassin with a killer flag to be murdered                  LEGAL
+Summoning an opposite follower to be murdered by you                     LEGAL
+Summoning an opp fol to be attacked by a fol of the same god as you      LEGAL
+Summoning an army opp with an army char to be 'murdered' or 'battled'    LEGAL
+
+Using a neutral character to assist in assassination (Except spying)   ILLEGAL
+Summoning a follower or army with a neutral (Except when asked)        ILLEGAL
+Summoning anyone to an aggressive mob                                  ILLEGAL
+Summoning a player to be assassinated                                  ILLEGAL
+
+ NOTE: Guards only attack killers and thieves.  They are not aggressive mobs.
+ NOTE: In special situations such as k-flagged assassins who god follow, 
+       assassin rules and regulations supercede that of the god following 
+       rules
+** All of these rules assume that the general pkill rules have already been
+   taken into account.  See 'help pkill' for general pkill rules.
+
+  (-) Back
+
+
+
+{-}MRPD1
+~
+0 $~
+
+
+
+#RANGES 0 99 0 99
+#FLAGS AFLAG_NOTELEPORT
+
+#MOBILES
+#12000
+temple keeper~
+The temple keeper~
+The temple keeper is here.~
+The temple keeper is here ready to supply you with everything you need.
+ Say 'SPELLS'      for a full complement of spells.
+ Say 'DISPEL'      for dispelling.
+ Say 'CURSED'      to remove curses.
+ Say 'RESTORE'     for healing.
+ Say 'UNIFORM'     to receive the priest/priestess clothing.
+~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_BODY
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_TONGUES|AFF_SANCTUARY
+0 S
+150 BODY_LEG|BODY_ARM BODY_LEG|BODY_ARM 1d1+19999 1d1+199
+0 0
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if level($n) < 96
+  say Blasphemy! This is sacred ground! BEGONE!
+  mptransfer $n 9755
+else
+  say Greetings $n 
+endif
+~
+>speech_prog p dispel~
+if level($n) < 96
+ say Bah!  Leave me alone mortal!
+else
+mpquiet on
+cast "dispel magic" $n & cast "dispel magic" $n
+cast "dispel magic" $n & cast "dispel magic" $n
+cast "dispel magic" $n & cast "dispel magic" $n
+cast "dispel magic" $n & cast "dispel magic" $n
+cast "dispel magic" $n & cast "dispel magic" $n
+cast "dispel magic" $n & cast "dispel magic" $n
+cast "dispel magic" $n & cast "dispel magic" $n
+mpquiet off
+say Spells removed, Revered One
+endif
+~
+>speech_prog p cursed~
+if level($n) < 96
+ say Bah!  Leave me alone mortal!
+else
+mpquiet on
+cast "remove curse" $n & cast "remove curse" $n
+cast "remove curse" $n & cast "remove curse" $n
+cast "remove curse" $n & cast "remove curse" $n
+cast "remove curse" $n & cast "remove curse" $n
+mpquiet off
+say Curses removed, Righteous One
+endif
+~
+>speech_prog p spells~
+if level($n) < 96
+ say Bah!  Leave me alone mortal!
+else
+mpquiet on
+cast "ethereal travel" $n & cast "astral projection" $n
+cast "breath water" $n    & cast "enhanced revive" $n
+cast "enhanced heal" $n   & cast "enhanced rest" $n
+cast "giant strength" $n  & cast "remove curse" $n
+cast sanctuary $n         & cast bless $n
+cast armor $n             & cast shield $n
+cast "mirror image" $n    & cast infravision $n
+cast fly $n               & cast tongues $n
+cast understand $n        & cast feast
+cast "righteous fury" $n  & cast "benediction" $n
+mpquiet off
+say You're all spelled up, Revered One
+endif
+~
+>speech_prog p restore~
+if level($n) < 96
+ say Bah!  Leave me alone mortal!
+else
+mpquiet on
+cast 'heal' $n & cast 'heal' $n & cast 'heal' $n & cast 'heal' $n
+cast 'heal' $n & cast 'heal' $n & cast 'heal' $n & cast 'heal' $n
+cast 'heal' $n & cast 'heal' $n & cast 'heal' $n & cast 'heal' $n
+cast 'heal' $n & cast 'heal' $n & cast 'heal' $n & cast 'heal' $n
+cast 'heal' $n & cast 'heal' $n & cast 'heal' $n & cast 'heal' $n
+cast 'heal' $n & cast 'heal' $n & cast 'heal' $n & cast 'heal' $n
+mpquiet off
+say You're all healed up, Revered One
+endif
+~
+>speech_prog p uniform~
+mpquiet on
+cast "giant strength" $n
+mpquiet off
+if level($n) >= 96
+ if whichgod($n) == 1
+  mpquiet on
+  mpoload 12000  & mpoload 12001 & mpoload 12002 & mpoload 12003  
+  mpoload 12004  & mpoload 12005 & mpoload 12006 & mpoload 12007 
+  mpoload 12008  & mpoload 12009 & mpoload 12010 & mpoload 12031
+  mpoload 12032  & mpoload 12033 & mpoload 12034 & mpoload 12035
+  c 'remove curse' & c 'remove curse' & c 'remove curse' & c 'remove curse'
+  c 'remove curse' & c 'remove curse' & c 'remove curse' & c 'remove curse'
+  c 'remove curse' & c 'remove curse' & c 'remove curse' & c 'remove curse'
+  c 'remove curse' & c 'remove curse' & c 'remove curse' & c 'remove curse'
+  give i12000 $n & give i12001 $n & give i12002 $n & give i12003 $n
+  give i12004 $n & give i12005 $n & give i12006 $n & give i12007 $n 
+  give i12008 $n & give i12009 $n & give i12010 $n & give i12031 $n
+  give i12032 $n & give i12033 $n & give i12034 $n & give i12035 $n
+  mpquiet off
+  if level($n) >= 96
+    mpquiet on
+    mpoload 12025
+    give i12025 $n
+   mpquiet off
+  endif
+  mpquiet on
+  sacrifice all
+  mpquiet off
+ else
+ if whichgod($n) == 2
+  mpquiet on
+  mpoload 12011  & mpoload 12012 & mpoload 12013 & mpoload 12014  
+  mpoload 12015  & mpoload 12016 & mpoload 12017 & mpoload 12018  
+  mpoload 12019  & mpoload 12020 & mpoload 12021 & mpoload 12027
+  mpoload 12028  & mpoload 12029 & mpoload 12030 & mpoload 12036
+  c 'remove curse' & c 'remove curse' & c 'remove curse' & c 'remove curse'
+  c 'remove curse' & c 'remove curse' & c 'remove curse' & c 'remove curse'
+  c 'remove curse' & c 'remove curse' & c 'remove curse' & c 'remove curse'
+  c 'remove curse' & c 'remove curse' & c 'remove curse' & c 'remove curse'
+  give i12011 $n & give i12012 $n & give i12013 $n & give i12014 $n 
+  give i12015 $n & give i12016 $n & give i12017 $n & give i12018 $n 
+  give i12019 $n & give i12020 $n & give i12021 $n & give i12027 $n
+  give i12028 $n & give i12029 $n & give i12030 $n & give i12036 $n
+  mpquiet off
+  if level($n) >= 96
+    mpquiet on
+    mpoload 12026
+    give i12026 $n
+   mpquiet off
+  endif
+  mpquiet on
+  sacrifice all
+  mpquiet off
+  endif
+ endif
+endif
+~
+|
+#12001
+Bubba~
+Bubba~
+Bubba is here.~
+Bubba is a large man, who has obviously not seen the inside of a wash-house
+in many years. He's dressed in grubby, smelly coarse clothes that seem to 
+have been dragged through several fields of manure. As he sees you looking at
+him, he leers at you, revealing 3 or 4 blackened teeth.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_BODY
+AFF_UNDERSTAND|AFF_TONGUES
+0 S
+95 BODY_LEG|BODY_ARM BODY_LEG|BODY_ARM 1d1+19999 1d1+99
+100 780605
+POS_STANDING POS_STANDING SEX_MALE
+>rand_prog 20~
+if rand(15)
+  mpecho $I drops some lipstick.
+  nudge $n
+  say $n wanna bend over and pick that up for me?
+else
+  if rand(15)
+    say Hey $n, you ever been to a Turkish prison??
+  else
+    if rand(15)
+      say $n... do you like to hang out in gyms alot?
+      wink
+    else
+      if rand(15)
+        say You ever watch two dogs playin in the yard $n?
+        lick
+      else
+        if rand(10)
+          say What ye doin' in my cell, $n ? Get the hell out!
+        else
+          say Have you ever seen a grown man naked $n??
+        endif
+      endif
+    endif
+  endif
+endif
+mpquiet on
+cast feast
+mpquiet off
+~
+|
+#12003
+temple dragon master~
+The dragon master~
+The dragon master is here.~
+This is the dungeon dragon trainer.  He skillfully trains dragons to help
+protect policemen during hostile acts of duty.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_BODY
+AFF_UNDERSTAND|AFF_TONGUES
+0 S
+95 BODY_LEG|BODY_ARM BODY_LEG|BODY_ARM 1d1+19999 1d1+99
+100000 780605
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if level($n) > 96
+  say Greetings $n
+else
+  say Blasphemy! BEGONE!
+  mptransfer $n 9755
+endif
+~
+|
+#12004
+enormous temple dragon~
+An enormous temple dragon~
+An enormous temple dragon sits here.~
+The dragon is quite ugly, but you shouldn't tell it that.  It seems pretty
+intelligent, and quite strong.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_PET|ACT_SMART|ACT_BODY
+AFF_SANCTUARY|AFF_UNDERSTAND|AFF_STEALTH|AFF_TONGUES|AFF_FLYING
+0 S
+92 BODY_LEG|BODY_ARM BODY_LEG|BODY_ARM 1d1+9999 3d20+100
+1 250000
+POS_STANDING POS_STANDING SEX_NEUTRAL
+#0
+
+
+#OBJECTS
+#12000
+white flame~
+A white flame~
+A white flame should not be here.~
+The flame burns like nothing you have ever seen before. 
+Mysteriously, embers do not fall from around the flames.~
+ITEM_TYPE_LIGHT
+ITEM_FLAG_LEVEL|ITEM_FLAG_GLOW|ITEM_FLAG_AUTO_ENGRAVE|ITEM_FLAG_NODROP|ITEM_FLAG_NOREMOVE
+ITEM_WEAR_TAKE
+0 0 -1 0
+1 100 97
+A
+APPLY_DAMROLL 10
+A
+APPLY_HITROLL 10
+A
+APPLY_AC -10
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_LEVEL < 96 2 0
+P 2
+TRIG_VOID
+OPROG_JUNK
+
+#12001
+white gold ring~
+A white gold ring~
+A white gold ring should not be here.~
+Unmistakably this is a ring of great holiness.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL|ITEM_FLAG_GLOW|ITEM_FLAG_AUTO_ENGRAVE|ITEM_FLAG_NODROP|ITEM_FLAG_NOREMOVE
+ITEM_WEAR_TAKE|ITEM_WEAR_FINGER
+15 0 0 0
+1 100 97
+A
+APPLY_DAMROLL 10
+A
+APPLY_HITROLL 10
+A
+APPLY_SAVING_SPELL -7
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_LEVEL < 96 2 0
+P 2
+TRIG_VOID
+OPROG_JUNK
+
+#12002
+white silver ring~
+A white silver ring~
+A white silver ring should not be here.~
+The ring has a strange force residing within it.
+It seems that it may hold the soul of many, as if 
+it were worn before.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL|ITEM_FLAG_GLOW|ITEM_FLAG_AUTO_ENGRAVE|ITEM_FLAG_NODROP|ITEM_FLAG_NOREMOVE
+ITEM_WEAR_TAKE|ITEM_WEAR_FINGER
+15 0 0 0
+1 100 97
+A
+APPLY_DAMROLL 10
+A
+APPLY_HITROLL 10
+A
+APPLY_SAVING_SPELL -7
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_LEVEL < 96 2 0
+P 2
+TRIG_VOID
+OPROG_JUNK
+
+#12003
+white gold cloak~
+A white gold cloak~
+A white gold cloak should not be here.~
+Wearing this cloak, you wear the weight of the world,
+which at times may seem a tiresome and heavy burden.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL|ITEM_FLAG_GLOW|ITEM_FLAG_AUTO_ENGRAVE|ITEM_FLAG_NODROP|ITEM_FLAG_NOREMOVE
+ITEM_WEAR_TAKE|ITEM_WEAR_NECK
+15 0 0 0
+1 100 97
+A
+APPLY_DAMROLL 10
+A
+APPLY_HITROLL 10
+A
+APPLY_SAVING_SPELL -7
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_LEVEL < 96 2 0
+P 2
+TRIG_VOID
+OPROG_JUNK
+
+#12004
+white gold symbol~
+A white gold symbol~
+A white gold symbol should not be here.~
+THE SYMBOL:
+                    .-------.
+                    |(;\o/;)|
+                  _.||\/X\/||._
+               ,-;  || \ / ||, "'_
+             ,'  () ||o X o|| ()  ',
+            / ()  ,-|| / \ ||-,  () \
+           : o  ,'  ||/\X/\||  ',  o ;
+        .----------._).-.-.(_.----------.
+        |\/)**(\/\ o (     ) o /\/)**(\/|
+        |(X () X)  .-.\ : /.-.  (X () X)|
+        |/\)__(/\/(   .`:`.   )\/\)__(/\|
+        '----------(   /|\   )----------'
+           ; o  ',  |       |  ,'  o ;
+            \ ()  '-|  /o\  |-'  () /
+             ',  () |(*\ /*)| ()  ,'
+               '-._ ||\/X\/|| _.-'
+                   '|| \ / ||'
+                    ||  X  ||
+                    ||\(/\/||
+                    ||=)O(=||
+                    ||/\/)\||
+                    ||  X  ||
+                    || / \ ||
+                    ||/\X/\||
+                    |(_/o\_)|
+                    '._____.'
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL|ITEM_FLAG_GLOW|ITEM_FLAG_AUTO_ENGRAVE|ITEM_FLAG_NODROP|ITEM_FLAG_NOREMOVE
+ITEM_WEAR_TAKE|ITEM_WEAR_NECK
+15 0 0 0
+1 100 97
+A
+APPLY_DAMROLL 10
+A
+APPLY_HITROLL 10
+A
+APPLY_SAVING_SPELL -7
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_LEVEL < 96 2 0
+P 2
+TRIG_VOID
+OPROG_JUNK
+
+#12005
+white gold hood~
+A white gold hood~
+A white gold hood should not be here.~
+The breastplate is made of an unbreakable metal. It 
+seems smooth and light, as to not hinder the wearer.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL|ITEM_FLAG_GLOW|ITEM_FLAG_AUTO_ENGRAVE|ITEM_FLAG_NODROP|ITEM_FLAG_NOREMOVE
+ITEM_WEAR_TAKE|ITEM_WEAR_HEAD
+17 0 0 0
+1 100 97
+A
+APPLY_DAMROLL 10
+A
+APPLY_HITROLL 10
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_LEVEL < 96 2 0
+P 2
+TRIG_VOID
+OPROG_JUNK
+
+#12006
+white gold belt~
+A white gold belt~
+A white gold belt should not be here.~
+The belt is heavy, but in some inexplicable way
+it exudes wisdom and honor.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL|ITEM_FLAG_GLOW|ITEM_FLAG_AUTO_ENGRAVE|ITEM_FLAG_NODROP|ITEM_FLAG_NOREMOVE
+ITEM_WEAR_TAKE|ITEM_WEAR_WAIST
+20 0 0 0
+1 100 97
+A
+APPLY_DAMROLL 9
+A
+APPLY_HITROLL 9
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_LEVEL < 96 2 0
+P 2
+TRIG_VOID
+OPROG_JUNK
+
+#12007
+white gold sandals~
+A pair of white gold sandals~
+A pair of white gold sandals should not be here.~
+Your gaze seems to go on forever as you look at these
+sandals. They are infinite like yourself.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL|ITEM_FLAG_GLOW|ITEM_FLAG_AUTO_ENGRAVE|ITEM_FLAG_NODROP|ITEM_FLAG_NOREMOVE
+ITEM_WEAR_TAKE|ITEM_WEAR_FEET
+19 0 0 0
+1 100 97
+A
+APPLY_DAMROLL 10
+A
+APPLY_HITROLL 8
+A
+APPLY_DEX 3
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_LEVEL < 96 2 0
+P 2
+TRIG_VOID
+OPROG_JUNK
+
+#12008
+white gold bracelet~
+A white gold bracelet~
+A white gold bracelet should not be here.~
+The bracelet gives you courage to confront both
+mortals and monsters.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL|ITEM_FLAG_GLOW|ITEM_FLAG_AUTO_ENGRAVE|ITEM_FLAG_NODROP|ITEM_FLAG_NOREMOVE
+ITEM_WEAR_TAKE|ITEM_WEAR_WRIST
+20 0 0 0
+1 100 97
+A
+APPLY_DAMROLL 9
+A
+APPLY_HITROLL 8
+A
+APPLY_SAVING_SPELL -7
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_LEVEL < 96 2 0
+P 2
+TRIG_VOID
+OPROG_JUNK
+
+#12009
+white silver bracelet~
+A white silver bracelet~
+A white silver bracelet should not be here.~
+The bracelet protects you like none other possibly could.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL|ITEM_FLAG_GLOW|ITEM_FLAG_AUTO_ENGRAVE|ITEM_FLAG_NODROP|ITEM_FLAG_NOREMOVE
+ITEM_WEAR_TAKE|ITEM_WEAR_WRIST
+15 0 0 0
+1 100 97
+A
+APPLY_DAMROLL 10
+A
+APPLY_HITROLL 8
+A
+APPLY_STR 5
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_LEVEL < 96 2 0
+P 2
+TRIG_VOID
+OPROG_JUNK
+
+#12010
+flaming white staff~
+A flaming white staff~
+A flaming white staff should not be here.~
+The staff takes the shape of a sword when used in battle:
+                   __    ___
+                  /{     \ _\      ;                          ,'
+                  \\\_   /( \\    ;(                         ;(
+                   \\(` / /  '   (',)                         ;)
+                    \\\/ {`       );                         ;)
+   J                 )/ //       ;(     ,') ,(    ;'    ,(   /(
+  /I\ ______________//\/{_______/  \___/ (_/  \__;(____/  )_/ '\____
+ //T\/WWWWWWWWWWWWWWW\ \'             \               \         ____\
+-<T< IIIIIIIIIIIIIII @ }{} {} {} {} @ \ {} {} {} {} @ \ {} {} {)     \
+ \\L/\ZZZZZZZZZZZZZZZ/ _______________\_______________\______________/
+  \O/\(             ))/\{
+   V  \\___________///\ \\     
+       \ZZZZZZZZZZZZ/  \ {,
+        'V''V''V''V'    \ \  , 
+                         \(_//  
+                         /__/   
+~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_LEVEL|ITEM_FLAG_GLOW|ITEM_FLAG_AUTO_ENGRAVE|ITEM_FLAG_NODROP|ITEM_FLAG_NOREMOVE
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 16 11 11
+1 100 97
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_LEVEL < 96 2 0
+P 2
+TRIG_VOID
+OPROG_JUNK
+
+#12011
+black flame~
+A black flame~
+A black flame should not be here.~
+The flame burns like nothing you have ever seen before. 
+Mysteriously, embers do not fall from around the flames.~
+ITEM_TYPE_LIGHT
+ITEM_FLAG_LEVEL|ITEM_FLAG_GLOW|ITEM_FLAG_AUTO_ENGRAVE|ITEM_FLAG_NODROP|ITEM_FLAG_NOREMOVE
+ITEM_WEAR_TAKE
+0 0 -1 0
+1 100 97
+A
+APPLY_DAMROLL 10
+A
+APPLY_HITROLL 10
+A
+APPLY_AC -10
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_LEVEL < 96 2 0
+P 2
+TRIG_VOID
+OPROG_JUNK
+
+#12012
+black gold ring~
+A black gold ring~
+A black gold ring should not be here.~
+Unmistakably this is a ring of great holiness.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL|ITEM_FLAG_GLOW|ITEM_FLAG_AUTO_ENGRAVE|ITEM_FLAG_NODROP|ITEM_FLAG_NOREMOVE
+ITEM_WEAR_TAKE|ITEM_WEAR_FINGER
+15 0 0 0
+1 100 97
+A
+APPLY_DAMROLL 10
+A
+APPLY_HITROLL 10
+A
+APPLY_SAVING_SPELL -7
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_LEVEL < 96 2 0
+P 2
+TRIG_VOID
+OPROG_JUNK
+
+#12013
+black silver ring~
+A black silver ring~
+A black silver ring should not be here.~
+The ring has a strange force residing within it.
+It seems that it may hold the soul of many, as if 
+it were worn before.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL|ITEM_FLAG_GLOW|ITEM_FLAG_AUTO_ENGRAVE|ITEM_FLAG_NODROP|ITEM_FLAG_NOREMOVE
+ITEM_WEAR_TAKE|ITEM_WEAR_FINGER
+15 0 0 0
+1 100 97
+A
+APPLY_DAMROLL 10
+A
+APPLY_HITROLL 10
+A
+APPLY_SAVING_SPELL -7
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_LEVEL < 96 2 0
+P 2
+TRIG_VOID
+OPROG_JUNK
+
+#12014
+black gold cloak~
+A black gold cloak~
+A black gold cloak should not be here.~
+Wearing this cloak, you wear the weight of the world,
+which at times may seem a tiresome and heavy burden.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL|ITEM_FLAG_GLOW|ITEM_FLAG_AUTO_ENGRAVE|ITEM_FLAG_NODROP|ITEM_FLAG_NOREMOVE
+ITEM_WEAR_TAKE|ITEM_WEAR_NECK
+15 0 0 0
+1 100 97
+A
+APPLY_DAMROLL 10
+A
+APPLY_HITROLL 10
+A
+APPLY_SAVING_SPELL -7
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_LEVEL < 96 2 0
+P 2
+TRIG_VOID
+OPROG_JUNK
+
+#12015
+black gold symbol~
+A black gold symbol~
+A black gold symbol should not be here.~
+THE SYMBOL:
+                    .-------.
+                    |(;\o/;)|
+                  _.||\/X\/||._
+               ,-;  || \ / ||, "'_
+             ,'  () ||o X o|| ()  ',
+            / ()  ,-|| / \ ||-,  () \
+           : o  ,'  ||/\X/\||  ',  o ;
+        .----------._).-.-.(_.----------.
+        |\/)**(\/\ o (     ) o /\/)**(\/|
+        |(X () X)  .-.\ : /.-.  (X () X)|
+        |/\)__(/\/(   .`:`.   )\/\)__(/\|
+        '----------(   /|\   )----------'
+           ; o  ',  |       |  ,'  o ;
+            \ ()  '-|  /o\  |-'  () /
+             ',  () |(*\ /*)| ()  ,'
+               '-._ ||\/X\/|| _.-'
+                   '|| \ / ||'
+                    ||  X  ||
+                    ||\(/\/||
+                    ||=)O(=||
+                    ||/\/)\||
+                    ||  X  ||
+                    || / \ ||
+                    ||/\X/\||
+                    |(_/o\_)|
+                    '._____.'
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL|ITEM_FLAG_GLOW|ITEM_FLAG_AUTO_ENGRAVE|ITEM_FLAG_NODROP|ITEM_FLAG_NOREMOVE
+ITEM_WEAR_TAKE|ITEM_WEAR_NECK
+15 0 0 0
+1 100 97
+A
+APPLY_DAMROLL 10
+A
+APPLY_HITROLL 10
+A
+APPLY_SAVING_SPELL -7
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_LEVEL < 96 2 0
+P 2
+TRIG_VOID
+OPROG_JUNK
+
+#12016
+black gold hood~
+A black gold hood~
+A black gold hood should not be here.~
+The breastplate is made of an unbreakable metal. It 
+seems smooth and light, as to not hinder the wearer.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL|ITEM_FLAG_GLOW|ITEM_FLAG_AUTO_ENGRAVE|ITEM_FLAG_NODROP|ITEM_FLAG_NOREMOVE
+ITEM_WEAR_TAKE|ITEM_WEAR_HEAD
+17 0 0 0
+1 100 97
+A
+APPLY_DAMROLL 10
+A
+APPLY_HITROLL 10
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_LEVEL < 96 2 0
+P 2
+TRIG_VOID
+OPROG_JUNK
+
+#12017
+black gold belt~
+A black gold belt~
+A black gold belt should not be here.~
+The belt is heavy, but in some inexplicable way
+it exudes wisdom and honor.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL|ITEM_FLAG_GLOW|ITEM_FLAG_AUTO_ENGRAVE|ITEM_FLAG_NODROP|ITEM_FLAG_NOREMOVE
+ITEM_WEAR_TAKE|ITEM_WEAR_WAIST
+20 0 0 0
+1 100 97
+A
+APPLY_DAMROLL 9
+A
+APPLY_HITROLL 9
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_LEVEL < 96 2 0
+P 2
+TRIG_VOID
+OPROG_JUNK
+
+#12018
+black gold sandals~
+A pair of black gold sandals~
+A pair of black gold sandals should not be here.~
+Your gaze seems to go on forever as you look at these
+sandals. They are infinite like yourself.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL|ITEM_FLAG_GLOW|ITEM_FLAG_AUTO_ENGRAVE|ITEM_FLAG_NODROP|ITEM_FLAG_NOREMOVE
+ITEM_WEAR_TAKE|ITEM_WEAR_FEET
+19 0 0 0
+1 100 97
+A
+APPLY_DAMROLL 10
+A
+APPLY_HITROLL 8
+A
+APPLY_DEX 3
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_LEVEL < 96 2 0
+P 2
+TRIG_VOID
+OPROG_JUNK
+
+#12019
+black gold bracelet~
+A black gold bracelet~
+A black gold bracelet should not be here.~
+The bracelet gives you courage to confront both
+mortals and monsters.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL|ITEM_FLAG_GLOW|ITEM_FLAG_AUTO_ENGRAVE|ITEM_FLAG_NODROP|ITEM_FLAG_NOREMOVE
+ITEM_WEAR_TAKE|ITEM_WEAR_WRIST
+20 0 0 0
+1 100 97
+A
+APPLY_DAMROLL 9
+A
+APPLY_HITROLL 8
+A
+APPLY_SAVING_SPELL -7
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_LEVEL < 96 2 0
+P 2
+TRIG_VOID
+OPROG_JUNK
+
+#12020
+black silver bracelet~
+A black silver bracelet~
+A black silver bracelet should not be here.~
+The bracelet protects you like none other possibly could.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL|ITEM_FLAG_GLOW|ITEM_FLAG_AUTO_ENGRAVE|ITEM_FLAG_NODROP|ITEM_FLAG_NOREMOVE
+ITEM_WEAR_TAKE|ITEM_WEAR_WRIST
+15 0 0 0
+1 100 97
+A
+APPLY_DAMROLL 10
+A
+APPLY_HITROLL 8
+A
+APPLY_STR 5
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_LEVEL < 96 2 0
+P 2
+TRIG_VOID
+OPROG_JUNK
+
+#12021
+flaming black staff~
+A flaming black staff~
+A flaming black staff should not be here.~
+The staff takes the shape of a sword when used in battle:
+                   __    ___
+                  /{     \ _\      ;                          ,'
+                  \\\_   /( \\    ;(                         ;(
+                   \\(` / /  '   (',)                         ;)
+                    \\\/ {`       );                         ;)
+   J                 )/ //       ;(     ,') ,(    ;'    ,(   /(
+  /I\ ______________//\/{_______/  \___/ (_/  \__;(____/  )_/ '\____
+ //T\/WWWWWWWWWWWWWWW\ \'             \               \         ____\
+-<T< IIIIIIIIIIIIIII @ }{} {} {} {} @ \ {} {} {} {} @ \ {} {} {)     \
+ \\L/\ZZZZZZZZZZZZZZZ/ _______________\_______________\______________/
+  \O/\(             ))/\{
+   V  \\___________///\ \\     
+       \ZZZZZZZZZZZZ/  \ {,
+        'V''V''V''V'    \ \  , 
+                         \(_//  
+                         /__/   
+~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_LEVEL|ITEM_FLAG_GLOW|ITEM_FLAG_AUTO_ENGRAVE|ITEM_FLAG_NODROP|ITEM_FLAG_NOREMOVE
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 16 11 11
+1 100 97
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_LEVEL < 96 2 0
+P 2
+TRIG_VOID
+OPROG_JUNK
+
+#12025
+white gold sash~
+A white gold sash~
+A white gold sash should not be here.~
+The sash means you are a High Priest/Priestess.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL|ITEM_FLAG_GLOW|ITEM_FLAG_AUTO_ENGRAVE|ITEM_FLAG_NODROP|ITEM_FLAG_NOREMOVE
+ITEM_WEAR_TAKE|ITEM_WEAR_ABOUT
+16 0 0 0
+1 100 98
+A
+APPLY_DAMROLL 10
+A
+APPLY_HITROLL 9
+A
+APPLY_DEX 5
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_LEVEL < 98 2 0
+P 2
+TRIG_VOID
+OPROG_JUNK
+
+#12026
+black gold sash~
+A black gold sash~
+A black gold sash should not be here.~
+The sash means you are a High Priest/Priestess.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL|ITEM_FLAG_GLOW|ITEM_FLAG_AUTO_ENGRAVE|ITEM_FLAG_NODROP|ITEM_FLAG_NOREMOVE
+ITEM_WEAR_TAKE|ITEM_WEAR_ABOUT
+16 0 0 0
+1 100 98
+A
+APPLY_DAMROLL 10
+A
+APPLY_HITROLL 9
+A
+APPLY_DEX 5
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_LEVEL < 98 2 0
+P 2
+TRIG_VOID
+OPROG_JUNK
+
+#12027
+black gold shield~
+A black gold shield~
+A black gold shield should not be here.~
+The shield gives you courage to confront both
+mortals and monsters.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL|ITEM_FLAG_GLOW|ITEM_FLAG_AUTO_ENGRAVE|ITEM_FLAG_NODROP|ITEM_FLAG_NOREMOVE
+ITEM_WEAR_TAKE|ITEM_WEAR_SHIELD
+18 0 0 0
+1 100 97
+A
+APPLY_DAMROLL 9
+A
+APPLY_HITROLL 8
+A
+APPLY_SAVING_SPELL -7
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_LEVEL < 96 2 0
+P 2
+TRIG_VOID
+OPROG_JUNK
+
+#12028
+black gold sleeves~
+Black gold sleeves~
+Black gold sleeves should not be here.~
+The sleeves give you courage to confront both
+mortals and monsters.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL|ITEM_FLAG_GLOW|ITEM_FLAG_AUTO_ENGRAVE|ITEM_FLAG_NODROP|ITEM_FLAG_NOREMOVE
+ITEM_WEAR_TAKE|ITEM_WEAR_ARMS
+18 0 0 0
+1 100 97
+A
+APPLY_DAMROLL 9
+A
+APPLY_HITROLL 8
+A
+APPLY_SAVING_SPELL -7
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_LEVEL < 96 2 0
+P 2
+TRIG_VOID
+OPROG_JUNK
+
+#12029
+entropy statuette~
+A statuette of Entropy~
+A statuette of Entropy should not be here.~
+The statuette of Entropy is made in the likeness of the great god Chaos
+himself.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL|ITEM_FLAG_GLOW|ITEM_FLAG_AUTO_ENGRAVE|ITEM_FLAG_NODROP|ITEM_FLAG_NOREMOVE
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+20 0 0 0
+1 100 97
+A
+APPLY_DAMROLL 9
+A
+APPLY_HITROLL 8
+A
+APPLY_SAVING_SPELL -7
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_LEVEL < 96 2 0
+P 2
+TRIG_VOID
+OPROG_JUNK
+
+#12030
+black gold breastplate~
+A black gold breastplate~
+A black gold breastplate should not be here.~
+The breastplate gives you courage to confront both
+mortals and monsters.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL|ITEM_FLAG_GLOW|ITEM_FLAG_AUTO_ENGRAVE|ITEM_FLAG_NODROP|ITEM_FLAG_NOREMOVE
+ITEM_WEAR_TAKE|ITEM_WEAR_BODY
+16 0 0 0
+1 100 97
+A
+APPLY_DAMROLL 10
+A
+APPLY_HITROLL 9
+A
+APPLY_INT 5
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_LEVEL < 96 2 0
+P 2
+TRIG_VOID
+OPROG_JUNK
+
+#12031
+white gold shield~
+A white gold shield~
+A white gold shield should not be here.~
+The shield gives you courage to confront both
+mortals and monsters.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL|ITEM_FLAG_GLOW|ITEM_FLAG_AUTO_ENGRAVE|ITEM_FLAG_NODROP|ITEM_FLAG_NOREMOVE
+ITEM_WEAR_TAKE|ITEM_WEAR_SHIELD
+18 0 0 0
+1 100 97
+A
+APPLY_DAMROLL 9
+A
+APPLY_HITROLL 8
+A
+APPLY_SAVING_SPELL -7
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_LEVEL < 96 2 0
+P 2
+TRIG_VOID
+OPROG_JUNK
+
+#12032
+white gold sleeves~
+White gold sleeves~
+White gold sleeves should not be here.~
+The sleeves give you courage to confront both
+mortals and monsters.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL|ITEM_FLAG_GLOW|ITEM_FLAG_AUTO_ENGRAVE|ITEM_FLAG_NODROP|ITEM_FLAG_NOREMOVE
+ITEM_WEAR_TAKE|ITEM_WEAR_ARMS
+18 0 0 0
+1 100 97
+A
+APPLY_DAMROLL 9
+A
+APPLY_HITROLL 8
+A
+APPLY_SAVING_SPELL -7
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_LEVEL < 96 2 0
+P 2
+TRIG_VOID
+OPROG_JUNK
+
+#12033
+reason statuette~
+A statuette of Reason~
+A statuette of Reason should not be here.~
+The statuette of Reason is made in the likeness of the great god Order
+himself.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL|ITEM_FLAG_GLOW|ITEM_FLAG_AUTO_ENGRAVE|ITEM_FLAG_NODROP|ITEM_FLAG_NOREMOVE
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+20 0 0 0
+1 100 97
+A
+APPLY_DAMROLL 9
+A
+APPLY_HITROLL 8
+A
+APPLY_SAVING_SPELL -7
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_LEVEL < 96 2 0
+P 2
+TRIG_VOID
+OPROG_JUNK
+
+#12034
+white gold breastplate~
+A white gold breastplate~
+A white gold breastplate should not be here.~
+The breastplate gives you courage to confront both
+mortals and monsters.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL|ITEM_FLAG_GLOW|ITEM_FLAG_AUTO_ENGRAVE|ITEM_FLAG_NODROP|ITEM_FLAG_NOREMOVE
+ITEM_WEAR_TAKE|ITEM_WEAR_BODY
+16 0 0 0
+1 100 97
+A
+APPLY_DAMROLL 10
+A
+APPLY_HITROLL 9
+A
+APPLY_INT 5
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_LEVEL < 96 2 0
+P 2
+TRIG_VOID
+OPROG_JUNK
+
+#12035
+white gold leggings~
+White gold leggings~
+White gold leggings should not be here.~
+The leggings give you courage to confront both
+mortals and monsters.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL|ITEM_FLAG_GLOW|ITEM_FLAG_AUTO_ENGRAVE|ITEM_FLAG_NODROP|ITEM_FLAG_NOREMOVE
+ITEM_WEAR_TAKE|ITEM_WEAR_LEGS
+18 0 0 0
+1 100 97
+A
+APPLY_DAMROLL 9
+A
+APPLY_HITROLL 8
+A
+APPLY_SAVING_SPELL -7
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_LEVEL < 96 2 0
+P 2
+TRIG_VOID
+OPROG_JUNK
+
+#12036
+black gold leggings~
+Black gold leggings~
+Black gold leggings should not be here.~
+The sleeves give you courage to confront both
+mortals and monsters.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL|ITEM_FLAG_GLOW|ITEM_FLAG_AUTO_ENGRAVE|ITEM_FLAG_NODROP|ITEM_FLAG_NOREMOVE
+ITEM_WEAR_TAKE|ITEM_WEAR_LEGS
+18 0 0 0
+1 100 97
+A
+APPLY_DAMROLL 9
+A
+APPLY_HITROLL 8
+A
+APPLY_SAVING_SPELL -7
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_LEVEL < 96 2 0
+P 2
+TRIG_VOID
+OPROG_JUNK
+
+#12039
+stone tablet~
+the stone tablet~
+A stone tablet stands here.~
+The tablet says:
+  ______________________________________________   
+  |                                            |
+  |          ADMINISTRATIVE DUTIES             |
+  |          ---------------------             |
+  |   * Enforce game policies and rules        |
+  |   * Promote role-play as a holy person     |
+  |   * Help new players with information      |
+  |   * Search for bugs/typos                  |
+  |   * Solicit ideas to improve the game      |
+  |   * Promote players involvement            |
+  |   * Act professionally and objectively     |
+  |____________________________________________|
+~
+ITEM_TYPE_FURNITURE
+ITEM_FLAG_LEVEL
+0
+0 0 0 0
+100 0 1
+
+#12040
+noteboard~
+the noteboard~
+A noteboard stands here.~
+~
+ITEM_TYPE_FURNITURE
+ITEM_FLAG_LEVEL
+0
+0 0 0 0
+100 0 1
+
+#12041
+staff immortal power~
+The Staff of Immortal Power~
+A staff of immortal power should not be here.~
+This staff gives you: OSTAT, MSTAT, MWHERE, OFIND, OLIST, MLIST,
+HOLYLIGHT, OPROGRAM, MPROGRAM, RSTAT, GOTO, and REGOTO.
+
+The following names are engraved upon its surface:
+Spender    Shannara
+McMac      Slinger
+
+
+WARNING: Use of these powers for any reason other than to
+assist in the maintenance, research and usage of areas is 
+strictly prohibited.
+~
+ITEM_TYPE_TREASURE
+ITEM_FLAG_LEVEL|ITEM_FLAG_INVENTORY|ITEM_FLAG_AUTO_ENGRAVE
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+0 0 0 0
+95 100 1
+P 1
+TRIG_UNKNOWN 100 ostat
+OPROG_IF OIF_WEAR_LOC ! WEAR_NONE 2 0
+P 2
+TRIG_VOID
+OPROG_GOD_ARGUMENT ostat~
+P 3
+TRIG_UNKNOWN 100 mstat
+OPROG_IF OIF_WEAR_LOC ! WEAR_NONE 4 0
+P 4
+TRIG_VOID
+OPROG_GOD_ARGUMENT mstat~
+P 5
+TRIG_UNKNOWN 100 ofind
+OPROG_IF OIF_WEAR_LOC ! WEAR_NONE 6 0
+P 6
+TRIG_VOID
+OPROG_GOD_ARGUMENT ofind~
+P 7
+TRIG_UNKNOWN 100 mwhere
+OPROG_IF OIF_WEAR_LOC ! WEAR_NONE 8 0
+P 8
+TRIG_VOID
+OPROG_GOD_ARGUMENT mwhere~
+P 9
+TRIG_UNKNOWN 100 olist
+OPROG_IF OIF_WEAR_LOC ! WEAR_NONE 10 0
+P 10
+TRIG_VOID
+OPROG_GOD_ARGUMENT olist~
+P 11
+TRIG_UNKNOWN 100 mlist
+OPROG_IF OIF_WEAR_LOC ! WEAR_NONE 12 0
+P 12
+TRIG_VOID
+OPROG_GOD_ARGUMENT mlist~
+P 13
+TRIG_UNKNOWN 100 oprogram
+OPROG_IF OIF_WEAR_LOC ! WEAR_NONE 14 0
+P 14
+TRIG_VOID
+OPROG_GOD_ARGUMENT oprogram~
+P 15
+TRIG_UNKNOWN 100 mprogram
+OPROG_IF OIF_WEAR_LOC ! WEAR_NONE 16 0
+P 16
+TRIG_VOID
+OPROG_GOD_ARGUMENT mprogram~
+P 17
+TRIG_UNKNOWN 100 rstat
+OPROG_IF OIF_WEAR_LOC ! WEAR_NONE 18 0
+P 18
+TRIG_VOID
+OPROG_GOD_ARGUMENT rstat~
+P 19
+TRIG_UNKNOWN 100 regoto
+OPROG_IF OIF_WEAR_LOC ! WEAR_NONE 20 0
+P 20
+TRIG_VOID
+OPROG_GOD_ARGUMENT regoto~
+P 21
+TRIG_UNKNOWN 100 goto
+OPROG_IF OIF_WEAR_LOC ! WEAR_NONE 22 0
+P 22
+TRIG_VOID
+OPROG_GOD_ARGUMENT goto~
+P 23
+TRIG_UNKNOWN 100 holylight
+OPROG_IF OIF_WEAR_LOC ! WEAR_NONE 22 0
+P 24
+TRIG_VOID
+OPROG_GOD_ARGUMENT holylight~
+#0
+
+
+#ROOMS
+#12000
+Center of the Temple Dungeon of Mortal Realms~
+You stand within the center of the temple dungeon of Mortal Realms. Glancing 
+around you can see the cook in the room above you.  To the east is the dungeon 
+cell where prisoners are locked up.  The eastern room leads to an interrogation
+room, while down in the depths below lies the dragon training area.~
+120 ROOM_INDOORS|ROOM_NOTE_BOARD SECT_INSIDE
+DDIR_EAST
+You see the dungeon cell.~
+~
+0 -1 12001
+DDIR_WEST
+You see the interrogation room.~
+~
+0 -1 12005
+DDIR_DOWN
+You see the dragon training area.~
+~
+0 -1 12003
+DDIR_SOUTH
+You see Patrokles Avenue.~
+~
+0 -1 9755
+DDIR_UP
+You see Limbo.~
+~
+0 -1 1
+S
+
+#12001
+The Temple Dungeon of Mortal Realms~
+This is the infamous Dungeon Cell.  You must have committed a serious crime
+to have been imprisoned here.  The room is quite filthy, for it serves as
+the dungeon restroom.  A few other prisoners are shackled to the walls, and
+you wish you had not committed your crime.~
+120 ROOM_NO_MOB|ROOM_INDOORS|ROOM_SAFE|ROOM_NO_RECALL|ROOM_NO_GOHOME SECT_INSIDE
+S
+
+#12003
+The Temple Dragon Training Room~
+This is where all the dungeon masters buy themselves faithful dragons to take
+into the field with them.  Plates full of fresh meat are being served to the
+beasts which live here, as well as red hot coals of fire to fuel their fiery
+breath.~
+120 ROOM_INDOORS|ROOM_PET_SHOP SECT_INSIDE
+DDIR_UP
+You see the center of the dungeon.~
+~
+0 -1 12000
+S
+#12004
+Temple Dragon Resting Room~
+This is where the dragons await their masters.~
+120 ROOM_NO_MOB|ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+You see training room~
+~
+0 -1 12003
+S
+#12005
+The Temple Interrogation Room~
+This room is filled with many blood-covered tools of torture are spread
+around the room.  Razor sharp knives and hatchets, as well as whips and
+flesh hooks are haphazardly stacked in a small pile on a table.  You
+wonder if you will get out of here safely.~
+120 ROOM_INDOORS|ROOM_SAFE|ROOM_NO_RECALL SECT_INSIDE
+DDIR_NORTH
+You see Patrokles.~
+exit door~
+EX_ISDOOR|EX_CLOSED -1 9755
+S
+#0
+
+
+
+#RESETS
+O 0 12039   1 12000 ;             the tablet    
+O 0 12040   1 12000 ;             the noteboard    
+M 0 12000   1 12000 ;             dungeon master
+M 0 12001   1 12001 ;             Bubba in Jail                     
+M 0 12003   1 12003 ;             dragonmaster     
+M 0 12004   1 12004 ;             dragon 
+D 0 12005 DIR_NORTH DOOR_CLOSED ; door in The Interrogation Room
+S
+
+
+
+
+
+
+
+
+#SPECIALS
+S
+
+
+
+
+#$

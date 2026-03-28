@@ -1,0 +1,1548 @@
+#AREA Gardens of Chakkor~
+
+#AUTHORS Prophecy~
+
+#RANGES 10 20 0 99
+
+#FLAGS AFLAG_NODEBUG|AFLAG_NOCASTLE
+
+#HELPS
+1 gardens~
+The Gardens of Chakkor are one of the newest and grandest sections that have
+been added onto the City. It is said some of the most exotic plant life in the
+entire planet can be found there on display.
+~
+0 $~
+
+#MOBILES
+#9650
+gardener~
+The Gardener~
+A Gardener sits hear tending to his plants.~
+Tall and slender the gardeners skin is well tanned from working outdoors for
+the majority of his time. He often holds classes training and making others
+practice the arts of gardening. He is often known to train and practice other
+skills as well. As well as sell goods for the right price.
+~
+ACT_NO_ORDER|ACT_SMART|ACT_PRACTICE|ACT_TRAIN|ACT_SENTINEL|ACT_IS_NPC|ACT_RACE
+AFF_TONGUES|AFF_UNDERSTAND|AFF_DETECT_HIDDEN|AFF_DETECT_INVIS
+0 S
+95 BODY_HEAD BODY_HAND 1d1+14999 1d1+94
+1 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 99~
+tell $n Greetings Visitor!
+tell $n What brings you to the gardens today?
+~
+>speech_prog p lottie sent me~
+if quest(2,8,$n) == 7
+say Now why would she do that?
+say You already helped her this Season!
+else
+say She must be wanting her stock of supplies now?
+say Ok well lets see the List.
+mpmset $n quest 2 8 1
+endif
+endif
+~
+>give_prog I9661~
+mpjunk i9661
+if quest(2,8,$n) == 1
+say Hmmmmmm...
+say These are not easy items to get this time of year.
+say Why don't you go talk to one of the Apprentice Druids about the Kernels...
+say why I try to track down where to find a watery gourd.
+mpmset $n quest 2 8 1
+endif
+~
+>give_prog I8904~
+mpjunk i8904
+if quest(2,8,$n) == 2
+tell $n Excellent!
+tell $n I have tracked down where you might find a Water Gourd.
+tell $n Talk to one of the residents in the Plains of Fear.
+tell $n Ask them about the Gourd.
+mpmset $n quest 2 8 3
+endif
+~
+>give_prog I13000~
+mpjunk i13000
+if quest(2,8,$n) == 3
+say Wonderful, but we are still lacking the sunflower seeds!
+say I do have but one magical seed left that can grow a sunflower plant.
+say But it needs to be planted and watered in order for it to grow.
+say And I do not have the time to tend to my vegetable garden.
+mpoload 9657
+give seed $n
+say With the right tool, and a little patience maybe you can get it to grow?
+mpmset $n quest 2 8 4
+endif
+~
+>give_prog I9658~
+mpjunk i9658
+if quest(2,8,$n) == 5
+say Good Job..!
+say All you have to do is deliver this grocery bag to Lottie now!
+mpoload 9663
+give bag $n
+mpmset $n quest 2 8 6
+endif
+~
+>give_prog I9664~
+mpjunk i9664
+if quest(2,8,$n) == 6
+say Thank You for your services!
+say Here is your payment as a reward!
+mpoload 9659
+mpoload 9665
+give gloves $n
+give ring $n
+mpmset $n quest 2 8 7
+endif
+~
+|
+#9651
+monk meditating~
+A Meditating Monk~
+A monk is here meditating quietly.~
+Looking at this deceptively quiet monk. You can tell that he has spent the
+majority of his life studying the ways of wisdom and unarmed combat.
+~
+ACT_RACE|ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_NO_ORDER
+AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_TONGUES|AFF_DETECT_INVIS
+0 S
+20 BODY_LEG BODY_FOOT 1d1+449 1d1+22
+100 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_NEUTRAL
+#9652
+druid apprentice~
+A Druid Apprentice~
+A druid apprentice is hear tending the gardens.~
+The Druid Apprentices are dressed in loosely knitted brown robes. They appear to
+be rather tired from the constant work of tending the gardens.
+~
+ACT_RACE|ACT_BODY|ACT_SMART
+AFF_UNDERSTAND|AFF_TONGUES
+0 S
+20 0 0 1d1+299 2d8+6
+200 RACE_HALFLING
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>fight_prog 19~
+mpecho {110}A Druid Apprentices firebolt crackles through the air!
+mpquiet on
+c 'fireball'
+mpquiet off
+~
+>speech_prog kernels~
+if quest(2,8,$n) == 1
+say Kernels you say..?
+frown
+say I don't have any off hand right now.
+snap
+smile
+say But why don't you go talk to the Elder Druidess in the Holy Grove!
+say I'm sure she would have some.
+mpmset $n quest 2 8 2
+~
+>speech_prog thanks~
+if quest(2,8,$n) == 2
+say No problem, anytime.
+endif
+~
+|
+#9653
+shambling mound~
+A Shambling Mound~
+A Shambling Mound is here looking for food.~
+The shambling mound appears to be nothing more than a large moving ball of
+plants. Its tentacles appear to be nothing more than vines of Ivy.
+~
+ACT_BODY|ACT_RACE
+AFF_INFRARED|AFF_CLEAR
+0 S
+21 BODY_TENTICLE BODY_TENTICLE 1d1+399 2d8+6
+0 RACE_ELF
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>act_prog lightning~
+mpecho {170}A Shambling Mounds body pulsates for a moment!
+mpquiet on
+c 'shocking grasp'
+c 'cure critical'
+c 'cure critical'
+mpquiet off
+~
+|
+#9654
+treant tree~
+A Treant~
+A large treant is here watching over the garden.~
+Looking at the Garden Treant, it appears to be an old willow in nature. Its
+huge large limbs look as though they can break even the strongest bones with
+a single mighty swipe.
+~
+ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER|ACT_RACE|ACT_BODY
+AFF_SNEAK|AFF_UNDERSTAND|AFF_DETECT_HIDDEN|AFF_DETECT_INVIS|AFF_TONGUES|AFF_HIDE
+0 S
+30 BODY_HEAD BODY_TENTICLE 1d1+999 2d13+6
+0 RACE_ELF
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>fight_prog 40~
+c 'faerie fire'
+else
+if rand(15)
+mload 9657
+force assassin murder $n
+endif
+~
+|
+#9655
+will wisp~
+A Will-O-Wisp~
+Some will-o-wisps are fluttering around here.~
+The Will-O-Wisp's appear to be small balls of light. Their sphere like bodies
+crackle with the slightest bit of electricity.
+~
+ACT_RACE|ACT_SMART|ACT_NO_ORDER|ACT_BODY
+AFF_UNDERSTAND|AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_INFRARED|AFF_FLYING|AFF_TONGUES|AFF_FAERIE_FIRE
+0 S
+16 BODY_WING BODY_WING 1d1+299 1d10+0
+0 RACE_HALFLING
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>act_prog shocking~
+mpecho {170}A Will-O-Wisps body flickers for a moment!
+mpquiet on
+c 'cure serious'
+c 'cure serious'
+mpquiet off
+~
+>act_prog lightning~
+mpecho {170}A Will-O-Wisps body flickers for a moment!
+mpquiet on
+c 'cure critical'
+c 'cure critical'
+mpquiet off
+~
+|
+
+#9656
+greenvise vise~
+A Greenvise~
+A greenvise is here devouring creatures that come too close.~
+As you examine the plant like creature even closer. It somewhat resembles that
+of a venus fly-trap on a much larger scale. The slightest movement can set it
+off to attack at anytime.
+~
+ACT_SENTINEL|ACT_SCAVENGER|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_INFRARED|AFF_DETECT_HIDDEN|AFF_DETECT_INVIS
+0 S
+20 BODY_HEAD BODY_TENTICLE 1d1+249 4d4+0
+0 RACE_HALFLING
+POS_STANDING POS_STANDING SEX_NEUTRAL
+#9657
+assassin vine~
+An assassin vine~
+An assassin vine is here absorbing the life force from its victim.~
+As you take a close look at the assassin vine. You realize that getting too
+close can be fatal.
+~
+ACT_SENTINEL|ACT_BODY|ACT_RACE
+AFF_FAERIE_FIRE|AFF_HIDE|AFF_SNEAK|AFF_INFRARED
+0 S
+13 BODY_HEAD BODY_MOUTH 1d1+67 1d1+1
+0 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>fight_prog 15~
+mpquiet on
+c 'energy drain'
+mpquiet off
+~
+|
+#9658
+ethseed~
+ethseed~
+ethseed~
+~
+ACT_BODY|ACT_RACE|ACT_SENTINEL|ACT_IS_NPC|ACT_SMART
+AFF_ETHEREAL|AFF_TONGUES|AFF_UNDERSTAND
+0 S
+1 BODY_HEAD BODY_HEAD 1d1+1 1d1+1
+0 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>act_prog p puts A Magical Seed in a hole.~
+if quest(2,8,$n) == 4
+mppurge hole
+mpecho The Magical seed begins to quiver a bit!
+mpmset $n quest 2 8 5
+endif
+~
+>rand_prog 85~
+mpforce sunflower mpecho {170}The Sunflower Plant begins waves in the breeze!
+mpforce sunflower mpecho {170}The Sunflower Plant sheds all of it seeds!
+mpforce sunflower mpquiet on
+mpforce sunflower mpoload 9658
+mpforce sunflower drop seeds
+mpforce sunflower mpquiet off
+mpforce sunflower mpecho {170}The Sunflower Plant wilts away and dies!
+mppurge plant
+~
+|
+#9659
+sunflower plant~
+The Sunflower Plant~
+You see a Sunflower plant here.~
+~
+ACT_IS_NPC|ACT_RACE|ACT_BODY|ACT_NO_ORDER|ACT_SMART|ACT_SENTINEL
+AFF_DETECT_INVIS|AFF_TONGUES|AFF_UNDERSTAND|AFF_DETECT_HIDDEN
+0 S
+95 BODY_HEAD BODY_HEAD 1d1+1 1d1+1
+0 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_NEUTRAL
+#0
+
+
+
+#OBJECTS
+#9650
+garden bench~
+Garden Bench~
+A Garden Bench is here.~
+The garden bench appears to be crafted from the finest marble. Intricate leaf
+designs decorate its edge and legs.
+~
+ITEM_TYPE_FURNITURE
+ITEM_FLAG_LEVEL
+0
+0 0 0 0
+1 1 1
+#9651
+planters table~
+Planters Table~
+A planters table is here in the middle of the room.~
+As you look at the planters table you can see all sorts of planting pots, and
+gardening tools spread across it.
+~
+ITEM_TYPE_FURNITURE
+ITEM_FLAG_LEVEL
+0
+0 0 0 0
+1 1 1
+#9652
+gardening tool~
+Gardening Tool~
+A non-descript tool lays here~
+The gardening tool appears to be lightly rusted and covered with dirt.
+~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 2 4 WEAPON_STAB
+3 5000 10
+P 1
+TRIG_UNKNOWN 100 dig
+OPROG_IF OIF_USER_ROOM_NUM = 9698 2 3
+P 2
+TRIG_VOID
+OPROG_ECHO You dig around some and create a small hole!~
+P 2
+TRIG_VOID
+OPROG_GOD_COMMAND
+mpoload 9662~
+P 2
+TRIG_VOID
+OPROG_JUNK
+P 3
+TRIG_UNKNOWN 100 dig
+OPROG_IF OIF_USER_ROOM_NUM ! 9698 4 3
+P 4
+TRIG_VOID
+OPROG_ECHO The ground is too hard here!~
+#9653
+watering bucket~
+Watering Bucket~
+A large bucket is on the ground here.~
+The bucket appears to be commonly used for watering plants.
+~
+ITEM_TYPE_DRINK_CON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+5 0 LIQ_WATER NOT_POISONED
+3 5000 10
+P 1
+TRIG_UNKNOWN 100 water
+OPROG_PLAYER_QUEST_IF 2 8 = 5 2 3
+P 2
+TRIG_VOID
+OPROG_IF OIF_USER_ROOM_NUM = 9698 2 3
+P 2
+TRIG_VOID
+OPROG_ECHO You poor some water on the ground here!~
+P 2
+TRIG_VOID
+OPROG_GOD_COMMAND
+mload 9659~
+P 2
+TRIG_VOID
+OPROG_JUNK
+P 3
+TRIG_UNKNOWN 100 water
+OPROG_IF OIF_USER_ROOM_NUM ! 9698 4 3
+P 4
+TRIG_VOID
+OPROG_ECHO It does no good!~
+
+#9654
+clay pot~
+Clay Pot~
+You see a clay plant pot on the ground here.~
+As you examine the clay pot. It appears to be new and un-used.
+~
+ITEM_TYPE_CONTAINER
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+50 0 0 0
+5 5000 10
+#9655
+brown woolen robe~
+Brown Woolen Robe~
+Some large brown fabric lays on the ground here.~
+Looking at the Brown woolen robe, it gives the appearance of dignity among
+the more respected members of society.
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_ABOUT
+5 0 0 0
+3 5000 10
+A
+APPLY_WIS 1
+A
+APPLY_INT 1
+#9656
+novices sash~
+Novices Sash~
+Your see a long piece of fabric on the ground here.~
+Look at the long piece of fabric, you can tell that it belongs to the Order of
+Monks.
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_WAIST|ITEM_WEAR_TAKE
+5 0 0 0
+1 5000 10
+A
+APPLY_MOVE 5
+A
+APPLY_DEX 1
+#9657
+magical seed~
+A Magical Seed~
+You see a small glowing seed on the ground here.~
+As you look carefully at this magic seed you can see a slight glow about it.
+Maybe some form of magical plants would grow from it, if you planted it
+somewhere.
+~
+ITEM_TYPE_PILL
+ITEM_FLAG_LEVEL|ITEM_FLAG_GLOW|ITEM_FLAG_MAGIC
+ITEM_WEAR_TAKE
+5 SPELL_CREATE_SPRING SPELL_NONE SPELL_NONE
+1 2000 1
+#9658
+sunflower seeds~
+Sunflower Seeds~
+You see some white and black seeds on the ground here.~
+As you take a closer look at the seeds you can tell that they would make a
+great snack.
+~
+ITEM_TYPE_FOOD
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+1 0 0 NOT_POISONED
+1 1 1
+#9659
+gardeners gloves~
+Gardeners Gloves~
+You see a pair of leather gloves laying here.~
+As you examine the gloves they appear to be magical in nature. They appear to
+be the perfect size for you.
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_AUTO_ENGRAVE|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HANDS
+4 0 0 0
+3 300000 20
+A
+APPLY_HITROLL 3
+A
+APPLY_DAMROLL 3
+#9660
+withered staff~
+Withered Staff~
+You see a long willow branch on the ground here.~
+Examining the willow branch even closer, you can tell that it would make a
+terrific staff for a magic-user.
+~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 2 8 WEAPON_POUND
+5 300000 26
+A
+APPLY_HIT 6
+A
+APPLY_AC -6
+#9661
+grocery list~
+A Grocery List~
+You see a small piece of paper on the ground here.~
+Lottie's Grocery List
+A. Some Kernels
+B. A Watery Gourd
+C. Some Sunflower Seeds
+~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 0 0
+1 1 1
+#9662
+hole~
+a hole~
+A small hole in the ground~
+The hole appears to be a few inches deep. Just enough to plant a seed.
+~
+ITEM_TYPE_CONTAINER
+ITEM_FLAG_LEVEL
+0
+5 0 0 0
+1 1 1
+#9663
+grocery bag~
+A Grocery Bag~
+You see a bag of groceries here.~
+As you look at this simple brown paper bag. You can see the groceries you had
+gathered up during the day inside!
+~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 0 0
+1 1 1
+#9664
+grocery voucher~
+A Grocery Voucher~
+You see a small piece of paper laying here.~
+This voucher is show of payment to the Gardener for services rendered!
+~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 0 0
+1 1 1
+#9665
+greenthumbs ring~
+A Greenthumbs Ring~
+You see a small green piece of metal laying here~
+As you examine the ring it appears to be magical in nature. They appear to
+be the perfect size for you.
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL|ITEM_FLAG_MAGIC|ITEM_FLAG_AUTO_ENGRAVE
+ITEM_WEAR_FINGER|ITEM_WEAR_TAKE
+4 0 0 0
+3 300000 20
+A
+APPLY_HITROLL 3
+A
+APPLY_DAMROLL 3
+#0
+
+
+
+#ROOMS
+#9650
+Before the Gates~
+As you come to the beautiful hanging gardens of Chakkor. You can see before
+you a set of large silvery gates to the west marking the gardens entrance.
+The streets bustle with activity to the east.
+~
+96 ROOM_NO_CASTLE SECT_CITY
+DDIR_WEST
+Silvery Gates
+~
+gates~
+EX_ISDOOR|EX_CLOSED -1 9651
+DDIR_EAST
+~
+~
+EX_ISDOOR -1 9770
+S
+#9651
+Before the Gardens~
+  {020}Upon entering the gardens you can see several areas to the west and south
+filled with all forms of plant life. Monks and Druids are seen every where
+practicing their meditations and magics. This place seems to be filled with
+some surreal harmony.
+~
+96 ROOM_NO_CASTLE SECT_CITY
+DDIR_EAST
+Silvery Gates
+~
+gates~
+EX_ISDOOR|EX_CLOSED -1 9650
+DDIR_WEST
+~
+~
+EX_ISDOOR -1 9652
+S
+#9652
+Wild Flower Garden~
+ {130}Upon entering this garden. You can see all forms of wild flowers growing about
+The flowers seem as though they haven't been watered in a while.
+~
+96 ROOM_NO_CASTLE SECT_FIELD
+DDIR_EAST
+Before the Gardens
+~
+~
+EX_ISDOOR -1 9651
+DDIR_NORTH
+Wild Flower Garden
+~
+~
+EX_ISDOOR -1 9653
+DDIR_SOUTH
+Wild Flower Garden
+~
+~
+EX_ISDOOR -1 9654
+S
+#9653
+Wild Flower Garden~
+ {130}Being careful not to trample upon the grass and flowers. You take light careful
+steps insuring that you do not disturb the plant life that grows here.
+~
+96 ROOM_NO_CASTLE SECT_FIELD
+DDIR_SOUTH
+Wild Flower Garden
+~
+~
+EX_ISDOOR -1 9652
+DDIR_WEST
+Wild Flower Garden
+~
+~
+EX_ISDOOR -1 9655
+S
+#9654
+Wild Flower Garden~
+  {130}You come upon the south east corner of the garden. To the west you can see a
+large variety of flowers and plants. To the north and east you can the silvery
+gates leading into Chakkor.
+~
+96 ROOM_NO_CASTLE SECT_FIELD
+DDIR_NORTH
+Wild Flower Garden
+~
+~
+EX_ISDOOR -1 9652
+DDIR_WEST
+Wild Flower Garden
+~
+~
+EX_ISDOOR -1 9658
+S
+#9655
+Wild Flower Garden~
+  {130}You travel around a stone covered path to see small little wisps flying around
+gathering grass stalks to craft their homes out of.
+~
+96 ROOM_NO_CASTLE SECT_FIELD
+DDIR_EAST
+Wild Flower Garden
+~
+~
+EX_ISDOOR -1 9653
+DDIR_WEST
+Wild Flower Garden
+~
+~
+EX_ISDOOR -1 9656
+S
+
+#9656
+Wild Flower Garden~
+ {130}Looking to the north you can see a cobble stone path that winds around to the
+next set of gardens off to the west. A quiet humble monk can be see sitting on
+a bench meditating here.
+~
+96 ROOM_NO_CASTLE SECT_FIELD
+DDIR_EAST
+Wild Flower Garden
+~
+~
+EX_ISDOOR -1 9655
+DDIR_WEST
+Wild Flower Garden
+~
+~
+EX_ISDOOR -1 9657
+DDIR_NORTH
+Stone Garden Path
+~
+~
+EX_ISDOOR -1 9662
+S
+#9657
+Wild Flower Garden~
+  {130}As you come to the NW Corner of the Wildflower Garden. You can smell the
+lemony smell of Fiery Day Lilies in the air here.
+~
+96 ROOM_NO_CASTLE SECT_FIELD
+DDIR_EAST
+Wild Flower Garden
+~
+~
+EX_ISDOOR -1 9656
+DDIR_SOUTH
+Wild Flower Garden
+~
+~
+EX_ISDOOR -1 9661
+S
+#9658
+Wild Flower Garden~
+ {130}You wander along the circle of the garden as you can see the Silvery Gates
+right around the corner and to the east of you.
+~
+96 ROOM_NO_CASTLE SECT_FIELD
+DDIR_EAST
+Wild Flower Garden
+~
+~
+EX_ISDOOR -1 9654
+DDIR_WEST
+Wild Flower Garden
+~
+~
+EX_ISDOOR -1 9659
+S
+#9659
+Wild Flower Garden~
+  {130}Turning the corner and pacing the southern half of the Wild Flower Garden.
+You can hear the sounds of what seems to be bee's in the bushes. As you take
+a closer look you can see the construction of a new nest being built.
+~
+96 ROOM_NO_CASTLE SECT_FIELD
+DDIR_EAST
+Wild Flower Garden
+~
+~
+EX_ISDOOR -1 9658
+DDIR_WEST
+Wild Flower Garden
+~
+~
+EX_ISDOOR -1 9660
+S
+#9660
+Wild Flower Garden~
+ {130}Taking a close look at the soil you can tell that it hasn't been watered in
+some time. Maybe you should look into getting some water for these poor plants.
+~
+96 ROOM_NO_CASTLE SECT_FIELD
+DDIR_EAST
+Wild Flower Garden
+~
+~
+EX_ISDOOR -1 9659
+DDIR_NORTH
+Wild Flower Garden
+~
+~
+EX_ISDOOR -1 9661
+S
+#9661
+Wild Flower Garden~
+ {130}Making your way to the western part of the Wild Flower Garden. You can tell
+that this section has been unkept for some time now. The weeds are beginning
+to overtake the place.
+~
+96 ROOM_NO_CASTLE SECT_FIELD
+DDIR_NORTH
+Wild Flower Garden
+~
+~
+EX_ISDOOR -1 9657
+DDIR_SOUTH
+Wild Flower Garden
+~
+~
+EX_ISDOOR -1 9660
+S
+
+#9662
+Stone Garden Path~
+  {020}As you wander down this stone garden path you can see another lovely garden
+to the west of you. You Begin to wonder what sort of plants may be thriving
+in this wonderful display.
+~
+96 ROOM_NO_CASTLE SECT_CITY
+DDIR_SOUTH
+Wild Flower Garden
+~
+~
+EX_ISDOOR -1 9656
+DDIR_NORTH
+Stone Garden Path
+~
+~
+EX_ISDOOR -1 9663
+S
+#9663
+Stone Garden Path~
+  {020}Venturing further north along the stone garden path. You can see a fine green
+moss has begun to grow between the stones. Giving them an almost green hint to
+their already natural look.
+~
+96 ROOM_NO_CASTLE SECT_CITY
+DDIR_SOUTH
+Stone Garden Path
+~
+~
+EX_ISDOOR -1 9662
+DDIR_WEST
+Stone Garden Path
+~
+~
+EX_ISDOOR -1 9664
+S
+#9664
+Stone Garden Path~
+  {020}Rounding the corner of the pathway, you can see to the west a garden of a most
+colorful nature. Obviously the next garden must be filled with exotic plants
+and flowers.
+~
+96 ROOM_NO_CASTLE SECT_CITY
+DDIR_EAST
+Stone Garden Path
+~
+~
+EX_ISDOOR -1 9663
+DDIR_WEST
+Stone Garden Path
+~
+~
+EX_ISDOOR -1 9665
+S
+#9665
+Stone Garden Path~
+ {020}Pacing along the path. You can here the mutterings of people meditating and studying in the distance. This place of tranquility has been known for its
+quiet and settle atmosphere.
+~
+96 ROOM_NO_CASTLE SECT_CITY
+DDIR_EAST
+Stone Garden Path
+~
+~
+EX_ISDOOR -1 9664
+DDIR_WEST
+Stone Garden Path
+~
+~
+EX_ISDOOR -1 9666
+S
+#9666
+Stone Garden Path~
+  {020}Moving along the path, you can hear the sounds of crickets in the background.
+You begin to hasten your pace a bit so that you might see the next garden
+before it gets dark.
+~
+96 ROOM_NO_CASTLE SECT_CITY
+DDIR_EAST
+Stone Garden Path
+~
+~
+EX_ISDOOR -1 9665
+DDIR_WEST
+Stone Garden Path
+~
+~
+EX_ISDOOR -1 9667
+S
+#9667
+Stone Garden Path~
+  {020}Coming about the corner of the pathway. You can see the exotic garden to the
+south of you. The smell of fine flowers fills the air.
+~
+96 ROOM_NO_CASTLE SECT_CITY
+DDIR_EAST
+Stone Garden Path
+~
+~
+EX_ISDOOR -1 9666
+DDIR_SOUTH
+Stone Garden Path
+~
+~
+EX_ISDOOR -1 9668
+S
+
+#9668
+Stone Garden Path~
+ {020}Flowers and bushes of the most vibrant colors fill your vision as you stand
+at the entrance of the exotic garden. A Sweet perfume like smell fills the air
+here.
+~
+96 ROOM_NO_CASTLE SECT_CITY
+DDIR_NORTH
+Stone Garden Path
+~
+~
+EX_ISDOOR -1 9667
+DDIR_SOUTH
+Exotic Garden
+~
+~
+EX_ISDOOR -1 9669
+S
+#9669
+Exotic Garden~
+ {120}As you enter the exotic garden you can see all sorts of flowers and shrubs
+about you. Roses, Lilies, Orchids, Cherry Blossoms, and even the legendary
+lotus flower. At the gardens center you can see a large garden shed.
+~
+96 ROOM_NO_CASTLE SECT_FIELD
+DDIR_NORTH
+Stone Garden Path
+~
+~
+EX_ISDOOR -1 9668
+DDIR_EAST
+Exotic Garden
+~
+~
+EX_ISDOOR -1 9670
+DDIR_WEST
+Exotic Garden
+~
+~
+EX_ISDOOR -1 9676
+S
+#9670
+Exotic Garden~
+ {120}As you come to this corner of the garden. You begin to realize that you must be careful. Your surrounded by lotus flowers, white ones and the deadly black lotus
+flowers. A large garden shed can be seen to the south.
+~
+96 ROOM_NO_CASTLE SECT_FIELD
+DDIR_WEST
+Exotic Garden
+~
+~
+EX_ISDOOR -1 9669
+DDIR_SOUTH
+Exotic Garden
+~
+~
+EX_ISDOOR -1 9671
+S
+#9671
+Exotic Garden~
+ {120}As you come to this section of the garden you can tell that not much has been
+planted here. Several empty pots are scattered about. And a large garden shed
+can be seen to the west.
+~
+96 ROOM_NO_CASTLE SECT_FIELD
+DDIR_NORTH
+Exotic Garden
+~
+~
+EX_ISDOOR -1 9670
+DDIR_SOUTH
+Exotic Garden
+~
+~
+EX_ISDOOR -1 9672
+DDIR_WEST
+Garden Keepers Shed
+~
+~
+EX_ISDOOR -1 9683
+S
+#9672
+Exotic Garden~
+ {120}You turn the corner to the exotic garden to find yourself surrounding by lilies
+of a most colorful and beautiful nature. Hues of reds, oranges, and purples
+are displayed in a flurry of colors. The garden continues to the north and west
+of you.
+~
+96 ROOM_NO_CASTLE SECT_FIELD
+DDIR_NORTH
+Exotic Garden
+~
+~
+EX_ISDOOR -1 9671
+DDIR_WEST
+Exotic Garden
+~
+~
+EX_ISDOOR -1 9673
+S
+#9673
+Exotic Garden~
+ {120}As you come across the southern most part of the exotic garden you can see that
+the gardens path leads further south to other gardens. A large garden shed can
+be seen to the north.
+~
+96 ROOM_NO_CASTLE SECT_FIELD
+DDIR_EAST
+Exotic Garden
+~
+~
+EX_ISDOOR -1 9672
+DDIR_WEST
+Exotic Garden
+~
+~
+EX_ISDOOR -1 9674
+DDIR_SOUTH
+Stone Garden Path
+~
+~
+EX_ISDOOR -1 9677
+S
+
+#9674
+Exotic Garden~
+ {120}As you come to the south west corner of the garden you can see the legendary
+cherry blossom trees. Their Beautiful flowers give off a sweet cherry smell in
+the breeze. The garden continues to the north and east.
+~
+96 ROOM_NO_CASTLE SECT_FIELD
+DDIR_EAST
+Exotic Garden
+~
+~
+EX_ISDOOR -1 9673
+DDIR_NORTH
+Exotic Garden
+~
+~
+EX_ISDOOR -1 9675
+S
+#9675
+Exotic Garden~
+ {120}Taking in the splendors of the garden, you feel as though you should contribute
+something to its cause. To the east of you, you can see a large garden shed.
+~
+96 ROOM_NO_CASTLE SECT_FIELD
+DDIR_SOUTH
+Exotic Garden
+~
+~
+EX_ISDOOR -1 9674
+DDIR_NORTH
+Exotic Garden
+~
+~
+EX_ISDOOR -1 9676
+S
+#9676
+Exotic Garden~
+ {120}Heading west in the exotic garden you can see several rose bushes planted along
+here. Roses of white, red, yellow, and even black can be found. The scent is
+almost over-whelming.
+~
+96 ROOM_NO_CASTLE SECT_FIELD
+DDIR_SOUTH
+Exotic Garden
+~
+~
+EX_ISDOOR -1 9675
+DDIR_EAST
+Exotic Garden
+~
+~
+EX_ISDOOR -1 9669
+S
+#9677
+Stone Garden Path~
+ {020}As you wander down this garden path you can see that further south it splits
+off into different directions.
+~
+96 ROOM_NO_CASTLE SECT_CITY
+DDIR_NORTH
+Exotic Garden
+~
+~
+EX_ISDOOR -1 9673
+DDIR_SOUTH
+Stone Garden Path
+~
+~
+EX_ISDOOR -1 9678
+S
+#9678
+Stone Garden Path~
+ {020}Wandering further south, you can tell that the air is much dryer here for some
+strange reason. You can see a dried up piece of land to the west, and a small
+wooded to grove off to the east.
+~
+96 ROOM_NO_CASTLE SECT_CITY
+DDIR_NORTH
+Stone Garden Path
+~
+~
+EX_ISDOOR -1 9677
+DDIR_SOUTH
+Stone Garden Path
+~
+~
+EX_ISDOOR -1 9679
+S
+#9679
+Stone Garden Path~
+{020}As you come to this split in the pathway. You can see a dried up garden to the
+west of you. Off to the east can be heard the rustling of tree's in the wind.
+~
+96 ROOM_NO_CASTLE SECT_CITY
+DDIR_NORTH
+Stone Garden Path
+~
+~
+EX_ISDOOR -1 9678
+DDIR_EAST
+Stone Garden Path
+~
+~
+EX_ISDOOR -1 9680
+DDIR_WEST
+Stone Garden Path
+~
+~
+EX_ISDOOR -1 9693
+S
+
+#9680
+Stone Garden Path~
+ {020}As you search further down the trail. You begin to make your way to a small
+grove of tree's. The wind can be heard whistling past your ears.
+~
+96 ROOM_NO_CASTLE SECT_CITY
+DDIR_WEST
+Stone Garden Path
+~
+~
+EX_ISDOOR -1 9679
+DDIR_EAST
+Stone Garden Path
+~
+~
+EX_ISDOOR -1 9681
+S
+#9681
+Stone Garden Path~
+ {020}As you make your way to the end of the path. You find yourself standing before
+a large grove of tree's. The path way exits back to the west.
+~
+96 ROOM_NO_CASTLE SECT_CITY
+DDIR_WEST
+Stone Garden Path
+~
+~
+EX_ISDOOR -1 9680
+DDIR_EAST
+Forest Garden
+~
+~
+EX_ISDOOR -1 9682
+S
+#9682
+Forest Garden~
+{020}As you enter the wooded garden you can see all forms of tree's and large bushes
+around the area. The stone path leads back to the west.
+~
+96 ROOM_NO_CASTLE SECT_FOREST
+DDIR_WEST
+Stone Garden Path
+~
+~
+EX_ISDOOR -1 9681
+DDIR_NORTH
+Forest Garden
+~
+~
+EX_ISDOOR -1 9684
+DDIR_SOUTH
+Forest Garden
+~
+~
+EX_ISDOOR -1 9692
+S
+#9683
+Garden Keepers Shed~
+As you enter the Garden Keeps Shed you can see that it is cluttered with all
+sorts of gardening tools. Shovels, Picks, and the sorts clutter the area here.
+In the corner you can see a small table and chair, with the sleeping garden
+keeper occupying it.
+~
+96 ROOM_SAFE|ROOM_NO_CASTLE|ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+Exotic Garden
+~
+~
+EX_ISDOOR -1 9671
+S
+#9684
+Forest Garden~
+{020}As you turn the bend in the garden you can see al sorts of tree's here. Pines,
+conifers, spruces, oaks, maples, and the sorts. The cool shade feels almost
+refreshing here.
+~
+96 ROOM_NO_CASTLE SECT_FOREST
+DDIR_SOUTH
+Forest Garden
+~
+~
+EX_ISDOOR -1 9682
+DDIR_EAST
+Forest Garden
+~
+~
+EX_ISDOOR -1 9685
+S
+#9685
+Forest Garden~
+{020}As you wander around this small forested garden. You can see all sorts of small
+animals taking advantage of the groves shelter. Birds and small rodents alike.
+The path leads to the east and west.
+~
+96 ROOM_NO_CASTLE SECT_FOREST
+DDIR_WEST
+Forest Garden
+~
+~
+EX_ISDOOR -1 9684
+DDIR_EAST
+Forest Garden
+~
+~
+EX_ISDOOR -1 9686
+S
+
+#9686
+Forest Garden~
+{020}Looking to the east you can see the southern gates of Chakkor through the
+thickets of the trees and the gates of the gardens to the north. The tree's
+seem to be rather old here.
+~
+96 ROOM_NO_CASTLE SECT_FOREST
+DDIR_WEST
+Forest Garden
+~
+~
+EX_ISDOOR -1 9685
+DDIR_EAST
+Forest Garden
+~
+~
+EX_ISDOOR -1 9687
+S
+#9687
+Forest Garden~
+{020}As you make your way to the most eastern part of the garden, an unnerving sound
+can be heard from the tree's themselves as though they were alive. The path
+leads to the west and south.
+~
+96 ROOM_NO_CASTLE SECT_FOREST
+DDIR_WEST
+Forest Garden
+~
+~
+EX_ISDOOR -1 9686
+DDIR_SOUTH
+Forest Garden
+~
+~
+EX_ISDOOR -1 9688
+S
+#9688
+Forest Garden~
+{020}The tree's waver in the breeze producing creaking sounds of an almost harmonic
+nature. The path leads to north and south here.
+~
+96 ROOM_NO_CASTLE SECT_FOREST
+DDIR_NORTH
+Forest Garden
+~
+~
+EX_ISDOOR -1 9687
+DDIR_SOUTH
+Forest Garden
+~
+~
+EX_ISDOOR -1 9689
+S
+#9689
+Forest Garden~
+{020}Making your way to the south eastern corner of the garden you can smell the
+refreshing smell of the pines in the air. The sounds of birds singing fill the
+surroundings. The path leads to the north and west.
+~
+96 ROOM_NO_CASTLE SECT_FOREST
+DDIR_NORTH
+Forest Garden
+~
+~
+EX_ISDOOR -1 9688
+DDIR_WEST
+Forest Garden
+~
+~
+EX_ISDOOR -1 9690
+S
+#9690
+Forest Garden~
+{020}As you travel along the southern path of the garden. You can tell that this
+must be the oldest part of the gardens. The Path and walls here are showing
+signs of aging and cracking.
+~
+96 ROOM_NO_CASTLE SECT_FOREST
+DDIR_EAST
+Forest Garden
+~
+~
+EX_ISDOOR -1 9689
+DDIR_WEST
+Forest Garden
+~
+~
+EX_ISDOOR -1 9691
+S
+#9691
+Forest Garden~
+{020}The garden shifts around some, as the earth seems to tremble just slightly. You
+begin to wonder just who or what could be causing this happen. The path leads
+to the east and west of here.
+~
+96 ROOM_NO_CASTLE SECT_FOREST
+DDIR_EAST
+Forest Garden
+~
+~
+EX_ISDOOR -1 9690
+DDIR_WEST
+Forest Garden
+~
+~
+EX_ISDOOR -1 9692
+S
+
+#9692
+Forest Garden~
+{020}As you make your way to the western part of the garden, you can feel an urging
+sense of belonging here. Maybe you should stop meditate for a bit. The garden
+leads to the north and east of here.
+~
+96 ROOM_NO_CASTLE SECT_FOREST
+DDIR_NORTH
+Forest Garden
+~
+~
+EX_ISDOOR -1 9682
+DDIR_EAST
+Forest Garden
+~
+~
+EX_ISDOOR -1 9691
+S
+#9693
+Stone Garden Path~
+ {020}As you venture towards the western end of the gardens. You find yourself
+approaching upon a dried up garden. It seems that it was once used to grow
+vegetables in.
+~
+96 ROOM_NO_CASTLE SECT_CITY
+DDIR_EAST
+Stone Garden Path
+~
+~
+EX_ISDOOR -1 9679
+DDIR_WEST
+Dried up Garden
+~
+~
+EX_ISDOOR -1 9694
+S
+#9694
+Dried up Garden~
+ {030}As you enter the dried up garden. Your feet kick up clouds of dust and dirt
+obscuring your vision.
+~
+96 ROOM_NO_CASTLE SECT_DESERT
+DDIR_EAST
+Stone Garden Path
+~
+~
+EX_ISDOOR -1 9693
+DDIR_NORTH
+Dried up Garden
+~
+~
+EX_ISDOOR -1 9695
+DDIR_SOUTH
+Dried up Garden
+~
+~
+EX_ISDOOR -1 9699
+S
+#9695
+Dried up Garden~
+ {030}As you wander around this dried up garden. You can tell at one point and time
+it appears to have been a vegetable garden. Remnants of dried up gourds, corn,
+and sunflowers are scattered everywhere.
+~
+96 ROOM_NO_CASTLE SECT_DESERT
+DDIR_SOUTH
+Dried up Garden
+~
+~
+EX_ISDOOR -1 9694
+DDIR_WEST
+Dried up Garden
+~
+~
+EX_ISDOOR -1 9696
+S
+#9696
+Dried up Garden~
+ {030}The dust and dirt from the garden begin to parch your throat a little as the
+breeze begins to pick up. You begin to wonder if there is any hope for this
+part of the gardens.
+~
+96 ROOM_NO_CASTLE SECT_DESERT
+DDIR_EAST
+Dried up Garden
+~
+~
+EX_ISDOOR -1 9695
+DDIR_SOUTH
+Dried up Garden
+~
+~
+EX_ISDOOR -1 9697
+S
+#9697
+Dried up Gardens~
+ {030}As you reach the center of the garden it seems almost hopeless that it can be
+salvaged for anything but a gravel pit.
+~
+96 ROOM_NO_CASTLE SECT_DESERT
+DDIR_NORTH
+Dried up Garden
+~
+~
+EX_ISDOOR -1 9696
+DDIR_SOUTH
+Dried up Gardens
+~
+~
+EX_ISDOOR -1 9698
+S
+
+#9698
+Dried up Garden~
+{030}You can feel the heat of the sun beating off the back of your neck as you reach
+the southern most part of this dried up garden.
+~
+96 ROOM_NO_CASTLE SECT_DESERT
+DDIR_NORTH
+Dried up Garden
+~
+~
+EX_ISDOOR -1 9697
+DDIR_EAST
+Dried up Garden
+~
+~
+EX_ISDOOR -1 9699
+S
+#9699
+Dried up Garden~
+ {030}As you come to this corner of the garden you can see several crumbled rocks
+laying here with a small dip in the ground. It appears as if a spring used to
+exist here.
+~
+96 ROOM_NO_CASTLE SECT_DESERT
+DDIR_NORTH
+Dried up Garden
+~
+~
+EX_ISDOOR -1 9694
+DDIR_WEST
+Dried up Garden
+~
+~
+EX_ISDOOR -1 9698
+S
+#0
+
+
+
+#SHOPS
+9650 ITEM_TYPE_ARMOR ITEM_TYPE_CONTAINER ITEM_TYPE_DRINK_CON ITEM_TYPE_FOOD
+     ITEM_TYPE_WEAPON 100 100 6 23
+0
+
+
+
+
+#RESETS
+M 0 9650 100 9683 ;Gardener loaded in room Garden Keepers Shed
+G 1 9652 100  ;Gardening Tool in Gardener's inventory
+G 1 9653 100  ;Watering Bucket in Gardener's inventory
+G 1 9654 100  ;Clay Pot in Gardener's inventory
+M 0 9651 100 9656 ;Meditating Monk loaded in room Wild Flower Garden
+M 0 9651 100 9652 ;Meditating Monk loaded in room Wild Flower Garden
+E 1 9656 100 WEAR_WAIST ;Equip with Novices Sash
+M 0 9651 100 9669 ;Meditating Monk loaded in room Exotic Garden
+M 0 9651 100 9673 ;Meditating Monk loaded in room Exotic Garden
+M 0 9651 100 9682 ;Meditating Monk loaded in room Forest Garden
+M 0 9652 100 9661 ;Druid Apprentice loaded in room Wild Flower Garden
+M 0 9652 100 9675 ;Druid Apprentice loaded in room Exotic Garden
+E 1 9655 100 WEAR_ABOUT ;Equip with Brown Woolen Robe
+M 0 9652 100 9685 ;Druid Apprentice loaded in room Forest Garden
+M 0 9655 100 9653 ;Will-O-Wisp loaded in room Wild Flower Garden
+M 0 9655 100 9653 ;Will-O-Wisp loaded in room Wild Flower Garden
+M 0 9655 100 9660 ;Will-O-Wisp loaded in room Wild Flower Garden
+M 0 9655 100 9660 ;Will-O-Wisp loaded in room Wild Flower Garden
+M 0 9655 100 9658 ;Will-O-Wisp loaded in room Wild Flower Garden
+M 0 9655 100 9658 ;Will-O-Wisp loaded in room Wild Flower Garden
+M 0 9652 100 9665 ;Druid Apprentice loaded in room Stone Garden Path
+M 0 9656 100 9670 ;Greenvise loaded in room Exotic Garden
+M 0 9656 100 9671 ;Greenvise loaded in room Exotic Garden
+M 0 9655 100 9672 ;Will-O-Wisp loaded in room Exotic Garden
+M 0 9656 100 9676 ;Greenvise loaded in room Exotic Garden
+M 0 9656 100 9674 ;Greenvise loaded in room Exotic Garden
+M 0 9654 100 9689 ;Treant loaded in room Forest Garden
+G 1 9660 100  ;Withered Staff in Treant's inventory
+M 0 9653 100 9688 ;Shambling Mound loaded in room Forest Garden
+M 0 9653 100 9687 ;Shambling Mound loaded in room Forest Garden
+M 0 9653 100 9686 ;Shambling Mound loaded in room Forest Garden
+M 0 9653 100 9684 ;Shambling Mound loaded in room Forest Garden
+M 0 9653 100 9692 ;Shambling Mound loaded in room Forest Garden
+M 0 9653 100 9691 ;Shambling Mound loaded in room Forest Garden
+M 0 9653 100 9690 ;Shambling Mound loaded in room Forest Garden
+M 0 9652 100 9679 ;Druid Apprentice loaded in room Stone Garden Path
+M 0 9658 100 9698 ;ethseed loaded in room Dried up Garden
+O 0 9651 100 9683 ;Planters Table loaded in room Garden Keepers Shed
+O 0 9650 100 9656 ;Garden Bench loaded in room Wild Flower Garden
+O 0 9650 100 9652 ;Garden Bench loaded in room Wild Flower Garden
+O 0 9650 100 9669 ;Garden Bench loaded in room Exotic Garden
+O 0 9650 100 9673 ;Garden Bench loaded in room Exotic Garden
+O 0 9650 100 9682 ;Garden Bench loaded in room Forest Garden
+S
+
+
+
+
+#$

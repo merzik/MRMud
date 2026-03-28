@@ -1,0 +1,1406 @@
+#AREA Oscoda Township~
+#AUTHORS Fudge~
+#RANGES 1 10 0 99
+
+
+#HELPS
+0 $~
+
+
+
+#MOBILES
+#QQ00
+old man~
+The Very Old Man~
+A Very Old Man is here.~
+This man is extremely old and fragile. He seems to be here living off of retirement money. He is sleeping in an old rocking chair.
+~
+ACT_SENTINEL|ACT_BODY|ACT_RACE
+AFF_DETECT_EVIL|AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_INFRARED
+0 S
+5 BODY_HEAD|BODY_EYE|BODY_HAND|BODY_FOOT BODY_HAND 4d4+55 2d3+2
+400 RACE_HUMAN
+POS_SLEEPING POS_SLEEPING SEX_MALE
+#QQ01
+old woman~
+The Very Old Woman~
+A Very Old Woman is here looking over the house.~
+This old lady seems to be cleaning the house... again.. to you the place allready looks spotless, but she still finds places to clean.
+~
+ACT_RACE|ACT_SENTINEL|ACT_BODY
+AFF_DETECT_EVIL|AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_INFRARED
+0 S
+4 BODY_FOOT|BODY_HEAD|BODY_EYE|BODY_HAND BODY_FOOT 4d4+40 2d3+1
+400 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_FEMALE
+#QQ02
+resident~
+The Resident~
+A Resident is here smileing happily.~
+This person is walking around happily.  What ever this person is doing, they seem to be having fun at it.
+~
+ACT_STAY_AREA|ACT_SMART|ACT_BODY|ACT_RACE|ACT_SCAVENGER
+AFF_DETECT_EVIL|AFF_DETECT_INVIS|AFF_DETECT_HIDDEN
+0 S
+7 BODY_EYE|BODY_HAND|BODY_FOOT|BODY_HEAD BODY_FOOT|BODY_HAND 6d6+60 3d2+2
+600 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>all_greet_prog 10~
+ say The Mayor is vary proud of that vault of his. I bet no one could steal from it.
+~
+|
+
+
+#QQ03
+young man~
+The Young Man~
+A rather young man is here admiring his new home.~
+This young man has just baught a new house for him and his wife to live in.
+~
+ACT_BODY|ACT_SCAVENGER|ACT_SENTINEL|ACT_RACE
+AFF_DETECT_HIDDEN|AFF_DETECT_INVIS|AFF_INFRARED|AFF_DETECT_EVIL
+0 S
+10 BODY_HEAD|BODY_FOOT|BODY_EYE|BODY_HAND BODY_HAND 6d7+100 4d4+3
+1000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+#QQ04
+lady young~
+The Young Lady~
+A Young Lady is resting her feet after a long day of looking at houses.~
+This lady is exhousted from looking at houses.  She is happy with the new house though.
+~
+ACT_SENTINEL|ACT_RACE|ACT_SCAVENGER|ACT_BODY
+AFF_INFRARED|AFF_DETECT_EVIL|AFF_DETECT_HIDDEN|AFF_DETECT_INVIS
+0 S
+10 BODY_HEAD|BODY_HAND|BODY_FOOT|BODY_EYE BODY_FOOT 6d7+100 4d4+3
+1000 RACE_HUMAN
+POS_RESTING POS_RESTING SEX_FEMALE
+#QQ05
+mayor ~
+The Mayor~
+The Mayor is here counting taxes.~
+The Mayor is here counting taxes, it seems he has quite a hefty load of money.
+~
+ACT_SENTINEL|ACT_RACE|ACT_BODY|ACT_SMART
+AFF_SANCTUARY|AFF_DETECT_HIDDEN|AFF_DETECT_INVIS|AFF_UNDERSTAND|AFF_TONGUES|AFF_INFRARED
+0 S
+15 BODY_HEAD|BODY_ARM BODY_FOOT|BODY_HAND 15d5+200 6d5+5
+3000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>speech_prog vault~
+ if level($n)>10
+  say don't you even try and get near my vault!
+  kill $n 
+ else 
+  if level($n)<5
+   say don't bother me with your stupid ideas.
+ else   
+   if quest (0,3,$n)==0
+   say That vault is so well protected no one has even the slightest chance of getting in.
+   mpmset $n quest 0 3 1
+   endif
+  endif
+ endif
+~
+>greet_prog 100~
+ if quest (0,3,$n)==5
+  if actorhasobjnum(QQ10)
+   say YOU ARE GOING TO USE THOSE LOCKPICKS ON MY VAULT AREN'T YOU! GUARDS, KILL THIS THIEF!
+   mpquiet on
+   mpforce all give iQQ10 mayor
+   mpquiet off
+   mptransfer pcs QQ51
+   mpgoto QQ51
+   mpforce guard mpkill $n
+   mpforce 2.guard mpkill $n
+   mpforce 3.guard mpkill $n 
+   mpkill $n
+  endif
+ endif
+~
+|
+
+
+                  
+      
+      
+      
+      
+#QQ06
+guard~
+The Vault Guard~
+A Vault Guard is here protecting the vault from intuders.~
+This Guard doesn't take crap from anybody that try's to steal from the Vault.
+~
+ACT_SMART|ACT_BODY|ACT_SENTINEL|ACT_RACE
+AFF_UNDERSTAND|AFF_TONGUES|AFF_HUNT|AFF_DETECT_EVIL|AFF_DETECT_HIDDEN|AFF_DETECT_INVIS
+0 S
+10 BODY_HAND|BODY_ARM|BODY_LEG BODY_FOOT|BODY_HAND 10d6+90 4d4+4
+800 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_NEUTRAL
+#QQ07
+earl~
+Earl~
+Earl, the pet store manager, is here.~
+Earl owns this pet store and hopes you are going to buy a pet.
+
+~
+ACT_RACE|ACT_SCAVENGER|ACT_BODY|ACT_SMART|ACT_NO_ORDER|ACT_SENTINEL
+AFF_SNEAK|AFF_TONGUES|AFF_HUNT|AFF_DETECT_HIDDEN|AFF_DETECT_INVIS|AFF_UNDERSTAND|AFF_INFRARED|AFF_SANCTUARY|AFF_FLYING|AFF_PASS_DOOR
+0 S
+1 BODY_LEG|BODY_HEAD|BODY_ARM BODY_HAND|BODY_FOOT 500d5+2000 10d10+50
+20000000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>greet_prog 100~
+if quest (0,3,$n)==1
+ say I hear you are thinking of trying to brake into the Mayor's Vault.  
+ say If you give me 100000 coins i can help you out with a set of lockpicks.
+endif
+~
+>bribe_prog 100000~
+if quest (0,3,$n)==1
+ say Thanks, here you go. 
+ mpoload QQ08
+ give iQQ08 $n
+ mpmset $n quest 0 3 2
+ say I am not sure how to use them though.   
+ say Bob once used to hang around with thieves.
+ say I believe if you ask Bob, "How do i use these lockpicks?" he will probably help you.
+endif
+~
+|
+
+
+
+
+
+
+
+
+#QQ08
+puppy~
+The nice puppy~
+A nice little puppy is here.~
+This little puppy is glad that it has an owner.
+~
+ACT_IS_NPC|ACT_RACE|ACT_BODY|ACT_PET|ACT_WIMPY
+AFF_TONGUES|AFF_HUNT|AFF_PASS_DOOR|AFF_UNDERSTAND|AFF_SANCTUARY|AFF_DETECT_INVIS|AFF_DETECT_HIDDEN
+0 S
+3 BODY_TAIL|BODY_HEAD|BODY_LEG BODY_CLAW|BODY_MOUTH 5d5+40 3d3+1
+1000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_NEUTRAL
+#QQ09
+dog~
+The Dog~
+A farly stout dog is here.~
+This dog is rather happy and likes to be petted.
+~
+ACT_IS_NPC|ACT_PET|ACT_BODY|ACT_RACE|ACT_WIMPY
+AFF_TONGUES|AFF_DETECT_INVIS|AFF_INFRARED|AFF_UNDERSTAND|AFF_PASS_DOOR|AFF_DETECT_HIDDEN|AFF_HUNT
+0 S
+5 BODY_TAIL|BODY_LEG|BODY_HEAD BODY_CLAW|BODY_MOUTH 5d5+65 3d3+5
+4000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_NEUTRAL
+#QQ10
+falcon hunting~
+The Hunting Falcon~
+A Hunting Falcon is sitting on his owners shoulder.~
+This Falcon was built for hunting.  It is rather big.  It sits and looks at you like it would any prey.
+~
+ACT_IS_NPC|ACT_RACE|ACT_WIMPY|ACT_PET|ACT_BODY
+AFF_HUNT|AFF_DETECT_HIDDEN|AFF_INFRARED|AFF_FLYING|AFF_PASS_DOOR|AFF_DETECT_INVIS
+0 S
+8 BODY_WING|BODY_CLAW|BODY_HEAD BODY_CLAW|BODY_WING 5d5+100 8d2+0
+12000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_NEUTRAL
+#QQ11
+dee~
+Madam Dee~
+Madam Dee is here selling you clothes.~
+Dee is here selling clothes to anyone with money.
+~
+ACT_BODY|ACT_SENTINEL|ACT_SCAVENGER|ACT_SMART|ACT_RACE
+AFF_PASS_DOOR|AFF_FLYING|AFF_SNEAK|AFF_UNDERSTAND|AFF_INFRARED|AFF_SANCTUARY|AFF_TONGUES|AFF_HUNT|AFF_DETECT_INVIS|AFF_DETECT_HIDDEN
+0 S
+1 BODY_HORN|BODY_LEG|BODY_ARM|BODY_TENTICLE|BODY_TAIL BODY_FOOT|BODY_HAND 500d5+5555 50d5+0
+50000000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_FEMALE
+>speech_prog P Bob needs a new set of boots.~
+ if quest (0,3,$n)==3
+  say Here you go, bring these boots to him.
+  mpoload QQ09
+  give iQQ09 $n
+  mpmset $n quest 0 3 4
+ endif
+~
+|
+
+
+
+
+
+
+#QQ12
+executioner~
+The Executioner~
+The Executioner is here selling corpses.~
+The Executioner is here selling corpses.  Hope he doesn't have to make you a corpse.
+
+~
+ACT_SCAVENGER|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE|ACT_SENTINEL
+AFF_SANCTUARY|AFF_INFRARED|AFF_UNDERSTAND|AFF_SNEAK|AFF_FLYING|AFF_PASS_DOOR|AFF_HUNT|AFF_TONGUES|AFF_DETECT_HIDDEN|AFF_DETECT_INVIS
+0 S
+1 BODY_ARM|BODY_HEAD|BODY_TAIL|BODY_HORN|BODY_HAND|BODY_FOOT BODY_HAND 500d5+5555 5d5+300
+37423644 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_NEUTRAL
+
+
+#QQ13
+bob~
+Bob~
+Bob, the useless crap guy, is here selling things to costomers.~
+Bob is a real friendly guy and he likes his stuff.
+~
+ACT_SENTINEL|ACT_RACE|ACT_BODY|ACT_SMART|ACT_WIMPY|ACT_SCAVENGER
+AFF_DETECT_INVIS|AFF_SANCTUARY|AFF_INFRARED|AFF_UNDERSTAND|AFF_SNEAK|AFF_FLYING|AFF_PASS_DOOR|AFF_TONGUES|AFF_HUNT
+0 S
+1 BODY_HEAD|BODY_HAND|BODY_CLAW|BODY_HORN|BODY_TENTICLE|BODY_LEG|BODY_TORSO|BODY_EYE BODY_HAND|BODY_FOOT 354d4+2354 54d4+435
+3654436 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>speech_prog P How do i use these lockpicks?~
+if quest (0,3,$n)==2
+ say If you run a small errand for me, I will show you.  Will you help me?
+endif
+~
+>speech_prog yes~
+if quest (0,3,$n)==2
+ say Good, I need you to go to the the Village Clothier 
+ say and tell Dee "Bob needs a new set of boots."
+ say she will probably give you some boots for me,
+ say when she does come back here and give them to me please.
+ mpmset $n quest 0 3 3
+endif
+~
+>give_prog iQQ09~
+if quest (0,3,$n)==4
+ mpjunk QQ09
+ say Thanks, let me see your lock picks.
+ emote holds his hand out waiting to see your lock picks.
+endif
+~
+>give_prog iQQ08~
+if quest (0,3,$n)==4
+ say These picks seem to be broken.  Here is a new set. 
+ say All you have to do is make this piece ENTERLOCK, and TURNIT.
+ mpjunk QQ08
+ mpoload QQ10
+ give iQQ10 $n
+ say Don't let the Mayor see these. He gets real angry about stuff like this in his township.
+ mpmset $n quest 0 3 5
+endif
+~
+|
+      
+     
+     
+      
+     
+#0
+
+
+
+#OBJECTS
+#QQ00
+resident pants~
+A Pair of residance pants~
+A pair of residance pants~
+These pants are basic clothing worn by people around town.
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL|ITEM_FLAG_AUTO_ENGRAVE
+ITEM_WEAR_LEGS|ITEM_WEAR_TAKE
+1 0 0 0
+3 2000 4
+A
+APPLY_WIS 1
+A
+APPLY_HITROLL 1
+#QQ01
+resident shirt~
+A residance shirt~
+A residance shirt~
+This shirt is basic clothing worn by people around town.
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL|ITEM_FLAG_AUTO_ENGRAVE
+ITEM_WEAR_BODY|ITEM_WEAR_TAKE
+1 0 0 0
+3 2000 4
+A
+APPLY_HITROLL 1
+A
+APPLY_INT 1
+#QQ02
+resident shoes~
+A Pair of residance shoes~
+A pair of residance shoes~
+These shoes are basic clothing worn by people around town.
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_AUTO_ENGRAVE|ITEM_FLAG_LEVEL
+ITEM_WEAR_FEET|ITEM_WEAR_TAKE
+1 0 0 0
+3 2000 4
+A
+APPLY_CON 1
+A
+APPLY_HITROLL 1
+#QQ03
+fabulous armor~
+A fabulous piece of armor~
+A fabulous piece of armor~
+This armor is like nothing you've ever seen.  You somehow want it bad.
+~
+ITEM_TYPE_TRASH
+ITEM_FLAG_AUTO_ENGRAVE|ITEM_FLAG_NOREMOVE|ITEM_FLAG_LEVEL
+ITEM_WEAR_BODY|ITEM_WEAR_TAKE|ITEM_WEAR_LEGS|ITEM_WEAR_ARMS
+1 0 0 0
+50 5000 1
+A
+APPLY_HITROLL -2
+A
+APPLY_DAMROLL -2
+A
+APPLY_MOVE -5
+A
+APPLY_HIT -5
+#QQ04
+pouch leather~
+A leather pouch.~
+A Leather Pouch.~
+This pouch is used to hold all your various items.
+~
+ITEM_TYPE_CONTAINER
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+175 1 0 0
+1 5000 5
+A
+APPLY_DEX -2
+A
+APPLY_STR -2
+A
+APPLY_INT -2
+#QQ05
+gold cloak~
+A gold cloak~
+A Golden Cloak~
+This cloak was woven by the finest weaver around.  It has thousands of gold sequins sown into it.
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_ABOUT|ITEM_WEAR_NECK
+3 0 0 0
+15 5000 10
+A
+APPLY_DAMROLL 2
+A
+APPLY_HITROLL 2
+A
+APPLY_INT 1
+A
+APPLY_MANA -5
+#QQ06
+gold helmet~
+A gold helmet~
+A Golden Helmet~
+This Helmet was made by the finest goldsmith around.  It is completely gold plated.
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HEAD
+3 0 0 0
+15 5000 10
+A
+APPLY_WIS 1
+A
+APPLY_DAMROLL 2
+A
+APPLY_HITROLL 2
+A
+APPLY_MANA -5
+#QQ07
+gold leggings~
+A gold leggings~
+A Set of Golden Leggings~
+These leggings were made by the finest goldsmith around.  It is completely gold plated.
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_LEGS
+3 0 0 0
+15 5000 10
+A
+APPLY_CON 1
+A
+APPLY_HITROLL 2
+A
+APPLY_DAMROLL 2
+A
+APPLY_MANA -5
+#QQ08
+lockpick pick lock~
+A Set of Lockpicks~
+A Set of Lockpicks~
+These lock picks seem to be broken.  It looks as though the piece at the end is broke right off.
+
+~
+ITEM_TYPE_TREASURE
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 0 0
+1 234 1
+#QQ09
+boot black~
+A pair of black boots~
+A pair of black boots~
+These boots look like something an executioner would wear.
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_FEET
+1 0 0 0
+1 1 1
+A
+APPLY_DAMROLL 2
+A
+APPLY_WIS -2
+A
+APPLY_CON -2
+A
+APPLY_INT -2
+A
+APPLY_HITROLL 1
+#QQ10
+lockpicks lock picks~
+A Set of Lockpicks~
+A Set of Lockpicks~
+These lockpicks are very strong.  The Executioner said that if you ENTERLOCK and TURNIT it will open almost any door.
+
+~
+ITEM_TYPE_TREASURE
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 0 0
+1 250 1
+P 1
+TRIG_UNKNOWN 100 enterlock
+OPROG_IF OIF_USER_ROOM_NUM = QQ51 2 
+P 2
+TRIG_VOID
+OPROG_PLAYER_QUEST_IF 0 3 = 5 3 4
+P 3
+TRIG_VOID
+OPROG_ECHO
+You put the lockpicks in the lock just right, now you have to turnit.~
+P 3
+TRIG_VOID
+OPROG_GOD_COMMAND
+Mpmset $ questr QQ00 0 3 6~
+P 4
+TRIG_VOID
+OPROG_ECHO
+You must have put the lockpicks in slightly wrong, they don't fit.~
+P 5
+TRIG_UNKNOWN 100 turnit
+OPROG_IF OIF_USER_ROOM_NUM = QQ51 6 8
+P 6
+TRIG_VOID
+OPROG_PLAYER_QUEST_IF 0 3 = 6 7 8
+P 7 
+TRIG_VOID
+OPROG_ECHO
+You did it! You broke into the vault!~
+P 7
+TRIG_VOID
+OPROG_GOD_COMMAND 
+goto QQ52~
+P 7
+TRIG_VOID
+OPROG_JUNK
+P 7
+TRIG_VOID
+OPROG_GOD_COMMAND
+Mpmset $ questr QQ00 0 3 7~
+P 8
+TRIG_VOID
+OPROG_ECHO
+You must have put the lockpicks in slightly wrong, they don't fit.~
+~
+
+#0
+
+
+
+#ROOMS
+#QQ00
+Main St.~
+This street is busy all year round. There are lots of pedestrians walking around the street looking for something to buy.
+~
+QQ 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 QQ01
+DDIR_SOUTH
+~
+~
+0 -1 ZZZZ
+S
+#QQ01
+Main St.~
+This street is busy all year round. There are lots of pedestrians walking around the street looking for something to buy.
+~
+QQ 0 SECT_CITY
+DDIR_SOUTH
+~
+~
+0 -1 QQ00
+DDIR_NORTH
+~
+~
+0 -1 QQ02
+DDIR_EAST
+~
+~
+0 -1 QQ31
+S
+#QQ02
+Main St.~
+This street is busy all year round. There are lots of pedestrians walking around the street looking for something to buy.
+~
+QQ 0 SECT_CITY
+DDIR_SOUTH
+~
+~
+0 -1 QQ01
+DDIR_NORTH
+~
+~
+0 -1 QQ03
+DDIR_EAST
+~
+~
+0 -1 QQ30
+DDIR_WEST
+~
+~
+0 -1 QQ51
+S
+#QQ03
+Main St.~
+This street is busy all year round. There are lots of pedestrians walking around the street looking for something to buy.
+~
+QQ 0 SECT_CITY
+DDIR_SOUTH
+~
+~
+0 -1 QQ02
+DDIR_NORTH
+~
+~
+0 -1 QQ04
+DDIR_EAST
+~
+~
+0 -1 QQ60
+DDIR_WEST
+~
+~
+0 -1 QQ50
+S
+#QQ04
+Main St.~
+This street is busy all year round. There are lots of pedestrians walking around the street looking for something to buy.
+~
+QQ 0 SECT_CITY
+DDIR_SOUTH
+~
+~
+0 -1 QQ03
+DDIR_NORTH
+~
+~
+0 -1 QQ05
+DDIR_EAST
+~
+~
+0 -1 QQ28
+S
+#QQ05
+Intersection of Main St. and Nemelc Ave.~
+This street is busy all year round. There are lots of pedestrians walking around the street looking for something to buy.
+~
+QQ 0 SECT_CITY
+DDIR_SOUTH
+~
+~
+0 -1 QQ04
+DDIR_NORTH
+~
+~
+0 -1 QQ06
+DDIR_WEST
+~
+~
+0 -1 QQ18
+S
+
+#QQ06
+Main St.~
+This street is busy all year round. There are lots of pedestrians walking around the street looking for something to buy.
+~
+QQ 0 SECT_CITY
+DDIR_SOUTH
+~
+~
+0 -1 QQ05
+DDIR_NORTH
+~
+~
+0 -1 QQ07
+S
+#QQ07
+Intersection of Main St. and Egduf Rd.~
+This street is busy all year round. There are lots of pedestrians walking around the street looking for something to buy.
+~
+QQ 0 SECT_CITY
+DDIR_SOUTH
+~
+~
+0 -1 QQ06
+DDIR_EAST
+~
+~
+0 -1 QQ08
+S
+#QQ08
+Egduf Rd.~
+This road is very narrow and long, Up ahead there is the residence area.
+~
+QQ 0 SECT_CITY
+DDIR_WEST
+~
+~
+0 -1 QQ07
+DDIR_EAST
+~
+~
+0 -1 QQ09
+S
+#QQ09
+Egduf Bridge~
+This is a big bridge over looking the river. You can see lots of stuff down there.
+~
+QQ 0 SECT_CITY
+DDIR_WEST
+~
+~
+0 -1 QQ08
+DDIR_EAST
+~
+~
+0 -1 QQ10
+S
+#QQ10
+Egduf Rd.~
+This road is very narrow and long, Up ahead there is the residence area.
+~
+QQ 0 SECT_CITY
+DDIR_WEST
+~
+~
+0 -1 QQ09
+DDIR_EAST
+~
+~
+0 -1 QQ11
+S
+#QQ11
+Egduf Rd.~
+This road is very narrow and long, Up ahead there is the residence area.
+~
+QQ 0 SECT_CITY
+DDIR_WEST
+~
+~
+0 -1 QQ10
+DDIR_SOUTH
+~
+~
+0 -1 QQ12
+S
+
+#QQ12
+Egduf Rd.~
+This road is very narrow and long, Up ahead there is the residence area.
+~
+QQ 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 QQ11
+DDIR_SOUTH
+~
+~
+0 -1 QQ13
+S
+#QQ13
+Egduf Rd.~
+This road is very narrow and long, Up ahead there is the residence area.
+~
+QQ 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 QQ12
+DDIR_SOUTH
+~
+~
+0 -1 QQ14
+DDIR_WEST
+~
+~
+0 -1 QQ32
+DDIR_EAST
+~
+~
+0 -1 QQ41
+S
+#QQ14
+Egduf Rd.~
+This road is very narrow and long, Up ahead there is the residence area.
+~
+QQ 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 QQ13
+DDIR_SOUTH
+~
+~
+0 -1 QQ15
+DDIR_WEST
+~
+~
+0 -1 QQ33
+DDIR_EAST
+~
+~
+0 -1 QQ40
+S
+#QQ15
+Egduf Rd.~
+This road is very narrow and long, Up ahead there is the residence area.
+~
+QQ 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 QQ14
+DDIR_SOUTH
+~
+~
+0 -1 QQ16
+DDIR_WEST
+~
+~
+0 -1 QQ34
+DDIR_EAST
+~
+~
+0 -1 QQ39
+S
+#QQ16
+Egduf Rd.~
+This road is very narrow and long, Up ahead there is the residence area.
+~
+QQ 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 QQ15
+DDIR_SOUTH
+~
+~
+0 -1 QQ17
+DDIR_WEST
+~
+~
+0 -1 QQ35
+DDIR_EAST
+~
+~
+0 -1 QQ38
+S
+#QQ17
+Egduf Rd.~
+This road is very narrow and long, Up ahead there is the residence area.
+~
+QQ 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 QQ16
+DDIR_WEST
+~
+~
+0 -1 QQ36
+DDIR_EAST
+~
+~
+0 -1 QQ37
+S
+
+#QQ18
+Nemelc Ave.~
+This avenue still has trafic from pedestrians but definitely not as much as Main Street.
+~
+QQ 0 SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 QQ05
+DDIR_WEST
+~
+~
+0 -1 QQ19
+S
+#QQ19
+Nemelc Ave.~
+This avenue still has trafic from pedestrians but definitely not as much as Main Street.
+~
+QQ 0 SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 QQ18
+DDIR_WEST
+~
+~
+0 -1 QQ21
+S
+#QQ20
+Nemelc Ave.~
+This avenue still has trafic from pedestrians but definitely not as much as Main Street.
+~
+QQ 0 SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 QQ21
+DDIR_WEST
+~
+~
+0 -1 QQ22
+S
+#QQ21
+Nemelc Ave.~
+This avenue still has trafic from pedestrians but definitely not as much as Main Street.
+~
+QQ 0 SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 QQ19
+DDIR_WEST
+~
+~
+0 -1 QQ20
+S
+#QQ22
+Nemelc Ave.~
+This avenue still has trafic from pedestrians but definitely not as much as Main Street.
+~
+QQ 0 SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 QQ20
+DDIR_SOUTH
+~
+~
+0 -1 QQ23
+S
+#QQ23
+Nemelc Ave.~
+This avenue still has trafic from pedestrians but definitely not as much as Main Street.
+~
+QQ 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 QQ22
+DDIR_SOUTH
+~
+~
+0 -1 QQ24
+S
+
+#QQ24
+Nemelc Ave.~
+This avenue still has trafic from pedestrians but definitely not as much as Main Street.
+~
+QQ 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 QQ23
+DDIR_SOUTH
+~
+~
+0 -1 QQ25
+DDIR_EAST
+~
+~
+0 -1 QQ42
+DDIR_WEST
+~
+~
+0 -1 QQ49
+S
+#QQ25
+Nemelc Ave.~
+This avenue still has trafic from pedestrians but definitely not as much as Main Street.
+~
+QQ 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 QQ24
+DDIR_SOUTH
+~
+~
+0 -1 QQ26
+DDIR_EAST
+~
+~
+0 -1 QQ43
+DDIR_WEST
+~
+~
+0 -1 QQ48
+S
+#QQ26
+Nemelc Ave.~
+This avenue still has trafic from pedestrians but definitely not as much as Main Street.
+~
+QQ 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 QQ25
+DDIR_SOUTH
+~
+~
+0 -1 QQ27
+DDIR_EAST
+~
+~
+0 -1 QQ44
+DDIR_WEST
+~
+~
+0 -1 QQ47
+S
+#QQ27
+Nemelc Ave.~
+This avenue still has trafic from pedestrians but definitely not as much as Main Street.
+~
+QQ 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 QQ26
+DDIR_EAST
+~
+~
+0 -1 QQ45
+DDIR_WEST
+~
+~
+0 -1 QQ46
+S
+#QQ28
+General Store~
+This store has alot of useless stuff in it.
+~
+QQ ROOM_SAFE|ROOM_NO_MOB|ROOM_INDOORS SECT_CITY
+DDIR_WEST
+~
+~
+0 -1 QQ04
+S
+#QQ60
+Earls Pet Shop~
+Earl is here selling you animals... good for him.
+~
+QQ ROOM_SAFE|ROOM_NO_MOB|ROOM_PET_SHOP|ROOM_INDOORS SECT_CITY
+DDIR_WEST
+~
+~
+0 -1 QQ03
+S
+
+#QQ30
+The Morgue~
+This is the morgue, hope you dont have to come here much.
+~
+QQ ROOM_SAFE|ROOM_MORGUE|ROOM_NO_MOB|ROOM_INDOORS SECT_CITY
+DDIR_WEST
+~
+~
+0 -1 QQ02
+S
+#QQ31
+The Village Clothier.~
+This shop has many types of fashionable clothing for sale.
+
+~
+QQ ROOM_SAFE|ROOM_NO_MOB|ROOM_INDOORS SECT_CITY
+DDIR_WEST
+~
+~
+0 -1 QQ01
+S
+#QQ32
+New House~
+This house is fairly new. The people here seem very excited.
+~
+QQ ROOM_INDOORS SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 QQ13
+S
+#QQ33
+New House~
+This house is fairly new. The people here seem very excited.
+~
+QQ ROOM_INDOORS SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 QQ14
+S
+#QQ34
+New House~
+This house is fairly new. The people here seem very excited.
+~
+QQ ROOM_INDOORS SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 QQ15
+S
+#QQ35
+New House~
+This house is fairly new. The people here seem very excited.
+~
+QQ ROOM_INDOORS SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 QQ16
+S
+
+#QQ36
+New House~
+This house is fairly new. The people here seem very excited.
+~
+QQ ROOM_INDOORS SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 QQ17
+S
+#QQ37
+New House~
+This house is fairly new. The people here seem very excited.
+~
+QQ ROOM_INDOORS SECT_CITY
+DDIR_WEST
+~
+~
+0 -1 QQ17
+S
+#QQ38
+New House~
+This house is fairly new. The people here seem very excited.
+~
+QQ ROOM_INDOORS SECT_CITY
+DDIR_WEST
+~
+~
+0 -1 QQ16
+S
+#QQ39
+New House~
+This house is fairly new. The people here seem very excited.
+~
+QQ ROOM_INDOORS SECT_CITY
+DDIR_WEST
+~
+~
+0 -1 QQ15
+S
+#QQ40
+New House~
+This house is fairly new. The people here seem very excited.
+~
+QQ ROOM_INDOORS SECT_CITY
+DDIR_WEST
+~
+~
+0 -1 QQ14
+S
+#QQ41
+New House~
+This house is fairly new. The people here seem very excited.
+~
+QQ ROOM_INDOORS SECT_CITY
+DDIR_WEST
+~
+~
+0 -1 QQ13
+S
+
+#QQ42
+An Old House~
+This house has beed around for a while, you can see parts of it coming off.
+~
+QQ ROOM_INDOORS SECT_CITY
+DDIR_WEST
+~
+~
+0 -1 QQ24
+S
+#QQ43
+An Old House~
+This house has beed around for a while, you can see parts of it coming off.
+~
+QQ ROOM_INDOORS SECT_CITY
+DDIR_WEST
+~
+~
+0 -1 QQ25
+S
+#QQ44
+An Old House~
+This house has beed around for a while, you can see parts of it coming off.
+~
+QQ ROOM_INDOORS SECT_CITY
+DDIR_WEST
+~
+~
+0 -1 QQ26
+S
+#QQ45
+An Old House~
+This house has beed around for a while, you can see parts of it coming off.
+~
+QQ ROOM_INDOORS SECT_CITY
+DDIR_WEST
+~
+~
+0 -1 QQ27
+S
+#QQ46
+An Old House~
+This house has beed around for a while, you can see parts of it coming off.
+~
+QQ ROOM_INDOORS SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 QQ27
+S
+#QQ47
+An Old House~
+This house has beed around for a while, you can see parts of it coming off.
+~
+QQ ROOM_INDOORS SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 QQ26
+S
+
+#QQ48
+An Old House~
+This house has beed around for a while, you can see parts of it coming off.
+~
+QQ ROOM_INDOORS SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 QQ25
+S
+#QQ49
+An Old House~
+This house has beed around for a while, you can see parts of it coming off.
+~
+QQ ROOM_INDOORS SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 QQ24
+S
+#QQ50
+Mayor's Office~
+This is the mayor's office, he is here sitting behind his desk twiddleing his thumbs.
+
+~
+QQ ROOM_NO_CASTLE|ROOM_INDOORS SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 QQ03
+DDIR_SOUTH
+~
+~
+0 -1 QQ51
+S
+#QQ51
+Town Treasury~
+This room has a big vault in it sorrounded by many guards.
+
+~
+QQ ROOM_NO_CASTLE|ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 QQ50
+DDIR_EAST
+~
+~
+0 -1 QQ02
+S
+#QQ52
+The Vault~
+This room is filled with gold and golden treasures.
+~
+QQ ROOM_SAFE|ROOM_NO_CASTLE|ROOM_NO_GOHOME|ROOM_NO_MOB|ROOM_NO_RIP|ROOM_NO_SAVE|ROOM_INDOORS|ROOM_NO_RECALL SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 QQ51
+S
+#QQ61
+The room noone sees~
+yeah
+~
+279 ROOM_SAFE|ROOM_NO_CASTLE|ROOM_NO_GOHOME|ROOM_NO_RIP|ROOM_INDOORS|ROOM_NO_RECALL SECT_CITY
+S
+#0
+
+
+
+
+#SHOPS
+QQ11 ITEM_TYPE_ARMOR ITEM_TYPE_WEAPON ITEM_TYPE_AMMO ITEM_TYPE_CONTAINER
+     ITEM_TYPE_LIGHT 100 100 1 23
+QQ13 ITEM_TYPE_CONTAINER ITEM_TYPE_FURNITURE ITEM_TYPE_LIGHT ITEM_TYPE_TREASURE
+     ITEM_TYPE_TRASH 100 100 1 23
+0
+
+
+
+
+#RESETS
+M 0 QQ00 100 QQ42 ;The Very Old Man loaded in room An Old House
+M 0 QQ01 100 QQ42 ;The Very Old Woman loaded in room An Old House
+M 0 QQ00 100 QQ43 ;The Very Old Man loaded in room An Old House
+M 0 QQ01 100 QQ43 ;The Very Old Woman loaded in room An Old House
+M 0 QQ00 100 QQ44 ;The Very Old Man loaded in room An Old House
+M 0 QQ01 100 QQ44 ;The Very Old Woman loaded in room An Old House
+M 0 QQ00 100 QQ45 ;The Very Old Man loaded in room An Old House
+M 0 QQ01 100 QQ45 ;The Very Old Woman loaded in room An Old House
+M 0 QQ00 100 QQ46 ;The Very Old Man loaded in room An Old House
+M 0 QQ01 100 QQ46 ;The Very Old Woman loaded in room An Old House
+M 0 QQ00 100 QQ47 ;The Very Old Man loaded in room An Old House
+M 0 QQ01 100 QQ47 ;The Very Old Woman loaded in room An Old House
+M 0 QQ00 100 QQ48 ;The Very Old Man loaded in room An Old House
+M 0 QQ01 100 QQ48 ;The Very Old Woman loaded in room An Old House
+M 0 QQ00 100 QQ49 ;The Very Old Man loaded in room An Old House
+M 0 QQ01 100 QQ49 ;The Very Old Woman loaded in room An Old House
+M 0 QQ03 100 QQ32 ;The Young Man loaded in room New House
+M 0 QQ04 100 QQ32 ;The Young Lady loaded in room New House
+M 0 QQ03 100 QQ33 ;The Young Man loaded in room New House
+M 0 QQ04 100 QQ33 ;The Young Lady loaded in room New House
+M 0 QQ03 100 QQ34 ;The Young Man loaded in room New House
+M 0 QQ03 100 QQ35 ;The Young Man loaded in room New House
+M 0 QQ04 100 QQ35 ;The Young Lady loaded in room New House
+M 0 QQ03 100 QQ36 ;The Young Man loaded in room New House
+M 0 QQ04 100 QQ36 ;The Young Lady loaded in room New House
+M 0 QQ03 100 QQ37 ;The Young Man loaded in room New House
+M 0 QQ04 100 QQ37 ;The Young Lady loaded in room New House
+M 0 QQ03 100 QQ38 ;The Young Man loaded in room New House
+M 0 QQ04 100 QQ38 ;The Young Lady loaded in room New House
+M 0 QQ03 100 QQ39 ;The Young Man loaded in room New House
+M 0 QQ04 100 QQ39 ;The Young Lady loaded in room New House
+M 0 QQ03 100 QQ40 ;The Young Man loaded in room New House
+M 0 QQ04 100 QQ40 ;The Young Lady loaded in room New House
+M 0 QQ03 100 QQ41 ;The Young Man loaded in room New House
+M 0 QQ04 100 QQ41 ;The Young Lady loaded in room New House
+M 0 QQ04 100 QQ34 ;The Young Lady loaded in room New House
+M 0 QQ02 100 QQ01 ;The Resident loaded in room Main St.
+M 0 QQ02 100 QQ02 ;The Resident loaded in room Main St.
+M 0 QQ02 100 QQ03 ;The Resident loaded in room Main St.
+M 0 QQ02 100 QQ04 ;The Resident loaded in room Main St.
+M 0 QQ02 100 QQ05 ;The Resident loaded in room Intersection of Main St. and Nemelc Ave.
+M 0 QQ02 100 QQ05 ;The Resident loaded in room Intersection of Main St. and Nemelc Ave.
+M 0 QQ02 100 QQ06 ;The Resident loaded in room Main St.
+M 0 QQ02 100 QQ07 ;The Resident loaded in room Intersection of Main St. and Egduf Rd.
+M 0 QQ02 100 QQ07 ;The Resident loaded in room Intersection of Main St. and Egduf Rd.
+M 0 QQ02 100 QQ08 ;The Resident loaded in room Egduf Rd.
+M 0 QQ02 100 QQ09 ;The Resident loaded in room Egduf Bridge
+M 0 QQ02 100 QQ10 ;The Resident loaded in room Egduf Rd.
+M 0 QQ02 100 QQ12 ;The Resident loaded in room Egduf Rd.
+M 0 QQ02 100 QQ13 ;The Resident loaded in room Egduf Rd.
+M 0 QQ02 100 QQ15 ;The Resident loaded in room Egduf Rd.
+M 0 QQ02 100 QQ16 ;The Resident loaded in room Egduf Rd.
+M 0 QQ02 100 QQ18 ;The Resident loaded in room Nemelc Ave.
+M 0 QQ02 100 QQ20 ;The Resident loaded in room Nemelc Ave.
+M 0 QQ02 100 QQ21 ;The Resident loaded in room Nemelc Ave.
+M 0 QQ02 100 QQ23 ;The Resident loaded in room Nemelc Ave.
+M 0 QQ02 100 QQ24 ;The Resident loaded in room Nemelc Ave.
+M 0 QQ02 100 QQ26 ;The Resident loaded in room Nemelc Ave.
+M 0 QQ02 100 QQ27 ;The Resident loaded in room Nemelc Ave.
+M 0 QQ07 100 QQ60 ;Earl loaded in room Earls Pet Shop
+M 0 QQ08 100 QQ61 ;Puppy loaded in room noone can see
+M 0 QQ09 100 QQ61 ;Dog loaded in room noone can see
+M 0 QQ10 100 QQ61 ;Falcon loaded in room noone can see
+M 0 QQ11 100 QQ31 ;Madam Dee loaded in room The Village Clothier.
+G 1 QQ00 100  ;A Pair of residance pants placed in inventory
+G 1 QQ01 100  ;A residance shirt placed in inventory
+G 1 QQ02 100  ;A Pair of residance shoes placed in inventory
+M 0 QQ05 100 QQ50 ;The Mayor loaded in room Mayor's Office
+M 0 QQ06 100 QQ51 ;The Vault Guard loaded in room Town Treasury
+M 0 QQ06 100 QQ51 ;The Vault Guard loaded in room Town Treasury
+M 0 QQ06 100 QQ51 ;The Vault Guard loaded in room Town Treasury
+M 0 QQ06 100 QQ51 ;The Vault Guard loaded in room Town Treasury
+M 0 QQ06 100 QQ51 ;The Vault Guard loaded in room Town Treasury
+M 0 QQ12 100 QQ30 ;The Executioner loaded in room The Morgue
+M 0 QQ13 100 QQ28 ;Bob loaded in room General Store
+G 1 QQ03 100  ;A leather pouch. placed in inventory
+G 1 QQ04 100  ;A leather pouch. placed in inventory
+O 0 QQ05 100 QQ52 ;A gold cloak loaded in room The Vault
+O 0 QQ06 100 QQ52 ;A gold helmet loaded in room The Vault
+O 0 QQ07 100 QQ52 ;A gold leggings loaded in room The Vault
+S
+
+
+
+
+#$

@@ -1,0 +1,3281 @@
+#AREA Arctic Forest~
+
+#AUTHORS Atari~
+
+#RANGES 10 17 0 99
+
+#FLAGS AFLAG_NOCASTLE
+
+#RESETMSG An arctic wind blows through the trees..~
+
+#TEMPERATURE -30 40 5 2
+
+#HELPS
+-1 arctic forest~
+A small forest near the Deeve which houses only animals.
+The environment is much too harsh to become a habitat for any 
+human. Although there are rumors that people have seen a man
+that supposedly lives near one of the hot springs.
+~
+-1 arcticupdate~
+area version in use is 2.4 final
+~
+0 $~
+
+#MOBILES
+#28300
+timber wolf~
+The timber wolf~
+A wolf stands here glaring at you.~
+In front of you is a small wolf, fur covered with snow and ice 
+resulting from the climate around it. It's stare alone makes it
+look like a formidable opponent.
+~
+ACT_BODY|ACT_STAY_AREA|ACT_IS_NPC
+AFF_HUNT
+0 S
+13 BODY_TAIL|BODY_MOUTH BODY_TAIL|BODY_MOUTH 10d6+130 2d6+7
+400 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>all_greet_prog 70~
+growl $n
+~
+>death_prog 100~
+if rand(10)
+    MPOLOAD 28300
+    MPECHO some meat falls out of the side of the corpse.
+    MPQUIET ON
+    drop I28300
+    MPQUIET OFF
+endif
+~
+|
+#28301
+bear~
+The bear~
+A huge bear lies here deep in slumber.~
+A large bear lies inside his cave waiting for spring to arrive so
+he can feed his voracious appetite on many of the smaller critters
+scattered about the rest of the forest. Might not want to mess 
+with it, looks kinda happy as it is. Try to kill it.. If you want 
+to go back to Chakkor in a body bag.
+~
+ACT_SENTINEL|ACT_BODY|ACT_IS_NPC
+AFF_SANCTUARY
+0 S
+15 BODY_MOUTH BODY_MOUTH 5d40+100 5d5+5
+200 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>all_greet_prog 100~
+MPECHO The bear wakes from it's slumber.
+MPKILL $n
+~
+>death_prog 100~
+if quest(0,3,$n) == 2
+    MPOLOAD 28301
+    MPECHO The bear falls and knocks a fine looking rucksack from the middle of the pine needles.
+    MPQUIET ON
+    drop I28301
+    MPQUIET OFF
+else
+    MPECHO The bear lets out a horrifying growl and falls over... Dead.
+endif
+~
+|
+#28302
+squirrel~
+A squirrel~
+A squirrel jumps from branch to branch.~
+A small squirrel leaps about from tree to tree knowing he's safe from
+the wolves as long as he stays up there and out of their reach.
+~
+ACT_IS_NPC|ACT_STAY_AREA|ACT_BODY
+0 
+0 S
+7 BODY_TAIL BODY_TAIL 10d8+15 2d7+0
+50 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>death_prog 100~
+if rand(10)
+    MPOLOAD 28300
+    MPECHO some meat falls out of the side of the corpse.
+    MPQUIET ON
+    drop I28300
+    MPQUIET OFF
+endif
+~
+|
+#28303
+snow owl~
+The owl~
+A snow owl is perched on a branch.~
+The white color of the owls feathers mix it in well with it's 
+surroundings while it stands upon a branch looking for mice and 
+other small animals it can prey on.
+~
+ACT_IS_NPC|ACT_BODY
+0 
+0 S
+13 BODY_WING BODY_CLAW|BODY_WING 10d5+130 2d6+6
+40 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>all_greet_prog 20~
+MPECHO The owl hoots as you approach.
+~
+>death_prog 100~
+if rand(10)
+    MPOLOAD 28300
+    MPECHO some meat falls out of the side of the corpse.
+    MPQUIET ON
+    drop I28300
+    MPQUIET OFF
+endif
+~
+|
+#28304
+starving man~
+The starving man~
+A man wearing tattered clothing lies huddled in the snow.~
+The man has wrapped himself in multiple layers of clothing to
+protect himself from the biting cold, but from the looks of it,
+the hardships of making it here took their toll as seen by the 
+multiple holes and tears in the fabrics. He looks content with 
+the clothing he wears, but he has grown weary from starvation 
+and attacks from animals.
+~
+ACT_BODY|ACT_IS_NPC|ACT_SMART|ACT_RACE|ACT_SENTINEL
+AFF_TONGUES|AFF_UNDERSTAND
+0 S
+20 BODY_ARM|BODY_TORSO BODY_ARM|BODY_LEG|BODY_HEAD 5d50+5000 5d5+20
+0 RACE_HUMAN
+POS_RESTING POS_RESTING SEX_MALE
+>all_greet_prog 20~
+moan
+~
+>give_prog I28300~
+if quest(0,3,$n) == 4
+ or quest(0,3,$n) == 3
+  or quest(0,3,$n) == 2
+      say More meat? Thank you. I guess I'll save this for later.
+      MPJUNK all
+    else
+      if rand(20)
+          say Thanks! That bit of meat hit the spot! 
+          say If you could do one more thing for me, I may be able to
+          say help you out. Do you think you could help me?
+          MPJUNK all
+          MPMSET $n quest 0 3 1
+       else
+          smile
+          MPECHO The man eats some of the meat and resumes resting.
+          MPJUNK all
+      endif
+endif
+~
+>speech_prog yes~
+if quest(0,3,$n) == 1
+    say Great, Here's my problem.
+    say When I was coming out here, I was attacked by an animal
+    say and knocked unconscious. I was carrying with me a
+    say rucksack containing a very valuable item. When I awoke 
+    say my rucksack was missing and there were no remnants of 
+    say it anywhere. I think it's still in the forest. 
+    say All I need you to do is find it and return it to me.
+    say Good Luck.
+    MPMSET $n quest 0 3 2
+else
+    say Yes, what?
+endif
+~
+>give_prog I28301~
+if quest(0,3,$n) == 2
+    say Great, You've found it.
+    MPECHO The man opens the rucksack up and peers inside.
+    say It's EMPTY! How can it be EMPTY?!
+    say I need the helm that was in here!
+    MPFORCE $n say It was empty when I got it!!
+    say You gotta find it! it means a lot to me..
+    whimper
+    say Here. Use this to find it. I'm sorry I can't be of more
+    say help, but this will locate the helmet for you if you're
+    say in the same room as it is. It may take time to work..
+    MPOLOAD 28305
+    give I28305 $n
+    MPMSET $n quest 0 3 3
+    MPJUNK all
+else
+    look $n
+    say Thank you.
+    wake
+    c heal $n
+    rest
+    MPJUNK all
+endif
+~
+>give_prog I28302~
+if quest(0,3,$n) == 3
+    say Sweet! Thanks much for all your help.
+    say Now what can I reward you with...
+    MPECHO The man rummages through his belongings.
+    MPQUIET ON    
+    MPOLOAD 28303
+    MPOLOAD 28321
+    wake
+    c 'giant strength' $n
+    give I28303 $n
+    give I28321 $n
+    rest
+    MPQUIET OFF
+    MPECHOAT $n The man gives you some valuable possessions.
+    MPECHOAROUND $n The man gives $n some valuable possessions.
+    smile
+    say Thanks again.
+    wink $n
+    MPMSET $n quest 0 3 4
+    MPJUNK all
+else
+    look $n
+    say Thank you.
+    wake 
+    c heal $n
+    MPJUNK all
+    rest
+endif
+~
+>greet_prog 100~
+if quest(0,3,$n) == 4
+    smile $n
+endif
+~
+>SPEECH_PROG p Hey reset my shit!~
+say Great! Here goes!
+MPECHO Starving guy waves his magic quest bit setting wand over $n.
+MPMSET $n quest 0 3 0
+MPMSET $n quest 3 5 0
+MPMSET $n quest 9 3 0
+say There ya go. All set! Now off with ya!
+~
+|
+#28305
+bat~
+a large bat~
+A large bat swoops down from the ceiling at you.~
+It looks just like every other bat you've ever seen, just bigger. You 
+can see its beady eyes watch you just before it swoops down and 
+prepares an attack.
+~
+ACT_RACE|ACT_IS_NPC|ACT_SENTINEL|ACT_STAY_AREA|ACT_BODY
+AFF_DETECT_HIDDEN|AFF_DETECT_INVIS
+0 S
+13 BODY_WING BODY_WING 10d10+100 2d7+6
+20 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>ALL_GREET_PROG 90~
+if level ($n) <= 35
+   RESCALE 28305 $n 90
+   MPECHOAT $n A bat flies down from the ceiling and attacks you!
+   MPECHOAROUND $n A bat flies down from the ceiling and attacks $n!
+   MPKILL $n
+else
+   MPECHOAT $n A bat flies down from the ceiling and attacks you!
+   MPECHOAROUND $n A bat flies down from the ceiling and attacks $n!
+   MPKILL $n
+endif
+~
+|
+#28306
+portal~
+portal guy~
+It's the portal guy~
+I'm the portal to arctic forest. *drool*
+~
+ACT_BODY|ACT_IS_NPC|ACT_SMART|ACT_RACE|ACT_SENTINEL
+AFF_TONGUES|AFF_UNDERSTAND|AFF_ETHEREAL
+0 S
+20 BODY_ARM|BODY_TORSO BODY_ARM|BODY_LEG|BODY_HEAD 5d50+5000 5d5+20
+0 RACE_HUMAN
+POS_RESTING POS_RESTING SEX_MALE
+>GREET_PROG 100~
+if level ($n) <= 35
+mpechoat $n An icy portal opens and an ethereal voice asks if you want to 'enter'..
+endif
+~
+>speech_prog enter~
+if level ($n) <= 35
+mpechoat $n You step into the icy portal and find yourself in a cold forest.
+mpechoaround $n $n steps into an icy portal and vanishes.
+mptransfer $n 28300
+endif
+~
+|
+#28307
+Guy~
+That Guy~
+Guy who pushes ppl in water.~
+mob to push ppl in water
+~
+ACT_BODY|ACT_IS_NPC|ACT_SMART|ACT_RACE|ACT_SENTINEL
+AFF_DETECT_INVIS|AFF_INFRARED|AFF_ETHEREAL
+0 S
+20 BODY_ARM|BODY_TORSO BODY_ARM|BODY_LEG 5D7+12000 5D5+17
+0 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>RAND_PROG 10~
+MPECHO $r falls through the ice!
+MPTRANSFER $r 28370
+~
+|
+#28308
+another guy~
+another guy~
+Another guy is here.~
+another guy pushes ppl thru the tunnel.
+~
+ACT_BODY|ACT_IS_NPC|ACT_SMART|ACT_RACE|ACT_SENTINEL
+AFF_DETECT_INVIS|AFF_INFRARED|AFF_ETHEREAL
+0 S
+20 BODY_ARM|BODY_TORSO BODY_ARM|BODY_LEG 5D7+12000 5D5+17
+0 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>RAND_PROG 10~
+MPECHO $r gets sucked through the tunnel!
+MPTRANSFER $r 28374
+~
+|
+#28309
+Nathan~
+Nathan Price~
+Nathan sits here on his throne eyeing you down.~
+Nathan sits here on his throne pondering how he is going to take over
+the rest of the planet with the least effort and most potential
+product. Looks like he's recruiting help.
+~
+ACT_BODY|ACT_IS_NPC|ACT_SMART|ACT_RACE|ACT_SENTINEL
+AFF_DETECT_INVIS|AFF_INFRARED|AFF_UNDERSTAND|AFF_TONGUES
+0 S
+140 BODY_ARM|BODY_TORSO BODY_ARM|BODY_TORSO 1D1+25000 1D1+4000
+0 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>RAND_PROG 10~
+cackle
+grin
+~
+>GREET_PROG 100~
+IF quest (3,5,$n) == 0
+   tell $n Heyyy.. You wouldn't be interested in helping me would ya?
+   MPMSET $n quest 3 5 1
+ELSE
+   IF quest (3,5,$n) == 3
+      IF ACTORHASOBJNUM(19814)
+         say What is this?!? Just a sheepskin?? That musta taken you
+         say 5 minutes to earn.
+         grumble
+         say That's one time you've failed me. You should have a
+         say doctorate by now.
+         say Off to the monster pit with ya. Come back if you're still alive.
+         MPMSET $n quest 3 5 4
+         MPECHO Nathan utters the words 'ouewofbwobn'
+         MPTRANSFER $n 28383
+         MPQUIET ON
+         MPGOTO 28383
+         MPMLOAD 28310
+         RESCALE 28310 $n 100
+         MPGOTO 28380
+         MPQUIET OFF
+      ELSE
+         say What are you doing coming back here without a diploma?!
+         say Get back out there!
+         MPTRANSFER $n 9755
+      ENDIF
+   ELSE
+     IF quest (3,5,$n) == 4 
+        say Whoa there cheetah. Tryin to skip a little ahead?
+        say If you injure my pet, next time you kill it.
+        say Capiche?
+        say Wait.. Next time? Who says there'll be a next time.
+        wave $n
+        MPMSET $n quest 3 5 16
+        slay $n
+   ELSE
+     IF quest (3,5,$n) == 5
+        say Heyy.. Good job. You might not have the smarts, but you got
+        say a bit of muscle behind ya. Guess I'll let ya go on anyway.
+        say Now that you've got a diploma.. No matter how small it is..
+        curse
+        say I'll need ya to help me acquire some territory in a place
+        say called Landover. The land isn't worth much, but..
+        say hey, it's a start.
+        say Go for it.
+        MPMSET $n quest 3 5 7
+        MPECHO Nathan utters the words 'fbesfo'
+        MPTRANSFER $n 9755
+  ELSE 
+    IF quest (3,5,$n) == 6
+        say Whoa there cheetah. Tryin to skip a little ahead?
+        say If you injure my pet, next time you kill it.
+        say Capiche?
+        say Wait.. Next time? Who says there'll be a next time.
+        wave $n
+        MPMSET $n quest 3 5 16
+        slay $n
+  ELSE   
+    IF quest (3,5,$n) == 7
+       IF ACTORHASOBJNUM(15031)
+          say What is this garbage?!? That's all they gave you?! The KING
+          say OF LANDOVER?!?
+          grumble
+          say THAT MAKES ME FURIOUS!!
+          cackle
+          say YOU SHOULD DIE FOR ACCEPTING THAT TRASH FROM THEM!
+          MPECHO Nathan utters the words 'hfwoeifweopn'
+          MPMSET $n quest 3 5 8
+          MPQUIET ON
+          MPTRANSFER $n 28384
+          MPGOTO 28384
+          MPMLOAD 28311
+          RESCALE 28311 $n 115
+          MPGOTO 28380
+          MPQUIET OFF
+       ELSE
+          say Whoa whoa whoa.. Get out there and finish that quest!
+          say Pronto kid!
+          MPECHO Nathan utters the words 'bfewbuoi'
+          MPTRANSFER $n 9755
+       ENDIF
+  ELSE
+    IF quest (3,5,$n) == 8
+       say Whoa there cheetah. Tryin to skip a little ahead?
+       say If you injure my pet, next time you kill it.
+       say Capiche?
+       say Wait.. Next time? Who says there'll be a next time.
+       wave $n
+       MPMSET $n quest 3 5 16
+       slay $n
+  ELSE
+    IF quest (3,5,$n) == 9
+       say Wow, Hey.. Who woulda thought, eh?
+       say Looks like yer still alive. Sorry bout that. I get kinda
+       say angry sometimes. I won't do that again. Anyway, I've got
+       say one more job for ya.
+       say Now that you have a sheepskin and a little bit of a kingdom
+       say out in the boonies, there might be a chance you can pull
+       say this off. It seems Midgaard is holding an election for town
+       say mayor right now. That sounds like a pretty reasonable slot
+       say for a future ruler of the world to control. All I need you
+       say to do is win the mayor spot. And even though you've screwed
+       say up so far, you should be able to pull this off. At least
+       say bring back a badge!
+       say Begone!
+       MPECHO Nathan utters the words 'opwjrthf'
+       MPMSET $n quest 3 5 10
+       MPTRANSFER $n 9755
+  ELSE
+    IF quest (3,5,$n) == 10
+       IF ACTORHASOBJNUM(3373)
+          say Dear god man. I don't even have to say anything. Just die.
+          say Oh yeah. I promised not to send ya to any more monsters..
+          say Oh well. I lied.
+          cackle $n
+          MPMSET $n quest 3 5 11
+          MPQUIET ON
+          MPTRANSFER $n 28385
+          MPGOTO 28385
+          MPMLOAD 28312
+          RESCALE 28312 $n 130
+          MPGOTO 28380
+          MPQUIET OFF
+       ELSE
+          say You should know by now to have completed the task before
+          say you come back. Stop being ignorant and get the job done.
+          MPTRANSFER $n 9755
+       ENDIF
+  ELSE
+    IF quest (3,5,$n) == 11
+       say Whoa there cheetah. Tryin to skip a little ahead?
+       say If you injure my pet, next time you kill it.
+       say Capiche?
+       say Wait.. Next time? Who says there'll be a next time.
+       wave $n
+       MPMSET $n quest 3 5 16
+       slay $n
+  ELSE
+    IF quest (3,5,$n) == 12
+       say Gawd..
+       say You've found my secret hideout.
+       say You've killed all my pets.
+       say *AND* You've ruined my chances of world domination.
+       say Forget it. Get out. Just leave.
+       MPECHO Nathan throws whatever was closest to him at you and utters the words 'fjiewopfipo'
+       MPMSET $n quest 3 5 16
+       MPQUIET ON
+       c giant $n
+       MPOLOAD 28309
+       MPOLOAD 28310
+       c 'remove curse'
+       c 'remove curse'
+       drop all
+       MPFORCE $n get all
+       MPQUIET OFF
+   muhaha $n
+   MPTRANSFER $n 9755
+  ELSE
+    IF quest (3,5,$n) == 16
+       say What are you thinking coming back here?
+       say OUT!
+       MPECHO Nathan utters the words 'kcsaddf'
+       MPTRANSFER $n 9755
+ENDIF
+~
+>SPEECH_PROG yes~
+IF quest (3,5,$n) == 1
+   tell $n Well, ya know my work isn't exactly *ethical*, but If
+   tell $n you're still interested, just let me know.
+   MPMSET $n quest 3 5 2
+ELSE
+   say Uhhh. what?
+   drool $n
+ENDIF
+~
+>SPEECH_PROG interested~
+IF quest (3,5,$n) == 2
+   tell $n Good, good.. I knew you wouldn't let me down.
+   grin $n
+   tell $n Well, here's the plan. I'm tryin to take over a bit of
+   tell $n the planet and I lack a little bit of conviction out
+   tell $n there.. Sure I'm powerful, but it's just not enough. I
+   tell $n lack a certain *charisma* you seem to possess. And it 
+   tell $n looks like I'll need someone like you to help me gain
+   tell $n enough political convincing to get my hands on my 
+   tell $n small piece of the world to get me started. Anyway, 
+   tell $n here's what I need you to do.
+   tell $n First things first. People like an educated leader so
+   tell $n I'll need you to go and earn yourself a diploma from 
+   tell $n somewhere. That should earn ya some respect. I'll 
+   tell $n transfer you out of here to get you started.
+   MPMSET $n quest 3 5 3
+   MPTRANSFER $n 9755
+ELSE
+   say Interested in what? 
+   say Man.. and people think *I'm* crazy.. Sheesh
+ENDIF
+~
+>SPEECH_PROG Atari~
+say I think I know that guy..
+~
+|
+#28310
+rabid dog~
+A rabid dog~
+A rabid Dog is here foaming from the mouth.~
+You look at the dog and it gives you one of those normal half-tilted dog
+looks. Yeah, normal except for the bloodshot eyes, huge teeth and mouth
+full of foam..
+~
+ACT_IS_NPC|ACT_SENTINEL|ACT_AGGRESSIVE|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_INFRARED
+0 S
+95 BODY_HEAD|BODY_MOUTH|BODY_TAIL BODY_HEAD|BODY_MOUTH|BODY_TAIL 1D1+9999 9D9+50
+0 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>FIGHT_PROG 10~
+lick $n
+~
+>FIGHT_PROG 25~
+IF QUEST (9,3,$n) == 4
+MPECHO A Pygmy pops up from out of nowhere and casts a spell on you.
+   IF CLASS ($n) == 0
+   mpquiet on
+   MPMSET self mana 150
+   c 'energy shift' $n
+   mpquiet off
+   else
+      IF CLASS ($n) == 1
+      mpquiet on
+      MPMSET self mana 150
+      c 'energy shift' $n
+      mpquiet off
+      else
+         IF CLASS ($n) == 4
+         mpquiet on
+         MPMSET self mana 150
+         c 'energy shift' $n
+         mpquiet off
+         else
+            IF CLASS ($n) == 5
+            mpquiet on
+            MPMSET self mana 150
+            c 'energy shift' $n
+            mpquiet off
+            else
+               IF CLASS ($n) == 2
+               mpquiet on
+               MPMSET self mana 150
+               c 'cure critical' $n
+               mpquiet off
+               else
+                  IF CLASS ($n) == 3
+                  mpquiet on
+                  MPMSET self mana 150
+                  c 'cure critical' $n
+                  mpquiet off
+                  else
+                     IF CLASS ($n) == 6
+                     mpquiet on
+                     MPMSET self mana 150
+                     c 'cure critical' $n
+                     mpquiet off
+                     else
+                  endif
+               endif
+            endif
+         endif
+      endif
+   endif
+endif
+~
+>DEATH_PROG 100~
+MPMSET $n quest 3 5 5
+MPOLOAD 28311
+~
+|
+#28311
+dog~
+a smaller dog~
+A smaller dog growls as you look at it.~
+The smaller dog snaps to attention as you enter the room.
+As you look at it, the dog growls at you with a temperamental
+look in its eyes.
+~
+ACT_IS_NPC|ACT_SENTINEL|ACT_AGGRESSIVE|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_INFRARED
+0 S
+95 BODY_HEAD|BODY_MOUTH BODY_HEAD|BODY_TAIL 1d1+9999 9d9+50
+0 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>FIGHT_PROG 10~
+drool $n
+~
+>FIGHT_PROG 25~
+IF QUEST (9,3,$n) == 4
+MPECHO A Pygmy pops up from out of nowhere and casts a spell on you.
+   IF CLASS ($n) == 0
+   mpquiet on
+   MPMSET self mana 150
+   c 'energy shift' $n
+   mpquiet off
+   else
+      IF CLASS ($n) == 1
+      mpquiet on
+      MPMSET self mana 150
+      c 'energy shift' $n
+      mpquiet off
+      else
+         IF CLASS ($n) == 4
+         mpquiet on
+         MPMSET self mana 150
+         c 'energy shift' $n
+         mpquiet off
+         else
+            IF CLASS ($n) == 5
+            mpquiet on
+            MPMSET self mana 150
+            c 'energy shift' $n
+            mpquiet off
+            else
+               IF CLASS ($n) == 2
+               mpquiet on
+               MPMSET self mana 150
+               c 'cure critical' $n
+               mpquiet off
+               else
+                  IF CLASS ($n) == 3
+                  mpquiet on
+                  MPMSET self mana 150
+                  c 'cure critical' $n
+                  mpquiet off
+                  else
+                     IF CLASS ($n) == 6
+                     mpquiet on
+                     MPMSET self mana 150
+                     c 'cure critical' $n
+                     mpquiet off
+                     else
+                  endif
+               endif
+            endif
+         endif
+      endif
+   endif
+endif
+~
+>DEATH_PROG 100~
+MPMSET $n quest 3 5 9
+MPOLOAD 28312
+~
+|
+#28312
+tiger~
+The tiger~
+A large tiger lies in the corner of the room.~
+The huge tiger has a scar across it's side from fights
+with other people who have already been here. It has
+taken a beating, but the pain has only made it grow
+stronger.
+~
+ACT_IS_NPC|ACT_SENTINEL|ACT_AGGRESSIVE|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_INFRARED
+0 S
+95 BODY_HEAD BODY_TAIL|BODY_MOUTH 1d1+9999 9d9+50
+0 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>FIGHT_PROG 10~
+bong $n
+~
+>FIGHT_PROG 25~
+IF QUEST (9,3,$n) == 4
+MPECHO A Pygmy pops up from out of nowhere and casts a spell on you.
+   IF CLASS ($n) == 0
+   mpquiet on
+   MPMSET self mana 150
+   c 'energy shift' $n
+   mpquiet off
+   else
+      IF CLASS ($n) == 1
+      mpquiet on
+      MPMSET self mana 150
+      c 'energy shift' $n
+      mpquiet off
+      else
+         IF CLASS ($n) == 4
+         mpquiet on
+         MPMSET self mana 150
+         c 'energy shift' $n
+         mpquiet off
+         else
+            IF CLASS ($n) == 5
+            mpquiet on
+            MPMSET mana 150
+            c 'energy shift' $n
+            mpquiet off
+            else
+               IF CLASS ($n) == 2
+               mpquiet on
+               MPMSET self mana 150
+               c 'cure critical' $n
+               mpquiet off
+               else
+                  IF CLASS ($n) == 3
+                  mpquiet on
+                  MPMSET self mana 150
+                  c 'cure critical' $n
+                  mpquiet off
+                  else
+                     IF CLASS ($n) == 6
+                     mpquiet on
+                     MPMSET self mana 150
+                     c 'cure critical' $n
+                     mpquiet off
+                     else
+                  endif
+               endif
+            endif
+         endif
+      endif
+   endif
+endif
+~
+>DEATH_PROG 100~
+MPMSET $n quest 3 5 12
+MPOLOAD 28313
+~
+|
+#28313
+pygmy man~
+the Pygmy Man~
+A small man stands here conversing with friends.~
+The small man runs back and forth from the shops doing
+errands and having a good time talking to neighbors.
+The man is about half the size of a normal human but
+besides that looks about the same.
+~
+ACT_IS_NPC|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS
+0 S
+13 BODY_HEAD BODY_MOUTH 10d6+130 2d6+7
+400 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+#28314
+pygmy woman~
+the Pygmy Woman~
+A small woman stands here conversing with friends.~
+The small woman runs back and forth from the shops doing
+errands and having a good time talking to neighbors.
+The woman is about half the size of a normal human but
+besides that looks about the same.
+~
+ACT_IS_NPC|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS
+0 S
+13 BODY_HEAD BODY_MOUTH 10d6+130 2d6+7
+400 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_FEMALE
+#28315
+pygmy woman~
+the Pygmy woman~
+A small woman sits here reading a book~
+The woman is sitting on her couch reading a book about
+the God Wars and occasionally looks up at you but
+doesn't say anything about your entrance to her house.
+~
+ACT_IS_NPC|ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS
+0 S
+13 BODY_HEAD BODY_MOUTH 10d6+130 2d6+7
+400 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_FEMALE
+>greet_prog 20~
+sniff
+~
+>speech_prog pictures~
+IF QUEST (9,3,$n) == 0
+sniff
+say Those are pictures of my boy. He's been missing for
+say a couple days now. The village has searched all over
+say for him, but no luck.
+MPMSET $n QUEST 9 3 1
+else
+say Nice aren't they?
+endif
+~
+>speech_prog help~
+IF QUEST (9,3,$n) == 1
+   emote 's eyes brighten.
+   say You want to help me find my boy?
+   smile $n
+   say The last place we say him was the forest.
+   say I hope you find him.
+   MPMSET $n QUEST 9 3 2
+else
+   sniff
+endif
+~
+>give_prog i28314~
+cry
+say NO!!
+emote takes a pulse..
+say He's still alive!
+emote slaps the corpse around a bit.
+MPECHO The boy opens his eyes and stands up.
+MPECHO The boy says 'Whoa. Oww..'
+say DON'T YOU EVER DO THAT AGAIN!
+emote raises her hand high and commences to spanking the heck out of the kid.
+say NOW GO TO YOUR ROOM!
+MPECHO The boy says 'Yesss mommm....'
+MPECHO The boy takes off crying up to his room.
+say Thank you.. If you run into any trouble in the
+say forest, you'll have our support.
+smile $n
+MPMSET $n QUEST 9 3 4
+MPJUNK i28314
+~
+|
+#28316
+ethereal guy~
+the ethereal guy~
+The ethereal guy sits here tossing boys at wolves.~
+This guy loads the boy and makes the wolf eat him.
+~
+ACT_BODY|ACT_IS_NPC|ACT_SMART|ACT_RACE|ACT_SENTINEL
+AFF_DETECT_INVIS|AFF_INFRARED|AFF_ETHEREAL
+0 S
+20 BODY_ARM|BODY_TORSO BODY_ARM|BODY_LEG 5D7+12000 5D5+17
+0 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>GREET_PROG 30~
+IF QUEST (9,3,$n) == 2
+MPECHO A boy pops out from the side of a tree.
+MPECHO The boy says 'My mom sent you out here, didn't she?'
+MPECHO The boy says 'I don't wanna go back yet!'
+MPECHO The boy says 'NyahNyahNyahNyahNyahhh'
+MPECHO A WOLF JUMPS OUT OF THE BUSHES AND EATS THE BOY!! WHOA!
+MPMLOAD 28317
+MPMSET $n QUEST 9 3 3
+else
+endif
+~
+|
+#28317
+timber wolf~
+The timber wolf~
+A wolf stands here glaring at you.~
+In front of you is a small wolf, fur covered with snow and ice 
+resulting from the climate around it. It's stare alone makes it
+look like a formidable opponent.
+~
+ACT_BODY|ACT_SENTINEL|ACT_STAY_AREA|ACT_IS_NPC|ACT_RACE
+AFF_HUNT
+0 S
+13 BODY_TAIL|BODY_MOUTH BODY_TAIL|BODY_MOUTH 10d6+130 2d6+7
+400 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>death_prog 100~
+burp
+MPECHO The boy's corpse falls out of the wolf's stomach.
+MPOLOAD 28314
+~
+|
+#28318
+Ethel~
+Ethel~
+Ethel M is sitting behind the counter.~
+Ethel is an older woman with white hair and a good attitude
+and composure. She looks like she's been living here for a
+while and likes it.
+~
+ACT_BODY|ACT_SENTINEL|ACT_SMART|ACT_IS_NPC|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN
+0 S
+13 BODY_HEAD BODY_MOUTH 10d6+130 2d6+7
+400 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_FEMALE
+>ALL_GREET_PROG 100~
+say Welcome, welcome. =)
+~
+|
+#28319
+Crazy Eddie~
+Crazy Eddie~
+Crazy Eddie stands here trying to sell you pets.~
+Eddie stands in the middle of his lot smiling and winking
+at people as they walk by his shop. Dressed in a plaid
+suit complete with a red bow tie he's ready to sell 
+anything and everything.
+~
+ACT_BODY|ACT_SENTINEL|ACT_SMART|ACT_IS_NPC|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN
+0 S
+13 BODY_HEAD BODY_MOUTH 10d6+130 2d6+7
+400 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>ALL_GREET_PROG 100~
+say HEY HEY! Welcome to CRRRAAAZZZZYYY EDDIE'S!
+~
+>rand_prog 15~
+emote tries to show you some pets in the bargain bin.
+~
+|
+#28320
+Bucko~
+Bucko~
+A large man with a shirt name tag that says 'Bucko'.~
+Bucko is pretty big for a pygmy. He's almost the size
+of a normal human and pretty muscular. He looks like
+he's definitely ready to train you.
+~
+ACT_BODY|ACT_SENTINEL|ACT_SMART|ACT_TRAIN|ACT_IS_NPC|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN
+0 S
+13 BODY_HEAD BODY_MOUTH 10d6+130 2d6+7
+400 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>ALL_GREET_PROG 20~
+strut
+~
+|
+#28321
+Anisa~
+Anisa~
+Anisa is here waiting on her customers.~
+Anisa is in full waitress garb serving people whatever
+they order.
+~
+ACT_BODY|ACT_SENTINEL|ACT_IS_NPC|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN
+0 S
+13 BODY_HEAD BODY_MOUTH 10d6+130 2d6+7
+400 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_FEMALE
+#28322
+dog~
+A three legged dog~
+A three legged dog is here trying to walk.~
+The dog was bought out of the bargain bin at Crazy
+Eddie's. Well.. Ya get what ya pay for.
+~
+ACT_BODY|ACT_IS_NPC|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN
+0 S
+12 BODY_HEAD BODY_MOUTH 1d1+179 3d9+6
+400 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+#28323
+quadriplegic cow~
+A quadriplegic cow~
+A quadriplegic cow wriggles around on the ground.~
+The quadriplegic cow doesn't make much of a pet...
+Maybe if you could roll it on your enemies.. *shrug*
+~
+ACT_BODY|ACT_IS_NPC|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN
+0 S
+12 BODY_HEAD BODY_MOUTH 1d1+199 4d7+5
+400 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+#28324
+beagle~
+A hunting dog~
+A hunting dog obediently follows it's master.~
+The hunting dog follows you trying to detect a scent
+of another animal for you to kill and take home to
+feast on.
+~
+ACT_BODY|ACT_IS_NPC|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN
+0 S
+14 BODY_HEAD BODY_MOUTH 1d1+225 6d6+8
+400 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+#28325
+pygmy woman~
+the Pygmy woman~
+A small woman sits here reading a book~
+The woman is sitting on her couch reading a book about
+the God Wars and occasionally looks up at you but
+doesn't say anything about your entrance to her house.
+~
+ACT_IS_NPC|ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS
+0 S
+13 BODY_HEAD BODY_MOUTH 10d6+130 2d6+7
+400 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_FEMALE
+#0
+
+#OBJECTS
+#28300
+piece meat~
+A piece of meat~
+A piece of meat from some slain animal lies here.~
+~
+ITEM_TYPE_FOOD
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+6 0 0 NOT_POISONED
+1 0 1
+#28301
+rucksack~
+a rucksack~
+A rucksack sits on the floor.~
+~
+ITEM_TYPE_CONTAINER
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+100 5 0 0
+1 100 10
+#28302
+helm~
+a well-tempered helm~
+A well-tempered helm lies on the ground.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_HEAD|ITEM_WEAR_TAKE
+5 0 0 0
+10 500 14
+#28303
+pointed ring~
+a pointed ring~
+A sharp looking ring waits for someone to pick it up.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL|ITEM_FLAG_AUTO_ENGRAVE|ITEM_FLAG_GLOW|ITEM_FLAG_ANTI_EVIL
+ITEM_WEAR_FINGER|ITEM_WEAR_TAKE
+2 0 0 0
+7 500 15
+A
+APPLY_DAMROLL 2
+A
+APPLY_STR 2
+A 
+APPLY_HITROLL 2
+#28304
+twig~
+a twig~
+A twig lies here in the snow.~
+~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 0 0
+1 5 8
+#28305
+gem~
+a gem~
+A dull looking gem is on the ground.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL|ITEM_FLAG_GLOW
+ITEM_WEAR_HOLD|ITEM_WEAR_TAKE
+0 0 0 0
+1 500 1
+P 1
+TRIG_TICK 10
+OPROG_IF OIF_USER_ROOM_NUM = 28346 3 2
+P 2
+TRIG_VOID
+OPROG_ECHO
+The gem hums softly..
+~
+P 3
+TRIG_VOID
+OPROG_GOD_COMMAND
+mpechoat $ The gem starts to hum and a helm bursts out of the loose rocks!
+mpechoat $ You pick it up.
+mpechoaround $ $'s gem hums loudly and a helmet bursts out of the wall.
+mpechoaround $ $ picks it up.
+mpoload 28302
+MPECHOAT $ Your gem begins to glow brightly and slowly stops.
+MPECHOAROUND $ $'s gem begins to glow brightly and slowly stops.
+MPOLOAD 28307
+MPJUNK i28305
+~
+#28306
+hot spring~
+a hot spring~
+A hot spring bubbles up from the ground.~
+A small hot spring bubbles up from the ground in the middle of this
+forest melting away snow and ice and creating a place for people and
+animals to take a quick drink.
+~
+ITEM_TYPE_FOUNTAIN
+ITEM_FLAG_LEVEL
+0
+0 0 0 0
+20 5 1
+#28307
+burnt gem~
+a burnt gem~
+A charred looking gem lies on the ground.~
+The gem looks as if it was charred from the inside out by some kind
+of magic internal flame.
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_HOLD|ITEM_WEAR_TAKE
+2 0 0 0
+2 500 14
+A
+APPLY_WIS 2
+A
+APPLY_CON 2
+#28308
+rocks~
+a pile of rocks~
+A pile of rocks.~
+There is a pile of loose rocks on the ground here.
+~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL
+0
+0 0 0 0
+10 10 1
+#28309
+Blood Torch~
+the blood torch~
+A blood red torch is lying on the ground.~
+The blood torch emits a softer, darker light than most torches.
+The torch is engraved with a small inscription and the words are
+always wet with a soft oozing blood.
+~
+ITEM_TYPE_LIGHT
+ITEM_FLAG_ANTI_EVIL|ITEM_FLAG_ANTI_GOOD|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 -1 0
+5 5 25
+E
+inscription~
+This torch belongs to: Nathan Price.
+If found, please deposit at any griffon.
+Postage guaranteed upon delivery.
+~
+A
+APPLY_DAMROLL -4
+A
+APPLY_HITROLL -4
+A
+APPLY_AC -10
+#28310
+dinner fork~
+a fork~
+A small fork is sitting in the dust.~
+The fork has half of the name of a restaurant engraved in it, but
+the other half has been furiously scratched out by whoever stole
+it. They were obviously trying a little too hard to get rid of 
+any evidence.
+~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_ANTI_EVIL|ITEM_FLAG_ANTI_GOOD|ITEM_FLAG_NOREMOVE|ITEM_FLAG_NODROP|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 1 1 7
+10 5 25
+A
+APPLY_AC -10
+#28311
+pit key~
+a pit key~
+A pit key lies in the dirt.~
+This is a small key solely used for tending to the monster pits.
+~
+ITEM_TYPE_KEY
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+4 0 0 0
+0 1 1
+#28312
+pit key~
+a pit key~
+A pit key lies in the dirt.~
+This is a small key solely used for tending to the monster pits.
+~
+ITEM_TYPE_KEY
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+4 0 0 0
+0 1 1
+#28313
+pit key~
+a pit key~
+A pit key lies in the dirt.~
+This is a small key solely used for tending to the monster pits.
+~
+ITEM_TYPE_KEY
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+4 0 0 0
+0 1 1
+#28314
+boy body~
+a boy's body~
+The body of a boy lies here.~
+The body is kind of ripped up from the wolf, but he might still
+have a chance.
+~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 0 0
+2 0 1
+#28315
+bread~
+a little bit of bread~
+A little bit of bread lies in the dirt.~
+It's a piece of bread.
+~
+ITEM_TYPE_FOOD
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+5 0 0 0
+1 100 5
+#28316
+lettuce~
+a head of fresh lettuce~
+A head of lettuce lies on the ground.~
+It's a head of lettuce.
+~
+ITEM_TYPE_FOOD
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+6 0 0 0
+1 100 5
+#28317
+elf jerky~
+some elf jerky~
+A bag of elf jerky is on the ground.~
+It's a bag of tender Elf Jerky. The most popular food
+made from elves this side of the realms.
+~
+ITEM_TYPE_FOOD
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+10 0 0 0
+1 150 5
+#28318
+gallon milk~
+a gallon of milk~
+A gallon of milk~
+A gallon of milk imported from the shire.
+~
+ITEM_TYPE_DRINK_CON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+7 7 10 0
+1 100 5
+#28319
+pint ale~
+a pint of ale~
+A mug full of ale~
+A mug filled to the brim with a pint of ale. Anisa's
+Bar and Grill is printed on the side.
+~
+ITEM_TYPE_DRINK_CON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+4 4 3 0
+1 100 5
+#28320
+leg lamb~
+a leg of lamb~
+A leg of lamb is here looking delicious.~
+A whole leg of lamb on it's serving tray.
+~
+ITEM_TYPE_FOOD
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+15 0 0 0
+1 250 5
+#28321
+ball lint~
+ball of lint~
+A ball of lint rolls on the ground.~
+The ball of lint is abnormally large and well textured.
+engraved on the bottom is - [lintrevolution] Arctic Forest
+Faction. Take that Aljo!~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 0 0
+1 5 8
+#0
+
+
+
+#ROOMS
+
+@changed exit south for area move  12/18/03
+#28300
+A snow-covered path~
+A frozen dirt path lies in front of you leading into the depths of a light
+woods up ahead. Animal tracks line the path and follow it into the woods.
+Most look like they came from smaller animals, but there are a few bigger
+footprints indicating that there are bigger animals here.
+~
+283 0 SECT_FIELD
+DDIR_WEST
+~
+~
+0 -1 4561
+DDIR_EAST
+~
+~
+0 -1 28301
+E
+tracks~
+Most of the tracks look like they came from animals like squirrels
+and wolves but a few of the bigger tracks look like they were left
+behind by a bear or two.
+~
+S
+#28301
+A snow-covered path~
+The path is hard underneath your feet in the eternal winter of the
+woods. Even with the frozen ground, trees still manage to grow and
+survive as you see by the woods ahead and the pine needles that
+lie here and there along the path, blown from trees that lie ahead
+of you. 
+~
+283 0 SECT_FIELD
+DDIR_EAST
+~
+~
+0 -1 28302
+DDIR_WEST
+~
+~
+0 -1 28300
+E
+pine needles~
+The pine needles are still green and must have been blown off
+their former homes pretty recently.
+~
+S
+#28302
+A snow-covered path~
+A frozen dirt path lies in front of you leading into the depths of a light
+woods up ahead. Animal tracks line the path and follow it into the woods. 
+Most look like they came from smaller animals, but there are a few bigger 
+footprints indicating that there are bigger animals here.
+~
+283 0 SECT_FIELD
+DDIR_WEST
+~
+~
+0 -1 28301
+DDIR_NORTH
+~
+~
+0 -1 28303
+E
+tracks~
+Most of the tracks look like they came from animals like squirrels
+and wolves but a few of the bigger tracks look like they were left
+behind by a bear or two.
+~
+S
+#28303
+Entrance to the woods~
+The path slowly dwindles off into the snow and trees are starting to grow
+around this area as it gets closer to the light forest. The woods to the
+north are active with birds and smaller animals scampering about. The
+tracks by the path also hint of wolves which hunt some of these smaller
+animals.
+~
+283 ROOM_NO_MOB SECT_FOREST
+DDIR_SOUTH
+~
+~
+0 -1 28302
+DDIR_NORTH
+~
+~
+0 -1 28304
+E
+birds~
+a small but colorful variety of birds fly around the tops of the
+trees here in the forest.
+~	
+S
+#28304
+Path through the woods~
+This small path follows itself through the woods twisting in many 
+directions. As you walk through the path, a few of the animals take a 
+look of alarm at your entrance, but decide you aren't a threat to their
+existence just quite yet and resume what they're doing.
+~
+283 0 SECT_FOREST
+DDIR_SOUTH
+~
+~
+0 -1 28303
+DDIR_EAST
+~
+~
+0 -1 28305
+DDIR_WEST
+~
+~
+0 -1 28327
+S
+#28305
+Path through the woods~
+A squirrel quickly brushes by your foot and runs off down the
+path in a different direction. They're obviously not used to
+contact from the outside world but don't seem to be too afraid
+of you even with all your battle gear on.
+~
+283 0 SECT_FOREST
+DDIR_WEST
+~
+~
+0 -1 28304
+DDIR_EAST
+~
+~
+0 -1 28306
+S
+
+#28306
+Path through the woods~
+The path is surprisingly peaceful with all the wolves around, and 
+the only time anything really notices you is when you step on some 
+icy snow and it cracks under your boots. This would probably be a 
+nice place to camp if it were a bit warmer and with a few less 
+wolves.
+~
+283 0 SECT_FOREST
+DDIR_WEST
+~
+~
+0 -1 28305
+DDIR_EAST
+~
+~
+0 -1 28307
+DDIR_NORTH
+~
+~
+0 -1 28312
+S
+#28307
+Path through the woods~
+This small path follows itself through the woods twisting in many 
+directions. As you walk through the path, a few of the animals take a 
+look of alarm at your entrance, but decide you aren't a threat to their
+existence just quite yet and resume what they're doing.
+~
+283 0 SECT_FOREST
+DDIR_WEST
+~
+~
+0 -1 28306
+DDIR_EAST
+~
+~
+0 -1 28309
+DDIR_NORTH
+~
+~
+0 -1 28313
+S
+
+@added connection to north pole via roads 12/18/03
+#28308
+Path through the woods~
+A small tree limb lies in the middle of the path, probably fallen
+because of the amount of snow that collects on the trees in the
+area. Even if it is pretty cold, it still looks great with all the
+light reflecting off the ice on the trees and ground.
+~
+283 0 SECT_FOREST
+DDIR_SOUTH
+~
+~
+0 -1 28309
+DDIR_EAST
+~
+~
+0 -1 28310
+DDIR_WEST
+~
+~
+0 -1 28313
+DDIR_NORTH
+~
+~
+0 -1 4553
+S
+#28309
+Path through the woods~
+The path goes on between trees and over small hills to wherever
+it leads itself. An occasional animal trots by across the path and 
+back to it's hiding places in the wilderness. Some birds sing their 
+songs in the trees above you as if to perform their melodies as you
+walk by.
+~
+283 0 SECT_FOREST
+DDIR_NORTH
+~
+~
+0 -1 28308
+DDIR_WEST
+~
+~
+0 -1 28307
+S
+#28310
+Path through the woods~
+A small bird glances at you from up in a tree and flies off just
+over your head to get out of the area and give you a little bit
+of warning that this is its living area, not yours. You can still
+hear it chirping from off to the east.
+~
+283 0 SECT_FOREST
+DDIR_WEST
+~
+~
+0 -1 28308
+DDIR_NORTH
+~
+~
+0 -1 28311
+S
+#28311
+Path through the woods~
+This small path follows itself through the woods twisting in many 
+directions. As you walk through the path, a few of the animals take a 
+look of alarm at your entrance, but decide you aren't a threat to their
+existence just quite yet and resume what they're doing.
+~
+283 0 SECT_FOREST
+DDIR_SOUTH
+~
+~
+0 -1 28310
+DDIR_NORTH
+~
+~
+0 -1 28315
+S
+
+#28312
+Path through the woods~
+This small path follows itself through the woods twisting in many 
+directions. As you walk through the path, a few of the animals take a 
+look of alarm at your entrance, but decide you aren't a threat to their
+existence just quite yet and resume what they're doing.
+~
+283 0 SECT_FOREST
+DDIR_SOUTH
+~
+~
+0 -1 28306
+DDIR_EAST
+~
+~
+0 -1 28313
+S
+#28313
+Path through the woods~
+The path goes on between trees and over small hills to wherever
+it leads itself. An occasional animal trots by across the path and 
+back to it's hiding places in the wilderness. Some birds sing their 
+songs in the trees above you as if to perform their melodies as you
+walk by.
+~
+283 0 SECT_FOREST
+DDIR_SOUTH
+~
+~
+0 -1 28307
+DDIR_EAST
+~
+~
+0 -1 28308
+DDIR_WEST
+~
+~
+0 -1 28312
+S
+#28314
+Path through the woods~
+This small path follows itself through the woods twisting in many 
+directions. As you walk through the path, a few of the animals take a 
+look of alarm at your entrance, but decide you aren't a threat to their
+existence just quite yet and resume what they're doing.
+~
+283 0 SECT_FOREST
+DDIR_EAST
+~
+~
+0 -1 28315
+DDIR_WEST
+~
+~
+0 -1 28317
+DDIR_NORTH
+~
+~
+0 -1 28357
+S
+#28315
+Path through the woods~
+The path is surprisingly peaceful with all the wolves around, and 
+the only time anything really notices you is when you step on some 
+icy snow and it cracks under your boots. This would probably be a 
+nice place to camp if it were a bit warmer and with a few less 
+wolves.
+~
+283 0 SECT_FOREST
+DDIR_SOUTH
+~
+~
+0 -1 28311
+DDIR_WEST
+~
+~
+0 -1 28314
+DDIR_EAST
+~
+~
+0 -1 28328
+DDIR_NORTH
+~
+~
+0 -1 28358
+S
+#28316
+Path through the woods~
+This small path follows itself through the woods twisting in many 
+directions. As you walk through the path, a few of the animals take a 
+look of alarm at your entrance, but decide you aren't a threat to their
+existence just quite yet and resume what they're doing.
+~
+283 0 SECT_FOREST
+DDIR_EAST
+~
+~
+0 -1 28317
+DDIR_WEST
+~
+~
+0 -1 28318
+DDIR_NORTH
+~
+~
+0 -1 28330
+S
+#28317
+Path through the woods~
+The trees sway in the cold wind while you walk by knocking some
+loose snow off a branch creating an icy mist brushing by your
+face as it falls onto the ground near your feet. It's cold, but
+a little tightening of your hood will keep you just as warm as
+before.
+~
+283 0 SECT_FOREST
+DDIR_EAST
+~
+~
+0 -1 28314
+DDIR_WEST
+~
+~
+0 -1 28316
+S
+
+#28318
+Path through the woods~
+The path is surprisingly peaceful with all the wolves around, and 
+the only time anything really notices you is when you step on some 
+icy snow and it cracks under your boots. This would probably be a 
+nice place to camp if it were a bit warmer and with a few less 
+wolves.
+~
+283 0 SECT_FOREST
+DDIR_EAST
+~
+~
+0 -1 28316
+DDIR_WEST
+~
+~
+0 -1 28319
+DDIR_NORTH
+~
+~
+0 -1 28329
+S
+#28319
+Path through the woods~
+This small path follows itself through the woods twisting in many 
+directions. As you walk through the path, a few of the animals take a 
+look of alarm at your entrance, but decide you aren't a threat to their
+existence just quite yet and resume what they're doing.
+~
+283 0 SECT_FOREST
+DDIR_EAST
+~
+~
+0 -1 28318
+DDIR_WEST
+~
+~
+0 -1 28320
+S
+#28320
+Path through the woods~
+The path goes on between trees and over small hills to wherever
+it leads itself. An occasional animal trots by across the path and 
+back to it's hiding places in the wilderness. Some birds sing their 
+songs in the trees above you as if to perform their melodies as you
+walk by.
+~
+283 0 SECT_FOREST
+DDIR_EAST
+~
+~
+0 -1 28319
+DDIR_WEST
+~
+~
+8 -1 28366
+DDIR_SOUTH
+~
+~
+0 -1 28321
+S
+#28321
+Path through the woods~
+This small path follows itself through the woods twisting in many 
+directions. As you walk through the path, a few of the animals take a 
+look of alarm at your entrance, but decide you aren't a threat to their
+existence just quite yet and resume what they're doing.
+~
+283 0 SECT_FOREST
+DDIR_NORTH
+~
+~
+0 -1 28320
+DDIR_WEST
+~
+~
+0 -1 28322
+S
+#28322
+Path through the woods~
+The path is surprisingly peaceful with all the wolves around, and 
+the only time anything really notices you is when you step on some 
+icy snow and it cracks under your boots. This would probably be a 
+nice place to camp if it were a bit warmer and with a few less 
+wolves.
+~
+283 0 SECT_FOREST
+DDIR_EAST
+~
+~
+0 -1 28321
+DDIR_WEST
+~
+~
+0 -1 28323
+DDIR_SOUTH
+~
+~
+0 -1 28325
+S
+#28323
+Path through the woods~
+This small path follows itself through the woods twisting in many 
+directions. As you walk through the path, a few of the animals take a 
+look of alarm at your entrance, but decide you aren't a threat to their
+existence just quite yet and resume what they're doing.
+~
+283 0 SECT_FOREST
+DDIR_EAST
+~
+~
+0 -1 28322
+DDIR_SOUTH
+~
+~
+0 -1 28324
+DDIR_WEST
+~
+~
+0 -1 28331
+S
+
+#28324
+Path through the woods~
+This small path follows itself through the woods twisting in many 
+directions. As you walk through the path, a few of the animals take a 
+look of alarm at your entrance, but decide you aren't a threat to their
+existence just quite yet and resume what they're doing.
+~
+283 0 SECT_FOREST
+DDIR_NORTH
+~
+~
+0 -1 28323
+DDIR_EAST
+~
+~
+0 -1 28325
+S
+#28325
+Path through the woods~
+This small path follows itself through the woods twisting in many 
+directions. As you walk through the path, a few of the animals take a 
+look of alarm at your entrance, but decide you aren't a threat to their
+existence just quite yet and resume what they're doing.
+~
+283 0 SECT_FOREST
+DDIR_NORTH
+~
+~
+0 -1 28322
+DDIR_WEST
+~
+~
+0 -1 28324
+DDIR_SOUTH
+~
+~
+0 -1 28326
+S
+#28326
+Path through the woods~
+The path goes on between trees and over small hills to wherever
+it leads itself. An occasional animal trots by across the path and 
+back to it's hiding places in the wilderness. Some birds sing their 
+songs in the trees above you as if to perform their melodies as you
+walk by.
+~
+283 0 SECT_FOREST
+DDIR_NORTH
+~
+~
+0 -1 28325
+DDIR_EAST
+~
+~
+0 -1 28327
+S
+#28327
+Path through the woods~
+This small path follows itself through the woods twisting in many 
+directions. As you walk through the path, a few of the animals take a 
+look of alarm at your entrance, but decide you aren't a threat to their
+existence just quite yet and resume what they're doing.
+~
+283 0 SECT_FOREST
+DDIR_EAST
+~
+~
+0 -1 28304
+DDIR_WEST
+~
+~
+0 -1 28326
+S
+#28328
+A small clearing near the path~
+Most of the snow has been pushed away off to the sides of the clearing to
+try and provide a little bit of warmth for the man resting off on the side.
+There is still a little hard packed snow on the ground, all except for in 
+the center, where a small unexplained hot spring bubbles up a little bit
+of water into a puddle large enough for someone to drink out of and melt a
+little bit of snow away.
+~
+283 ROOM_SAFE|ROOM_NO_MOB SECT_FOREST
+DDIR_WEST
+~
+~
+0 -1 28315
+S
+#28329
+Path through the woods~
+This small path follows itself through the woods twisting in many 
+directions. As you walk through the path, a few of the animals take a 
+look of alarm at your entrance, but decide you aren't a threat to their
+existence just quite yet and resume what they're doing.
+~
+283 0 SECT_FOREST
+DDIR_SOUTH
+~
+~
+0 -1 28318
+DDIR_EAST
+~
+~
+0 -1 28330
+S
+
+#28330
+Path through the woods~
+The path is surprisingly peaceful with all the wolves around, and 
+the only time anything really notices you is when you step on some 
+icy snow and it cracks under your boots. This would probably be a 
+nice place to camp if it were a bit warmer and with a few less 
+wolves.
+~
+283 0 SECT_FOREST
+DDIR_SOUTH
+~
+~
+0 -1 28316
+DDIR_WEST
+~
+~
+0 -1 28329
+DDIR_NORTH
+~
+~
+0 -1 28361
+S
+#28331
+Path through the woods~
+The path goes on between trees and over small hills to wherever
+it leads itself. An occasional animal trots by across the path and 
+back to it's hiding places in the wilderness. Some birds sing their 
+songs in the trees above you as if to perform their melodies as you
+walk by.
+~
+283 0 SECT_FOREST
+DDIR_EAST
+~
+~
+0 -1 28323
+DDIR_NORTH
+~
+~
+0 -1 28332
+S
+#28332
+Cave Entrance~
+A rocky cave opening lies to your north, with the sounds of bats emanating
+from the maw. The big tracks you saw in the snow all kind of converge here,
+coming in and out of the cave entrance. If you plan on going in here, be 
+careful. It looks like it might be dangerous.
+~
+283 ROOM_NO_MOB SECT_FOREST
+DDIR_SOUTH
+~
+~
+0 -1 28331
+DDIR_NORTH
+~
+~
+0 -1 28333
+S
+#28333
+Inside the cave~
+The cave extends on into the darkness and the big animal tracks go down
+every corridor. The screeches of bats resonates off the walls of the 
+passages and the flap of their wings is heard from all around. The 
+jagged rock walls of the cave make things even less comforting.
+~
+283 ROOM_DARK|ROOM_INDOORS SECT_UNDER_GROUND
+DDIR_SOUTH
+~
+~
+0 -1 28332
+DDIR_WEST
+~
+~
+0 -1 28334
+DDIR_NORTH
+~
+~
+0 -1 28341
+S
+#28334
+Inside the cave~
+As you progress further into the cave it gets a little smaller. It's still
+no problem for anyone to get through, but just as you start thinking about
+it, the cave starts to expand back out again. Bats line the ceiling and 
+they don't really like your presence here.
+~
+283 ROOM_DARK|ROOM_INDOORS SECT_UNDER_GROUND
+DDIR_EAST
+~
+~
+0 -1 28333
+DDIR_WEST
+~
+~
+0 -1 28335
+S
+#28335
+Twist in the cave~
+Here the cave turns to the north and all you can see down the passageway
+is darkness. Exploring this cave starts to make you feel a little edgy 
+since you don't know what you're going to find inside. And the random 
+bat attacks don't help much either.
+~
+283 ROOM_DARK|ROOM_INDOORS SECT_UNDER_GROUND
+DDIR_EAST
+~
+~
+0 -1 28334
+DDIR_NORTH
+~
+~
+0 -1 28336
+S
+
+#28336
+Cave intersection~
+You walk into a three way intersection with passages leading to the west,
+south and north. The wind snaps up to the south and lets out a small 
+howl. Something under your boots cracks and you see it was a small animal
+bone. Best to keep going.
+~
+283 0 SECT_UNDER_GROUND
+DDIR_SOUTH
+~
+~
+0 -1 28335
+DDIR_WEST
+~
+~
+0 -1 28337
+DDIR_NORTH
+~
+~
+0 -1 28338
+S
+#28337
+Dead End~
+Rocks have crashed down in this part of the cave, concealing what was left
+of a passage on the other side. It doesn't look like they're very movable,
+but who knows what's on the other side anyway.
+~
+283 ROOM_DARK|ROOM_INDOORS SECT_UNDER_GROUND
+DDIR_EAST
+~
+~
+0 -1 28336
+S
+#28338
+Twist in the cave~
+Here the cave turns to the east and all you can see down the passageway
+is darkness. A cold wind whips through the tunnel chilling you through
+your armor and your boots crunch over a few pine needles as you stop 
+walking for a second due to the surprising cold of the wind.
+~
+283 ROOM_DARK|ROOM_INDOORS SECT_UNDER_GROUND
+DDIR_SOUTH
+~
+~
+0 -1 28336
+DDIR_EAST
+~
+~
+0 -1 28339
+S
+#28339
+Inside the cave~
+As you progress further into the cave it gets a little smaller. It's still
+no problem for anyone to get through, but just as you start thinking about
+it, the cave starts to expand back out again. Bats line the ceiling and 
+they don't really like your presence here.
+~
+283 ROOM_DARK|ROOM_INDOORS SECT_UNDER_GROUND
+DDIR_WEST
+~
+~
+0 -1 28338
+DDIR_NORTH
+~
+~
+0 -1 28340
+S
+#28340
+Dead End~
+As you walk into the room, your light illuminates the cave walls and they
+stop abruptly. Looks like you've found another dead end. I guess it's 
+time to turn around.
+~
+283 ROOM_DARK|ROOM_INDOORS SECT_UNDER_GROUND
+DDIR_SOUTH
+~
+~
+0 -1 28339
+S
+#28341
+Twist in the cave~
+Here the cave turns to the east and all you can see down the passageway
+is darkness. A cold wind whips through the tunnel chilling you through
+your armor and your boots crunch over a few pine needles as you stop 
+walking for a second due to the surprising cold of the wind.
+~
+283 ROOM_DARK|ROOM_INDOORS SECT_UNDER_GROUND
+DDIR_SOUTH
+~
+~
+0 -1 28333
+DDIR_EAST
+~
+~
+0 -1 28342
+S
+
+#28342
+Twist in the cave~
+Here the cave turns to the north and all you can see down the passageway
+is darkness. Exploring this cave starts to make you feel a little edgy 
+since you don't know what you're going to find inside. And the random 
+bat attacks don't help much either.
+~
+283 ROOM_DARK|ROOM_INDOORS SECT_UNDER_GROUND
+DDIR_WEST
+~
+~
+0 -1 28341
+DDIR_NORTH
+~
+~
+0 -1 28343
+S
+#28343
+Cave intersection~
+You walk into a three way intersection with passages leading to the east,
+south and north. The wind snaps up to the south and lets out a small howl.
+Something under your boots cracks and you see it was a small animal bone. 
+Best to keep going.
+~
+283 0 SECT_UNDER_GROUND
+DDIR_SOUTH
+~
+~
+0 -1 28342
+DDIR_NORTH
+~
+~
+0 -1 28344
+DDIR_EAST
+~
+~
+0 -1 28347
+S
+#28344
+Inside the cave~
+The cave extends on into the darkness and the big animal tracks go down
+every corridor. The screeches of bats resonates off the walls of the 
+passages and the flap of their wings is heard from all around. The 
+jagged rock walls of the cave make things even less comforting.
+~
+283 ROOM_DARK|ROOM_INDOORS SECT_UNDER_GROUND
+DDIR_SOUTH
+~
+~
+0 -1 28343
+DDIR_NORTH
+~
+~
+0 -1 28345
+S
+#28345
+Twist in the cave~
+Here the cave turns to the east and all you can see down the passageway
+is darkness. A cold wind whips through the tunnel chilling you through 
+your armor and your boots crunch over a few pine needles as you stop 
+walking for a second due to the surprising cold of the wind.
+~
+283 ROOM_DARK|ROOM_INDOORS SECT_UNDER_GROUND
+DDIR_SOUTH
+~
+~
+0 -1 28344
+DDIR_WEST
+~
+~
+0 -1 28346
+S
+#28346
+Dead End~
+Rocks have crashed down in this part of the cave, concealing what was left
+of a passage on the other side. It doesn't look like they're very movable,
+but who knows what's on the other side anyway.
+~
+283 ROOM_DARK|ROOM_INDOORS SECT_UNDER_GROUND
+DDIR_EAST
+~
+~
+0 -1 28345
+S
+#28347
+Inside the cave~
+As you progress further into the cave it gets a little smaller. It's still
+no problem for anyone to get through, but just as you start thinking about
+it, the cave starts to expand back out again. Bats line the ceiling and 
+they don't really like your presence here.
+~
+283 ROOM_DARK|ROOM_INDOORS SECT_UNDER_GROUND
+DDIR_WEST
+~
+~
+0 -1 28343
+DDIR_EAST
+~
+~
+0 -1 28348
+S
+
+#28348
+Inside the cave~
+The cave extends on into the darkness and the big animal tracks go down
+every corridor. The screeches of bats resonates off the walls of the 
+passages and the flap of their wings is heard from all around. The 
+jagged rock walls of the cave make things even less comforting.
+~
+283 ROOM_DARK|ROOM_INDOORS SECT_UNDER_GROUND
+DDIR_WEST
+~
+~
+0 -1 28347
+DDIR_NORTH
+~
+~
+0 -1 28349
+S
+#28349
+Twist in the cave~
+Here the cave turns to the east and all you can see down the passageway
+is darkness. A cold wind whips through the tunnel chilling you through 
+your armor and your boots crunch over a few pine needles as you stop 
+walking for a second due to the surprising cold of the wind.
+~
+283 ROOM_DARK|ROOM_INDOORS SECT_UNDER_GROUND
+DDIR_SOUTH
+~
+~
+0 -1 28348
+DDIR_NORTH
+~
+~
+0 -1 28350
+S
+#28350
+Inside the cave~
+The cave extends on into the darkness and the big animal tracks go down
+every corridor. The screeches of bats resonates off the walls of the 
+passages and the flap of their wings is heard from all around. The 
+jagged rock walls of the cave make things even less comforting.
+~
+283 ROOM_DARK|ROOM_INDOORS SECT_UNDER_GROUND
+DDIR_SOUTH
+~
+~
+0 -1 28349
+DDIR_EAST
+~
+~
+0 -1 28351
+S
+#28351
+Inside the cave~
+The cave extends on into the darkness and the big animal tracks go down
+every corridor. The screeches of bats resonates off the walls of the 
+passages and the flap of their wings is heard from all around. The 
+jagged rock walls of the cave make things even less comforting.
+~
+283 ROOM_DARK|ROOM_INDOORS SECT_UNDER_GROUND
+DDIR_WEST
+~
+~
+0 -1 28350
+DDIR_EAST
+~
+~
+0 -1 28352
+DDIR_NORTH
+~
+~
+0 -1 28362
+S
+#28352
+Twist in the cave~
+Here the cave turns to the north and all you can see down the passageway
+is darkness. Exploring this cave starts to make you feel a little edgy 
+since you don't know what you're going to find inside. And the random 
+bat attacks don't help much either.
+~
+283 ROOM_DARK|ROOM_INDOORS SECT_UNDER_GROUND
+DDIR_WEST
+~
+~
+0 -1 28351
+DDIR_SOUTH
+~
+~
+0 -1 28353
+S
+#28353
+Twist in the cave~
+Here the cave turns to the east and all you can see down the passageway
+is darkness. A cold wind whips through the tunnel chilling you through 
+your armor and your boots crunch over a few pine needles as you stop 
+walking for a second due to the surprising cold of the wind.
+~
+283 ROOM_DARK|ROOM_INDOORS SECT_UNDER_GROUND
+DDIR_NORTH
+~
+~
+0 -1 28352
+DDIR_EAST
+~
+~
+0 -1 28354
+S
+
+#28354
+Inside the cave~
+As you progress further into the cave it gets a little smaller. It's still
+no problem for anyone to get through, but just as you start thinking about
+it, the cave starts to expand back out again. Bats line the ceiling and 
+they don't really like your presence here.
+~
+283 ROOM_DARK|ROOM_INDOORS SECT_UNDER_GROUND
+DDIR_WEST
+~
+~
+0 -1 28353
+DDIR_EAST
+~
+~
+0 -1 28355
+S
+#28355
+Inside the cave~
+The cave extends on into the darkness and the big animal tracks go down
+every corridor. The screeches of bats resonates off the walls of the 
+passages and the flap of their wings is heard from all around. The 
+jagged rock walls of the cave make things even less comforting.
+~
+283 ROOM_DARK|ROOM_INDOORS SECT_UNDER_GROUND
+DDIR_WEST
+~
+~
+0 -1 28354
+DDIR_NORTH
+~
+~
+0 -1 28356
+S
+#28356
+Bear's Den~
+You've entered the bear's den. The place where it goes to sleep during the
+winter months. The floor on the inside is covered with pine needles to 
+form a makeshift mattress where the bear sleeps. The leftover snapped 
+bones of small animals lay strewn about the room, remnants of meals gone 
+by. This is the place the bear calls home, and that's one thing you don't
+mess with, his home.
+~
+283 ROOM_DARK|ROOM_INDOORS SECT_UNDER_GROUND
+DDIR_SOUTH
+~
+~
+0 -1 28355
+S
+#28357
+Path through the woods~
+This small path follows itself through the woods twisting in many 
+directions. As you walk through the path, a few of the animals take a 
+look of alarm at your entrance, but decide you aren't a threat to their
+existence just quite yet and resume what they're doing.
+~
+283 0 SECT_FOREST
+DDIR_SOUTH
+~
+~
+0 -1 28314
+DDIR_EAST
+~
+~
+0 -1 28358
+DDIR_NORTH
+~
+~
+0 -1 28359
+S
+#28358
+Path through the woods~
+This small path follows itself through the woods twisting in many 
+directions. As you walk through the path, a few of the animals take a 
+look of alarm at your entrance, but decide you aren't a threat to their
+existence just quite yet and resume what they're doing.
+~
+283 0 SECT_FOREST
+DDIR_SOUTH
+~
+~
+0 -1 28315
+DDIR_WEST
+~
+~
+0 -1 28357
+S
+#28359
+A small side path~
+A side path splits off from the edge of the trail just to travel around and
+meet its parent once again. The animal life is a little more active here 
+off the regular trail as seen by a couple of birds flying from the tops of
+trees overhead and the chatter of squirrels. The snow is also little 
+heavier here, but it's a nice scenic side trip.
+~
+283 0 SECT_FOREST
+DDIR_SOUTH
+~
+~
+0 -1 28357
+DDIR_WEST
+~
+~
+0 -1 28360
+DDIR_EAST
+~
+~
+8 -1 28386
+S
+
+#28360
+A small side path~
+A side path splits off from the edge of the trail just to travel around and
+meet its parent once again. The animal life is a little more active here 
+off the regular trail as seen by a couple of birds flying from the tops of
+trees overhead and the chatter of squirrels. The snow is also little 
+heavier here, but it's a nice scenic side trip.
+~
+283 0 SECT_FOREST
+DDIR_EAST
+~
+~
+0 -1 28359
+DDIR_WEST
+~
+~
+0 -1 28361
+S
+#28361
+A small side path~
+A side path splits off from the edge of the trail just to travel around and
+meet its parent once again. The animal life is a little more active here 
+off the regular trail as seen by a couple of birds flying from the tops of
+trees overhead and the chatter of squirrels. The snow is also little 
+heavier here, but it's a nice scenic side trip.
+~
+283 0 SECT_FOREST
+DDIR_SOUTH
+~
+~
+0 -1 28330
+DDIR_EAST
+~
+~
+0 -1 28360
+S
+#28362
+Twist in the cave~
+Here the cave turns to the east and all you can see down the passageway
+is darkness. A cold wind whips through the tunnel chilling you through 
+your armor and your boots crunch over a few pine needles as you stop 
+walking for a second due to the surprising cold of the wind.
+~
+283 ROOM_DARK|ROOM_INDOORS SECT_UNDER_GROUND
+DDIR_SOUTH
+~
+~
+0 -1 28351
+DDIR_NORTH
+~
+~
+0 -1 28363
+S
+#28363
+Inside the cave~
+The cave extends on into the darkness and the big animal tracks go down
+every corridor. The screeches of bats resonates off the walls of the 
+passages and the flap of their wings is heard from all around. The 
+jagged rock walls of the cave make things even less comforting.
+~
+283 ROOM_DARK|ROOM_INDOORS SECT_UNDER_GROUND
+DDIR_SOUTH
+~
+~
+0 -1 28362
+DDIR_WEST
+~
+~
+0 -1 28364
+S
+#28364
+Inside the cave~
+As you progress further into the cave it gets a little smaller. It's still
+no problem for anyone to get through, but just as you start thinking about
+it, the cave starts to expand back out again. Bats line the ceiling and 
+they don't really like you being here.
+~
+283 ROOM_DARK|ROOM_INDOORS SECT_UNDER_GROUND
+DDIR_EAST
+~
+~
+0 -1 28363
+DDIR_WEST
+~
+~
+0 -1 28365
+S
+#28365
+Dead End~
+As you walk into the room, your light illuminates the cave walls and they
+stop abruptly. Looks like you've found another dead end. I guess it's 
+time to turn around.
+~
+283 ROOM_DARK|ROOM_INDOORS SECT_UNDER_GROUND
+DDIR_EAST
+~
+~
+0 -1 28364
+S
+#28366
+A small side path~
+You walk on a barely visible path that doesn't bear too many animal 
+tracks that covered its former. It's not as easy to walk on since the
+animals don't seem to stray too far this way packing the snow down. The
+Snow seems to clear up a bit to the west.
+~
+283 ROOM_NO_MOB SECT_FOREST
+DDIR_EAST
+~
+~
+0 -1 28320
+DDIR_WEST
+~
+~
+0 -1 28367
+S
+#28367
+A small side path~
+The path narrows down a bit further but is still passable. The snow is
+thinning out a bit compared to the regular path and it looks like another
+hot spring is coming up to the west. The animals don't seem to come
+around to far this way..
+~
+283 0 SECT_FOREST
+DDIR_EAST
+~
+~
+0 -1 28366
+DDIR_WEST
+~
+~
+0 -1 28368
+S
+#28368
+An opening in the path~
+A sudden opening in the trees puts you on the edge of the iced over hot
+spring. The bubbles formed in the ice are proof enough that the middle
+of this spring is NOT safe to walk on. Just watch where you're going and
+it should be okay.
+~
+283 0 SECT_FIELD
+DDIR_EAST
+~
+~
+0 -1 28367
+DDIR_WEST
+~
+~
+0 -1 28369
+S
+#28369
+On top of the hot spring~
+Standing in the center of the hot spring, steam rises up from the
+cracks all around you. The ice cracks under the weight of you and your
+gear, and it's not going to last too long. I suggest that you move
+back to the path before something happens.
+~
+283 0 SECT_FIELD
+DDIR_EAST
+~
+~
+0 -1 28368
+S
+#28370
+Under the hot spring~
+You've slipped through the ice and fallen under the hot spring. The
+water bubbles up from all around you and a tunnel lights it's way to
+the north with an eerie reddish light.
+~
+283 0 SECT_UNDER_WATER
+DDIR_NORTH
+~
+~
+0 -1 28371
+S
+#28371
+The hot spring tunnel~
+The tunnel leads it's way north and the current in this tunnel is
+steadily increasing. Looks like you're in for a ride up ahead.
+The reddish light is a little brighter here and is coming from
+the north end of this tunnel where you can see an opening.
+~
+283 0 SECT_UNDER_WATER
+DDIR_NORTH
+~
+~
+0 -1 28372
+DDIR_SOUTH
+~
+~
+0 -1 28370
+S
+#28372
+The hot spring tunnel~
+The tunnel is widens out a little here and the current is still
+getting quicker. You're still good enough to stay in this room
+if you want to, but there's only so much breathe water, so might
+as well move on.
+~
+283 0 SECT_UNDER_WATER
+DDIR_NORTH
+~
+~
+0 -1 28373
+DDIR_SOUTH
+~
+~
+0 -1 28371
+S
+#28373
+A waterfall~
+A sudden slope in the tunnel turns itself into a vicious
+waterfall. All the water in the tunnel is rushing out towards
+the opening which now streams with red light. You grab a
+handhold quick, but no guarantees how long you last before you
+fly out with the tube of water.
+~
+283 0 SECT_UNDER_WATER
+DDIR_SOUTH
+~
+~
+0 -1 28372
+S
+#28374
+Walkway between the lava~
+You've landed on a walkway surrounded by lava. The only safe
+way to go is towards a large throne to the north. The walkway
+is just barely above the level of the lava and could be 
+consumed at any time if the flow increases. The only light in
+the room is the glow of the lava which makes the room look 
+evil in nature.
+~
+283 0 SECT_INSIDE
+DDIR_EAST
+~
+~
+0 -1 28375
+DDIR_WEST
+~
+~
+0 -1 28376
+DDIR_NORTH
+~
+~
+0 -1 28377
+S
+#28375
+Lava flow~
+You're standing in the middle of a lava flow leading towards
+the throne at the northern end of this room. The walls near
+the flow on the lower sections of the wall are covered in ash
+and pumice. It'd be a lot safer to stay on the walkway.
+~
+283 0 SECT_LAVA
+DDIR_WEST
+~
+~
+0 -1 28374
+DDIR_NORTH
+~
+~
+0 -1 28378
+S
+#28376
+Lava flow~
+You're standing in the middle of a lava flow leading towards
+the throne at the northern end of this room. The walls near
+the flow on the lower sections of the wall are covered in ash
+and pumice. It'd be a lot safer to stay on the walkway.
+~
+283 0 SECT_LAVA
+DDIR_EAST
+~
+~
+0 -1 28374
+DDIR_NORTH
+~
+~
+0 -1 28379
+S
+#28377
+Walkway between the lava~
+Water steams up from behind you where it falls from the tunnel
+and hits the lava flow creating a thick fog the streams through
+the room. The man sitting in the throne to the north seems to 
+be watching you intently.. Sizing you up.
+~
+283 0 SECT_INSIDE
+DDIR_SOUTH
+~
+~
+0 -1 28374
+DDIR_EAST
+~
+~
+0 -1 28378
+DDIR_WEST
+~
+~
+0 -1 28379
+DDIR_NORTH
+~
+~
+0 -1 28380
+S
+#28378
+Lava flow~
+You're standing in the middle of a lava flow leading towards
+the throne at the northern end of this room. The walls near
+the flow on the lower sections of the wall are covered in ash
+and pumice. It'd be a lot safer to stay on the walkway.
+~
+283 0 SECT_LAVA
+DDIR_WEST
+~
+~
+0 -1 28377
+DDIR_NORTH
+~
+~
+0 -1 28381
+DDIR_SOUTH
+~
+~
+0 -1 28375
+S
+#28379
+Lava flow~
+You're standing in the middle of a lava flow leading towards
+the throne at the northern end of this room. The walls near
+the flow on the lower sections of the wall are covered in ash
+and pumice. It'd be a lot safer to stay on the walkway.
+~
+283 0 SECT_LAVA
+DDIR_EAST
+~
+~
+0 -1 28377
+DDIR_NORTH
+~
+~
+0 -1 28382
+DDIR_SOUTH
+~
+~
+0 -1 28376
+S
+#28380
+Before the throne~
+You're standing before a large stone throne, topped with
+two large spikes at the two back corners of the chair. The
+man sitting in the throne looks at you as if you may be
+worthy of carrying out his tasks. The reddish light distorts
+your perception of him making him seem more menacing and
+dangerous than he would normally appear.
+~
+283 0 SECT_INSIDE
+DDIR_SOUTH
+~
+~
+0 -1 28377
+DDIR_EAST
+~
+~
+0 -1 28381
+DDIR_WEST
+~
+~
+0 -1 28382
+S
+#28381
+Lava flow~
+The lava crashes up against the wall and flows through an opening
+near the bottom. There's just enough space between the bottom of
+the wall and the opening to let all the lava through without
+impeding the lava's passage and filling up the room.
+~
+283 0 SECT_LAVA
+DDIR_WEST
+~
+~
+0 -1 28380
+DDIR_SOUTH
+~
+~
+0 -1 28378
+S
+#28382
+Lava flow~
+The lava crashes up against the wall and flows through an opening
+near the bottom. There's just enough space between the bottom of
+the wall and the opening to let all the lava through without
+impeding the lava's passage and filling up the room.
+~
+283 0 SECT_LAVA
+DDIR_EAST
+~
+~
+0 -1 28380
+DDIR_SOUTH
+~
+~
+0 -1 28379
+S
+#28383
+Monster Pit~
+A large monster is here running rampant around the room. Half
+starved and half crazed, it looks like he's coming towards...
+you! Better kill it and get out of here ASAP!
+~
+283 0 SECT_INSIDE
+DDIR_UP
+A small wooden door.~
+door wooden~
+4 28311 28380
+S
+#28384
+Monster Pit~
+Oh man.. You keep on digging yourself a deeper hole with this
+guy. He just sent you to a larger room with a larger monster!
+Why do you put yourself through this kind of punishment. *sigh*
+~
+283 0 SECT_INSIDE
+DDIR_UP
+A small wooden door.~
+door wooden~
+4 28312 28380
+S
+#28385
+Monster Pit~
+Looks like ya gone and done it again. Guess what... Bigger 
+Room, Bigger Monster.
+~
+283 0 SECT_INSIDE
+DDIR_UP
+A small wooden door.~
+door wooden~
+4 28313 28380
+S
+#28386
+A hidden trail~
+A barely visible trail splits off from the woods giving you
+the choice of going back into the forest or seeing what's ahead.
+There's lots of small footprints on the ground and they're
+shaped like they came from little people. Hrm.
+~
+283 ROOM_NO_MOB SECT_FIELD
+DDIR_WEST
+~
+~
+0 -1 28359
+DDIR_NORTH
+~
+~
+0 -1 28387
+S
+#28387
+Entrance to Pygmy Village~
+The trees on the sides of the trail clear out to reveal the
+entrance to a small village. True, it isn't a large village,
+but this place is literally small. The houses and shops here
+are about half the size of a regular place so it looks like
+if you want to go anywhere, you're gonna have to duck down.
+~
+283 0 SECT_CITY
+DDIR_SOUTH
+~
+~
+0 -1 28386
+DDIR_NORTH
+~
+~
+0 -1 28388
+E
+sign~
+.  +------------------+
+.  | Welcome to Pygmy |
+.  |     Village!     |
+.  |                  |
+.  | THIS VILLAGE IS  |
+.  |   PROTECTED BY   |
+.  |   Neighborhood   |
+.  |      Watch       |
+.  +------------------+
+.          |::|
+.          |::|
+.        \++++++/
+~
+S
+#28388
+Village Square~
+The square is built on top of a hot spring to keep the
+town warm and the constituents happy. All around this place
+seems pretty lively. Lotsa people walking around having a
+good time and talking to their neighbors. You'd almost fit
+in here if they all weren't so tiny.
+~
+283 0 SECT_CITY
+DDIR_SOUTH
+~
+~
+0 -1 28387
+DDIR_NORTH
+~
+~
+0 -1 28389
+DDIR_EAST
+~
+~
+0 -1 28390
+DDIR_WEST
+~
+~
+0 -1 28391
+S
+#28389
+The Village~
+The village is built in a semicircle of shops and houses
+around the fountain. People are walking around in all
+directions taking part in all kinds of different activities.
+There are shops to the east and west, and a few houses to
+the north.
+~
+283 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 28393
+DDIR_WEST
+~
+~
+0 -1 28394
+DDIR_EAST
+~
+~
+0 -1 28395
+DDIR_SOUTH
+~
+~
+0 -1 28388
+S
+#28390
+Ethel M's Grocery Despot~
+Welcome! You've just entered Ethel M's Grocery Depot where
+the food is fresh and the price is right! The shelves are
+stocked with only the freshest food from all over the
+realms. Mmmmmm...
+~
+283 0 SECT_INSIDE
+DDIR_WEST
+~
+~
+0 -1 28388
+S
+#28391
+Crazy Eddie's Used Pet Lot!~
+HEY HEY HEY! LOOKS LIKE YOU'VE FOUND CRRRRRAAAAAAAAZZZZYYY
+EDDIE'S USED PET LOT! Off to your left is the bargain bin
+where you can pet the "slightly used" and unserviceable pets.
+To the right is the kennels where only the finest in animal
+companions are kept. And straight ahead is the counter with
+Crazy Eddie smiling straight at ya.
+~
+283 ROOM_PET_SHOP SECT_INSIDE
+DDIR_EAST
+~
+~
+0 -1 28388
+S
+#28392
+Pet room~
+This room has pets.
+~
+283 0 SECT_INSIDE
+S
+#28393
+The Village~
+The village is built in a semicircle of shops and houses
+around the fountain. People are walking around in all
+directions taking part in all kinds of different activities.
+There are shops to the east and west, and a few houses to
+the north.
+~
+283 0 SECT_CITY
+DDIR_SOUTH
+~
+~
+0 -1 28389
+DDIR_EAST
+~
+~
+0 -1 28396
+DDIR_WEST
+~
+~
+0 -1 28397
+DDIR_NORTH
+~
+~
+0 -1 28398
+S
+#28394
+Bucko's Training Bonanza~
+This room is in total disarray. There's training equipment
+tossed all over the place and some of it has been here so
+long it's rusted solid. However, he does seem to keep a
+very tight training schedule anyhow.
+~
+283 0 SECT_INSIDE
+DDIR_EAST
+~
+~
+0 -1 28389
+S
+#28395
+Anisa's Bar and Grill~
+Anisa's has a definite western atmosphere. The walls are
+adorned with pictures of covered wagons and various
+lassoes and mining things. If you take a seat at a table
+You'll be served in a moment.
+~
+283 0 SECT_INSIDE
+DDIR_WEST
+~
+~
+0 -1 28389
+S
+#28396
+A pygmy home~
+The small house is actually pretty nice. For living on
+top of a hot spring in the middle of the arctic forest,
+these guys are living pretty nice. A small sofa takes up
+one wall while a fireplace and a few paintings make up
+the opposite.
+~
+283 0 SECT_INSIDE
+DDIR_WEST
+~
+~
+0 -1 28393
+S
+#28397
+A pygmy home~
+The small house is actually pretty nice. For living on
+top of a hot spring in the middle of the arctic forest,
+these guys are living pretty nice. A small sofa takes up
+one wall while a fireplace and a few pictures make up
+the opposite.
+~
+283 0 SECT_INSIDE
+DDIR_EAST
+~
+~
+0 -1 28393
+E
+pictures~
+There are a few pictures of a small boy up on the mantle.
+~
+S
+#28398
+A pygmy home~
+The small house is actually pretty nice. For living on
+top of a hot spring in the middle of the arctic forest,
+these guys are living pretty nice. A small sofa takes up
+one wall while a fireplace and a few paintings make up
+the opposite.
+~
+283 0 SECT_INSIDE
+DDIR_SOUTH
+~
+~
+0 -1 28393
+S
+#0
+
+
+
+
+#RESETS
+M 0 28301  1 28356  ;The  bear in Bear's Den
+M 0 28302  8 28302  ;Squirrels
+M 0 28302  8 28309
+M 0 28302  8 28310
+M 0 28302  8 28313
+M 0 28302  8 28316
+M 0 28302  8 28323
+M 0 28302  8 28327
+M 0 28302  8 28358
+M 0 28300  19 28304  ;Wolves
+M 0 28300  19 28307
+M 0 28300  19 28312
+M 0 28300  19 28312
+M 0 28300  19 28310
+M 0 28300  19 28311
+M 0 28300  19 28314
+M 0 28300  19 28316
+M 0 28300  19 28320
+M 0 28300  19 28322
+M 0 28300  19 28324
+M 0 28300  19 28326
+M 0 28300  19 28331
+M 0 28300  19 28359
+M 0 28300  19 28360
+M 0 28300  19 28361
+M 0 28300  19 28315
+M 0 28300  19 28319
+M 0 28300  19 28331
+M 0 28303  7 28305  ;Owls
+M 0 28303  7 28307
+M 0 28303  7 28318
+M 0 28303  7 28319
+M 0 28303  7 28323
+M 0 28303  7 28357
+M 0 28303  7 28315
+M 0 28304  1 28328  ;The man in the clearing
+M 0 28305  23 28355  ;The large bat
+M 0 28305  23 28353
+M 0 28305  23 28352
+M 0 28305  23 28351
+M 0 28305  23 28351
+M 0 28305  23 28350
+M 0 28305  23 28347
+M 0 28305  23 28343
+M 0 28305  23 28342
+M 0 28305  23 28342
+M 0 28305  23 28333
+M 0 28305  23 28334
+M 0 28305  23 28336
+M 0 28305  23 28337
+M 0 28305  23 28338
+M 0 28305  23 28339
+M 0 28305  23 28339
+M 0 28305  23 28345
+M 0 28305  23 28345
+M 0 28305  23 28346
+M 0 28305  23 28362
+M 0 28305  23 28364
+M 0 28305  23 28365
+O 0 28306  1 28328
+O 0 28304  10 28326
+O 0 28304  10 28313
+O 0 28304  10 28315
+O 0 28304  10 28319
+O 0 28304  10 28361
+O 0 28308  1 28346
+M 0 28307  1 28369  ;The rabid dog
+M 0 28308  1 28373  ;The smaller dog
+M 0 28309  1 28380  ;The tiger
+M 0 28315  1 28397  ;The pygmy chick who lost her kid
+M 0 28313  6 28388  ;Pygmy man
+M 0 28313  6 28388
+M 0 28313  6 28388
+M 0 28313  6 28389
+M 0 28313  6 28389
+M 0 28313  6 28393
+M 0 28314  6 28388  ;Pygmy woman
+M 0 28314  6 28389
+M 0 28314  6 28389
+M 0 28314  6 28393
+M 0 28314  6 28393
+M 0 28314  6 28393
+M 0 28322  1 28392  ;dog in pet shop
+M 0 28323  1 28392  ;cow in petshop
+M 0 28324  1 28392  ;hunting dog in petshop
+D 0 28383  4 2  ;door reset for monster pits
+D 0 28384  4 2
+D 0 28385  4 2
+M 0 28316  1 28320  ;ethereal mob with boy
+M 0 28318  1 28390  ;Ethel M in store
+G 1 28315 1  ;bread to ethel
+G 1 28316 1  ;lettuce to ethel
+G 1 28317 1  ;elf jerky to ethel
+G 1 28318 1  ;milk to ethel
+M 0 28319  1 28391  ;Crazy Eddie in store
+M 0 28320  1 28394  ;Bucko in his training room
+M 0 28321  1 28395  ;Anisa in bar and grill
+G 1 28319 1  ;ale to anisa
+G 1 28320 1  ;leg of lamb to anisa
+M 0 28325  1 28396  ;sentinel pygmy in house
+M 0 28325  1 28398  ;another one
+M 0 28306  1 17238  ; portal mob
+S
+
+#SHOPS
+28318 ITEM_TYPE_FOOD ITEM_TYPE_DRINK_CON 0 0 0 100 80 0 23  ;Ethel M
+28319 0 0 0 0 0 100 80 0 23  ;Crazy Eddie's
+28321 ITEM_TYPE_FOOD ITEM_TYPE_DRINK_CON 0 0 0 100 80 0 23  ;Anisa's
+0
+
+#$

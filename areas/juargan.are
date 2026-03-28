@@ -1,0 +1,3439 @@
+#AREA Kingdom of Juargan~
+#AUTHORS MadMardigan~
+
+#HELPS
+1 Juargan~
+Juargan is a small village comprised of two conflicting forces. For
+many years now the Duergar dwarves and the small dwarves have been fighting
+for dictatorship of the mines. Since the death of their father King Zadrian,
+Mathius, and his brother Grimdale have been fighting over who should be king
+of Juargan. 
+
+{110}***Area Updaters Note***
+{300}I updated this area with newbies to Mortal Realms in mind. The area was
+originally just a simple, plain area with basically nothing in it. I added
+a nice quest for players under and including level 40. There are also some
+other nice items to check out, and a nice place to level. Please keep in
+mind that the area uses several random programs, so be patient while talking
+to the mobs, as they may take some time to say everything to you.
+
+Enjoy, and Good Luck!
+MadMardigan      {120}12/11/99{300}
+
+~
+1 juargan_version~
+{110}Juargan version 4.00 {060}   {120}03/04/00
+~
+0 $~
+#RANGES 10 50 0 99
+#MOBILES
+#4700
+dwarf~
+A Small Dwarf~
+A small dwarf is here mining at the tunnel walls.~
+The small dwarf is dirty and dressed only in a small tunic and leggings.  His
+beard is encrusted with cracked rock and dust from the tunnel walls.~
+ACT_RACE|ACT_BODY|ACT_SMART|ACT_SENTINEL
+AFF_UNDERSTAND|AFF_DETECT_HIDDEN|AFF_DETECT_INVIS|AFF_TONGUES
+500 S
+45 0 0 600d1+50 10d4+5
+50 RACE_DWARF
+POS_STANDING POS_STANDING SEX_MALE
+>rand_prog 10~
+   mpecho $I grumbles under his breath.
+~
+|
+#4701
+dwarf guard~
+The Dwarf Guard~
+A Dwarf Guard is here, dressed in a makeshift suit of armor.~
+This small dwarf is the militia of Juargan's Kingdom.  The
+small body is strong which makes him a match for any foe.  The armor of the
+dwarf is of no use to anyone but him, but provides adequate defense.~
+ACT_RACE|ACT_BODY|ACT_SMART|ACT_SENTINEL
+AFF_UNDERSTAND|AFF_SANCTUARY|AFF_DETECT_HIDDEN|AFF_DETECT_INVIS|AFF_TONGUES
+700 S
+45 0 0 700d1+50 10d4+5
+150 RACE_DWARF
+POS_STANDING POS_STANDING SEX_MALE
+#4702
+yentle123~
+Yentle the Dwarf~
+Yentle is here trying to grow rocks.~
+The insane little dwarf who thinks he can grow a rock.  He is dressed in many
+yellows and oranges, and seems to have a happy look about him despite his years
+of failure at growing rocks.~
+ACT_RACE|ACT_BODY|ACT_SMART|ACT_SENTINEL
+AFF_UNDERSTAND|AFF_DETECT_HIDDEN|AFF_DETECT_INVIS|AFF_TONGUES
+1000 S
+10 0 0 10d10+100 2d6+9
+300 RACE_DWARF
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+ if level($n) <= 40
+   if inroom($i) == 4786
+         if quest(0, 4, $n) == 0
+            mpechoat $n $I looks at you cross-eyed.
+            tell $n Ummm, Ummm, Hello.
+            tell $n Im tryin to grow rocks, ya want to help me?
+            mpmset $n quest 0 4 1
+       endif
+    endif
+~
+>speech_prog p yes~
+  if quest(0, 4, $n) == 1
+    tell $n Ummm, wow, ummm, yous are so nice.
+    tell $n Yous haves to haves three stones
+    tell $n soes ya cans grow dem.
+    tell $n Uncles wont let me leave the yard,
+    tell $n cause of all da fighting going on
+    tell $n arounds here. Maybes yous cans
+    tell $n finds em for me.
+    mpecho $I starts to shake violently.
+    mpmset $n quest 0 4 2
+  endif
+~
+>give_prog i4722~
+    if inroom($i) == 4786
+        if quest(0, 4, $n) == 2
+             tell $n Oh Boy!! yous founded a large stone. Yipee!!
+             mpecho $I takes the large stone and sets it on the ground.
+             tell $n Ok, yous needs to finded me twos more.
+             mpmset $n quest 0 4 3
+             mpjunk i4722
+        else
+            give large $n
+            tell $n I's cant use dis rock first silly.
+        endif
+    endif
+~
+>give_prog i4721~
+    if inroom($i) == 4786
+         if quest(0, 4, $n) == 3
+             tell $n Oh Boy!! yous founded a medium size stone. Yipee!!
+             mpecho $I takes the stone and sets it on the large stone.
+             tell $n Ok, yous needs to finded me one more.
+             mpmset $n quest 0 4 4
+             mpjunk i4721
+         else
+             give medium $n
+             tell $n I's cant use dis rock first silly.
+         endif
+    endif
+~
+>give_prog i4720~
+     if inroom($i) == 4786
+        if quest(0, 4, $n) == 4
+             tell $n Oh Boy!! yous founded a large stone. Yipee!!
+             mpecho $I takes the stone and sets it on the medium stone.
+             tell $n Now I wills stay and watch it grow.
+             mpmset $n quest 0 4 5
+             mpmset self quest 0 2 1
+             mpjunk i4720
+        else
+             give small $n
+             tell $n I's cant use dis rock first silly.
+        endif
+    endif
+~
+>rand_prog 50~
+    if quest(0, 2, self) == 1
+       mpmload 4721 
+       mpforce siven1234 shout Yentil, get in here, dinner is ready!!
+       mpmset self quest 0 2 2
+       mppurge siven1234
+    else
+        if quest(0, 2, self) == 2
+           shout Coming uncle Siven!
+           say Well I's guess I's best be going.
+           say Hey whys dont yous come inside
+           say and meet uncle Siven.
+           mpecho $I leaves east.
+           mpgoto 4771
+           mpmset self quest 0 2 3
+        endif
+    endif
+~
+>all_greet_prog 100~
+    if inroom($n) == 4786
+      if quest(0, 4, $n) >= 6
+            tell $n Hi $n, I'm still waiting for
+            tell $n des rocks ta grow!
+            mpechoat $n $I gives you a huge smile.
+      endif
+    endif
+~
+|
+#4703
+mathius123 king~
+King Mathius~
+Mathius the King of the small dwarves is here.~
+The small king is bulging at the seems with muscle.  He is dressed in nothing
+but a noble robe made of a grey silk.  His face has a visage of stone like his
+surroundings, as if his burden has become to much for him.~
+ACT_RACE|ACT_BODY|ACT_SMART|ACT_SENTINEL
+AFF_UNDERSTAND|AFF_SANCTUARY|AFF_DETECT_HIDDEN|AFF_DETECT_INVIS|AFF_TONGUES
+1000 S
+40 0 0 800d1+50 10d3+9
+1000 RACE_DWARF
+POS_STANDING POS_STANDING SEX_MALE
+>death_prog 100~
+if actorhasobjnum(30900)
+or actorhasobjnum(30966)
+or actorhasobjnum(30967)
+or actorhasobjnum(30968)
+or actorhasobjnum(30969)
+  if quest(30,1,$n) == 0
+    mpmset $n quest 30 1 1
+    mpoload 30914
+    mpforce $n HELP GUILDTOKEN
+    mpquiet on
+    c 'giant strength' $n
+    give i30914 $n
+    mpquiet off
+  endif
+endif
+
+if level($n) <= 40
+    say You were a worthy opponent! I die with honor!
+else
+    say You were not a worthy opponent! 
+    rem i4731
+    mpjunk i4731 
+    cackle
+endif
+~
+>all_greet_prog 100~
+    if inroom($i) == 4749
+      if quest(4, 1, $n) == 0
+            say Any new reports on the excavations in the mines?
+            mpmset self quest 8 1 1
+            mpmset $n quest 4 1 1
+      endif
+    endif
+~
+>rand_prog 75~
+     if quest(8, 1, self) == 1
+        mpforce guard say No sir. No new reports, but the search still goes on.
+        mpmset self quest 8 1 2
+     endif
+~
+>speech_prog p siven beckons you.~
+   if inroom($i) == 4749
+      if quest(11, 4, $n) == 3
+          if quest(17, 2, $n) == 0
+              tell $n What does he want?
+              sigh
+              mpmset $n quest 17 2 1
+          endif
+      endif
+  endif
+~
+>speech_prog p meet him at the ancients tomb.~
+   if inroom($i) == 4749
+      if quest(17, 2, $n) == 1
+              tell $n He keeps babbeling on about how dad
+              tell $n wanted us both to rule Juargan. 
+              sigh
+              mpmset $n quest 17 2 2
+              mpecho $I leaves south.
+              mpgoto 4769
+      endif
+  endif
+~
+>all_greet_prog 100~
+      if quest(11, 4, $n) == 8
+         tell $n You truly are an honorable warrior $n.
+         bow $n
+      endif
+~
+|
+#4704
+duergar dwarf~
+The Duergar Dwarf~
+A repulsive Duergar is here, biting at its own arm.~
+The Duergar are the outcast dark dwarves.  They have grown insane through
+their isolation from the rest of the dwarven population and have become bitter
+enemies with them.~
+ACT_RACE|ACT_BODY|ACT_SMART|ACT_SENTINEL
+AFF_UNDERSTAND|AFF_DETECT_HIDDEN|AFF_DETECT_INVIS|AFF_TONGUES
+-1000 S
+45 0 0 600d1+50 10d4+5
+100 RACE_DWARF
+POS_STANDING POS_STANDING SEX_MALE
+>rand_prog 10~
+   mpecho $I grumbles under his breath.
+~
+|
+#4705
+grimdale123~
+Grimdale the Duergar King~
+Grimdale the duergar King is here.~
+He stands before you with a robust fortitude. He looks as though he has seen
+a great deal of battle in his time. His once cheery face has turned
+into a crude scowl as you can feel that his soul is not at ease.~
+ACT_RACE|ACT_BODY|ACT_SMART|ACT_SENTINEL
+AFF_UNDERSTAND|AFF_SANCTUARY|AFF_DETECT_HIDDEN|AFF_DETECT_INVIS|AFF_TONGUES
+-999 S
+40 0 0 800d1+10 10d3+9
+0 RACE_DWARF
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+  if level($n) <= 40
+    if inroom($i) == 4732
+        if quest(5, 2, $n) == 0
+            mpechoat $n $I looks you over.
+            tell $n You look like you could be of use to me.
+            tell $n Would you do me a favor?
+            mpmset $n quest 5 2 1
+      endif
+    endif
+  endif
+~
+>speech_prog yes~
+   if inroom($i) == 4732
+      if quest(5, 2, $n) == 1
+          tell $n I swear my men are useless. For several
+          tell $n years now they have been searching for
+          tell $n three pieces of a staff. My father broke
+          tell $n the staff and buried them in three
+          tell $n different areas of these mines in order
+          tell $n to safeguard the village many years ago.
+          tell $n This staff is very important to me.
+          tell $n If you can help my men find the three 
+          tell $n pieces I will reward you.
+          mpechoat $n $I smiles at you perversely.
+          mpmset $n quest 5 2 2
+      endif
+   endif
+~
+>all_greet_prog 100~
+     if quest(11, 4, $n) == 1
+        tell $n Ahh, Well done! You found the
+        tell $n three pieces. Give them to me
+        tell $n and I shall reward you.
+        mpmset self quest 9 1 1 
+     endif
+~
+>give_prog i4723~
+     if inroom($i) == 4732
+       if quest(19, 1, $n) == 0
+          mpmset $n quest 19 1 1
+          smile $n
+          mpjunk i4723
+      else
+          say I have no use for this!
+          mpjunk i4723
+      endif
+    endif
+
+     if quest(20, 1, $n) == 1
+        if quest(21, 1, $n) == 1
+            say Here is a bag of gold for ya.
+            say Thanks a bunch.
+            mpecho $I drops a bag of gold.
+            cackles
+            mpoload 4700
+            mpquiet on
+            drop i4700
+            mpquiet off
+            mpmset $n quest 11 4 9
+        endif
+     endif
+~
+>give_prog i4724~
+     if inroom($i) == 4732
+       if quest(20, 1, $n) == 0
+          mpmset $n quest 20 1 1
+          smile $n
+          mpjunk i4724
+      else
+          say I have no use for this!
+          mpjunk i4724
+      endif
+    endif
+
+     if quest(19, 1, $n) == 1
+        if quest(21, 1, $n) == 1
+            say Here is a bag of gold for ya.
+            say Thanks a bunch.
+            mpecho $I drops a bag of gold.
+            cackles
+            mpoload 4700
+            mpquiet on
+            drop i4700
+            mpquiet off
+            mpmset $n quest 11 4 9
+        endif
+     endif
+~
+>give_prog i4725~
+     if inroom($i) == 4732
+       if quest(21, 1, $n) == 0
+          mpmset $n quest 21 1 1
+          smile $n
+          mpjunk i4725
+      else
+          say I have no use for this!
+          mpjunk i4725
+      endif
+    endif
+
+     if quest(19, 1, $n) == 1
+        if quest(20, 1, $n) == 1
+            say Here is a bag of gold for ya.
+            mpecho $I drops a bag of gold.
+            say Thanks a bunch.
+            cackles
+            mpoload 4700
+            mpquiet on
+            drop i4700
+            mpquiet off
+            mpmset $n quest 11 4 9
+        endif
+     endif
+~
+>act_prog p gets a bag of gold.~
+          mpmadd $n gold 2000000
+          mpechoat $n Grimdale pays you a lump sum of 2 million gp.
+          mpquiet on
+          mpforce $n drop i4700
+          sac all
+          mpquiet off
+      endif
+~
+>speech_prog p siven beckons you.~
+   if inroom($i) == 4732
+      if quest(11, 4, $n) == 3
+          if quest(15, 2, $n) == 0
+              tell $n What in heavens sake does
+              tell $n that old man want now?
+              sigh
+              mpmset $n quest 15 2 1
+          endif
+      endif
+  endif
+~
+>speech_prog p meet him at the ancients tomb.~
+   if inroom($i) == 4732
+      if quest(15, 2, $n) == 1
+              tell $n He keeps babbeling on about how dad
+              tell $n wanted us both to rule Juargan.
+              tell $n I wonder what he wants this time.
+              sigh
+              mpmset $n quest 15 2 2
+              mpecho $I leaves south.
+              mpgoto 4769
+      endif
+  endif
+~
+>death_prog 100~
+    if level($n) <= 40
+       say You were a worthy opponent! I die with honor!
+    else
+       say You were not a worthy opponent! 
+       rem i4732
+       mpjunk i4732
+       cackle
+    endif
+~   
+>all_greet_prog 100~
+      if quest(11, 4, $n) == 8
+         tell $n You truly are an honorable warrior $n.
+         bow $n
+      endif
+~
+|
+#4706
+rock worm dreaded~
+The Dreaded Rock Worm~
+The dreaded rock worm has blasted through the rock wall, its jaws open wide!~
+The jaws of this strange beast are large enough to fit at lease two dwarves
+into.  Judging by the size you can see that is has been eating quite a few too
+many dwarves as it's body is at least five feet in diameter.~
+ACT_RACE|ACT_BODY|ACT_SENTINEL
+AFF_DETECT_INVIS
+0 S
+20 0 0 9d10+250 3d9+9
+4000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_NEUTRAL
+#4707
+spirit dwarf~
+A Dwarven Spirit~
+A small dwarven spirit is at unrest here.~
+The small spirit screams in agony as it is bound to this wretched existence.
+The soul of some unfortunate dwarf now has to fly aimlessly through this chamber
+of eternal pain.~
+ACT_RACE|ACT_BODY|ACT_SENTINEL|ACT_AGGRESSIVE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_SANCTUARY
+-999 S
+15 0 0 9d10+200 2d6+9
+0 5687
+POS_STANDING POS_STANDING SEX_NEUTRAL
+#4708
+duergar guard~
+The Duergar Guard~
+A Duergar guard is here, biting at its own arm.~
+The Duergar are the outcast dark dwarves.  They have grown insane through
+their isolation from the rest of the dwarven population and have become bitter
+enemies with them.~
+ACT_RACE|ACT_BODY|ACT_SMART|ACT_SENTINEL
+AFF_UNDERSTAND|AFF_SANCTUARY|AFF_DETECT_HIDDEN|AFF_DETECT_INVIS|AFF_TONGUES
+700 S
+45 0 0 700d1+50 10d4+5
+150 RACE_DWARF
+POS_STANDING POS_STANDING SEX_MALE
+#4709
+pasty~
+Pasty~
+Pasty stands here ready to serve you.~
+{060}He is a relatively short dwarf, but wears a cloak with a some sort of
+forceful energy flowing from it. You think it best not to mess with him.~
+ACT_RACE|ACT_SENTINEL|ACT_SMART|ACT_BODY
+AFF_TONGUES|AFF_DETECT_INVIS|AFF_DETECT_MAGIC|AFF_DETECT_HIDDEN|AFF_SANCTUARY|AFF_UNDERSTAND
+0 S
+90 0 0 10000d1+5000 100d1+20
+0 RACE_DWARF
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if time() <= 11
+  tell $n Good Morning!
+  mpforce $n list
+else
+  if time() <= 15
+        tell $n Good Afternoon!
+        mpforce $n list
+  else
+    if time() <= 23
+           tell $n Good Evening!
+           mpforce $n list
+    endif
+  endif
+ endif
+~
+|
+#4710
+Bramela~
+Bramela~
+Bramela stands here ready to serve you.~
+{060}She is one of the most beautiful dwarves you have ever seen. The work she
+does is certainly a reflection of her beauty as well.~
+ACT_RACE|ACT_SENTINEL|ACT_SMART|ACT_BODY
+AFF_TONGUES|AFF_DETECT_INVIS|AFF_DETECT_MAGIC|AFF_DETECT_HIDDEN|AFF_SANCTUARY|AFF_UNDERSTAND
+0 S
+90 0 0 10000d1+5000 100d1+20
+0 RACE_DWARF
+POS_STANDING POS_STANDING SEX_FEMALE
+>all_greet_prog 100~
+if time() <= 11
+  tell $n Good Morning!
+  tell $n Can I interest you in some jewelry?
+  mpforce $n list
+else
+  if time() <= 15
+        tell $n Good Afternoon!
+        tell $n Can I interest you in some jewelry?
+        mpforce $n list
+  else
+    if time() <= 23
+           tell $n Good Evening!
+           tell $n Can I interest you in some jewelry?
+           mpforce $n list
+    endif
+  endif
+ endif
+~
+|
+#4711
+Leatherbie~
+Leatherbie~
+Leatherbie stands here ready to assist you.~
+{060}His head can just barely be seen over the top of the counter. His beard
+covers his whole face and his small black beady eyes stare at you sending a
+quick shiver up your back.~
+ACT_RACE|ACT_SENTINEL|ACT_SMART|ACT_BODY
+AFF_TONGUES|AFF_DETECT_INVIS|AFF_DETECT_MAGIC|AFF_DETECT_HIDDEN|AFF_SANCTUARY|AFF_UNDERSTAND
+0 S
+90 0 0 10000d1+5000 10d10+50
+100000 RACE_DWARF
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if time() <= 11
+  tell $n Good Morning!
+  tell $n What can I do ya for?
+  mpforce $n list
+else
+  if time() <= 15
+        tell $n Good Afternoon!
+        tell $n What can I do ya for?
+        mpforce $n list
+  else
+    if time() <= 23
+           tell $n Good Evening!
+           tell $n What can I do ya for?
+           mpforce $n list
+    endif
+  endif
+ endif
+~
+>all_greet_prog 100~
+  if level($n) <= 40
+    if quest(10, 1, $n) == 0
+       tell $n How bouts my famous sticky bomb?
+       tell $n This invention of mine is a blast.
+       tell $n No pun intended.
+       mpechoat $n $I cackles insanely.
+       tell $n Anyways, all yas got to do is "drop"
+       tell $n it where ya want it, and BOOM! You hope!
+       tell $n Sometimes they dont always work.
+       mpechoat $n $I gives you a big smile.
+       mpmset $n quest 10 1 1
+    endif
+  endif
+~
+|
+#4712
+siven123~
+Siven the Wise~
+Siven is here deep in thought.~
+{060}Siven is a respectfully old man, who looks as if a great deal of wisdom
+and knowledge fills his mind.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_TONGUES|AFF_DETECT_INVIS|AFF_DETECT_MAGIC|AFF_DETECT_HIDDEN|AFF_SANCTUARY|AFF_UNDERSTAND
+0 S
+95 0 0 15000d1+0 11d11+24
+100000 RACE_DWARF
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+  if inroom($i) == 4771
+   if quest(0, 4, $n) == 5
+      tell $n Oh, excuse me sir, we have just sat down
+      tell $n for dinner, would you please come back later.
+      mpmset $n quest 0 4 6
+      mpmset self quest 2 6 1
+   endif
+ endif
+~
+>rand_prog 55~
+   if quest(2, 6, self) == 1
+       mpforce yentle123 say Nos uncle Siven, dis man is my friend $r.
+       mpforce yentle123 say Hes help me grow rocks in da yard.
+       mpforce yentle123 say Can hes please stay for dinner uncle?
+       mpmset self quest 2 6 2
+       break
+   endif
+   if quest(2, 6, self) == 2
+      say Well I guess that will be alright my young
+      say Yentil. Please $r, rest and enjoy dinner with us.
+      mpquiet on
+      mpforce $r rest
+      mpquiet off
+      mpechoat $r You sit down at the table to eat.
+      mpmset self quest 2 6 3
+      break
+   endif
+   if quest(2, 6, self) == 3
+      say So you have made a new friend my young Yentil?
+      mpmset self quest 2 6 4
+      break
+   endif
+   if quest(2, 6, self) == 4
+      mpforce yentle123 say Yes uncle Siven, and he is 
+      mpforce yentle123 say really nice too. He help me
+      mpforce yentle123 say finded rocks so I cans grow dem.
+      mpforce yentle123 smile
+      mpecho Yentil starts playing with his food.
+      mpmset self quest 2 6 5
+      break
+   endif
+   if quest(2, 6, self) == 5
+      say That is great my young Yentil.
+      say Do not play with your food.
+      say It is improper ettiquette.
+      mpmset self quest 2 6 6
+      break
+   endif
+   if quest(2, 6, self) == 6
+      mpforce yentle123 say I'm sorry uncle Siven.
+      mpmset self quest 2 6 7
+      break
+   endif
+   if quest(2, 6, self) == 7
+      say Why dont you clean up and go outside and
+      say play, while $r and I talk.
+      mpmset self quest 2 6 8
+      break
+   endif
+   if quest(2, 6, self) == 8
+      mpforce yentle123 say Ok uncle Siven.
+      mpecho Yentil wipes his hands and face on a cloth.
+      mpecho Yentil leaves west.
+      mpquiet on
+         mpforce yentle123 goto 4786
+      mpquiet off
+      mpmset self quest 2 6 9
+      break
+   endif
+   if quest(2, 6, self) == 9
+      say Yentils parents were killed fifteen years ago during
+      say the Great Dwarven War and I have adopted him as my son,
+      say and swore to his father before he died to be
+      say his guardian. It is very kind of you $r to give
+      say young Yentil some attention. There are not many
+      say young children here in Juargan who will. Young
+      say Yentil has a mental disorder, so the other
+      say children make it rather difficult for him.
+      mpmset self quest 2 6 10
+      break
+   endif
+   if quest(2, 6, self) == 10
+      say Unfortunately, there are even worse Problems in our
+      say village that worries me more so than young Yentil's.
+      mpmset self quest 2 6 11
+      mpmset $r quest 0 4 6 
+      break
+   endif
+   if quest(2, 6, self) == 12
+      mpforce grimdale123 say What is it Siven?
+      mpmset self quest 2 6 13
+      break
+   endif
+   if quest(2, 6, self) == 13
+      say The pieces of the staff have been found.
+      mpecho $I bows before you.
+      say And I have assembled the three pieces together to form
+      say the original Staff of Ruling.
+      mpmset self quest 2 6 14
+      break
+   endif
+   if quest(2, 6, self) == 14
+      mpecho Grimdale looks at you.
+      mpforce Grimdale123 say I asked you to get those pieces for me.
+      mpmset self quest 2 6 15
+      break
+   endif
+   if quest(2, 6, self) == 15
+      say No Grimdale, this Kingdom is not to be ruled by you
+      say alone. Your father told me before he died, it was
+      say important that both of his sons must rule Juargan
+      say together. In order to safeguard and protect the
+      say Kingdom, you both need to support each other.
+      mpmset self quest 2 6 16
+      break
+   endif
+   if quest(2, 6, self) == 16
+      open large
+      mpecho $I lays the Staff of Ruling on the corpse of King Zadrian.
+      mpmset self quest 2 6 17
+      break
+   endif
+   if quest(2, 6, self) == 17
+      mpecho The stone sarcophagus begins to shake violently.
+      mpmset self quest 2 6 18
+      breal
+   endif
+   if quest(2, 6, self) == 18
+      mpecho The ghost of King Zadrian appears before you.
+      mpmload 4716
+      mpmset self quest 2 6 19
+      break
+   endif
+   if quest(2, 6, self) == 19
+      mpforce zadrian123 say Grimdale. Mathius. My sons. I call upon you 
+      mpforce zadrian123 say to listen to my words, if not those of the great
+      mpforce zadrian123 say wise man Siven. 
+      mpmset self quest 2 6 20
+      break
+   endif
+   if quest(2, 6, self) == 20
+      mpforce zadrian123 say Juargan must not be led astray by two men who seek 
+      mpforce zadrian123 say their own initiatives. Jagoan and his forces will
+      mpforce zadrian123 say return to dismantle what I created here in Juargan.  
+      mpforce zadrian123 say You mustn't let this happen. You both share equal
+      mpforce zadrian123 say power. The power to build, strenghten, and protect
+      mpforce zadrian123 say your people. Together.
+      mpmset self quest 2 6 21
+      break
+   endif
+   if quest(2, 6, self) == 21
+      mpecho The Ghost of Zadrian extends his arms out.
+      mpforce zadrian123 say Both of you hold the head of the staff.
+      mpmset self quest 2 6 22
+      break
+   endif
+   if quest(2, 6, self) == 22
+      mpecho Grimdale and Mathius hold the end of the staff.
+      mpecho A bright green light shines forth blinding you.
+      mpecho The room begins to shake vehemently.
+      mpecho The power of Zadrian's ghost transfers into Grimdale and Mathius.
+      mpmset self quest 2 6 23
+      break
+   endif
+   if quest(2, 6, self) == 23
+      mpecho The bright light quickly vanishes into the sarcophagus. 
+      mpecho The lid of the sarcophagus slams shut.
+      mppurge zadrian123
+      mpmset self quest 2 6 24
+      break
+   endif
+   if quest(2, 6, self) == 24
+      mpecho Grimdale and Mathius both look at each other.
+      mpmset self quest 2 6 25
+      break
+   endif
+   if quest(2, 6, self) == 25
+      say Your father, God rest his soul, has spoken.
+      say Now heed his words and rule our Kingdom as one.
+      say You now have the power of the Staff.
+      mpmset self quest 2 6 26
+      break
+   endif
+   if quest(2, 6, self) == 26
+      mpmload 4717
+      mpmload 4718
+      mpmload 4719
+      mpmload 4720
+      mpecho General Jagoan and his guards show up!
+      mpforce jagoan123 say Yes, and now that power belongs to me!
+      mpforce jagoan123 say Guards! Seize them!
+      mpecho One of the guards draws his sword and puts it to your throat!
+      mpmset self quest 2 6 27
+      break
+   endif
+   if quest(2, 6, self) == 27
+      mpforce jagoan123 say Now hand over the Staff of Ruling!
+      mpecho Grimdale hands over the staff with a defeated expression.
+      mpmset self quest 2 6 28
+      break
+   endif
+   if quest(2, 6, self) == 28
+      mpforce jagoan123 say At last I have the Staff of Ruling.
+      mpforce jagoan123 say Before I slit your fathers throat he told
+      mpforce jagoan123 say me I could never succeed in my conquest.
+      mpforce jagoan123 say Well, he was wrong!
+      mpforce jagoan123 cackle
+      mpforce jagoan123 say Guards! Kill them all!
+      mpmset self quest 2 6 29
+      break
+   endif
+   if quest(2, 6, self) == 29
+      mpmload 4701
+      mpmload 4708
+      mpecho A dwarf guard and duergar guard show up!
+      mpforce duergar say ATTACK!!!!
+      mpforce dwarf say For Juargan!!!
+      mpmset self quest 2 6 30
+      break
+   endif
+   if quest(2, 6, self) == 30
+      mpecho A Duergar Guard swings his sword and beheads a guard!
+      mppurge guard1
+      mpecho The Dwarf Guard thrusts his sword through a guards stomach!
+      mppurge guard2
+      mpecho Grimdale grabs the sword from the guard!
+      mpecho Mathius draws his knife and slices his throat killing him!
+      mppurge guard3
+      mpmset self quest 2 6 31
+      break
+   endif
+   if quest(2, 6, self) == 31
+      mpecho Jagoan swipes the Staff of Ruling and takes off.
+      mpecho Jagoan runs south.
+      mptransfer jagoan123 4787
+      mpecho You take off after Jagoan!
+      mptransfer $r 4787
+      mppurge dwarf 
+      mppurge duergar
+      mptransfer Mathius123 4788 
+      mptransfer Grimdale123 4788
+      mpgoto 4788
+      mpmset self quest 2 6 32
+      break
+   endif
+   if inroom($i) == 4789
+       if quest(2, 6, self) == 32
+          mpecho Siven, Grimdale and Mathius show up.
+          mpecho Siven looks at you with awe.
+          mpmset self quest 2 6 33
+      else    
+          if quest(2, 6, self) == 33 
+             say You defeated the mighty Jagoan!
+             say You are a brave warrior $r. 
+             mpmset self quest 2 6 34
+          else   
+             if quest(2, 6, self) == 34
+                mpecho You hand the Staff of Ruling over to Siven.
+                say Thank you $r. 
+                mpforce grimdale123 say Thank you for avenging the death
+                mpforce grimdale123 say of our father $r.
+                mpforce Mathius123 say We will both rule Juargan as one. 
+                mptransfer Mathius123 4749
+                mptransfer grimdale123 4732
+                mpmset self quest 2 6 35
+             else
+                if quest(2, 6, self) == 35
+                   mptransfer $r 4771
+                   mpquiet on
+                   goto 4771
+                   mpquiet off
+                   say For your courage and bravery $r,
+                   say please except this reward.
+                   mpoload 4733
+                   give i4733 $r
+                   say It was dug deep from the mines here. It might
+                   say prove to be of use to you. It will restore your
+                   say health, mana and movement while you sleep.
+                   say Good luck to you $r.
+                   mpmset self quest 2 6 36
+                   mpmset $r quest 11 4 8 
+                 endif
+              endif
+           endif
+        endif
+     endif
+~
+>speech_prog p problems~
+if inroom($i) == 4771
+ if quest(0, 4, $n) == 6
+    tell $n I am very concerned about the welfare
+    tell $n of our village. A dispute has been
+    tell $n prominent now for several years between
+    tell $n the two classes of Dwarves here in Juargan.
+    mpmset $n quest 0 4 7
+ endif
+endif
+~
+>speech_prog p dwarves~
+if inroom($i) == 4771
+ if quest(0, 4, $n) == 7
+    tell $n There are the small dwarves ruled by Mathius,
+    tell $n and the duergar dwarves ruled by his
+    tell $n brother Grimdale. They are both in search of
+    tell $n the Staff of ruling.
+    mpmset $n quest 0 4 8
+ endif
+endif
+~
+>speech_prog p staff~
+if inroom($i) == 4771
+ if quest(0, 4, $n) == 8
+    tell $n The legendary staff holds a multitude of
+    tell $n powers, and the one who carries it and
+    tell $n follows the words written on it will
+    tell $n gain the powers and strength to become
+    tell $n the true King of Juargan. Unfortunately,
+    tell $n fifteen years ago the former king of
+    tell $n Juargan, Zadrian, also the father of
+    tell $n Mathius and Grimdale, was forced to
+    tell $n Destroy the staff.
+    mpmset $n quest 0 4 9
+ endif
+endif
+~
+>speech_prog p destroy~
+if inroom($i) == 4771
+ if quest(0, 4, $n) == 9
+    tell $n During this time fifteen years ago,
+    tell $n the Great Dwarven War had broken out
+    tell $n against the Ogre army led by the evil
+    tell $n General Jagoan. King Zadrian was killed
+    tell $n by Jagoan but not before Zadrian had
+    tell $n destroyed the staff into three pieces
+    tell $n and had them buried deep
+    tell $n within the confines of the Mines.
+    mpmset $n quest 0 4 10
+ endif
+endif
+~
+>speech_prog p mines~
+if inroom($i) == 4771
+ if quest(0, 4, $n) == 10
+    tell $n The dwarves fought hard and were successful
+    tell $n in driving General Jagoan out of Juargan,
+    tell $n but ever since then Mathius and Grimdale
+    tell $n have been feuding over who is the rightful
+    tell $n heir to the throne. The dwarves split into
+    tell $n two factions, the small dwarves led by
+    tell $n Mathius, and the duergar dwarves led by
+    tell $n Grimdale. Both factions claimed sections of
+    tell $n the mines to themselves, and both are
+    tell $n desperately seeking to find the pieces of
+    tell $n the staff. The three pieces once joined
+    tell $n together will transfer its power and
+    tell $n energy to the one who holds it, and thus
+    tell $n becomes the rightful Heir to the throne.
+    mpmset $n quest 0 4 11
+ endif
+endif
+~
+>speech_prog p heir~
+if inroom($i) == 4771
+ if quest(0, 4, $n) == 11
+    tell $n Before Zadrian died he confided in me that
+    tell $n he wanted both of his sons to rule Juargan
+    tell $n together as one. Despite my attempts to
+    tell $n influence their thinking they are both
+    tell $n stubborn and continue to carry on as seperatists.
+    tell $n You must find the three pieces of the
+    tell $n staff $n, and you MUST bring them to me.
+    mpmset $n quest 0 4 12
+ endif
+endif
+~
+>all_greet_prog 100~
+   if inroom($i) == 4771
+     if quest(11, 4, $n) == 1
+         tell $n Ahh $n, you have been successful
+         tell $n in obtaining the pieces.
+         tell $n Well Done!
+         tell $n Give them to me please.
+         mpmset $n quest 11 4 2
+     endif
+   endif
+~
+>give_prog i4723~
+     if inroom($i) == 4771
+       if quest(22, 1, $n) == 0
+          mpmset $n quest 22 1 1
+          smile $n
+          mpjunk i4723
+      else
+          say I have no use for this!
+          mpjunk i4723
+      endif
+    endif
+
+     if quest(23, 1, $n) == 1
+        if quest(24, 1, $n) == 1
+           say Excellent. Now it is time to prove to these two men
+           say that their father wanted them both to rule Juargan
+           say together. Go and tell them both that "Siven beckons you."
+           say and tell them to "meet him at the ancients tomb."
+           say Do you understand?
+        endif
+     endif
+~
+>give_prog i4724~
+     if inroom($i) == 4771
+       if quest(23, 1, $n) == 0
+          mpmset $n quest 23 1 1
+          smile $n
+          mpjunk i4724
+      else
+          say I have no use for this!
+          mpjunk i4724
+      endif
+    endif
+
+     if quest(22, 1, $n) == 1
+        if quest(24, 1, $n) == 1
+           say Excellent. Now it is time to prove to these two men
+           say that their father wanted them both to rule Juargan
+           say together. Go and tell them both that "Siven beckons you."
+           say and tell them to "meet him at the ancients tomb."
+           say Do you understand?
+        endif
+     endif
+~
+>give_prog i4725~
+     if inroom($i) == 4771
+       if quest(24, 1, $n) == 0
+          mpmset $n quest 24 1 1
+          smile $n
+          mpjunk i4725
+      else
+          say I have no use for this!
+          mpjunk i4725
+      endif
+    endif
+
+     if quest(22, 1, $n) == 1
+        if quest(23, 1, $n) == 1
+           say Excellent. Now it is time to prove to these two men
+           say that their father wanted them both to rule Juargan
+           say together. Go and tell them both that "Siven beckons you."
+           say and tell them to "meet him at the ancients tomb."
+           say Do you understand?
+        endif
+     endif
+~
+
+>speech_prog p yes~
+      if quest(11, 4, $n) == 2
+          tell $n Very good $n. I wish for you to
+          tell $n be there as well. I must go there now.
+          tell $n I will await your arrival.
+          bow $n
+          mpmset $n quest 11 4 3
+          mpecho $I leaves west.
+          mpgoto 4769
+      endif
+~
+>all_greet_prog 100~
+      if inroom($i) == 4769
+          if quest(11, 4, $n) == 3
+              if quest(15, 2, $n) == 2
+                  if quest(17, 2, $n) == 2
+                      say Well, I see you have all made it. Thank you $n.
+                      mpmset self quest 2 6 12 
+                      mpmset $n quest 11 4 4
+                  endif
+              endif
+         endif
+      endif
+~
+>all_greet_prog 100~
+      if quest(11, 4, $n) == 8
+         tell $n You truly are an honorable warrior $n.
+         bow $n
+      endif
+~
+|
+#4713
+ghost~
+Ghost~
+Ghost~
+He is a ghost.~
+ACT_RACE|ACT_SENTINEL|ACT_SMART|ACT_BODY
+AFF_ETHEREAL|AFF_DETECT_INVIS|AFF_DETECT_MAGIC|AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_TONGUES
+0 S
+95 0 0 100d100+5000 10d10+40
+0 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>act_prog p drops a sticky bomb.~
+    if level($n) <= 40
+      if quest(7, 1, $n) == 0
+          mpechoat $n You light the fuse and run for cover.
+          mpecho KABOOM!!  KABOOM!!
+          mpecho The granite wall crumbles to pieces.
+          mpecho Something falls to the ground.
+          mpquiet on
+          get i4715 
+          mpoload 4723  
+          drop staff 
+          mpquiet off
+          mpjunk i4715
+          mpmset $n quest 7 1 1
+      else
+          mpechoat $n You light the fuse and run for cover.  
+          mpecho The fuse burns out and the bomb doesn't go off.
+      endif
+    endif
+
+     if quest(8, 1, $n) == 1
+        if quest(9, 1, $n) == 1
+           mpmset $n quest 11 4 1
+        endif
+     endif
+~
+|
+#4714
+ghost~
+Ghost~
+Ghost~
+He is a ghost.~
+ACT_RACE|ACT_SENTINEL|ACT_SMART|ACT_BODY
+AFF_ETHEREAL|AFF_DETECT_INVIS|AFF_DETECT_MAGIC|AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_TONGUES
+0 S
+95 0 0 100d100+5000 10d10+40
+0 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>act_prog p drops a sticky bomb.~
+    if level($n) <= 40
+      if quest(8, 1, $n) == 0
+          mpechoat $n You light the fuse and run for cover.
+          mpecho KABOOM!!  KABOOM!!
+          mpecho The granite wall crumbles to pieces.
+          mpecho Something falls to the ground.
+          mpquiet on
+          get i4715 
+          mpoload 4724  
+          drop staff
+          mpquiet off
+          mpjunk i4715
+          mpmset $n quest 8 1 1
+      else
+          mpechoat $n You light the fuse and run for cover.  
+          mpecho The fuse burns out and the bomb doesn't go off.
+      endif
+    endif
+
+     if quest(7, 1, $n) == 1
+        if quest(9, 1, $n) == 1
+           mpmset $n quest 11 4 1
+        endif
+     endif
+~
+|
+#4715
+ghost~
+Ghost~
+Ghost~
+He is a ghost.~
+ACT_RACE|ACT_SENTINEL|ACT_SMART|ACT_BODY
+AFF_ETHEREAL|AFF_DETECT_INVIS|AFF_DETECT_MAGIC|AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_TONGUES
+0 S
+95 0 0 100d100+5000 10d10+40
+0 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>act_prog p drops a sticky bomb.~
+   if level($n) <= 40
+      if quest(9, 1, $n) == 0
+          mpechoat $n You light the fuse and run for cover.
+          mpecho KABOOM!!  KABOOM!!
+          mpecho The granite wall crumbles to pieces.
+          mpecho Something falls to the ground.
+          mpquiet on
+          get i4715 
+          mpoload 4725  
+          drop staff
+          mpquiet off
+          mpjunk i4715
+          mpmset $n quest 9 1 1
+      else
+          mpechoat $n You light the fuse and run for cover.  
+          mpecho The fuse burns out and the bomb doesn't go off.
+      endif
+   endif
+
+     if quest(7, 1, $n) == 1
+        if quest(8, 1, $n) == 1
+           mpmset $n quest 11 4 1
+        endif
+     endif
+~
+|
+#4716
+zadrian123~
+The Ghost of Zadrian~
+The ghost of Zadrian is here.~
+~
+ACT_SMART|ACT_BODY|ACT_RACE
+AFF_TONGUES|AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_SANCTUARY|AFF_UNDERSTAND
+0 S
+95 0 0 100d100+5000 10d10+50
+0 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_NEUTRAL
+#4717
+jagoan123~
+General Jagoan~
+General Jagoan stands before you.~
+He stands before you with a robust fortitude. He looks as though he has seen
+a great deal of battle in his time.~
+ACT_RACE|ACT_BODY|ACT_SMART|ACT_SENTINEL
+AFF_UNDERSTAND|AFF_SANCTUARY|AFF_DETECT_HIDDEN|AFF_DETECT_INVIS|AFF_TONGUES
+-999 S
+95 0 0 5d20+11000 5d20+120
+0 RACE_DWARF
+POS_STANDING POS_STANDING SEX_MALE
+>rand_prog 30~
+   if inroom($i) == 4787
+      if quest(11, 4, $r) == 4
+         rescale 4717 $r 110
+         mpecho You catch up to Jagoan.
+         say If you know whats good for ya, 
+         say ya little runt, you will leave now.
+         mpforce $r say Hand over the Staff or else I will strike you down!
+         mpecho $I laughs at you insanely.
+         mpecho $I runs north.
+         mpmset $r quest 11 4 5
+         mptransfer $r 4789
+         mpquiet on
+         goto 4789
+         mpquiet off
+       else
+         say You arnt worth my time!
+         mptransfer $r 4700
+         mppurge self
+       endif
+   endif
+
+   if inroom($i) == 4789
+        if quest(11, 4, $r) == 5
+         mpmset $r quest 11 4 6
+         mpquiet on
+         cast bless self
+         mpquiet off
+         say Ok you little runt! You are really pissing me off now.
+         say Time for you to die!!
+         mpkill $r
+       endif
+   endif
+~
+>fight_prog 25~
+    mpquiet on
+    c 'magic missile' $n
+    mpquiet off
+    mpecho {110}$I drop kicks you in the head!
+~
+
+>death_prog 100~
+    if inroom($i) == 4789    
+       if quest(11, 4, $n) == 6
+           mpmset $n quest 11 4 7
+           mpecho You thrust your weapon deeply into Jagoan's heart.
+           mpecho You push Jagoan over the cliff as you release your weapon.
+           mpecho You grab the Staff of Ruling from Jagoan before he goes over.
+           mpquiet on
+           goto 4788
+           mpquiet off
+           mptransfer siven123 4789
+           mptransfer mathius123 4789
+           mptransfer grimdale123 4789
+           mppurge self
+        endif
+    endif
+~
+|
+#4718
+guard1~
+A Guard~
+A Guard stands here.~
+He stands before you with a robust fortitude. He looks as though he has seen
+a great deal of battle in his time.~
+ACT_RACE|ACT_BODY|ACT_SMART|ACT_SENTINEL
+AFF_UNDERSTAND|AFF_SANCTUARY|AFF_DETECT_HIDDEN|AFF_DETECT_INVIS|AFF_TONGUES
+-999 S
+45 0 0 700d1+50 10d4+5
+0 RACE_DWARF
+POS_STANDING POS_STANDING SEX_MALE
+#4719
+guard2~
+A Guard~
+A Guard stands here.~
+He stands before you with a robust fortitude. He looks as though he has seen
+a great deal of battle in his time.~
+ACT_RACE|ACT_BODY|ACT_SMART|ACT_SENTINEL
+AFF_UNDERSTAND|AFF_SANCTUARY|AFF_DETECT_HIDDEN|AFF_DETECT_INVIS|AFF_TONGUES
+-999 S
+30 0 0 800d1+50 10d3+5
+0 RACE_DWARF
+POS_STANDING POS_STANDING SEX_MALE
+#4720
+guard3~
+A Guard~
+A Guard stands here.~
+He stands before you with a robust fortitude. He looks as though he has seen
+a great deal of battle in his time.~
+ACT_RACE|ACT_BODY|ACT_SMART|ACT_SENTINEL
+AFF_UNDERSTAND|AFF_SANCTUARY|AFF_DETECT_HIDDEN|AFF_DETECT_INVIS|AFF_TONGUES
+-999 S
+30 0 0 800d1+50 10d3+5
+0 RACE_DWARF
+POS_STANDING POS_STANDING SEX_MALE
+#4721
+siven1234~
+Siven the Wise~
+Siven is here deep in thought.~
+{060}Siven is a respectfully old man, who looks as if a great deal of wisdom
+and knowledge fills his mind.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_TONGUES|AFF_DETECT_INVIS|AFF_DETECT_MAGIC|AFF_DETECT_HIDDEN|AFF_SANCTUARY|AFF_UNDERSTAND
+0 S
+95 0 0 15000d1+0 11d11+24
+100000 RACE_DWARF
+POS_STANDING POS_STANDING SEX_MALE
+#0
+#OBJECTS
+#4700
+bag gold~
+A Bag of Gold~
+A bag of gold is here.~
+{060}It looks like a nice bag of gold.~
+ITEM_TYPE_TREASURE
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 0 0
+8 0 1
+#4701
+pick mining~
+a mining pick~
+A small pick lies here on the ground.~
+~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 1 6 WEAPON_PIERCE
+10 100 1
+#4702
+helm dwarven~
+A Dwarven Helm~
+A large dwarven helm lies here on the ground.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HEAD
+4 0 0 0
+5 1000 8
+A
+APPLY_STR 1
+A
+APPLY_DAMROLL 1
+#4703
+plate dwarven breast~
+A Dwarven Breast Plate~
+A dwarven breast plate lies here on the ground.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_BODY
+4 0 0 0
+5 1500 8
+A
+APPLY_DAMROLL 1
+#4704
+shield large dwarven~
+A Large Dwarven Shield~
+A large dwarven shield lies here on the ground.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_GLOW|ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_SHIELD
+4 0 0 0
+5 2000 8
+A
+APPLY_SAVING_SPELL 2
+A
+APPLY_DAMROLL 1
+#4705
+dwarven battle axe~
+A Large Dwarven Battle Axe~
+A large battle axe lies here on the ground.~
+~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_MAGIC|ITEM_FLAG_BLESS|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 2 11 WEAPON_CHOP
+5 10000 15
+E
+dwarven battle axe~
+It is engraved with beautiful dwarven runes.~
+A
+APPLY_HITROLL 1
+A
+APPLY_DAMROLL 1
+#4706
+large stone sarcophagus~
+a large stone sarcophagus~
+A large stone sarcophagus lies here, the lid fallen on the floor.~
+~
+ITEM_TYPE_CONTAINER
+ITEM_FLAG_LEVEL
+0
+1000 CONT_CLOSEABLE -1 0
+1000 0 67
+#4707
+corpse zadrian~
+The Corpse of Zadrian~
+Corpse of Zadrian~
+~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL|ITEM_FLAG_GLOW
+0
+0 0 0 0
+500 0 1
+#4708
+potion speed~
+A Potion of Speed~
+A flask of something is here.~
+{060}It looks like a normal blue flask of some sort of concoction.~
+ITEM_TYPE_POTION
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+15 SPELL_HASTE SPELL_NONE SPELL_NONE
+1 30000 15
+#4709
+scroll speed~
+A Scroll of Speed~
+A scroll of something is here.~
+{060}It looks like a normal scroll with something written on it.~
+ITEM_TYPE_SCROLL
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+15 SPELL_HASTE SPELL_NONE SPELL_NONE
+1 30000 15
+#4710
+flask giboa~
+A Flask of Giboa~
+A small fask of something is here.~
+{060}It is a potion of strength made for the giboa root.~
+ITEM_TYPE_POTION
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+25 SPELL_ARMOR SPELL_STONE_SKIN SPELL_SHIELD
+1 20000 25
+#4711
+scroll arachin~
+A Scroll of Arachin~
+A scroll with something written on it is here.~
+{060}It is a scroll of strength written by the words of Arachin.~
+ITEM_TYPE_SCROLL
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+25 SPELL_ARMOR SPELL_STONE_SKIN SPELL_SHIELD
+1 20000 25
+#4736
+blue lapis~
+A Blue Lapis Necklace~
+A beautiful necklace lies on the ground.~
+{060}It has to be one of the most beautiful and decorative pieces of
+jewelry you have ever seen.~
+ITEM_TYPE_TREASURE
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_NECK
+0 0 0 0
+2 3000000 2
+A
+APPLY_INT 1
+A
+APPLY_STR 1
+#4712
+stone jewel~
+The Stone Jewel~
+A small jewel lies here.~
+{060}It is a wonderfully handcrafted piece of jewelry made by the
+talented Bramela of Juargan.~
+ITEM_TYPE_TREASURE
+ITEM_FLAG_LEVEL
+ITEM_WEAR_WRIST|ITEM_WEAR_TAKE|ITEM_WEAR_LEGS
+0 0 0 0
+2 3000000 2
+A
+APPLY_WIS 1
+A
+APPLY_CON 1
+#4713
+Bramela Anklet~
+The Bramela Anklet~
+A gorgeous anklet lies here.~
+{060}Designed and crafted by the talented Bramela of Juargan.~
+ITEM_TYPE_TREASURE
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_FEET
+0 0 0 0
+2 3000000 2
+A
+APPLY_WIS 1
+A
+APPLY_CON 1
+A
+APPLY_DEX 1
+#4714
+torch~
+A Long Lasting Torch~
+A small torch lies here.~
+{060}It radiates a certain energy, the likes of which you have never seen
+before.~
+ITEM_TYPE_LIGHT
+ITEM_FLAG_GLOW|ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+0 0 0 0
+1 2000000 15
+A
+APPLY_AC 8
+A
+APPLY_DEX 1
+#4715
+sticky bomb~
+A Sticky Bomb~
+A weird looking explosive is on the ground here.~
+{060}It looks like a small coconut wrapped and tied in a rag covered with
+pine tar or something with a fuse hanging out of it.~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 0 0
+2 1000 1
+#4716
+adventurers pack~
+An Adventurers Pack~
+A medium size pack is on the ground. ~
+{060}It is made of genuine leather skillfully constructed by Leatherbie
+of Juargan.~
+ITEM_TYPE_CONTAINER
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_ABOUT
+175 0 0 0
+8 1000 10
+#4717
+sex toy leather~
+Leatherbies Leather Sex Toy~
+An interesting device of perverse nature is here.~
+{060}It fits nicely in the palm of your hand, and when you squeeze it ever
+so slightly it vibrates.
+
+
+           {110}**{140}Strong enough for a man, but made for a woman!{110}**~
+ITEM_TYPE_TREASURE
+ITEM_FLAG_HUM|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WAIST|ITEM_WEAR_HANDS
+0 0 0 0
+1 2000000 10
+A
+APPLY_STR -1
+A
+APPLY_HIT 25
+#4718
+bottle leather ~
+A Bottle of Leatherbies Finest ~
+A bottle of booze is here.~
+{060}A fine bottle of whiskey, made by Leatherbie of Juargan.~
+ITEM_TYPE_DRINK_CON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+10 10 LIQ_WHISKY NOT_POISONED
+1 1000 5
+#4719
+small raft~
+A Small Raft~
+A small raft was left here.~
+{060}It is a relatively small raft, only accomodating one person.~
+ITEM_TYPE_BOAT
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 0 0
+8 10000 5       
+#4720
+small rock~
+A Small Rock~
+A small rock is on the ground.~
+{060}It looks like an ordinary rock.~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 0 0
+3 0 1
+#4721
+medium rock~
+A Medium Size Rock~
+A medium size rock is on the ground.~
+{060}It looks like an ordinary rock.~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 0 0
+6 0 1
+#4722
+large rock~
+A Large Rock~
+A large rock is on the ground.~
+{060}Its an ordinary looking rock.~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 0 0
+9 0 1
+#4723
+strong staff~
+A Strong Piece of a Staff~
+A piece of a staff is on the ground.~
+{060}It feels like a solid unbreakable piece of a staff.~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 0 0
+1 0 1
+#4724
+strong staff~
+A Strong Piece of a Staff~
+A piece of a staff is on the ground.~
+{060}It feels like a solid unbreakable piece of a staff.~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 0 0
+1 0 1
+#4725
+strong staff~
+A Strong Piece of a Staff~
+A piece of a staff is on the ground.~
+{060}It feels like a solid unbreakable piece of a staff.~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 0 0
+1 0 1
+#4726
+potion reflection~
+Potion of Reflection~
+A potion of reflection is here.~
+{060}It looks like a potion of reflection.~
+ITEM_TYPE_POTION
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+25 SPELL_MIRROR_IMAGE SPELL_NONE SPELL_NONE
+1 20000 25
+#4727
+potion fury~
+A Potion of Fury~
+A potion of fury is here.~
+{060}It looks like a potion of fury.~
+ITEM_TYPE_POTION
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+15 SPELL_RIGHTEOUS_FURY SPELL_NONE SPELL_NONE
+1 20000 15
+#4728
+potion cromain ~
+A Potion of Cromain ~
+A potion of cromain is here.~
+{060}It looks like a potion made from the cromain root found in Juaragan.~
+ITEM_TYPE_POTION
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+20 SPELL_PASS_DOOR SPELL_NONE SPELL_NONE
+1 20000 20
+#4729
+pill reflection~
+Pill of Reflection~
+A pill of reflection is here.~
+{060}It looks like a pill of reflection.~
+ITEM_TYPE_PILL
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+25 SPELL_MIRROR_IMAGE SPELL_NONE SPELL_NONE
+1 20000 25
+#4730
+pill cromain ~
+A Pill of Cromain ~
+A pill of cromain is here.~
+{060}It looks like a pill made from the cromain root found in Juaragan.~
+ITEM_TYPE_PILL
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+20 SPELL_PASS_DOOR SPELL_NONE SPELL_NONE
+1 20000 20
+#4731
+ring birth stone mathius ~
+The Birth Stone of Mathius~
+A shiny ring is here.~
+{060}The birth stone of King Mathius of Juargan.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_GLOW|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_FINGER
+5 0 0 0
+5 100000 34
+A
+APPLY_DAMROLL 4
+A
+APPLY_HITROLL 4
+#4732
+helm grimdale~
+The Helm of Grimdale~
+The helm of grimdale lies here.~
+{060}It is a gorgeously decorated helm of Grimdale from Juargan.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HEAD
+5 0 0 0
+5 100000 34
+A
+APPLY_HITROLL 4
+A
+APPLY_DAMROLL 4
+#4733
+orb purification~
+The Orb of Purification~
+The orb of purification is on the ground here.~
+{060}It is the most beautiful orb you have ever seen. Dug from the mines of
+Juargan, this orb was magically created to restore the health, magic, and
+movement of a young adventurer.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_GLOW|ITEM_FLAG_HUM|ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+5 0 0 0
+4 1000000 10
+A
+APPLY_HIT 5
+A
+APPLY_MANA 10
+P 1
+TRIG_TICK 80
+OPROG_IF OIF_WEAR_LOC ! WEAR_NONE 2 0
+P 2
+TRIG_VOID
+OPROG_IF OIF_USER_LEVEL < 41 3 19
+P 3
+TRIG_VOID
+OPROG_IF OIF_USER_POSITION = POS_SLEEPING 4 0
+P 4
+TRIG_VOID
+OPROG_IF OIF_USER_PERCENT_HITPT = 100 6 5
+P 5
+TRIG_VOID
+OPROG_APPLY OAPPLY_HIT 45
+P 5
+TRIG_VOID
+OPROG_IF OIF_WEAR_LOC ! WEAR_NONE 6 0
+P 6
+TRIG_VOID
+OPROG_IF OIF_USER_PERCENT_MANA = 100 8 7
+P 7
+TRIG_VOID
+OPROG_APPLY OAPPLY_MANA 45
+P 7
+TRIG_VOID
+OPROG_IF OIF_WEAR_LOC ! WEAR_NONE 8 0
+P 8
+TRIG_VOID
+OPROG_IF OIF_USER_PERCENT_MOVE = 100 10 9
+P 9
+TRIG_VOID
+OPROG_APPLY OAPPLY_MOVE 45
+P 9
+TRIG_VOID
+OPROG_IF OIF_WEAR_LOC ! WEAR_NONE 10 0
+P 10
+TRIG_VOID
+OPROG_IF OIF_USER_PERCENT_HITPT = 100 11 14
+P 11
+TRIG_VOID
+OPROG_IF OIF_USER_PERCENT_MANA = 100 12 14
+P 12
+TRIG_VOID
+OPROG_IF OIF_USER_PERCENT_MOVE = 100 13 14
+P 13
+TRIG_VOID
+OPROG_GOD_COMMAND
+wake~ 
+P 13
+TRIG_VOID
+OPROG_ECHO
+A force of energy consumes your soul.~
+P 14
+TRIG_VOID
+OPROG_ECHO
+A warm, fuzzy feeling rushes over your skin~
+P 19
+TRIG_VOID
+OPROG_ECHO
+You are too powerful to use the Orb of Purification.~
+P 19
+TRIG_VOID
+OPROG_ECHO
+The Orb of Purification has been destroyed.~
+P 19
+TRIG_VOID
+OPROG_JUNK
+P 20
+TRIG_WEAR 100
+OPROG_IF OIF_USER_LEVEL < 41 0 21
+P 21
+TRIG_VOID
+OPROG_ECHO
+The Orb of Purification has been destroyed.~
+P 21
+TRIG_VOID
+OPROG_JUNK
+#4734
+potion sanctuary~
+A Potion of Sanctuary~
+A potion of sanctuary is here.~
+{060}It looks like a potion of sanctuary.~
+ITEM_TYPE_POTION
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+20 SPELL_SANCTUARY SPELL_NONE SPELL_NONE
+1 3000 20
+#4735
+scroll sanctuary~
+A Scroll of Sanctuary~
+A scroll of sanctuary is here.~
+{060}It looks like a scroll of sanctuary.~
+ITEM_TYPE_SCROLL
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+20 SPELL_SANCTUARY SPELL_NONE SPELL_NONE
+1 3000 20
+#0
+#ROOMS
+#4700
+The Spiral Stair~
+A spiral stone stair leads up higher in the mountain, spiraling into the
+spine of the Dra-Korrin.  A small glint of light can be seen far up the
+stair shaft.~
+47 0 SECT_CITY
+DDIR_WEST
+~
+~
+0 -1 4701
+DDIR_UP
+~
+stone~
+EX_ISDOOR|EX_CLOSED -1 4772
+S
+#4701
+Mines~
+A small glint of the burning torches is all that lights the way here.  Spots
+along the jagged wall show that these mines are rich as gold and silver glitters
+all around you.~
+47 0 SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 4700
+DDIR_WEST
+~
+~
+0 -1 4702
+S
+#4702
+Mines~
+This small dark tunnel continues to the north where to light no longer allows
+normal sight.  To the east the small mine leads a a better lit area and you can
+smell a brisk fresh air.~
+47 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 4703
+DDIR_EAST
+~
+~
+0 -1 4701
+S
+#4703
+Mines~
+This small tunnel is only five to six feet high and possibly the same
+dimensions wide.  It travels on a slight downslope to the west and to the south
+some light can be seen.~
+47 ROOM_DARK|ROOM_INDOORS SECT_CITY
+DDIR_SOUTH
+~
+~
+0 -1 4702
+DDIR_WEST
+~
+~
+0 -1 4704
+S
+#4704
+Mines~
+The small mine continues east and west here, small rocks and precious jewels
+scattered about.  There is a small tunnel that leads to the south here.~
+47 ROOM_DARK|ROOM_INDOORS SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 4703
+DDIR_SOUTH
+~
+~
+0 -1 4705
+DDIR_WEST
+~
+~
+0 -1 4706
+S
+#4705
+Unfinished Mine~
+This is a small area that has been left unfinished at the moment.  It would
+have continued south from the main shaft that is to the north of here.~
+47 ROOM_DARK|ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 4704
+S
+#4706
+Mines~
+This small shaft of the mines continues its tunneling east and west.  Small
+glints of metal can be seen within the walls.~
+47 ROOM_DARK|ROOM_INDOORS SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 4704
+DDIR_WEST
+~
+~
+0 -1 4707
+S
+#4707
+Turn in the Mine~
+The small shaft travels east and south here, the masterful mining skills that
+made this turn possible are evidently by the smooth cuts in the walls.  Almost
+as if a hot knife made its way through some warm butter.~
+47 ROOM_DARK|ROOM_INDOORS SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 4706
+DDIR_SOUTH
+~
+~
+0 -1 4708
+S
+#4708
+Mines~
+This is a three-way intersection in these mazes of mines with directions
+going north, west, and south which travels further down into the heart of the
+mountain itself.~
+47 ROOM_DARK|ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 4707
+DDIR_SOUTH
+~
+~
+0 -1 4709
+DDIR_WEST
+~
+~
+0 -1 4736
+S
+#4709
+Dwarven mine~
+The walls of this mine are chipped and cut to perfection.  Workmanship of
+this type could only have been done by the masterful Dwarven race.  Tunnels
+continue to the south and east, and the tunnel travels upward to the north.~
+47 ROOM_DARK|ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 4708
+DDIR_EAST
+~
+~
+0 -1 4724
+DDIR_SOUTH
+~
+~
+0 -1 4710
+S
+#4710
+Dwarven mine~
+Tunnels spread off in all directions except to the west where the wall is made
+of a dark and bleak stone.  A small glow emanates from the walls of the mines,
+but not enough to see by.~
+47 ROOM_DARK|ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 4709
+DDIR_EAST
+~
+~
+0 -1 4712
+DDIR_SOUTH
+~
+~
+0 -1 4711
+S
+#4711
+Dwarven mine~
+The small shaft ends abruptly at a large granite wall.  To the north the
+mine continues. {120}On the south wall you see a huge granite boulder obstructing
+the path. You think there might be something hidden behind the huge boulder,
+but you can't get at it.~
+47 ROOM_DARK|ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 4710
+S
+#4712
+Dwarven mine~
+This section of small shaft is a turning point and continues to the west and to
+the south.  Small glints of gold and silver can be seen in the walls.~
+47 ROOM_DARK|ROOM_INDOORS SECT_CITY
+DDIR_SOUTH
+~
+~
+0 -1 4713
+DDIR_WEST
+~
+~
+0 -1 4710
+S
+#4713
+Dwarven mine~
+The small shaft continues north and south deep inside this large mountain.  A
+light glow can be seen in the walls, but not enough to see by.~
+47 ROOM_DARK|ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 4712
+DDIR_SOUTH
+~
+~
+0 -1 4714
+S
+#4714
+Dwarven mines~
+This section of the small shafts is a intersection of three separate tunnels.
+They lead north, east, and west.  A faint glow is within the walls of this
+small intersection.~
+47 ROOM_DARK|ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 4713
+DDIR_EAST
+~
+~
+0 -1 4719
+DDIR_WEST
+~
+~
+0 -1 4715
+S
+#4715
+Dwarven mines~
+The small shaft of glittering gold and silver travels east and south here.
+The faint glow from within the walls give you a sense of safety.~
+47 ROOM_DARK|ROOM_INDOORS SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 4714
+DDIR_SOUTH
+~
+~
+0 -1 4716
+S
+#4716
+Dwarven mines~
+The small Dwarven carved shaft continues to the north and to the east here.
+Small clumps of precious metals can be seen within the rocky walls.~
+47 ROOM_DARK|ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 4715
+DDIR_EAST
+~
+~
+0 -1 4717
+S
+#4717
+Dwarven mines~
+The small shaft of the mine continues to the west and to the south here.  A
+small amount of light can be seen to the south.~
+47 ROOM_DARK|ROOM_INDOORS SECT_CITY
+DDIR_SOUTH
+~
+~
+0 -1 4718
+DDIR_WEST
+~
+~
+0 -1 4716
+S
+#4718
+End of the mine~
+The south section of the small tunnel is covered in a blue light, and also
+radiating a aura of heat.  The eastern and western walls also glow but not as
+fierce as the southern section.~
+47 ROOM_NO_MOB|ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 4717
+S
+#4719
+Dwarven mines~
+Small shafts lead off in all directions except northerly, where the wall seems
+to have a tinted blue color to it.  The southern tunnel seems to end a small
+ways down.~
+47 ROOM_DARK|ROOM_INDOORS SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 4721
+DDIR_SOUTH
+~
+~
+0 -1 4720
+DDIR_WEST
+~
+~
+0 -1 4714
+S
+#4720
+Unfinished shaft~
+The walls here are jagged and unfinished in there cuts, leaving sharp and
+jagged edges at every turn.  The only exit appears to be to the north.~
+47 ROOM_DARK|ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 4719
+S
+#4721
+Dwarven mines~
+This small shaft travels to the west and to the south, sporting small clumps
+of precious metals as they go.~
+47 ROOM_DARK|ROOM_INDOORS SECT_CITY
+DDIR_SOUTH
+~
+~
+0 -1 4722
+DDIR_WEST
+~
+~
+0 -1 4719
+S
+#4722
+Dwarven mines~
+A slight downslope is present as this tunnel continues to the south and to the
+north.  To the south is where the small slope is present, traveling slightly
+further down into the depths of the mountain.~
+47 ROOM_DARK|ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 4721
+DDIR_SOUTH
+~
+~
+0 -1 4723
+S
+#4723
+Unfinished mine~
+The southern wall of this mine has been left uncarved and unfinished as you
+can see that the amount of metals in the walls have decreased slightly here.
+{120}On the south wall you see a huge granite boulder obstructing the path.
+You think there might be something hidden behind the huge boulder, but you
+can't get at it. ~
+47 ROOM_DARK|ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 4722
+S
+#4724
+Dwarven mine~
+This small shaft travels to the east and west while along the way several
+spots of precious metal and rock jut forth from the red rock.~
+47 ROOM_DARK|ROOM_INDOORS SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 4725
+DDIR_WEST
+~
+~
+0 -1 4709
+S
+#4725
+Dwarven mine~
+The small tunnel continues to the west and to the south from this turning
+point.  Small spots of gold and silver can be seen in the walls.~
+47 ROOM_DARK|ROOM_INDOORS SECT_CITY
+DDIR_SOUTH
+~
+~
+0 -1 4726
+DDIR_WEST
+~
+~
+0 -1 4724
+S
+#4726
+Dwarven mines~
+This is a north and south shaft that has been carved to perfection.  The walls
+are almost square here, giving it a hall like appearance.~
+47 ROOM_DARK|ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 4725
+DDIR_SOUTH
+~
+~
+0 -1 4727
+S
+#4727
+Dwarven mines~
+The small shaft here continues to the north and to the east. As it slopes
+slightly downward to the east, the walls have a more unfinished look to them.~
+47 ROOM_DARK|ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 4726
+DDIR_EAST
+~
+~
+0 -1 4728
+S
+#4728
+Dwarven mines~
+This small east-west shaft, which travels slightly downward to the east, has
+a distinct smell to it.  The smell is revolting, coming close to that of rotting
+flesh.~
+47 ROOM_DARK|ROOM_INDOORS SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 4729
+DDIR_WEST
+~
+~
+0 -1 4727
+S
+#4729
+Dwarven mines~
+This intersection combines three tunnels, the western tunnel leading up.  To
+the south is darkness, but there is a disgusting stench emanating from a very
+large cavern.~
+47 ROOM_DARK|ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 4732
+DDIR_SOUTH
+~
+~
+0 -1 4730
+DDIR_WEST
+~
+~
+0 -1 4728
+S
+#4730
+Dwarven mines~
+This is a small north and south passage that is bleak and void of any gold or
+silver in the walls.  It continues into darkness to the south.~
+47 ROOM_DARK|ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 4729
+DDIR_SOUTH
+~
+~
+0 -1 4731
+S
+#4731
+Dwarven mines~
+This small shaft ends abruptly at the southern wall.  There is a faint blue
+glow to the southern wall but no metals of jewels are present.~
+47 ROOM_DARK|ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 4730
+S
+#4732
+Duergar Outcamp~
+This is a large cavern that stinks of decay and death.  To the north there is
+a rather large hut, while to the west there is a small fire and several big
+boulders.~
+47 ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 4733
+DDIR_SOUTH
+~
+~
+0 -1 4729
+DDIR_WEST
+~
+~
+0 -1 4735
+S
+#4733
+Duergar Barracks~
+Several small cots line the walls here  inside this large thatched hut.  Small
+scraps of food and several small disfigured bodies lie about, no doubt the
+remains of some unfortunate dwarf.~
+47 ROOM_INDOORS SECT_CITY
+DDIR_SOUTH
+~
+~
+0 -1 4732
+S
+#4734
+Small cave~
+Many small and disfigured bodies have been piled up here stinking up the whole
+cavern.  Blood stains line the walls and entrails are strewn about the floor.~
+47 ROOM_INDOORS SECT_CITY
+DDIR_SOUTH
+~
+~
+0 -1 4735
+S
+#4735
+By a small fire~
+Several large rocks surround a petty little fire that has formed a cloud in
+the ceiling of this large cavern.  A window of the hut looks out over this small
+meeting area.  To the north a small dark cave can be seen.~
+47 ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 4734
+DDIR_EAST
+~
+~
+0 -1 4732
+S
+#4736
+Carved Tunnel~
+This small tunnel has been carved to perfection, the walls are smooth and the
+floor has been worn soft through years of passage.  The red coloring of the
+rock gives this small tunnel a soft glow.~
+47 ROOM_DARK|ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 4737
+DDIR_EAST
+~
+~
+0 -1 4708
+S
+#4737
+Carved Tunnel~
+The walls of the small tunnel have been carved to perfection as well as the
+floor that has been worn smooth.  It travels south and west leading off into
+darkness.~
+47 ROOM_DARK|ROOM_INDOORS SECT_CITY
+DDIR_SOUTH
+~
+~
+0 -1 4736
+DDIR_WEST
+~
+~
+0 -1 4738
+S
+#4738
+Carved Tunnel Entrance~
+The walls here are red and smooth as they have been carved into perfection.
+The floor has been worm smooth with use and clear of any rubble.~
+47 ROOM_DARK|ROOM_INDOORS SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 4737
+DDIR_SOUTH
+~
+~
+0 -1 4739
+S
+#4739
+Stone Gates~
+Two monstrous pillars of stone support a great stone gate that leads south
+into a gigantic cavern with a small city inside.  The redden rock of the of
+mountain gives this small gate and cavern within a slight reddish glow.~
+47 ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 4738
+DDIR_SOUTH
+~
+~
+0 -1 4740
+S
+#4740
+Walkway~
+A small stone walkway leads its way through the immense cavern and all of its
+scattered boulders and misplaced stalagmites.  To the south you can see a large
+area of many multicolored rock, rising up in the center of which is a small
+building.~
+47 ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 4739
+DDIR_SOUTH
+~
+~
+0 -1 4741
+DDIR_WEST
+~
+~
+0 -1 4750
+S
+#4741
+Rock Garden~
+A small path works its way through all types of multicolored boulders of all
+sizes and shapes.  Despite it's hardness and great size it has a certain
+beauty to it.~
+47 ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 4740
+DDIR_EAST
+~
+~
+0 -1 4742
+DDIR_WEST
+~
+~
+0 -1 4748
+S
+#4742
+Rock Garden~
+A small path works its way south and west from this section of a enormously
+large, yet beautiful conglomeration of rocks and boulders.~
+47 ROOM_INDOORS SECT_CITY
+DDIR_SOUTH
+~
+~
+0 -1 4743
+DDIR_WEST
+~
+~
+0 -1 4741
+S
+#4743
+Rock Garden~
+A small path works its way north and south through this large display of many
+different colored boulders and rocks.  A large building can be seen rising above
+the boulders directly to the west.~
+47 ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 4742
+DDIR_SOUTH
+~
+~
+0 -1 4744
+S
+#4744
+Rock Garden~
+A small path works its way to the north and to the west as the many different
+colored boulders and rocks perform a array of beauty before you.~
+47 ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 4743
+DDIR_WEST
+~
+~
+0 -1 4745
+S
+#4745
+Rock Garden~
+A small path works its way west and east through this array of multicolored
+boulders and rocks.  To the north a smooth path leads to a large and immaculate
+stone building.~
+47 ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 4749
+DDIR_EAST
+~
+~
+0 -1 4744
+DDIR_WEST
+~
+~
+0 -1 4746
+S
+#4746
+Rock Garden~
+A small path works its way east and north through this small section of the
+large array of boulders and rocks of all different colors.~
+47 ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 4747
+DDIR_EAST
+~
+~
+0 -1 4745
+S
+#4747
+Rock Garden~
+A small path works its way north and south through this small section of the
+large garden of multicolored boulders.  Directly to the east a large building
+can be seen rising above the piles of boulders.~
+47 ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 4748
+DDIR_SOUTH
+~
+~
+0 -1 4746
+S
+#4748
+Rock Garden~
+A small path works its way east and south through this section of the great
+multicolored array of boulders and rock formations.~
+47 ROOM_INDOORS SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 4741
+DDIR_SOUTH
+~
+~
+0 -1 4747
+S
+#4749
+Temple of Juargan~
+This large building is circular in shape and open on all sides, as the ceiling
+is supported by pillars made of the deep red stone from the heart of the
+Dra-Korrin. In the center there rests a large throne, formed of red rock.~
+47 ROOM_INDOORS SECT_CITY
+DDIR_SOUTH
+~
+~
+0 -1 4745
+E
+throne~
+The throne is made of deep red rock from the core of the Dra-Korrin.~
+S
+#4750
+Walkway~
+A small stone walkway travels east and west through the many stalagmites and
+stray boulders that scatter the floor of the great cavern.~
+47 ROOM_INDOORS SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 4740
+DDIR_WEST
+~
+~
+0 -1 4751
+S
+#4751
+Walkway~
+A small stone walkway travels east and south through the debris of many
+boulders and stalagmites.  Another small walkway leads west to a small building
+pushing a black smoke from its roof.~
+47 ROOM_INDOORS SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 4750
+DDIR_SOUTH
+~
+~
+0 -1 4753
+DDIR_WEST
+~
+~
+0 -1 4752
+S
+#4752
+Blacksmith's Home~
+A large black forge lies in the center of this small house pushing waves of
+heat into your face, barely allowing you to stand within the entranceway.  A
+large trough of water and several anvils are resting here as well. The
+blacksmith does not appear to be home right now.~
+47 ROOM_INDOORS SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 4751
+S
+#4753
+Walkway~
+A small walkway travels north and south through the many scattered boulders
+and stalagmites.  A separate, less used path leads to the west.~
+47 ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 4751
+DDIR_SOUTH
+~
+~
+0 -1 4759
+DDIR_WEST
+~
+~
+0 -1 4754
+S
+#4754
+Path in the Rock~
+A small path leads west further into the less carved rock while to the east
+the larger walkway can be seen.~
+47 ROOM_INDOORS SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 4753
+DDIR_WEST
+~
+~
+0 -1 4755
+S
+#4755
+Path in the Rock~
+This small uncarved path travels south and east as the edge of the cavern
+blocks any travel further west.  The wall of the cavern has a deep red color to
+it and with the many stalactites parts resemble dripping blood.~
+47 ROOM_INDOORS SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 4754
+DDIR_SOUTH
+~
+~
+0 -1 4756
+S
+#4756
+Path in the Rock~
+This small, uncarved path leads north and south along the cavern wall, over
+many boulders at points.  To the east you can see a path leading up to a small
+hole in a large boulder.~
+47 ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 4755
+DDIR_EAST
+~
+~
+0 -1 4786
+DDIR_SOUTH
+~
+~
+0 -1 4757
+S
+#4757
+Path in the Rock~
+A small path travels over boulders and crevices to the north and east.  The
+edge of the cavern lies to the west while mounds of boulders are heaped to the
+south. {120}On the south wall you see a huge granite boulder obstructing the path.
+You think there might be something hidden behind the huge boulder, but you
+can't get at it.~
+47 ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 4756
+DDIR_EAST
+~
+~
+0 -1 4758
+S
+#4758
+Path in the Rock~
+A small and unused path travels over boulders and by many large hole as it
+makes its way to the west.  To the east the small path ends in the larger walk-
+way of the city.  To the south a path leads to a small hut perched on top of a
+large boulder.~
+47 ROOM_INDOORS SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 4760
+DDIR_SOUTH
+~
+~
+0 -1 4761
+DDIR_WEST
+~
+~
+0 -1 4757
+S
+#4759
+Walkway~
+A stone walkway travels north and south through this section of this rocky
+city.  To the west you can see a uncarved and hug mound of rock and boulder.~
+47 ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 4753
+DDIR_SOUTH
+~
+~
+0 -1 4760
+S
+#4760
+Walkway~
+A stone walkway travels north and south through this section of the city.  A
+small and unused path can be seen traveling west into the uncut and jagged rock.~
+47 ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 4759
+DDIR_SOUTH
+~
+~
+0 -1 4762
+DDIR_WEST
+~
+~
+0 -1 4758
+S
+#4761
+Pasty's Dwelling~
+This is a small stone dwelling with a large oven on the south wall.  On the
+oven are two large boiling pots spewing an unrecognizable odor. A few flasks
+line the wall closest to you labeled and priced for your convenience.~
+47 ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 4758
+S
+#4762
+Walkway~
+A stone walkway travels north and east through this section of the stone city.
+A small path leads south to a small rock dwelling.~
+47 ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 4760
+DDIR_EAST
+~
+~
+0 -1 4763
+DDIR_SOUTH
+~
+~
+0 -1 4764
+S
+#4763
+Walkway~
+A stone walkway leads west from here.  To the east the small walkway ends in a
+large building, and to the south a small path leads to a small stone dwelling.~
+47 ROOM_INDOORS SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 4766
+DDIR_SOUTH
+~
+~
+0 -1 4765
+DDIR_WEST
+~
+~
+0 -1 4762
+S
+#4764
+Leatherbies Home~
+This is a small stone dwelling with many sizes of leather strewn about the
+place.  A small table with a few chairs sits in the center of the house.
+Leatherbie is noted for his candid ability to create anything from anything.
+He is a master of all trades.~
+47 ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 4762
+S
+#4765
+The Stone Jewel~
+Many different colors and sizes of jewels hang from the walls of this well
+kept dwelling.  A small counter sits on the far wall with other small tables
+lining the walls.~
+47 ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 4763
+S
+#4766
+Guard Barrack~
+Many small cots line the walls of this large building as it serves for the
+homes of many brave Dwarven men who pledge their lives to the suppression of
+their Duergar enemies.  A small archway leads south to a lower level.~
+47 ROOM_INDOORS SECT_CITY
+DDIR_SOUTH
+~
+~
+0 -1 4767
+DDIR_WEST
+~
+~
+0 -1 4763
+S
+#4767
+Alcove~
+A small alcove serves as a turning point for this small, dark tunnel that goes
+north and west from here.~
+47 ROOM_DARK|ROOM_NO_MOB|ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 4766
+DDIR_WEST
+~
+~
+0 -1 4768
+S
+#4768
+Entrance to Tomb~
+A large archway leads north to a dark vault.  An old stench emanates from it,
+as dust seems to continually flow from the old arch.  There is a small tunnel
+that travels east into a darkness.~
+47 ROOM_DARK|ROOM_NO_MOB|ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 4769
+DDIR_EAST
+~
+~
+0 -1 4767
+S
+#4769
+Ancients Tomb~
+A large stone sarcophagus's lie stagnant in the center of this small tomb.
+The walls are lined with holes that contain many coffers containing, no doubt,
+the remains of some ancient dwarf. A great stone door leads to the west, it
+has many inscriptions upon it.~
+47 ROOM_SAFE|ROOM_SOLITARY|ROOM_DARK|ROOM_NO_MOB|ROOM_INDOORS SECT_CITY
+DDIR_SOUTH
+~
+~
+0 -1 4768
+DDIR_WEST
+~
+tomb vault door~
+EX_ISDOOR|EX_CLOSED -1 4770
+S
+#4770
+Ancients Vault~
+This is more of a small alcove than anything else.  The ceiling is covered
+with many descriptive carvings, as are the walls and floor.  Were it not for
+the years of decay and no upkeep, this would be a glamorous chamber.~
+47 ROOM_DARK|ROOM_INDOORS SECT_CITY
+DDIR_EAST
+~
+tomb vault door~
+EX_ISDOOR|EX_CLOSED -1 4769
+S
+#4771
+Siven's Stone~
+You enter into what appears to be a fairly good size room entombed within a
+large boulder. There are closed doors to additional rooms to the east and west.
+The room is extremely well lit for a carved out stone.~
+47 ROOM_SOLITARY|ROOM_INDOORS SECT_CITY
+DDIR_WEST
+~
+~
+0 -1 4786
+S
+#4772
+The small cave~
+You barely squeeze through into this cave, and you don't see much to it
+either.  All you see are piles of stones.  At least none of the stones has
+fallen over your exit north.~
+47 ROOM_INDOORS SECT_HILLS
+DDIR_NORTH
+You see a sparkling light north.~
+~
+0 -1 4773
+DDIR_DOWN
+You see rocks and stones.~
+stone stones rock rocks~
+EX_ISDOOR|EX_CLOSED -1 4700
+S
+#4773
+Beneath the waterfall~
+As you wring your clothes, you see sunlight reflect beautifully off the
+waterfall, forming at rainbow.  With the sparkling illumination, you think you
+see a cave to the south.~
+47 ROOM_NO_MOB|ROOM_INDOORS SECT_HILLS
+DDIR_SOUTH
+You think you hear a small noise coming from there too.~
+~
+0 -1 4772
+DDIR_WEST
+You see fish falling down the waterfall.~
+~
+0 -1 4774
+S
+#4774
+By the beautiful waterfall~
+You see a VERY beautiful waterfall here.  It looks almost as if diamonds are
+falling down the mountain.  (You reach out and grab and no, it IS only water.)
+It looks so nice here, you feel like taking a nap.
+The trail leads north and south. A small plaque is on a rock here.~
+47 0 SECT_HILLS
+DDIR_EAST
+You see fish falling down the waterfall.~
+~
+0 0 4773
+DDIR_SOUTH
+You see the trail leading back to the valley.~
+~
+0 0 4775
+DDIR_WEST
+~
+~
+0 -1 17406
+E
+plaque~
+{110}********************************
+*                              *
+*     {140}KINGDOM OF JUARGAN       {110}*
+*   {120}updated by MadMardigan 99'{110} *
+*                              *
+*  {120}                            {110}*
+*      {120}type {050}help juargan       {110}*{050}
+{110}*{050}        {120}for more info.{140}        {110}*{140}
+{110}*{140}        {120}                      {110}*
+*                              *
+********************************~
+S
+#4775
+A valley~
+You see a fresh green valley.  Flowers blossom everywhere around you, and you
+have a big urge to giggle.  To the north, you can see the source of this
+greenness, a waterfall.  To the west, you see the trail along the valley.~
+47 0 SECT_FIELD
+DDIR_NORTH
+You hear the rush of a waterfall.~
+~
+0 0 4774
+DDIR_WEST
+You see the valley.~
+~
+0 0 4776
+S
+#4776
+A valley~
+You see a fresh green valley.  Flowers blossom everywhere around you, and you
+have a big urge to giggle.  The valley continues to the east, or you can take
+a steep trail up.~
+47 0 SECT_FIELD
+DDIR_EAST
+You see the valley.~
+~
+0 0 4775
+DDIR_UP
+You see the trail up to the uncomfortable hills.~
+~
+0 0 4777
+S
+#4777
+At the end of the hills~
+What a view!  From here, you can see a waterfall toward the east, and lush
+green forests south-east.  To the north, you see the Mountains of Moria.  To
+the west, you see the dirty trail again.  A trail leads down to the valley
+below.~
+47 ROOM_NO_MOB SECT_FIELD
+DDIR_WEST
+You see the trail continue west.~
+~
+0 0 4778
+DDIR_DOWN
+You see the valley.~
+~
+0 0 4776
+S
+#4778
+A trail along the hills~
+The dirt road you are treading on is as gentle as you can believe.  Rocks
+catch on you as you try to keep your balance.  The trail continues east and
+back west to relative safety.~
+47 0 SECT_HILLS
+DDIR_EAST
+You see the trail.~
+~
+0 0 4777
+DDIR_WEST
+You see the trail.~
+~
+0 0 4779
+S
+#4779
+A trail along the hills~
+The trail flattens out a bit, giving you time to breathe.  You don't see much
+water and don't think the sun is going to help your thirst.  The closest shade
+appears to be the dwarf forest, which is VERY far away.~
+47 0 SECT_HILLS
+DDIR_EAST
+You see the trail.~
+~
+0 0 4778
+DDIR_DOWN
+You see the scary cliff down, but at least you know you can climb it.~
+~
+0 0 4780
+S
+#4780
+Up the hill~
+You continue to climb this hill as sweat breaks out upon your forehead.  It
+looks like you are close to the plateau.  Down is the relative comfort of
+ground again, but you are SO close to the top!~
+47 0 SECT_MOUNTAIN
+DDIR_UP
+You see rocks.~
+~
+0 0 4779
+DDIR_DOWN
+You see rocks.~
+~
+0 0 4781
+S
+#4781
+Up the hill~
+You continue to climb this hill as sweat breaks out upon your forehead.  It
+looks like you are close to the plateau.  Down is the relative comfort of
+ground again, but you are SO close to the top!~
+47 0 SECT_MOUNTAIN
+DDIR_UP
+You see rocks.~
+~
+0 0 4780
+DDIR_DOWN
+You see rocks.~
+~
+0 0 4782
+S
+#4782
+Up the hill~
+You continue to climb this hill as sweat breaks out upon your forehead.  It
+looks like you are close to the plateau.  Down is the relative comfort of
+ground again, but you are SO close to the top!~
+47 0 SECT_MOUNTAIN
+DDIR_UP
+You see rocks.~
+~
+0 0 4781
+DDIR_DOWN
+You see rocks.~
+~
+0 0 4783
+S
+#4783
+Up the hill~
+You continue to climb this hill as sweat breaks out upon your forehead.  It
+looks like you are close to the plateau.  Down is the relative comfort of
+ground again, but you are SO close to the top!~
+47 0 SECT_MOUNTAIN
+DDIR_UP
+You see rocks.~
+~
+0 0 4782
+DDIR_DOWN
+You see the floor again!~
+~
+0 0 4784
+S
+#4784
+The hills~
+You sigh as the trail continues straight up into the mountain.  West leads
+back to the more stable ground, but you wonder what's on the other side of this
+little hill.....~
+47 0 SECT_HILLS
+DDIR_WEST
+You see the trail back.~
+~
+0 0 4785
+DDIR_UP
+You see rocks.~
+~
+0 0 4783
+S
+#4785
+The hills~
+You see all around you ... hills.  You're lucky you get to get so much
+exercise today!  You wonder if you should save your breath and go back west or
+continue east toward the hills.  There is a trail leading south towards
+a black glassy mountain range.~
+47 0 SECT_HILLS
+DDIR_EAST
+You see the trail along the hills.~
+~
+0 0 4784
+S
+#4786
+Siven's Front Yard~
+You make your way onto the front entrance of Siven the Wise's home. A small
+picket fence surrounds the perimeter to protect the family and also to mark
+his rightful deed to the land.~
+47 ROOM_INDOORS SECT_CITY
+DDIR_WEST
+~
+~
+0 -1 4756
+DDIR_EAST
+~
+~
+0 -1 4771
+S
+#4787
+Chasing Jagoan~
+You run as fast as you can in the attempt to catch Jagoan. You can see him
+running about thirty yards in front of you constantly glancing back to see 
+how far back you are from him.~
+47 ROOM_SAFE|ROOM_INDOORS SECT_CITY
+S
+#4788
+Just a Room~
+Its just a plain room.~
+47 ROOM_INDOORS SECT_CITY
+S
+#4789
+The Final Battle~
+You finally manage to catch up to Jagoan. You chase him into a dead end. A 
+steep cliff behind Jagoan prevents him from going any further.~
+47 ROOM_INDOORS SECT_CITY
+DDIR_WEST
+~
+~
+0 -1 4790
+S
+#4790
+A Hole in a Rock~
+You are in a small room that looks as though it was in the process of being
+mined, but never finished.~
+47 ROOM_INDOORS SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 4789
+S
+#0
+
+#RESETS
+M 0  4704 10  4705 ;          the duergar dwarf in Unfinished Mine          
+E 1  4701 100 WEAR_WIELD ;equip a mining pick            
+M 0  4704 10  4705 ;          the duergar dwarf in Unfinished Mine          
+E 1  4701 100 WEAR_WIELD ;equip a mining pick            
+M 0  4704 10  4707 ;          the duergar dwarf in Unfinished Mine
+E 1  4701 100 WEAR_WIELD ;equip a mining pick            
+M 0  4704 10  4707 ;          the duergar dwarf in Unfinished Mine
+E 1  4701 100 WEAR_WIELD ;equip a mining pick            
+M 0  4704 10  4713 ;          the duergar dwarf in Unfinished Mine
+E 1  4701 100 WEAR_WIELD ;equip a mining pick            
+M 0  4704 10  4713 ;          the duergar dwarf in Unfinished Mine
+E 1  4701 100 WEAR_WIELD ;equip a mining pick            
+M 0  4704 10  4720 ;          the duergar dwarf in Unfinished Mine          
+E 1  4701 100 WEAR_WIELD ;equip a mining pick            
+M 0  4704 10  4720 ;          the duergar dwarf in Unfinished Mine          
+E 1  4701 100 WEAR_WIELD ;equip a mining pick            
+M 0  4704 10  4716 ;          the duergar dwarf in Unfinished Mine
+E 1  4701 100 WEAR_WIELD ;equip a mining pick            
+M 0  4704 10  4716 ;          the duergar dwarf in Unfinished Mine
+E 1  4701 100 WEAR_WIELD ;equip a mining pick            
+M 0  4704 10  4714 ;          the duergar dwarf in Unfinished Mine
+E 1  4701 100 WEAR_WIELD ;equip a mining pick            
+M 0  4704 10  4714 ;          the duergar dwarf in Unfinished Mine
+E 1  4701 100 WEAR_WIELD ;equip a mining pick            
+M 0  4704 10  4727 ;          the duergar dwarf in Unfinished Mine
+E 1  4701 100 WEAR_WIELD ;equip a mining pick            
+M 0  4704 10  4727 ;          the duergar dwarf in Unfinished Mine
+E 1  4701 100 WEAR_WIELD ;equip a mining pick            
+M 0  4704 10  4731 ;          the duergar dwarf in Unfinished Mine
+E 1  4701 100 WEAR_WIELD ;equip a mining pick            
+M 0  4704 10  4731 ;          the duergar dwarf in Unfinished Mine
+E 1  4701 100 WEAR_WIELD ;equip a mining pick            
+M 0  4704 10  4725 ;          the duergar dwarf in Unfinished Mine
+E 1  4701 100 WEAR_WIELD ;equip a mining pick            
+M 0  4704 10  4725 ;          the duergar dwarf in Unfinished Mine
+E 1  4701 100 WEAR_WIELD ;equip a mining pick            
+M 0  4704 10  4701 ;          the duergar dwarf in Unfinished Mine
+E 1  4701 100 WEAR_WIELD ;equip a mining pick            
+M 0  4704 10  4701 ;          the duergar dwarf in Unfinished Mine
+E 1  4701 100 WEAR_WIELD ;equip a mining pick            
+M 0  4704 10  4724 ;          the duergar dwarf in Unfinished Mine
+E 1  4701 100 WEAR_WIELD ;equip a mining pick            
+M 0  4704 10  4724 ;          the duergar dwarf in Unfinished Mine
+E 1  4701 100 WEAR_WIELD ;equip a mining pick            
+M 0  4704 10  4712 ;          the duergar dwarf in Unfinished Mine
+E 1  4701 100 WEAR_WIELD ;equip a mining pick            
+M 0  4704 10  4712 ;          the duergar dwarf in Unfinished Mine
+E 1  4701 100 WEAR_WIELD ;equip a mining pick            
+M 0  4704 10  4711 ;          the duergar dwarf in Unfinished Mine
+E 1  4701 100 WEAR_WIELD ;equip a mining pick            
+M 0  4704 10  4711 ;          the duergar dwarf in Unfinished Mine
+E 1  4701 100 WEAR_WIELD ;equip a mining pick            
+M 0  4704 10  4718 ;          the duergar dwarf in Unfinished Mine
+E 1  4701 100 WEAR_WIELD ;equip a mining pick            
+M 0  4704 10  4718 ;          the duergar dwarf in Unfinished Mine
+E 1  4701 100 WEAR_WIELD ;equip a mining pick            
+M 0  4704 10  4723 ;          the duergar dwarf in Unfinished Mine
+E 1  4701 100 WEAR_WIELD ;equip a mining pick            
+M 0  4704 10  4723 ;          the duergar dwarf in Unfinished Mine
+E 1  4701 100 WEAR_WIELD ;equip a mining pick            
+M 0  4704 10  4704 ;          the duergar dwarf in Unfinished Mine
+E 1  4701 100 WEAR_WIELD ;equip a mining pick            
+M 0  4704 10  4704 ;          the duergar dwarf in Unfinished Mine
+E 1  4701 100 WEAR_WIELD ;equip a mining pick            
+M 0  4704 10  4706 ;          the duergar dwarf in Unfinished Mine
+E 1  4701 100 WEAR_WIELD ;equip a mining pick            
+M 0  4704 10  4706 ;          the duergar dwarf in Unfinished Mine
+E 1  4701 100 WEAR_WIELD ;equip a mining pick            
+M 0  4704 10  4709 ;          the duergar dwarf in Unfinished Mine
+E 1  4701 100 WEAR_WIELD ;equip a mining pick            
+M 0  4704 10  4709 ;          the duergar dwarf in Unfinished Mine
+E 1  4701 100 WEAR_WIELD ;equip a mining pick            
+M 0  4704 10  4726 ;          the duergar dwarf in Unfinished Mine
+E 1  4701 100 WEAR_WIELD ;equip a mining pick            
+M 0  4704 10  4726 ;          the duergar dwarf in Unfinished Mine
+E 1  4701 100 WEAR_WIELD ;equip a mining pick            
+M 0  4704 10  4719 ;          the duergar dwarf in Unfinished Mine          
+E 1  4701 100 WEAR_WIELD ;equip a mining pick            
+M 0  4704 10  4719 ;          the duergar dwarf in Unfinished Mine          
+E 1  4701 100 WEAR_WIELD ;equip a mining pick            
+M 0  4704 10  4721 ;          the duergar dwarf in Unfinished Mine
+E 1  4701 100 WEAR_WIELD ;equip a mining pick            
+M 0  4704 10  4721 ;          the duergar dwarf in Unfinished Mine
+E 1  4701 100 WEAR_WIELD ;equip a mining pick            
+M 0  4704 10  4730 ;          the duergar dwarf in Unfinished Mine
+E 1  4701 100 WEAR_WIELD ;equip a mining pick            
+M 0  4704 10  4730 ;          the duergar dwarf in Unfinished Mine
+E 1  4701 100 WEAR_WIELD ;equip a mining pick            
+M 0  4704 10  4722 ;          the duergar dwarf in Unfinished Mine
+E 1  4701 100 WEAR_WIELD ;equip a mining pick            
+M 0  4704 10  4722 ;          the duergar dwarf in Unfinished Mine
+E 1  4701 100 WEAR_WIELD ;equip a mining pick            
+M 0  4701   6  4740 ;          the dwarf guard in Walkway
+M 0  4701   6  4740 ;          the dwarf guard in Walkway  
+M 0  4701   6  4740 ;          the dwarf guard in Walkway  
+M 0  4701   6  4740 ;          the dwarf guard in Walkway  
+M 0  4708   6  4738 ;          the duergar guard in Carved Tunnel Entrance
+M 0  4708   6  4738 ;          the duergar guard in Carved Tunnel Entrance
+M 0  4708   6  4738 ;          the duergar guard in Carved Tunnel Entrance
+M 0  4708   6  4738 ;          the duergar guard in Carved Tunnel Entrance
+M 0  4700   6  4763 ;          a small dwarf in mine
+E 1  4701 100 WEAR_WIELD ;equip a mining pick            
+M 0  4700   6  4763 ;          a small dwarf in mine
+E 1  4701 100 WEAR_WIELD ;equip a mining pick            
+M 0  4700   6  4753 ;          a small dwarf in mine
+E 1  4701 100 WEAR_WIELD ;equip a mining pick            
+M 0  4700   6  4753 ;          a small dwarf in mine
+E 1  4701 100 WEAR_WIELD ;equip a mining pick            
+M 0  4700   6  4751 ;          a small dwarf in mine
+E 1  4701 100 WEAR_WIELD ;equip a mining pick            
+M 0  4700   6  4751 ;          a small dwarf in mine
+E 1  4701 100 WEAR_WIELD ;equip a mining pick            
+M 0  4700   6  4741 ;          a small dwarf in mine
+E 1  4701 100 WEAR_WIELD ;equip a mining pick            
+M 0  4700   6  4741 ;          a small dwarf in mine
+E 1  4701 100 WEAR_WIELD ;equip a mining pick            
+M 0  4700   6  4745 ;          a small dwarf in mine
+E 1  4701 100 WEAR_WIELD ;equip a mining pick            
+M 0  4700   6  4745 ;          a small dwarf in mine
+E 1  4701 100 WEAR_WIELD ;equip a mining pick            
+M 0  4700   6  4750 ;          a small dwarf in mine
+E 1  4701 100 WEAR_WIELD ;equip a mining pick            
+M 0  4700   6  4750 ;          a small dwarf in mine
+E 1  4701 100 WEAR_WIELD ;equip a mining pick            
+M 0  4700   6  4748 ;          a small dwarf in mine
+E 1  4701 100 WEAR_WIELD ;equip a mining pick            
+M 0  4700   6  4748 ;          a small dwarf in mine
+E 1  4701 100 WEAR_WIELD ;equip a mining pick            
+M 0  4700   6  4742 ;          a small dwarf in mine
+E 1  4701 100 WEAR_WIELD ;equip a mining pick            
+M 0  4700   6  4742 ;          a small dwarf in mine
+E 1  4701 100 WEAR_WIELD ;equip a mining pick            
+M 0  4700   6  4755 ;          a small dwarf in mine
+E 1  4701 100 WEAR_WIELD ;equip a mining pick            
+M 0  4700   6  4755 ;          a small dwarf in mine
+E 1  4701 100 WEAR_WIELD ;equip a mining pick            
+M 0  4700   6  4747 ;          a small dwarf in mine
+E 1  4701 100 WEAR_WIELD ;equip a mining pick            
+M 0  4700   6  4747 ;          a small dwarf in mine
+E 1  4701 100 WEAR_WIELD ;equip a mining pick            
+M 0  4700   6  4744 ;          a small dwarf in mine
+E 1  4701 100 WEAR_WIELD ;equip a mining pick            
+M 0  4700   6  4744 ;          a small dwarf in mine
+E 1  4701 100 WEAR_WIELD ;equip a mining pick            
+M 0  4700   6  4758 ;          a small dwarf in mine
+E 1  4701 100 WEAR_WIELD ;equip a mining pick            
+M 0  4700   6  4758 ;          a small dwarf in mine
+E 1  4701 100 WEAR_WIELD ;equip a mining pick            
+M 0  4700   6  4758 ;          a small dwarf in mine
+E 1  4701 100 WEAR_WIELD ;equip a mining pick            
+M 0  4700   6  4762 ;          a small dwarf in mine
+E 1  4701 100 WEAR_WIELD ;equip a mining pick            
+M 0  4700   6  4762 ;          a small dwarf in mine
+E 1  4701 100 WEAR_WIELD ;equip a mining pick            
+M 0  4700   6  4759 ;          a small dwarf in mine
+E 1  4701 100 WEAR_WIELD ;equip a mining pick            
+M 0  4700   6  4759 ;          a small dwarf in mine
+E 1  4701 100 WEAR_WIELD ;equip a mining pick            
+M 0  4701  11  4766 ;          the dwarf guard in Guard Barrack
+M 0  4701  11  4766 ;          the dwarf guard in Guard Barrack            
+M 0  4701  11  4766 ;          the dwarf guard in Guard Barrack            
+M 0  4701  11  4766 ;          the dwarf guard in Guard Barrack            
+M 0  4701  11  4766 ;          the dwarf guard in Guard Barrack            
+M 0  4701  11  4749 ;          the dwarf guard in Temple of Juargan        
+E 1  4702 100  WEAR_HEAD ;equip A Dwarven Helm           
+E 1  4703 100  WEAR_BODY ;equip A Dwarven Breast Plate   
+E 1  4704 100  WEAR_SHIELD ;equip A Large Dwarven Shield   
+E 1  4705 100  WEAR_WIELD ;equip a large dwarven battle ax 
+M 0  4703   1  4749 ;        King Mathius in Temple of Juargan
+E 1  4731 100  ITEM_WEAR_FINGER ;equip The Birth Stone of Mathius
+M 0  4708  10  4733 ;       the duergar guard in Duergar Barracks
+M 0  4708  10  4733 ;       the duergar guard in Duergar Barracks         
+M 0  4708  10  4733 ;       the duergar guard in Duergar Barracks         
+M 0  4708  10  4733 ;        the duergar guard in Duergar Barracks         
+M 0  4704  10  4735 ;        the duergar dwarf in By a small fire          
+M 0  4708  10  4732 ;        the duergar guard in Duergar Outcamp          
+M 0  4708  10  4732 ;        the duergar guard in Duergar Outcamp 
+M 0  4708  10  4732 ;        the duergar guard in Duergar Outcamp 
+M 0  4704  10  4729 ;        the duergar dwarf in Dwarven mines
+M 0  4704  10  4715 ;        the duergar dwarf in Dwarven mines            
+M 0  4702   1  4786 ;        Yentle the dwarf in Mines              
+M 0  4705   1  4732 ;        Grimdale The Duergar King in Duergar Outcamp            
+E 1  4732 100  WEAR_HEAD ;equip The Helm of Grimdale
+M 0  4707   3  4768 ;         a dwarven spirit in Entrance to Tomb            
+M 0  4707   3  4768 ;         a dwarven spirit in Entrance to Tomb            
+M 0  4707   3  4768 ;         a dwarven spirit in Entrance to Tomb            
+M 0  4713   1  4723 ;         Ghost in Unfinished Mines
+M 0  4714   1  4711 ;         Ghost in Unfinished Mines
+M 0  4715   1  4757 ;         Ghost in Unfinished Mines
+M 0  4712   1  4771 ;         Siven the Wise in Siven's Stone
+M 0  4709   1  4761 ;         Pasty in Pasty's Dwelling
+G 1  4708   50 ;Potion of Speed
+G 1  4709   50 ;Scroll of Speed
+G 1  4710   50 ;A Flask of Giboa
+G 1  4711   50 ;A Scroll of Arachin
+G 1  4726   50 ;A Potion of Reflection
+G 1  4727   50 ;A Potion of Fury
+G 1  4728   50 ;A Potion of Cromain
+G 1  4729   50 ;A Pill of Reflection
+G 1  4730   50 ;A Pill of Cromain
+G 1  4734   50 ;A Potion of Sanctuary
+G 1  4735   50 ;A Scroll of Sanctuary
+M 0  4710   1  4765 ;         Bramela in Stone Jewel
+G 1  4736   50 ;A Blue Lapis Necklace
+G 1  4712   50 ;The Stone Jewel
+G 1  4713   50 ;The Bramela Anklet
+M 0  4711   1  4764 ;         Leatherbie in Leatherbies
+G 1  4714   50 ;A Long Lasting Torch
+G 1  4715   50 ;A Sticky Bomb
+G 1  4716   50 ;An Adventurers Pack
+G 1  4717   50 ;Leatherbies Leather Sex Toy
+G 1  4718   50 ;A Bottle of Leatherbies Finest
+G 1  4719   50 ;A Small Raft
+O 0  4720   1  4717 ;A small stone in mines
+O 0  4721   1  4744 ;A medium size stone in mines
+O 0  4722   1  4785 ;A large stone in mines
+O 0  4706   1  4769 ;a large stone sarcophagus in Ancients Vault
+P 1  4707   1  4706 ;the corpse of zadrian in a large stone sarcophagus
+D 0  4769 DIR_WEST DOOR_CLOSED ;door in Ancients Tomb
+D 0  4770 DIR_EAST DOOR_CLOSED ;door in Ancients Vault           
+D 0  4700 DIR_UP DOOR_CLOSED ;door in The Spiral Stair         
+D 0  4772 DIR_DOWN DOOR_CLOSED ;door in The small cave           
+S
+
+#SHOPS
+4709  ITEM_TYPE_POTION ITEM_TYPE_SCROLL ITEM_TYPE_STAFF ITEM_TYPE_NOTHING
+      ITEM_TYPE_NOTHING 100 50 0 23 ;Pasty
+
+4710  ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING
+      ITEM_TYPE_NOTHING 100 50 0 23 ;Bramela
+
+4711  ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING
+      ITEM_TYPE_NOTHING 100 50 0 23 ;Leatherbies
+
+0
+#SPECIALS
+S
+#$
+

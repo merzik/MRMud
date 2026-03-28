@@ -1,0 +1,2356 @@
+#AREA Polvo's Palace~
+#AUTHORS Savac  ~
+
+
+
+
+
+#HELPS
+-1 polvo palace~
+Polvo's Palace
+		       Created by Savac
+		       The Friendly One 
+		       :)     :)     :)
+
+		       For levels 10-30~
+0 $~
+
+
+
+
+#RANGES 10 30 0 99
+#FLAGS AFLAG_NODEBUG
+#MOBILES
+#10400
+bright light polva~
+the bright polva~
+A polva made out of pure light is glowing here.~
+The bright white light from this polva hurts your eyes.~
+ACT_SENTINEL|ACT_WEAK
+0
+500 S
+30 0 0 10d40+800 5d5+10
+10000 106194
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>act_prog 100 p looks at you.~
+if ispc($n)
+  mpechoat $n The blinding light forces you to blink your eyes many times.
+  mpechoaround $n $n blinks several times, and looks a little disoriented.
+endif
+~
+>act_prog 100 p pokes you in the ribs.~
+if ispc($n)
+  mpechoat $n You are suprised when you find out that your finger goes right through its ribs  
+  mpechoat $n In fact, you realize that there is no substance to the polva at all!
+  mpechoaround $n $n stumbles forward through the polva, and you see a slight shimmer in the polva's aura.
+endif
+~
+|
+#10401
+crystal polva~
+the crystal polva~
+A crystal polva is out trying to keep the palace clean of vermin.~
+Light dances furtively in the many facets of the polva's crystaline skin.~
+ACT_STAY_AREA|ACT_WEAK
+AFF_PASS_DOOR|AFF_CLEAR
+200 S
+20 0 0 20d20+200 1d10+15
+0 20422
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>death_prog 100~
+mpecho The crystal polva is shatters!
+~
+>hitprcnt_prog 20~
+mpecho The crystal polva has shattered into lots of little pieces!
+~
+>hitprcnt_prog 40~
+if rand(10)
+  if isfight($i)   
+    mpecho The crystal polva is cracking very badly!
+  endif
+endif
+~
+>hitprcnt_prog 60~
+if rand(10)
+  if isfight($i)   
+    mpecho The crystal polva starting to crack!
+  endif
+endif
+~
+>hitprcnt_prog 80~
+if rand(10)
+  if isfight($i)   
+    mpecho The crystal polva is beginning to show signs of weakness... 
+  endif
+endif
+~
+>hitprcnt_prog 100~
+if rand(10)
+  if isfight($i)   
+    mpecho The crystal polva looks barely touched!
+  endif
+endif
+~
+>rand_prog 5~
+mpecho The room changes into a rainbow of color, then back to blue again.
+~
+>rand_prog 100~
+if inroom($i) == 10499
+  cast heal
+  if hitprcnt($i) == 1
+    mpecho The crystal polva imploads!
+    mptransfer $i 10404
+    mpecho A crystal polva has arrived, looking more refreshed than the others.
+  endif
+endif
+~
+|
+#10402
+little tiny polva crystaline~
+the tiny crystaline polva~
+A tiny crystaline polva is scurrying around helplessly.~
+This little polva was once a part of the much larger crystal polva, but
+now is a living testament to the fact that the whole is greater than 
+the sum of its parts.~
+ACT_STAY_AREA|ACT_WEAK
+AFF_DETECT_EVIL|AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_HUNT
+0 S
+10 0 0 10d10+80 1d10+9
+3737 1934
+POS_STANDING POS_STANDING SEX_NEUTRAL
+#10403
+polvo lord~
+Lord Polvo~
+Lord Polvo is sitting on his throne, avidly watching the 
+jousting match in his large crystal ball.~
+Lord Polvo, the legendary Lord of Light doesn't look quite so legendary
+here.  He is still in excellent shape, and has lots of power about him,
+but he just doesn't look like he could tear himself away from his 
+crystal ball long enough to fight.~
+ACT_SENTINEL
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_SANCTUARY
+1000 S
+35 0 0 10d10+1000 10d4+0
+32331 144081
+POS_STANDING POS_STANDING SEX_MALE
+>speech_prog key ward demon demons~
+if ispc($n)
+  emote gasps!
+  mpecho Lord polvo says 'I forgot all about the ward room!!'
+  mpechoat $n Lord Polvo whispers in your ear 'go check it for me, please'
+  if hasobjvnum(10400) 
+  else
+    oload 10400
+  endif
+  give shard $n
+  emote relaxes, and continues to watch his favorite sport.
+else
+endif
+~
+>rand_prog 10~
+emote cheers for the knight in red!
+~
+>rand_prog 20~
+emote utters an incantation, and the black knight falls off of his horse.
+~
+>rand_prog 30~
+emote laughs at the puny attempts of the black knight to best his red knight.
+~
+>rand_prog 40~
+emote shines a light into the crystal ball, blinding the black knight.
+~
+>death_prog 100~
+if actorhasobjnum(30900)
+or actorhasobjnum(30966)
+or actorhasobjnum(30967)
+or actorhasobjnum(30968)
+or actorhasobjnum(30969)
+  if quest(30,1,$n) == 0
+    mpmset $n quest 30 1 1
+    mpoload 30914
+    mpforce $n HELP GUILDTOKEN
+    mpquiet on
+    c 'giant strength' $n
+    give i30914 $n
+    mpquiet off
+  endif
+endif~
+|
+#10404
+breeze~
+the breeze~
+A cool breeze flutters forth, dusting the ceiling as it goes.~
+Even with detect invisible, you can't actually see the breeze, but you 
+can certainly feel it...It feels VERY refreshing.~
+ACT_SCAVENGER|ACT_STAY_AREA|ACT_WIMPY
+AFF_INVISIBLE|AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_CLEAR
+200 S
+10 0 0 1d1+351 1d9+9
+0 1934
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>rand_prog 30~
+if rand(50)
+  mpecho A whirling breeze brushes the dirt off of the ceiling.
+else
+  if isnpc($r)   
+    mpechoaround $r A breeze flows through $r, producing a trail of dust.
+  else
+    if ispc($r)   
+      mpechoat $r You feel a whirl of wind lift the dirt off of you.
+      mpechoaround $r A breeze flows through $r, producing a trail of dust.
+      mpechoaround $r You never knew how dirty $r was!
+    else
+    endif
+  endif
+endif
+~
+|
+#10405
+angel~
+Angel~
+Angel is here, welcoming you to the Orderly part of the palace.~
+Angel is very beautiful...She has long brown hair, hazel eyes, and a tan 
+that lets you know instantly that she has known perfection for centuries!~
+ACT_SENTINEL
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_SANCTUARY
+1000 S
+35 0 0 1d1+1000 5d9+19
+0 144081
+POS_STANDING POS_STANDING SEX_FEMALE
+>all_greet_prog 100~
+if whichgod ($n) != 1
+  mptransfer $n 10432
+else
+  if sex($n) == 1 
+  else
+  endif
+~
+|
+#10406
+breeze~
+a breeze~
+The breeze is the only way you can tell there is an exit to this place.~
+It is an ordinary breeze.~
+ACT_SENTINEL
+AFF_DETECT_INVIS|AFF_ETHEREAL
+1000 S
+1 0 0 1d1+22 1d1+4
+0 10
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>all_greet_prog 100~
+if whichgod($n) == 1
+  mptransfer $n 10440
+else
+  mptransfer $n 10431
+endif
+~
+|
+#10407
+worshipper~
+the worshipper~
+The worshipper is kneeling here, praying to Order for salvation.~
+The worshipper is in tattered clothing, and has not been out of this
+chapel for 3 weeks.~
+ACT_SENTINEL|ACT_WEAK
+AFF_SANCTUARY|AFF_PROTECT_EVIL
+1000 S
+5 0 0 1d1+114 1d1+5
+1 631
+POS_RESTING POS_RESTING SEX_MALE
+>death_prog 100~
+mpmload 10407
+mpecho .
+mpecho You hear something in the back of your mind...
+mpecho .
+mpecho Who did not abondon God:
+mpecho ...may their memory be ever blessed
+mpecho .
+mpecho .Their bones return to life from their resting place,
+mpecho ...and their names recieve fresh luster...
+mpecho .
+mpecho .
+mpecho Order has restored his worshipper!
+mpecho .
+~
+|
+#10408
+zoot master healer~
+Zoot the master healer~
+Zoot, the master healer is here, working on all of his comrades.~
+Zoot has the hands of a surgeon, enabling him to work healing magic
+better than anyone in the realms!~
+ACT_SENTINEL
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_SANCTUARY
+1000 S
+99 0 0 1d1+21690 1d1+219
+1000 838032
+POS_STANDING POS_STANDING SEX_MALE
+>speech_prog test~
+if $n == Friend
+  mptransfer $n 10497    
+  mpat 10497 mpforce $n l
+endif
+~
+>all_greet_prog 100~
+if whichgod ($n) != 1
+  mptransfer n$ 10432
+endif
+~
+>rand_prog 5~
+if ispc($r)
+  cast 'sanct' $r
+else
+  if isnpc($r)
+    cast 'sanct' $r
+  endif
+endif
+~
+>rand_prog 5~
+if ispc($r)
+  cast 'sanct' $r
+  cast 'prot' $r
+else
+  if isnpc($r)
+    cast 'sanct' $r
+    cast 'prot' $r
+  endif
+endif
+~
+>rand_prog 10~
+mppurge mushroom
+cast 'create food'
+~
+>rand_prog 90~
+if ispc($r)
+  cast 'heal' $r
+else
+  if isnpc($r)
+    cast 'heal' $r
+  endif
+endif
+~
+>rand_prog 100~
+if ispc($r)
+  cast 'remove curse' $r
+  cast 'cure blind' $r
+else
+  if isnpc($r)
+    cast 'remove curse' $r
+    cast 'cure blind' $r
+  endif
+endif
+~
+|
+#10409
+siddern~
+Siddern~
+Siddern is here, mourning the loss of Pikon.~
+Siddern an old man, with little life left in him.~
+ACT_SENTINEL
+AFF_SANCTUARY
+300 S
+30 0 0 10d10+600 5d9+9
+0 106194
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if actorhasobjnum(10405)
+  mpechoat $n Your crystal bird starts to rock uncontrollably!    
+  mpechoat $n You can hold on to the crystal bird no longer!
+  mpforce $n drop $c
+  mppurge $c
+  mpmload 10410
+  mpecho The crystal bird has taken flight!
+  gasp 
+  mpecho $i exclaims 'Pikon, you have returned!'
+  mpecho Pikon, the crystal bird, flies too Siddern and perches on his shoulder.
+  say Thank you for returning Pikon to me. 
+  say Follow him, and he will lead you to a secret place.
+else
+  mpechoat $n Have you seen Pikon anywhere?
+endif
+~
+>act_prog gets out of~
+if actorhasobjnum(10405)
+  mpechoat $n Your crystal bird starts to rock uncontrollably!    
+  mpechoat $n You can hold on to the crystal bird no longer!
+  mpforce $n drop $c
+  mppurge $c
+  mpmload 10410
+  mpecho The crystal bird has taken flight!
+  gasp 
+  mpecho $i exclaims 'Pikon, you have returned!'
+  mpecho Pikon, the crystal bird, flies too Siddern and perches on his shoulder.
+  say For your goodness, follow Pikon, and he will show you a secret!
+else
+endif
+~
+>speech_prog pikon~
+if inroom(pikon) != 10465
+  mpechoaround $n $i tells $n all about Pikon.
+  mpechoat $n $i tells you about Pikon.  'Pikon is..or was..my pet bird.  
+  mpechoat $n He was a special bird though..  he was made out of living 
+  mpechoat $n crystal, and he was given to me by Lord Polvo himself!  
+  mpechoat $n Please, if you ever find him, let him know I am still here?'
+  mpecho Siddern says 'I haven't seen Pikon for months!'
+  mpecho $i sheds a tear.  
+endif
+~
+|
+#10410
+pikon crystal bird~
+Pikon~
+Pikon is flying around gracefully.~
+Pikon, the beautiful crystal bird, has come to life, and is flying around
+before you.~
+ACT_SENTINEL
+AFF_SANCTUARY|AFF_CLEAR
+300 S
+30 0 0 10d10+1000 5d9+9
+0 106194
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>rand_prog 40~
+emote sings a beautiful bird-song that makes you drowsy.
+~
+>rand_prog 80~
+if inroom($i) == 10475
+or inroom($i) == 10474  
+or inroom($i) == 10470  
+or inroom($i) == 10466  
+  north 
+else
+  if inroom($i) == 10472
+  or inroom($i) == 10468
+  or inroom($i) == 10464
+  or inroom($i) == 10465
+    south 
+  else
+    if inroom($i) == 10463
+    or inroom($i) == 10462
+    or inroom($i) == 10467
+    or inroom($i) == 10469
+    or inroom($i) == 10471
+    or inroom($i) == 10473
+      west 
+    else
+      emote flies out into the sky.
+      mppurge $i
+    endif
+  endif
+endif
+~
+|
+#10411
+john~
+John~
+John is here, selling things at cost for all who follow Order.~
+John is the best shop-keeper in the realm, because he sells items
+for the same price he bought them for!~
+ACT_SENTINEL
+AFF_SANCTUARY
+1000 S
+95 0 0 10d10+9000 10d10+200
+356821 780605
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if whichgod ($n) != 1
+  mptransfer n$ 10432
+endif
+~
+|
+#10412
+marion~
+Marion~
+Marion is here, conversing with the angels.~
+She looks very happy here, in her holy work.~
+ACT_SENTINEL
+AFF_SANCTUARY
+900 S
+90 0 0 1d1+17369 4d8+60
+12000 711952
+POS_STANDING POS_STANDING SEX_MALE
+#10413
+guardian angel~
+the guardian angel~
+A guardian angel is here, obeying his chosen ward.~
+Its an angel all right, but how well can it guard?  One look at the 
+brightness of its aura can tell you that much!~
+ACT_PET
+AFF_SANCTUARY|AFF_CLEAR
+1000 S
+50 0 0 5d10+1800 5d10+10
+0 269671
+POS_STANDING POS_STANDING SEX_NEUTRAL
+#10414
+rabbit~
+the rabbit~
+The cute little bunny rabbit is here, eating a wild carrot.~
+This sure is a CUTE UNDETECTABLE little bunny!
+(I made it ethereal and took out the hopping into the bushes part)~
+ACT_SENTINEL
+AFF_DETECT_INVIS|AFF_INFRARED|AFF_ETHEREAL
+1000 S
+1 0 0 1d1+27 1d1+4
+0 10
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>all_greet_prog 100~
+if ispc($n)
+  mptransfer $n 10466
+else
+  if inroom($i) != 10470  
+    mptransfer $i 10470
+  else
+    if number($n) == 10410
+      mptransfer $i 10473
+    else
+      mptransfer $n 10466
+    endif
+  endif
+endif
+~
+|
+#10415
+beautiful butterfly~
+the beautiful butterfly~
+A beautiful butterfly is fluttering between the flowers.~
+Broad wings adorn this tiny insect's body.~
+ACT_STAY_AREA
+AFF_CLEAR
+0 S
+10 0 0 5d5+200 2d5+9
+1 1934
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>rand_prog 10~
+emote flutters to a new flower.
+~
+>rand_prog 10~
+emote spreads its wings in a glorious yawn.
+~
+|
+#10416
+large big grasshopper~
+the big grasshopper~
+A very large grasshopper is bouncing around.~
+Long legs and thin wings can be seen on this insect's body.~
+ACT_STAY_AREA
+AFF_CLEAR
+0 S
+11 0 0 10d5+90 6d2+9
+1 2371
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>rand_prog 10~
+emote jumps around in the grass.
+~
+>rand_prog 10~
+mpecho You can hear the buzz of the grasshoppers in the grass.
+~
+|
+#10417
+darkling~
+the darkling~
+The darkling snears at you.~
+This darkling doesn't look like much.~
+ACT_SMART
+AFF_HUNT
+-1000 S
+15 0 0 10d10+150 6d2+9
+1000 5687
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>entry_prog 100~
+if inroom($r) == inroom($i)
+  Unknown $i description This mean looking morpher looks like $r!  
+  Unknown level level($r)
+endif
+~
+>speech_prog rep~
+report 
+~
+>speech_prog pikon bird~
+mpoload 10405
+give bird friend
+drop bird
+~
+>speech_prog return~
+mptransfer $n 10446
+~
+|
+#0
+
+
+
+
+#OBJECTS
+#10400
+shard key crystal~
+a crystal shard~
+A crystal shard is here, gleaming in its brilliance.~
+~
+ITEM_TYPE_TREASURE
+ITEM_FLAG_GLOW|ITEM_FLAG_MAGIC|ITEM_FLAG_BLESS|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_FINGER|ITEM_WEAR_ABOUT
+5 0 0 0
+0 10000 1
+E
+loop end~
+The loop on this end is very smooth, and looks just large enough to
+fit around your finger.~
+E
+crystal shard key~
+On one end, this shard's many facets form a what could be a key, and 
+there is a loop on the other.~
+A
+APPLY_AC -1
+A
+APPLY_DAMROLL 1
+#10401
+chandelier crystal~
+a crystal chandelier~
+The crystal chandelier is spectacularly beautiful!  It is 
+adorned with lots of glowing crystals.~
+~
+ITEM_TYPE_CONTAINER
+ITEM_FLAG_GLOW|ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+0
+1049 0 -1 0
+1049 1049 170
+#10402
+white gleeming crystal geode~
+the crystal geode~
+You see the crystal geode, a perfect gleeming white crystal.~
+~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_INVIS|ITEM_FLAG_MAGIC|ITEM_FLAG_ANTI_NEUTRAL|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 4 6 WEAPON_POUND
+5 1000 24
+A
+APPLY_AC -5
+A
+APPLY_HITROLL -5
+#10403
+brilliant purple robe~
+the brilliant purple robe~
+The brilliant purple robe is full of Lordly power.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_ANTI_EVIL|ITEM_FLAG_ANTI_NEUTRAL|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_ABOUT
+10 0 0 0
+1 30000 22
+#10405
+crystal bird~
+the crystal bird~
+This crystal bird was made in the likeness of a dove.  Its wings are
+spread as if it were soaring across the land.~
+~
+ITEM_TYPE_TREASURE
+ITEM_FLAG_GLOW|ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 0 0
+5 1000000 1
+#10406
+scroll no-recall~
+the scroll of no-recall~
+The scroll of no-recall looks very powerful as it sucks up all the light
+around it.  A strong curse is on this scroll!!!~
+~
+ITEM_TYPE_SCROLL
+ITEM_FLAG_HUM|ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+35 SPELL_CURSE SPELL_FAERIE_FIRE SPELL_HEAL
+0 500000 65
+#10407
+white candle~
+the white candle~
+A white candle is sitting here, illuminating all around it.~
+The candle appears to be illuminating to the mind!~
+ITEM_TYPE_LIGHT
+ITEM_FLAG_GLOW|ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 1 0
+1 1000 4
+A
+APPLY_INT 1
+#0
+
+
+
+
+#ROOMS
+#10400
+~
+~
+104 0 0
+S
+#10401
+Palace Portal~
+This is the portal between Polvo's Palace and the outside world.  
+A large banner is floating above the portal.~
+104 ROOM_NO_MOB SECT_INSIDE
+DDIR_NORTH
+You see a portal glowing bright-white.~
+portal white bright bright-white~
+0 0 10402
+DDIR_SOUTH
+This is where I want it connected to the world...the north-west side of the
+holy grove would be a nice place for it.~
+~
+0 0 17353
+E
+banner large~
+Welcome to Polvo's Palace!  
+	      
+Built by Savac.  
+If you have any suggestions or comments, tell Friend.
+If you have any complaints, keep them to yourself. (Just kidding  :)~
+S
+#10402
+Palace Gate~
+You stand before Polvo's Palace, widely known for its breathtaking beauty. 
+From the outside the palace looks like a couple dozen huge pillars made of 
+bluish crystals.~
+104 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+The waiting room appears to be waiting for you.~
+~
+0 0 10403
+DDIR_SOUTH
+You see a portal glowing bright-white.~
+portal white bright bright-white~
+0 0 10401
+E
+palace polvo~
+The palace itself is huge!  This palace was no doubt made with powerful 
+magic.~
+E
+pillars bluish blue crystals~
+These crystal pillars sparkle dazzlingly, and produce rainbows of color
+throughout the land!~
+S
+#10403
+Waiting Room~
+You find yourself at the southern end of a well furbished waiting-room.~
+104 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+This lavish waiting-room continues to the north.~
+~
+0 0 10404
+DDIR_EAST
+This lavish waiting-room continues to the east.~
+~
+0 0 10408
+DDIR_SOUTH
+To the south lies the way out of Polvo's Place.~
+~
+0 0 10402
+DDIR_WEST
+This lavish waiting-room continues to the west.~
+~
+0 0 10406
+DDIR_UP
+It is a long way up.~
+~
+0 0 10426
+S
+#10404
+Waiting Room~
+You find yourself in the middle of a very well furbished waiting-room. 
+You notice a huge crystal chandelier hanging from the ceiling.~
+104 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+This lavish waiting-room continues to the north.~
+~
+0 0 10409
+DDIR_EAST
+This lavish waiting-room continues to the east.~
+~
+0 0 10407
+DDIR_SOUTH
+This lavish waiting-room continues to the south.~
+~
+0 0 10403
+DDIR_WEST
+This lavish waiting-room continues to the west.~
+~
+0 0 10405
+DDIR_UP
+You see the crystal chandelier.~
+~
+0 0 10422
+E
+huge crystal chandelier~
+Even at this distance, you are awed by the sheer beauty of the chandelier.~
+S
+#10405
+Waiting Room~
+You find yourself at the western end of a very well furbished waiting-room. 
+Several very rigid-looking crystal chairs line this wall.~
+104 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+This lavish waiting-room continues to the north.~
+~
+0 0 10411
+DDIR_EAST
+This lavish waiting-room continues to the east.~
+~
+0 0 10404
+DDIR_SOUTH
+This lavish waiting-room continues to the south.~
+~
+0 0 10406
+DDIR_UP
+It is a long way up.~
+~
+0 0 10424
+E
+magic~
+You can't see magic, silly!  You can just sense it, and you sense quite
+strong magic indeed.~
+E
+chairs rigid crystal~
+Upon closer inspection, you find that the chairs, are extremely soft! 
+There appears to be a layer of magic acting as a cushion.~
+S
+#10406
+Waiting Room~
+You find yourself at the south-western corner of a very well 
+furbished waiting-room.~
+104 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+This lavish waiting-room continues to the north.~
+~
+0 0 10405
+DDIR_EAST
+This lavish waiting-room continues to the east.~
+~
+0 0 10403
+DDIR_UP
+It is a long way up.~
+~
+0 0 10425
+S
+#10407
+Waiting Room~
+You find yourself at the eastern end of a very well furbished waiting-room.~
+104 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+This lavish waiting-room continues to the north.~
+~
+0 0 10410
+DDIR_SOUTH
+This lavish waiting-room continues to the south.~
+~
+0 0 10408
+DDIR_WEST
+This lavish waiting-room continues to the west.~
+~
+0 0 10404
+DDIR_UP
+It is a long way up.~
+~
+0 0 10421
+S
+#10408
+Waiting Room~
+You find yourself at the south-eastern corner of a very well 
+furbished waiting-room.~
+104 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+This lavish waiting-room continues to the north.~
+~
+0 0 10407
+DDIR_WEST
+This lavish waiting-room continues to the west.~
+~
+0 0 10403
+DDIR_UP
+It is a long way up.~
+~
+0 0 10427
+S
+#10409
+Waiting Room~
+You find yourself at the northern end of a very well furbished waiting-room.~
+104 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+A large crystal door lies to the north.~
+crystal door~
+EX_ISDOOR 10400 10415
+DDIR_EAST
+This lavish waiting-room continues to the east.~
+~
+0 0 10410
+DDIR_SOUTH
+This lavish waiting-room continues to the south.~
+~
+0 0 10404
+DDIR_WEST
+This lavish waiting-room continues to the west.~
+~
+0 0 10411
+DDIR_UP
+It is a long way up.~
+~
+0 0 10423
+S
+#10410
+Waiting Room~
+You find yourself at the north-eastern corner of a very well 
+furbished waiting-room.~
+104 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+You see a short flight of stairs that lead up to an overpass.~
+~
+0 0 10414
+DDIR_SOUTH
+This lavish waiting-room continues to the south.~
+~
+0 0 10407
+DDIR_WEST
+This lavish waiting-room continues to the west.~
+~
+0 0 10409
+DDIR_UP
+It is a long way up.~
+~
+0 0 10428
+S
+#10411
+Waiting Room~
+You find yourself at the north-western corner of a very well 
+furbished waiting-room.~
+104 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+You see a short flight of stairs that lead up to an overpass.~
+~
+0 0 10412
+DDIR_EAST
+This lavish waiting-room continues to the east.~
+~
+0 0 10409
+DDIR_SOUTH
+This lavish waiting-room continues to the south.~
+~
+0 0 10405
+DDIR_UP
+It is a long way up.~
+~
+0 0 10429
+S
+#10412
+Atop a short flight of stairs~
+You are standing atop a short flight of stairs which lead down to the 
+waiting room.~
+104 ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+You see an overpass to your east.~
+~
+0 0 10413
+DDIR_SOUTH
+You can see the north-western corner of the waiting room.~
+~
+0 0 10411
+DDIR_WEST
+You see a crystal chute.~
+~
+0 0 10477
+S
+#10413
+Overpass~
+You are standing on an overpass looking down onto the waiting room.~
+104 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+You see the hallway to the dining room.~
+~
+0 0 10452
+DDIR_EAST
+The top of a flight of stairs leading down to the waiting room lies to
+the east.~
+~
+0 0 10414
+DDIR_WEST
+The top of a flight of stairs leading down to the waiting room lies to
+the west.~
+~
+0 0 10412
+S
+#10414
+Atop a short flight of stairs~
+You are standing atop a short flight of stairs which lead down to the 
+waiting room.~
+104 ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+The base of the crystal stairs lies to the east.~
+~
+0 0 10418
+DDIR_SOUTH
+You can see the north-eastern corner of the waiting room.~
+~
+0 0 10410
+DDIR_WEST
+You see an overpass to your west.~
+~
+0 0 10413
+S
+#10415
+The Study~
+Your are in a lavish study, adorned with the finest crystal desk you could
+imagine.~
+104 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+A blackend crystal door lies to the north.~
+blackened crystal door~
+EX_ISDOOR|EX_CLOSED|EX_LOCKED 10400 10416
+DDIR_SOUTH
+A large crystal door lies to the south.~
+large crystal door~
+EX_ISDOOR 10400 10409
+E
+note inside~
+You spend several minutes, then give up trying to decypher the note.~
+E
+crystal desk~
+The crystal desk has no seems in it, and doesn't appear to open.  Yet you 
+can tell that there is something inside of it.  It looks like a note.~
+S
+#10416
+The Dark Room~
+The darkness of this room hangs down on you like some sort of a thick
+cloud of blackness.  As you wade through the darkness, you can feel the
+evil tingling your flesh.~
+104 ROOM_DARK|ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+A blackend crystal door lies to the south.~
+blackened crystal door~
+EX_ISDOOR|EX_CLOSED|EX_LOCKED 10400 10415
+DDIR_DOWN
+~
+seam~
+EX_ISDOOR|EX_CLOSED 0 10417
+S
+#10417
+Ward Room~
+You see that the Ward of Light is still holding strong against the forces
+of evil trying to come through the rift.~
+104 ROOM_INDOORS SECT_INSIDE
+DDIR_UP
+Looking through the seam, you see a dark room.~
+seam~
+EX_ISDOOR|EX_CLOSED 0 10416
+E
+ward light~
+The ward of light has the inscription 'This Block specially crafted by
+Friend.'~
+S
+#10418
+Base of crystal incline~
+You are standing at the bottom of a slick-looking incline.~
+104 ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+The incline to your south looks very slippery.~
+~
+0 0 10419
+DDIR_WEST
+You see the top of a small flight of downward-stairs.~
+~
+0 0 10414
+E
+incline crystal slick stairs~
+You see the faintest sign of footprints floating above the crystal.  This
+must be an easy place to clean if the crystal repells all dirt!~
+S
+#10419
+Crystal Incline~
+You float above the crystal incline, just gliding along its slick surface.~
+104 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+You look down to the base of the crystal incline.~
+~
+0 0 10418
+DDIR_SOUTH
+You look up the crystal incline.~
+~
+0 0 10420
+S
+#10420
+Crystal Incline~
+You are almost at the top of the Crystal incline.  There is an openning
+in the wall, and you can see the crystal chandelier better than you could
+below.~
+104 ROOM_NO_MOB|ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+You look down the crystal incline.~
+~
+0 0 10419
+DDIR_SOUTH
+You see the top of the crystal incline.~
+~
+0 0 10430
+DDIR_WEST
+You see the crystal chandelier, gleaming very brigntly.~
+~
+0 0 10421
+S
+#10421
+Flying in the crystal palace~
+You are flying in the crystal palace, next to the ceiling.~
+104 ROOM_INDOORS SECT_AIR
+DDIR_NORTH
+The ceiling continues.....~
+~
+0 0 10428
+DDIR_EAST
+You see the crystal incline.~
+~
+0 0 10420
+DDIR_SOUTH
+The ceiling continues.....~
+~
+0 0 10427
+DDIR_WEST
+You see the crystal chandelier.~
+~
+0 0 10422
+DDIR_DOWN
+You see the waiting room.~
+~
+0 0 10407
+S
+#10422
+By the crystal chandelier~
+You can't help but notice the crystal chandelier sparkling in your face.~
+104 ROOM_INDOORS SECT_AIR
+DDIR_NORTH
+The ceiling continues....~
+~
+0 0 10423
+DDIR_EAST
+You see the crystal incline off in that direction.~
+~
+0 0 10421
+DDIR_SOUTH
+The ceiling continues....~
+~
+0 0 10426
+DDIR_WEST
+The ceiling continues...~
+~
+0 0 10424
+DDIR_DOWN
+You see the waiting room.~
+~
+0 0 10404
+S
+#10423
+Flying in the crystal palace~
+You are flying in the crystal palace, next to the ceiling.~
+104 ROOM_INDOORS SECT_AIR
+DDIR_EAST
+The ceiling continues.....~
+~
+0 0 10428
+DDIR_SOUTH
+You see the crystal chandelier.~
+~
+0 0 10422
+DDIR_WEST
+The ceiling continues.....~
+~
+0 0 10429
+DDIR_DOWN
+You see the waiting room.~
+~
+0 0 10409
+S
+#10424
+Flying in the crystal palace~
+You are flying in the crystal palace, next to the ceiling.~
+104 ROOM_INDOORS SECT_AIR
+DDIR_NORTH
+The ceiling continues.....~
+~
+0 0 10429
+DDIR_EAST
+You see the crystal chandelier.~
+~
+0 0 10422
+DDIR_SOUTH
+The ceiling continues.....~
+~
+0 0 10425
+DDIR_DOWN
+You see the waiting room.~
+~
+0 0 10405
+S
+#10425
+Flying in the crystal palace~
+You are flying in the crystal palace, next to the ceiling.~
+104 ROOM_INDOORS SECT_AIR
+DDIR_NORTH
+The ceiling continues.....~
+~
+0 0 10424
+DDIR_EAST
+The ceiling continues.....~
+~
+0 0 10426
+DDIR_DOWN
+You see the waiting room.~
+~
+0 0 10406
+S
+#10426
+Flying in the crystal palace~
+You are flying in the crystal palace, next to the ceiling.~
+104 ROOM_INDOORS SECT_AIR
+DDIR_NORTH
+You see the crystal chandelier.~
+~
+0 0 10422
+DDIR_EAST
+The ceiling continues.....~
+~
+0 0 10427
+DDIR_WEST
+The ceiling continues.....~
+~
+0 0 10425
+DDIR_DOWN
+You see the waiting room.~
+~
+0 0 10403
+S
+#10427
+Flying in the crystal palace~
+You are flying in the crystal palace, next to the ceiling.~
+104 ROOM_INDOORS SECT_AIR
+DDIR_NORTH
+The ceiling continues.....~
+~
+0 0 10421
+DDIR_WEST
+The ceiling continues.....~
+~
+0 0 10426
+DDIR_DOWN
+You see the waiting room.~
+~
+0 0 10408
+S
+#10428
+Flying in the crystal palace~
+You are flying in the crystal palace, next to the ceiling.~
+104 ROOM_INDOORS SECT_AIR
+DDIR_SOUTH
+The ceiling continues.....~
+~
+0 0 10421
+DDIR_WEST
+The ceiling continues.....~
+~
+0 0 10423
+DDIR_DOWN
+You see the waiting room.~
+~
+0 0 10410
+S
+#10429
+Flying in the crystal palace~
+You are flying in the crystal palace, next to the ceiling.~
+104 ROOM_INDOORS SECT_AIR
+DDIR_EAST
+The ceiling continues.....~
+~
+0 0 10423
+DDIR_SOUTH
+The ceiling continues.....~
+~
+0 0 10424
+DDIR_DOWN
+You see the waiting room.~
+~
+0 0 10411
+S
+#10430
+Top of the crystal incline~
+You are at the top of a crystal incline, which leads down to the north.
+To the west, you can see nothing but reflections of reflections of
+reflections of reflections!  You have never seen so many reflections in
+one place before!~
+104 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+The crystal incline does indeed go down in that direction.~
+~
+0 0 10420
+DDIR_WEST
+You see a maddening set of reflections of of thousands of crystal facets.~
+~
+0 0 10431
+S
+#10431
+Hall of Crystals~
+Everywhere you look, you see yourself reflected a billion times.~
+104 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+You see reflections to no end.~
+~
+0 0 10434
+DDIR_EAST
+You see an end to the reflections that are beginning to drive you crazy.~
+~
+0 0 10430
+DDIR_SOUTH
+You see reflections to no end.~
+~
+0 0 10435
+DDIR_WEST
+You see reflections to no end.~
+~
+0 0 10432
+S
+#10432
+Hall of Crystals~
+Everywhere you look, you see yourself reflected a billion times.~
+104 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+You see reflections to no end.~
+~
+0 0 10433
+DDIR_EAST
+You see reflections to no end.~
+~
+0 0 10431
+DDIR_SOUTH
+You see reflections to no end.~
+~
+0 0 10436
+DDIR_WEST
+You see reflections to no end.~
+~
+0 0 10438
+S
+#10433
+Hall of Crystals~
+Everywhere you look, you see yourself reflected a billion times.~
+104 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+You see reflections to no end.~
+~
+0 0 10436
+DDIR_EAST
+You see reflections to no end.~
+~
+0 0 10434
+DDIR_SOUTH
+You see reflections to no end.~
+~
+0 0 10432
+DDIR_WEST
+You see reflections to no end.~
+~
+0 0 10439
+S
+#10434
+Hall of Crystals~
+Everywhere you look, you see yourself reflected a billion times.~
+104 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+You see reflections to no end.~
+~
+0 0 10435
+DDIR_EAST
+You see reflections to no end.~
+~
+0 0 10439
+DDIR_SOUTH
+You see reflections to no end.~
+~
+0 0 10431
+DDIR_WEST
+You see reflections to no end.~
+~
+0 0 10433
+S
+#10435
+Hall of Crystals~
+Everywhere you look, you see yourself reflected a billion times.~
+104 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+You see reflections to no end.~
+~
+0 0 10431
+DDIR_EAST
+You see reflections to no end.~
+~
+0 0 10437
+DDIR_SOUTH
+You see reflections to no end.~
+~
+0 0 10434
+DDIR_WEST
+You see reflections to no end.~
+~
+0 0 10436
+S
+#10436
+Hall of Crystals~
+Everywhere you look, you see yourself reflected a billion times.~
+104 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+You see reflections to no end.~
+~
+0 0 10432
+DDIR_EAST
+You see reflections to no end.~
+~
+0 0 10435
+DDIR_SOUTH
+You see reflections to no end.~
+~
+0 0 10433
+DDIR_WEST
+You see reflections to no end.~
+~
+0 0 10437
+S
+#10437
+Hall of Crystals~
+Everywhere you look, you see yourself reflected a billion times.~
+104 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+You see reflections to no end.~
+~
+0 0 10438
+DDIR_EAST
+You see reflections to no end.~
+~
+0 0 10436
+DDIR_SOUTH
+You see reflections to no end.~
+~
+0 0 10439
+DDIR_WEST
+You see reflections to no end.~
+~
+0 0 10435
+S
+#10438
+Hall of Crystals~
+Everywhere you look, you see yourself reflected a billion times.~
+104 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+You see reflections to no end.~
+~
+0 0 10439
+DDIR_EAST
+You see reflections to no end.~
+~
+0 0 10432
+DDIR_SOUTH
+You see reflections to no end.~
+~
+0 0 10437
+DDIR_WEST
+You see reflections to no end.~
+~
+0 0 10431
+S
+#10439
+Hall of Crystals~
+Everywhere you look, you see yourself reflected a billion times.~
+104 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+You see reflections to no end.~
+~
+0 0 10437
+DDIR_EAST
+You see reflections to no end.~
+~
+0 0 10433
+DDIR_SOUTH
+You see reflections to no end.~
+~
+0 0 10438
+DDIR_WEST
+You see reflections to no end.~
+~
+0 0 10434
+S
+#10440
+Hall of Crystals~
+Everywhere you look, you see yourself reflected a billion times.~
+104 ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_NORTH
+You see reflections to no end.~
+~
+0 0 10441
+DDIR_EAST
+You see reflections to no end.~
+~
+0 0 10441
+DDIR_SOUTH
+You see reflections to no end.~
+~
+0 0 10441
+DDIR_WEST
+You see reflections to no end.~
+~
+0 0 10441
+S
+#10441
+The white light~
+You have made it through the hall of crystals into the great light!~
+104 ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_EAST
+You see reflections to no end.~
+~
+0 0 10432
+DDIR_WEST
+You see more whiteness.~
+~
+0 0 10442
+S
+#10442
+The white hallway~
+You are in a gleeming white hallway...this looks VERY different from
+the rest of the palace...Almost as if it had never even seen evil.~
+104 ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_EAST
+You see the bright light.~
+~
+0 0 10441
+DDIR_WEST
+The white hallway continues.~
+~
+0 0 10443
+S
+#10443
+The white hallway~
+You are in a gleeming white hallway.  The whiteness is almost blinding.~
+104 ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_EAST
+You see the bright light.~
+~
+0 0 10442
+DDIR_WEST
+The white hallway continues.~
+~
+0 0 10444
+S
+#10444
+The white hallway~
+You are in the gleeming white hallway...There is what appears to be an 
+angel shop to the north.~
+104 ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_NORTH
+You see a sign that says 'The Rescue'~
+~
+0 0 10448
+DDIR_EAST
+You see the bright light.~
+~
+0 0 10443
+DDIR_SOUTH
+You see a sign that says: Chapel..please respect those worshiping inside.~
+~
+0 0 10451
+DDIR_WEST
+The white hallway continues.~
+~
+0 0 10445
+S
+#10445
+The white hallway~
+You are in the gleeming white hallway...There is what appears to be a shop
+to the north.~
+104 ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_NORTH
+You see a sign that says 'The Crusade'~
+~
+0 0 10447
+DDIR_EAST
+You see the bright light.~
+~
+0 0 10444
+DDIR_WEST
+The white hallway continues.~
+~
+0 0 10446
+S
+#10446
+the master healer's workout room~
+You see here several very comfortable beds, and a few tables with chairs 
+around them.~
+104 ROOM_INDOORS|ROOM_SAFE|ROOM_NO_RECALL SECT_INSIDE
+DDIR_EAST
+You see a bright hallway.~
+~
+0 0 10445
+DDIR_SOUTH
+You see the lounge.  Order's followers may come and rest in the lounge 
+whenever they like.  It is well furnished.~
+~
+0 0 10450
+S
+#10447
+the Crusade~
+This is the Crusade, a shop where you can buy the best...if you are willing
+to donate enough money to the cause.~
+104 ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_SOUTH
+You see a bright hallway.~
+~
+0 0 10445
+S
+#10448
+The Rescue~
+This is the Rescue, a shop where you can buy the best guardian angels
+in the realm...if you are willing to donate enough money to the cause.~
+104 ROOM_INDOORS|ROOM_PET_SHOP|ROOM_NO_RECALL SECT_INSIDE
+DDIR_SOUTH
+You see a bright hallway.~
+~
+0 0 10444
+S
+#10449
+angel shop~
+This is where the angels roam.~
+104 ROOM_NO_MOB|ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+S
+#10450
+The Lounge~
+This room is much more warm and friendly than the rest of the palace.
+It is a dim room, with a blazing fire on one end.  There are pelts
+of all sorts of demonic monsters proudly displayed around the room.
+Large, cushy chairs surround the center carpet, where followers can
+sit and relax after a hard day of adventuring.~
+104 ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_NORTH
+Back to the master healer.~
+~
+0 0 10446
+S
+#10451
+the chapel~
+Several pews line this small church built in the name of Order.~
+104 ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_NORTH
+You see a bright hallway.~
+~
+0 0 10444
+S
+#10452
+Hallway to the dining room~
+You are in the hallway that leads to the dining room.~
+104 ROOM_DARK|ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+A lavish dining room lies to the north.~
+~
+0 0 10453
+DDIR_SOUTH
+The waiting room lies to the south.~
+~
+0 0 10413
+S
+#10453
+The dining room~
+This is the most amazing dining room you have ever seen.  You can see no 
+food here, nor the remnants of any previous meal, but you can smell the 
+food very strongly.  Scents of freshly baked bread, roast meat, and 
+strong fruits fill the air.~
+104 ROOM_DARK|ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+The grand table blocks your way.~
+~
+0 0 0
+DDIR_EAST
+You see the tail of the table.~
+~
+0 0 10454
+DDIR_SOUTH
+The hallway to the waiting room lies to the south.~
+~
+0 0 10452
+DDIR_WEST
+You see the head of the table.~
+~
+0 0 10458
+S
+#10454
+The tail of the dining room~
+This is the most amazing dining room you have ever seen.  You can see no 
+food here, nor the remnants of any previous meal, but you can smell the 
+food very strongly.  Scents of freshly baked bread, roast meat, and 
+strong fruits fill the air.~
+104 ROOM_DARK|ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+The tail of the table is even huge!~
+~
+0 0 10455
+DDIR_WEST
+You look along the length of the table.~
+~
+0 0 10453
+S
+#10455
+The tail of the dining room~
+This is the most amazing dining room you have ever seen.  You can see no 
+food here, nor the remnants of any previous meal, but you can smell the 
+food very strongly.  Scents of freshly baked bread, roast meat, and 
+strong fruits fill the air.~
+104 ROOM_DARK|ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+The tail of the table is even huge!~
+~
+0 0 10454
+DDIR_WEST
+You look along the length of the table.~
+~
+0 0 10456
+S
+#10456
+The dining room~
+This is the most amazing dining room you have ever seen.  You can see no 
+food here, nor the remnants of any previous meal, but you can smell the 
+food very strongly.  Scents of freshly baked bread, roast meat, and 
+strong fruits fill the air.~
+104 ROOM_DARK|ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+You see the balcony.~
+~
+0 0 10459
+DDIR_EAST
+You see the tail of the table.~
+~
+0 0 10455
+DDIR_SOUTH
+The grand table blocks your way.~
+~
+0 0 0
+DDIR_WEST
+You see the head of the table.~
+~
+0 0 10457
+S
+#10457
+The head of the dining room~
+This is the most amazing dining room you have ever seen.  You can see no 
+food here, nor the remnants of any previous meal, but you can smell the 
+food very strongly.  Scents of freshly baked bread, roast meat, and 
+strong fruits fill the air.~
+104 ROOM_DARK|ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+You look along the length of the table.~
+~
+0 0 10456
+DDIR_SOUTH
+The head of the table is even huge!~
+~
+0 0 10458
+S
+#10458
+The head of the dining room~
+This is the most amazing dining room you have ever seen.  You can see no 
+food here, nor the remnants of any previous meal, but you can smell the 
+food very strongly.  Scents of freshly baked bread, roast meat, and 
+strong fruits fill the air.~
+104 ROOM_DARK|ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+The head of the table is even huge!~
+~
+0 0 10457
+DDIR_EAST
+You look along the length of the table.~
+~
+0 0 10453
+S
+#10459
+The balcony~
+From here, you can see the vast countryside behind Polvo's Palace.
+Eventually, the rolling hills of yellow-green grass give way to
+the soft bluish background of mountains.~
+104 ROOM_NO_MOB SECT_INSIDE
+DDIR_SOUTH
+You can see the faint glow of candles in the dining room.~
+~
+0 0 10456
+DDIR_DOWN
+A rope!  It leads down to the grass below.~
+~
+0 0 10460
+S
+#10460
+Under the balcony~
+You are standing in the shade of Polvo's Palace.  It provides a cool
+repose as you look across the vast hills before you.~
+104 0 SECT_FIELD
+DDIR_NORTH
+The trail continues.~
+~
+0 0 10461
+DDIR_UP
+Looking up, you see that the rope leads up to a balcony.~
+~
+0 0 10459
+S
+#10461
+The trail~
+You are standing on a trail through a vast field of grass. The grass is
+supprisingly tame for its size, and you don't have to worry about burrs
+sticking to you.~
+104 0 SECT_FIELD
+DDIR_NORTH
+The trail continues.~
+~
+0 0 10462
+DDIR_SOUTH
+~
+You see a rope hanging down from the balcony.~
+0 0 10460
+S
+#10462
+The trail~
+You are standing on a trail through a vast field of grass. The grass is
+suprisingly tame for the size of the field.  There are some large bushes 
+here.~
+104 0 SECT_FIELD
+DDIR_EAST
+The trail continues.~
+~
+0 0 10463
+DDIR_SOUTH
+The trail continues.~
+~
+0 0 10461
+DDIR_WEST
+~
+~
+0 0 10466
+E
+large bush~
+Upon closer inspection, the bushes seem to have been broken back.  
+Looking through the bushes to the west, you spy a secret trail!~
+S
+#10463
+The trail~
+You are standing on a trail through a lightly wooded area.~
+104 0 SECT_FIELD
+DDIR_NORTH
+The trail continues.~
+~
+0 0 10464
+DDIR_WEST
+The trail continues.~
+~
+0 0 10462
+S
+#10464
+The trail~
+You are standing on a trail through a lightly wooded area.~
+104 0 SECT_FIELD
+DDIR_NORTH
+The trail continues.~
+~
+0 0 10465
+DDIR_SOUTH
+The trail continues.~
+~
+0 0 10463
+S
+#10465
+The end of the trail~
+You are standing at the end of a trail, going through a lightly wooded area.~
+104 0 SECT_FIELD
+DDIR_SOUTH
+The trail continues.~
+~
+0 0 10464
+S
+#10466
+The secret trail~
+You are on a trail that is very unkept, and the bushes are very dense!
+You could easily lose your way in this stuff!~
+104 0 SECT_FIELD
+DDIR_NORTH
+More bushes.~
+~
+0 0 10467
+DDIR_EAST
+An end to the bushes!~
+~
+0 0 10462
+S
+#10467
+The secret trail~
+You are on a trail that is very unkept, and the bushes are very dense!
+You could easily lose your way in this stuff!~
+104 0 SECT_FIELD
+DDIR_SOUTH
+More bushes.~
+~
+0 0 10466
+DDIR_WEST
+More bushes.~
+~
+0 0 10468
+S
+#10468
+The secret trail~
+You are on a trail that is very unkept, and the bushes are very dense!
+You could easily lose your way in this stuff!~
+104 0 SECT_FIELD
+DDIR_EAST
+More bushes.~
+~
+0 0 10467
+DDIR_SOUTH
+More bushes.~
+~
+0 0 10469
+S
+#10469
+The secret trail~
+You are on a trail that is very unkept, and the bushes are very dense!
+You could easily lose your way in this stuff!~
+104 0 SECT_FIELD
+DDIR_NORTH
+More bushes.~
+~
+0 0 10468
+DDIR_WEST
+More bushes.~
+~
+0 0 10470
+S
+#10470
+The secret trail~
+You are on a trail that is very unkept, and the bushes are very dense!
+You could easily lose your way in this stuff!~
+104 ROOM_SAFE SECT_FIELD
+DDIR_NORTH
+More bushes.~
+~
+0 0 10471
+DDIR_EAST
+More bushes.~
+~
+0 0 10469
+S
+#10471
+The secret trail~
+You are on a trail that is very unkept, and the bushes are very dense!
+You could easily lose your way in this stuff!~
+104 0 SECT_FIELD
+DDIR_SOUTH
+More bushes.~
+~
+0 0 10470
+DDIR_WEST
+More bushes.~
+~
+0 0 10472
+S
+#10472
+The secret trail~
+You are on a trail that is very unkept, and the bushes are very dense!
+You could easily lose your way in this stuff!~
+104 0 SECT_FIELD
+DDIR_EAST
+More bushes.~
+~
+0 0 10471
+DDIR_SOUTH
+More bushes.~
+~
+0 0 10473
+S
+#10473
+The secret trail~
+You are on a trail that is very unkept, and the bushes are very dense!
+You could easily lose your way in this stuff!~
+104 ROOM_SAFE SECT_FIELD
+DDIR_NORTH
+More bushes.~
+~
+0 0 10472
+DDIR_WEST
+More bushes.~
+~
+0 0 10474
+S
+#10474
+The secret trail~
+You are on a trail that is very unkept, and the bushes are very dense!
+You could easily lose your way in this stuff!~
+104 0 SECT_FIELD
+DDIR_NORTH
+More bushes.~
+~
+0 0 10475
+DDIR_EAST
+More bushes.~
+~
+0 0 10473
+S
+#10475
+The secret trail~
+You are on a trail that is very unkept, and the bushes are very dense!
+You could easily lose your way in this stuff!~
+104 0 SECT_FIELD
+DDIR_NORTH
+More bushes.~
+~
+0 0 10476
+DDIR_SOUTH
+More bushes.~
+~
+0 0 10474
+S
+#10476
+The lost portal~
+You have come to the lost portal...Unfortunately, it has been lost so long
+that the residual magic has turned the portal into a ticket to madness, 
+which in turn closed the portal.~
+104 0 SECT_FIELD
+DDIR_SOUTH
+More bushes.~
+~
+0 0 10475
+S
+#10477
+The bottom of the chute~
+You are at the bottom of a crystaline chute.  You can feel magic pushing
+you upward.~
+104 ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+You see the top of some stairs.~
+~
+0 0 10412
+DDIR_UP
+The crystal chute extends way up there.~
+~
+0 0 10478
+S
+#10478
+The crystal chute~
+You are standing on the air inside a crystal chute, yet you feel solid ground
+below your feet.  There must be magic holding you up.~
+104 ROOM_INDOORS SECT_INSIDE
+DDIR_UP
+You see the top of the crystal chute.~
+~
+0 0 10479
+DDIR_DOWN
+You see the bottom of the chute.~
+~
+0 0 10477
+S
+#10479
+Top of the crystal chute~
+You are standing on the air inside a crystal chute, yet you feel solid ground
+below your feet.  There must be magic holding you up.~
+104 ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+You see Polvo's court.~
+~
+0 0 10480
+DDIR_DOWN
+The crystal chute goes down a long way.  You certainly wouldn't want to fall!~
+~
+0 0 10478
+S
+#10480
+Polvo's Court~
+You are in Polvo's court.  The beauty here matches the goodness in the   
+heart of its owner.~
+104 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+Polvo's court continues.~
+~
+0 0 10485
+DDIR_EAST
+Polvo's court continues.~
+~
+0 0 10483
+DDIR_SOUTH
+Polvo's court continues.~
+~
+0 0 10481
+DDIR_WEST
+You see the crystal chute that you used to get here.~
+~
+0 0 10479
+S
+#10481
+Polvo's Court~
+You are in Polvo's court.  The beauty here matches the goodness in the   
+heart of its owner.~
+104 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+Polvo's court continues.~
+~
+0 0 10480
+DDIR_EAST
+Polvo's court continues.~
+~
+0 0 10482
+S
+#10482
+Polvo's Court~
+You are in Polvo's court.  The beauty here matches the goodness in the   
+heart of its owner.~
+104 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+Polvo's court continues.~
+~
+0 0 10483
+DDIR_EAST
+Polvo's court continues.~
+~
+0 0 10488
+DDIR_SOUTH
+You see the tower.~
+~
+0 0 10490
+DDIR_WEST
+Polvo's court continues.~
+~
+0 0 10481
+S
+#10483
+Polvo's Court~
+You are in Polvo's court.  The beauty here matches the goodness in the   
+heart of its owner.~
+104 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+Polvo's court continues.~
+~
+0 0 10484
+DDIR_EAST
+Polvo's court continues.~
+~
+0 0 10487
+DDIR_SOUTH
+Polvo's court continues.~
+~
+0 0 10482
+DDIR_WEST
+Polvo's court continues.~
+~
+0 0 10480
+S
+#10484
+Polvo's Court~
+You are in Polvo's court.  The beauty here matches the goodness in the   
+heart of its owner.~
+104 ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+Polvo's court continues.~
+~
+0 0 10486
+DDIR_SOUTH
+Polvo's court continues.~
+~
+0 0 10483
+DDIR_WEST
+Polvo's court continues.~
+~
+0 0 10485
+S
+#10485
+Polvo's Court~
+You are in Polvo's court.  The beauty here matches the goodness in the   
+heart of its owner.~
+104 ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+Polvo's court continues.~
+~
+0 0 10484
+DDIR_SOUTH
+Polvo's court continues.~
+~
+0 0 10480
+S
+#10486
+Polvo's Court~
+You are in Polvo's court.  The beauty here matches the goodness in the   
+heart of its owner.~
+104 ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+Polvo's court continues.~
+~
+0 0 10487
+DDIR_WEST
+Polvo's court continues.~
+~
+0 0 10484
+S
+#10487
+Polvo's Court~
+You are in Polvo's court.  The beauty here matches the goodness in the   
+heart of its owner.~
+104 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+Polvo's court continues.~
+~
+0 0 10486
+DDIR_EAST
+Polvo sits on his throne.~
+~
+0 0 10489
+DDIR_SOUTH
+Polvo's court continues.~
+~
+0 0 10488
+DDIR_WEST
+Polvo's court continues.~
+~
+0 0 10483
+S
+#10488
+Polvo's Court~
+You are in Polvo's court.  The beauty here matches the goodness in the   
+heart of its owner.~
+104 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+Polvo's court continues.~
+~
+0 0 10487
+DDIR_WEST
+Polvo's court continues.~
+~
+0 0 10482
+S
+#10489
+Polvo's Throne~
+Even though you have heard of Lord Polvo's legendary battles ever since
+your youth, Polvo himself couldn't be any older than 30.  His throne is 
+says it all, with the greatest junk-food known to man-kind stuffed in its  
+secret compartments.
+A crystal ball is here, showing a great jousting match.~
+104 ROOM_INDOORS SECT_INSIDE
+DDIR_WEST
+You see Polvo's court.~
+~
+0 0 10487
+S
+#10490
+The tower~
+You are standing in the base of a tower that ascends to the top of one of
+the huge crystals that this palace is made out of.~
+104 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+You see Polvo's court.~
+~
+0 0 10482
+DDIR_UP
+You see the observatory.~
+~
+0 0 10491
+S
+#10491
+The observatory~
+There isn't much to observe, here in the observatory.~
+104 ROOM_INDOORS SECT_INSIDE
+DDIR_DOWN
+Back to Polvo's court.~
+~
+0 0 10490
+S
+#10497
+The test room~
+This is where I want to test a new little mob prog.~
+104 ROOM_NO_RECALL SECT_INSIDE
+DDIR_NORTH
+You see the other room.~
+~
+0 0 10498
+S
+#10498
+The test room~
+This is where I want to test a new little mob prog.~
+104 ROOM_NO_RECALL SECT_INSIDE
+DDIR_EAST
+You see the other room.~
+~
+0 0 10497
+S
+#10499
+The trash compactor~
+This is where the good little crystal polvos go to heal up after shattering.~
+104 ROOM_NO_MOB|ROOM_NO_RECALL SECT_INSIDE
+S
+#0
+
+
+
+
+#RESETS
+M 0 10417   1 10498 ;             the darkling in The test room            
+M 0 10407   1 10498 ;           the worshipper in The test room            
+M 0 10402   1 10497 ;the tiny crystaline polva in The test room            
+M 0 10400   1 10401 ;         the bright polva in Palace Portal            
+M 0 10401   5 10412 ;        the crystal polva in Atop a short flight of st
+M 0 10401   5 10414 ;        the crystal polva in Atop a short flight of st
+M 0 10401   5 10405 ;        the crystal polva in Waiting Room             
+M 0 10401   5 10407 ;        the crystal polva in Waiting Room             
+M 0 10401   5 10403 ;        the crystal polva in Waiting Room             
+M 0 10404   3 10429 ;               the breeze in Flying in the crystal pal
+M 0 10404   3 10425 ;               the breeze in Flying in the crystal pal
+M 0 10404   3 10428 ;               the breeze in Flying in the crystal pal
+M 0 10404   3 10427 ;               the breeze in Flying in the crystal pal
+M 0 10406   1 10438 ;                 a breeze in Hall of Crystals         
+M 0 10405   1 10441 ;                    Angel in The white light          
+M 0 10407   1 10451 ;           the worshipper in the chapel               
+M 0 10408   1 10446 ;   Zoot the master healer in the master healer's worko
+M 0 10411   1 10447 ;                     John in the Crusade              
+G 1 10406   1       ;  the scroll of no-recall
+M 0 10412   1 10448 ;                   Marion in The Rescue               
+M 0 10413   1 10449 ;       the guardian angel in angel shop               
+M 0 10409   1 10465 ;                  Siddern in The end of the trail     
+M 0 10414   1 10470 ;               the rabbit in The secret trail         
+M 0 10415   8 10460 ;  the beautiful butterfly in Under the balcony        
+M 0 10415   8 10462 ;  the beautiful butterfly in The trail                
+M 0 10415   8 10464 ;  the beautiful butterfly in The trail                
+M 0 10415   8 10467 ;  the beautiful butterfly in The secret trail         
+M 0 10415   8 10469 ;  the beautiful butterfly in The secret trail         
+M 0 10416   8 10460 ;      the big grasshopper in Under the balcony        
+M 0 10416   8 10462 ;      the big grasshopper in The trail                
+M 0 10416   8 10464 ;      the big grasshopper in The trail                
+M 0 10416   8 10467 ;      the big grasshopper in The secret trail         
+M 0 10416   8 10469 ;      the big grasshopper in The secret trail         
+M 0 10403   1 10489 ;               Lord Polvo in Polvo's Throne           
+E 1 10403  1 ITEM_WEAR_ABOUT ;equip the brilliant purple robe
+O 0 10401   1 10422 ;     a crystal chandelier in By the crystal chandelier
+O 0 10407   6 10453 ;         the white candle in The dining room          
+O 0 10407   6 10454 ;         the white candle in The tail of the dining ro
+O 0 10407   6 10455 ;         the white candle in The tail of the dining ro
+O 0 10407   6 10456 ;         the white candle in The dining room          
+O 0 10407   6 10457 ;         the white candle in The head of the dining ro
+O 0 10407   6 10458 ;         the white candle in The head of the dining ro
+D 0 10416 DIR_DOWN DOOR_CLOSED ;door in The Dark Room            
+D 0 10417 DIR_UP DOOR_CLOSED ;door in Ward Room                
+D 0 10415 DIR_NORTH DOOR_CLOSED_LOCKED ;door in The Study                
+D 0 10416 DIR_SOUTH DOOR_CLOSED_LOCKED ;door in The Dark Room            
+S
+
+
+
+
+#SHOPS
+10411 ITEM_TYPE_WEAPON ITEM_TYPE_TREASURE ITEM_TYPE_ARMOR ITEM_TYPE_POTION
+     ITEM_TYPE_AMMO 100  50  0 23 ;John
+10412 ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING
+     ITEM_TYPE_NOTHING 100  50  0 23 ;Marion
+0
+
+
+
+
+#SPECIALS
+S
+
+
+
+
+#$

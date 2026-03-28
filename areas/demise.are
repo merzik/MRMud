@@ -1,0 +1,4564 @@
+#AREA Temple of Demise~
+
+#AUTHORS Presto~
+
+#HELPS
+-1 TEMPLEOFDEMISE~
+Demise was once a powerful god like Order and Chaos.  Instead of being one of
+the extreme forces, he had powers that came from both sides.  Chaos and Order
+actually worked together to imprison Demise and strip him of his powers.  In
+doing so he became the God of Death.  He exists now, chained in the Temple
+created for him north of Ocean City where he waits for Chaos and Order to
+destroy each other so he may walk free once more.
+
+  (-) Back
+
+{-}PRESTO
+~
+0 $~
+
+#RANGES 30 99 30 99
+
+#FLAGS AFLAG_NODEBUG|AFLAG_NOTELEPORT
+
+#MOBILES
+#11800
+guard~
+a Guard~
+A guard is here!~
+This guard seems angry at your intrusion, and attacks!~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_HUNT|AFF_TONGUES
+0 S
+95 0 0 1d1+7999 1d1+73
+0 780605
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if whichgod($n)==0
+  rescale 11800 $n 85
+  mpkill $n
+else
+  rescale 11800 $n 150
+  mpkill $n
+endif
+~
+>give_prog I11812~
+mpecho A chaos bomb *** INCINERATES *** the guard!
+mpjunk i11812
+mpgoto 11904
+suicide 
+~
+>death_prog 100~
+if level($n) < 25
+  mpoload 11808
+else
+  if level($n) < 50
+    mpoload 11809
+  else
+    if level($n) < 75
+      mpoload 11810
+    else
+      mpoload 11811
+    endif
+  endif
+endif
+if rand(10)
+  mpoload 11812
+endif
+~
+|
+#11801
+demon fire vvvv~
+a Fire Demon~
+A fire demon is here!~
+This demon seems to think you're his lunch.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_BODY
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_HUNT|AFF_TONGUES
+0 S
+95 BODY_CLAW BODY_CLAW 1d1+7999 1d1+73
+100 780605
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>rand_prog 60~
+ mpkill 3.vvvv
+~
+>all_greet_prog 100~
+if whichgod($n)==0
+  rescale 11801 $n 110
+  mpkill $n
+else
+  rescale 11801 $n 165
+  mpkill $n
+endif
+~
+>give_prog I11812~
+mpecho A chaos bomb *** INCINERATES *** the fire demon!
+mpjunk i11812
+mpgoto 11904
+suicide 
+~
+>death_prog 100~
+if level($n) < 25
+  mpoload 11808
+else
+  if level($n) < 50
+    mpoload 11809
+  else
+    if level($n) < 75
+      mpoload 11810
+    else
+      mpoload 11811
+    endif
+  endif
+endif
+~
+|
+#11802
+imp~
+an Imp~
+An imp is here!~
+This imp is grey with long pointy teeth and eyes that see right through you.
+He reminds you of the killer bunny on Monty Python and the Holy Grail.~
+ACT_STAY_AREA|ACT_SMART|ACT_BODY
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_HUNT|AFF_TONGUES
+0 S
+95 BODY_CLAW BODY_CLAW 1d1+7999 1d1+73
+100 780605
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>all_greet_prog 100~
+if whichgod($n)==0
+  rescale 11802 $n 110
+  mpkill $n
+else
+  rescale 11802 $n 165
+  mpkill $n
+endif
+~
+>fight_prog 35~
+cast fireball $r
+~
+>give_prog I11812~
+mpecho A chaos bomb *** INCINERATES *** the imp!
+mpjunk i11812
+mpgoto 11904
+suicide 
+~
+>death_prog 100~
+if level($n) < 25
+  mpoload 11808
+else
+  if level($n) < 50
+    mpoload 11809
+  else
+    if level($n) < 75
+      mpoload 11810
+    else
+      mpoload 11811
+    endif
+  endif
+endif
+~
+|
+#11803
+guard master~
+the Guard Master~
+The guard master is here!~
+The guard master seems a lot bigger than you imagined.~
+ACT_SENTINEL|ACT_SCAVENGER|ACT_STAY_AREA|ACT_SMART
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_HUNT|AFF_TONGUES
+0 S
+95 0 0 1d1+7999 1d1+73
+10000 780605
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>all_greet_prog 100~
+mpforce $n external SIEZE.WAV
+if whichgod($n)==0
+  rescale 11803 $n 125
+  mpkill $n
+else
+  rescale 11803 $n 200
+  mpkill $n
+endif
+~
+>give_prog I11812~
+mpecho A chaos bomb *** INCINERATES *** the guard master!
+mpjunk i11812
+mpgoto 11904
+suicide 
+~
+>death_prog 100~
+if level($n) < 25
+  mpoload 11808
+else
+  if level($n) < 50
+    mpoload 11809
+  else
+    if level($n) < 75
+      mpoload 11810
+    else
+      mpoload 11811
+    endif
+  endif
+endif
+if actorhasobjnum(30900)
+  if quest(30,1,$n) == 0
+    mpmset $n quest 30 1 1
+    mpoload 30914
+    mpforce $n HELP GUILDTOKEN
+    mpquiet on
+    c 'giant strength' $n
+    give i30914 $n
+    mpquiet off
+  endif
+endif~
+|
+#11804
+key keeper~
+a Key Keeper~
+A key keeper is here!~
+This key keeper attacks with one hand, and guards the key with its other.~
+ACT_SENTINEL|ACT_SCAVENGER|ACT_STAY_AREA|ACT_SMART
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_HUNT|AFF_TONGUES
+0 S
+95 0 0 1d1+7999 1d1+73
+10000 780605
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>all_greet_prog 100~
+if whichgod($n)==0
+  rescale 11804 $n 125
+  mpkill $n
+else
+  rescale 11804 $n 200
+  mpkill $n
+endif
+~
+>give_prog I11812~
+mpecho A chaos bomb fails to explode!
+mpjunk i11812
+~
+>death_prog 100~
+mpoload 11207
+~
+|
+#11805
+statue~
+a Statue~
+A statue is here.~
+This statue is about man-size.~
+ACT_SENTINEL|ACT_SCAVENGER|ACT_STAY_AREA|ACT_SMART
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_HUNT|AFF_TONGUES
+0 S
+95 0 0 1d1+7999 1d1+73
+10000 780605
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>all_greet_prog 100~
+if whichgod($n)==0
+  rescale 11805 $n 50
+else
+  rescale 11805 $n 75
+endif
+~
+|
+#11806
+demise god lord death~
+Demise~
+Lord Demise, the God of Death is here!~
+You see nothing special about it.  It resembles an old man suffering more 
+pain than imaginable.~
+ACT_SENTINEL|ACT_SCAVENGER|ACT_STAY_AREA|ACT_SMART
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_HUNT|AFF_TONGUES
+0 S
+99 0 0 1d1+21727 1d1+230
+10000 838032
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>all_greet_prog 100~
+mpforce $n external GREET01.WAV
+say Greetings, $n.
+say What have you come here for?  To free, kill, or follow me?
+~
+>speech_prog free~
+say The chains may only be broken by both Chaos and Order.
+say They created the chains together and imprisoned me eons ago.
+say Thank you for trying to help, but there is nothing you can do.
+emote ponders a thought for a second.
+say You know ... I could really use something to look at.
+say Staring at these plain grey walls is quite boring.
+mpat 11854 mppurge i11801
+mpat 11854 mppurge i11813
+mpquiet on
+mpoload 11813
+mpat 11854 drop i11813
+mpquiet off
+~
+>speech_prog kill~
+mpforce $n external LAUGH01.WAV
+say MUHAHAHAHAHA!  What a futile effort that would be.
+say I may be imprisoned, but I am still immortal.  
+say There is nothing you can do to end my imprisonment.
+say Though I welcome the idea.
+~
+>speech_prog follow~
+if whichgod($n)==1
+  say You follow Order!  Leave me now, traitor!
+  mptransfer $n 11404
+  mpat 11404 mpforce $n look
+else
+  if whichgod($n)==2
+    say You follow Chaos!  Leave me now, traitor!
+    mptransfer $n 11410
+    mpat 11410 mpforce $n look
+  else
+    say You wish to follow me, eh?
+    say Many wanderers have attempted to follow me just as you have.
+    say But as you can see, I'm in no condition to grant it to you.
+    say If you can eliminate Chaos or Order, the chains will be weak
+    say enough for me to break free, and then I will regain all the
+    say powers I once had.  Then you may follow me.
+    if quest(25,4,$n) >5
+    else
+      mpoload 11803
+      give band $n
+      say This will help you.  It is all I can do right now.
+      mpmadd $n quest 24 4 1
+    endif
+    mptransfer $n 11420
+    mpat 11420 mpforce $n look
+  endif
+endif
+~
+>give_prog I11813~
+say Thanks!  It's just what I need to decorate this cell!
+mpoload 11802
+give broach $n
+mpjunk i11802
+mpjunk i11813
+mpat 11854 mpoload 11801
+~
+>give_prog I11812~
+emote takes the Chaos bomb and shoves it up your ass!  *** OUCH ***
+laugh $n
+~
+>death_prog 100~
+say So, you think you have defeated me?  *** MUHAHAHAHAHA ***
+emote morphs into a mouse, and scampers into a crack in the wall.
+mpgoto 11904
+~
+>fight_prog 100~
+cast "acid blast" $r
+~
+>hitprcnt_prog 20~
+mpquiet on
+cast heal self
+cast heal self
+cast heal self
+cast heal self
+cast heal self
+mpquiet off
+~
+|
+#11807
+door~
+A door~
+There is a large door here.~
+This door can only be opened by the sound of your voice.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_TONGUES|AFF_ETHEREAL
+0 S
+95 0 0 1d1+24999 1d1+91
+10000 780605
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>speech_prog open~
+if actorhasobjnum(11804)
+  mptransfer $n 11841
+  mpat 11841 mpforce $n look
+else
+  say You need a red key to pass.
+endif
+~
+|
+#11808
+door~
+A door~
+There is a large door here.~
+This door can only be opened by the sound of your voice.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_TONGUES|AFF_ETHEREAL
+0 S
+95 0 0 1d1+24999 1d1+73
+10000 780605
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>speech_prog open~
+if actorhasobjnum(11804)
+  mptransfer $n 11840
+  mpat 11840 mpforce $n look
+else
+  say You need a red key to pass.
+endif
+~
+|
+#11809
+door~
+A door~
+There is a large door here.~
+This door can only be opened by the sound of your voice.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_TONGUES|AFF_ETHEREAL
+0 S
+95 0 0 1d1+24999 1d1+73
+10000 780605
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>speech_prog open~
+if actorhasobjnum(11804)
+  mptransfer $n 11862
+  mpat 11862 mpforce $n look
+else
+  say You need a red key to pass.
+endif
+~
+|
+#11810
+door~
+A door~
+There is a large door here.~
+This door can only be opened by the sound of your voice.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_TONGUES|AFF_ETHEREAL
+0 S
+95 0 0 1d1+24999 1d1+100
+10000 780605
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>speech_prog open~
+if actorhasobjnum(11804)
+  mptransfer $n 11861
+  mpat 11861 mpforce $n look
+else
+  say You need a red key to pass.
+endif
+~
+|
+#11811
+door~
+A door~
+There is a large door here.~
+This door can only be opened by the sound of your voice.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_TONGUES|AFF_ETHEREAL
+0 S
+95 0 0 1d1+24999 1d1+100
+10000 780605
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>speech_prog open~
+if actorhasobjnum(11806)
+  mptransfer $n 11855
+  mpat 11855 mpforce $n look
+else
+  say You need a yellow key to pass.
+endif
+~
+|
+#11812
+door~
+A door~
+There is a large door here.~
+This door can only be opened by the sound of your voice.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_TONGUES|AFF_ETHEREAL
+0 S
+95 0 0 1d1+24999 1d1+100
+10000 780605
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>speech_prog open~
+if actorhasobjnum(11806)
+  mptransfer $n 11847
+  mpat 11847 mpforce $n look
+else
+  say You need a yellow key to pass.
+endif
+~
+|
+#11813
+door~
+A door~
+There is a large door here.~
+This door can only be opened by the sound of your voice.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_TONGUES|AFF_ETHEREAL
+0 S
+95 0 0 1d1+24999 1d1+100
+10000 780605
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>speech_prog open~
+if actorhasobjnum(11807)
+  mptransfer $n 11857
+  mpat 11857 mpforce $n look
+else
+  say You need a grey key to pass.
+endif
+~
+|
+#11814
+door~
+A door~
+There is a large door here.~
+This door can only be opened by the sound of your voice.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_TONGUES|AFF_ETHEREAL
+0 S
+95 0 0 1d1+24999 1d1+100
+10000 780605
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>speech_prog open~
+if actorhasobjnum(11807)
+  mptransfer $n 11878
+  mpat 11878 mpforce $n look
+else
+  say You need a grey key to pass.
+endif
+~
+|
+#11815
+door~
+A door~
+There is a large door here.~
+This door can only be opened by the sound of your voice.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_TONGUES|AFF_ETHEREAL
+0 S
+95 0 0 1d1+24999 1d1+100
+10000 780605
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>speech_prog open~
+if actorhasobjnum(11805)
+  mptransfer $n 11859
+  mpat 11859 mpforce $n look
+else
+  say You need a blue key to pass.
+endif
+~
+|
+#11816
+door~
+A door~
+There is a large door here.~
+This door can only be opened by the sound of your voice.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_TONGUES|AFF_ETHEREAL
+0 S
+95 0 0 1d1+24999 1d1+100
+10000 780605
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>speech_prog open~
+if actorhasobjnum(11805)
+  mptransfer $n 11858
+  mpat 11858 mpforce $n look
+else
+  say You need a blue key to pass.
+endif
+~
+|
+#11817
+rabbit~
+A rabbit~
+A rabbit is here nibbling on some grass.~
+This rabbit is small and furry.~
+ACT_SENTINEL|ACT_WIMPY
+AFF_PROTECT_EVIL|AFF_HIDE
+0 S
+5 0 0 1d10+60 1d10+3
+0 631
+POS_STANDING POS_STANDING SEX_MALE
+#11818
+guard~
+a Guard~
+A guard is here!~
+This guard seems angry at your intrusion, and attacks!~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_HUNT|AFF_TONGUES
+0 S
+95 0 0 1d1+7999 1d1+73
+0 780605
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if whichgod($n)==0
+  rescale 11818 $n 85
+  mpkill $n
+else
+  rescale 11818 $n 150
+  mpkill $n
+endif
+~
+>give_prog I11812~
+mpecho A chaos bomb *** INCINERATES *** the guard!
+mpjunk i11812
+mpgoto 11904
+suicide 
+~
+>death_prog 100~
+if level($n) < 25
+  mpoload 11808
+else
+  if level($n) < 50
+    mpoload 11809
+  else
+    if level($n) < 75
+      mpoload 11810
+    else
+      mpoload 11811
+    endif
+  endif
+endif
+if rand(10)
+  mpoload 11812
+endif
+~
+|
+#11819
+guard~
+a Guard~
+A guard is here!~
+This guard seems angry at your intrusion, and attacks!~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_HUNT|AFF_TONGUES
+0 S
+95 0 0 1d1+7999 1d1+73
+0 780605
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if whichgod($n)==0
+  rescale 11819 $n 85
+  mpkill $n
+else
+  rescale 11819 $n 150
+  mpkill $n
+endif
+~
+>give_prog I11812~
+mpecho A chaos bomb *** INCINERATES *** the guard!
+mpjunk i11812
+mpgoto 11904
+suicide 
+~
+>death_prog 100~
+if level($n) < 25
+  mpoload 11808
+else
+  if level($n) < 50
+    mpoload 11809
+  else
+    if level($n) < 75
+      mpoload 11810
+    else
+      mpoload 11811
+    endif
+  endif
+endif
+if rand(10)
+  mpoload 11812
+endif
+~
+|
+#11820
+guard~
+a Guard~
+A guard is here!~
+This guard seems angry at your intrusion, and attacks!~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_HUNT|AFF_TONGUES
+0 S
+95 0 0 1d1+7999 1d1+73
+0 780605
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if whichgod($n)==0
+  rescale 11820 $n 85
+  mpkill $n
+else
+  rescale 11820 $n 150
+  mpkill $n
+endif
+~
+>give_prog I11812~
+mpecho A chaos bomb *** INCINERATES *** the guard!
+mpjunk i11812
+mpgoto 11904
+suicide 
+~
+>death_prog 100~
+if level($n) < 25
+  mpoload 11808
+else
+  if level($n) < 50
+    mpoload 11809
+  else
+    if level($n) < 75
+      mpoload 11810
+    else
+      mpoload 11811
+    endif
+  endif
+endif
+if rand(10)
+  mpoload 11812
+endif
+~
+|
+#11821
+guard~
+a Guard~
+A guard is here!~
+This guard seems angry at your intrusion, and attacks!~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_HUNT|AFF_TONGUES
+0 S
+95 0 0 1d1+7999 1d1+73
+0 780605
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if whichgod($n)==0
+  rescale 11821 $n 85
+  mpkill $n
+else
+  rescale 11821 $n 150
+  mpkill $n
+endif
+~
+>give_prog I11812~
+mpecho A chaos bomb *** INCINERATES *** the guard!
+mpjunk i11812
+mpgoto 11904
+suicide 
+~
+>death_prog 100~
+if level($n) < 25
+  mpoload 11808
+else
+  if level($n) < 50
+    mpoload 11809
+  else
+    if level($n) < 75
+      mpoload 11810
+    else
+      mpoload 11811
+    endif
+  endif
+endif
+if rand(10)
+  mpoload 11812
+endif
+~
+|
+#11822
+guard~
+a Guard~
+A guard is here!~
+This guard seems angry at your intrusion, and attacks!~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_HUNT|AFF_TONGUES
+0 S
+95 0 0 1d1+7999 1d1+73
+0 780605
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if whichgod($n)==0
+  rescale 11822 $n 85
+  mpkill $n
+else
+  rescale 11822 $n 150
+  mpkill $n
+endif
+~
+>give_prog I11812~
+mpecho A chaos bomb *** INCINERATES *** the guard!
+mpjunk i11812
+mpgoto 11904
+suicide 
+~
+>death_prog 100~
+if level($n) < 25
+  mpoload 11808
+else
+  if level($n) < 50
+    mpoload 11809
+  else
+    if level($n) < 75
+      mpoload 11810
+    else
+      mpoload 11811
+    endif
+  endif
+endif
+if rand(10)
+  mpoload 11812
+endif
+~
+|
+#11823
+guard~
+a Guard~
+A guard is here!~
+This guard seems angry at your intrusion, and attacks!~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_HUNT|AFF_TONGUES
+0 S
+95 0 0 1d1+7999 1d1+73
+0 780605
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if whichgod($n)==0
+  rescale 11823 $n 85
+  mpkill $n
+else
+  rescale 11823 $n 150
+  mpkill $n
+endif
+~
+>give_prog I11812~
+mpecho A chaos bomb *** INCINERATES *** the guard!
+mpjunk i11812
+mpgoto 11904
+suicide 
+~
+>death_prog 100~
+if level($n) < 25
+  mpoload 11808
+else
+  if level($n) < 50
+    mpoload 11809
+  else
+    if level($n) < 75
+      mpoload 11810
+    else
+      mpoload 11811
+    endif
+  endif
+endif
+if rand(10)
+  mpoload 11812
+endif
+~
+|
+#11824
+guard~
+a Guard~
+A guard is here!~
+This guard seems angry at your intrusion, and attacks!~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_HUNT|AFF_TONGUES
+0 S
+95 0 0 1d1+7999 1d1+73
+0 780605
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if whichgod($n)==0
+  rescale 11824 $n 85
+  mpkill $n
+else
+  rescale 11824 $n 150
+  mpkill $n
+endif
+~
+>give_prog I11812~
+mpecho A chaos bomb *** INCINERATES *** the guard!
+mpjunk i11812
+mpgoto 11904
+suicide 
+~
+>death_prog 100~
+if level($n) < 25
+  mpoload 11808
+else
+  if level($n) < 50
+    mpoload 11809
+  else
+    if level($n) < 75
+      mpoload 11810
+    else
+      mpoload 11811
+    endif
+  endif
+endif
+if rand(10)
+  mpoload 11812
+endif
+~
+|
+#11825
+guard~
+a Guard~
+A guard is here!~
+This guard seems angry at your intrusion, and attacks!~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_HUNT|AFF_TONGUES
+0 S
+95 0 0 1d1+7999 1d1+73
+0 780605
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if whichgod($n)==0
+  rescale 11825 $n 85
+  mpkill $n
+else
+  rescale 11825 $n 150
+  mpkill $n
+endif
+~
+>give_prog I11812~
+mpecho A chaos bomb *** INCINERATES *** the guard!
+mpjunk i11812
+mpgoto 11904
+suicide 
+~
+>death_prog 100~
+if level($n) < 25
+  mpoload 11808
+else
+  if level($n) < 50
+    mpoload 11809
+  else
+    if level($n) < 75
+      mpoload 11810
+    else
+      mpoload 11811
+    endif
+  endif
+endif
+if rand(10)
+  mpoload 11812
+endif
+~
+|
+#11826
+guard~
+a Guard~
+A guard is here!~
+This guard seems angry at your intrusion, and attacks!~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_HUNT|AFF_TONGUES
+0 S
+95 0 0 1d1+7999 1d1+73
+0 780605
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if whichgod($n)==0
+  rescale 11826 $n 85
+  mpkill $n
+else
+  rescale 11826 $n 150
+  mpkill $n
+endif
+~
+>give_prog I11812~
+mpecho A chaos bomb *** INCINERATES *** the guard!
+mpjunk i11812
+mpgoto 11904
+suicide 
+~
+>death_prog 100~
+if level($n) < 25
+  mpoload 11808
+else
+  if level($n) < 50
+    mpoload 11809
+  else
+    if level($n) < 75
+      mpoload 11810
+    else
+      mpoload 11811
+    endif
+  endif
+endif
+if rand(10)
+  mpoload 11812
+endif
+~
+|
+#11827
+guard~
+a Guard~
+A guard is here!~
+This guard seems angry at your intrusion, and attacks!~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_HUNT|AFF_TONGUES
+0 S
+95 0 0 1d1+7999 1d1+73
+0 780605
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if whichgod($n)==0
+  rescale 11827 $n 85
+  mpkill $n
+else
+  rescale 11827 $n 150
+  mpkill $n
+endif
+~
+>give_prog I11812~
+mpecho A chaos bomb *** INCINERATES *** the guard!
+mpjunk i11812
+mpgoto 11904
+suicide 
+~
+>death_prog 100~
+if level($n) < 25
+  mpoload 11808
+else
+  if level($n) < 50
+    mpoload 11809
+  else
+    if level($n) < 75
+      mpoload 11810
+    else
+      mpoload 11811
+    endif
+  endif
+endif
+if rand(10)
+  mpoload 11812
+endif
+~
+|
+#11828
+guard~
+a Guard~
+A guard is here!~
+This guard seems angry at your intrusion, and attacks!~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_HUNT|AFF_TONGUES
+0 S
+95 0 0 1d1+7999 1d1+73
+0 780605
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if whichgod($n)==0
+  rescale 11828 $n 85
+  mpkill $n
+else
+  rescale 11828 $n 150
+  mpkill $n
+endif
+~
+>give_prog I11812~
+mpecho A chaos bomb *** INCINERATES *** the guard!
+mpjunk i11812
+mpgoto 11904
+suicide 
+~
+>death_prog 100~
+if level($n) < 25
+  mpoload 11808
+else
+  if level($n) < 50
+    mpoload 11809
+  else
+    if level($n) < 75
+      mpoload 11810
+    else
+      mpoload 11811
+    endif
+  endif
+endif
+if rand(10)
+  mpoload 11812
+endif
+~
+|
+#11829
+guard~
+a Guard~
+A guard is here!~
+This guard seems angry at your intrusion, and attacks!~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_HUNT|AFF_TONGUES
+0 S
+95 0 0 1d1+7999 1d1+73
+0 780605
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if whichgod($n)==0
+  rescale 11829 $n 85
+  mpkill $n
+else
+  rescale 11829 $n 150
+  mpkill $n
+endif
+~
+>give_prog I11812~
+mpecho A chaos bomb *** INCINERATES *** the guard!
+mpjunk i11812
+mpgoto 11904
+suicide 
+~
+>death_prog 100~
+if level($n) < 25
+  mpoload 11808
+else
+  if level($n) < 50
+    mpoload 11809
+  else
+    if level($n) < 75
+      mpoload 11810
+    else
+      mpoload 11811
+    endif
+  endif
+endif
+if rand(10)
+  mpoload 11812
+endif
+~
+|
+#11830
+guard~
+a Guard~
+A guard is here!~
+This guard seems angry at your intrusion, and attacks!~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_HUNT|AFF_TONGUES
+0 S
+95 0 0 1d1+7999 1d1+73
+0 780605
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if whichgod($n)==0
+  rescale 11830 $n 85
+  mpkill $n
+else
+  rescale 11830 $n 150
+  mpkill $n
+endif
+~
+>give_prog I11812~
+mpecho A chaos bomb *** INCINERATES *** the guard!
+mpjunk i11812
+mpgoto 11904
+suicide 
+~
+>death_prog 100~
+if level($n) < 25
+  mpoload 11808
+else
+  if level($n) < 50
+    mpoload 11809
+  else
+    if level($n) < 75
+      mpoload 11810
+    else
+      mpoload 11811
+    endif
+  endif
+endif
+if rand(10)
+  mpoload 11812
+endif
+~
+|
+#11831
+guard~
+a Guard~
+A guard is here!~
+This guard seems angry at your intrusion, and attacks!~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_HUNT|AFF_TONGUES
+0 S
+95 0 0 1d1+7999 1d1+73
+0 780605
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if whichgod($n)==0
+  rescale 11831 $n 85
+  mpkill $n
+else
+  rescale 11831 $n 150
+  mpkill $n
+endif
+~
+>give_prog I11812~
+mpecho A chaos bomb *** INCINERATES *** the guard!
+mpjunk i11812
+mpgoto 11904
+suicide 
+~
+>death_prog 100~
+if level($n) < 25
+  mpoload 11808
+else
+  if level($n) < 50
+    mpoload 11809
+  else
+    if level($n) < 75
+      mpoload 11810
+    else
+      mpoload 11811
+    endif
+  endif
+endif
+if rand(10)
+  mpoload 11812
+endif
+~
+|
+#11832
+guard~
+a Guard~
+A guard is here!~
+This guard seems angry at your intrusion, and attacks!~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_HUNT|AFF_TONGUES
+0 S
+95 0 0 1d1+7999 1d1+73
+0 780605
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if whichgod($n)==0
+  rescale 11832 $n 85
+  mpkill $n
+else
+  rescale 11832 $n 150
+  mpkill $n
+endif
+~
+>give_prog I11812~
+mpecho A chaos bomb *** INCINERATES *** the guard!
+mpjunk i11812
+mpgoto 11904
+suicide 
+~
+>death_prog 100~
+if level($n) < 25
+  mpoload 11808
+else
+  if level($n) < 50
+    mpoload 11809
+  else
+    if level($n) < 75
+      mpoload 11810
+    else
+      mpoload 11811
+    endif
+  endif
+endif
+if rand(10)
+  mpoload 11812
+endif
+~
+|
+#11833
+guard~
+a Guard~
+A guard is here!~
+This guard seems angry at your intrusion, and attacks!~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_HUNT|AFF_TONGUES
+0 S
+95 0 0 1d1+7999 1d1+73
+0 780605
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if whichgod($n)==0
+  rescale 11833 $n 85
+  mpkill $n
+else
+  rescale 11833 $n 150
+  mpkill $n
+endif
+~
+>give_prog I11812~
+mpecho A chaos bomb *** INCINERATES *** the guard!
+mpjunk i11812
+mpgoto 11904
+suicide 
+~
+>death_prog 100~
+if level($n) < 25
+  mpoload 11808
+else
+  if level($n) < 50
+    mpoload 11809
+  else
+    if level($n) < 75
+      mpoload 11810
+    else
+      mpoload 11811
+    endif
+  endif
+endif
+if rand(10)
+  mpoload 11812
+endif
+~
+|
+#11834
+guard~
+a Guard~
+A guard is here!~
+This guard seems angry at your intrusion, and attacks!~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_HUNT|AFF_TONGUES
+0 S
+95 0 0 1d1+7999 1d1+73
+0 780605
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if whichgod($n)==0
+  rescale 11834 $n 85
+  mpkill $n
+else
+  rescale 11834 $n 150
+  mpkill $n
+endif
+~
+>give_prog I11812~
+mpecho A chaos bomb *** INCINERATES *** the guard!
+mpjunk i11812
+mpgoto 11904
+suicide 
+~
+>death_prog 100~
+if level($n) < 25
+  mpoload 11808
+else
+  if level($n) < 50
+    mpoload 11809
+  else
+    if level($n) < 75
+      mpoload 11810
+    else
+      mpoload 11811
+    endif
+  endif
+endif
+if rand(10)
+  mpoload 11812
+endif
+~
+|
+#11835
+guard~
+a Guard~
+A guard is here!~
+This guard seems angry at your intrusion, and attacks!~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_HUNT|AFF_TONGUES
+0 S
+95 0 0 1d1+7999 1d1+73
+0 780605
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if whichgod($n)==0
+  rescale 11835 $n 85
+  mpkill $n
+else
+  rescale 11835 $n 150
+  mpkill $n
+endif
+~
+>give_prog I11812~
+mpecho A chaos bomb *** INCINERATES *** the guard!
+mpjunk i11812
+mpgoto 11904
+suicide 
+~
+>death_prog 100~
+if level($n) < 25
+  mpoload 11808
+else
+  if level($n) < 50
+    mpoload 11809
+  else
+    if level($n) < 75
+      mpoload 11810
+    else
+      mpoload 11811
+    endif
+  endif
+endif
+if rand(10)
+  mpoload 11812
+endif
+~
+|
+#11836
+guard~
+a Guard~
+A guard is here!~
+This guard seems angry at your intrusion, and attacks!~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_HUNT|AFF_TONGUES
+0 S
+95 0 0 1d1+7999 1d1+73
+0 780605
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if whichgod($n)==0
+  rescale 11836 $n 85
+  mpkill $n
+else
+  rescale 11836 $n 150
+  mpkill $n
+endif
+~
+>give_prog I11812~
+mpecho A chaos bomb *** INCINERATES *** the guard!
+mpjunk i11812
+mpgoto 11904
+suicide 
+~
+>death_prog 100~
+if level($n) < 25
+  mpoload 11808
+else
+  if level($n) < 50
+    mpoload 11809
+  else
+    if level($n) < 75
+      mpoload 11810
+    else
+      mpoload 11811
+    endif
+  endif
+endif
+if rand(10)
+  mpoload 11812
+endif
+~
+|
+#11837
+guard~
+a Guard~
+A guard is here!~
+This guard seems angry at your intrusion, and attacks!~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_HUNT|AFF_TONGUES
+0 S
+95 0 0 1d1+7999 1d1+73
+0 780605
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if whichgod($n)==0
+  rescale 11837 $n 85
+  mpkill $n
+else
+  rescale 11837 $n 150
+  mpkill $n
+endif
+~
+>give_prog I11812~
+mpecho A chaos bomb *** INCINERATES *** the guard!
+mpjunk i11812
+mpgoto 11904
+suicide 
+~
+>death_prog 100~
+if level($n) < 25
+  mpoload 11808
+else
+  if level($n) < 50
+    mpoload 11809
+  else
+    if level($n) < 75
+      mpoload 11810
+    else
+      mpoload 11811
+    endif
+  endif
+endif
+if rand(10)
+  mpoload 11812
+endif
+~
+|
+#11838
+guard~
+a Guard~
+A guard is here!~
+This guard seems angry at your intrusion, and attacks!~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_HUNT|AFF_TONGUES
+0 S
+95 0 0 1d1+7999 1d1+73
+0 780605
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if whichgod($n)==0
+  rescale 11838 $n 85
+  mpkill $n
+else
+  rescale 11838 $n 150
+  mpkill $n
+endif
+~
+>give_prog I11812~
+mpecho A chaos bomb *** INCINERATES *** the guard!
+mpjunk i11812
+mpgoto 11904
+suicide 
+~
+>death_prog 100~
+if level($n) < 25
+  mpoload 11808
+else
+  if level($n) < 50
+    mpoload 11809
+  else
+    if level($n) < 75
+      mpoload 11810
+    else
+      mpoload 11811
+    endif
+  endif
+endif
+if rand(10)
+  mpoload 11812
+endif
+~
+|
+#11839
+guard~
+a Guard~
+A guard is here!~
+This guard seems angry at your intrusion, and attacks!~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_HUNT|AFF_TONGUES
+0 S
+95 0 0 1d1+7999 1d1+73
+0 780605
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if whichgod($n)==0
+  rescale 11839 $n 85
+  mpkill $n
+else
+  rescale 11839 $n 150
+  mpkill $n
+endif
+~
+>give_prog I11812~
+mpecho A chaos bomb *** INCINERATES *** the guard!
+mpjunk i11812
+mpgoto 11904
+suicide 
+~
+>death_prog 100~
+if level($n) < 25
+  mpoload 11808
+else
+  if level($n) < 50
+    mpoload 11809
+  else
+    if level($n) < 75
+      mpoload 11810
+    else
+      mpoload 11811
+    endif
+  endif
+endif
+if rand(10)
+  mpoload 11812
+endif
+~
+|
+#11840
+guard~
+a Guard~
+A guard is here!~
+This guard seems angry at your intrusion, and attacks!~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_HUNT|AFF_TONGUES
+0 S
+95 0 0 1d1+7999 1d1+73
+0 780605
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if whichgod($n)==0
+  rescale 11840 $n 85
+  mpkill $n
+else
+  rescale 11840 $n 150
+  mpkill $n
+endif
+~
+>give_prog I11812~
+mpecho A chaos bomb *** INCINERATES *** the guard!
+mpjunk i11812
+mpgoto 11904
+suicide 
+~
+>death_prog 100~
+if level($n) < 25
+  mpoload 11808
+else
+  if level($n) < 50
+    mpoload 11809
+  else
+    if level($n) < 75
+      mpoload 11810
+    else
+      mpoload 11811
+    endif
+  endif
+endif
+if rand(10)
+  mpoload 11812
+endif
+~
+|
+#11841
+guard~
+a Guard~
+A guard is here!~
+This guard seems angry at your intrusion, and attacks!~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_HUNT|AFF_TONGUES
+0 S
+95 0 0 1d1+7999 1d1+73
+0 780605
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if whichgod($n)==0
+  rescale 11841 $n 85
+  mpkill $n
+else
+  rescale 11841 $n 150
+  mpkill $n
+endif
+~
+>give_prog I11812~
+mpecho A chaos bomb *** INCINERATES *** the guard!
+mpjunk i11812
+mpgoto 11904
+suicide 
+~
+>death_prog 100~
+if level($n) < 25
+  mpoload 11808
+else
+  if level($n) < 50
+    mpoload 11809
+  else
+    if level($n) < 75
+      mpoload 11810
+    else
+      mpoload 11811
+    endif
+  endif
+endif
+if rand(10)
+  mpoload 11812
+endif
+~
+|
+#11842
+guard~
+a Guard~
+A guard is here!~
+This guard seems angry at your intrusion, and attacks!~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_HUNT|AFF_TONGUES
+0 S
+95 0 0 1d1+7999 1d1+73
+0 780605
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if whichgod($n)==0
+  rescale 11842 $n 85
+  mpkill $n
+else
+  rescale 11842 $n 150
+  mpkill $n
+endif
+~
+>give_prog I11812~
+mpecho A chaos bomb *** INCINERATES *** the guard!
+mpjunk i11812
+mpgoto 11904
+suicide 
+~
+>death_prog 100~
+if level($n) < 25
+  mpoload 11808
+else
+  if level($n) < 50
+    mpoload 11809
+  else
+    if level($n) < 75
+      mpoload 11810
+    else
+      mpoload 11811
+    endif
+  endif
+endif
+if rand(10)
+  mpoload 11812
+endif
+~
+|
+#11843
+guard~
+a Guard~
+A guard is here!~
+This guard seems angry at your intrusion, and attacks!~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_HUNT|AFF_TONGUES
+0 S
+95 0 0 1d1+7999 1d1+73
+0 780605
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if whichgod($n)==0
+  rescale 11843 $n 85
+  mpkill $n
+else
+  rescale 11843 $n 150
+  mpkill $n
+endif
+~
+>give_prog I11812~
+mpecho A chaos bomb *** INCINERATES *** the guard!
+mpjunk i11812
+mpgoto 11904
+suicide 
+~
+>death_prog 100~
+if level($n) < 25
+  mpoload 11808
+else
+  if level($n) < 50
+    mpoload 11809
+  else
+    if level($n) < 75
+      mpoload 11810
+    else
+      mpoload 11811
+    endif
+  endif
+endif
+if rand(10)
+  mpoload 11812
+endif
+~
+|
+#11844
+guard~
+a Guard~
+A guard is here!~
+This guard seems angry at your intrusion, and attacks!~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_HUNT|AFF_TONGUES
+0 S
+95 0 0 1d1+7999 1d1+73
+0 780605
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if whichgod($n)==0
+  rescale 11844 $n 85
+  mpkill $n
+else
+  rescale 11844 $n 150
+  mpkill $n
+endif
+~
+>give_prog I11812~
+mpecho A chaos bomb *** INCINERATES *** the guard!
+mpjunk i11812
+mpgoto 11904
+suicide 
+~
+>death_prog 100~
+if level($n) < 25
+  mpoload 11808
+else
+  if level($n) < 50
+    mpoload 11809
+  else
+    if level($n) < 75
+      mpoload 11810
+    else
+      mpoload 11811
+    endif
+  endif
+endif
+if rand(10)
+  mpoload 11812
+endif
+~
+|
+#11845
+guard~
+a Guard~
+A guard is here!~
+This guard seems angry at your intrusion, and attacks!~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_HUNT|AFF_TONGUES
+0 S
+95 0 0 1d1+7999 1d1+73
+0 780605
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if whichgod($n)==0
+  rescale 11845 $n 85
+  mpkill $n
+else
+  rescale 11845 $n 150
+  mpkill $n
+endif
+~
+>give_prog I11812~
+mpecho A chaos bomb *** INCINERATES *** the guard!
+mpjunk i11812
+mpgoto 11904
+suicide 
+~
+>death_prog 100~
+if level($n) < 25
+  mpoload 11808
+else
+  if level($n) < 50
+    mpoload 11809
+  else
+    if level($n) < 75
+      mpoload 11810
+    else
+      mpoload 11811
+    endif
+  endif
+endif
+if rand(10)
+  mpoload 11812
+endif
+~
+|
+#11846
+guard~
+a Guard~
+A guard is here!~
+This guard seems angry at your intrusion, and attacks!~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_HUNT|AFF_TONGUES
+0 S
+95 0 0 1d1+7999 1d1+73
+0 780605
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if whichgod($n)==0
+  rescale 11846 $n 85
+  mpkill $n
+else
+  rescale 11846 $n 150
+  mpkill $n
+endif
+~
+>give_prog I11812~
+mpecho A chaos bomb *** INCINERATES *** the guard!
+mpjunk i11812
+mpgoto 11904
+suicide 
+~
+>death_prog 100~
+if level($n) < 25
+  mpoload 11808
+else
+  if level($n) < 50
+    mpoload 11809
+  else
+    if level($n) < 75
+      mpoload 11810
+    else
+      mpoload 11811
+    endif
+  endif
+endif
+if rand(10)
+  mpoload 11812
+endif
+~
+|
+#11847
+demon fire~
+a Fire Demon~
+A fire demon is here!~
+This demon seems to think you're his lunch.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_BODY
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_HUNT|AFF_TONGUES
+0 S
+95 BODY_CLAW BODY_CLAW 1d1+7999 1d1+73
+100 780605
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>all_greet_prog 100~
+if whichgod($n)==0
+  rescale 11847 $n 110
+  mpkill $n
+else
+  rescale 11847 $n 165
+  mpkill $n
+endif
+~
+>give_prog I11812~
+mpecho A chaos bomb *** INCINERATES *** the fire demon!
+mpjunk i11812
+mpgoto 11904
+suicide 
+~
+>death_prog 100~
+if level($n) < 25
+  mpoload 11808
+else
+  if level($n) < 50
+    mpoload 11809
+  else
+    if level($n) < 75
+      mpoload 11810
+    else
+      mpoload 11811
+    endif
+  endif
+endif
+~
+|
+#11848
+demon fire~
+a Fire Demon~
+A fire demon is here!~
+This demon seems to think you're his lunch.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_BODY
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_HUNT|AFF_TONGUES
+0 S
+95 BODY_CLAW BODY_CLAW 1d1+7999 1d1+73
+100 780605
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>all_greet_prog 100~
+if whichgod($n)==0
+  rescale 11848 $n 110
+  mpkill $n
+else
+  rescale 11848 $n 165
+  mpkill $n
+endif
+~
+>give_prog I11812~
+mpecho A chaos bomb *** INCINERATES *** the fire demon!
+mpjunk i11812
+mpgoto 11904
+suicide 
+~
+>death_prog 100~
+if level($n) < 25
+  mpoload 11808
+else
+  if level($n) < 50
+    mpoload 11809
+  else
+    if level($n) < 75
+      mpoload 11810
+    else
+      mpoload 11811
+    endif
+  endif
+endif
+~
+|
+#11849
+demon fire~
+a Fire Demon~
+A fire demon is here!~
+This demon seems to think you're his lunch.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_BODY
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_HUNT|AFF_TONGUES
+0 S
+95 BODY_CLAW BODY_CLAW 1d1+7999 1d1+73
+100 780605
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>all_greet_prog 100~
+if whichgod($n)==0
+  rescale 11849 $n 110
+  mpkill $n
+else
+  rescale 11849 $n 165
+  mpkill $n
+endif
+~
+>give_prog I11812~
+mpecho A chaos bomb *** INCINERATES *** the fire demon!
+mpjunk i11812
+mpgoto 11904
+suicide 
+~
+>death_prog 100~
+if level($n) < 25
+  mpoload 11808
+else
+  if level($n) < 50
+    mpoload 11809
+  else
+    if level($n) < 75
+      mpoload 11810
+    else
+      mpoload 11811
+    endif
+  endif
+endif
+~
+|
+#11850
+demon fire~
+a Fire Demon~
+A fire demon is here!~
+This demon seems to think you're his lunch.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_BODY
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_HUNT|AFF_TONGUES
+0 S
+95 BODY_CLAW BODY_CLAW 1d1+7999 1d1+73
+100 780605
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>all_greet_prog 100~
+if whichgod($n)==0
+  rescale 11850 $n 110
+  mpkill $n
+else
+  rescale 11850 $n 165
+  mpkill $n
+endif
+~
+>give_prog I11812~
+mpecho A chaos bomb *** INCINERATES *** the fire demon!
+mpjunk i11812
+mpgoto 11904
+suicide 
+~
+>death_prog 100~
+if level($n) < 25
+  mpoload 11808
+else
+  if level($n) < 50
+    mpoload 11809
+  else
+    if level($n) < 75
+      mpoload 11810
+    else
+      mpoload 11811
+    endif
+  endif
+endif
+~
+|
+#11851
+demon fire~
+a Fire Demon~
+A fire demon is here!~
+This demon seems to think you're his lunch.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_BODY
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_HUNT|AFF_TONGUES
+0 S
+95 BODY_CLAW BODY_CLAW 1d1+7999 1d1+73
+100 780605
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>all_greet_prog 100~
+if whichgod($n)==0
+  rescale 11851 $n 110
+  mpkill $n
+else
+  rescale 11851 $n 165
+  mpkill $n
+endif
+~
+>give_prog I11812~
+mpecho A chaos bomb *** INCINERATES *** the fire demon!
+mpjunk i11812
+mpgoto 11904
+suicide 
+~
+>death_prog 100~
+if level($n) < 25
+  mpoload 11808
+else
+  if level($n) < 50
+    mpoload 11809
+  else
+    if level($n) < 75
+      mpoload 11810
+    else
+      mpoload 11811
+    endif
+  endif
+endif
+~
+|
+#11852
+demon fire~
+a Fire Demon~
+A fire demon is here!~
+This demon seems to think you're his lunch.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_BODY
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_HUNT|AFF_TONGUES
+0 S
+95 BODY_CLAW BODY_CLAW 1d1+7999 1d1+73
+100 780605
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>all_greet_prog 100~
+if whichgod($n)==0
+  rescale 11852 $n 110
+  mpkill $n
+else
+  rescale 11852 $n 165
+  mpkill $n
+endif
+~
+>give_prog I11812~
+mpecho A chaos bomb *** INCINERATES *** the fire demon!
+mpjunk i11812
+mpgoto 11904
+suicide 
+~
+>death_prog 100~
+if level($n) < 25
+  mpoload 11808
+else
+  if level($n) < 50
+    mpoload 11809
+  else
+    if level($n) < 75
+      mpoload 11810
+    else
+      mpoload 11811
+    endif
+  endif
+endif
+~
+|
+#11853
+demon fire~
+a Fire Demon~
+A fire demon is here!~
+This demon seems to think you're his lunch.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_BODY
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_HUNT|AFF_TONGUES
+0 S
+95 BODY_CLAW BODY_CLAW 1d1+7999 1d1+73
+100 780605
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>all_greet_prog 100~
+if whichgod($n)==0
+  rescale 11853 $n 110
+  mpkill $n
+else
+  rescale 11853 $n 165
+  mpkill $n
+endif
+~
+>give_prog I11812~
+mpecho A chaos bomb *** INCINERATES *** the fire demon!
+mpjunk i11812
+mpgoto 11904
+suicide 
+~
+>death_prog 100~
+if level($n) < 25
+  mpoload 11808
+else
+  if level($n) < 50
+    mpoload 11809
+  else
+    if level($n) < 75
+      mpoload 11810
+    else
+      mpoload 11811
+    endif
+  endif
+endif
+~
+|
+#11854
+demon fire~
+a Fire Demon~
+A fire demon is here!~
+This demon seems to think you're his lunch.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_BODY
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_HUNT|AFF_TONGUES
+0 S
+95 BODY_CLAW BODY_CLAW 1d1+7999 1d1+73
+100 780605
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>all_greet_prog 100~
+if whichgod($n)==0
+  rescale 11854 $n 110
+  mpkill $n
+else
+  rescale 11854 $n 165
+  mpkill $n
+endif
+~
+>give_prog I11812~
+mpecho A chaos bomb *** INCINERATES *** the fire demon!
+mpjunk i11812
+mpgoto 11904
+suicide 
+~
+>death_prog 100~
+if level($n) < 25
+  mpoload 11808
+else
+  if level($n) < 50
+    mpoload 11809
+  else
+    if level($n) < 75
+      mpoload 11810
+    else
+      mpoload 11811
+    endif
+  endif
+endif
+~
+|
+#11855
+demon fire~
+a Fire Demon~
+A fire demon is here!~
+This demon seems to think you're his lunch.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_BODY
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_HUNT|AFF_TONGUES
+0 S
+95 BODY_CLAW BODY_CLAW 1d1+7999 1d1+73
+100 780605
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>all_greet_prog 100~
+if whichgod($n)==0
+  rescale 11855 $n 110
+  mpkill $n
+else
+  rescale 11855 $n 165
+  mpkill $n
+endif
+~
+>give_prog I11812~
+mpecho A chaos bomb *** INCINERATES *** the fire demon!
+mpjunk i11812
+mpgoto 11904
+suicide 
+~
+>death_prog 100~
+if level($n) < 25
+  mpoload 11808
+else
+  if level($n) < 50
+    mpoload 11809
+  else
+    if level($n) < 75
+      mpoload 11810
+    else
+      mpoload 11811
+    endif
+  endif
+endif
+~
+|
+#11856
+imp~
+an Imp~
+An imp is here!~
+This imp is grey with long pointy teeth and eyes that see right through you.
+He reminds you of the killer bunny on Monty Python and the Holy Grail.~
+ACT_STAY_AREA|ACT_SMART|ACT_BODY
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_HUNT|AFF_TONGUES
+0 S
+95 BODY_CLAW BODY_CLAW 1d1+7999 1d1+73
+100 780605
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>all_greet_prog 100~
+if whichgod($n)==0
+  rescale 11856 $n 110
+  mpkill $n
+else
+  rescale 11856 $n 165
+  mpkill $n
+endif
+~
+>fight_prog 35~
+cast fireball $r
+~
+>give_prog I11812~
+mpecho A chaos bomb *** INCINERATES *** the imp!
+mpjunk i11812
+mpgoto 11904
+suicide 
+~
+>death_prog 100~
+if level($n) < 25
+  mpoload 11808
+else
+  if level($n) < 50
+    mpoload 11809
+  else
+    if level($n) < 75
+      mpoload 11810
+    else
+      mpoload 11811
+    endif
+  endif
+endif
+~
+|
+#11857
+imp~
+an Imp~
+An imp is here!~
+This imp is grey with long pointy teeth and eyes that see right through you.
+He reminds you of the killer bunny on Monty Python and the Holy Grail.~
+ACT_STAY_AREA|ACT_SMART|ACT_BODY
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_HUNT|AFF_TONGUES
+0 S
+95 BODY_CLAW BODY_CLAW 1d1+7999 1d1+73
+100 780605
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>all_greet_prog 100~
+if whichgod($n)==0
+  rescale 11857 $n 110
+  mpkill $n
+else
+  rescale 11857 $n 165
+  mpkill $n
+endif
+~
+>fight_prog 35~
+cast fireball $r
+~
+>give_prog I11812~
+mpecho A chaos bomb *** INCINERATES *** the imp!
+mpjunk i11812
+mpgoto 11904
+suicide 
+~
+>death_prog 100~
+if level($n) < 25
+  mpoload 11808
+else
+  if level($n) < 50
+    mpoload 11809
+  else
+    if level($n) < 75
+      mpoload 11810
+    else
+      mpoload 11811
+    endif
+  endif
+endif
+~
+|
+#11858
+imp~
+an Imp~
+An imp is here!~
+This imp is grey with long pointy teeth and eyes that see right through you.
+He reminds you of the killer bunny on Monty Python and the Holy Grail.~
+ACT_STAY_AREA|ACT_SMART|ACT_BODY
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_HUNT|AFF_TONGUES
+0 S
+95 BODY_CLAW BODY_CLAW 1d1+7999 1d1+73
+100 780605
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>all_greet_prog 100~
+if whichgod($n)==0
+  rescale 11858 $n 110
+  mpkill $n
+else
+  rescale 11858 $n 165
+  mpkill $n
+endif
+~
+>fight_prog 35~
+cast fireball $r
+~
+>give_prog I11812~
+mpecho A chaos bomb *** INCINERATES *** the imp!
+mpjunk i11812
+mpgoto 11904
+suicide 
+~
+>death_prog 100~
+if level($n) < 25
+  mpoload 11808
+else
+  if level($n) < 50
+    mpoload 11809
+  else
+    if level($n) < 75
+      mpoload 11810
+    else
+      mpoload 11811
+    endif
+  endif
+endif
+~
+|
+#11859
+imp~
+an Imp~
+An imp is here!~
+This imp is grey with long pointy teeth and eyes that see right through you.
+He reminds you of the killer bunny on Monty Python and the Holy Grail.~
+ACT_STAY_AREA|ACT_SMART|ACT_BODY
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_HUNT|AFF_TONGUES
+0 S
+95 BODY_CLAW BODY_CLAW 1d1+7999 1d1+73
+100 780605
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>all_greet_prog 100~
+if whichgod($n)==0
+  rescale 11859 $n 110
+  mpkill $n
+else
+  rescale 11859 $n 165
+  mpkill $n
+endif
+~
+>fight_prog 35~
+cast fireball $r
+~
+>give_prog I11812~
+mpecho A chaos bomb *** INCINERATES *** the imp!
+mpjunk i11812
+mpgoto 11904
+suicide 
+~
+>death_prog 100~
+if level($n) < 25
+  mpoload 11808
+else
+  if level($n) < 50
+    mpoload 11809
+  else
+    if level($n) < 75
+      mpoload 11810
+    else
+      mpoload 11811
+    endif
+  endif
+endif
+~
+|
+#11860
+imp~
+an Imp~
+An imp is here!~
+This imp is grey with long pointy teeth and eyes that see right through you.
+He reminds you of the killer bunny on Monty Python and the Holy Grail.~
+ACT_STAY_AREA|ACT_SMART|ACT_BODY
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_HUNT|AFF_TONGUES
+0 S
+95 BODY_CLAW BODY_CLAW 1d1+7999 1d1+73
+100 780605
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>all_greet_prog 100~
+if whichgod($n)==0
+  rescale 11860 $n 110
+  mpkill $n
+else
+  rescale 11860 $n 165
+  mpkill $n
+endif
+~
+>fight_prog 35~
+cast fireball $r
+~
+>give_prog I11812~
+mpecho A chaos bomb *** INCINERATES *** the imp!
+mpjunk i11812
+mpgoto 11904
+suicide 
+~
+>death_prog 100~
+if level($n) < 25
+  mpoload 11808
+else
+  if level($n) < 50
+    mpoload 11809
+  else
+    if level($n) < 75
+      mpoload 11810
+    else
+      mpoload 11811
+    endif
+  endif
+endif
+~
+|
+#11861
+imp~
+an Imp~
+An imp is here!~
+This imp is grey with long pointy teeth and eyes that see right through you.
+He reminds you of the killer bunny on Monty Python and the Holy Grail.~
+ACT_STAY_AREA|ACT_SMART|ACT_BODY
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_HUNT|AFF_TONGUES
+0 S
+95 BODY_CLAW BODY_CLAW 1d1+7999 1d1+73
+100 780605
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>all_greet_prog 100~
+if whichgod($n)==0
+  rescale 11861 $n 110
+  mpkill $n
+else
+  rescale 11861 $n 165
+  mpkill $n
+endif
+~
+>fight_prog 35~
+cast fireball $r
+~
+>give_prog I11812~
+mpecho A chaos bomb *** INCINERATES *** the imp!
+mpjunk i11812
+mpgoto 11904
+suicide 
+~
+>death_prog 100~
+if level($n) < 25
+  mpoload 11808
+else
+  if level($n) < 50
+    mpoload 11809
+  else
+    if level($n) < 75
+      mpoload 11810
+    else
+      mpoload 11811
+    endif
+  endif
+endif
+~
+|
+#11862
+imp~
+an Imp~
+An imp is here!~
+This imp is grey with long pointy teeth and eyes that see right through you.
+He reminds you of the killer bunny on Monty Python and the Holy Grail.~
+ACT_STAY_AREA|ACT_SMART|ACT_BODY
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_HUNT|AFF_TONGUES
+0 S
+95 BODY_CLAW BODY_CLAW 1d1+7999 1d1+73
+100 780605
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>all_greet_prog 100~
+if whichgod($n)==0
+  rescale 11862 $n 110
+  mpkill $n
+else
+  rescale 11862 $n 165
+  mpkill $n
+endif
+~
+>fight_prog 35~
+cast fireball $r
+~
+>give_prog I11812~
+mpecho A chaos bomb *** INCINERATES *** the imp!
+mpjunk i11812
+mpgoto 11904
+suicide 
+~
+>death_prog 100~
+if level($n) < 25
+  mpoload 11808
+else
+  if level($n) < 50
+    mpoload 11809
+  else
+    if level($n) < 75
+      mpoload 11810
+    else
+      mpoload 11811
+    endif
+  endif
+endif
+~
+|
+#11863
+imp~
+an Imp~
+An imp is here!~
+This imp is grey with long pointy teeth and eyes that see right through you.
+He reminds you of the killer bunny on Monty Python and the Holy Grail.~
+ACT_STAY_AREA|ACT_SMART|ACT_BODY
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_HUNT|AFF_TONGUES
+0 S
+95 BODY_CLAW BODY_CLAW 1d1+7999 1d1+73
+100 780605
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>all_greet_prog 100~
+if whichgod($n)==0
+  rescale 11863 $n 110
+  mpkill $n
+else
+  rescale 11863 $n 165
+  mpkill $n
+endif
+~
+>fight_prog 35~
+cast fireball $r
+~
+>give_prog I11812~
+mpecho A chaos bomb *** INCINERATES *** the imp!
+mpjunk i11812
+mpgoto 11904
+suicide 
+~
+>death_prog 100~
+if level($n) < 25
+  mpoload 11808
+else
+  if level($n) < 50
+    mpoload 11809
+  else
+    if level($n) < 75
+      mpoload 11810
+    else
+      mpoload 11811
+    endif
+  endif
+endif
+~
+|
+#11864
+imp~
+an Imp~
+An imp is here!~
+This imp is grey with long pointy teeth and eyes that see right through you.
+He reminds you of the killer bunny on Monty Python and the Holy Grail.~
+ACT_STAY_AREA|ACT_SMART|ACT_BODY
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_HUNT|AFF_TONGUES
+0 S
+95 BODY_CLAW BODY_CLAW 1d1+7999 1d1+73
+100 780605
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>all_greet_prog 100~
+if whichgod($n)==0
+  rescale 11864 $n 110
+  mpkill $n
+else
+  rescale 11864 $n 165
+  mpkill $n
+endif
+~
+>fight_prog 35~
+cast fireball $r
+~
+>give_prog I11812~
+mpecho A chaos bomb *** INCINERATES *** the imp!
+mpjunk i11812
+mpgoto 11904
+suicide 
+~
+>death_prog 100~
+if level($n) < 25
+  mpoload 11808
+else
+  if level($n) < 50
+    mpoload 11809
+  else
+    if level($n) < 75
+      mpoload 11810
+    else
+      mpoload 11811
+    endif
+  endif
+endif
+~
+|
+#11865
+imp~
+an Imp~
+An imp is here!~
+This imp is grey with long pointy teeth and eyes that see right through you.
+He reminds you of the killer bunny on Monty Python and the Holy Grail.~
+ACT_STAY_AREA|ACT_SMART|ACT_BODY
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_HUNT|AFF_TONGUES
+0 S
+95 BODY_CLAW BODY_CLAW 1d1+7999 1d1+73
+100 780605
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>all_greet_prog 100~
+if whichgod($n)==0
+  rescale 11865 $n 110
+  mpkill $n
+else
+  rescale 11865 $n 165
+  mpkill $n
+endif
+~
+>fight_prog 35~
+cast fireball $r
+~
+>give_prog I11812~
+mpecho A chaos bomb *** INCINERATES *** the imp!
+mpjunk i11812
+mpgoto 11904
+suicide 
+~
+>death_prog 100~
+if level($n) < 25
+  mpoload 11808
+else
+  if level($n) < 50
+    mpoload 11809
+  else
+    if level($n) < 75
+      mpoload 11810
+    else
+      mpoload 11811
+    endif
+  endif
+endif
+~
+|
+#11866
+key keeper~
+a Key Keeper~
+A key keeper is here!~
+This key keeper attacks with one hand, and guards the key with its other.~
+ACT_SENTINEL|ACT_SCAVENGER|ACT_STAY_AREA|ACT_SMART
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_HUNT|AFF_TONGUES
+0 S
+95 0 0 1d1+7999 1d1+73
+10000 780605
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>all_greet_prog 100~
+if whichgod($n)==0
+  rescale 11866 $n 125
+  mpkill $n
+else
+  rescale 11866 $n 200
+  mpkill $n
+endif
+~
+>give_prog I11812~
+mpecho A chaos bomb fails to explode!
+mpjunk i11812
+~
+>death_prog 100~
+mpoload 11207
+~
+|
+#11867
+key keeper~
+a Key Keeper~
+A key keeper is here!~
+This key keeper attacks with one hand, and guards the key with its other.~
+ACT_SENTINEL|ACT_SCAVENGER|ACT_STAY_AREA|ACT_SMART
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_HUNT|AFF_TONGUES
+0 S
+95 0 0 1d1+7999 1d1+73
+10000 780605
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>all_greet_prog 100~
+if whichgod($n)==0
+  rescale 11867 $n 125
+  mpkill $n
+else
+  rescale 11867 $n 200
+  mpkill $n
+endif
+~
+>give_prog I11812~
+mpecho A chaos bomb fails to explode!
+mpjunk i11812
+~
+>death_prog 100~
+mpoload 11207
+~
+|
+#11868
+key keeper~
+a Key Keeper~
+A key keeper is here!~
+This key keeper attacks with one hand, and guards the key with its other.~
+ACT_SENTINEL|ACT_SCAVENGER|ACT_STAY_AREA|ACT_SMART
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_HUNT|AFF_TONGUES
+0 S
+95 0 0 1d1+7999 1d1+73
+10000 780605
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>all_greet_prog 100~
+if whichgod($n)==0
+  rescale 11868 $n 125
+  mpkill $n
+else
+  rescale 11868 $n 200
+  mpkill $n
+endif
+~
+>give_prog I11812~
+mpecho A chaos bomb fails to explode!
+mpjunk i11812
+~
+>death_prog 100~
+mpoload 11207
+~
+|
+#11869
+statue~
+a Statue~
+A statue is here.~
+This statue is about man-size.~
+ACT_SENTINEL|ACT_SCAVENGER|ACT_STAY_AREA|ACT_SMART
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_HUNT|AFF_TONGUES
+0 S
+95 0 0 1d1+7999 1d1+73
+10000 780605
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>all_greet_prog 100~
+if whichgod($n)==0
+  rescale 11869 $n 50
+else
+  rescale 11869 $n 75
+endif
+~
+|
+#11870
+statue~
+a Statue~
+A statue is here.~
+This statue is about man-size.~
+ACT_SENTINEL|ACT_SCAVENGER|ACT_STAY_AREA|ACT_SMART
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_HUNT|AFF_TONGUES
+0 S
+95 0 0 1d1+7999 1d1+73
+10000 780605
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>all_greet_prog 100~
+if whichgod($n)==0
+  rescale 11870 $n 50
+else
+  rescale 11870 $n 75
+endif
+~
+|
+#11871
+statue~
+a Statue~
+A statue is here.~
+This statue is about man-size.~
+ACT_SENTINEL|ACT_SCAVENGER|ACT_STAY_AREA|ACT_SMART
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_HUNT|AFF_TONGUES
+0 S
+95 0 0 1d1+7999 1d1+73
+10000 780605
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>all_greet_prog 100~
+if whichgod($n)==0
+  rescale 11871 $n 50
+else
+  rescale 11871 $n 75
+endif
+~
+|
+#0
+
+
+
+
+#OBJECTS
+#11800
+key~
+a key~
+A key to the holding pens is here.~
+~
+ITEM_TYPE_KEY
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 0 0
+1 0 1
+#11801
+mural~
+a mural~
+There is a large mural on the wall here.~
+The Mural:                                               {010}_________            
+                                             {010}__  __,----'         `-----.__  
+                      {010}__                      \\/====-____          ___,-' `
+                       {010}\\          _/_/_/     /||\\       `---.____/          
+                {010}______---\       _- {160}o{010}   \/    |||  \\           _,'`     
+          {010}__,--'   ,--'||\-_    /,--_/--.|-   |`\.  \\        ,'             
+       {010}_,'      ,-'    |  \\`.  ` {130}*{010}/ /{150}=={010}/-   /  ||   `\.     /               
+     {010}.'       ,'       |   \\ \_{130}**{010}  /{150}=={010}/-   /   ||      \   /         
+    {010}/ _____  /   __    |     \\{130}**{010}-_/{150}=={010}/|- _/   ,//       \ /            
+   {010},-'     `-|--'  `--_ \     {130}***{010}-/{150}==={010}| \-_-===-'     _ _/`             
+                       {010}`-| {130}**** *{010}|{150}===={010}|  \_      __,-- '            
+             {160}..          {010}'{130}* *** *{010}|{150}===={010}|    \_  _,              /\          
+           {160}...             {130}*** * {010}\{150}====={010}\__   \/                 \__   _     
+         {160}...             {130}***{010}-' _/'\{150}={010},-' ____-'`-_                  `== \    
+      {130}() {160}*.   {130}() {010}/      {130}** {010}//--\   ///--\`._     `-                  _\ \    
+ {120}_____{150}#_{060}/{120}____{140}/{040}#{140}_{010}/{120}___{130}() {010}/{120}____________{010}\{150}======={010}\      `----.________,--- __/{120}______
+      {150}##    {140}/ {040}#    {140}/{040}#{140}_{010}/     {030}_     {010}__--{150}======{010}`)  \-._______________,---  
+     {150}##      {140}/ \  / {040}#      {030}/{130}|{030}\ {120}_ {010}//,--' `{150}=={010}--___ |-------'                   
+    {150}####    {140}/  /   / \     {130}O{120}##<_        {010}//,--   -\                            
+                  {140}/  /       {130}\                                 {110}Presto 12/14/94~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL
+0
+0 0 0 0
+0 0 1
+#11802
+broach grey demise~
+a grey broach~
+A grey broach with a small scratch lies on the ground here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL|ITEM_FLAG_AUTO_ENGRAVE
+ITEM_WEAR_TAKE|ITEM_WEAR_NECK
+14 0 0 0
+2 1 50
+A
+APPLY_DEX 2
+A
+APPLY_STR 2
+P 1
+TRIG_DAMAGE 30
+OPROG_IF OIF_WEAR_LOC ! WEAR_NONE 2 0
+P 2
+TRIG_VOID
+OPROG_ECHO
+Death should be savored.  Follow Demise.~
+P 3
+TRIG_COMMAND 25 cast
+OPROG_IF OIF_WEAR_LOC ! WEAR_NONE 4 0
+P 4
+TRIG_VOID
+OPROG_ECHO
+No need to join Demise in the after-life.~
+#11803
+band demise~
+the band of demise~
+A grey band lies on the ground here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL|ITEM_FLAG_AUTO_ENGRAVE
+ITEM_WEAR_TAKE|ITEM_WEAR_FINGER|ITEM_WEAR_NECK|ITEM_WEAR_WRIST
+0 0 0 0
+10 1 30
+E
+band demise~
+When worn:
+  This band transfers mana points and movement points into hit points.
+When not worn:
+  This band may be used to summon a fire demon of Demise.
+  To activate this, type "demise".  This will destroy the band!~
+A
+APPLY_STR -2
+A
+APPLY_DEX -2
+A
+APPLY_INT -2
+A
+APPLY_WIS -2
+A
+APPLY_CON -2
+A
+APPLY_HITROLL -5
+A
+APPLY_DAMROLL -5
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_WEAR_LOC ! WEAR_NONE 2 0
+P 2
+TRIG_VOID
+OPROG_APPLY OAPPLY_HIT 30
+P 2
+TRIG_VOID
+OPROG_APPLY OAPPLY_MOVE -10
+P 2
+TRIG_VOID
+OPROG_APPLY OAPPLY_MANA -10
+P 3
+TRIG_UNKNOWN 100 demise
+OPROG_IF OIF_WEAR_LOC = WEAR_NONE 4 0
+P 4
+TRIG_VOID
+OPROG_GOD_COMMAND
+MPMLOAD 11801~
+P 4
+TRIG_VOID
+OPROG_ECHO
+The band flies from your hand and shapes itself into a fire demon.~
+P 4
+TRIG_VOID
+OPROG_JUNK
+#11804
+key red~
+a red key~
+A red key lies here.~
+~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+0 0 0 0
+0 0 1
+P 1
+TRIG_COMMAND 100 quit
+OPROG_JUNK
+#11805
+key blue~
+a blue key~
+A blue key lies here.~
+~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+0 0 0 0
+0 0 1
+P 1
+TRIG_COMMAND 100 quit
+OPROG_JUNK
+#11806
+key yellow~
+a yellow key~
+A yellow key lies here.~
+~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+0 0 0 0
+0 0 1
+P 1
+TRIG_COMMAND 100 quit
+OPROG_JUNK
+#11807
+key grey~
+a grey key~
+A grey key lies here.~
+~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+0 0 0 0
+0 0 1
+P 1
+TRIG_COMMAND 100 quit
+OPROG_JUNK
+#11808
+gold~
+a bunch of gold~
+A bunch of gold coins lie scattered on the ground here.~
+~
+ITEM_TYPE_MONEY
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+100 0 0 0
+1 100 1
+#11809
+gold~
+a bunch of gold~
+A bunch of gold coins lie scattered on the ground here.~
+~
+ITEM_TYPE_MONEY
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+1000 0 0 0
+1 1000 1
+#11810
+gold~
+a bunch of gold~
+A bunch of gold coins lie scattered on the ground here.~
+~
+ITEM_TYPE_MONEY
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+10000 0 0 0
+1 10000 1
+#11811
+gold~
+a bunch of gold~
+A bunch of gold coins lie scattered on the ground here.~
+~
+ITEM_TYPE_MONEY
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+100000 0 0 0
+1 100000 1
+#11812
+bomb~
+a chaos bomb~
+A bomb lies on the ground here.~
+~
+ITEM_TYPE_TREASURE
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+0 0 0 0
+1 25 1
+E
+bomb~
+This bomb is about the size of your head.  There is a label on it
+with the instructions on how to use it.~
+E
+label~
+Give this bomb to an enemy within the temple.~
+#11813
+mural~
+a mural~
+There is a large mural on the wall here.~
+The Mural:                                               {040}_________            
+                                             {040}__  __,----'         `-----.__  
+                      {040}__                      \\/====-____          ___,-' `
+                       {040}\\          _/_/_/     /||\\       `---.____/          
+                {040}______---\       _- {160}o{040}   \/    |||  \\           _,'`     
+          {040}__,--'   ,--'||\-_    /,--_/--.|-   |`\.  \\        ,'             
+       {040}_,'      ,-'    |  \\`.  ` {130}*{040}/ /{150}=={040}/-   /  ||   `\.     /               
+     {040}.'       ,'       |   \\ \_{130}**{040}  /{150}=={040}/-   /   ||      \   /         
+    {040}/ _____  /   __    |     \\{130}**{040}-_/{150}=={040}/|- _/   ,//       \ /            
+   {040},-'     `-|--'  `--_ \     {130}***{040}-/{150}==={040}| \-_-===-'     _ _/`             
+                       {040}`-| {130}**** *{040}|{150}===={040}|  \_      __,-- '            
+             {160}..          {040}'{130}* *** *{040}|{150}===={040}|    \_  _,              /\          
+           {160}...             {130}*** * {040}\{150}====={040}\__   \/                 \__   _     
+         {160}...             {130}***{040}-' _/'\{150}={040},-' ____-'`-_                  `== \    
+      {130}() {160}*.   {130}() {010}/      {130}** {040}//--\   ///--\`._     `-                  _\ \    
+ {120}_____{050}#_{060}/{120}____{110}/{010}#{110}_{010}/{120}___{130}() {010}/{120}____________{040}\{150}======={040}\      `----.________,--- __/{120}______
+      {050}##    {110}/ {010}#    {110}/{010}#{110}_{010}/     {030}_     {040}__--{150}======{040}`)  \-._______________,---  
+     {050}##      {110}/ \  / {010}#      {030}/{130}|{030}\ {120}_ {040}//,--' `{150}=={040}--___ |-------'                   
+    {050}####    {110}/  /   / \     {130}O{120}##<_        {040}//,--   -\                            
+                  {110}/  /       {130}\                                 {160}Presto 12/14/94~
+ITEM_TYPE_TREASURE
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+0 0 0 0
+75 0 1
+P 1
+TRIG_TICK 50
+OPROG_IF OIF_WEAR_LOC ! WEAR_NONE 2 0
+P 2
+TRIG_VOID
+OPROG_APPLY OAPPLY_HIT 5
+#0
+
+
+
+
+#ROOMS
+#11800
+The Ledge~
+This ledge is long and smooth.  It is carved out of stone.  The craftsmanship
+is incredible, almost as if it were made by some ancient tribe of dwarves.
+There is a smooth grey wall all along the north and west sides.  The ledge
+continues south and east.~
+118 ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_EAST
+You see the ledge.~
+~
+0 -1 11801
+DDIR_SOUTH
+You see the ledge.~
+~
+0 -1 11804
+S
+#11801
+The Ledge~
+This ledge is long and smooth.  It is carved out of stone.  The craftsmanship
+is incredible, almost as if it were made by some ancient tribe of dwarves.
+There is a smooth grey wall all along the north side.  To the south you can
+feel warmth radiating from a pit.  It's very dark down there.  The ledge
+continues to the east and west.~
+118 ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_EAST
+You see the ledge.~
+~
+0 -1 11802
+DDIR_SOUTH
+You see the pit.~
+~
+0 -1 11805
+DDIR_WEST
+You see the ledge.~
+~
+0 -1 11800
+S
+#11802
+The Ledge~
+This ledge is long and smooth.  It is carved out of stone.  The craftsmanship
+is incredible, almost as if it were made by some ancient tribe of dwarves.
+There is a smooth grey wall all along the north side.  To the south you can
+feel warmth radiating from a pit.  It's very dark down there.  The ledge
+continues to the east and west.~
+118 ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_EAST
+You see the ledge~
+~
+0 -1 11803
+DDIR_SOUTH
+You see the pit.~
+~
+0 -1 11806
+DDIR_WEST
+You see the ledge.~
+~
+0 -1 11801
+S
+#11803
+The Ledge~
+This ledge is long and smooth.  It is carved out of stone.  The craftsmanship
+is incredible, almost as if it were made by some ancient tribe of dwarves.
+There is a smooth grey wall all along the north and east sides.  The ledge
+continues to the west.  To the south you can see some fine steps leading up.~
+118 ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_SOUTH
+You see some stairs of incredible craftsmanship.~
+~
+0 -1 11807
+DDIR_WEST
+You see the ledge.~
+~
+0 -1 11802
+S
+#11804
+The Ledge~
+This ledge is long and smooth.  It is carved out of stone.  The craftsmanship
+is incredible, almost as if it were made by some ancient tribe of dwarves.
+There is a smooth grey wall all along the west side.  To the east you can
+feel warmth radiating from a pit.  It's very dark down there.  The ledge
+continues to the north and south.~
+118 ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_NORTH
+You see the ledge.~
+~
+0 -1 11800
+DDIR_EAST
+You see the pit.~
+~
+0 -1 11805
+DDIR_SOUTH
+You see the ledge.~
+~
+0 -1 11809
+S
+#11805
+The Pit~
+Ack!  There's a bunch of lava in this pit!  It's very hot!  You ought to
+leave.  All you can see is more lava.  The ledge is too high to get back on.
+The pit continues east and south.~
+118 ROOM_DARK|ROOM_INDOORS|ROOM_NO_RECALL SECT_LAVA
+DDIR_EAST
+You see the pit.~
+~
+0 -1 11806
+DDIR_SOUTH
+You see the pit.~
+~
+0 -1 11810
+S
+#11806
+The Pit~
+Ack!  There's a bunch of lava in this pit!  It's very hot!  You ought to
+leave.  All you can see is more lava.  The ledge is too high to get back on.
+The pit continues to the west.~
+118 ROOM_DARK|ROOM_INDOORS|ROOM_NO_RECALL SECT_LAVA
+DDIR_WEST
+You see the pit.~
+~
+0 -1 11805
+S
+#11807
+Some Stairs~
+These stairs are so precisely carved that you feel they were created just
+for your feet.  They almost seem to grab your boots to prevent them from
+slipping, yet you still maintain complete control.  To the west you can see
+a pit.  To the south is another ledge, higher than the first.  North is
+the lower ledge.~
+118 ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_NORTH
+You see the ledge.~
+~
+0 -1 11803
+DDIR_SOUTH
+You see the ledge.~
+~
+0 -1 11812
+DDIR_WEST
+You see the pit.~
+~
+0 -1 11806
+S
+#11808
+The Portal~
+"What the heck is this?" you wonder as you unwittingly step onto a strange
+symbol on the floor.  Immediately following a force shield blocks the room
+you just came from, and a doorway opens to the north.  It's your only exit,
+so you might as well take it.~
+118 ROOM_NO_MOB|ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_NORTH
+You see a familiar setting.~
+~
+0 -1 11866
+E
+symbol~
+The Symbol:                            {030}___                      {020}Presto 12/15/94
+                                    {030}_-- {140}* {030}--_
+                                  {030}_-   {140}***   {030}-_
+                                 {030}/     {140}***     {030}\
+                                {030}/     {120}*****     {030}\
+                               {030}|{120}*****************{030}|
+                               {030}| {130}*************** {030}|
+                              {030}|    {130}***********    {030}|
+                              {030}|     {110}*********     {030}|
+                              {030}|      {110}*******      {030}|
+                               {030}|    {110}*********    {030}|
+                               {030}|    {150}**** ****    {030}|
+                                {030}\  {150}****   ****  {030}/
+                                 {030}\_{150}**       **{030}_/
+                                   {030}-_       _-
+                                     {030}--___--{300}~
+S
+#11809
+The Ledge~
+This ledge is long and smooth.  It is carved out of stone.  The craftsmanship
+is incredible, almost as if it were made by some ancient tribe of dwarves.
+There is a smooth grey wall all along the west side.  To the east you can
+feel warmth radiating from a pit.  It's very dark down there.  The ledge
+continues to the north and south.~
+118 ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_NORTH
+You see the ledge.~
+~
+0 -1 11804
+DDIR_EAST
+You see the pit.~
+~
+0 -1 11810
+DDIR_SOUTH
+You see the ledge.~
+~
+0 -1 11814
+S
+#11810
+The Pit~
+Ack!  There's a bunch of lava in this pit!  It's very hot!  You ought to
+leave.  All you can see is more lava.  The ledge is too high to get back on.
+The pit continues north and south.~
+118 ROOM_DARK|ROOM_INDOORS|ROOM_NO_RECALL SECT_LAVA
+DDIR_NORTH
+You see the pit.~
+~
+0 -1 11805
+DDIR_SOUTH
+You see the pit.~
+~
+0 -1 11815
+S
+#11811
+The Higher Ledge~
+The ledge here is higher and narrower than the lower ledge.  The view of the
+surrounding area is better, but you still can't see what's in the pit.  The
+warmth you felt radiating from it earlier is forgotten as you start feeling
+a little dizzy.  The ledge continues east and south.  The pit is north and
+west.~
+118 ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_NORTH
+You see the pit.~
+~
+0 -1 11806
+DDIR_EAST
+You see the ledge.~
+~
+0 -1 11812
+DDIR_SOUTH
+You see the ledge.~
+~
+0 -1 11816
+DDIR_WEST
+You see the pit.~
+~
+0 -1 11810
+S
+#11812
+The Higher Ledge~
+The ledge here is higher and narrower than the lower ledge.  The view of the
+surrounding area is better, but you still can't see what's in the pit.  The
+warmth you felt radiating from it earlier is forgotten as you start feeling
+a little dizzy.  The ledge continues west. You see some stairs to the north.
+The pit is south.~
+118 ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_NORTH
+You see some stairs.~
+~
+0 -1 11807
+DDIR_EAST
+You see the wall.~
+wall~
+EX_ISDOOR|EX_CLOSED -1 11813
+DDIR_SOUTH
+You see the pit.~
+~
+0 -1 11877
+DDIR_WEST
+You see the ledge.~
+~
+0 -1 11811
+S
+#11813
+The Secret Room~
+Wow!  A hidden room.  Unfortunately, there's not very much in here.  The walls
+to the east and south are made of grey stone.  There is a mysterious portal to
+the north.  The hidden door is west.~
+118 ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_NORTH
+You see a strange portal.~
+~
+0 -1 11808
+DDIR_WEST
+You see the hidden door.~
+door~
+EX_ISDOOR|EX_CLOSED -1 11812
+S
+#11814
+The Ledge~
+This ledge is long and smooth.  It is carved out of stone.  The craftsmanship
+is incredible, almost as if it were made by some ancient tribe of dwarves.
+There is a smooth grey wall all along the west side.  To the east you can
+feel warmth radiating from a pit.  It's very dark down there.  The ledge
+continues to the north and south.~
+118 ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_NORTH
+You see the ledge.~
+~
+0 -1 11809
+DDIR_EAST
+You see the pit.~
+~
+0 -1 11815
+DDIR_SOUTH
+You see the ledge.~
+~
+0 -1 11817
+S
+#11815
+The Pit~
+Ack!  There's a bunch of lava in this pit!  It's very hot!  You ought to
+leave.  All you can see is more lava.  The ledge is too high to get back on.
+The pit continues north and south.~
+118 ROOM_DARK|ROOM_INDOORS|ROOM_NO_RECALL SECT_LAVA
+DDIR_NORTH
+You see the pit.~
+~
+0 -1 11810
+DDIR_SOUTH
+You see the pit.~
+~
+0 -1 11818
+S
+#11816
+The Ledge Ends~
+You stand on the final section of the ledge.  The view is remarkable.  Far to
+the south you can see the ledge archway.  The pit lies to the east, south,
+and west.  To the north the ledge continues.~
+118 ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_NORTH
+You see the ledge.~
+~
+0 -1 11811
+DDIR_EAST
+You see the pit.~
+~
+0 -1 11877
+DDIR_SOUTH
+You see the pit.~
+~
+0 -1 11819
+DDIR_WEST
+You see the pit.~
+~
+0 -1 11815
+S
+#11817
+The Ledge~
+This ledge is long and smooth.  It is carved out of stone.  The craftsmanship
+is incredible, almost as if it were made by some ancient tribe of dwarves.
+There is a smooth grey wall all along the west side.  To the east you can
+feel warmth radiating from a pit.  It's very dark down there.  The ledge
+continues to the north and south.~
+118 ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_NORTH
+You see the ledge.~
+~
+0 -1 11814
+DDIR_EAST
+You see the pit.~
+~
+0 -1 11818
+DDIR_SOUTH
+You see the ledge.~
+~
+0 -1 11822
+S
+#11818
+The Pit~
+Ack!  There's a bunch of lava in this pit!  It's very hot!  You ought to
+leave.  All you can see is more lava.  The ledge is too high to get back on.
+The pit continues north and east.~
+118 ROOM_DARK|ROOM_INDOORS|ROOM_NO_RECALL SECT_LAVA
+DDIR_NORTH
+You see the pit.~
+~
+0 -1 11815
+DDIR_EAST
+You see the pit.~
+~
+0 -1 11819
+S
+#11819
+The Pit~
+Ack!  There's a bunch of lava in this pit!  It's very hot!  You ought to
+leave.  All you can see is more lava.  The ledge is too high to get back on.
+The pit continues east and west.~
+118 ROOM_DARK|ROOM_INDOORS|ROOM_NO_RECALL SECT_LAVA
+DDIR_EAST
+You see some stairs.~
+~
+0 -1 11820
+DDIR_WEST
+You see the pit.~
+~
+0 -1 11818
+S
+#11820
+Some Stairs~
+These stairs seemed to have once been a beautiful grey marble.  Now they're
+charred and not very sturdy.  The lead into a dark, warm pit to the north
+and west.  The top of the stairs is to the south.~
+118 ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_NORTH
+You see the pit.~
+~
+0 -1 11877
+DDIR_SOUTH
+You see the ledge.~
+~
+0 -1 11825
+DDIR_WEST
+You see the pit.~
+~
+0 -1 11819
+S
+#11821
+A Holding Pen~
+It smells like #$*@ in here!  As you bend your head toward the floor, you can
+see the reason why.  There's #$*@ all over the floor.  Some terrible creatures
+must have been living in here for a very long time.  The ledge is to the east.~
+118 ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_EAST
+You see the ledge.~
+wall~
+EX_ISDOOR|EX_CLOSED|EX_LOCKED|EX_HIDDEN|EX_PICKPROOF 11800 11822
+S
+#11822
+The Ledge~
+This ledge is long and smooth.  It is carved out of stone.  The craftsmanship
+is incredible, almost as if it were made by some ancient tribe of dwarves.
+There is a smooth grey wall all along the south side.  The ledge continues
+to the north and east.~
+118 ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_NORTH
+You see the ledge.~
+~
+0 -1 11817
+DDIR_EAST
+You see the ledge.~
+~
+0 -1 11823
+DDIR_WEST
+You see the wall.~
+wall~
+EX_ISDOOR|EX_CLOSED|EX_LOCKED|EX_HIDDEN|EX_PICKPROOF 11800 11821
+S
+#11823
+The Ledge~
+This ledge is long and smooth.  It is carved out of stone.  The craftsmanship
+is incredible, almost as if it were made by some ancient tribe of dwarves.
+There is a smooth grey wall all along the south side.  To the north you can
+feel warmth radiating from a pit.  It's very dark down there.  The ledge
+continues to the east and west.~
+118 ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_NORTH
+You see the pit.~
+~
+0 -1 11818
+DDIR_EAST
+You see the ledge.~
+~
+0 -1 11824
+DDIR_WEST
+You see the ledge.~
+~
+0 -1 11822
+S
+#11824
+The Ledge Archway~
+You walk through a huge, beautiful, grey marble archway to find yourself
+standing on a smooth grey ledge carved out of stone.  From here you can
+see the ledge continuing to the east and west, with a large pit to the
+north.  To the south are some stairs leading down.~
+118 ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_NORTH
+You see the pit.~
+~
+0 -1 11819
+DDIR_EAST
+You see the ledge.~
+~
+0 -1 11825
+DDIR_SOUTH
+You see some stairs.~
+~
+0 -1 11831
+DDIR_WEST
+You see the ledge.~
+~
+0 -1 11823
+S
+#11825
+The Ledge~
+This ledge is long and smooth.  It is carved out of stone.  The craftsmanship
+is incredible, almost as if it were made by some ancient tribe of dwarves.
+There is a smooth grey wall all along the south side.  To the north you can
+see some stairs descending into a pit.  It's very dark down there.  The ledge
+continues to the west.~
+118 ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_NORTH
+You see some stairs.~
+~
+0 -1 11820
+DDIR_EAST
+You see the wall.~
+wall~
+EX_ISDOOR|EX_CLOSED|EX_LOCKED|EX_HIDDEN|EX_PICKPROOF 11800 11826
+DDIR_WEST
+You see the ledge.~
+~
+0 -1 11824
+S
+#11826
+A Holding Pen~
+It smells like #$*@ in here!  As you bend your head toward the floor, you can
+see the reason why.  There's #$*@ all over the floor.  Some terrible creatures
+must have been living in here for a very long time.  The ledge is to the west.~
+118 ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_WEST
+You see the ledge.~
+door~
+EX_ISDOOR|EX_CLOSED|EX_LOCKED|EX_HIDDEN|EX_PICKPROOF 11800 11825
+S
+#11827
+The Darkest Chamber~
+This chamber has got to be the darkest chamber you have ever been in.  Your
+light source only illuminates a five foot radius around you, making it
+impossible to see what lies in the dark corners of the chamber.  The only
+exit is the one you entered through to the east.~
+118 ROOM_DARK|ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_EAST
+You can't see it, but there's a room there.~
+~
+0 -1 11828
+S
+#11828
+The Dark Tunnel~
+You stand in a dark tunnel.  Your light source seems almost powerless in the
+dense darkness here.  You could almost cut through the blackness with a blade,
+it's so thick.  There is a door to the south and the tunnel continues west
+into an even deeper darkness.~
+118 ROOM_DARK|ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_SOUTH
+You see a door.~
+door~
+EX_ISDOOR|EX_CLOSED -1 11834
+DDIR_WEST
+You see darkness.~
+~
+0 -1 11827
+S
+#11829
+The Guard Chamber~
+You stand in the guard chamber.  Needless to say, there are several guards
+here, each of which considers you an intruder that needs to be destroyed.
+There is another chamber connected to the south, and the main chamber
+continues to the east.~
+118 ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_EAST
+You see more of the main chamber.~
+~
+0 -1 11830
+DDIR_SOUTH
+You see another chamber.~
+~
+0 -1 11836
+S
+#11830
+The Guard Chamber~
+You stand in the guard chamber.  Needless to say, there are several guards
+here, each of which considers you an intruder that needs to be destroyed.
+This main chamber continues to the south and west.~
+118 ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_SOUTH
+You see more of the main chamber.~
+~
+0 -1 11837
+DDIR_WEST
+You see more of the main chamber.~
+~
+0 -1 11829
+S
+#11831
+Sloping Steps~
+There must be fifty steps in this staircase.  Each step seems to be carved
+to precision.  You can't tell the difference between any two of them.  As
+for what's to the north, you can't really tell.  To the south you can see
+the circular hallway.~
+118 ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_NORTH
+You can't really see anything.~
+~
+0 -1 11824
+DDIR_SOUTH
+You see the circular hallway.~
+~
+0 -1 11840
+S
+#11832
+A Short Hallway~
+There's not very much here.  This is just a short hallway between the circular
+hallway and a small room.  The hallway is south.  The room is east.~
+118 ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_EAST
+You see a small room.~
+~
+0 -1 11833
+DDIR_SOUTH
+You see the circular hallway.~
+~
+0 -1 11842
+S
+#11833
+A Small Room~
+This room is pretty dim, but you can still clearly make out everything in it.
+There is a big square cut in the floor to the east.  It looks like there's a
+lower level beneath this room.  The short hallway is back to the west.~
+118 ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_EAST
+You see the hole and a lower level.~
+~
+0 -1 11834
+DDIR_WEST
+You see the short hallway.~
+~
+0 -1 11832
+S
+#11834
+The Dark Tunnel~
+The tunnel here is quite dark.  The air is damp and cool.  There are
+faint sounds coming from the dark corners.  The tunnel continues to the
+east.  There is a door to the north.~
+118 ROOM_DARK|ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_NORTH
+You see a door.~
+door~
+EX_ISDOOR|EX_CLOSED -1 11828
+DDIR_EAST
+You see the tunnel.~
+~
+0 -1 11835
+S
+#11835
+The Dark Tunnel~
+The tunnel here is quite dark.  The air is damp and cool.  There are
+faint sounds coming from the dark corners.  The tunnel continues to the
+south and west.~
+118 ROOM_DARK|ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_SOUTH
+You see the tunnel.~
+~
+0 -1 11843
+DDIR_WEST
+You see the tunnel.~
+~
+0 -1 11834
+S
+#11836
+The Guard Commander's Chamber~
+This chamber was built for the guard commander.  It is here that he
+organizes all the guards to keep intruders like you out.  The walls are
+a dark grey.  They are made of a weird material, kind of like stone, but
+much harder.  The exit is north.~
+118 ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_NORTH
+You see the main guard chamber.~
+~
+0 -1 11829
+S
+#11837
+The Guard Chamber~
+You stand in the guard chamber.  Needless to say, there are several guards
+here, each of which considers you an intruder that needs to be destroyed.
+This main chamber continues to the north.  There is a door to the south.~
+118 ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_NORTH
+You see more of the main chamber.~
+~
+0 -1 11830
+DDIR_SOUTH
+You see the door.~
+door~
+EX_ISDOOR|EX_CLOSED -1 11844
+S
+#11838
+The Circular Hallway~
+The hallway is well lighted.  All sorts of colorful artwork line the walls.
+The ceiling is about twelve feet high.  The floor is made of grey, adjacent,
+hexagonal bricks. The hallway circles to the east and south.~
+118 ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_EAST
+You see the circular hallway.~
+~
+0 -1 11839
+DDIR_SOUTH
+You see the circular hallway.~
+~
+0 -1 11845
+S
+#11839
+The Circular Hallway~
+The hallway is well lighted.  All sorts of colorful artwork line the walls.
+The ceiling is about twelve feet high.  The floor is made of grey, adjacent,
+hexagonal bricks. The hallway circles to the east and west.~
+118 ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_EAST
+You see the circular hallway.~
+~
+0 -1 11840
+DDIR_WEST
+You see the circular hallway.~
+~
+0 -1 11838
+S
+#11840
+The Circular Hallway~
+The hallway is well lighted.  All sorts of colorful artwork line the walls.
+The ceiling is about twelve feet high.  The floor is made of grey, adjacent,
+hexagonal bricks. The hallway circles to the west and east.  The east exit,
+however is blocked by a large, runed door.  There are some stairs to the north.~
+118 ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_NORTH
+You see some stairs.~
+~
+0 -1 11831
+DDIR_WEST
+You see the circular hallway.~
+~
+0 -1 11839
+E
+door runed~
+Only your voice may open this door.~
+S
+#11841
+The Circular Hallway~
+The hallway is well lighted.  All sorts of colorful artwork line the walls.
+The ceiling is about twelve feet high.  The floor is made of grey, adjacent,
+hexagonal bricks. The hallway circles to the east and west.  The west exit,
+however is blocked be a large, runed door.~
+118 ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_EAST
+You see the circular hallway.~
+~
+0 -1 11842
+E
+door runed~
+Only your voice may open this door.~
+S
+#11842
+The Circular Hallway~
+The hallway is well lighted.  All sorts of colorful artwork line the walls.
+The ceiling is about twelve feet high.  The floor is made of grey, adjacent,
+hexagonal bricks. The hallway circles to the west and south.  To the north
+you can see a short hallway.~
+118 ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_NORTH
+You see a short hallway.~
+~
+0 -1 11832
+DDIR_SOUTH
+You see the circular hallway.~
+~
+0 -1 11848
+DDIR_WEST
+You see the circular hallway.~
+~
+0 -1 11841
+S
+#11843
+The Dark Tunnel~
+The tunnel here is quite dark.  The air is damp and cool.  There are
+faint sounds coming from the dark corners.  The tunnel continues to the
+north and south.~
+118 ROOM_DARK|ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_NORTH
+You see the tunnel.~
+~
+0 -1 11835
+DDIR_SOUTH
+You see the tunnel.~
+~
+0 -1 11851
+S
+#11844
+A Short Hallway~
+This hallway branches off the circular hallway, and ends up at a door to
+the north.  There really isn't anything else here.  The circular hallway
+is back to the east.~
+118 ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_NORTH
+You see the door.~
+door~
+EX_ISDOOR|EX_CLOSED -1 11837
+DDIR_EAST
+You see the circular hallway.~
+~
+0 -1 11845
+S
+#11845
+The Circular Hallway~
+The hallway is well lighted.  All sorts of colorful artwork line the walls.
+The ceiling is about twelve feet high.  The floor is made of grey, adjacent,
+hexagonal bricks. The hallway circles to the north and south.  There is a
+short hallway to the west.~
+118 ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_NORTH
+You see the circular hallway.~
+~
+0 -1 11838
+DDIR_SOUTH
+You see the circular hallway.~
+~
+0 -1 11852
+DDIR_WEST
+You see a short hallway.~
+~
+0 -1 11844
+S
+#11846
+The First Key Chamber~
+You stand in a small room.  Only one guard is here, luckily for you.  On
+his belt you can see a small key.  As you glance at it, he moves one of his
+hands down to cover it.  The other hand is brought to his weapon, and he
+charges toward you.  The only exit is south.~
+118 ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_SOUTH
+You see the door.~
+door~
+EX_ISDOOR|EX_CLOSED -1 11853
+S
+#11847
+The Second Key Chamber~
+You stand in a small room.  Only one guard is here, luckily for you.  On
+his belt you can see a small key.  As you glance at it, he moves one of his
+hands down to cover it.  The other hand is brought to his weapon, and he
+charges toward you.  The only exit is the runed door to the south.~
+118 ROOM_NO_MOB|ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+E
+door runed~
+Only your voice may open this door.~
+S
+#11848
+The Circular Hallway~
+The hallway is well lighted.  All sorts of colorful artwork line the walls.
+The ceiling is about twelve feet high.  The floor is made of grey, adjacent,
+hexagonal bricks. The hallway circles to the east and north.~
+118 ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_NORTH
+You see the circular hallway.~
+~
+0 -1 11842
+DDIR_EAST
+You see the circular hallway.~
+~
+0 -1 11849
+S
+#11849
+The Circular Hallway~
+The hallway is well lighted.  All sorts of colorful artwork line the walls.
+The ceiling is about twelve feet high.  The floor is made of grey, adjacent,
+hexagonal bricks. The hallway circles to the west and south.  To the east are
+some stairs.~
+118 ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_EAST
+You see some stairs.~
+~
+0 -1 11850
+DDIR_SOUTH
+You see the circular hallway.~
+~
+0 -1 11857
+DDIR_WEST
+You see the circular hallway.~
+~
+0 -1 11848
+S
+#11850
+Some Stairs~
+You stand on some stairs that slope downward from the west to the east.  At
+the bottom there is a large door.  "What could be behind it?" you wonder,
+knowing that you'll soon find out.  The circular hallway is west.~
+118 ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_EAST
+You see the door.~
+door~
+EX_ISDOOR|EX_CLOSED -1 11851
+DDIR_WEST
+You see the circular hallway.~
+~
+0 -1 11849
+S
+#11851
+The Dark Tunnel~
+The tunnel here is quite dark.  The air is damp and cool.  There are
+faint sounds coming from the dark corners.  The tunnel continues to the
+north.  There is a doorway to the west.~
+118 ROOM_DARK|ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_NORTH
+You see the tunnel.~
+~
+0 -1 11843
+DDIR_WEST
+You see the door.~
+door~
+EX_ISDOOR|EX_CLOSED -1 11850
+S
+#11852
+The Circular Hallway~
+The hallway is well lighted.  All sorts of colorful artwork line the walls.
+The ceiling is about twelve feet high.  The floor is made of grey, adjacent,
+hexagonal bricks. The hallway circles to the north and south.~
+118 ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_NORTH
+You see the circular hallway.~
+~
+0 -1 11845
+DDIR_SOUTH
+You see the circular hallway.~
+~
+0 -1 11858
+S
+#11853
+Before an Inner Door~
+You stand in a small hallway before a large door.  There is a nothing special
+about the door.  The hallway leads to the east.~
+118 ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_NORTH
+You see the door.~
+door~
+EX_ISDOOR|EX_CLOSED -1 11846
+DDIR_EAST
+You see a small room.~
+~
+0 -1 11854
+S
+#11854
+Inside the Outer Door~
+You have entered a small room.  There is a huge mural on the north wall.  The
+walls are simply grey brick.  There are two small hallways exiting this room
+to the east and west.  The door you entered through lies to the south.~
+118 ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_EAST
+You see a small hallway.~
+~
+0 -1 11855
+DDIR_SOUTH
+You see the door.~
+door~
+EX_ISDOOR|EX_CLOSED -1 11860
+DDIR_WEST
+You see a small hallway.~
+~
+0 -1 11853
+S
+#11855
+Before an Inner Door~
+You stand in a small hallway before a large door.  There is a rune engraved
+into the door.  The hallway leads to the west.~
+118 ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_WEST
+You see a small room.~
+~
+0 -1 11854
+S
+#11856
+The Final Chamber~
+You stand in the final chamber of the Temple of Demise.  Demise, the God
+itself, is held prisoner here, bound with chains that only Chaos and Order
+together could break, since it was their combined power that created them.
+Although you'd assume it has nothing to exist for, it seems in excellent
+spirits.  Demise's eyes gaze into your soul, and it smiles.  There are no
+exits from here.~
+118 ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_DOWN
+You see a short stairway.~
+~
+0 -1 11878
+E
+chains~
+The chains have alternate black and white links, signifying the creation
+of them by both Order and Chaos.~
+S
+#11857
+The Circular Hallway~
+The hallway is well lighted.  All sorts of colorful artwork line the walls.
+The ceiling is about twelve feet high.  The floor is made of grey, adjacent,
+hexagonal bricks. The hallway circles to the north and south.  There is a
+large runed door in the west wall.~
+118 ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_NORTH
+You see the circular hallway.~
+~
+0 -1 11849
+DDIR_SOUTH
+You see the circular hallway.~
+~
+0 -1 11863
+S
+#11858
+The Circular Hallway~
+The hallway is well lighted.  All sorts of colorful artwork line the walls.
+The ceiling is about twelve feet high.  The floor is made of grey, adjacent,
+hexagonal bricks. The hallway circles to the north and east.  The east exit,
+however, is blocked by a large, runed door.~
+118 ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_NORTH
+You see the circular hallway.~
+~
+0 -1 11852
+E
+door runed~
+Only your voice may open this door.~
+S
+#11859
+The Circular Hallway~
+The hallway is well lighted.  All sorts of colorful artwork line the walls.
+The ceiling is about twelve feet high.  The floor is made of grey, adjacent,
+hexagonal bricks. The hallway circles to the east and west.  The west exit,
+however, is blocked by a large, runed door.~
+118 ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_EAST
+You see the circular hallway.~
+~
+0 -1 11860
+E
+door runed~
+Only your voice may open this door.~
+S
+#11860
+The Circular Hallway~
+The hallway is well lighted.  All sorts of colorful artwork line the walls.
+The ceiling is about twelve feet high.  The floor is made of grey, adjacent,
+hexagonal bricks. The hallway circles to the east and west.  To the north
+you can see a door.  The temple entrance is south.~
+118 ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_NORTH
+You see the door.~
+door~
+EX_ISDOOR|EX_CLOSED -1 11854
+DDIR_EAST
+You see the circular hallway.~
+~
+0 -1 11861
+DDIR_SOUTH
+You see the temple entrance.~
+~
+0 -1 11865
+DDIR_WEST
+You see the circular hallway.~
+~
+0 -1 11859
+S
+#11861
+The Circular Hallway~
+The hallway is well lighted.  All sorts of colorful artwork line the walls.
+The ceiling is about twelve feet high.  The floor is made of grey, adjacent,
+hexagonal bricks. The hallway circles to the east and west.  The east exit,
+however, is blocked by a large, runed door.~
+118 ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_WEST
+You see the circular hallway.~
+~
+0 -1 11860
+E
+door runed~
+Only your voice may open this door.~
+S
+#11862
+The Circular Hallway~
+The hallway is well lighted.  All sorts of colorful artwork line the walls.
+The ceiling is about twelve feet high.  The floor is made of grey, adjacent,
+hexagonal bricks. The hallway circles to the east and west.  The west exit,
+however, is blocked by a large, runed door.~
+118 ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_EAST
+You see the circular hallway.~
+~
+0 -1 11863
+E
+door runed~
+Only your voice may open this door.~
+S
+#11863
+The Circular Hallway~
+The hallway is well lighted.  All sorts of colorful artwork line the walls.
+The ceiling is about twelve feet high.  The floor is made of grey, adjacent,
+hexagonal bricks. The hallway circles to the north and west.~
+118 ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_NORTH
+You see the circular hallway.~
+~
+0 -1 11857
+DDIR_WEST
+You see the circular hallway.~
+~
+0 -1 11862
+S
+#11864
+By the Entrance~
+There is a statue here.  It seems very life-like, almost as if a man was turned
+to stone and left to decay.  In fact, its eyes seem transfixed on you.  Its
+mouth is slowly opening to show teeth clenched in rage.  Its once-opened palms
+are closing to become fists.  Any second now it could leap out and attack you!
+The temple entrance is east.~
+118 ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_EAST
+You see the temple entrance.~
+~
+0 -1 11865
+S
+#11865
+The Temple Entrance~
+Before you stands the largest temple you have ever seen.  It seems circular
+in shape, from what you can see.  It is made of grey bricks, all the way
+to the top, though some spots are colored white, and others are black.  The
+other colors seem almost burned into it.  The jungle is back to the south.
+There are statues on each side of the door.  The temple is north.
+
+              You have a great view of the Temple here.~
+118 ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_NORTH
+You see inside the temple.~
+~
+0 -1 11860
+DDIR_EAST
+You see a statue.~
+~
+0 -1 11866
+DDIR_SOUTH
+You see the jungle.~
+~
+0 -1 11870
+DDIR_WEST
+You see a statue.~
+~
+0 -1 11864
+E
+temple~
+The Temple:                                                     {040}Presto 12/14/94
+                                     {170}_   _
+                                    {170}| |_| |
+                                    {170}|  {070}_  {170}|
+                                   {170}/  {070}___  {170}\
+{120} TREES WOODS JUNGLE TREES WOODS  {170}_/  {070}_____  {170}\_  {120}TREES WOODS JUNGLE TREES WOODS
+{120}WOODSJUNGLETREESWOODSJUNGLETREES{170}/  {070}_________  {170}\{120}WOODSJUNGLETREESWOODSJUNGLETREES
+{120}JUNGLETREESWOODSJUNGLETREESWOO{170}_/  {070}___________  {170}\_{120}DSJUNGLETREESWOODSJUNGLETREESW
+{120}TREESWOODSJUNGLETREESWOODSJUN{170}/  {070}______ {170}_ {070}______  {170}\{120}GLETREESWOODSJUNGLETREESWOODS
+{120}WOODSJUNGLETREESWOODSJUNGLET{170}/  {070}______ {170}/ \ {070}______  {170}\{120}REESWOODSJUNGLETREESWOODSJUN
+{120}_{030}|{120}__{030}|{120}__{030}|{120}__{030}|{120}__{030}|{120}__{030}|{120}__{030}|{120}__{030}|{120}__{030}|{120}_{170}/_________/{070}___{170}\_________\{120}_{030}|{120}__{030}|{120}__{030}|{120}__{030}|{120}__{030}|{120}__{030}|{120}__{030}|{12
+0}__{030}|{120}__{030}|{120}_~
+S
+#11866
+By the Entrance~
+There is a statue here.  It seems very life-like, almost as if a man was turned
+to stone and left to decay.  In fact, its eyes seem transfixed on you.  Its
+mouth is slowly opening to show teeth clenched in rage.  Its once-opened palms
+are closing to become fists.  Any second now it could leap out and attack you!
+The temple entrance is west.~
+118 ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_WEST
+You see the temple entrance.~
+~
+0 -1 11865
+S
+#11867
+A Clearing~
+You stand in a small clearing.  There really isn't anything exciting here.
+The grass is green, and there's a clear sky above.  To the south you see 
+the cross roads.  A forest trail runs east and west here.~
+118 0 SECT_FOREST
+DDIR_EAST
+You see a forest trail.~
+~
+0 -1 13482
+DDIR_SOUTH
+You see the cross roads.~
+~
+0 -1 11874
+S
+#11868
+The Jungle~
+The jungle is pretty thick here.  You hear a lot of sound coming from the
+north-east, almost as if someone was crying out in pain.  The jungle 
+continues to the east.~
+118 0 SECT_FOREST
+DDIR_EAST
+You see the jungle.~
+~
+0 -1 11869
+DDIR_SOUTH
+You see a forest trail.~
+~
+0 -1 13644
+S
+#11869
+The Jungle~
+The jungle is pretty thick here.  You hear a lot of sound coming from the
+north, almost as if someone was crying out in pain.  The jungle continues 
+to the east and west.~
+118 0 SECT_FOREST
+DDIR_EAST
+You see the jungle.~
+~
+0 -1 11870
+DDIR_WEST
+You see the jungle.~
+~
+0 -1 11868
+S
+#11870
+The Jungle Intersection~
+Just as you were beginning to despair because the jungle looked as though it
+would never end, you arrive at an intersection.  The jungle continues east
+and west, but to the north you can see some sort of structure, almost like a
+building, protruding from the tree-tops to the north.~
+118 ROOM_NO_MOB SECT_FOREST
+DDIR_NORTH
+You see something big.~
+~
+0 -1 11865
+DDIR_EAST
+You see the jungle.~
+~
+0 -1 11871
+DDIR_WEST
+You see the jungle.~
+~
+0 -1 11869
+S
+#11871
+The Jungle~
+The jungle is pretty thick here.  You hear a lot of sound coming from the
+north, almost as if someone was crying out in pain.  The jungle continues 
+to the east and west.~
+118 0 SECT_FOREST
+DDIR_EAST
+You see the jungle.~
+~
+0 -1 11872
+DDIR_WEST
+You see the jungle.~
+~
+0 -1 11870
+S
+#11872
+The Jungle~
+The jungle is pretty thick here.  You hear a lot of sound coming from the
+north-west, almost as if someone was crying out in pain.  The jungle continues 
+to the east and west.~
+118 0 SECT_FOREST
+DDIR_EAST
+You see the jungle.~
+~
+0 -1 11873
+DDIR_SOUTH
+You see some forest.~
+~
+0 -1 11929
+DDIR_WEST
+You see the jungle.~
+~
+0 -1 11871
+S
+#11873
+The Jungle~
+It started as just a few trees in the east, but it quickly grew into a vast,
+lush jungle to the west.  There are trees, vines, shrubs, and almost every
+other type of plant-life you can imagine.  The cross roads are east.  The
+jungle gets thicker to the west.~
+118 0 SECT_FOREST
+DDIR_EAST
+You see the cross roads.~
+~
+0 -1 11874
+DDIR_WEST
+You see the dense jungle.~
+~
+0 -1 11872
+S
+
+@changed south connection to roads  12/18/03
+#11874
+The Cross Roads~
+You stand on the cross roads.  They seem to have been well-trodden.  Trails
+clearly stretch out in all the compass directions.  To the west is a lot
+of dense vegetation.  Far off to the east you see barren land.  To the south
+you can make out Ocean City.  Finally to the north you see a small clearing.~
+118 0 SECT_FOREST
+DDIR_NORTH
+You see a clearing.~
+~
+0 -1 11867
+DDIR_EAST
+You see barren land off in the distance.~
+~
+0 -1 11875
+DDIR_SOUTH
+You see a frozen forest.~
+~
+0 -1 4561
+DDIR_WEST
+You see a dense jungle.~
+~
+0 -1 11873
+S
+#11875
+A Barren Trail~
+You stand a trail.  It's totally barren.  Not even a single blade of grass
+has been able to poke through the rough top-soil.  Your boots feel very hard
+and hot.  The cross roads are west.  Off in the east, the barren land
+continues as far as your eyes can see.~
+118 0 SECT_FOREST
+DDIR_WEST
+You see the cross roads.~
+~
+0 -1 11874
+S
+#11877
+The Pit~
+Ack!  There's a bunch of lava in this pit!  It's very hot!  You ought to
+leave.  All you can see is more lava.  The ledge is too high to get back on.
+The pit continues to the south.~
+118 ROOM_DARK|ROOM_INDOORS|ROOM_NO_RECALL SECT_LAVA
+DDIR_SOUTH
+You see some stairs.~
+~
+0 -1 11820
+S
+#11878
+A Short Stairway~
+This stairway leads up.  There is a runed door to the east.  Nothing else
+seems to be of any importance.~
+118 ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_UP
+You see a cool chamber.~
+~
+0 -1 11856
+E
+door runed~
+Only your voice may open this door.~
+S
+#0
+
+
+
+
+#RESETS
+M 0 11800  30 11858 ;                  a Guard in The Circular Hallway     
+M 0 11818  30 11859 ;                  a Guard in The Circular Hallway     
+M 0 11819  30 11861 ;                  a Guard in The Circular Hallway     
+M 0 11820  30 11862 ;                  a Guard in The Circular Hallway     
+M 0 11821  30 11852 ;                  a Guard in The Circular Hallway     
+M 0 11822  30 11853 ;                  a Guard in Before an Inner Door     
+M 0 11823  30 11854 ;                  a Guard in Inside the Outer Door    
+M 0 11824  30 11855 ;                  a Guard in Before an Inner Door     
+M 0 11825  30 11857 ;                  a Guard in The Circular Hallway     
+M 0 11826  30 11845 ;                  a Guard in The Circular Hallway     
+M 0 11827  30 11848 ;                  a Guard in The Circular Hallway     
+M 0 11828  30 11849 ;                  a Guard in The Circular Hallway     
+M 0 11829  30 11851 ;                  a Guard in The Dark Tunnel          
+M 0 11830  30 11837 ;                  a Guard in The Guard Chamber        
+M 0 11831  30 11837 ;                  a Guard in The Guard Chamber        
+M 0 11832  30 11839 ;                  a Guard in The Circular Hallway     
+M 0 11833  30 11841 ;                  a Guard in The Circular Hallway     
+M 0 11834  30 11843 ;                  a Guard in The Dark Tunnel          
+M 0 11835  30 11843 ;                  a Guard in The Dark Tunnel          
+M 0 11836  30 11829 ;                  a Guard in The Guard Chamber        
+M 0 11837  30 11829 ;                  a Guard in The Guard Chamber        
+M 0 11838  30 11830 ;                  a Guard in The Guard Chamber        
+M 0 11839  30 11830 ;                  a Guard in The Guard Chamber        
+M 0 11840  30 11833 ;                  a Guard in A Small Room             
+M 0 11841  30 11823 ;                  a Guard in The Ledge                
+M 0 11842  30 11814 ;                  a Guard in The Ledge                
+M 0 11843  30 11807 ;                  a Guard in Some Stairs              
+M 0 11844  30 11801 ;                  a Guard in The Ledge                
+M 0 11845  30 11802 ;                  a Guard in The Ledge                
+M 0 11846  30 11803 ;                  a Guard in The Ledge                
+M 0 11801  10 11805 ;             a Fire Demon in The Pit                  
+M 0 11847  10 11806 ;             a Fire Demon in The Pit                  
+M 0 11848  10 11810 ;             a Fire Demon in The Pit                  
+M 0 11849  10 11815 ;             a Fire Demon in The Pit                  
+M 0 11850  10 11877 ;             a Fire Demon in The Pit                  
+M 0 11851  10 11818 ;             a Fire Demon in The Pit                  
+M 0 11852  10 11819 ;             a Fire Demon in The Pit                  
+M 0 11853  10 11820 ;             a Fire Demon in Some Stairs              
+M 0 11854  10 11810 ;             a Fire Demon in The Pit                  
+M 0 11855  10 11819 ;             a Fire Demon in The Pit                  
+M 0 11802  11 11821 ;                   an Imp in A Holding Pen            
+M 0 11856  11 11821 ;                   an Imp in A Holding Pen            
+M 0 11857  11 11821 ;                   an Imp in A Holding Pen            
+M 0 11858  11 11828 ;                   an Imp in The Dark Tunnel          
+M 0 11859  11 11834 ;                   an Imp in The Dark Tunnel          
+M 0 11860  11 11826 ;                   an Imp in A Holding Pen            
+M 0 11861  11 11826 ;                   an Imp in A Holding Pen            
+M 0 11862  11 11826 ;                   an Imp in A Holding Pen            
+M 0 11863  11 11833 ;                   an Imp in A Small Room             
+M 0 11864  11 11833 ;                   an Imp in A Small Room             
+M 0 11865  11 11813 ;                   an Imp in The Secret Room          
+M 0 11803   1 11836 ;         the Guard Master in The Guard Commander's Cha
+G 1 11800  99       ;                    a key
+M 0 11804   4 11846 ;             a Key Keeper in The First Key Chamber    
+G 1 11805  99       ;               a blue key
+M 0 11866   4 11816 ;             a Key Keeper in The Ledge Ends           
+G 1 11806  99       ;             a yellow key
+M 0 11867   4 11847 ;             a Key Keeper in The Second Key Chamber   
+G 1 11804  99       ;                a red key
+M 0 11868   4 11827 ;             a Key Keeper in The Darkest Chamber      
+G 1 11807  99       ;               a grey key
+M 0 11805   4 11864 ;                 a Statue in By the Entrance          
+M 0 11869   4 11864 ;                 a Statue in By the Entrance          
+M 0 11870   4 11866 ;                 a Statue in By the Entrance          
+M 0 11871   4 11866 ;                 a Statue in By the Entrance          
+M 0 11806   1 11856 ;                   Demise in The Final Chamber        
+M 0 11807   1 11840 ;                   A door in The Circular Hallway     
+M 0 11808   1 11841 ;                   A door in The Circular Hallway     
+M 0 11809   1 11861 ;                   A door in The Circular Hallway     
+M 0 11810   1 11862 ;                   A door in The Circular Hallway     
+M 0 11811   1 11847 ;                   A door in The Second Key Chamber   
+M 0 11812   1 11855 ;                   A door in Before an Inner Door     
+M 0 11813   1 11878 ;                   A door in A Short Stairway         
+M 0 11814   1 11857 ;                   A door in The Circular Hallway     
+M 0 11815   1 11858 ;                   A door in The Circular Hallway     
+M 0 11816   1 11859 ;                   A door in The Circular Hallway     
+M 0 11817   5 11874 ;                 A rabbit in The Cross Roads       
+M 0 11817   5 11872 ;                 A rabbit in The Jungle               
+M 0 11817   5 11871 ;                 A rabbit in The Jungle               
+M 0 11817   5 11868 ;                 A rabbit in The Jungle               
+S
+
+
+
+
+#SHOPS
+0
+
+
+
+
+#SPECIALS
+S
+
+
+
+
+#$

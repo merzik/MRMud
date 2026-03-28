@@ -1,0 +1,1113 @@
+#AREA Order Village~
+#AUTHORS Explicid~
+#RANGES 85 95 50 99
+#FLAGS AFLAG_NOCASTLE
+#RESETMSG Order sweeps threw the village with a gust of wind.~
+
+#TEMPERATURE 20 20  40
+
+
+
+#HELPS
+0 $~
+
+
+
+#MOBILES
+#3400
+Earth Elemental~
+A Earth Elemental~
+A Earth Elemental floats here.~
+~
+ACT_SENTINEL
+AFF_INFRARED|AFF_UNDERSTAND|AFF_STEALTH|AFF_DETECT_INVIS|AFF_INVISIBLE|AFF_DETECT_HIDDEN
+100 S
+95 BODY_HORN 0 89d39+30000 9d17+0
+17320 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>Speach_prog Test~
+
+mpecho {120} The Force of Nature moves you along to the next Element.
+~
+
+>Give_prog I3411~
+
+mpecho {120} Nature Becomes Furrious as all the {170}Elements {120}Unite!
+
+Mpjunk I3411
+
+Mpoload I3401
+
+Mpoload I3402
+
+Mpoload I3403
+
+Mpoload I3404
+
+Mpoload I3405
+
+Mpoload I3406
+
+Mpoload I3407
+
+Mpoload I3408
+
+Mpoload I3409
+
+Mpoload I3410
+
+Mpecho {120} Nature summons all elements and grows in Power!
+
+Mpecho {120} Through {150}ORDER 120} ALL elements Unite in the EARTH Elemental!
+
+
+mpkill $n
+~
+#3401
+Fire Elemental~
+A Fire Elemental~
+A Fire Elemental Is not here.~
+~
+ACT_BODY|ACT_SENTINEL
+AFF_INVISIBLE|AFF_ETHEREAL|AFF_FLYING|AFF_DETECT_HIDDEN|AFF_DETECT_INVIS|AFF_STEALTH
+1 S
+95 BODY_HORN BODY_HORN 1d2+20 1d1+1
+10000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>Speach_Prog Test~
+
+mpecho {110} You are Burning Up!
+
+mpecho {110} You are Burning Up!
+
+mpecho {140} You sure are Bleeding!
+
+Mpecho {110} Fire fills your eyes!
+
+Mpecho {170} A small pink and white light bursts from the {110}Flame{170}!
+
+Mpecho {170} You have been CLenseD!
+
+Mpoload I3411
+
+Mpgive I3411 $n
+
+Mptransfer all 3401
+
+MpAreaEcho {170}$n Has Been Clensed!
+
+mppurge $i
+~
+
+>Speach_Prog Slain~
+if actorhasobj I3409  
+
+Mpmset $n long 'Master of Elements $n is here.'
+
+Else
+say 'Ha! The elements SHOULD slay YOU!'
+~
+#3402
+Air Elemental~
+A Air Elemental~
+A Air Elemental is not here..~
+~
+ACT_SCAVENGER|ACT_BODY|ACT_RACE
+AFF_ETHEREAL|AFF_INFRARED|AFF_STEALTH|AFF_DETECT_INVIS|AFF_INVISIBLE|AFF_DETECT_HIDDEN|AFF_FLYING
+0 S
+95 0 0 1d20+10 1d1+1
+0 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>Speach_prog Test~
+
+Mpecho {147} Air surrounds you and spins you around.
+
+Mpecho {147} Air Directs you to the next of the Elements.
+~
+#3403
+Water Elemental~
+A Water Elemental~
+A Water Elemental is NOT here!~
+~
+ACT_RACE|ACT_SENTINEL|ACT_BODY
+AFF_DETECT_HIDDEN|AFF_ETHEREAL|AFF_STEALTH|AFF_INVISIBLE|AFF_DETECT_INVIS|AFF_INFRARED|AFF_FLYING
+0 S
+95 0 0 1d21+0 1d1+2
+0 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>Speach_prog Test~
+
+Mpecho {154} Water engulfs you and seems to go right through You!
+
+Mpecho {154} Water Directs you to the next of the Elements.
+#3404
+Order Villager~
+A Order Villager~
+A Order Villager walks about here~
+~
+ACT_BODY
+AFF_DETECT_HIDDEN|AFF_DETECT_INVIS
+3 S
+80 BODY_ARM BODY_HEAD 69d69+4000 30d3+13
+123431 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_FEMALE
+>Rand_prog 5~
+
+say 'Order is the Best!'
+~
+#3405
+Frantic Order Villager~
+A Frantic Order Villager~
+A Frantic Order villager scurrys about.~
+~
+ACT_RACE|ACT_BODY
+AFF_DETECT_HIDDEN|AFF_INFRARED|AFF_DETECT_INVIS
+0 S
+80 BODY_LEG BODY_HAND 80d90+3000 11d6+33
+1234300 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+#3406
+Noone~
+A Noone~
+A noone dosent stand here.~
+~
+ACT_RACE|ACT_SENTINEL|ACT_BODY
+AFF_ETHEREAL|AFF_STEALTH|AFF_FLYING|AFF_UNDERSTAND|AFF_INFRARED|AFF_DETECT_HIDDEN|AFF_DETECT_INVIS|AFF_INVISIBLE
+0 S
+95 0 0 32d1000+0 19d19+0
+0 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>speach_prog Order~
+c 'restore' $n
+~
+#3407
+a quagmire~
+Nothing ~
+A Nothing stands here.~
+~
+ACT_SENTINEL|ACT_BODY|ACT_RACE
+AFF_SNEAK|AFF_ETHEREAL|AFF_FLYING|AFF_UNDERSTAND|AFF_CURSE|AFF_INFRARED|AFF_DETECT_HIDDEN|AFF_DETECT_INVIS|AFF_INVISIBLE|AFF_STEALTH
+0 S
+95 0 0 23d957+0 4d79+0
+-1000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_FEMALE
+>Speach_prog p Order Village~
+mpechoat $n Your world twists and fades into a diffrent reality.
+Mptransfer $n 3401
+~
+#0
+
+
+
+#OBJECTS
+#3400
+~
+~
+~
+~
+
+ITEM_TYPE_LIGHT
+0
+0
+0 0 0 0
+0 0 1
+#3401
+Elemental Ring~
+A Elemental Ring~
+A Elemental Ring lies here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_INVIS|ITEM_FLAG_AUTO_ENGRAVE|ITEM_FLAG_LEVEL
+ITEM_WEAR_FINGER|ITEM_WEAR_TAKE
+10 0 0 0
+3 10000 93
+A
+APPLY_DAMROLL 10
+#3402
+Elemental Collar~
+A Elemental Collar~
+A Elemental Collar Lies here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_INVIS|ITEM_FLAG_AUTO_ENGRAVE|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_NECK
+10 0 0 0
+2 10000 93
+A
+APPLY_DAMROLL 10
+#3403
+Elemental Cloak~
+A Elemental Cloak~
+A Elemental Cloak lies here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_INVIS|ITEM_FLAG_AUTO_ENGRAVE|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+10 0 0 0
+2 10000 93
+A
+APPLY_DAMROLL 10
+#3404
+Elemental Helmet~
+A Elemental Helmet~
+A Elemental Helmet lies here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_INVIS|ITEM_FLAG_AUTO_ENGRAVE|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HEAD
+10 0 0 0
+2 10000 93
+A
+APPLY_DAMROLL 10
+#3405
+Elemental Bracer~
+A Elemental Bracer~
+A Elemental Bracer lies here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_INVIS|ITEM_FLAG_AUTO_ENGRAVE|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_FINGER|ITEM_WEAR_WRIST
+10 0 0 0
+2 10000 93
+A
+APPLY_DAMROLL 10
+#3406
+Elemental Boots~
+Elemental Boots~
+A pair of Elemental Boots Lie here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_AUTO_ENGRAVE|ITEM_FLAG_INVIS|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_FEET
+10 0 0 0
+2 10000 93
+A
+APPLY_DAMROLL 9
+#3407
+Elemental Leggings~
+Elemental Leggings~
+A set of Elemental Leggings Lie here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_INVIS|ITEM_FLAG_AUTO_ENGRAVE|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_LEGS
+10 0 0 0
+2 12010 93
+A
+APPLY_DAMROLL 9
+#3408
+Elemental Plate~
+Elemental Plate Armor~
+A Elemental Plate lies on the ground.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_INVIS|ITEM_FLAG_AUTO_ENGRAVE|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_ABOUT
+13 0 0 0
+2 10101 93
+A
+APPLY_DAMROLL 8
+#3409
+Elemental Ball~
+A Elemental Ball.~
+A small ball made of water, air, fire and earth lies here.~
+~
+ITEM_TYPE_LIGHT
+ITEM_FLAG_INVIS|ITEM_FLAG_AUTO_ENGRAVE|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 9999 0
+3 10000 93
+A
+APPLY_STR -2
+A
+APPLY_AC 11
+A
+APPLY_DAMROLL 11
+#3410
+Elemental Blade~
+A Elemental Blade~
+A Blade of water, air, fire and earth lies here.~
+~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_INVIS|ITEM_FLAG_AUTO_ENGRAVE|ITEM_FLAG_LEVEL
+ITEM_WEAR_WIELD|ITEM_WEAR_TAKE
+0 9 9 WEAPON_SLICE
+5 120120 94
+A
+APPLY_CON -3
+A
+APPLY_WIS -3
+A
+APPLY_SEX 1
+A
+APPLY_DAMROLL 21
+A
+APPLY_HITROLL -41
+A
+APPLY_SAVING_SPELL 11
+A
+APPLY_STR -2
+A
+APPLY_DEX -2
+A
+APPLY_INT -2
+#3411
+Shiney Pearl~
+A Shiney Pearl~
+A Shiney Pearl lies here.~
+~
+ITEM_TYPE_TRASH
+ITEM_FLAG_GLOW|ITEM_FLAG_HUM|ITEM_FLAG_INVIS|ITEM_FLAG_AUTO_ENGRAVE|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+0 0 0 0
+5 178340 93
+#3412
+Order fountain~
+Fountain~
+A Order Fountain.~
+The Fountain is tall and beautiful, it contains Many diffrent minature statues.  The fountain spiews Crystal clean water into the air, which falls down into the rim and looks Truely Refreshing.
+~
+ITEM_TYPE_FOUNTAIN
+ITEM_FLAG_LEVEL
+ITEM_WEAR_NECK|ITEM_WEAR_FEET|ITEM_WEAR_HEAD|ITEM_WEAR_SHIELD|ITEM_WEAR_ABOUT|ITEM_WEAR_WAIST|ITEM_WEAR_HOLD|ITEM_WEAR_BODY|ITEM_WEAR_FINGER|ITEM_WEAR_TAKE|ITEM_WEAR_ARMS|ITEM_WEAR_WRIST|ITEM_WEAR_HANDS|ITEM_WEAR_LEGS
+0 0 0 0
+5000 1 1
+A
+APPLY_DAMROLL 35
+#0
+
+
+
+#ROOMS
+#3400
+Death.~
+{120}Welcome to the depths of hell, you will soon die, and you cant do a thing about it.
+~
+34 ROOM_DARK|ROOM_NO_CASTLE|ROOM_NO_GOHOME|ROOM_NO_MOB|ROOM_NO_RIP|ROOM_INDOORS|ROOM_NO_RECALL SECT_LAVA
+S
+#3401
+Fountain of ORDERS village~
+  {150}The fountain of Order village stands TALL here, Spewing water High into the air. The water seems not to hit the ground at all, it goes up and vanishes into thin air. Order's blessing is about this place, and it is VERY safe. You can feel the presance of the fair god here, and you know that she has made this wonderfull place just for you.
+~
+34 ROOM_SAFE|ROOM_NO_CASTLE|ROOM_NO_MOB|ROOM_NO_RECALL SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 3402
+DDIR_SOUTH
+~
+~
+0 -1 3420
+DDIR_NORTH
+~
+~
+0 -1 3421
+S
+#3402
+Order St.~
+You stand on order street, Beautiful and calm and majestic it stands and seems
+to travel for quite some distance. Order must have traveled down this way and blessed the many things you see. Everything seams to glow with the fair god's blessing.
+~
+34 ROOM_NO_CASTLE|ROOM_NO_RIP SECT_CITY
+DDIR_WEST
+~
+~
+0 -1 3401
+DDIR_EAST
+~
+~
+0 -1 3403
+S
+#3403
+Order St.~
+You stand on order street, Beautiful and calm and majestic it stands and seems
+to travel for quite some distance. Order must have traveled down this way and blessed the many things you see. Everything seams to glow with the fair god's blessing.
+~
+34 ROOM_NO_CASTLE|ROOM_NO_RIP SECT_CITY
+DDIR_WEST
+~
+~
+0 -1 3402
+DDIR_EAST
+~
+~
+0 -1 3404
+DDIR_SOUTH
+~
+~
+0 -1 3425
+S
+#3404
+Order St.~
+You stand on order street, Beautiful and calm and majestic it stands and seems
+to travel for quite some distance. Order must have traveled down this way and blessed the many things you see. Everything seams to glow with the fair god's blessing.
+~
+34 ROOM_NO_CASTLE|ROOM_NO_RIP SECT_CITY
+DDIR_WEST
+~
+~
+0 -1 3403
+DDIR_EAST
+~
+~
+0 -1 3405
+S
+#3405
+Order St.~
+You stand on order street, Beautiful and calm and majestic it stands and seems
+to travel for quite some distance. Order must have traveled down this way and blessed the many things you see. Everything seams to glow with the fair god's blessing.
+~
+34 ROOM_NO_CASTLE|ROOM_NO_RIP SECT_CITY
+DDIR_WEST
+~
+~
+0 -1 3404
+DDIR_EAST
+~
+~
+0 -1 3406
+S
+
+#3406
+The Corner of the Village.~
+Here you stand on the Corner of two of the village's streets, where they meet 
+and merge into one. North of here is a Chamber of Elements. You can see far 
+down each of the citys beautiful streets, and almost cannot decide which to travel.
+~
+34 ROOM_NO_CASTLE|ROOM_NO_RIP SECT_CITY
+DDIR_WEST
+~
+~
+0 -1 3405
+DDIR_SOUTH
+~
+~
+0 -1 3407
+DDIR_EAST
+~
+~
+0 -1 3422
+S
+#3407
+Order Way.~
+Yet another of Order village's Majestic and beautiful streets is here. You can 
+see down the distance of this very nice street. This is the kind of place you would like to live in.
+~
+34 ROOM_NO_CASTLE|ROOM_NO_RIP SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 3406
+DDIR_SOUTH
+~
+~
+0 -1 3408
+S
+#3408
+Order Way.~
+Yet another of Order village's Majestic and beautiful streets is here. You can 
+see down the distance of this very nice street. This is the kind of place you would like to live in.
+~
+34 ROOM_NO_CASTLE|ROOM_NO_RIP SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 3407
+DDIR_SOUTH
+~
+~
+0 -1 3409
+S
+#3409
+Order Way.~
+Yet another of Order village's Majestic and beautiful streets is here. You can 
+see down the distance of this very nice street. This is the kind of place you would like to live in.
+~
+34 ROOM_NO_CASTLE|ROOM_NO_RIP SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 3408
+DDIR_SOUTH
+~
+~
+0 -1 3410
+DDIR_WEST
+~
+~
+0 -1 3428
+S
+#3410
+Order Way.~
+Yet another of Order village's Majestic and beautiful streets is here. You can 
+see down the distance of this very nice street. This is the kind of place you would like to live in.
+~
+34 ROOM_NO_CASTLE|ROOM_NO_RIP SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 3409
+DDIR_SOUTH
+~
+~
+0 -1 3411
+S
+#3411
+The Corner of the Village.~
+Here you stand on the Corner of two of the village's streets, where they meet 
+and merge into one. Soulth of here is a Chamber of Elements. You can see far 
+down each of the citys beautiful streets, and almost cannot decide which to travel.
+~
+34 ROOM_NO_CASTLE|ROOM_NO_RIP SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 3410
+DDIR_WEST
+~
+~
+0 -1 3412
+DDIR_SOUTH
+~
+~
+0 -1 3423
+S
+
+#3412
+Order Ave.~
+Here lies Order Avenue, one of the Very finest streets you've ever seen. Your 
+eyes come to rest on this wonderfully decorated street. Everyone in the village seems to be Celebrating Order, and the cellebration looks to Never stop. Orders village is filled with a Sweet music, slow, soft and very tender the sounds float threw the air.
+~
+34 ROOM_NO_CASTLE SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 3411
+DDIR_WEST
+~
+~
+0 -1 3413
+S
+#3413
+Order Ave.~
+Here lies Order Avenue, one of the Very finest streets you've ever seen. Your 
+eyes come to rest on this wonderfully decorated street. Everyone in the village seems to be Celebrating Order, and the cellebration looks to Never stop. Orders village is filled with a Sweet music, slow, soft and very tender the sounds float threw the air.
+~
+34 ROOM_NO_CASTLE|ROOM_NO_RIP SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 3412
+DDIR_WEST
+~
+~
+0 -1 3414
+DDIR_NORTH
+~
+~
+0 -1 3427
+S
+#3414
+Order Ave.~
+Here lies Order Avenue, one of the Very finest streets you've ever seen. Your 
+eyes come to rest on this wonderfully decorated street. Everyone in the village seems to be Celebrating Order, and the cellebration looks to Never stop. Orders village is filled with a Sweet music, slow, soft and very tender the sounds float threw the air.
+~
+34 ROOM_NO_CASTLE|ROOM_NO_RIP SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 3413
+DDIR_WEST
+~
+~
+0 -1 3415
+S
+#3415
+Order Ave.~
+Here lies Order Avenue, one of the Very finest streets you've ever seen. Your 
+eyes come to rest on this wonderfully decorated street. Everyone in the village seems to be Celebrating Order, and the cellebration looks to Never stop. Orders village is filled with a Sweet music, slow, soft and very tender the sounds float threw the air.
+~
+34 ROOM_NO_CASTLE|ROOM_NO_RIP SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 3414
+DDIR_WEST
+~
+~
+0 -1 3416
+S
+#3416
+The Corner of the Village.~
+You stand in the corner of the village where Order path meets Order way. The villages streets meet and merge into one here, and you can see down each. Each street is beautifuly decorated and stands very tall with buildings and statues.
+~
+34 ROOM_NO_CASTLE|ROOM_NO_RIP SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 3415
+DDIR_NORTH
+~
+~
+0 -1 3417
+DDIR_WEST
+~
+~
+0 -1 3424
+S
+#3417
+Order Path.~
+Here Lies Order path, the Village's main road. The street is crowded with MANY villagers, and they scurry about doing tasks and worshiping the fiar god. They appear to all be peacfull, and the entire village appears to be quite a peacfull and tranquil place.
+~
+34 ROOM_NO_CASTLE|ROOM_NO_RIP SECT_CITY
+DDIR_SOUTH
+~
+~
+0 -1 3416
+DDIR_NORTH
+~
+~
+0 -1 3418
+S
+
+#3418
+Order Path.~
+Here Lies Order path, the Village's main road. The street is crowded with MANY villagers, and they scurry about doing tasks and worshiping the fiar god. They appear to all be peacfull, and the entire village appears to be quite a peacfull and tranquil place.
+~
+34 ROOM_NO_CASTLE|ROOM_NO_RIP SECT_CITY
+DDIR_SOUTH
+~
+~
+0 -1 3417
+DDIR_NORTH
+~
+~
+0 -1 3419
+S
+#3419
+Order Path.~
+Here Lies Order path, the Village's main road. The street is crowded with MANY villagers, and they scurry about doing tasks and worshiping the fiar god. They appear to all be peacfull, and the entire village appears to be quite a peacfull and tranquil place.
+
+~
+34 ROOM_NO_CASTLE|ROOM_NO_RIP SECT_CITY
+DDIR_SOUTH
+~
+~
+0 -1 3418
+DDIR_NORTH
+~
+~
+0 -1 3420
+DDIR_EAST
+~
+~
+0 -1 3426
+S
+#3420
+Order Path.~
+Here Lies Order path, the Village's main road. The street is crowded with MANY villagers, and they scurry about doing tasks and worshiping the fiar god. They appear to all be peacfull, and the entire village appears to be quite a peacfull and tranquil place.
+
+~
+34 ROOM_NO_CASTLE|ROOM_NO_RIP SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 3401
+DDIR_SOUTH
+~
+~
+0 -1 3419
+DDIR_WEST
+~
+~
+0 -1 3438
+S
+#3421
+An Elemental Circle.~
+   {150}You stand here, in the center of an elemental circle which leads to a chamber of what appears to be a Giant Plant. This room Appears to be Very new, and has no decoration in it at all. The walls are painted green, and the room seems to calm you.
+~
+34 ROOM_SAFE|ROOM_NO_CASTLE|ROOM_NO_RIP SECT_CITY
+DDIR_SOUTH
+~
+~
+0 -1 3401
+DDIR_WEST
+~
+~
+0 -1 3434
+S
+#3422
+An Elemental Circle.~
+You stand in a circle chamber, before a room which appears to be made of pure 
+air. The Ground here is very soothing, and quite soft. The Walls appear to be curvy and bent, but seem to support the ceeling well. The ceeling here is made 
+of solid gold, and is scared with the Emblem of order.
+~
+34 ROOM_NO_CASTLE|ROOM_NO_RIP SECT_ETHEREAL
+DDIR_WEST
+~
+~
+0 -1 3406
+DDIR_NORTH
+~
+~
+0 -1 3433
+S
+#3423
+An Elemtal Circle.~
+   {150}You stand before the room of Elements of fire. The room to your east is VERY hot and appears to be made of flame. This room though seams not to be affected by the flame at all. It is dark and damp and cool in this room.
+~
+34 ROOM_NO_CASTLE|ROOM_NO_RIP SECT_ETHEREAL
+DDIR_NORTH
+~
+~
+0 -1 3411
+DDIR_EAST
+~
+~
+0 -1 3432
+S
+
+#3424
+Room number 3424~
+
+~
+34 ROOM_ALLOW_ASN|ROOM_NO_CASTLE SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 3416
+DDIR_SOUTH
+~
+~
+0 -1 3435
+S
+#3425
+Room number 3425~
+
+~
+34 ROOM_ALLOW_ASN|ROOM_NO_CASTLE SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 3403
+S
+#3426
+Room number 3426~
+
+~
+34 ROOM_ALLOW_ASN|ROOM_NO_CASTLE SECT_CITY
+DDIR_WEST
+~
+~
+0 -1 3419
+S
+#3427
+Followers Inn.~
+ {150}This Place was made for Followers of the greatest god Order. Her statue Rises 
+tall in the center of this building, and seams to move and cast spells apon all those who stop here. She has blessed this area, and you know that you are safe here.
+~
+34 ROOM_ALTAR_O|ROOM_NO_CASTLE|ROOM_NO_RIP SECT_INN
+DDIR_SOUTH
+~
+~
+0 -1 3413
+S
+#3428
+Room number 3428~
+
+~
+34 ROOM_ALLOW_ASN|ROOM_NO_CASTLE SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 3409
+S
+#3429
+Room number 3429~
+
+~
+34 ROOM_ALLOW_ASN|ROOM_NO_CASTLE SECT_CITY
+S
+
+#3430
+Room number 3430~
+
+~
+34 ROOM_ALLOW_ASN|ROOM_NO_CASTLE SECT_CITY
+S
+#3431
+Room number 3431~
+
+~
+34 ROOM_ALLOW_ASN|ROOM_NO_CASTLE SECT_CITY
+DDIR_WEST
+~
+~
+0 -1 3419
+S
+#3432
+Elemental Chamber of Fire.~
+  {150}You stand in a Burning Pit of lava. The walls Burn with   {110}CRImSoN  {150} with   {110}Flames  {150}. The walls in this place seem to SCREAM and the whole area looks QUITE unstable. This place was most likely designed by a god for a Lesser but Very imporant being.
+~
+34 ROOM_NO_CASTLE|ROOM_NO_RIP SECT_LAVA
+DDIR_WEST
+~
+~
+0 -1 3423
+S
+#3433
+Elemental Chamber of Air.~
+  {160}Here You float above the ground in a Room which seams to be made of air and are alone. There are no walls, but at a certain point there must be a wall, just one that isnt vissible. There is no floor or no ceeling, no sky, just air. You have never has such a great and long breath as the one you take here.
+~
+34 ROOM_NO_CASTLE|ROOM_NO_RIP SECT_AIR
+DDIR_SOUTH
+~
+~
+0 -1 3422
+S
+#3434
+Elemtal Chamber of Earth.~
+  {120}Here you stand, in a room Made of Purley Plantlife. The walls are made of vines and tree trunks. The floor is made of Leaves and tree routes. The ceeling of the room is made of branches and leaves, and flowers line the room in patches. This room is a True work of nature, calm and Tranquil.
+~
+34 ROOM_NO_CASTLE|ROOM_NO_RIP SECT_FOREST
+DDIR_EAST
+~
+~
+0 -1 3421
+S
+#3435
+Elemental chamber of Water.~
+  {150}The watter in this room surrounds you and twists and spins you in every way. 
+Standing there being pulled and spun in circles, the water suddenly becomes calm as if Order herself has calmed it with her peacfull touch.
+~
+34 ROOM_NO_CASTLE|ROOM_NO_RIP SECT_UNDERWATER
+DDIR_NORTH
+~
+~
+0 -1 3424
+S
+
+#3436
+An ELEMENTAL CiRcLE.~
+   {140}Here you stand in the Elemental Circle For the Element Water. You look to the Soulth and see a Room Made of water containing water. You know that there No Normal person can survive, but through the powers of Order you may live. You are not sure if you should venture into the Room which amazes you, but when it is 
+time to do so you will know.
+~
+34 ROOM_NO_CASTLE SECT_ETHEREAL
+DDIR_SOUTH
+~
+~
+0 -1 3435
+DDIR_EAST
+~
+~
+0 -1 3416
+S
+#3437
+Order Village Square.~
+ {150}This is the square of Order village. It is defanatly  {120}NOT a SAFE FOUNTAIN! {150} Order left this room here for many people to enter the village or exit the village through some magical means. There is plenty of Extra space left here for some people to build their home, and have a nice place to Retire.
+~
+34 ROOM_NO_CASTLE|ROOM_NO_MOB SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 3409
+S
+#3438
+The Abyss.~
+You are nowhere. And you see nothing.
+~
+34 ROOM_DARK|ROOM_SAFE|ROOM_NO_CASTLE|ROOM_NO_GOHOME|ROOM_NO_MOB|ROOM_NO_RIP|ROOM_NO_RECALL SECT_INN
+DDIR_EAST
+~
+~
+0 -1 3420
+DDIR_WEST
+~
+~
+0 -1 3439
+S
+#3439
+A deep forrest~
+A Deep and thick forrest is here, and you can hardly see threw all the plants.
+Your not sure if this is a path at all. This place seems to be wildlife TOTALY 
+out of controll.
+~
+34 ROOM_NO_CASTLE SECT_FOREST
+DDIR_EAST
+~
+~
+0 -1 3438
+DDIR_WEST
+~
+~
+0 -1 3440
+S
+#3440
+A Hidden trail.~
+You stand here, where a trail comes to a cross. There are two roads, and you cannot be sure which one to take. The trail to the east leads to a forrest that you cannot see past, and the trail to the north leads a little further, but dies off into a lake.
+~
+34 ROOM_NO_CASTLE|ROOM_NO_RIP SECT_FIELD
+DDIR_EAST
+~
+~
+0 -1 3439
+DDIR_WEST
+~
+~
+0 -1 3441
+S
+#3441
+A Hidden trail~
+You stand here on a hidden trail, and you think you can see a path ahead. This is rumored to be the road that leads to great order city, but noone know's for sure just where it is.
+~
+34 ROOM_NO_CASTLE|ROOM_NO_RIP SECT_FIELD
+DDIR_EAST
+~
+~
+0 -1 3440
+DDIR_WEST
+~
+~
+0 -1 3442
+S
+
+#3442
+The Great Ocean Gates.~
+{140}The Great Ocean gates of Order village lie here. Order village is a very small island. It dosent have many people, but it is a very nice place.
+~
+34 ROOM_DARK|ROOM_NO_CASTLE|ROOM_NO_RIP SECT_WATER_SWIM
+DDIR_EAST
+~
+~
+0 -1 3441
+S
+#3443
+Nowhere.~
+You are Nowhere. You see nothing.
+~
+34 ROOM_DARK|ROOM_SAFE|ROOM_NO_CASTLE|ROOM_NO_GOHOME|ROOM_PRIVATE|ROOM_NO_RIP|ROOM_NO_RECALL SECT_INSIDE
+DDIR_WEST
+~
+~
+0 -1 3444
+S
+#3444
+A small river.~
+You are now entering a whirpool, which seems to be atracting your boat to the east. Water spins in a counterclockwise motion to the east.
+~
+34 ROOM_NO_CASTLE|ROOM_NO_RIP SECT_WATER_NOSWIM
+DDIR_EAST
+~
+~
+0 -1 3443
+DDIR_WEST
+~
+~
+0 -1 3445
+S
+#3445
+A small river~
+Here is a small river, with small fish jumping about trying to find the top. The river flows quite swiftly but does not appear to be dangerious. You decide you could paddle on, if you really want to, but you dont know if you want to.
+~
+34 ROOM_NO_CASTLE|ROOM_NO_RIP SECT_WATER_NOSWIM
+DDIR_EAST
+~
+~
+0 -1 3444
+DDIR_WEST
+~
+~
+0 -1 3446
+S
+#3446
+A small river~
+Here is a small river, with small fish jumping about trying to find the top. The river flows quite swiftly but does not appear to be dangerious. You decide you could paddle on, if you really want to, but you dont know if you want to.
+~
+34 ROOM_NO_CASTLE|ROOM_NO_RIP SECT_WATER_NOSWIM
+DDIR_EAST
+~
+~
+0 -1 3445
+DDIR_WEST
+~
+~
+0 -1 3447
+S
+#3447
+A small river.~
+Here is a small river, with small fish jumping about trying to find the top. The river flows quite swiftly but does not appear to be dangerious. You decide you could paddle on, if you really want to, but you dont know if you want to.
+~
+34 ROOM_NO_CASTLE|ROOM_NO_RIP SECT_WATER_NOSWIM
+DDIR_EAST
+~
+~
+0 -1 3446
+S
+
+#0
+
+
+
+#SHOPS
+
+0
+
+
+
+
+#RESETS
+M 0 3403 100 3435 ;A Water Elemental loaded in room Elemental chamber of Water.
+M 0 3401 100 3432 ;A Fire Elemental loaded in room Elemental Chamber of Fire.
+G 1 3401 100  ;A Elemental Cloak placed in inventory
+G 1 3402 100  ;A Elemental Collar placed in inventory
+G 1 3403 100  ;A Elemental Cloak placed in inventory
+G 1 3404 100  ;A Elemental Helmet placed in inventory
+G 1 3405 100  ;A Elemental Bracer placed in inventory
+M 0 3402 100 3433 ;A Air Elemental loaded in room Elemental Chamber of Air.
+M 0 3400 100 3434 ;A Earth Elemental loaded in room Elemtal Chamber of Earth.
+M 0 3405 100 3402 ;A Frantic Order Villager loaded in room Order St.
+M 0 3405 100 3402 ;A Frantic Order Villager loaded in room Order St.
+M 0 3404 100 3402 ;A Order Villager loaded in room Order St.
+M 0 3405 100 3403 ;A Frantic Order Villager loaded in room Order St.
+M 0 3404 100 3404 ;A Order Villager loaded in room Order St.
+M 0 3404 100 3405 ;A Order Villager loaded in room Order St.
+M 0 3404 100 3406 ;A Order Villager loaded in room The Corner of the Village.
+M 0 3405 100 3406 ;A Frantic Order Villager loaded in room The Corner of the Village.
+M 0 3404 100 3407 ;A Order Villager loaded in room Order Way.
+M 0 3404 100 3407 ;A Order Villager loaded in room Order Way.
+M 0 3404 100 3408 ;A Order Villager loaded in room Order Way.
+M 0 3405 100 3409 ;A Frantic Order Villager loaded in room Order Way.
+M 0 3405 100 3409 ;A Frantic Order Villager loaded in room Order Way.
+M 0 3404 100 3409 ;A Order Villager loaded in room Order Way.
+M 0 3404 100 3410 ;A Order Villager loaded in room Order Way.
+M 0 3404 100 3411 ;A Order Villager loaded in room The Corner of the Village.
+M 0 3404 100 3412 ;A Order Villager loaded in room Order Ave.
+M 0 3404 100 3412 ;A Order Villager loaded in room Order Ave.
+M 0 3405 100 3412 ;A Frantic Order Villager loaded in room Order Ave.
+M 0 3405 100 3412 ;A Frantic Order Villager loaded in room Order Ave.
+M 0 3404 100 3413 ;A Order Villager loaded in room Order Ave.
+M 0 3404 100 3413 ;A Order Villager loaded in room Order Ave.
+M 0 3405 100 3413 ;A Frantic Order Villager loaded in room Order Ave.
+M 0 3405 100 3413 ;A Frantic Order Villager loaded in room Order Ave.
+M 0 3404 100 3414 ;A Order Villager loaded in room Order Ave.
+M 0 3405 100 3415 ;A Frantic Order Villager loaded in room Order Ave.
+M 0 3405 100 3416 ;A Frantic Order Villager loaded in room The Corner of the Village.
+M 0 3404 100 3417 ;A Order Villager loaded in room Order Path.
+M 0 3404 100 3417 ;A Order Villager loaded in room Order Path.
+M 0 3404 100 3418 ;A Order Villager loaded in room Order Path.
+M 0 3405 100 3419 ;A Frantic Order Villager loaded in room Order Path.
+M 0 3404 100 3419 ;A Order Villager loaded in room Order Path.
+M 0 3404 100 3420 ;A Order Villager loaded in room Order Path.
+M 0 3405 100 3437 ;A Frantic Order Villager loaded in room Order Village Square.
+M 0 3407 100 3438 ;Nothing loaded in room Room number 3438
+M 0 3407 100 3443 ;Nothing loaded in room Room number 3443
+M 0 3406 100 3427 ;A Noone loaded in room Followers Inn.
+O 0 3412 100 3401 ;Fountain loaded in room Fountain of ORDERS village
+O 0 3412 100 3427 ;Fountain loaded in room Followers Inn.
+O 0 3412 100 3437 ;Fountain loaded in room Order Village Square.
+S
+
+
+
+
+#$

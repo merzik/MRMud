@@ -1,0 +1,2061 @@
+#AREA Pompeii~
+#AUTHORS Crouton~
+
+
+#HELPS
+-1 POMPEII `POMPEII`~
+POMPEII
+In the shadow of a sinister mountain of destruction, Pompeii stands
+defenseless. Panic stricken citizens flee aimlessly in the streets,
+unable to escape the inevitable doom that will befall it. The vulcano
+has erupted, and lava even now begins to fill the streets.
+
+(A) Bambino's Bar
+
+{a}BAMBINOSBAR
+~
+-1 BAMBINOSBAR~
+Located on the east side of town, Bambino's is a great place to get
+away from the stress caused by rioting, lava, and imminent doom.
+You can also order a drink and get the local gossip there. Maybe he
+can tell you how to help the city.
+
+{110}Quest added by Yosho and McMac (2001){300}
+~
+0 $~
+
+
+
+#RANGES 20 40 0 99
+#MOBILES
+#12500
+guesto~
+Guesto~
+Guesto stands here.~
+Guesto is a huge ogre with an attitude.  His pockets seem to store an endless
+amount of treasures.~
+ACT_SENTINEL|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_UNDERSTAND|AFF_TONGUES
+0 S
+95 BODY_HAND BODY_HAND 5d10000+1 1d1+221
+208408 RACE_OGRE
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 50~
+say What chew need?
+wink $n
+nudge $n
+emote whispers to you, "Need anything from a chaos member?"
+wink $n
+wink $n
+~
+|
+#12501
+fasto~
+Fasto~
+Fasto stands here.~
+You can tell Fasto was an overactive child.  He seems very anxious, as if
+he needs to be doing something.~
+ACT_SENTINEL|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_UNDERSTAND|AFF_TONGUES
+0 S
+95 BODY_HAND BODY_HAND 5d10000+1 1d1+215
+340950 RACE_OGRE
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 50~
+say Hello and welcome to Fasto's, that's me, World of Goods!
+say How may I be of service to you today $n?
+~
+|
+#12502
+gim~
+Gim~
+Gim stands here.~
+Gim is a stocky dwarf that doesn't take kindly to stupid newbies snoopin'
+around his shop.~
+ACT_SENTINEL|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_UNDERSTAND|AFF_TONGUES
+0 S
+95 BODY_HAND BODY_HAND 5d10000+1 1d1+234
+353721 RACE_OGRE
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 50~
+say What are you wearing that girly armor for?
+say Buy somethin' from me shop or get out!
+~
+|
+#12503
+utho~
+Utho~
+Utho stands here.~
+An overbuilt ogre stands here dumbly ready to sell you anything you need.~
+ACT_SENTINEL|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_UNDERSTAND|AFF_TONGUES
+0 S
+95 BODY_HAND BODY_HAND 5d10000+1 1d1+237
+229609 RACE_OGRE
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 50~
+say Nice weapon newbie.
+emote gives you the secret Chaos handshake.
+wink $n
+~
+|
+#12504
+zzevelo~
+Zzevelo~
+Zzevelo stands here.~
+An intelligent looking human with a large pair of wire rimmed spectacles
+stands in front of you.~
+ACT_SENTINEL|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_UNDERSTAND|AFF_TONGUES
+0 S
+95 BODY_HAND BODY_HAND 5d10000+1 1d1+246
+222916 RACE_OGRE
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 50~
+say Bonjour.  
+bow $n
+say And how may I be of service to you today?
+~
+|
+#12505
+crayola~
+Crayola~
+Crayola stands here.~
+A seedy looking elf stares back at you.~
+ACT_SENTINEL|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_UNDERSTAND|AFF_TONGUES
+0 S
+95 BODY_HAND BODY_HAND 5d10000+1 1d1+224
+235512 RACE_OGRE
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 50~
+say Don't mess with me I won't mess with you, now then...
+say What do you need?
+~
+|
+#12506
+meldricko~
+Meldricko~
+Meldricko stands here.~
+A small yet powerful looking elf stands here proudly waiting for you to die.~
+ACT_SENTINEL|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_UNDERSTAND|AFF_TONGUES
+0 S
+95 BODY_HAND BODY_HAND 5d10000+1 1d1+216
+213534 RACE_OGRE
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 50~
+emote wipes the blood off of his face onto his sleeve.
+emote stares at you and smiles.
+say Died again?!  C'mon guy, you can do better than that.
+~
+|
+#12507
+zorr~
+Zorr~
+Zorr stands here.~
+Don't touch Zorr.~
+ACT_SENTINEL|ACT_PRACTICE|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_SANCTUARY|AFF_UNDERSTAND|AFF_TONGUES
+0 S
+95 BODY_HAND BODY_HAND 1d1+19084 1d1+296
+225372 RACE_OGRE
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 50~
+mpforce all grovel zorr
+~
+>act_prog practice~
+mpforce $n give 20000 coins zorr
+say Thanks for the gold.
+nudge $n
+say Have a nice day.
+~
+|
+#12508
+croutonio~
+Croutonio~
+Croutonio stands here.~
+A large ogre is here.  Train or leave.~
+ACT_SENTINEL|ACT_TRAIN|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_SANCTUARY|AFF_UNDERSTAND|AFF_TONGUES
+0 S
+95 BODY_HAND BODY_HAND 1d1+18968 1d1+210
+244518 RACE_OGRE
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 50~
+mpforce all bow croutonio
+say Think you're doin' good, huh?
+say I'll train ya anyway.
+~
+|
+#12509
+terro~
+Terro~
+Terro stands here.~
+A powerful animal-loving elf stands here.
+Here.. pussy pussy pussy...~
+ACT_SENTINEL|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_UNDERSTAND|AFF_TONGUES
+0 S
+95 BODY_HAND BODY_HAND 5d10000+1 1d1+229
+212214 RACE_OGRE
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 50~
+say Hello Kids And Welcome To My CRITTER BARN!!!
+say WE GOT DRAGONS ON SALE TODAY!!!
+say BUY EM WHILE THEIR BREATH IS STILL HOT!!!
+smile $n
+~
+|
+#12510
+pompeii gate guard~
+The Pomepii Gatekeeper~
+The Pompeii Gatekeeper stands here.~
+He looks mean.~
+ACT_SENTINEL|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_UNDERSTAND|AFF_TONGUES
+0 S
+35 BODY_HAND BODY_HAND 9d50+150 4d9+9
+3000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 50~
+if quest (0, 3, $n) == 0
+  close gate
+  lock gate
+  say Sorry, the city is closed.
+  say The volcano to the north is erupting right now.
+  say Try back later when we're not in such pandemonium.
+  smile $n
+endif
+~
+>all_greet_prog 100~
+if quest (0, 3, $n) == 3
+  mpmload 12568
+  say Ah, our blessed messenger returns!
+  say Thanks to you our town shall be saved!
+  say Panic is already receding.
+  say Lava flows are being stemmed with barricades.
+  mpmset $n quest 0 3 4  
+endif
+~
+>speech_prog p I have lava repellent 2000.~
+say Oh, in that case...
+unlock gate 
+open gate
+say You're good to go then.
+~
+>speech_prog help~
+if quest (0, 3, $n) == 1
+  say Thank the Gods for people like you.
+  mpoload 12525
+  give i12525 $n
+  say You'll need that.
+  say Things are so chaotic that no one can seem to
+  say find Souldeo. We need his leadership!
+  say Find him so that plans may be made and we shall
+  say all be very grateful to you!
+  mpmset $n quest 0 3 2
+endif
+~
+|
+#12511
+order citizen west~
+A West Side Citizen~
+A West Side Citizen is running around in fear.~
+The citizen is frantic as he tries to escape the horrible doom that is
+inescapable.~
+ACT_STAY_AREA|ACT_BODY|ACT_RACE
+0
+0 S
+33 BODY_HAND BODY_HAND 2d380+0 4d7+8
+5000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+#12532
+chaos citizen east~
+An East Side Citizen~
+An East Side Citizen is running around in fear.~
+The citizen is frantic as he tries to escape the horrible doom that is
+inescapable.~
+ACT_STAY_AREA|ACT_BODY|ACT_RACE
+0
+0 S
+33 BODY_HAND BODY_HAND 2d380+0 4d7+8
+5000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+#12554
+guard city pompeii~
+A Pompeii City Guard~
+A Pompeii City Guard is here trying to calm everyone down.~
+It's a guard.~
+ACT_STAY_AREA|ACT_BODY|ACT_RACE
+0
+0 S
+38 BODY_FOOT BODY_FOOT 10d100+150 5d9+3
+20000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+#12565
+flyin wolf fish~
+A Flyin' Wolf Fish~
+A Flyin' Wolf Fish is here~
+The fish looks like a wolf!  Blood oozes from its gills and foam spews from
+its mammoth jaws!~
+ACT_PET|ACT_RACE
+0
+0 S
+25 0 0 6d300+1 2d25+5
+0 RACE_ELF
+POS_STANDING POS_STANDING SEX_MALE
+#12566
+baby dragon gold~
+A Baby dragon~
+A baby Gold Dragon is here.~
+It's scales glisten as though it were made of pure gold.  It has a collar 
+around its neck with a leash attached to it.~
+ACT_PET|ACT_RACE
+0
+0 S
+35 0 0 3d300+100 2d30+6
+0 RACE_ELF
+POS_STANDING POS_STANDING SEX_MALE
+#12567
+bambino~
+Bambino~
+Bambino stands here.~
+Bambino is a bold stocky dwarf that loves to eat!~
+ACT_SENTINEL|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_UNDERSTAND|AFF_TONGUES
+0 S
+95 BODY_HAND BODY_HAND 5d10000+1 1d1+224
+228047 RACE_DWARF
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+shout BBBBBBBBBBBBBBBBBBAAAAAAAAAAAAAAAAAAMMMMMMMMMMMMMMMM!!!!
+shout BBBBBBBBBBBBBBBBBBAAAAAAAAAAAAAAAAAAMMMMMMMMMMMMMMMM!!!!
+shout BBBBBBBBBBBBBBBBBBAAAAAAAAAAAAAAAAAAMMMMMMMMMMMMMMMM!!!!
+smile 
+say What's yer poison?
+emote stands at his bar ready to pour you a drink.
+~
+>speech_prog vodka whiskey ale beer rum scotch tequilla bourbon~
+if quest (0, 3, $n) == 0
+  say Ah, we've got a strong drinker, eh?
+  say Good choice, friend.
+  say Bracing yourself for the upcoming HOLOCAUST, eh?
+  wink $n
+  mpoload 12524
+  give i12524 $n
+  mpmset $n quest 0 3 1
+endif
+~
+>speech_prog holocaust~
+if quest (0, 3, $n) == 1
+  say Half the town's under lava already, Eagle-eye.
+  say Maybe you don't need that drink after all
+  snicker
+  say I think this is where I cut you off, friend.
+  say Get out, shoo! Don't bother the gatekeeper, either.
+  say He's recruiting HELPers, not drunkers!
+else
+say What about it?
+endif
+~
+>speech_prog help~
+if quest (0, 3, $n) == 1
+  say Not me!
+  bonk $n
+  say The Gatekeeper!
+endif
+~
+|
+#12568
+souldeo~
+Souldeo~
+Souldeo, the sherrif of Pompeii, stands here.~
+A powerful looking drow elf stands here with a large star pinned to his
+shirt.~
+ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_TONGUES
+0 S
+58 BODY_HAND BODY_HAND 3d1200+1 4d10+30
+50000 RACE_DROW
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 99~
+if quest (0, 3, $n) == 2
+  emote listens intently to the news you bring him.
+  say Excellent! I thought I alone had stayed!
+  say I shall contact the gatekeeper and begin plans
+  say immediately. Our fair city may yet be saved!
+  recho Souldeo hurries towards the gates.
+  mpmset $n quest 0 3 3
+  mppurge self
+endif
+~
+>rand_prog 80~
+if quest (0, 3, $r) == 4
+  say Our city will never be as fair as it once was, but with
+  say time perhaps we can stem the lava completely and rebuild.
+  smile $r
+  mpforce pompeii emote shakes your hand.
+  mpoload 12526
+  give i12526 $r
+  say Take this souvenir so you'll never forget us!
+  mpmset $r quest 0 3 5
+  emote heads back into the city.
+  mpgoto 12528
+endif
+~
+>death_prog 100~
+if actorhasobjnum(30900)
+or actorhasobjnum(30966)
+or actorhasobjnum(30967)
+or actorhasobjnum(30968)
+or actorhasobjnum(30969)
+  if quest(30,1,$n) == 0
+    mpmset $n quest 30 1 1
+    mpoload 30914
+    mpforce $n HELP GUILDTOKEN
+    mpquiet on
+    c 'giant strength' $n
+    give i30914 $n
+    mpquiet off
+  endif
+endif~
+|
+#0
+
+
+
+
+#OBJECTS
+#12500
+silver key~
+a silver key~
+You see a sparkling silver key.~
+~
+ITEM_TYPE_KEY
+ITEM_FLAG_INVENTORY|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+7 0 0 0
+1 0 1
+#12501
+ashen sword~
+a black sword~
+You see a sword covered in ash.~
+~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 4 10 WEAPON_SLASH
+4 2000 46
+#12502
+ashen helm~
+a black helm~
+You see a helm covered in ash.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HEAD
+8 0 0 0
+3 2000 30
+A
+APPLY_DEX 1
+A
+APPLY_STR 1
+A
+APPLY_DAMROLL 1
+#12503
+ashen boots~
+a pair of black boots~
+You see a pair of boots covered in ash.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_FEET
+8 0 0 0
+3 2000 30
+A
+APPLY_HITROLL 1
+A
+APPLY_DEX 2
+#12504
+ashen gauntlets~
+a pair of black gauntlets~
+You see a pair of gauntlets covered in ash.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HANDS
+9 0 0 0
+3 2000 30
+A
+APPLY_HIT 20
+#12505
+ashen plate~
+a black chest plate~
+You see a chest plate covered in ash.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_BODY
+9 0 0 0
+3 2000 20
+A
+APPLY_WIS 1
+A
+APPLY_CON 2
+#12506
+ashen sleeves~
+a pair of black sleeves~
+You see a pair of sleeves covered in ash.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_ARMS
+11 0 0 0
+3 2000 30
+#12507
+ashen shield~
+a black shield~
+You see a shield covered in ash.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_SHIELD
+8 0 0 0
+3 2000 20
+A
+APPLY_HITROLL 2
+A
+APPLY_DAMROLL 2
+#12508
+recall scroll~
+a scroll of recall~
+You see a scroll of recall.~
+~
+ITEM_TYPE_SCROLL
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+1 SPELL_WORD_OF_RECALL SPELL_NONE SPELL_NONE
+1 1000 1
+#12509
+potion understanding tongues~
+a potion of understanding and tongues~
+You see a potion of understanding and tongues.~
+~
+ITEM_TYPE_POTION
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+5 SPELL_TONGUES SPELL_UNDERSTAND SPELL_NONE
+1 300 15
+#12510
+scroll identify~
+a scroll of identify~
+You see a scroll of identify.~
+~
+ITEM_TYPE_SCROLL
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+7 SPELL_IDENTIFY SPELL_NONE SPELL_NONE
+1 300 7
+#12511
+potion invis~
+a potion of invisibility~
+You see a potion of invisibility.~
+~
+ITEM_TYPE_POTION
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+20 SPELL_INVIS SPELL_MAGIC_MISSILE SPELL_NONE
+1 100 20
+#12512
+potion bless~
+a potion of bless~
+You see a potion of bless.~
+~
+ITEM_TYPE_POTION
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+15 SPELL_BLESS SPELL_NONE SPELL_NONE
+1 100 15
+#12513
+giant strength potion~
+a potion of giant strength~
+You see a potion of giant strength.~
+~
+ITEM_TYPE_POTION
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+15 SPELL_GIANT_STRENGTH SPELL_NONE SPELL_NONE
+1 200 15
+#12514
+potion armor~
+a potion of armor~
+You see a potion of armor.~
+~
+ITEM_TYPE_POTION
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+12 SPELL_ARMOR SPELL_NONE SPELL_NONE
+1 100 12
+#12515
+shield potion~
+a potion of shield~
+You see a potion of shield.~
+~
+ITEM_TYPE_POTION
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+25 SPELL_SHIELD SPELL_FLAMESTRIKE SPELL_NONE
+1 2000 25
+#12516
+sanctuary potion~
+a potion of sanctuary~
+You see a potion of sanctuary. hehe~
+~
+ITEM_TYPE_POTION
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+40 SPELL_SANCTUARY SPELL_WORD_OF_RECALL SPELL_NONE
+1 60000 40
+#12517
+ashen ring~
+a black ring~
+You see a ring covered in ash.~
+~
+ITEM_TYPE_TREASURE
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_FINGER
+0 0 0 0
+1 100000 15
+#12518
+bowl pasta~
+a bowl of pasta~
+You see fettucine alfredo.~
+~
+ITEM_TYPE_FOOD
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+40 0 0 NOT_POISONED
+1 1 1
+#12519
+garlic bread~
+a loaf of garlic bread~
+You see garlic bread.~
+~
+ITEM_TYPE_FOOD
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+20 0 0 NOT_POISONED
+1 1 1
+#12520
+red wine carafe~
+a carafe of red wine~
+You see a bottle of red wine.~
+~
+ITEM_TYPE_DRINK_CON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+20 20 LIQ_WINE NOT_POISONED
+1 1 1
+#12521
+bottle blood~
+a bottle of blood~
+You see a bottle filled with blood.~
+~
+ITEM_TYPE_DRINK_CON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+20 20 LIQ_BLOOD NOT_POISONED
+1 200 1
+#12522
+olympic torch~
+an Olympic torch~
+You see an Olympic torch.~
+~
+ITEM_TYPE_LIGHT
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 500 0
+1 100000 1
+#12523
+fountain~
+a fountain~
+You see a glistening fountain.~
+~
+ITEM_TYPE_FOUNTAIN
+ITEM_FLAG_LEVEL
+0
+0 0 0 0
+10000 0 1
+#12524
+flask booze alcohol~
+A silver flask~
+A shiny silver flask lies here.~
+~
+ITEM_TYPE_TREASURE
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+0 0 500 0
+1 150000 5
+A
+APPLY_STR 1
+#12525
+lava repellent~
+Lava repellent 2000~
+You see a small red bottle.~
+The words 'sun scren' have been crossed out, and 'lava repellent 200'
+written over them.
+APPLY liberally to avoid ('sunburn' crossed out) liquid magma death
+(written in)~
+ITEM_TYPE_TREASURE
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+0 0 500 0
+1 200000 10
+A
+APPLY_WIS 1
+A
+APPLY_CON 1
+A
+APPLY_DAMROLL 1
+#12526
+lava lamp~
+A lava lamp~
+You see a funny shaped lamp lying here.~
+~
+ITEM_TYPE_LIGHT
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+0 0 500 0
+1 253000 10
+A
+APPLY_DAMROLL 2
+#0
+
+#ROOMS
+#12500
+Gate To Pompeii~
+An enormous city looms before you.  There is a dark cloud hovering over the 
+city.  You can see the top of a large volcano in the distance. A guard
+blocks your path to the north.  There is a gate to the north.  There is a
+sign here.  READ IT!~
+125 0 SECT_CITY
+DDIR_NORTH
+You see a gate.~
+gate~
+EX_ISDOOR|EX_CLOSED|EX_LOCKED 12500 12501
+DDIR_WEST
+~
+~
+0 -1 8131
+E
+sign~
+Another creation brought to you in Zorro/Crouton-vision (c).
+                             April '95.~
+S
+#12501
+Beginning of Main Street~
+An ash covered street leads north and seems to go on forever.  You can hear
+the screams of women and children and people are running everywhere.  All
+around you is pure chaos.  Several houses have caught fire and you can see
+a woman throwing her children out of their window in a vain attempt at an
+escape from the horror that is occuring.~
+125 0 SECT_CITY
+DDIR_NORTH
+Main Street~
+~
+0 -1 12504
+DDIR_EAST
+Guard House~
+~
+0 -1 12503
+DDIR_SOUTH
+Gate~
+gate~
+EX_ISDOOR|EX_CLOSED|EX_LOCKED 12500 12500
+DDIR_WEST
+Guard House~
+~
+0 -1 12502
+S
+#12502
+Guard House~
+Pompeii's guard house is in shambles.  Guards are running around trying to
+restore order in the city.  You are hardly noticed by the busy guards.~
+125 ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+Main Street~
+~
+0 -1 12501
+S
+#12503
+Guard House~
+Pompeii's guard house is in shambles.  Guards are running around trying to
+restore order in the city.  You are hardly noticed by the busy guards.~
+125 ROOM_INDOORS SECT_INSIDE
+DDIR_WEST
+Main Street~
+~
+0 -1 12501
+S
+#12504
+Main Street~
+An ash covered street leads north and seems to go on forever.  You can hear
+the screams of women and children and people are running everywhere.  All
+around you is pure chaos.  Several houses have caught fire and you can see
+a woman throwing her children out of their window in a vain attempt at an
+escape from the horror that is occuring.~
+125 0 SECT_CITY
+DDIR_NORTH
+Main Street~
+~
+0 -1 12505
+DDIR_EAST
+Weapons Shop~
+~
+0 -1 12512
+DDIR_SOUTH
+Main Street~
+~
+0 -1 12501
+DDIR_WEST
+Jewelry Shop~
+~
+0 -1 12514
+S
+#12505
+Main Street~
+An ash covered street leads north and seems to go on forever.  You can hear
+the screams of women and children and people are running everywhere.  All
+around you is pure chaos.  Several houses have caught fire and you can see
+a woman throwing her children out of their window in a vain attempt at an
+escape from the horror that is occuring.~
+125 0 SECT_CITY
+DDIR_NORTH
+Main Street~
+~
+0 -1 12506
+DDIR_EAST
+Armor Shop~
+~
+0 -1 12511
+DDIR_SOUTH
+Main Street~
+~
+0 -1 12504
+DDIR_WEST
+General Store~
+~
+0 -1 12513
+S
+#12506
+Main Street~
+An ash covered street leads north and seems to go on forever.  You can hear
+the screams of women and children and people are running everywhere.  All
+around you is pure chaos.  Several houses have caught fire and you can see
+a woman throwing her children out of their window in a vain attempt at an
+escape from the horror that is occuring.~
+125 0 SECT_CITY
+DDIR_NORTH
+Main Square~
+~
+0 -1 12515
+DDIR_EAST
+A Small Alley~
+~
+0 -1 12507
+DDIR_SOUTH
+Main Street~
+~
+0 -1 12505
+DDIR_WEST
+A Small Alley~
+~
+0 -1 12508
+S
+#12507
+A Small Alley~
+You are in a small alley that smells of filth and rotten flesh.  Ash falls
+from the sky covering the weak and poor who cannot move.  They choke on the
+ash as they cannot tilt their heads to avoid the volcanic ash.  You watch
+as a small child gasps for his last breath of air and falls over dead on a 
+pile of his kin.~
+125 ROOM_DARK SECT_CITY
+DDIR_NORTH
+Kingston Pike~
+~
+0 -1 12517
+DDIR_EAST
+The Magic Shop~
+~
+0 -1 12510
+DDIR_WEST
+Main Street~
+~
+0 -1 12506
+S
+#12508
+A Small Alley~
+You are in a small alley that smells of filth and rotten flesh.  Ash falls
+from the sky covering the weak and poor who cannot move.  They choke on the
+ash as they cannot tilt their heads to avoid the volcanic ash.  You watch
+as a small child gasps for his last breath of air and falls over dead on a 
+pile of his kin.~
+125 ROOM_DARK SECT_CITY
+DDIR_NORTH
+Kingston Pike~
+~
+0 -1 12516
+DDIR_EAST
+Main Street~
+~
+0 -1 12506
+DDIR_WEST
+The Magic Shop II~
+~
+0 -1 12509
+S
+#12509
+Zzevelo's Magical Goods~
+A human sits in a dark corner with a candle.  He is hunched over a desk
+furiously writing scrolls for his next adventure.  He looks up at you and
+says, "No, I cannot rift you today, but if you'd like to buy something, take
+a look around".~
+125 ROOM_SAFE SECT_INSIDE
+DDIR_EAST
+A Small Alley~
+~
+0 -1 12508
+S
+#12510
+Crayola's Magic Emporium~
+A tired looking illusionist is here planning his next attack against an 
+order faction.  He quickly rolls up his charts and maps as you enter.
+He walks over to you and smiles like a used car salesman and says, "Can I
+help you with anything?".~
+125 ROOM_SAFE SECT_INSIDE
+DDIR_WEST
+A Small Alley~
+~
+0 -1 12507
+S
+#12511
+Gim's Armor Boutique~
+A short stocky dwarf stands in the corner and sneers at you.  There is a
+plaque on the wall behind him.~
+125 ROOM_SAFE SECT_INSIDE
+DDIR_WEST
+Main Street~
+~
+0 -1 12505
+E
+plaque~
+ORDER SUCKS 
+                    KILL ALL ORDER~
+S
+#12512
+Utho's Huntin' Shop~
+A large ogre sits in a corner upon a large stool.  He's cleaning his
+fingernails with a longsword.  He smirks at you as you walk in.
+There is a plaque on the wall behind him.~
+125 ROOM_SAFE SECT_INSIDE
+DDIR_WEST
+Main Street~
+~
+0 -1 12504
+E
+plaque~
+I'LL HUNT DOWN ALL OF YA!!!!!!~
+S
+#12513
+Fasto's General Store~
+A powerful looking human stands here twiddling his thumbs impatiently.  He
+smiles at your approach and asks you to look around.  There is a plaque on 
+the wall behind him.~
+125 ROOM_SAFE SECT_INSIDE
+DDIR_EAST
+Main Street~
+~
+0 -1 12505
+E
+plaque~
+KILL EM!
+                    KILL EM!
+                    KICK EM WHEN THEY'RE DOWN!
+                    BUT KILL EM!~
+S
+#12514
+The Diamond Exchange~
+Guesto, the thief of the realm is sitting on a stool with a sight glass
+in his eye examining a precious stone.  His many takes are here on display
+in ornately designed glass cabinets.  He cocks one eye up from his work, 
+looks at you and says, "Could you wipe your feet please?".  There is a plaque
+on the wall behind him.~
+125 ROOM_SAFE SECT_INSIDE
+DDIR_EAST
+Main Street~
+~
+0 -1 12504
+E
+plaque~
+All these jewels were once
+                          owned by chaos members~
+S
+#12515
+Neyland Square~
+An enourmous ivory fountain shines even though everything around it is still
+covered in ash.  The fountain pours out tons of water every second, shooting
+it into the air.  The water trickles down the fountain ever so slowly, 
+seeming to stop at every crack and crevice that was put into the fountain.~
+125 ROOM_NO_MOB|ROOM_SAFE|ROOM_ALTAR_C|ROOM_ALTAR_O SECT_INN
+DDIR_NORTH
+Main Street~
+~
+0 -1 12521
+DDIR_EAST
+Kingston Pike~
+~
+0 -1 12517
+DDIR_SOUTH
+Main Street~
+~
+0 -1 12506
+DDIR_WEST
+Kingston Pike~
+~
+0 -1 12516
+S
+#12516
+Kingston Pike~
+A highly traversed road that connects downtown east to downtown west.
+Bodies and ash cover the road, you can see footprints in the ash.~
+125 0 SECT_CITY
+DDIR_NORTH
+A Small Alley~
+~
+0 -1 12522
+DDIR_EAST
+Neyland Square~
+~
+0 -1 12515
+DDIR_SOUTH
+A Small Alley~
+~
+0 -1 12508
+DDIR_WEST
+Kingston Pike~
+~
+0 -1 12518
+S
+#12517
+Kingston Pike~
+A highly traversed road that connects downtown east to downtown west.
+Bodies and ash cover the road, you can see footprints in the ash.~
+125 0 SECT_CITY
+DDIR_NORTH
+A Small Alley~
+~
+0 -1 12520
+DDIR_EAST
+Kingston Pike~
+~
+0 -1 12519
+DDIR_SOUTH
+A Small Alley~
+~
+0 -1 12507
+DDIR_WEST
+Neyland Square~
+~
+0 -1 12515
+S
+#12518
+Kingston Pike~
+A highly traversed road that connects downtown east to downtown west.
+Bodies and ash cover the road, you can see footprints in the ash.~
+125 0 SECT_CITY
+DDIR_EAST
+Kingston Pike~
+~
+0 -1 12516
+DDIR_WEST
+Downtown West~
+~
+0 -1 12544
+S
+#12519
+Kingston Pike~
+A highly traversed road that connects downtown east to downtown west.
+Bodies and ash cover the road, you can see footprints in the ash.~
+125 0 SECT_CITY
+DDIR_EAST
+Downtown East~
+~
+0 -1 12531
+DDIR_WEST
+Kingston Pike~
+~
+0 -1 12517
+S
+#12520
+A Small Alley~
+You are in a small alley that smells of filth and rotten flesh.  Ash falls
+from the sky covering the weak and poor who cannot move.  They choke on the
+ash as they cannot tilt their heads to avoid the volcanic ash.  You watch
+as a small child gasps for his last breath of air and falls over dead on a 
+pile of his kin.~
+125 ROOM_DARK SECT_CITY
+DDIR_EAST
+A Small House~
+~
+0 -1 12524
+DDIR_SOUTH
+Kingston Pike~
+~
+0 -1 12517
+DDIR_WEST
+Main Street~
+~
+0 -1 12521
+S
+#12521
+Main Street~
+An ash covered street leads north and seems to go on forever.  You can hear
+the screams of women and children and people are running everywhere.  All
+around you is pure chaos.  Several houses have caught fire and you can see
+a woman throwing her children out of their window in a vain attempt at an
+escape from the horror that is occuring.~
+125 0 SECT_CITY
+DDIR_NORTH
+Main Street~
+~
+0 -1 12525
+DDIR_EAST
+A Small Alley~
+~
+0 -1 12520
+DDIR_SOUTH
+Neyland Square~
+~
+0 -1 12515
+DDIR_WEST
+A Small Alley~
+~
+0 -1 12522
+S
+#12522
+A Small Alley~
+You are in a small alley that smells of filth and rotten flesh.  Ash falls
+from the sky covering the weak and poor who cannot move.  They choke on the
+ash as they cannot tilt their heads to avoid the volcanic ash.  You watch
+as a small child gasps for his last breath of air and falls over dead on a 
+pile of his kin.~
+125 ROOM_DARK SECT_CITY
+DDIR_EAST
+Main Street~
+~
+0 -1 12521
+DDIR_SOUTH
+Kingston Pike~
+~
+0 -1 12516
+DDIR_WEST
+A Small House~
+~
+0 -1 12523
+S
+#12523
+A Burning House~
+You have just entered a house that is on FIRE! RUN FOR YOUR LIFE!~
+125 ROOM_INDOORS SECT_LAVA
+DDIR_EAST
+A Small Alley~
+~
+0 -1 12522
+S
+#12524
+A Burning House~
+You have just entered a house that is on FIRE! RUN FOR YOUR LIFE!~
+125 ROOM_INDOORS SECT_LAVA
+DDIR_WEST
+A Small Alley~
+~
+0 -1 12520
+S
+#12525
+Main Street~
+An ash covered street leads north and seems to go on forever.  You can hear
+the screams of women and children and people are running everywhere.  All
+around you is pure chaos.  Several houses have caught fire and you can see
+a woman throwing her children out of their window in a vain attempt at an
+escape from the horror that is occuring.~
+125 0 SECT_CITY
+DDIR_NORTH
+The End of Main Street~
+~
+0 -1 12528
+DDIR_EAST
+Morgue~
+~
+0 -1 12527
+DDIR_SOUTH
+Main Street~
+~
+0 -1 12521
+DDIR_WEST
+A Large Floating Castle~
+~
+0 -1 12526
+S
+#12526
+Zorr's Floating Practice Castle~
+Before you stands a powerful looking elf with hands that glow.  He is 
+surrounded by a white aura and the heavens seem to shine down upon him as
+you gasp in awe at the mighty power of your new master.~
+125 ROOM_INDOORS|ROOM_SAFE SECT_INSIDE
+DDIR_EAST
+Main Street~
+~
+0 -1 12525
+S
+#12527
+Meldricko's Morgue~
+A powerful looking elf stands here performing autopsies.  He holds a bloody
+scalpel in his hand.  He smiles as you enter and offers you his bloody hand.
+A small plaque hangs on the wall behind him.~
+125 ROOM_SAFE|ROOM_MORGUE SECT_INSIDE
+DDIR_WEST
+Main Street~
+~
+0 -1 12525
+E
+plaque~
+You Kill Em! We Chill Em!
+                            Meldricko - Keebler~
+S
+#12528
+The End of Main Street~
+An ash covered street leads north and seems to go on forever.  You can hear
+the screams of women and children and people are running everywhere.  All
+around you is pure chaos.  Several houses have caught fire and you can see
+a woman throwing her children out of their window in a vain attempt at an
+escape from the horror that is occuring.  You see what might be a small path
+to the north.~
+125 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 16012
+DDIR_EAST
+The Pet Shop~
+~
+0 -1 12571
+DDIR_SOUTH
+Main Street~
+~
+0 -1 12525
+DDIR_WEST
+A Hovering Humming Glowing Invisible Castle~
+~
+0 -1 12530
+S
+#12530
+Croutonio's Hovering Humming Glowing Invisible Shimmering Training Center~
+A hulking ogre stands before you.  He holds a mighty sword that has too many
+stat bonuses to count.  You cant help bowing in front of this mighty force.
+You have found....
+
+    CROUTONIO!
+
+You may train now.~
+125 ROOM_INDOORS|ROOM_SAFE SECT_INSIDE
+DDIR_EAST
+End of Main Street~
+~
+0 -1 12528
+S
+#12531
+Downtown East~
+You are in the Eastern district of Pompeii.  This is a very bad looking part
+of town.  You notice many spraypaint cans lying on the ground as well as
+vandalism that reads, "Chaos Rules, Order Sucks".  This seems to be the chaos
+run part of town.~
+125 0 SECT_CITY
+DDIR_NORTH
+Downtown East~
+~
+0 -1 12532
+DDIR_EAST
+Silver Spoons Cafe~
+~
+0 -1 12557
+DDIR_SOUTH
+Downtown East~
+~
+0 -1 12538
+DDIR_WEST
+Kingston Pike~
+~
+0 -1 12519
+S
+#12532
+Downtown East~
+You are in the Eastern district of Pompeii.  This is a very bad looking part
+of town.  You notice many spraypaint cans lying on the ground as well as
+vandalism that reads, "Chaos Rules, Order Sucks".  This seems to be the chaos
+run part of town.~
+125 0 SECT_CITY
+DDIR_NORTH
+Downtown East~
+~
+0 -1 12534
+DDIR_EAST
+A Small House~
+~
+0 -1 12533
+DDIR_SOUTH
+Downtown East~
+~
+0 -1 12531
+DDIR_WEST
+A Small House~
+~
+0 -1 12559
+S
+#12533
+A Rundown Shack~
+You enter this room of filth, a feeling of disgust and nausia overwhelm you.
+You see a large goat sacrificed on a cardboard box in front of you.  Behind
+the box on the wall are the words, "Chaos Forever", finger-painted in blood.~
+125 ROOM_INDOORS SECT_INSIDE
+DDIR_WEST
+Downtown East~
+~
+0 -1 12532
+S
+#12534
+Downtown East~
+You are in the Eastern district of Pompeii.  This is a very bad looking part
+of town.  You notice many spraypaint cans lying on the ground as well as
+vandalism that reads, "Chaos Rules, Order Sucks".  This seems to be the chaos
+run part of town.~
+125 0 SECT_CITY
+DDIR_NORTH
+Downtown East~
+~
+0 -1 12536
+DDIR_EAST
+A Small House~
+~
+0 -1 12535
+DDIR_SOUTH
+Downtown East~
+~
+0 -1 12532
+DDIR_WEST
+A Small House~
+~
+0 -1 12560
+S
+#12535
+A Rundown Shack~
+You enter this room of filth, a feeling of disgust and nausia overwhelm you.
+You see a large goat sacrificed on a cardboard box in front of you.  Behind
+the box on the wall are the words, "Chaos Forever", finger-painted in blood.~
+125 ROOM_INDOORS SECT_INSIDE
+DDIR_WEST
+Downtown East~
+~
+0 -1 12534
+S
+#12536
+Downtown East~
+You are in the Eastern district of Pompeii.  This is a very bad looking part
+of town.  You notice many spraypaint cans lying on the ground as well as
+vandalism that reads, "Chaos Rules, Order Sucks".  This seems to be the chaos
+run part of town.~
+125 0 SECT_CITY
+DDIR_EAST
+A Small House~
+~
+0 -1 12537
+DDIR_SOUTH
+Downtown East~
+~
+0 -1 12534
+DDIR_WEST
+A Small House~
+~
+0 -1 12561
+S
+#12537
+A Rundown Shack~
+You enter this room of filth, a feeling of disgust and nausia overwhelm you.
+You see a large goat sacrificed on a cardboard box in front of you.  Behind
+the box on the wall are the words, "Chaos Forever", finger-painted in blood.~
+125 ROOM_INDOORS SECT_INSIDE
+DDIR_WEST
+Downtown East~
+~
+0 -1 12536
+S
+#12538
+Downtown East~
+You are in the Eastern district of Pompeii.  This is a very bad looking part
+of town.  You notice many spraypaint cans lying on the ground as well as
+vandalism that reads, "Chaos Rules, Order Sucks".  This seems to be the chaos
+run part of town.~
+125 0 SECT_CITY
+DDIR_NORTH
+Downtown East~
+~
+0 -1 12531
+DDIR_EAST
+A Small House~
+~
+0 -1 12539
+DDIR_SOUTH
+Downtown East~
+~
+0 -1 12540
+DDIR_WEST
+A Small House~
+~
+0 -1 12562
+S
+#12539
+A Rundown Shack~
+You enter this room of filth, a feeling of disgust and nausia overwhelm you.
+You see a large goat sacrificed on a cardboard box in front of you.  Behind
+the box on the wall are the words, "Chaos Forever", finger-painted in blood.~
+125 ROOM_INDOORS SECT_INSIDE
+DDIR_WEST
+Downtown East~
+~
+0 -1 12538
+S
+#12540
+Downtown East~
+You are in the Eastern district of Pompeii.  This is a very bad looking part
+of town.  You notice many spraypaint cans lying on the ground as well as
+vandalism that reads, "Chaos Rules, Order Sucks".  This seems to be the chaos
+run part of town.~
+125 0 SECT_CITY
+DDIR_NORTH
+Downtown East~
+~
+0 -1 12538
+DDIR_EAST
+A Small House~
+~
+0 -1 12541
+DDIR_SOUTH
+Downtown East~
+~
+0 -1 12542
+DDIR_WEST
+A Small House~
+~
+0 -1 12563
+S
+#12541
+A Rundown Shack~
+You enter this room of filth, a feeling of disgust and nausia overwhelm you.
+You see a large goat sacrificed on a cardboard box in front of you.  Behind
+the box on the wall are the words, "Chaos Forever", finger-painted in blood.~
+125 ROOM_INDOORS SECT_INSIDE
+DDIR_WEST
+Downtown East~
+~
+0 -1 12540
+S
+#12542
+Downtown East~
+You are in the Eastern district of Pompeii.  This is a very bad looking part
+of town.  You notice many spraypaint cans lying on the ground as well as
+vandalism that reads, "Chaos Rules, Order Sucks".  This seems to be the chaos
+run part of town.~
+125 0 SECT_CITY
+DDIR_NORTH
+Downtown East~
+~
+0 -1 12540
+DDIR_EAST
+A Small House~
+~
+0 -1 12543
+DDIR_WEST
+A Small House~
+~
+0 -1 12564
+S
+#12543
+A Rundown Shack~
+You enter this room of filth, a feeling of disgust and nausia overwhelm you.
+You see a large goat sacrificed on a cardboard box in front of you.  Behind
+the box on the wall are the words, "Chaos Forever", finger-painted in blood.~
+125 ROOM_INDOORS SECT_INSIDE
+DDIR_WEST
+Downtown East~
+~
+0 -1 12542
+S
+#12544
+Downtown West~
+You are in the Western district of Pompeii.  This is a very bad looking part
+of town.  You notice many spraypaint cans lying on the ground as well as
+vandalism that reads, "Order Rules, Chaos Sucks".  This seems to be the 
+order-run part of town.~
+125 0 SECT_CITY
+DDIR_NORTH
+Downtown West~
+~
+0 -1 12551
+DDIR_EAST
+Kingston Pike~
+~
+0 -1 12518
+DDIR_SOUTH
+Downtown West~
+~
+0 -1 12545
+DDIR_WEST
+A Small House~
+~
+0 -1 12558
+S
+#12545
+Downtown West~
+You are in the Western district of Pompeii.  This is a very bad looking part
+of town.  You notice many spraypaint cans lying on the ground as well as
+vandalism that reads, "Order Rules, Chaos Sucks".  This seems to be the 
+order-run part of town.~
+125 0 SECT_CITY
+DDIR_NORTH
+Downtown West~
+~
+0 -1 12544
+DDIR_EAST
+A Small House~
+~
+0 -1 12568
+DDIR_SOUTH
+Downtown West~
+~
+0 -1 12547
+DDIR_WEST
+A Small House~
+~
+0 -1 12546
+S
+#12546
+A Lavish House~
+As you enter this room you notice everything is white and clean.  The 
+floors are so bright it hurts to look at them.  On a coffee table is a
+statue of the great god Order, polished to perfection.~
+125 ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+Downtown West~
+~
+0 -1 12545
+S
+#12547
+Downtown West~
+You are in the Western district of Pompeii.  This is a very bad looking part
+of town.  You notice many spraypaint cans lying on the ground as well as
+vandalism that reads, "Order Rules, Chaos Sucks".  This seems to be the 
+order-run part of town.~
+125 0 SECT_CITY
+DDIR_NORTH
+Downtown West~
+~
+0 -1 12545
+DDIR_EAST
+A Small House~
+~
+0 -1 12569
+DDIR_SOUTH
+Downtown West~
+~
+0 -1 12549
+DDIR_WEST
+A Small House~
+~
+0 -1 12548
+S
+#12548
+A Lavish House~
+As you enter this room you notice everything is white and clean.  The 
+floors are so bright it hurts to look at them.  On a coffee table is a
+statue of the great god Order, polished to perfection.~
+125 ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+Downtown West~
+~
+0 -1 12547
+S
+#12549
+Downtown West~
+You are in the Western district of Pompeii.  This is a very bad looking part
+of town.  You notice many spraypaint cans lying on the ground as well as
+vandalism that reads, "Order Rules, Chaos Sucks".  This seems to be the 
+order-run part of town.~
+125 0 SECT_CITY
+DDIR_NORTH
+Downtown West~
+~
+0 -1 12547
+DDIR_EAST
+A Small House~
+~
+0 -1 12570
+DDIR_WEST
+A Small House~
+~
+0 -1 12550
+S
+#12550
+A Lavish House~
+As you enter this room you notice everything is white and clean.  The 
+floors are so bright it hurts to look at them.  On a coffee table is a
+statue of the great god Order, polished to perfection.~
+125 ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+Downtown West~
+~
+0 -1 12549
+S
+#12551
+Downtown West~
+You are in the Western district of Pompeii.  This is a very bad looking part
+of town.  You notice many spraypaint cans lying on the ground as well as
+vandalism that reads, "Order Rules, Chaos Sucks".  This seems to be the 
+order-run part of town.~
+125 0 SECT_CITY
+DDIR_NORTH
+Downtown West~
+~
+0 -1 12553
+DDIR_EAST
+A Small House~
+~
+0 -1 12565
+DDIR_SOUTH
+Downtown West~
+~
+0 -1 12544
+DDIR_WEST
+A Small House~
+~
+0 -1 12552
+S
+#12552
+A Lavish House~
+As you enter this room you notice everything is white and clean.  The 
+floors are so bright it hurts to look at them.  On a coffee table is a
+statue of the great god Order, polished to perfection.~
+125 ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+Downtown West~
+~
+0 -1 12551
+S
+#12553
+Downtown West~
+You are in the Western district of Pompeii.  This is a very bad looking part
+of town.  You notice many spraypaint cans lying on the ground as well as
+vandalism that reads, "Order Rules, Chaos Sucks".  This seems to be the 
+order-run part of town.~
+125 0 SECT_CITY
+DDIR_NORTH
+Downtown West~
+~
+0 -1 12555
+DDIR_EAST
+A Small House~
+~
+0 -1 12566
+DDIR_SOUTH
+Downtown West~
+~
+0 -1 12551
+DDIR_WEST
+A Small House~
+~
+0 -1 12554
+S
+#12554
+A Lavish House~
+As you enter this room you notice everything is white and clean.  The 
+floors are so bright it hurts to look at them.  On a coffee table is a
+statue of the great god Order, polished to perfection.~
+125 ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+Downtown West~
+~
+0 -1 12553
+S
+#12555
+Downtown West~
+You are in the Western district of Pompeii.  This is a very bad looking part
+of town.  You notice many spraypaint cans lying on the ground as well as
+vandalism that reads, "Order Rules, Chaos Sucks".  This seems to be the 
+order-run part of town.~
+125 0 SECT_CITY
+DDIR_EAST
+A Small House~
+~
+0 -1 12567
+DDIR_SOUTH
+Downtown West~
+~
+0 -1 12553
+DDIR_WEST
+A Small House~
+~
+0 -1 12556
+S
+#12556
+A Lavish House~
+As you enter this room you notice everything is white and clean.  The 
+floors are so bright it hurts to look at them.  On a coffee table is a
+statue of the great god Order, polished to perfection.~
+125 ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+Downtown West~
+~
+0 -1 12555
+S
+#12557
+The Silver Spoon's Cafe~
+Glorius scents and aromas assault your nostrils and tickle your tongue as
+you enter this fun-filled room of merriment.  It's easy to tell that smiles
+go a long way in this shop.  So put on a happy face, break out the
+marshmallows and let the city burn!  It's suppertime at THE SILVER SPOON!~
+125 ROOM_SAFE SECT_INSIDE
+DDIR_WEST
+You see downtown east.~
+~
+0 -1 12531
+S
+#12558
+A Burning House~
+Oh NO! You've fallen and can't get up.  The house is on fire! Wait!
+YOU'RE ON FIRE!!!!!
+GET OUT QUICK!~
+125 ROOM_DARK|ROOM_NO_MOB|ROOM_INDOORS SECT_LAVA
+S
+#12559
+A Rundown Shack~
+You enter this room of filth, a feeling of disgust and nausia overwhelm you.
+You see a large goat sacrificed on a cardboard box in front of you.  Behind
+the box on the wall are the words, "Chaos Forever", finger-painted in blood.~
+125 ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+Downtown East~
+~
+0 -1 12532
+S
+#12560
+A Rundown Shack~
+You enter this room of filth, a feeling of disgust and nausia overwhelm you.
+You see a large goat sacrificed on a cardboard box in front of you.  Behind
+the box on the wall are the words, "Chaos Forever", finger-painted in blood.~
+125 ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+Downtown East~
+~
+0 -1 12534
+S
+#12561
+A Rundown Shack~
+You enter this room of filth, a feeling of disgust and nausia overwhelm you.
+You see a large goat sacrificed on a cardboard box in front of you.  Behind
+the box on the wall are the words, "Chaos Forever", finger-painted in blood.~
+125 ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+Downtown East~
+~
+0 -1 12536
+S
+#12562
+A Rundown Shack~
+You enter this room of filth, a feeling of disgust and nausia overwhelm you.
+You see a large goat sacrificed on a cardboard box in front of you.  Behind
+the box on the wall are the words, "Chaos Forever", finger-painted in blood.~
+125 ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+Downtown East~
+~
+0 -1 12538
+S
+#12563
+A Rundown Shack~
+You enter this room of filth, a feeling of disgust and nausia overwhelm you.
+You see a large goat sacrificed on a cardboard box in front of you.  Behind
+the box on the wall are the words, "Chaos Forever", finger-painted in blood.~
+125 ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+Downtown East~
+~
+0 -1 12540
+S
+#12564
+A Rundown Shack~
+You enter this room of filth, a feeling of disgust and nausia overwhelm you.
+You see a large goat sacrificed on a cardboard box in front of you.  Behind
+the box on the wall are the words, "Chaos Forever", finger-painted in blood.~
+125 ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+Downtown East~
+~
+0 -1 12542
+S
+#12565
+A Lavish House~
+As you enter this room you notice everything is white and clean.  The 
+floors are so bright it hurts to look at them.  On a coffee table is a
+statue of the great god Order, polished to perfection.~
+125 ROOM_INDOORS SECT_INSIDE
+DDIR_WEST
+Downtown West~
+~
+0 -1 12551
+S
+#12566
+A Lavish House~
+As you enter this room you notice everything is white and clean.  The 
+floors are so bright it hurts to look at them.  On a coffee table is a
+statue of the great god Order, polished to perfection.~
+125 ROOM_INDOORS SECT_INSIDE
+DDIR_WEST
+Downtown West~
+~
+0 -1 12553
+S
+#12567
+A Lavish House~
+As you enter this room you notice everything is white and clean.  The 
+floors are so bright it hurts to look at them.  On a coffee table is a
+statue of the great god Order, polished to perfection.~
+125 ROOM_INDOORS SECT_INSIDE
+DDIR_WEST
+Downtown West~
+~
+0 -1 12555
+S
+#12568
+A Lavish House~
+As you enter this room you notice everything is white and clean.  The 
+floors are so bright it hurts to look at them.  On a coffee table is a
+statue of the great god Order, polished to perfection.~
+125 ROOM_INDOORS SECT_INSIDE
+DDIR_WEST
+Downtown West~
+~
+0 -1 12545
+S
+#12569
+A Lavish House~
+As you enter this room you notice everything is white and clean.  The 
+floors are so bright it hurts to look at them.  On a coffee table is a
+statue of the great god Order, polished to perfection.~
+125 ROOM_INDOORS SECT_INSIDE
+DDIR_WEST
+Downtown West~
+~
+0 -1 12547
+S
+#12570
+A Lavish House~
+As you enter this room you notice everything is white and clean.  The 
+floors are so bright it hurts to look at them.  On a coffee table is a
+statue of the great god Order, polished to perfection.~
+125 ROOM_INDOORS SECT_INSIDE
+DDIR_WEST
+Downtown West~
+~
+0 -1 12549
+S
+#12571
+Terro's Critter Barn~
+You enter and hear loud screeches and howling coming from cages throughout
+the room.  Among all the chaos stands a huge ratty elf with an even bigger 
+sword.  He leads a baby dragon on a leash he holds in his other hand.  He 
+walks up to you and asks if he can help you.~
+125 ROOM_PET_SHOP SECT_INSIDE
+DDIR_WEST
+End of Main Street~
+~
+0 -1 12528
+S
+#12572
+pet storage~
+Pet storage~
+125 2|ROOM_NO_MOB|32|128|256|ROOM_PRIVATE|ROOM_SAFE|ROOM_SOLITARY|ROOM_PET_SHOP|ROOM_NO_RECALL|ROOM_RIP SECT_INSIDE
+S
+#0
+
+
+
+
+#RESETS
+M 0 12500   1 12514 ;                   Guesto in The Diamond Exchange     
+G 1 12517 200       ;             a black ring
+M 0 12501   1 12513 ;                    Fasto in Fasto's General Store    
+G 1 12522 200       ;         an Olympic torch
+M 0 12502   1 12511 ;                      Gim in Gim's Armor Boutique     
+G 1 12502 200       ;             a black helm
+M 0 12503   1 12512 ;                     Utho in Utho's Huntin' Shop      
+G 1 12501 200       ;            a black sword
+M 0 12504   1 12509 ;                  Zzevelo in Zzevelo's Magical Goods  
+G 1 12511 200       ; a potion of invisibility
+G 1 12512 200       ;        a potion of bless
+G 1 12508 200       ;       a scroll of recall
+G 1 12510 200       ;     a scroll of identify
+G 1 12513 200       ;a potion of giant strengt
+M 0 12505   1 12510 ;                  Crayola in Crayola's Magic Emporium 
+G 1 12509 200       ;a potion of understanding
+G 1 12514 200       ;        a potion of armor
+G 1 12515 200       ;       a potion of shield
+G 1 12516 200       ;    a potion of sanctuary
+M 0 12506   1 12527 ;                Meldricko in Meldricko's Morgue       
+M 0 12507   1 12526 ;                     Zorr in Zorr's Floating Practice 
+M 0 12508   1 12530 ;                Croutonio in Croutonio's Hovering Humm
+M 0 12509   1 12571 ;                    Terro in Terro's Critter Barn     
+M 0 12567   1 12557 ;                  Bambino in The Silver Spoon's Cafe  
+G 1 12518 200       ;          a bowl of pasta
+G 1 12519 200       ;   a loaf of garlic bread
+G 1 12520 200       ;     a carafe of red wine
+G 1 12521 200       ;        a bottle of blood
+M 0 12510   1 12500 ;    The Pompeii Gatekeeper in Gate To Pompeii          
+G 1 12500   5       ;             a silver key
+M 0 12554   1 12547 ;     A Pompeii City Guard in Downtown West            
+E 1 12501  1 ITEM_WEAR_WIELD ;equip a black sword            
+E 1 12502  1 ITEM_WEAR_HEAD ;equip a black helm             
+M 0 12554   1 12553 ;     A Pompeii City Guard in Downtown West            
+E 1 12501  1 ITEM_WEAR_WIELD ;equip a black sword            
+E 1 12503  1 ITEM_WEAR_FEET ;equip a pair of black boots    
+M 0 12554   1 12540 ;     A Pompeii City Guard in Downtown East            
+E 1 12501  1 ITEM_WEAR_WIELD ;equip a black sword            
+E 1 12504  1 ITEM_WEAR_HANDS ;equip a pair of black gauntlets
+M 0 12554   1 12534 ;     A Pompeii City Guard in Downtown East            
+E 1 12501  1 ITEM_WEAR_WIELD ;equip a black sword            
+E 1 12505  1 ITEM_WEAR_BODY ;equip a black chest plate      
+M 0 12554   1 12516 ;     A Pompeii City Guard in Kingston Pike            
+E 1 12501  1 ITEM_WEAR_WIELD ;equip a black sword            
+E 1 12507  1 ITEM_WEAR_SHIELD ;equip a black shield           
+M 0 12554   1 12517 ;     A Pompeii City Guard in Kingston Pike            
+E 1 12501  1 ITEM_WEAR_WIELD ;equip a black sword            
+E 1 12506  1 ITEM_WEAR_ARMS ;equip a pair of black sleeves  
+M 0 12554   1 12502 ;     A Pompeii City Guard in Guard House              
+E 1 12501  1 ITEM_WEAR_WIELD ;equip a black sword            
+E 1 12502  1 ITEM_WEAR_HEAD ;equip a black helm             
+M 0 12554   1 12502 ;     A Pompeii City Guard in Guard House              
+E 1 12501  1 ITEM_WEAR_WIELD ;equip a black sword            
+E 1 12503  1 ITEM_WEAR_FEET ;equip a pair of black boots    
+M 0 12554   1 12503 ;     A Pompeii City Guard in Guard House              
+E 1 12501  1 ITEM_WEAR_WIELD ;equip a black sword            
+E 1 12504  1 ITEM_WEAR_HANDS ;equip a pair of black gauntlets
+M 0 12554   1 12503 ;     A Pompeii City Guard in Guard House              
+E 1 12501  1 ITEM_WEAR_WIELD ;equip a black sword            
+E 1 12505  1 ITEM_WEAR_BODY ;equip a black chest plate      
+M 0 12554   1 12525 ;     A Pompeii City Guard in Main Street              
+E 1 12501  1 ITEM_WEAR_WIELD ;equip a black sword            
+E 1 12506  1 ITEM_WEAR_ARMS ;equip a pair of black sleeves  
+M 0 12568   1 12528 ;                  Souldeo in The End of Main Street   
+E 1 12501  1 ITEM_WEAR_WIELD ;equip a black sword            
+E 1 12502  1 ITEM_WEAR_HEAD ;equip a black helm             
+E 1 12503  1 ITEM_WEAR_FEET ;equip a pair of black boots    
+E 1 12504  1 ITEM_WEAR_HANDS ;equip a pair of black gauntlets
+E 1 12505  1 ITEM_WEAR_BODY ;equip a black chest plate      
+E 1 12506  1 ITEM_WEAR_ARMS ;equip a pair of black sleeves  
+E 1 12507  1 ITEM_WEAR_SHIELD ;equip a black shield           
+M 0 12554   1 12505 ;     A Pompeii City Guard in Main Street              
+M 0 12554   1 12507 ;     A Pompeii City Guard in A Small Alley            
+M 0 12554   1 12522 ;     A Pompeii City Guard in A Small Alley            
+M 0 12554   1 12544 ;     A Pompeii City Guard in Downtown West            
+M 0 12554   1 12531 ;     A Pompeii City Guard in Downtown East            
+M 0 12511   1 12550 ;      A West Side Citizen in A Lavish House           
+M 0 12511   1 12570 ;      A West Side Citizen in A Lavish House           
+M 0 12511   1 12546 ;      A West Side Citizen in A Lavish House           
+M 0 12511   1 12568 ;      A West Side Citizen in A Lavish House           
+M 0 12511   1 12569 ;      A West Side Citizen in A Lavish House           
+M 0 12511   1 12569 ;      A West Side Citizen in A Lavish House           
+M 0 12511   1 12548 ;      A West Side Citizen in A Lavish House           
+M 0 12511   1 12548 ;      A West Side Citizen in A Lavish House           
+M 0 12511   1 12552 ;      A West Side Citizen in A Lavish House           
+M 0 12511   1 12565 ;      A West Side Citizen in A Lavish House           
+M 0 12511   1 12556 ;      A West Side Citizen in A Lavish House           
+M 0 12511   1 12561 ;      A West Side Citizen in A Rundown Shack          
+M 0 12511   1 12554 ;      A West Side Citizen in A Lavish House           
+M 0 12511   1 12554 ;      A West Side Citizen in A Lavish House           
+M 0 12511   1 12566 ;      A West Side Citizen in A Lavish House           
+M 0 12511   1 12566 ;      A West Side Citizen in A Lavish House           
+M 0 12511   1 12518 ;      A West Side Citizen in Kingston Pike            
+M 0 12511   1 12521 ;      A West Side Citizen in Main Street              
+M 0 12511   1 12506 ;      A West Side Citizen in Main Street              
+M 0 12511   1 12508 ;      A West Side Citizen in A Small Alley            
+M 0 12511   1 12522 ;      A West Side Citizen in A Small Alley            
+M 0 12532   1 12543 ;     An East Side Citizen in A Rundown Shack          
+M 0 12532   1 12564 ;     An East Side Citizen in A Rundown Shack          
+M 0 12532   1 12539 ;     An East Side Citizen in A Rundown Shack          
+M 0 12532   1 12562 ;     An East Side Citizen in A Rundown Shack          
+M 0 12532   1 12563 ;     An East Side Citizen in A Rundown Shack          
+M 0 12532   1 12563 ;     An East Side Citizen in A Rundown Shack          
+M 0 12532   1 12541 ;     An East Side Citizen in A Rundown Shack          
+M 0 12532   1 12541 ;     An East Side Citizen in A Rundown Shack          
+M 0 12532   1 12533 ;     An East Side Citizen in A Rundown Shack          
+M 0 12532   1 12559 ;     An East Side Citizen in A Rundown Shack          
+M 0 12532   1 12537 ;     An East Side Citizen in A Rundown Shack          
+M 0 12532   1 12561 ;     An East Side Citizen in A Rundown Shack          
+M 0 12532   1 12560 ;     An East Side Citizen in A Rundown Shack          
+M 0 12532   1 12560 ;     An East Side Citizen in A Rundown Shack          
+M 0 12532   1 12535 ;     An East Side Citizen in A Rundown Shack          
+M 0 12532   1 12535 ;     An East Side Citizen in A Rundown Shack          
+M 0 12532   1 12519 ;     An East Side Citizen in Kingston Pike            
+M 0 12532   1 12507 ;     An East Side Citizen in A Small Alley            
+M 0 12532   1 12520 ;     An East Side Citizen in A Small Alley            
+M 0 12532   1 12521 ;     An East Side Citizen in Main Street              
+M 0 12532   1 12505 ;     An East Side Citizen in Main Street              
+M 0 12532   1 12504 ;     An East Side Citizen in Main Street              
+M 0 12565   1 12572 ;       A Flyin' Wolf Fish in pet storage              
+M 0 12566   1 12572 ;            A Baby dragon in pet storage
+D 0 12500 DIR_NORTH DOOR_CLOSED_LOCKED ;door in Gate To Pompeii
+D 0 12501 DIR_SOUTH DOOR_CLOSED   ; door to gate          
+O 0 12523   1 12515 ;               a fountain in Neyland Square           
+S
+
+
+
+
+#SHOPS
+12500 ITEM_TYPE_TREASURE ITEM_TYPE_ARMOR ITEM_TYPE_WEAPON ITEM_TYPE_POTION
+     ITEM_TYPE_KEY 100  50  0 23 ;Guesto
+12501 ITEM_TYPE_LIGHT ITEM_TYPE_FURNITURE ITEM_TYPE_DRINK_CON ITEM_TYPE_BOAT
+     ITEM_TYPE_AMMO 100  50  0 23 ;Fasto
+12502 ITEM_TYPE_ARMOR ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING
+     ITEM_TYPE_NOTHING 100  50  0 23 ;Gim
+12503 ITEM_TYPE_WEAPON ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING
+     ITEM_TYPE_NOTHING 100  50  0 23 ;Utho
+12504 ITEM_TYPE_SCROLL ITEM_TYPE_WAND ITEM_TYPE_STAFF ITEM_TYPE_POTION
+     ITEM_TYPE_NOTHING 100  50  0 23 ;Zzevelo
+12505 ITEM_TYPE_SCROLL ITEM_TYPE_WAND ITEM_TYPE_STAFF ITEM_TYPE_POTION
+     ITEM_TYPE_NOTHING 100  50  0 23 ;Crayola
+12506 ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING
+     ITEM_TYPE_NOTHING 100  50  0 23 ;Meldricko
+12567 ITEM_TYPE_FOOD ITEM_TYPE_DRINK_CON ITEM_TYPE_NOTHING
+     ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING 100  50  0 23 ;Bambino
+0
+
+
+
+
+#SPECIALS
+S
+
+
+
+
+#$

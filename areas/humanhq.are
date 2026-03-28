@@ -1,0 +1,1218 @@
+#AREA Fort Tellurian~
+#AUTHORS Rukawa~
+
+
+#HELPS
+-1 SwordTech_StormCutter!~
+{030}Captain Matthius throws his sword towards you and charges at you{300}
+{030}at the same time! You were caught by surprise!!                  {300}
+
+{020}Captain Matthius yells 'Sword technique: {130}Storm Cutter{020}!!'{300}
+
+His {130}Storm Cutter{300} <<--**** {131}PUNISHES{300} ****-->> you for {110}300hp{300}!!
+~
+-1 SwordTech_RaisingFlame!~
+{030}Captain Matthius leaps into the air and strikes his sword on the{300}
+{030}ground hard!                                                    {300}
+
+{020}Captain Matthius yells 'Sword technique: {110}Flame Booster{020}!!'{300}
+
+{110}The earth shivers as flames erupt beneath your feet!!{300}
+
+His {110}Flame Booster{300} [*[*[*[*[*[ {131}DEVASTATES{300} ]*]*]*]*]*] you for {110}300hp{300}!!
+~
+-1 SwordTech_WaveInfinity!~
+{030}Captain Matthius holds his sword back as he summons his inner powers!{300}
+
+{020}Captain Matthius yells 'Sword technique: {170}Vacuum Slash{020}!!'{300}
+
+{170}You feel that as if the air around you is being sucked away as he{300}
+{170}swing his sword up high!                                         {300}
+
+His {170}Vacuum Slash{300} <<-***---|[ {170}DEMOLISHES{170} ]|---***->> you for {110}400hp{300}!!
+~
+-1 BEALLTHATYOUCANBE~
+
+.       {130}|=========================================================|{300}
+        {130}|{074}                                                         {130}|{300}
+        {130}|{074}         To [{174}JOIN{074}/{174}RESIGN{074}] from the Army, say :           {130}|{300}
+        {130}|{074}           " I wish to see the commander. "              {130}|{300}
+        {130}|{074}                                                         {130}|{300}
+        {130}|=========================================================|{300}
+
+~
+0 $~
+#RANGES 0 99 0 99
+#FLAGS AFLAG_NODEBUG|AFLAG_NOTELEPORT
+#MOBILES
+#500
+guard leader captain matthius~
+Captain Matthius~
+A guard of this mighty fortress is standing here.~
+Standing before you is a seven feet tall, muscular young man with
+dark brown hair. You notice that the armor which he is using is 
+different from the other guards who are currently standing beside
+him. He must be the leader of the guards here.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_SANCTUARY|AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_INFRARED|AFF_UNDERSTAND|AFF_TONGUES
+1000 S
+95 BODY_TORSO BODY_LEG|BODY_ARM|BODY_HAND 1d1+9400 10d10+100
+100000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if ispc($n)
+  if race($n) == 0
+    if level($n) < 10
+       say This is no place for you kid. Now go train some more.
+       emote takes you back to Chakkor city.
+       mpechoat $n Come back when you are a bit older.
+       mptransfer $n 9755
+    else
+       say Hello there.
+       smile $n
+       mpforce $n sleep
+       mpforce $n help BEALLTHATYOUCANBE
+    endif
+  endif
+  if race($n) > 1
+   if level($n) < 50
+     say Ah HA! A spy huh?
+     say I will not even degrade myself to killing you.
+     say However, I must teach you one hell of a lesson!
+     say Guards, remove this 'thing' from my sight!
+     mpechoat $n The guards pick you up and drag you to Chakkor city.
+     mptransfer $n 9755
+   else
+     say Prepare to defend yourself $n!
+     say Guards! Attack!
+     mpforce trooper_spec mpkill $n
+     mpkill $n
+   endif
+  endif
+endif
+~
+>rand_prog 100~
+if inroom($i) != 511
+  if position($i) != 6
+    mpmset self quest 0 4 0
+    mpgoto 511
+  endif
+endif
+if rand(3)
+  emote looks around him, making sure that everything is okay.
+endif
+~
+>speech_prog p I wish to see the commander.~
+if race($n) == 0
+   if level($n) > 9
+      say Very well than.
+      smile
+      emote opens the door to the small hut and let you in.
+      connect 1 515
+      mpforce $n east
+      emote closes the door.
+      connect 1 -1
+   endif
+endif
+~
+>fight_prog 99~
+   if quest(0,4,$i) != 0
+      mpmset self quest 0 4 0
+      mptransfer $n 511   
+      mpgoto 511   
+      mpkill $n
+   endif
+   if rand(43)
+      mpforce $n help SwordTech_StormCutter!
+      mpquiet on
+      kick
+      disarm
+      cast 'fireball' $n
+      cast 'tremor' $n
+      mpquiet off
+   endif
+   if rand(26)
+      if quest(0,4,$i) == 0
+         mpforce $n help SwordTech_RaisingFlame!
+         mpquiet on
+         cast 'fireball' $n
+         cast 'fireball' $n
+         cast 'fireball' $n
+         mpquiet off
+         mptransfer $n 520
+         mpgoto 520
+         mpmset $i quest 0 4 1
+         mpkill $n
+         break
+      endif
+   endif
+   if rand(36)
+      if quest(0,4,$i) == 0
+         mpforce $n help SwordTech_WaveInfinity!
+         mpquiet on
+         cast 'acid blast' $n
+         cast 'acid blast' $n
+         mpquiet off
+         mptransfer $n 521
+         mpgoto 521
+         mpmset $i quest 0 4 1
+         mpkill $n
+         break
+      endif
+   endif
+~
+>death_prog 100~
+   transfer $n 511
+   mpgoto 511
+   mpechoat $n Do not feel happy defeating me for I am the weakest officer here.
+~
+|
+#501
+guard trooper_spec~
+A guard of Fort Tellurian~
+A guard in full plate mail is standing guard here.~
+You cannot see his face under all that plate mail but he stands about 7
+feet tall. It is best that you not mess with him in anyways.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_INFRARED|AFF_UNDERSTAND|AFF_TONGUES
+1000 S
+60 BODY_TORSO BODY_LEG|BODY_ARM|BODY_HAND 8d100+1500 10d6+10
+100000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+#502
+guard captain Jessie~
+Sir Jessie~
+An important looking man is sitting here.~
+He is dressed in light plate male, and has curly hair.He looks at
+you as he notices that you are looking at him. He examines you
+closely for a while and returns to his work.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_INFRARED|AFF_UNDERSTAND|AFF_TONGUES
+1000 S
+150 BODY_TORSO BODY_LEG|BODY_ARM|BODY_HAND 8d1000+19000 1d1+499
+100000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if armystatus($n) == 0
+   say I am Sir Jessie, captain of the all mighty human army.
+   say Are you here to join the army?
+   look $n 
+endif
+~
+>speech_prog p yes~
+say Good, good. We could use more men like yaself son.
+say Now, if you wish to join the army, type :
+say " ARMY JOIN <ya password> "
+say If you wishes to retire in the future, tell Matthius
+say to bring you to me, then you may type :
+say " ARMY RESIGN <ya password> " here to retire.
+~
+>speech_prog p no~
+say I have no time for wimps like ya son!
+say Guards! Remove this human junk from my sight!
+mpechoat $n A few guards came and carried you out!
+mptransfer $n 9755
+~
+|
+#503
+guard elite knight Gill~
+Sir Gill~
+A man who looks very strong is standing here.~
+This man looks extremely strong and skillful. He is wears no armor
+and wields no weapon. You notice that his fists are blood red, and
+recalls a legendary fighter who had mastered an ancient martial art:
+{110}The Fist of Flames{300} and knows no equal in the realms of the mortal.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_INFRARED|AFF_UNDERSTAND|AFF_TONGUES
+1000 S
+100 BODY_TORSO BODY_LEG|BODY_ARM|BODY_HAND 5d1000+9000 10d30+100
+100000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>speech_prog p I wish to enter the fortress.~
+if armystatus($n) == 1
+   tell $n Very well than. However if you have not seen Lord Gargkarth,
+   tell $n you need to go see him.
+   mpechoat $n The man opens the doors and let you in.
+   mptransfer $n 508
+else
+   say Sorry, restricted personals only.
+endif
+~
+>all_greet_prog 100~
+if race($n) > 0
+   sigh
+   say I can see that Matthius is not doing his job again!
+   say Oh well, I will just have to kill you myself.
+   mpkill $n
+else
+   if race($n) == 0
+      if armystatus($n) == 1
+         smile $n
+         mpechoat $n Type : "I wish to enter the fortress."
+         mpechoat $n if you wishes to enter the fortress.
+      endif
+   endif
+endif
+~
+>fight_prog 100~
+mpechoat $n Welcome to your death.
+echo $n is dead!!
+mpquiet on
+slay $n
+mpquiet off
+tell $n I am God compared to you.
+~
+|
+#504
+Reaslin~
+Reaslin~
+Reaslin is here arranging some magical scrolls.~
+Reaslin notice you looking at him and smiles warmly at you.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_INFRARED|AFF_UNDERSTAND|AFF_TONGUES
+1000 S
+100 BODY_TORSO BODY_LEG|BODY_ARM|BODY_HAND 2d1000+9000 10d30+100
+100000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+#505
+Benimaru~
+Benimaru~
+Benimaru is here taking care of the corpses.~
+He has thick blond hair and wears an ebony robe. His skin is so fair that 
+it looks pale.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_INFRARED|AFF_UNDERSTAND|AFF_TONGUES
+1000 S
+100 BODY_TORSO BODY_LEG|BODY_ARM|BODY_HAND 2d1000+9000 10d30+100
+100000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+#506
+Brandon~
+Brandon~
+Brandon is here working on a huge piece of armor.~
+He has dark skin and long brown hair. You notice that he right arm is 
+clearly bigger than his left arm; due to the fact that he has been 
+working in this place for a long time.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_INFRARED|AFF_UNDERSTAND|AFF_TONGUES
+1000 S
+100 BODY_TORSO BODY_LEG|BODY_ARM|BODY_HAND 2d1000+9000 10d30+100
+100000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+#507
+Robert~
+Robert~
+Robert is here cleaning the counter.~
+You dont really see anything special about this man, accept the fact that 
+he has a scare on his face. You cannot help but wonder how on earth did 
+that happen.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_INFRARED|AFF_UNDERSTAND|AFF_TONGUES
+1000 S
+100 BODY_TORSO BODY_LEG|BODY_ARM|BODY_HAND 2d1000+9000 10d30+100
+100000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+#508
+Leonor~
+Sir Leonor~
+Sir Leonor is here training the new recruits.~
+He look extremely strong and powerful, something tells you that he could 
+crush you like a bug. However, he would make a great trainer.. if you dont 
+piss him off.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_TRAIN|ACT_PRACTICE|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_INFRARED|AFF_UNDERSTAND|AFF_TONGUES
+1000 S
+100 BODY_TORSO BODY_LEG|BODY_ARM|BODY_HAND 2d1000+9000 10d30+100
+100000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+#509
+Gargkarth~
+Lord Gargkarth~
+Lord Gargkarth the commander of the human troops is here.~
+The first impression you have of this man is, he looks a bit dumb. However 
+looks can be deceiving sometimes.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_INFRARED|AFF_UNDERSTAND|AFF_TONGUES
+1000 S
+150 BODY_TORSO BODY_LEG|BODY_ARM|BODY_HAND 20d1000+9000 1d1+500
+100000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if quest(0,1,$n) == 0
+  mpmset $n quest 0 1 1
+  say Welcome to our ranks.
+  say You might have been told that the enemies are weak,
+  say but do not believe it else it may cost you your life.
+  say Always watch your back ok?
+  say Now here is a little something for you...
+  mpoload 519
+  drop all
+  say It is a ranker and will tell you your rank in the army.
+  say All you need to do is type "RANKING".
+  say Have a nice day.
+else
+  say Hello $n
+  smile $n
+endif
+~
+|
+#510
+Deeda~
+Maiden Deeda~
+Maiden Deeda is here making sure that the the troops never get hungry.~
+She has short black hair, and a flat big nose, not at all attractive.
+However she really can cook.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_INFRARED|AFF_UNDERSTAND|AFF_TONGUES
+1000 S
+100 BODY_TORSO BODY_LEG|BODY_ARM|BODY_HAND 2d1000+9000 10d30+100
+100000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_FEMALE
+>rand_prog 100~
+if rand(10)
+  cast 'cure critical' $r
+  break
+endif
+if rand(10)
+  cast 'cure light' $r
+  break
+endif
+if rand(10)
+  cast 'giant strength' $r
+  break
+endif
+if rand(10)
+  cast 'shield' $r
+  break
+endif
+if rand(10)
+  cast 'armor' $r
+  break
+endif
+if rand(10)
+  cast 'feast'
+  break
+endif
+if rand(10)
+  cast 'bless' $r
+  break
+endif
+if rand(10)
+  cast 'sanctuary' $r
+  break
+endif
+if rand(10)
+  cast 'heal' $r
+  break
+endif
+if rand(10)
+  cast 'refresh' $r
+  break
+endif
+~
+|
+#511
+Xueda~
+Sir Xueda~
+Sir Xueda the commander of the guards is here.~
+He stands about 6 feet tall and wears a suit of shiny golden armor. He 
+looks extremely strong.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_INFRARED|AFF_UNDERSTAND|AFF_TONGUES
+1000 S
+100 BODY_TORSO BODY_LEG|BODY_ARM|BODY_HAND 2d1000+9000 10d30+100
+100000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if time() < 7
+   if time() > 20
+      say Lord Gargkarth is resting at the moment.
+      say If you need to see him come back in the morning.
+      mpechoat $n You decided to come back some other time.
+      mpforce $n south
+   endif
+endif
+~
+|
+#513
+RankerOne~
+The ranker~
+~
+To get rid of the oprog_god_command set your level to 99 thingie!~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_INFRARED|AFF_UNDERSTAND|AFF_TONGUES
+1000 S
+100 BODY_TORSO BODY_LEG|BODY_ARM|BODY_HAND 2d1000+9000 10d30+100
+100000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>speech_prog p What is my ranking in the army?~
+if actorhasobjnum(519)
+   tell $n You are only an infantry, wuss.
+   mpmset $n long $n an Infantry of the Human Army is here.
+   mppurge $i
+endif
+~
+|
+#514
+RankerTwo~
+The ranker~
+~
+To get rid of the oprog_god_command set your level to 99 thingie!~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_INFRARED|AFF_UNDERSTAND|AFF_TONGUES
+1000 S
+100 BODY_TORSO BODY_LEG|BODY_ARM|BODY_HAND 2d1000+9000 10d30+100
+100000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>speech_prog p What is my ranking in the army?~
+if actorhasobjnum(519)
+   tell $n You are Cavalier, son.
+   mpmset $n long $n a Cavalier of the Human Army is here.
+   mppurge $i
+endif
+~
+|
+#515
+RankerThree~
+The ranker~
+~
+To get rid of the oprog_god_command set your level to 99 thingie!~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_INFRARED|AFF_UNDERSTAND|AFF_TONGUES
+1000 S
+100 BODY_TORSO BODY_LEG|BODY_ARM|BODY_HAND 2d1000+9000 10d30+100
+100000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>speech_prog p What is my ranking in the army?~
+if actorhasobjnum(519)
+   tell $n You are an Elite.
+   mpmset $n long $n an Elite of the Human Army is here.
+   mppurge $i
+endif
+~
+|
+#516
+RankerFour~
+The ranker~
+~
+To get rid of the oprog_god_command set your level to 99 thingie!~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_INFRARED|AFF_UNDERSTAND|AFF_TONGUES
+1000 S
+100 BODY_TORSO BODY_LEG|BODY_ARM|BODY_HAND 2d1000+9000 10d30+100
+100000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>speech_prog p What is my ranking in the army?~
+if actorhasobjnum(519)
+   if sex($n) == 2
+      tell $n You are a Knight, M'Lady.
+      mpmset $n long Maiden $n the Knight of the Human Army is here.
+   else
+      tell $n You are a Knight, M'Lord.
+      mpmset $n long Sir $n the Knight of the Human Army is here.
+   endif
+   mppurge $i
+endif
+~
+|
+#517
+RankerFive~
+The ranker~
+~
+~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_INFRARED|AFF_UNDERSTAND|AFF_TONGUES
+1000 S
+100 BODY_TORSO BODY_LEG|BODY_ARM|BODY_HAND 2d1000+9000 10d30+100
+100000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>speech_prog p What is my ranking in the army?~
+if actorhasobjnum(519)
+   if sex($n) == 2
+      tell $n You are a High Knight, M'Lady.
+      mpmset $n long Lady $n the High Knight of the Human Army is here.
+   else
+      tell $n You are a High Knight, M'Lord.
+      mpmset $n long Lord $n the High Knight of the Human Army is here.
+   endif
+   mppurge $i
+endif
+~
+|
+#0
+
+
+
+
+#OBJECTS
+#500
+leather studded armor~
+a Suit of Studded Leather Armor~
+A studded leather armor is left here.~
+Seem to be top of the line quality leather armor.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_BODY
+3 0 0 0
+3 150 2
+#501
+leather studded leggings~
+a Pair of Studded Leather Leggings~
+A studded leather leggings is left here.~
+Seem to be top of the line quality leather armor.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_LEGS
+3 0 0 0
+3 150 2
+#502
+leather studded gloves~
+a Pair of Studded Leather Gloves~
+A studded leather gloves is left here.~
+Seem to be top of the line quality leather armor.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HANDS
+3 0 0 0
+3 150 2
+#503
+leather studded robe~
+a Suit of Studded Leather Robe~
+A studded leather robe is left here.~
+Seem to be top of the line quality leather armor.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_ABOUT
+3 0 0 0
+3 150 2
+#504
+leather studded shield~
+a Studded Leather Shield~
+A studded leather shield is left here.~
+Seem to be top of the line quality leather armor.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_SHIELD
+3 0 0 0
+3 150 2
+#505
+leather studded helm~
+a Studded Leather Helm~
+A studded leather helm is left here.~
+Seem to be top of the line quality leather armor.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HEAD
+3 0 0 0
+3 150 2
+#506
+leather studded sleeves~
+a Pair of Studded Leather Sleeves~
+A studded leather sleeves is left here.~
+Seem to be top of the line quality leather armor.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_ARMS
+3 0 0 0
+3 150 2
+#507
+recall scroll~
+a Scroll of Recall~
+A scroll of recall lies here.~
+~
+ITEM_TYPE_SCROLL
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+10 SPELL_WORD_OF_RECALL SPELL_NONE SPELL_NONE
+1 200 10
+#508
+identify scroll~
+a Scroll of Identify~
+A scroll of identify lies here.~
+~
+ITEM_TYPE_SCROLL
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+10 SPELL_IDENTIFY SPELL_NONE SPELL_NONE
+1 200 10
+#509
+normal sword~
+a Normal Sword~
+A sword is left here~
+Just a normal sword, what do you hope to get at this price?~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_NOREMOVE|ITEM_FLAG_ANTI_EVIL|ITEM_FLAG_ANTI_GOOD|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 3 3 WEAPON_STAB
+4 350 2 
+#510
+normal whip~
+a Normal Whip~
+A whip is left here~
+Just a normal whip, what do you hope to get at this price?~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 3 3 WEAPON_WHIP
+4 350 2
+#511
+scroll detect invisibility~
+a Scroll of Detect Invisibility~
+A scroll of detect invisibility lies here.~
+~
+ITEM_TYPE_SCROLL
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+10 SPELL_DETECT_INVIS SPELL_NONE SPELL_NONE
+1 200 10
+#512
+detect invisibility potion~
+a Potion of Detect Invisibility~
+A potion of detect invisibility lies here.~
+~
+ITEM_TYPE_POTION
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+10 SPELL_DETECT_INVIS SPELL_NONE SPELL_NONE
+1 200 10
+#513
+iron rations~
+iron Rations~
+Some iron rations is left here.~
+Iron rations! Dont you know what iron ration is? Doh!~
+ITEM_TYPE_FOOD
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+24 0 0 NOT_POISONED
+1 20 1
+#514
+milk~
+a glass of milk~
+A glass milk~
+It is ice tea.~
+ITEM_TYPE_DRINK_CON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+3 3 LIQ_TEA NOT_POISONED
+1 10 1
+#515
+army backpack~
+an Army Backpack~
+An army backpack is left here.~
+You see a label of the human army on da backpack!~
+ITEM_TYPE_CONTAINER
+ITEM_FLAG_NOREMOVE|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+200 CONT_CLOSEABLE -1 0
+0 500 10
+#516
+army torch~
+an army torch~
+An army torch is left here.~
+An army torch, a plain simple army torch!~
+ITEM_TYPE_LIGHT
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+0 0 100 0
+1 50 1
+#517
+fountain~
+a fountain stands here~
+A fountain stands here.~
+Look just like any other fountain.~
+ITEM_TYPE_FOUNTAIN
+ITEM_FLAG_LEVEL
+0
+0 0 0 0
+9999 0 99
+#518
+boat army~
+an army boat~
+An army boat is left here.~
+~
+ITEM_TYPE_BOAT
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 0 0
+5 248 1
+#519
+ranker~
+a Human Army Ranker~
+A ranker of the human army is left here.~
+To find out and display your rank, type "RANKING"~
+ITEM_TYPE_TREASURE
+ITEM_FLAG_LEVEL|ITEM_FLAG_AUTO_ENGRAVE
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+0 0 0 0
+2 50000 1
+P 1
+TRIG_UNKNOWN 100 ranking~
+OPROG_IF OIF_USER_RACE = RACE_HUMAN 2 10
+P 2
+TRIG_VOID
+OPROG_IF OIF_WEAR_LOC ! WEAR_NONE 3 11
+P 3
+TRIG_VOID
+OPROG_IF OIF_USER_POSITION = POS_RESTING 4 12
+P 4
+TRIG_VOID
+OPROG_IF OIF_ARMYSTATUS = 1 5 13
+P 5
+TRIG_VOID
+OPROG_IF OIF_USER_LEVEL < 20 20 6
+P 6
+TRIG_VOID
+OPROG_IF OIF_USER_LEVEL < 40 30 7
+P 7
+TRIG_VOID
+OPROG_IF OIF_USER_LEVEL < 70 40 8
+P 8
+TRIG_VOID
+OPROG_IF OIF_USER_LEVEL < 90 50 9
+P 9
+TRIG_VOID
+OPROG_IF OIF_USER_LEVEL < 99 60 0 
+P 10
+TRIG_VOID
+OPROG_ECHO
+You must be human to use this device! Doh!~
+P 10
+TRIG_VOID
+OPROG_JUNK
+P 11
+TRIG_VOID
+OPROG_ECHO
+You need to hold the ranker to use it.~
+P 12
+TRIG_VOID
+OPROG_ECHO
+You need to be resting to use the ranker.~
+P 13
+TRIG_VOID
+OPROG_ECHO
+You are not ( or is no longer ) in the Army.~
+P 20
+TRIG_VOID
+OPROG_GOD_COMMAND
+mpmload 513 & say What is my ranking in the army?~
+P 30
+TRIG_VOID
+OPROG_GOD_COMMAND
+mpmload 514 & say What is my ranking in the army?~
+P 40
+TRIG_VOID
+OPROG_GOD_COMMAND
+mpmload 515 & say What is my ranking in the army?~
+P 50
+TRIG_VOID
+OPROG_GOD_COMMAND
+mpmload 516 & say What is my ranking in the army?~
+P 60
+TRIG_VOID
+OPROG_GOD_COMMAND
+mpmload 517 & say What is my ranking in the army?~
+#0
+
+
+#ROOMS
+#500
+General Equipment Supplier~
+You can find water containers, torches and containers in this building. 
+At first it appears to be just another general store but when you look 
+the prices of the stuffs here, you could not help but imagine how could 
+this place survive by selling equipments at such a low rate. You would
+not want to leave empty handed.~
+5 ROOM_INDOORS|ROOM_SAFE|ROOM_NO_RECALL SECT_CITY
+DDIR_SOUTH
+You see a hallway~
+~
+0 -1 501
+S
+#501
+Hallway~
+You find yourself in a huge hallway. You can hear people shouting and 
+laughing about how stupid the enemies are to battle the humans, the
+noises seem to come from the east. To the north you see a general supply 
+store, and to the south is a training room.~
+5 ROOM_INDOORS|ROOM_SAFE|ROOM_NO_RECALL SECT_CITY
+DDIR_NORTH
+You see a general equipment supply store.~
+~
+0 -1 500
+DDIR_EAST
+You see the hallway leading to the commons.~
+~
+0 -1 503
+DDIR_SOUTH
+You see a training room.~
+~
+0 -1 502
+S
+#502
+The Combat Training Hall~
+This huge training hall is where the great human army trains. Training 
+dummies that resembles Halflings are lined up properly beside the south 
+wall. To the north is a hallway.~
+5 ROOM_INDOORS|ROOM_SAFE|ROOM_NO_RECALL SECT_CITY
+DDIR_NORTH
+You see a hallway~
+~
+0 -1 501
+S
+#503
+Hallway~
+You find yourself in a huge hallway. You can hear people shouting and
+laughing in the commons hall to the east; about how stupid the enemies 
+are to battle the humans. The hallway continues west where you will find 
+the training hall and the general store.~
+5 ROOM_INDOORS|ROOM_SAFE|ROOM_NO_RECALL SECT_CITY
+DDIR_EAST
+You see a crowded hall~
+~
+0 -1 507
+DDIR_WEST
+You see more of the hallway~
+~
+0 -1 501
+S
+#504
+The Command Center~
+You find yourself in the human army's command center. There is a huge 
+table in the middle of the room and a big map hanging on the northern wall.
+This room is illuminated by a huge crystal that floats 5 inches about the 
+table. To the west is a huge bookshelf, and you notice that most of the
+books on the shelf are about war techniques. To the east is a painting of
+Lord Lettkard, the ruler of Chakkor.~
+5 ROOM_INDOORS|ROOM_SAFE|ROOM_NO_RECALL SECT_CITY
+DDIR_SOUTH
+You see a huge oaken door.~
+oaken~
+EX_ISDOOR|EX_CLOSED -1 505
+S
+#505
+Hallway~
+This part of the hallway is heavily guarded. You can see a huge oaken 
+door to the north, and there is a sign on the door. The hallway leads 
+south, back to the commons hall.~
+5 ROOM_INDOORS|ROOM_SAFE|ROOM_NO_RECALL SECT_CITY
+DDIR_NORTH
+You see a huge oaken door.~
+oaken~
+EX_ISDOOR|EX_CLOSED -1 504
+DDIR_SOUTH
+The hallway lead south to the commons hall.~
+~
+0 -1 506
+E
+sign~
+,
+,              ====================
+,             ||  COMMAND CENTER  ||
+,              ====================
+,~
+S
+#506
+Hallway~
+You find yourself in a huge hallway. You can hear shouting and laughing 
+coming from the commons hall down south. To the north is a heavily guarded
+hallway with a huge oaken door.~
+5 ROOM_INDOORS|ROOM_SAFE|ROOM_NO_RECALL SECT_CITY
+DDIR_NORTH
+You see lots of guards there.~
+~
+0 -1 505
+DDIR_SOUTH
+You see the commons hall~
+~
+0 -1 507
+S
+#507
+The Commons Hall~
+This is the commons hall of Fort Tellurian where the human warriors gather 
+and talk after a stressful battle with the halflings To the east, you will
+find magical items, weapons, armor and food. To the west you will find a
+training hall and a general store.~
+5 ROOM_INDOORS|ROOM_SAFE|ROOM_ALTAR_C|ROOM_ALTAR_O SECT_INN
+DDIR_NORTH
+The hallway leads north.~
+~
+0 -1 506
+DDIR_EAST
+The hallway leads east.~
+~
+0 -1 514
+DDIR_SOUTH
+The hallway leads south.~
+~
+0 -1 508
+DDIR_WEST
+The hallway leads west.~
+~
+0 -1 503
+S
+#508
+Hallway~
+You find yourself in a huge hallway. You can hear shouting and laughing
+coming from the commons hall up north. To the south is a magical pathway 
+that the human army uses to launch their sneak attacks.~
+5 ROOM_INDOORS|ROOM_SAFE|ROOM_NO_RECALL SECT_CITY
+DDIR_NORTH
+You see the commons hall.~
+~
+0 -1 507
+S
+#510
+The Gates of Fort Tellurian~
+You find yourself before the huge gates of Fort Tellurian: the home of 
+the all mighty human army. The gates seem to be constructed of adamantite:
+a metal strong enough to sustain any form of attacks. To the south is a 
+heavily guarded guard post.~
+5 ROOM_INDOORS|ROOM_NO_RECALL SECT_CITY
+DDIR_SOUTH
+You see a heavily guarded guard post.~
+~
+0 -1 511
+S
+#511
+Guard Post~
+Two huge lookout towers stands before this legendary fortress of the 
+mighty human army. The guards here looks extremely well train and 
+skillful. With them guarding this place, it would be wise to start 
+fleeing now if you were an enemy of the human race. The entrance of
+the fortress is north of here and to the east is a small hut.~
+5 ROOM_NO_RECALL SECT_CITY
+DDIR_NORTH
+You see the gates of the fortress.~
+~
+0 -1 510
+DDIR_SOUTH
+You see a small trail that continues leading south.~
+~
+0 -1 512
+S
+#512
+A Small Trail~
+The trail seems to be leading to some sort of a fortress. To the north 
+you can see two huge lookout towers. It seems like whatever lies ahead
+must be very important. There is a huge sign here.~
+5 ROOM_INDOORS|ROOM_SAFE|ROOM_NO_RECALL SECT_CITY
+DDIR_NORTH
+You see a guard post.~
+~
+0 -1 511
+DDIR_SOUTH
+The trail that leads you here!~
+~
+0 -1 513
+E
+sign~
+.
+.                =====================================
+.               ||                                   ||
+.               ||          FORT. TELLURIAN          ||   
+.               ||      This place is restricted     ||
+.               ||     for human race only. Other    ||
+.               ||     races turn back now or pay    ||
+.               ||     the price!!!                  ||
+.               ||                                   ||
+.                ===================================== 
+.                               |     |
+.                               |     | 
+.~
+S
+#513
+A clearing in the dark forest~
+You are on a dusty trail winding its way east-west between huge, ancient 
+trees whose grey trunks remind you of ancient pillars in a enormous, 
+deserted hall. To the north, you can see the tip of a lookout tower.~
+5 ROOM_NO_MOB|ROOM_INDOORS|ROOM_SAFE|ROOM_NO_RECALL SECT_FOREST
+DDIR_NORTH
+The trail leads towards the guard post.~
+~
+0 -1 512
+DDIR_WEST
+You see a narrow trail through the deep, dark forest.~
+~
+0 -1 6108
+S
+#514
+Hallway~
+You find yourself in a huge hallway. You can hear people shouting and
+laughing in the commons hall to the west; about how stupid the enemies 
+are to battle the humans. The hallway continues east where you will find
+the magic shop, the arms shop, and the morgue.~
+5 ROOM_INDOORS|ROOM_SAFE|ROOM_NO_RECALL SECT_CITY
+DDIR_EAST
+You see the commons hall.~
+~
+0 -1 517
+DDIR_WEST
+You see more of the hallway.~
+~
+0 -1 507
+S
+#515
+A Small Hut~
+The small hut might look old and ugly from the outside, but the inside 
+looks like a palace. The walls here are made of ivory marbles and the
+floor is covered by a beautiful red carpet. There is also a huge oak 
+desk on the eastern end of the hut. On the southern wall, is a huge
+map of the central continent. On the northern wall is a notice board.~
+5 ROOM_INDOORS|ROOM_SAFE|ROOM_NO_RECALL SECT_CITY
+DDIR_WEST
+You see a guard post.~
+~
+0 -1 511
+S
+#516
+The Magic Shop~
+This place is filled with varied forms of magical items. As you start to 
+look at the wonderful things in this shop, you suddenly realized that this 
+shop do not carry many rare items that you desire, however the prices of 
+the item here are much much lower than other places.. mainly because most 
+of them are taken from the halflings.~
+5 ROOM_INDOORS|ROOM_SAFE|ROOM_NO_RECALL SECT_CITY
+DDIR_SOUTH
+You see a hallway.~
+~
+0 -1 517
+S
+#517
+Hallway~
+You find yourself in a huge hallway. You can hear people shouting and
+laughing about how stupid the enemies are to battle the humans, the
+noises seem to come from the west. To the north you see a magic store, 
+to the south is the weapon and armor shop, and to the east is the one 
+places that you would ever want to visit.... Da MORGUE!!!!~
+5 ROOM_INDOORS|ROOM_SAFE|ROOM_NO_RECALL SECT_CITY
+DDIR_NORTH
+You see a magic shop.~
+~
+0 -1 516
+DDIR_EAST
+You see a morgue.~
+~
+0 -1 519
+DDIR_SOUTH
+You see a weapon and armor shop.~
+~
+0 -1 518
+DDIR_WEST
+You see more hallway leading west.~
+~
+0 -1 514
+S
+#518
+The Arms Equipment Shop~
+This place is fill with weapons and armors of all kinds. After inspecting 
+them, you find that those they do not carry rare and powerful equipments. 
+However, the armors and weapons here are very cheap, and do not require
+much training before you could use them well.~
+5 ROOM_INDOORS|ROOM_SAFE|ROOM_NO_RECALL SECT_CITY
+DDIR_NORTH
+You see a hallway.~
+~
+0 -1 517
+S
+#519
+Da Morgue~
+Unlike other morgues where your remains are just left there and rot, you 
+see that there are many huge ice cubes in this morgue to keep your remains 
+"fresh". All the bodies here are very well kept and cleaned. The mortician
+here is surely doing an out standing job... So cheer up, at least you know
+that your body has been taken care off after your unfortunate death.~
+5 ROOM_INDOORS|ROOM_SAFE|ROOM_NO_RECALL|ROOM_MORGUE SECT_CITY
+DDIR_WEST
+You see a hallway.~
+~
+0 -1 517
+S
+#520
+A Guard Post~
+Flames from the heart of the earth erupts beneath your feet, and it 
+quickly surrounds you, leaving you no where to run! Strangely these
+flames seem only to affect you, as if someone is controlling it! As you 
+look around, searching for an exit, you notice that you are not alone.
+Captain Matthius stares at you with a grin on his face. He than swings
+his sword back and charges at you without even paying the slidest 
+attention to the flames!~
+5 ROOM_NO_RECALL SECT_LAVA
+S
+#521
+A Guard Post~
+The air around you seems to vanish! You feel that as if someone had
+squeezed all the oxygen out of your lungs! You try very hard to breath
+but there seems to be no air around you. Captain Matthius, however does
+not seem satisfy. He hold his sword up and leaps towards you!~
+5 ROOM_NO_RECALL SECT_UNDER_WATER
+S
+#0
+
+
+
+
+#RESETS
+O 0 517   1 507 ;   a fountain stands here in The Commons Hall         
+D 0 504 DIR_SOUTH DOOR_CLOSED ;door in The Command Center       
+D 0 505 DIR_NORTH DOOR_CLOSED ;door in Hallway                  
+M 0 500   1 511 ;A guard of Fort Tellurian in Guard Post               
+M 0 501   9 511 ;A guard of Fort Tellurian in Guard Post               
+M 0 502   1 515 ;               Sir Jessie in A Small Hut              
+M 0 503   1 510 ;             Squire Lucas in The Grand Gates of Fort T
+M 0 501   9 510 ;A guard of Fort Tellurian in The Grand Gates of Fort T
+M 0 501   9 510 ;A guard of Fort Tellurian in The Grand Gates of Fort T
+M 0 504   1 516 ;                  Reaslin in The Magic Shop           
+G 1 507 999       ;       a Scroll of Recall
+G 1 508 999       ;     a Scroll of Identify
+G 1 511 999       ;a Scroll of Detect Invis
+G 1 512 999       ;a Potion of Detect Invis
+M 0 505   1 519 ;                 Benimaru in Da Morgue                
+M 0 506   1 518 ;                  Brandon in The Arms Equipment Shop  
+G 1 500 999       ;a Suit of Studded Leather
+G 1 501 999       ;a Pair of Studded Leather
+G 1 502 999       ;a Pair of Studded Leather
+G 1 503 999       ;a Suit of Studded Leather
+G 1 504 999       ; a Studded Leather Shield
+G 1 505 999       ;   a Studded Leather Helm
+G 1 506 999       ;a Pair of Studded Leather
+G 1 509 999       ;           a Normal Sword
+G 1 510 999       ;            a Normal Whip
+M 0 507   1 500 ;                   Robert in General Equipment Supplie
+G 1 513 999       ;             iron Rations
+G 1 514 999       ;          a glass of milk
+G 1 515 999       ;         an Army Backpack
+G 1 516 999       ;            an army torch
+G 1 518 999       ;             an army boat
+M 0 508   1 502 ;               Sir Leonor in The Combat Training Hall 
+M 0 509   1 504 ;             Sir Gargkarth in The Command Center       
+M 0 510   1 507 ;             Maiden Deeda in The Commons Hall         
+M 0 511   1 505 ;                Sir Xueda in Hallway                  
+M 0 501   9 505 ;A guard of Fort Tellurian in Hallway                  
+M 0 501   9 505 ;A guard of Fort Tellurian in Hallway                  
+M 0 501   9 505 ;A guard of Fort Tellurian in Hallway                  
+S
+
+
+
+
+#SHOPS
+505 ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING
+     ITEM_TYPE_NOTHING 100  10  0 23 ;Benimaru
+504 ITEM_TYPE_SCROLL ITEM_TYPE_POTION ITEM_TYPE_WAND ITEM_TYPE_STAFF
+     ITEM_TYPE_TREASURE 100  10  0 23 ;Reaslin
+506 ITEM_TYPE_ARMOR ITEM_TYPE_WEAPON ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING
+     ITEM_TYPE_NOTHING 100  10  0 23 ;Brandon
+507 ITEM_TYPE_FOOD ITEM_TYPE_DRINK_CON ITEM_TYPE_CONTAINER ITEM_TYPE_BOAT
+     ITEM_TYPE_LIGHT 100  10  0 23 ;Robert
+0
+
+
+
+
+#SPECIALS
+S
+
+
+
+
+#$

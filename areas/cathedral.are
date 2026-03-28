@@ -1,0 +1,3221 @@
+#AREA The Cathedral of Waterdeep~
+
+#AUTHORS Jaxom~
+
+#RANGES 30 50 1 99
+
+#HELPS
+-1 CATHEDRAL_CHANGES~
+01.02.05 - 72 Spelling Corrections. (Mag)
+01.02.05 - Colored the area help files. (Mag)
+01.02.05 - Reformatted quest text to consolidate speeches. (Mag)
+01.02.05 - Added Sam, Joe, and digger to namelists of the grave digger mobs.
+           This allows you to look at the mob by name instead of accidentally
+           looking at the open grave. (Mag)
+01.02.05 - Changed bride speech_prog i object to speech_prog p i object to prevent
+           double spam. (Mag)
+01.02.05 - Changed mpgoto 1, suicide in bride and gravediggers to mppurge $i. (Mag)
+01.02.05 - Changed mppurge to mppurge gravediggermobtwo in gravediggermobone. (Mag)
+01.02.05 - Fixed many room descriptions. (Mag)
+01.02.05 - Changed door keywords behind altar to match room description. (Mag)
+01.02.05 - Changed room 4375 to The Landing and removed noble. (Mag)
+01.02.05 - Made 4375, 4303, 4302, 4374, and 4366, 4357 ROOM_NO_MOB. (Mag)
+01.02.05 - Using quasimodo ethereal, the parishioners now pop at 7pm.  They self
+           purge at 6am, spam and have a rand_prog to attack people in room. (Mag)
+01.03.05 - Created rooms 4393, 4394, and 4395 as mob loading rooms. (Mag)
+01.03.05 - Created mobs 4317, 4318, and 4319 and dispersed in respective areas. (Mag)
+01.03.05 - Created item 4312 and placed one in each room of Noble's Balcony. (Mag)
+~
+
+-1 'THE CATHEDRAL OF WATERDEEP' CATHEDRAL~
+{000}.{300}
+{000} {300}{044}........................................................................{300}
+{000} {300}{044}........................................................................{300}
+{000} {300}{044}.......................{300}{074}The Cathedral of Waterdeep{300}{044}.......................{300}
+{000} {300}{044}........................................................................{300}
+{000} {300}{044}..{300}{074}The Cathedral of Waterdeep is one of the great wonders of the world.{300}{044}..{300}
+{000} {300}{044}..{300}{074}Its architecture is a glorious mix of styles that people the realms{300}{044}...{300}
+{000} {300}{044}..{300}{074}over admire and loathe.  Merchants and tradesmen congregate on the{300}{044}....{300}
+{000} {300}{044}..{300}{074}steps of its main entrance off the Street of Silks.  It is rumored{300}{044}....{300}
+{000} {300}{044}..{300}{074}the Archbishop seeks a young hero who would engage in a quest.{300}{044}........{300}
+{000} {300}{044}........................................................................{300}
+{000} {300}{044}..{300}{074}(a) Bishop Jaxom{300}{044}......................................................{300}
+{000} {300}{044}..{300}{074}(b) Quests{300}{044}............................................................{300}
+{000} {300}{044}........................................................................{300}
+{000} {300}{044}........................................................................{300}
+{000}.{300}
+
+{a}JAXOM
+{b}CATHEDRALQUESTS
+~
+
+-1 CATHEDRALQUESTS~
+{000}.{300}
+{000} {300}{044}......................................................................{300}
+{000} {300}{044}......................................................................{300}
+{000} {300}{044}.................{300}{074}Quests in the Cathedral of Waterdeep{300}{044}.................{300}
+{000} {300}{044}......................................................................{300}
+{000} {300}{044}..{300}{074}One quest in the Cathedral of Waterdeep is for level 50 equipment.{300}{044}..{300}
+{000} {300}{044}..{300}{074}The path you choose during the quest determines if the equipment{300}{044}....{300}
+{000} {300}{044}..{300}{074}you get is Anti-Good or Anti-Evil.  Another quest is for a pair of{300}{044}..{300}
+{000} {300}{044}..{300}{074}level 20 rings.{300}{044}.....................................................{300}
+{000} {300}{044}......................................................................{300}
+{000} {300}{044}......................................................................{300}
+{000}.{300}
+~
+
+0 $~
+
+#MOBILES
+#4300
+worshipping commoner~
+a worshipping commoner~
+A commoner worships here.~
+He wears simple linen clothes and looks like a normal Waterdhavian citizen.
+~
+ACT_RACE|ACT_BODY|ACT_SENTINEL|ACT_SMART AFF_TONGUES|AFF_UNDERSTAND 0 S
+40 BODY_HAND|BODY_HEAD 0 1d1+631 1d1+26
+10000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+
+#4301
+worshipping noble~
+a worshipping noble~
+A noble worships here.~
+He wears expensive velvet clothes and looks like a Waterdhavian lord.
+~
+ACT_RACE|ACT_BODY|ACT_SENTINEL|ACT_SMART AFF_TONGUES|AFF_UNDERSTAND 0 S
+50 BODY_HAND|BODY_HEAD 0 1d1+1039 1d1+32
+10000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+
+#4302
+priest waterdeep~
+a priest~
+A priest of Waterdeep is here.~
+He is garbed in expensive robes of his office.~
+ACT_RACE|ACT_BODY|ACT_SENTINEL|ACT_SMART AFF_TONGUES|AFF_UNDERSTAND 1000 S
+40 BODY_HAND|BODY_HEAD 0 1d1+631 1d1+26
+10000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+
+#4303
+bishop waterdeep~
+the Bishop~
+The Bishop of Waterdeep is here.~
+He is garbed in the expensive robes of his office.~
+ACT_RACE|ACT_BODY|ACT_SENTINEL|ACT_SMART AFF_TONGUES|AFF_UNDERSTAND 1000 S
+50 BODY_HAND|BODY_HEAD 0 1d1+1039 1d1+32
+10000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 100~
+  if quest(0, 4, $n) == 2
+    say Thank you for returning the Holy Grail.
+    say I fear I have something else to ask of you.
+    say A false priest has been raising the dead in our cemetery.
+    say Please deal with him for us.
+    mpmset $n quest 0 4 3
+  else
+    if quest(0, 4, $n) == 4
+      say Thank you $n.
+      say Take this for your outstanding service in our name.
+      mpoload 4304
+      mpoload 4303
+      give i4304 $n
+      give i4303 $n
+      mpmset $n quest 0 4 5
+      mpmset $n long (Faithful) $n is here.
+    endif
+  endif
+~
+|
+
+#4304
+archbishop waterdeep bishop~
+the Archbishop~
+The Archbishop of Waterdeep is here.~
+He is garbed in the expensive robes of his office.~
+ACT_RACE|ACT_BODY|ACT_SENTINEL|ACT_SMART AFF_TONGUES|AFF_UNDERSTAND 1000 S
+70 BODY_HAND|BODY_HEAD 0 1d1+2799 1d1+47
+10000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>give_prog i11905~
+  if quest(0, 4, $n) == 1
+    mpjunk all
+    say You have done well.
+    say Go to the Bishop and he will see to your needs.
+    mpmset $n quest 0 4 2
+  endif
+~
+>greet_prog 100~
+  if quest(0, 4, $n) == 0
+    say You look like a righteous soul.
+    say I charge you with bringing The Holy Grail to me!
+    mpmset $n quest 0 4 1
+  else
+    if quest(0, 4, $n) == 1
+      say Have you retrieved the grail?
+    else
+      say What do you want?
+    endif
+  endif
+~
+>death_prog 100~
+  if quest(0, 4, $n) == 6
+    mpmset $n quest 0 4 7
+    say You will pay for your sins!
+  endif
+~
+|
+
+#4305
+half-decayed parishioner~
+a half-decayed parishioner~
+A half-decayed parishioner stumbles here.~
+He is still dressed in what he was buried in.~
+ACT_RACE|ACT_BODY|ACT_SENTINEL|ACT_SMART AFF_TONGUES|AFF_UNDERSTAND -1000 S
+40 BODY_HAND|BODY_HEAD 0 1d1+631 1d1+26
+10000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>rand_prog 100~
+  if time() == 6
+    mpecho The half-decayed parishioner crumbles in the daylight.
+    mppurge $i
+  endif
+~
+>rand_prog 3~
+  mpecho The half-decayed parishioner reaches toward you.
+  mpkill $r
+~
+|
+
+#4306
+traitorous priest~
+a traitorous priest~
+A traitorous priest watches here.~
+He wears a mockery of the robes of the priests of Waterdeep.~
+ACT_RACE|ACT_BODY|ACT_SENTINEL|ACT_SMART AFF_TONGUES|AFF_UNDERSTAND -1000 S
+70 BODY_HAND|BODY_HEAD 0 1d1+2799 1d1+47
+10000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+  if quest(0, 4, $n) == 3
+    say So those overblown windbags have sent you after me?
+    say Serve me further by becoming my undead minion!
+    say Would you care to make a deal?
+  else
+    if quest(0, 4, $n) == 7
+      say You have served me well.
+      say Serve me further by becoming my undead minion!
+      mpmset $n quest 0 4 8
+      mpmset $n long (Faithless) $n is here.
+      mpoload 4306
+      mpoload 4305
+      mpkill $n
+    endif
+  endif
+~
+>speech_prog no nope~
+  if quest(0, 4, $n) == 3
+    say Very well then, you shall have to die.
+    mpkill $n
+  endif
+~
+>speech_prog yes yep ok sure yeah~
+  if quest(0, 4, $n) == 3
+    mpmset $n quest 0 4 6
+    say Kill the Archbishop and I will make it worthwhile.
+  endif
+~
+>death_prog 100~
+  if quest(0, 4, $n) == 3
+    mpmset $n quest 0 4 4
+  else
+    if level($n) > 60
+      mpjunk all
+    endif
+  endif
+~
+|
+
+#4307
+librarian~
+the librarian~
+The librarian of the cathedral is here.~
+He is garbed in expensive robes of his office.~
+ACT_RACE|ACT_BODY|ACT_SENTINEL|ACT_SMART AFF_TONGUES|AFF_UNDERSTAND 1000 S
+50 BODY_HAND|BODY_HEAD 0 1d1+1039 1d1+32
+10000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+
+#4308
+quasimodo~
+quasimodo~
+Quasimodo rings the bells here.~
+He is garbed in formless robes that hide his figure.~
+ACT_RACE|ACT_BODY|ACT_SENTINEL|ACT_SMART AFF_TONGUES|AFF_UNDERSTAND|AFF_ETHEREAL 0 S
+50 BODY_HAND|BODY_HEAD 0 1d1+1039 1d1+32
+10000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>time_prog 0~
+  mpareaecho {100}The bells toll midnight.{300}
+  mpareaecho {130}BONG bong BONG bong BONG bong BONG bong BONG bong BONG bong!{300}
+~
+>time_prog 1~
+  mpareaecho {100}The bells toll one in the morning.{300}
+  mpareaecho {130}BONG!{300}
+~
+>time_prog 2~
+  mpareaecho {100}The bells toll two in the morning.{300}
+  mpareaecho {130}BONG bong!{300}
+~
+>time_prog 3~
+  mpareaecho {100}The bells toll three in the morning.{300}
+  mpareaecho {130}BONG bong BONG!{300}
+~
+>time_prog 4~
+  mpareaecho {100}The bells toll four in the morning.{300}
+  mpareaecho {130}BONG bong BONG bong!{300}
+~
+>time_prog 5~
+  mpareaecho {100}The bells toll five in the morning.{300}
+  mpareaecho {130}BONG bong BONG bong BONG!{300}
+~
+>time_prog 6~
+  mpareaecho {100}The bells toll six in the morning.{300}
+  mpareaecho {130}BONG bong BONG bong BONG bong!{300}
+~
+>time_prog 7~
+  mpareaecho {170}The bells toll seven in the morning.{300}
+  mpareaecho {130}BONG bong BONG bong BONG bong BONG!{300}
+~
+>time_prog 8~
+  mpareaecho {170}The bells toll eight in the morning.{300}
+  mpareaecho {130}BONG bong BONG bong BONG bong BONG bong!{300}
+~
+>time_prog 9~
+  mpareaecho {170}The bells toll nine in the morning.{300}
+  mpareaecho {130}BONG bong BONG bong BONG bong BONG bong BONG!{300}
+~
+>time_prog 10~
+  mpareaecho {170}The bells toll ten in the morning.{300}
+  mpareaecho {130}BONG bong BONG bong BONG bong BONG bong BONG bong!{300}
+  mpmload 4309
+  mpmload 4310
+  mpmset mournermob quest 0 5 0
+  mpforce mournermob mpgoto 4301
+  mpforce pallbearer mpgoto 4301
+  mpmload 4311
+  mpmload 4312
+  mpmset gravediggermobtwo quest 0 3 0
+  mpmset gravediggermobone quest 0 3 7
+  mpforce gravediggermobtwo mpgoto 4350
+  mpforce gravediggermobone mpgoto 4350
+~
+>time_prog 11~
+  mpareaecho {170}The bells toll eleven in the morning.{300}
+  mpareaecho {130}BONG bong BONG bong BONG bong BONG bong BONG bong BONG!{300}
+~
+>time_prog 12~
+  mpareaecho {170}The bells toll noon.{300}
+  mpareaecho {130}BONG bong BONG bong BONG bong BONG bong BONG bong BONG bong!{300}
+~
+>time_prog 13~
+  mpareaecho {170}The bells toll one in the afternoon.{300}
+  mpareaecho {130}BONG!{300}
+~
+>time_prog 14~
+  mpareaecho {170}The bells toll two in the afternoon.{300}
+  mpareaecho {130}BONG bong!{300}
+~
+>time_prog 15~
+  mpareaecho {170}The bells toll three in the afternoon.{300}
+  mpareaecho {130}BONG bong BONG!{300}
+~
+>time_prog 16~
+  mpareaecho {170}The bells toll four in the afternoon.{300}
+  mpareaecho {130}BONG bong BONG bong!{300}
+~
+>time_prog 17~
+  mpareaecho {170}The bells toll five in the afternoon.{300}
+  mpareaecho {130}BONG bong BONG bong BONG!{300}
+~
+>time_prog 18~
+  mpareaecho {170}The bells toll six in the evening.{300}
+  mpareaecho {130}BONG bong BONG bong BONG bong!{300}
+  mpmload 4314
+  mpmset bridemob quest 0 4 0
+  mpforce bridemob mpgoto 4302
+  mpmload 4313
+  mpforce groommob mpgoto 4317
+  mpmload 4315
+  mpforce ringbearer mpgoto 4300
+~
+>time_prog 19~
+  mpareaecho {100}The bells toll seven in the evening.{300}
+  mpareaecho {130}BONG bong BONG bong BONG bong BONG!{300}
+  mpquiet on
+  mpgoto 4393
+  mpmload 4319
+  mpmload 4319
+  mpmload 4319
+  mpmload 4319
+  mpmload 4319
+  mpmload 4319
+  mpmload 4319
+  mpmload 4319
+  mpmload 4319
+  mpmload 4319
+  mpgoto 4346
+  mpquiet off
+  mpecho A half-decayed parishioner springs from the ground.
+  mpmload 4305
+  mpquiet on
+  mpgoto 4347
+  mpquiet off
+  mpecho A half-decayed parishioner springs from the ground.
+  mpmload 4305
+  mpquiet on
+  mpgoto 4348
+  mpquiet off
+  mpecho A half-decayed parishioner springs from the ground.
+  mpmload 4305
+  mpquiet on
+  mpgoto 4349
+  mpquiet off
+  mpecho A half-decayed parishioner springs from the ground.
+  mpmload 4305
+  mpquiet on
+  mpgoto 4350
+  mpquiet off
+  mpecho A half-decayed parishioner springs from the ground.
+  mpmload 4305
+  mpquiet on
+  mpgoto 4351
+  mpquiet off
+  mpecho A half-decayed parishioner springs from the ground.
+  mpmload 4305
+  mpquiet on
+  mpgoto 4352
+  mpquiet off
+  mpecho A half-decayed parishioner springs from the ground.
+  mpmload 4305
+  mpquiet on
+  mpgoto 4353
+  mpquiet off
+  mpecho A half-decayed parishioner springs from the ground.
+  mpmload 4305
+  mpquiet on
+  mpgoto 4354
+  mpquiet off
+  mpecho A half-decayed parishioner springs from the ground.
+  mpmload 4305
+  mpquiet on
+  mpgoto 4355
+  mpquiet off
+  mpecho A half-decayed parishioner springs from the ground.
+  mpmload 4305
+  mpquiet on
+  mpgoto 4356
+  mpquiet off
+  mpecho A half-decayed parishioner springs from the ground.
+  mpmload 4305
+  mpquiet on
+  mpgoto 4358
+  mpquiet off
+  mpecho A half-decayed parishioner springs from the ground.
+  mpmload 4305
+  mpquiet on
+  mpgoto 4359
+  mpquiet off
+  mpecho A half-decayed parishioner springs from the ground.
+  mpmload 4305
+  mpquiet on
+  mpgoto 4360
+  mpquiet off
+  mpecho A half-decayed parishioner springs from the ground.
+  mpmload 4305
+  mpquiet on
+  mpgoto 4361
+  mpquiet off
+  mpecho A half-decayed parishioner springs from the ground.
+  mpmload 4305
+  mpquiet on
+  mpgoto 4362
+  mpquiet off
+  mpecho A half-decayed parishioner springs from the ground.
+  mpmload 4305
+  mpquiet on
+  mpgoto 4363
+  mpquiet off
+  mpecho A half-decayed parishioner springs from the ground.
+  mpmload 4305
+  mpquiet on
+  mpgoto 4364
+  mpquiet off
+  mpecho A half-decayed parishioner springs from the ground.
+  mpmload 4305
+  mpquiet on
+  mpgoto 4366
+  mpquiet off
+  mpecho A half-decayed parishioner springs from the ground.
+  mpmload 4305
+  mpquiet on
+  mpgoto 4367
+  mpquiet off
+  mpecho A half-decayed parishioner springs from the ground.
+  mpmload 4305
+  mpquiet on
+  mpgoto 4368
+  mpquiet off
+  mpecho A half-decayed parishioner springs from the ground.
+  mpmload 4305
+  mpquiet on
+  mpgoto 4369
+  mpquiet off
+  mpecho A half-decayed parishioner springs from the ground.
+  mpmload 4305
+  mpquiet on
+  mpgoto 4370
+  mpquiet off
+  mpecho A half-decayed parishioner springs from the ground.
+  mpmload 4305
+  mpquiet on
+  mpgoto 4371
+  mpquiet off
+  mpecho A half-decayed parishioner springs from the ground.
+  mpmload 4305
+  mpquiet on
+  mpgoto 4372
+  mpquiet off
+  mpecho A half-decayed parishioner springs from the ground.
+  mpmload 4305
+  mpquiet on
+  mpgoto 4373
+  mpquiet off
+  mpecho A half-decayed parishioner springs from the ground.
+  mpmload 4305
+  mpquiet on
+  mpgoto 4383
+~
+>time_prog 20~
+  mpareaecho {100}The bells toll eight in the evening.{300}
+  mpareaecho {130}BONG bong BONG bong BONG bong BONG bong!{300}
+~
+>time_prog 21~
+  mpareaecho {100}The bells toll nine in the evening.{300}
+  mpareaecho {130}BONG bong BONG bong BONG bong BONG bong BONG!{300}
+~
+>time_prog 22~
+  mpareaecho {100}The bells toll ten in the evening.{300}
+  mpareaecho {130}BONG bong BONG bong BONG bong BONG bong BONG bong!{300}
+~
+>time_prog 23~
+  mpareaecho {100}The bells toll eleven in the evening.{300}
+  mpareaecho {130}BONG bong BONG bong BONG bong BONG bong BONG bong BONG!{300}
+~
+|
+
+#4309
+pallbearermob bearer~
+a pallbearer~
+A pallbearer is here.~
+He is dressed in black and carries a coffin.~
+ACT_RACE|ACT_BODY|ACT_SENTINEL|ACT_SMART AFF_TONGUES|AFF_UNDERSTAND 0 S
+50 BODY_HAND|BODY_HEAD 0 1d1+1039 1d1+32
+10000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+#4310
+mournermob~
+a mourner~
+A mourner is here.~
+She is dressed in black and wears a veil.~
+ACT_RACE|ACT_BODY|ACT_SENTINEL|ACT_SMART AFF_TONGUES|AFF_UNDERSTAND 0 S
+50 BODY_HAND|BODY_HEAD 0 1d1+1039 1d1+32
+10000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_FEMALE
+>rand_prog 100~
+  if quest(0, 5, self) == 0
+    sniff
+    mpforce pallbearermob comfort mournermob
+    mpmset self quest 0 5 1
+  else
+    if quest(0, 5, self) == 1
+      mpforce pallbearermob east
+      east
+      mpmset self quest 0 5 2
+    else
+      if quest(0, 5, self) == 2
+        mpforce pallbearermob north
+        north
+        mpmset self quest 0 5 3
+      else
+        if quest(0, 5, self) == 3
+          mpforce pallbearermob north
+          north
+          mpmset self quest 0 5 4
+        else
+          if quest(0, 5, self) == 4
+            mpforce pallbearermob north
+            north
+            mpmset self quest 0 5 5
+          else
+            if quest(0, 5, self) == 5
+              mpforce pallbearermob north
+              north
+              mpmset self quest 0 5 6
+            else
+              if quest(0, 5, self) == 6
+                mpforce pallbearermob north
+                north
+                mpecho The pallbearer sets the coffin down on the altar.
+                mpmset self quest 0 5 7
+              else
+                if quest(0, 5, self) == 7
+                  mpforce priest say We are gathered here to mourn the loss of someone dear to us.
+                  mpecho Mourners file past viewing the body one last time.
+                  mpmset self quest 0 5 8
+                else
+                  if quest(0, 5, self) == 8
+                    mpecho The priest blesses the dead man as the lid is set on the coffin.
+                    sniff
+                    mpmset self quest 0 5 9
+                  else
+                    if quest(0, 5, self) == 9
+                      mpecho The pallbearer picks up the coffin.
+                      mpforce pallbearermob south
+                      south
+                      mpmset self quest 0 5 10
+                    else
+                      if quest(0, 5, self) == 10
+                        mpforce pallbearermob south
+                        south
+                        mpmset self quest 0 5 11
+                      else
+                        if quest(0, 5, self) == 11
+                          mpforce pallbearermob south
+                          south
+                          mpmset self quest 0 5 12
+                        else
+                          if quest(0, 5, self) == 12
+                            mpforce pallbearermob south
+                            south
+                            mpmset self quest 0 5 13
+                          else
+                            if quest(0, 5, self) == 13
+                              mpforce pallbearermob south
+                              south
+                              mpmset self quest 0 5 14
+                            else
+                              if quest(0, 5, self) == 14
+                                mpforce pallbearermob east
+                                east
+                                mpmset self quest 0 5 15
+                              else
+                                if quest(0, 5, self) == 15
+                                  mpforce pallbearermob east
+                                  east
+                                  mpmset self quest 0 5 16
+                                else
+                                  if quest(0, 5, self) == 16
+                                    mpforce pallbearermob east
+                                    east
+                                    mpmset self quest 0 5 17
+                                  else
+                                    if quest(0, 5, self) == 17
+                                      mpforce pallbearermob mpgoto 4350
+                                      mpgoto 4350
+                                      mpforce gravediggermobone say We better get outta here, funeral is comin.
+                                      mpecho The two diggers pick up their shovels and leave.
+                                      mppurge gravediggermobone
+                                      mppurge gravediggermobtwo
+                                      mpmset self quest 0 5 18
+                                    else
+                                      if quest(0, 5, self) == 18
+                                        mpecho The pallbearer gently settles the coffin into the open grave.
+                                        cry
+                                        mpmset self quest 0 5 19
+                                      else
+                                        if quest(0, 5, self) == 19
+                                          mpareaecho The bells ring in mourning.
+                                          mpecho As the Mourners leave, two men begin to fill in the grave.
+                                          mpmload 4311
+                                          mpmload 4312
+                                          mpquiet on
+                                          mpoload 4309
+                                          mppurge i4308
+                                          mpoload 4308 
+                                          put i4309 grave
+                                          mpquiet off
+                                          mpmset gravediggermobone quest 0 3 0
+                                          mpmset gravediggermobtwo quest 0 3 7
+                                          mpmset self quest 0 5 0
+                                          mppurge pallbearermob
+                                          mppurge $i
+                                        endif
+                                      endif
+                                    endif
+                                  endif
+                                endif
+                              endif
+                            endif
+                          endif
+                        endif
+                      endif
+                    endif
+                  endif
+                endif
+              endif
+            endif
+          endif
+        endif
+      endif
+    endif
+  endif
+~
+|
+
+#4311
+sam digger gravediggermobone sammob diggermob~
+Sam the Gravedigger~
+A grave digger is here.~
+He is dressed in black and carries a shovel, but the black could just be
+very dirty clothes.~
+ACT_RACE|ACT_BODY|ACT_SENTINEL|ACT_SMART AFF_TONGUES|AFF_UNDERSTAND 0 S
+50 BODY_HAND|BODY_HEAD 0 1d1+1039 1d1+32
+10000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>rand_prog 100~
+  if quest(0, 3, self) == 0
+    mpecho The grave diggers continue to shovel dirt into the grave.
+    mpmset self quest 0 3 1
+  else
+    if quest(0, 3, self) == 1
+      say Shame about the old guy, but he had it comin'.
+      mpmset self quest 0 3 2
+    else
+      if quest(0, 3, self) == 2
+        mpforce gravediggermobtwo say He did? Why's that?
+        mpecho The grave is half full.
+        mpmset self quest 0 3 3
+      else
+        if quest(0, 3, self) == 3
+          say He's been sleepin' around on his wife for years.
+          say An', what's worse, he did it with married women.
+          mpmset self quest 0 3 4
+        else
+          if quest(0, 3, self) == 4
+            mpecho Joe whistles loudly at that.
+            mpforce gravediggermobtwo say If I'da knowed that,
+            mpforce gravediggermobtwo say  I could'a made some money on tha side.
+            mpmset self quest 0 3 5
+          else
+            if quest(0, 3, self) == 5
+              mpecho Sam grins happily.
+              say I DID make some money on the side.
+              mpecho The grave is filled in now.
+              mppurge i4308
+              mpmset self quest 0 3 6
+            else
+              if quest(0, 3, self) == 6
+                mpforce gravediggermobtwo say Well then! I think you owe me a drink!
+                mpecho The two grave diggers hoist their shovels onto their shoulders and leave.
+                mpmset self quest 0 3 7                
+                mppurge gravediggermobtwo
+                mppurge $i
+              endif
+            endif
+          endif
+        endif
+      endif
+    endif
+  endif
+~
+|
+
+#4312
+joe digger gravediggermobtwo diggermob~
+Joe the Gravedigger~
+A grave digger is here.~
+He is dressed in black and carries a shovel, but the black could just be
+very dirty clothes.~
+ACT_RACE|ACT_BODY|ACT_SENTINEL|ACT_SMART AFF_TONGUES|AFF_UNDERSTAND 0 S
+50 BODY_HAND|BODY_HEAD 0 1d1+1039 1d1+32
+10000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>rand_prog 100~
+  if quest(0, 3, self) == 0
+    mpecho The two grave diggers begin to dig.
+    mpmset self quest 0 3 1
+  else
+    if quest(0, 3, self) == 1
+      say You know who's gettin' buried today?
+      mpmset self quest 0 3 2
+    else
+      if quest(0, 3, self) == 2
+        mpforce gravediggermobone say Not real sure.
+        mpforce gravediggermobone say I did hear some rich merchant's wife
+        mpforce gravediggermobone say died recently though.
+        mpmset self quest 0 3 3
+      else
+        if quest(0, 3, self) == 3
+          mpquiet on
+          mpoload 4308
+          mpquiet off
+          mpecho Quite a hole has been opened in the ground now.
+          say How'd she die?
+          mpmset self quest 0 3 4
+        else
+          if quest(0, 3, self) == 4
+            mpforce gravediggermobone say I heard she had a disease that some
+            mpforce gravediggermobone say fool adventurer failed to cure.
+            mpmset self quest 0 3 5
+          else
+            if quest(0, 3, self) == 5
+              wince
+              say They must have been chased out of town fast.
+              mpmset self quest 0 3 6
+            else
+              if quest(0, 3, self) == 6
+                mpecho The two diggers continue digging as they chat about this and that.
+                mpmset self quest 0 3 7
+              endif
+            endif
+          endif
+        endif
+      endif
+    endif
+  endif
+~
+|
+
+#4313
+groommob~
+the groom~
+The groom stands here.~
+He is dressed in black and carries a ring.~
+ACT_RACE|ACT_BODY|ACT_SENTINEL|ACT_SMART AFF_TONGUES|AFF_UNDERSTAND 0 S
+50 BODY_HAND|BODY_HEAD 0 1d1+1039 1d1+32
+10000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>give_prog i3371~
+  if quest(4, 1, $n) == 0
+    mpecho The groom whispers thanks and hands you his replacement ring.
+    mpjunk all
+    mpoload 4310
+    give i4310 $n
+    mpmset $n quest 4 1 1
+  endif
+~
+>give_prog i4309~
+  mpforce bridemob scream
+  drop ring
+  shout Where did you get this, a dead man?
+  mpmset $n quest 4 2 3
+~
+>time_prog 0~
+  mppurge $i 
+  ~
+|
+
+#4314
+bridemob~
+the bride~
+The bride stands here.~
+She is dressed in black and carries a ring.~
+ACT_RACE|ACT_BODY|ACT_SENTINEL|ACT_SMART AFF_TONGUES|AFF_UNDERSTAND 0 S
+50 BODY_HAND|BODY_HEAD 0 1d1+1039 1d1+32
+10000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_FEMALE
+>speech_prog p i object~
+  mpmset self quest 0 4 15
+  if sex($n) == 1
+    say This is no time to get revenge for jilting you!
+  else
+    mpforce groommob say This is no time to get revenge for jilting you!
+  endif
+  mpforce groommob mpkill $n
+  mpkill $n
+~
+>give_prog i3372~
+  if quest(5, 1, $n) == 0
+    mpecho The bride whispers thanks and hands you her replacement ring.
+    mpjunk all
+    mpoload 4311
+    give i4311 $n
+    mpmset $n quest 5 1 1
+  endif
+~
+>time_prog 0~
+  mppurge $i
+~
+>rand_prog 100~
+  if quest(0, 4, self) == 0
+    mpasound You hear the wedding march being played nearby.
+    mpecho The bride takes a deep breath before moving.
+    mpecho You hear the wedding march being played.
+    mpat groommob mpecho You hear the wedding march being played.
+    speed walk
+    north
+    mpmset self quest 0 4 1
+  else
+    if quest(0, 4, self) == 1
+      mpat groommob mpecho The groom fidgets as he waits for his bride
+      mpasound You hear the wedding march being played nearby.
+      mpecho You hear the wedding march being played.
+      mpat groommob mpecho You hear the wedding march being played.
+      mpmset self quest 0 4 2
+      north
+    else
+      if quest(0, 4, self) == 2
+        mpat groommob mpecho The groom fidgets as he waits for his bride
+        mpasound You hear the wedding march being played nearby.
+        mpecho You hear the wedding march being played.
+        mpat groommob mpecho You hear the wedding march being played.
+        mpmset self quest 0 4 3
+        north
+      else
+        if quest(0, 4, self) == 3
+          mpat groommob mpecho The groom fidgets as he waits for his bride
+          mpasound You hear the wedding march being played nearby.
+          mpecho You hear the wedding march being played.
+          mpat groommob mpecho You hear the wedding march being played.
+          mpmset self quest 0 4 4
+          north
+        else
+          if quest(0, 4, self) == 4
+            mpat groommob mpecho The groom fidgets as he waits for his bride
+            mpasound You hear the wedding march being played nearby.
+            mpecho You hear the wedding march being played.
+            mpat groommob mpecho You hear the wedding march being played.
+            mpmset self quest 0 4 5
+            north
+          else
+            if quest(0, 4, self) == 5
+              mpecho The bride and groom face the priest as he begins.
+              mpforce priest say We are gathered today to join this man and woman in matrimony.
+              mpmset self quest 0 4 6
+            else
+              if quest(0, 4, self) == 6
+                mpecho The priest turns to the groom.
+                mpforce priest say Do you take this woman as your lawfully wedded
+                mpforce priest say love slave for good?
+                mpmset self quest 0 4 13
+              else
+                if quest(0, 4, self) == 13
+                  mpforce priest say Does anyone object to these two being married?
+                  mpecho The priest pauses waiting for a response.
+                  mpmset self quest 0 4 14
+                else
+                  if quest(0, 4, self) == 14
+                    mpmset self quest 0 4 7
+                  else
+                    if quest(0, 4, self) == 7
+                      mpforce groommob say I do.
+                      mpecho The groom places a ring on the bride's finger.
+                      mpmset self quest 0 4 8
+                    else
+                      if quest(0, 4, self) == 8
+                        mpecho The priest turns to the bride.
+                        mpforce priest say Do you take this man as your lord and master forever?
+                        mpmset self quest 0 4 9
+                      else
+                        if quest(0, 4, self) == 9
+                          say I do.
+                          mpecho The bride places a ring on the groom's finger.
+                          mpmset self quest 0 4 10
+                        else
+                          if quest(0, 4, self) == 10
+                            mpforce priest say I now pronounce you man and wife.
+                            mpforce priest say You may kiss your bride.
+                            mpmset self quest 0 4 11
+                          else
+                            if quest(0, 4, self) == 11
+                              mpecho The groom softly kisses his new wife.
+                              mpareaecho The bells sound to celebrate a wedding.
+                              mpmset self quest 0 4 12
+                            else
+                              if quest(0, 4, self) == 12
+                                mpecho The bride and groom run quickly out of the cathedral toward their honeymoon.
+                                mpmset self quest 0 4 0
+                                mppurge groommob
+                                mpat ringbearermob mpecho The ring bearer leaves after the wedding party has left.
+                                mpat ringbearermob mppurge ringbearermob
+                                mppurge $i
+                              endif
+                            endif
+                          endif
+                        endif
+                      endif
+                    endif
+                  endif
+                endif
+              endif
+            endif
+          endif
+        endif
+      endif
+    endif
+  endif
+~
+|
+
+#4315
+ringbearermob bearer~
+the ring bearer~
+The ring bearer sits on the steps here.~
+He is dressed in black and carries a velvet pillow.~
+ACT_RACE|ACT_BODY|ACT_SENTINEL|ACT_SMART AFF_TONGUES|AFF_UNDERSTAND 0 S
+50 BODY_HAND|BODY_HEAD 0 1d1+1039 1d1+32
+10000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 100~
+  cry
+  say I have lost the happy couples wedding rings.
+  say Please help me find some.
+~
+>time_prog 0~
+  mppurge $i
+~
+|
+
+#4316
+quasimodo~
+quasimodo~
+Quasimodo rings the bells here.~
+He is garbed in formless robes that hide his figure.~
+ACT_RACE|ACT_BODY|ACT_SENTINEL|ACT_SMART AFF_TONGUES|AFF_UNDERSTAND 0 S
+50 BODY_HAND|BODY_HEAD 0 1d1+1039 1d1+32
+10000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>death_prog 100~
+  if actorhasobjnum(30900)
+  or actorhasobjnum(30966)
+  or actorhasobjnum(30967)
+  or actorhasobjnum(30968)
+  or actorhasobjnum(30969)
+    if quest(30,1,$n) == 0
+      mpmset $n quest 30 1 1
+      mpoload 30914
+      mpforce $n HELP GUILDTOKEN
+      mpquiet on
+      c 'giant strength' $n
+      give i30914 $n
+      mpquiet off
+    endif
+  endif
+~
+|
+
+#4317
+worshipping commoner~
+a worshipping commoner~
+A commoner worships here.~
+He wears simple linen clothes and looks like a normal Waterdhavian citizen.
+~
+ACT_STAY_AREA|ACT_RACE|ACT_BODY|ACT_SMART AFF_TONGUES|AFF_UNDERSTAND 0 S
+40 BODY_HAND|BODY_HEAD 0 1d1+631 1d1+26
+10000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+
+#4318
+worshipping noble~
+a worshipping noble~
+A noble worships here.~
+He wears expensive velvet clothes and looks like a Waterdhavian lord.
+~
+ACT_STAY_AREA|ACT_RACE|ACT_BODY|ACT_SMART AFF_TONGUES|AFF_UNDERSTAND 0 S
+50 BODY_HAND|BODY_HEAD 0 1d1+1039 1d1+32
+10000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+
+#4319
+half-decayed parishioner~
+a half-decayed parishioner~
+A half-decayed parishioner stumbles here.~
+He is still dressed in what he was buried in.~
+ACT_STAY_AREA|ACT_RACE|ACT_BODY|ACT_SMART AFF_TONGUES|AFF_UNDERSTAND -1000 S
+40 BODY_HAND|BODY_HEAD 0 1d1+631 1d1+26
+10000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>rand_prog 100~
+  if time() == 6
+    mpecho The half-decayed parishioner crumbles in the daylight.
+    mppurge $i
+  endif
+~
+>rand_prog 3~
+  mpecho The half-decayed parishioner reaches toward you.
+  mpkill $r
+~
+|
+
+#0
+
+#OBJECTS
+
+#4300
+mitre bishops~
+a bishop's mitre~
+A bishop's mitre has been left here.
+~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_BLESS|ITEM_FLAG_ANTI_EVIL|ITEM_FLAG_LEVEL
+ITEM_WEAR_HEAD|ITEM_WEAR_TAKE
+12 0 0 0
+1 10000 50
+
+#4301
+fountain marble~
+a marble fountain~
+A marble fountain gurgles here.~
+It is a beautiful white marble with statues of saints.~
+ITEM_TYPE_FOUNTAIN
+ITEM_FLAG_LEVEL
+0
+0 0 0 0
+1 10 95
+
+#4302
+altar golden~
+a golden altar~
+A golden altar is here.~
+It is a beautiful golden with statues of saints.~
+ITEM_TYPE_FOUNTAIN
+ITEM_FLAG_LEVEL
+0
+0 0 0 0
+1 10 95
+
+#4303
+leggings faith~
+Leggings of the Faith~
+A pair of leggings lies here lost.~
+They are white cotton with gold highlights.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL|ITEM_FLAG_ANTI_EVIL|ITEM_FLAG_NOREMOVE
+ITEM_WEAR_TAKE|ITEM_WEAR_LEGS
+8 0 0 0
+3 10000 50
+A
+APPLY_DAMROLL 5
+A
+APPLY_HITROLL 5
+
+#4304
+shield faith~
+a Shield of the Faith~
+A Shield of the Faith rests here lost.~
+It is a white metal shield crossed with gold bands.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL|ITEM_FLAG_ANTI_EVIL|ITEM_FLAG_NOREMOVE
+ITEM_WEAR_TAKE|ITEM_WEAR_SHIELD
+8 0 0 0
+3 10000 50
+A
+APPLY_DAMROLL 5
+A
+APPLY_HITROLL 5
+
+#4305
+faithless armband~
+a Faithless armband~
+An armband of the faithless is lost here.~
+It was once white steel but has long since lost its sheen and is covered
+in rust.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL|ITEM_FLAG_ANTI_GOOD
+ITEM_WEAR_TAKE|ITEM_WEAR_ARMS
+8 0 0 0
+3 10000 50
+A
+APPLY_DAMROLL 5
+A
+APPLY_HITROLL 5
+
+#4306
+faithless wristband~
+a Faithless wristband~
+A wristband of the faithless is lost here.~
+It was once white steel but has long since lost its sheen and is covered
+in rust.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL|ITEM_FLAG_ANTI_GOOD
+ITEM_WEAR_TAKE|ITEM_WEAR_WRIST
+8 0 0 0
+3 10000 50
+A
+APPLY_DAMROLL 5
+A
+APPLY_HITROLL 5
+#4307
+
+holy symbol~
+a holy symbol~
+A holy symbol has been abandoned here.~
+It is a small gold symbol of an unidentified god.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL|ITEM_FLAG_ANTI_GOOD
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD|ITEM_WEAR_NECK
+5 0 0 0
+1 10000 35
+A
+APPLY_WIS 3
+A
+APPLY_CON 3
+
+#4308
+open grave~
+An open grave~
+There is an open grave here.~
+It looks freshly dug.~
+ITEM_TYPE_CONTAINER
+ITEM_FLAG_LEVEL
+0
+100 0 -1 0
+1 10 50
+
+#4309
+dead mans man's ring~
+a dead man's ring~
+A dead man's ring has been left here.~
+It is a gold wedding ring that someone has taken off a corpse.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_FINGER
+5 0 0 0
+1 100000 50
+A
+APPLY_DAMROLL 6
+A
+APPLY_HITROLL 3
+
+#4310
+replacement wedding ring~
+a replacement wedding ring~
+A replacement wedding ring has been left here.~
+It is a simple ring with a fake diamond in it.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL|ITEM_FLAG_NOREMOVE|ITEM_FLAG_AUTO_ENGRAVE
+ITEM_WEAR_TAKE|ITEM_WEAR_FINGER
+4 0 0 0
+1 10000 20
+A
+APPLY_DAMROLL 3
+A
+APPLY_HITROLL 4
+A
+APPLY_DEX 1
+P 1
+TRIG_WEAR 100
+OPROG_IF OIF_USER_SEX ! 2 2 0
+P 2
+TRIG_VOID
+OPROG_ECHO The fake ring breaks as you attempt to wear it.~
+P 2
+TRIG_VOID
+OPROG_JUNK
+
+#4311
+replacement wedding band~
+a replacement wedding band~
+A replacement wedding band has been left here.~
+It is a simple ring made of fake gold.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL|ITEM_FLAG_NOREMOVE|ITEM_FLAG_AUTO_ENGRAVE
+ITEM_WEAR_TAKE|ITEM_WEAR_FINGER
+4 0 0 0
+1 10000 20
+A
+APPLY_DAMROLL 3
+A
+APPLY_HITROLL 4
+A
+APPLY_DEX 1
+P 1
+TRIG_WEAR 100
+OPROG_IF OIF_USER_SEX ! 1 2 0
+P 2
+TRIG_VOID
+OPROG_ECHO The fake ring breaks as you attempt to wear it.~
+P 2
+TRIG_VOID
+OPROG_JUNK
+
+#4312
+cushioned pew~
+a cushioned pew~
+A cushioned pew has been placed here for the nobles.~
+~
+ITEM_TYPE_FURNITURE
+ITEM_FLAG_LEVEL
+0
+10000 0 0 0
+0 0 722
+E
+cushioned pew~
+The pew is made of the finest mahogany.  It is cushioned to provide
+comfort for those attending the long worship services.~
+
+#0
+
+#ROOMS
+
+#4300
+Cathedral Steps~
+These stone steps have seen the traffic of thousands, possibly millions
+of feet wearing everything from boots to barefoot.  In times past, nobles
+and commoners were known to socialize on these steps before a service inside.
+~
+43 ROOM_NO_MOB SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 4301
+DDIR_WEST
+~
+~
+0 -1 8011
+S
+
+#4301
+Cathedral Foyer~
+This is the grand entry hall in the Great Cathedral of Waterdeep.  The
+artwork decorating its walls and ceiling is so wonderfully done that you
+wonder what the rest of the place is like.~
+43 ROOM_INDOORS SECT_INSIDE
+DDIR_WEST
+~
+~
+0 -1 4300 
+DDIR_EAST
+~
+~
+0 -1 4302 
+S
+
+#4302
+Cathedral Foyer~
+From here, this grand entry leads in several directions depending on your
+interests and your rank.  The nobles of Waterdeep for instance go up the
+stairs to the balcony while commoners go through the large doorway to the
+north.  Those mourning lost relatives would continue east into the cemetery.~
+43 ROOM_INDOORS|ROOM_NO_MOB SECT_INSIDE
+DDIR_WEST
+~
+~
+0 -1 4301
+DDIR_EAST
+~
+~
+0 -1 4303 
+DDIR_NORTH
+~
+~
+0 -1 4305 
+DDIR_UP
+~
+~
+0 -1 4375 
+S
+
+#4303
+Cathedral Foyer~
+This is the grand entry hall in the Great Cathedral of Waterdeep.  The
+artwork decorating its walls and ceiling is so wonderfully done that you
+wonder what the rest of the place is like.~
+43 ROOM_INDOORS|ROOM_NO_MOB SECT_INSIDE
+DDIR_WEST
+~
+~
+0 -1 4302
+DDIR_EAST
+~
+~
+0 -1 4346 
+S
+
+#4304
+The Grand Cathedral~
+This cathedral is the grandest you have ever seen.  The ceiling towers
+about fifty feet over your head and is decorated in gold and paintings by
+the realms most celebrated artists including the elves of Elven City.~
+43 ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+~
+~
+0 -1 4305 
+DDIR_NORTH
+~
+~
+0 -1 4307 
+S
+
+#4305
+The Grand Cathedral~
+This part of the cathedral is done in a gothic style with pointed arches
+along the sides of the chapel.  The columns formed by those arches are
+styled into statues of past saints and other personages.~
+43 ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+~
+~
+0 -1 4302
+DDIR_EAST
+~
+~
+0 -1 4306
+DDIR_WEST
+~
+~
+0 -1 4304
+DDIR_NORTH
+~
+~
+0 -1 4308
+S
+
+#4306
+The Grand Cathedral~
+The floor below you shines like brightly polished marble.  In fact, it is
+polished marble.  The joints in the marble tiles have been so worn by the
+great numbers of people traversing them that they are nearly invisible.~
+43 ROOM_INDOORS SECT_INSIDE
+DDIR_WEST
+~
+~
+0 -1 4305
+DDIR_NORTH
+~
+~
+0 -1 4309 
+S
+
+#4307
+The Grand Cathedral~
+This cathedral is the grandest you have ever seen.  The ceiling towers
+about fifty feet over your head and is decorated in gold and paintings by
+the realms most celebrated artists including the elves of Elven City.~
+43 ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+The Grand Cathedral~
+~
+0 -1 4304
+DDIR_EAST
+~
+~
+0 -1 4308 
+DDIR_NORTH
+~
+~
+0 -1 4321 
+S
+
+#4308
+The Grand Cathedral~
+This part of the cathedral is done in a gothic style with pointed arches
+along the sides of the chapel.  The columns formed by those arches are
+styled into statues of past saints and other personages.~
+43 ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+~
+~
+0 -1 4305
+DDIR_WEST
+~
+~
+0 -1 4307
+DDIR_EAST
+~
+~
+0 -1 4309
+DDIR_NORTH
+~
+~
+0 -1 4311
+S
+
+#4309
+The Grand Cathedral~
+The floor below you shines like brightly polished marble.  In fact, it is
+polished marble.  The joints in the marble tiles have been so worn by the
+great numbers of people traversing them that they are nearly invisible.~
+43 ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+The Grand Cathedral~
+~
+0 -1 4306
+DDIR_WEST
+~
+~
+0 -1 4308
+DDIR_NORTH
+~
+~
+0 -1 4312
+S
+
+#4310
+Stairs to the Tower~
+These stairs form a small well like structure leading up in a spiral to
+the top of the tower.  They are wooden and attach to the stone wall with
+large pegs.  Below you is the balcony where nobles sit for services.~
+43 ROOM_INDOORS SECT_INSIDE
+DDIR_DOWN
+~
+~
+0 -1 4375
+DDIR_UP
+~
+~
+0 -1 4383
+S
+
+#4311
+The Grand Cathedral~
+This cathedral is the grandest you have ever seen.  The ceiling towers
+about fifty feet over your head and is decorated in gold and paintings by
+the realms most celebrated artists including the elves of Elven City.~
+43 ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+~
+~
+0 -1 4308
+DDIR_EAST
+~
+~
+0 -1 4312 
+DDIR_NORTH
+~
+~
+0 -1 4314 
+DDIR_WEST
+~
+~
+0 -1 4321 
+S
+
+#4312
+The Grand Cathedral~
+The floor below you shines like brightly polished marble.  In fact, it is
+polished marble.  The joints in the marble tiles have been so worn by the
+great numbers of people traversing them that they are nearly invisible.~
+43 ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+~
+~
+0 -1 4309
+DDIR_EAST
+~
+~
+0 -1 4324
+DDIR_WEST
+~
+~
+0 -1 4311
+DDIR_NORTH
+~
+~
+0 -1 4313
+S
+
+#4313
+The Grand Cathedral~
+This part of the cathedral is done in a gothic style with pointed arches
+along the sides of the chapel.  The columns formed by those arches are
+styled into statues of past saints and other personages.~
+43 ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+~
+~
+0 -1 4312
+DDIR_WEST
+~
+~
+0 -1 4314 
+DDIR_NORTH
+~
+~
+0 -1 4318 
+DDIR_EAST
+~
+~
+0 -1 4322 
+S
+
+#4314
+The Grand Cathedral~
+The floor below you shines like brightly polished marble.  In fact, it is
+polished marble.  The joints in the marble tiles have been so worn by the
+great numbers of people traversing them that they are nearly invisible.~
+43 ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+~
+~
+0 -1 4311
+DDIR_WEST
+~
+~
+0 -1 4315
+DDIR_EAST
+~
+~
+0 -1 4313
+DDIR_NORTH
+~
+~
+0 -1 4317
+S
+
+#4315
+The Grand Cathedral~
+This part of the cathedral is done in a gothic style with pointed arches
+along the sides of the chapel.  The columns formed by those arches are
+styled into statues of past saints and other personages.~
+43 ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+~
+~
+0 -1 4314
+DDIR_NORTH
+~
+~
+0 -1 4316 
+DDIR_WEST
+~
+~
+0 -1 4320 
+DDIR_SOUTH
+~
+~
+0 -1 4321 
+S
+
+#4316
+The Grand Cathedral~
+This cathedral is the grandest you have ever seen.  The ceiling towers
+about fifty feet over your head and is decorated in gold and paintings by
+the realms most celebrated artists including the elves of Elven City.~
+43 ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+~
+~
+0 -1 4315
+S
+
+#4317
+The Great Altar~
+This altar is not consecrated to any god in particular but is here so that
+all worshipers may join service here at the same time and place.  It is
+beautiful no matter which god you follow though and must cost a fortune.~
+43 ROOM_SAFE|ROOM_ALTAR_N|ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+~
+~
+0 -1 4314
+DDIR_NORTH
+~
+~
+0 -1 4319 
+S
+
+#4318
+The Grand Cathedral~
+This cathedral is the grandest you have ever seen.  The ceiling towers
+about fifty feet over your head and is decorated in gold and paintings by
+the realms most celebrated artists including the elves of Elven City.~
+43 ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+~
+~
+0 -1 4313
+S
+
+#4319
+Behind the Altar~
+The walls behind the altar are covered in a rich wood paneling.  The
+expense of the stains used on this section of wall alone could have fed half
+of Waterdeep for a week.  The carvings in each section are intricate and
+unique.  You notice that one section looks like an ornate doorway.~
+43 ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+~
+~
+0 -1 4317
+DDIR_WEST
+~
+ornate doorway~
+EX_ISDOOR|EX_CLOSED|EX_HIDDEN -1 4335
+S
+
+#4320
+The Grand Cathedral~
+The floor below you shines like brightly polished marble.  In fact, it is
+polished marble.  The joints in the marble tiles have been so worn by the
+great numbers of people traversing them that they are nearly invisible.~
+43 ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+~
+~
+0 -1 4315
+DDIR_SOUTH
+~
+~
+0 -1 4323 
+S
+
+#4321
+The Grand Cathedral~
+This part of the cathedral is done in a gothic style with pointed arches
+along the sides of the chapel.  The columns formed by those arches are
+styled into statues of past saints and other personages.~
+43 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 4315
+DDIR_WEST
+~
+~
+0 -1 4323
+DDIR_EAST
+~
+~
+0 -1 4311
+DDIR_SOUTH
+~
+~
+0 -1 4307
+S
+
+#4322
+The Grand Cathedral~
+This cathedral is the grandest you have ever seen.  The ceiling towers
+about fifty feet over your head and is decorated in gold and paintings by
+the realms most celebrated artists including the elves of Elven City.~
+43 ROOM_INDOORS SECT_INSIDE
+DDIR_WEST
+~
+~
+0 -1 4313
+DDIR_SOUTH
+~
+~
+0 -1 4324 
+DDIR_NORTH
+~
+Door~
+EX_ISDOOR|EX_CLOSED -1 4325 
+S
+
+#4323
+The Grand Cathedral~
+The floor below you shines like brightly polished marble.  In fact it is
+polished marble.  The joints in the marble tiles have been so worn by the
+great numbers of people traversing them that they are nearly invisible.~
+43 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 4320
+DDIR_EAST
+~
+~
+0 -1 4321
+S
+
+#4324
+The Grand Cathedral~
+This part of the cathedral is done in a gothic style with pointed arches
+along the sides of the chapel.  The columns formed by those arches are
+styled into statues of past saints and other personages.~
+43 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 4322
+DDIR_WEST
+~
+~
+0 -1 4312
+S
+
+#4325
+Passageway~
+This passageway looks like it is rarely traveled as it leads to the
+extensive library kept in these halls.  Although the library is open to
+the public, few citizens of Waterdeep care to partake of its treasures.~
+43 ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+~
+~
+0 -1 4322
+DDIR_EAST
+~
+~
+0 -1 4326 
+S
+
+#4326
+Cathedral Library~
+Although this library is as lavish as the rest of the cathedral you can
+barely tell as its walls are completely covered by shelves which are
+in turn covered by all manner of books and scrolls.~
+43 ROOM_INDOORS SECT_INSIDE
+DDIR_WEST
+~
+~
+0 -1 4325
+DDIR_EAST
+~
+~
+0 -1 4327 
+DDIR_NORTH
+~
+~
+0 -1 4329 
+S
+
+#4327
+Cathedral Library~
+The library here is one of the more extensive collections in the realms
+though it is lesser known than some of the great libraries.  The librarians
+here specialize in religious texts though all sorts can be found here.~
+43 ROOM_INDOORS SECT_INSIDE
+DDIR_WEST
+~
+~
+0 -1 4326
+DDIR_NORTH
+~
+~
+0 -1 4328 
+DDIR_EAST
+~
+~
+0 -1 4334 
+S
+
+#4328
+Cathedral Library~
+Although this library is as lavish as the rest of the cathedral you can
+barely tell as its walls are completely covered by shelves which are
+in turn covered by all manner of books and scrolls.~
+43 ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+~
+~
+0 -1 4327
+DDIR_NORTH
+~
+~
+0 -1 4331 
+S
+
+#4329
+Cathedral Library~
+The library here is one of the more extensive collections in the realms
+though it is lesser known than some of the great libraries.  The librarians
+here specialize in religious texts though all sorts can be found here.~
+43 ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+~
+~
+0 -1 4326
+DDIR_NORTH
+~
+~
+0 -1 4330 
+S
+
+#4330
+Cathedral Library~
+Although this library is as lavish as the rest of the cathedral you can
+barely tell as its walls are completely covered by shelves which are
+in turn covered by all manner of books and scrolls.~
+43 ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+~
+~
+0 -1 4329
+DDIR_EAST
+~
+~
+0 -1 4331 
+S
+
+#4331
+Cathedral Library~
+The library here is one of the more extensive collections in the realms
+though it is lesser known than some of the great libraries.  The librarians
+here specialize in religious texts though all sorts can be found here.~
+43 ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+~
+~
+0 -1 4328
+DDIR_WEST
+~
+~
+0 -1 4330
+DDIR_EAST
+~
+~
+0 -1 4333
+S
+
+#4332
+Cathedral Library~
+The library here is one of the more extensive collections in the realms
+though it is lesser known than some of the great libraries.  The librarians
+here specialize in religious texts though all sorts can be found here.~
+43 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 4333 
+DDIR_SOUTH
+~
+~
+0 -1 4334 
+S
+
+#4333
+Cathedral Library~
+Although this library is as lavish as the rest of the cathedral you can
+barely tell as its walls are completely covered by shelves which are
+in turn covered by all manner of books and scrolls.~
+43 ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+~
+~
+0 -1 4332
+DDIR_WEST
+~
+~
+0 -1 4331
+S
+
+#4334
+Cathedral Library~
+Although this library is as lavish as the rest of the cathedral you can
+barely tell as its walls are completely covered by shelves which are
+in turn covered by all manner of books and scrolls.~
+43 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 4332
+DDIR_WEST
+~
+~
+0 -1 4327
+S
+
+#4335
+Passageway~
+This passageway is closed to the public and provides access to the offices
+of the clergy of Waterdeep.  If anything, the walls along these halls are
+more elaborate than any you have seen so far.~
+43 ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+~
+~
+0 -1 4319
+DDIR_NORTH
+~
+~
+0 -1 4336 
+S
+
+#4336
+Passageway~
+The walls of this hallway are lavishly decorated in various styles.
+The higher ups in the church of Waterdeep definitely have an idea of
+how to spend the money that is donated to them.~
+43 ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+~
+~
+0 -1 4335
+DDIR_WEST
+~
+~
+0 -1 4337 
+S
+
+#4337
+Passageway~
+This passageway is closed to the public and provides access to the offices
+of the clergy of Waterdeep.  If anything, the walls along these halls are
+more elaborate than any you have seen so far.~
+43 ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+~
+~
+0 -1 4336
+DDIR_NORTH
+~
+~
+0 -1 4338 
+S
+
+#4338
+Passageway~
+The walls of this hallway are lavishly decorated in various styles.
+The higher ups in the church of Waterdeep definitely have an idea of
+how to spend the money that is donated to them.~
+43 ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+~
+~
+0 -1 4337
+DDIR_NORTH
+~
+~
+0 -1 4339 
+DDIR_WEST
+~
+~
+0 -1 4342 
+S
+
+#4339
+Passageway~
+This passageway is closed to the public and provides access to the offices
+of the clergy of Waterdeep.  If anything, the walls along these halls are
+more elaborate than any you have seen so far.~
+43 ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+~
+~
+0 -1 4338
+DDIR_NORTH
+~
+~
+0 -1 4340 
+DDIR_EAST
+~
+~
+0 -1 4343 
+S
+
+#4340
+Passageway~
+The walls of this hallway are lavishly decorated in various styles.
+The higher ups in the church of Waterdeep definitely have an idea of
+how to spend the money that is donated to them.~
+43 ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+~
+~
+0 -1 4339
+DDIR_WEST
+~
+~
+0 -1 4341 
+DDIR_NORTH
+~
+~
+0 -1 4344 
+S
+
+#4341
+Priest's Office~
+This office is as ornately decorated as any lord's.  Most of the images you
+see however are of religious personages and events.  The elaborate paneling
+and tapestries are such that you could live in this room in perfect comfort.~
+43 ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+~
+~
+0 -1 4340
+S
+
+#4342
+Priest's Office~
+This office is as ornately decorated as any lord's.  Most of the images you
+see however are of religious personages and events.  The elaborate paneling
+and tapestries are such that you could live in this room in perfect comfort.~
+43 ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+~
+~
+0 -1 4338
+S
+
+#4343
+Bishop's Office~
+The bishop's office is slightly larger than those of his priests.  This
+office is as ornately decorated as any lord's.  Most of the images you
+see however are of religious personages and events.  The elaborate paneling
+and tapestries are such that you could live in this room in perfect comfort.~
+43 ROOM_INDOORS SECT_INSIDE
+DDIR_WEST
+~
+~
+0 -1 4339
+DDIR_EAST
+~
+~
+0 -1 4382 
+S
+
+#4344
+Archbishop's Office~
+The office of the Archbishop of Waterdeep is as large as some peoples'
+homes.  It is as ornately decorated as any lord's.  Most of the images you
+see however are of religious personages and events.  The elaborate paneling
+and tapestries are such that you could live in this room in perfect comfort.~
+43 ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+~
+~
+0 -1 4340
+DDIR_EAST
+~
+~
+0 -1 4345 
+S
+
+#4345
+Archbishop's Office~
+There is a large desk in the center of the room that must have cost a
+fortune and that is just the furniture.  Most of the images you
+see however are of religious personages and events.  The elaborate paneling
+and tapestries are such that you could live in this room in perfect comfort.
+A door here leads out to a private garden.~
+43 ROOM_INDOORS SECT_INSIDE
+DDIR_WEST
+~
+~
+0 -1 4344
+DDIR_EAST
+~
+door~
+EX_ISDOOR|EX_CLOSED -1 4392
+S
+
+#4346
+Cathedral cemetery~
+The lawns here are nicely trimmed and you might almost think you were
+strolling through a park if it were not for the tombstones marking graves
+every ten feet or so.~
+43 0 SECT_FIELD
+DDIR_WEST
+~
+~
+0 -1 4303
+DDIR_NORTH
+~
+~
+0 -1 4347 
+DDIR_EAST
+~
+~
+0 -1 4351 
+S
+
+#4347
+Cathedral cemetery~
+This graveyard does not have the gloomy look of most cemeteries.  It is
+light and green and looks more like a park than a place to bury the dead.~
+43 0 SECT_FIELD
+DDIR_SOUTH
+~
+~
+0 -1 4346
+DDIR_NORTH
+~
+~
+0 -1 4348 
+DDIR_EAST
+~
+~
+0 -1 4350 
+S
+
+#4348
+Cathedral cemetery~
+The lawns here are nicely trimmed and you might almost think you were
+strolling through a park if it were not for the tombstones marking graves
+every ten feet or so.~
+43 0 SECT_FIELD
+DDIR_SOUTH
+~
+~
+0 -1 4347
+DDIR_EAST
+~
+~
+0 -1 4349 
+S
+
+#4349
+Cathedral cemetery~
+The grass here is slightly trampled as there was recently a burial near here.
+There are a few clumps of dirt lying here that were missed when the diggers
+closed in the grave but it seems that people have done a good job of trying
+not to destroy the grounds.~
+43 0 SECT_FIELD
+DDIR_WEST
+~
+~
+0 -1 4348
+DDIR_SOUTH
+~
+~
+0 -1 4350 
+DDIR_EAST
+~
+~
+0 -1 4354 
+DDIR_NORTH
+~
+~
+0 -1 4364 
+S
+
+#4350
+Cathedral cemetery~
+This graveyard does not have the gloomy look of most cemeteries.  It is
+light and green and looks more like a park than a place to bury the dead.~
+43 0 SECT_FIELD
+DDIR_NORTH
+~
+~
+0 -1 4349
+DDIR_WEST
+~
+~
+0 -1 4347
+DDIR_EAST
+~
+~
+0 -1 4353
+DDIR_SOUTH
+~
+~
+0 -1 4351
+S
+
+#4351
+Cathedral cemetery~
+The grass here is slightly trampled as there was recently a burial near here.
+There are a few clumps of dirt lying here that were missed when the diggers
+closed in the grave but it seems that people have done a good job of trying
+not to destroy the grounds.~
+43 0 SECT_FIELD
+DDIR_NORTH
+~
+~
+0 -1 4350
+DDIR_WEST
+~
+~
+0 -1 4346
+DDIR_EAST
+~
+~
+0 -1 4352
+S
+
+#4352
+Cathedral cemetery~
+This graveyard does not have the gloomy look of most cemeteries.  It is
+light and green and looks more like a park than a place to bury the dead.~
+43 0 SECT_FIELD
+DDIR_WEST
+~
+~
+0 -1 4351
+DDIR_NORTH
+~
+~
+0 -1 4353 
+DDIR_EAST
+~
+~
+0 -1 4355 
+S
+
+#4353
+Cathedral cemetery~
+The lawns here are nicely trimmed and you might almost think you were
+strolling through a park if it were not for the tombstones marking graves
+every ten feet or so.~
+43 0 SECT_FIELD
+DDIR_SOUTH
+~
+~
+0 -1 4352
+DDIR_WEST
+~
+~
+0 -1 4350
+DDIR_EAST
+~
+~
+0 -1 4356
+DDIR_NORTH
+~
+~
+0 -1 4354
+S
+
+#4354
+Cathedral cemetery~
+The grass here is slightly trampled as there was recently a burial near here.
+There are a few clumps of dirt lying here that were missed when the diggers
+closed in the grave but it seems that people have done a good job of trying
+not to destroy the grounds.~
+43 0 SECT_FIELD
+DDIR_SOUTH
+~
+~
+0 -1 4353
+DDIR_WEST
+~
+~
+0 -1 4349
+DDIR_EAST
+~
+~
+0 -1 4357
+DDIR_NORTH
+~
+~
+0 -1 4363
+S
+
+#4355
+Cathedral cemetery~
+This graveyard does not have the gloomy look of most cemeteries.  It is
+light and green and looks more like a park than a place to bury the dead.~
+43 0 SECT_FIELD
+DDIR_WEST
+~
+~
+0 -1 4352
+DDIR_NORTH
+~
+~
+0 -1 4356 
+DDIR_EAST
+~
+~
+0 -1 4358 
+DDIR_SOUTH
+~
+~
+0 -1 4374 
+S
+
+#4356
+Cathedral cemetery~
+The grass here is slightly trampled as there was recently a burial near here.
+There are a few clumps of dirt lying here that were missed when the diggers
+closed in the grave but it seems that people have done a good job of trying
+not to destroy the grounds.~
+43 0 SECT_FIELD
+DDIR_SOUTH
+~
+~
+0 -1 4355
+DDIR_WEST
+~
+~
+0 -1 4353
+DDIR_EAST
+~
+~
+0 -1 4359
+DDIR_NORTH
+~
+~
+0 -1 4357
+S
+
+#4357
+Cathedral cemetery~
+The lawns here are nicely trimmed and you might almost think you were
+strolling through a park if it were not for the tombstones marking graves
+every ten feet or so.~
+43 ROOM_NO_MOB|ROOM_SAFE|ROOM_ALTAR_C SECT_FIELD
+DDIR_SOUTH
+~
+~
+0 -1 4356
+DDIR_WEST
+~
+~
+0 -1 4354
+DDIR_EAST
+~
+~
+0 -1 4360
+DDIR_NORTH
+~
+~
+0 -1 4362
+S
+
+#4358
+Cathedral cemetery~
+This graveyard does not have the gloomy look of most cemeteries.  It is
+light and green and looks more like a park than a place to bury the dead.~
+43 0 SECT_FIELD
+DDIR_WEST
+~
+~
+0 -1 4355
+DDIR_NORTH
+~
+~
+0 -1 4359 
+DDIR_EAST
+~
+~
+0 -1 4369 
+S
+
+#4359
+Cathedral cemetery~
+The grass here is slightly trampled as there was recently a burial near here.
+There are a few clumps of dirt lying here that were missed when the diggers
+closed in the grave but it seems that people have done a good job of trying
+not to destroy the grounds.~
+43 0 SECT_FIELD
+DDIR_SOUTH
+~
+~
+0 -1 4358
+DDIR_WEST
+~
+~
+0 -1 4356
+DDIR_EAST
+~
+~
+0 -1 4370
+DDIR_NORTH
+~
+~
+0 -1 4360
+S
+
+#4360
+Cathedral cemetery~
+The lawns here are nicely trimmed and you might almost think you were
+strolling through a park if it were not for the tombstones marking graves
+every ten feet or so.~
+43 0 SECT_FIELD
+DDIR_SOUTH
+~
+~
+0 -1 4359
+DDIR_EAST
+~
+~
+0 -1 4371
+DDIR_WEST
+~
+~
+0 -1 4357
+DDIR_NORTH
+~
+~
+0 -1 4361
+S
+
+#4361
+Cathedral cemetery~
+This graveyard does not have the gloomy look of most cemeteries.  It is
+light and green and looks more like a park than a place to bury the dead.~
+43 0 SECT_FIELD
+DDIR_SOUTH
+~
+~
+0 -1 4360
+DDIR_WEST
+~
+~
+0 -1 4362 
+DDIR_NORTH
+~
+~
+0 -1 4368 
+DDIR_EAST
+~
+~
+0 -1 4372 
+S
+
+#4362
+Cathedral cemetery~
+The grass here is slightly trampled as there was recently a burial near here.
+There are a few clumps of dirt lying here that were missed when the diggers
+closed in the grave but it seems that people have done a good job of trying
+not to destroy the grounds.~
+43 0 SECT_FIELD
+DDIR_SOUTH
+~
+~
+0 -1 4357
+DDIR_WEST
+~
+~
+0 -1 4363
+DDIR_EAST
+~
+~
+0 -1 4361
+DDIR_NORTH
+~
+~
+0 -1 4367
+S
+
+#4363
+Cathedral cemetery~
+This graveyard does not have the gloomy look of most cemeteries.  It is
+light and green and looks more like a park than a place to bury the dead.~
+43 0 SECT_FIELD
+DDIR_SOUTH
+~
+~
+0 -1 4354
+DDIR_WEST
+~
+~
+0 -1 4364
+DDIR_EAST
+~
+~
+0 -1 4362
+DDIR_NORTH
+~
+~
+0 -1 4366
+S
+
+#4364
+Cathedral cemetery~
+The lawns here are nicely trimmed and you might almost think you were
+strolling through a park if it were not for the tombstones marking graves
+every ten feet or so.~
+43 0 SECT_FIELD
+DDIR_SOUTH
+~
+~
+0 -1 4349
+DDIR_EAST
+~
+~
+0 -1 4363
+DDIR_NORTH
+~
+~
+0 -1 4365
+S
+
+#4365
+Cathedral cemetery~
+The grass here is slightly trampled as there was recently a burial near here.
+There are a few clumps of dirt lying here that were missed when the diggers
+closed in the grave but it seems that people have done a good job of trying
+not to destroy the grounds.~
+43 ROOM_NO_MOB SECT_FIELD
+DDIR_SOUTH
+~
+~
+0 -1 4364
+DDIR_EAST
+~
+~
+0 -1 4366 
+S
+
+#4366
+Cathedral cemetery~
+This graveyard does not have the gloomy look of most cemeteries.  It is
+light and green and looks more like a park than a place to bury the dead.~
+43 0 SECT_FIELD
+DDIR_SOUTH
+~
+~
+0 -1 4363
+DDIR_EAST
+~
+~
+0 -1 4367
+DDIR_WEST
+~
+~
+0 -1 4365
+S
+
+#4367
+Cathedral cemetery~
+The grass here is slightly trampled as there was recently a burial near here.
+There are a few clumps of dirt lying here that were missed when the diggers
+closed in the grave but it seems that people have done a good job of trying
+not to destroy the grounds.~
+43 0 SECT_FIELD
+DDIR_SOUTH
+~
+~
+0 -1 4362
+DDIR_WEST
+~
+~
+0 -1 4366
+DDIR_EAST
+~
+~
+0 -1 4368
+S
+
+#4368
+Cathedral cemetery~
+The lawns here are nicely trimmed and you might almost think you were
+strolling through a park if it were not for the tombstones marking graves
+every ten feet or so.~
+43 0 SECT_FIELD
+DDIR_SOUTH
+~
+~
+0 -1 4361
+DDIR_EAST
+~
+~
+0 -1 4373
+DDIR_WEST
+~
+~
+0 -1 4367
+S
+
+#4369
+Cathedral cemetery~
+This graveyard does not have the gloomy look of most cemeteries.  It is
+light and green and looks more like a park than a place to bury the dead.~
+43 0 SECT_FIELD
+DDIR_WEST
+~
+~
+0 -1 4358
+DDIR_NORTH
+~
+~
+0 -1 4370 
+S
+
+#4370
+Cathedral cemetery~
+The grass here is slightly trampled as there was recently a burial near here.
+There are a few clumps of dirt lying here that were missed when the diggers
+closed in the grave but it seems that people have done a good job of trying
+not to destroy the grounds.~
+43 0 SECT_FIELD
+DDIR_SOUTH
+~
+~
+0 -1 4369
+DDIR_WEST
+~
+~
+0 -1 4359
+DDIR_NORTH
+~
+~
+0 -1 4371
+S
+
+#4371
+Cathedral cemetery~
+The lawns here are nicely trimmed and you might almost think you were
+strolling through a park if it were not for the tombstones marking graves
+every ten feet or so.~
+43 0 SECT_FIELD
+DDIR_SOUTH
+~
+~
+0 -1 4370
+DDIR_WEST
+~
+~
+0 -1 4360
+DDIR_NORTH
+~
+~
+0 -1 4372
+S
+
+#4372
+Cathedral cemetery~
+This graveyard does not have the gloomy look of most cemeteries.  It is
+light and green and looks more like a park than a place to bury the dead.~
+43 0 SECT_FIELD
+DDIR_SOUTH
+~
+~
+0 -1 4371
+DDIR_WEST
+~
+~
+0 -1 4361
+DDIR_NORTH
+~
+~
+0 -1 4373
+S
+
+#4373
+Cathedral cemetery~
+The lawns here are nicely trimmed and you might almost think you were
+strolling through a park if it were not for the tombstones marking graves
+every ten feet or so.~
+43 0 SECT_FIELD
+DDIR_SOUTH
+~
+~
+0 -1 4372
+DDIR_WEST
+~
+~
+0 -1 4368
+S
+
+#4374
+Gate into the cemetery~
+This small gate leads between the cemetery in the Cathedral of Waterdeep
+and Waterdeep Way.  The walls forming it are covered in ivy and it is
+fairly unobtrusive.  A small trellis blocks the view of the cemetery from
+the street.
+~
+43 ROOM_NO_MOB SECT_FIELD
+DDIR_NORTH
+~
+Iron Gate~
+EX_ISDOOR|EX_CLOSED -1 4355
+DDIR_SOUTH
+Waterdeep Way~
+~
+0 -1 8009
+S
+
+#4375
+The Landing~
+This small room provides access to the cathedral tower above, the noble's
+balcony to the north or the cathedral foyer below.  The designers of the
+cathedral have not overlooked the smallest detail in its construction.
+Even this small room is beautifully constructed and decorated.~
+43 ROOM_INDOORS|ROOM_NO_MOB SECT_INSIDE
+DDIR_DOWN
+~
+~
+0 -1 4302
+DDIR_NORTH
+~
+~
+0 -1 4376
+DDIR_UP
+~
+~
+0 -1 4310 
+S
+
+#4376
+Noble's Balcony~
+The decorations on this level are as fancy as those on the lower level but
+there is one addition that makes you sure that the commoners are not
+allowed on this level.~
+43 ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+~
+~
+0 -1 4375
+DDIR_WEST
+~
+~
+0 -1 4377
+DDIR_EAST
+~
+~
+0 -1 4378
+DDIR_NORTH
+~
+~
+0 -1 4380
+S
+
+#4377
+Noble's Balcony~
+This balcony is no more elaborate than the rest of the cathedral but you
+can tell right away that it is reserved for the nobility of Waterdeep.~
+43 ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+~
+~
+0 -1 4376
+DDIR_NORTH
+~
+~
+0 -1 4381
+S
+
+#4378
+Noble's Balcony~
+This balcony is no more elaborate than the rest of the cathedral but you
+can tell right away that it is reserved for the nobility of Waterdeep.~
+43 ROOM_INDOORS SECT_INSIDE
+DDIR_WEST
+~
+~
+0 -1 4376
+DDIR_NORTH
+~
+~
+0 -1 4379
+S
+
+#4379
+Noble's Balcony~
+The decorations on this level are as fancy as those on the lower level but
+there is one addition that makes you sure that the commoners are not
+allowed on this level.~
+43 ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+~
+~
+0 -1 4378
+DDIR_WEST
+~
+~
+0 -1 4380
+S
+
+#4380
+Noble's Balcony~
+This balcony is no more elaborate than the rest of the cathedral but you
+can tell right away that it is reserved for the nobility of Waterdeep.~
+43 ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+~
+~
+0 -1 4376
+DDIR_EAST
+~
+~
+0 -1 4379
+DDIR_WEST
+~
+~
+0 -1 4381
+S
+
+#4381
+Noble's Balcony~
+The decorations on this level are as fancy as those on the lower level but
+there is one addition that makes you sure that the commoners are not
+allowed on this level.~
+43 ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+~
+~
+0 -1 4377
+DDIR_EAST
+~
+~
+0 -1 4380
+S
+
+#4382
+Cathedral Garden~
+This garden is one of the most beautiful you have ever seen.  Everywhere
+you look something is blooming.  The green grass is easily outnumbered by
+the amazing variety of flowers.  Even the trees are blooming.~
+43 0 SECT_FIELD
+DDIR_WEST
+~
+Door~
+EX_ISDOOR|EX_CLOSED -1 4343
+DDIR_SOUTH
+~
+~
+0 -1 4384 
+DDIR_NORTH
+~
+~
+0 -1 4385 
+DDIR_EAST
+~
+~
+0 -1 4387 
+S
+
+
+#4383
+In the Bell Tower~
+This cramped tower houses the bells of the cathedral of Waterdeep.
+Someone climbs the stairs below you every hour in order to ring these
+bells.  A cold breeze blows in through the holes in the wall.
+     {120}Eight large bells swing in the wind here.{300}~
+43 ROOM_INDOORS SECT_INSIDE
+DDIR_DOWN
+~
+~
+0 -1 4310
+S
+
+#4384
+Cathedral Garden~
+The flowers here almost blind you with their amazing variety of color.
+They fill the garden beds between walkways of neatly trimmed grass, and
+you can barely restrain yourself from picking a dozen of them.~
+43 0 SECT_FIELD
+DDIR_NORTH
+~
+~
+0 -1 4382
+DDIR_EAST
+~
+~
+0 -1 4388 
+S
+
+#4385
+Cathedral Garden~
+The flowers here almost blind you with their amazing variety of color.
+They fill the garden beds between walkways of neatly trimmed grass, and
+you can barely restrain yourself from picking a dozen of them.~
+43 0 SECT_FIELD
+DDIR_SOUTH
+~
+~
+0 -1 4382
+DDIR_EAST
+~
+~
+0 -1 4386 
+DDIR_NORTH
+~
+~
+0 -1 4392
+S
+
+#4386
+Cathedral Garden~
+This garden is one of the most beautiful you have ever seen.  Everywhere
+you look something is blooming.  The green grass is easily outnumbered by
+the amazing variety of flowers.  Even the trees are blooming.~
+43 0 SECT_FIELD
+DDIR_WEST
+~
+~
+0 -1 4385
+DDIR_SOUTH
+~
+~
+0 -1 4387 
+DDIR_EAST
+~
+~
+0 -1 4391 
+S
+
+#4387
+Cathedral Garden~
+The flowers here almost blind you with their amazing variety of color.
+They fill the garden beds between walkways of neatly trimmed grass, and
+you can barely restrain yourself from picking a dozen of them.~
+43 ROOM_SAFE|ROOM_ALTAR_O SECT_FIELD
+DDIR_NORTH
+~
+~
+0 -1 4386
+DDIR_WEST
+~
+~
+0 -1 4382
+DDIR_EAST
+~
+~
+0 -1 4390
+DDIR_SOUTH
+~
+~
+0 -1 4388
+S
+
+#4388
+Cathedral Garden~
+This garden is one of the most beautiful you have ever seen.  Everywhere
+you look something is blooming.  The green grass is easily outnumbered by
+the amazing variety of flowers.  Even the trees are blooming.~
+43 0 SECT_FIELD
+DDIR_NORTH
+~
+~
+0 -1 4387
+DDIR_WEST
+~
+~
+0 -1 4384
+DDIR_EAST
+~
+~
+0 -1 4389
+S
+
+#4389
+Cathedral Garden~
+The flowers here almost blind you with their amazing variety of color.
+They fill the garden beds between walkways of neatly trimmed grass, and
+you can barely restrain yourself from picking a dozen of them.~
+43 0 SECT_FIELD
+DDIR_WEST
+~
+~
+0 -1 4388
+DDIR_NORTH
+~
+~
+0 -1 4390 
+S
+
+#4390
+Cathedral Garden~
+The flowers here almost blind you with their amazing variety of color.
+They fill the garden beds between walkways of neatly trimmed grass, and
+you can barely restrain yourself from picking a dozen of them.~
+43 0 SECT_FIELD
+DDIR_SOUTH
+~
+~
+0 -1 4389
+DDIR_WEST
+~
+~
+0 -1 4387
+DDIR_NORTH
+~
+~
+0 -1 4391
+S
+
+#4391
+Cathedral Garden~
+This garden is one of the most beautiful you have ever seen.  Everywhere
+you look something is blooming.  The green grass is easily outnumbered by
+the amazing variety of flowers.  Even the trees are blooming.~
+43 0 SECT_FIELD
+DDIR_SOUTH
+~
+~
+0 -1 4390
+DDIR_WEST
+~
+~
+0 -1 4386
+S
+
+#4392
+Cathedral Garden~
+The flowers here almost blind you with their amazing variety of color.
+They fill the garden beds between walkways of neatly trimmed grass, and
+you can barely restrain yourself from picking a dozen of them.~
+43 0 SECT_FIELD
+DDIR_SOUTH
+~
+~
+0 -1 4385
+DDIR_WEST
+~
+Door~
+EX_ISDOOR|EX_CLOSED -1 4345
+S
+
+#4393
+A Shallow Grave~
+This grave is used only to disperse half-decaying parishioners throughout
+the cathedral cemetery.~
+43 ROOM_INDOORS|ROOM_NO_RIP SECT_INSIDE
+DDIR_SOUTH
+~
+~
+0 -1 4366
+DDIR_WEST
+~
+~
+0 -1 4373 
+DDIR_NORTH
+~
+~
+0 -1 4362
+DDIR_EAST
+~
+~
+0 -1 4364
+DDIR_UP
+~
+~
+0 -1 4356
+DDIR_DOWN
+~
+~
+0 -1 4369
+S
+
+#4394
+Noble's Waiting Room~
+This room is used to disperse nobles throughout the Noble's Balcony.~
+43 ROOM_INDOORS|ROOM_NO_RIP SECT_INSIDE
+DDIR_SOUTH
+~
+~
+0 -1 4377
+DDIR_WEST
+~
+~
+0 -1 4378 
+DDIR_NORTH
+~
+~
+0 -1 4380
+S
+
+#4395
+The Antechamber~
+This antechamber is used to disperse commoners through the cathedral.~
+43 ROOM_INDOORS|ROOM_NO_RIP SECT_INSIDE
+DDIR_SOUTH
+~
+~
+0 -1 4306
+DDIR_WEST
+~
+~
+0 -1 4308
+DDIR_NORTH
+~
+~
+0 -1 4321
+DDIR_EAST
+~
+~
+0 -1 4320
+DDIR_UP
+~
+~
+0 -1 4312
+DDIR_DOWN
+~
+~
+0 -1 4304
+S
+
+
+
+
+
+
+
+
+
+#0
+
+#SHOPS
+0
+
+#RESETS
+M 0 4300 16 4304               ; commoner in cathedral
+M 0 4300 16 4305               ; commoner in cathedral
+M 0 4300 16 4306               ; commoner in cathedral
+M 0 4300 16 4307               ; commoner in cathedral
+M 0 4300 16 4308               ; commoner in cathedral
+M 0 4300 16 4309               ; commoner in cathedral
+M 0 4300 16 4324               ; commoner in cathedral
+M 0 4300 16 4311               ; commoner in cathedral
+M 0 4300 16 4312               ; commoner in cathedral
+M 0 4300 16 4313               ; commoner in cathedral
+M 0 4300 16 4314               ; commoner in cathedral
+M 0 4300 16 4315               ; commoner in cathedral
+M 0 4300 16 4320               ; commoner in cathedral
+M 0 4300 16 4321               ; commoner in cathedral
+M 0 4300 16 4322               ; commoner in cathedral
+M 0 4300 16 4323               ; commoner in cathedral
+M 0 4317 10 4395               ; commoner in antechamber
+M 0 4317 10 4395               ; commoner in antechamber
+M 0 4317 10 4395               ; commoner in antechamber
+M 0 4317 10 4395               ; commoner in antechamber
+M 0 4317 10 4395               ; commoner in antechamber
+M 0 4317 10 4395               ; commoner in antechamber
+M 0 4317 10 4395               ; commoner in antechamber
+M 0 4317 10 4395               ; commoner in antechamber
+M 0 4317 10 4395               ; commoner in antechamber
+M 0 4317 10 4395               ; commoner in antechamber
+M 0 4301 7  4376               ; noble in balcony
+M 0 4301 7  4377               ; noble in balcony
+M 0 4301 7  4378               ; noble in balcony
+M 0 4301 7  4379               ; noble in balcony
+M 0 4301 7  4380               ; noble in balcony
+M 0 4301 7  4381               ; noble in balcony
+M 0 4318 5 4394                ; noble in noble's waiting room
+M 0 4318 5 4394                ; noble in noble's waiting room
+M 0 4318 5 4394                ; noble in noble's waiting room
+M 0 4318 5 4394                ; noble in noble's waiting room
+M 0 4318 5 4394                ; noble in noble's waiting room
+M 0 4302 26 4301               ; priest in cathedral
+M 0 4302 26 4302               ; priest in cathedral
+M 0 4302 26 4303               ; priest in cathedral
+M 0 4302 26 4316               ; priest in cathedral
+E 1 4307 100 WEAR_HOLD         ; holy symbol
+M 0 4302 26 4317               ; priest in cathedral
+M 0 4302 26 4318               ; priest in cathedral
+M 0 4302 26 4341               ; priest in cathedral
+M 0 4302 26 4342               ; priest in cathedral
+M 0 4302 26 4344               ; priest in cathedral
+M 0 4302 26 4325               ; priest in cathedral
+E 1 4307 100 WEAR_HOLD         ; holy symbol
+M 0 4302 26 4326               ; priest in cathedral
+M 0 4302 26 4327               ; priest in cathedral
+M 0 4302 26 4328               ; priest in cathedral
+E 1 4307 100 WEAR_HOLD         ; holy symbol
+M 0 4302 26 4329               ; priest in cathedral
+M 0 4302 26 4330               ; priest in cathedral
+M 0 4302 26 4331               ; priest in cathedral
+E 1 4307 100 WEAR_HOLD         ; holy symbol
+M 0 4302 26 4332               ; priest in cathedral
+M 0 4302 26 4333               ; priest in cathedral
+M 0 4302 26 4382               ; priest in cathedral
+M 0 4302 26 4386               ; priest in cathedral
+E 1 4307 100 WEAR_HOLD         ; holy symbol
+M 0 4302 26 4384               ; priest in cathedral
+M 0 4302 26 4385               ; priest in cathedral
+M 0 4302 26 4388               ; priest in cathedral
+M 0 4302 26 4389               ; priest in cathedral
+E 1 4307 100 WEAR_HOLD         ; holy symbol
+M 0 4302 26 4390               ; priest in cathedral
+M 0 4302 26 4391               ; priest in cathedral
+M 0 4303 1  4343               ; bishop in office
+E 1 4300 200 WEAR_HEAD         ; bishop's mitre
+M 0 4304 1  4345               ; archbishop in office
+M 0 4306 1  4365               ; traitorous priest in cemetery
+M 0 4307 1  4334               ; librarian in library
+M 0 4308 1  4383               ; bellethereal in tower
+M 0 4316 1  4383               ; quasimodo in tower
+O 0 4312 6  4376               ; pew in noble's balcony
+O 0 4312 6  4377               ; pew in noble's balcony
+O 0 4312 6  4378               ; pew in noble's balcony
+O 0 4312 6  4379               ; pew in noble's balcony
+O 0 4312 6  4380               ; pew in noble's balcony
+O 0 4312 6  4381               ; pew in noble's balcony
+O 0 4301 1 4357                ; fountain in cemetery
+O 0 4301 1 4387                ; fountain in garden
+O 0 4302 1 4317                ; altar at altar
+D 0 4319 DIR_WEST DOOR_CLOSED  ; CLOSE West Door in
+S
+#$
