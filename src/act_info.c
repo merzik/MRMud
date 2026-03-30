@@ -910,6 +910,7 @@ int showCharDir(CHAR_DATA *ch,int dirNum)
 {
 	/* extern char * const dir_name[]; */
 	int look_range;
+	(void)look_range;
 
 	if(ch->in_room->exit[dirNum]!=NULL)
 		if(ch->in_room->exit[dirNum]->to_room!=NULL)
@@ -1775,6 +1776,7 @@ void do_exits( CHAR_DATA *ch, char *argument )
 	char buf[MAX_STRING_LENGTH], buf2[MAX_STRING_LENGTH], *cnt;
 	EXIT_DATA *pexit;
 	bool found;
+	(void)found;
 	bool fAuto;
 	int door,num_exits=0;
 	char dim[10], bold[10], buf3[MAX_STRING_LENGTH];
@@ -1851,14 +1853,14 @@ void do_exits( CHAR_DATA *ch, char *argument )
 				if( !can_see_in_room( ch, pexit->to_room))
 					sprintf(buf3, "Too dark to tell");
 				else
-					sprintf(buf3, pexit->to_room->name);
+					sprintf(buf3, "%s", pexit->to_room->name);
 			}
 			else
 				if(fAuto)
 				{
 					if(pexit->keyword!=NULL &&
 						pexit->keyword[0]!='\0')
-						sprintf( buf3, pexit->keyword);
+						sprintf( buf3, "%s", pexit->keyword);
 					else
 						sprintf( buf3, "door");
 				}
@@ -1921,6 +1923,7 @@ void get_string_score_v1( CHAR_DATA *ch, CHAR_DATA *viewer)
 	/* AFFECT_DATA *paf;*/
 	
 	int cnt, gac, leng, isDark;
+	(void)isDark;
 
 	*get_string_score_txt = '\0';
 	if( IS_NPC( ch))
@@ -2242,6 +2245,7 @@ void do_status( CHAR_DATA *ch, char *argument )
 	int gac;
 	int cnt;
 	int isDark, isDark2;
+	(void)isDark; (void)isDark2;
 
 	if( IS_NPC( ch))
 		return;
@@ -2438,8 +2442,8 @@ void do_status( CHAR_DATA *ch, char *argument )
 
 	if (IS_IMMORTAL(ch))
 	{
-		sprintf(buf1,(ch->pcdata->bamfin[0] != '\0') ? ch->pcdata->bamfin : "appears in a swirling mist.");
-		sprintf(buf2,(ch->pcdata->bamfout[0] != '\0') ? ch->pcdata->bamfout : "leaves in a swirling mist.");
+		sprintf(buf1,"%s",(ch->pcdata->bamfin[0] != '\0') ? ch->pcdata->bamfin : "appears in a swirling mist.");
+		sprintf(buf2,"%s",(ch->pcdata->bamfout[0] != '\0') ? ch->pcdata->bamfout : "leaves in a swirling mist.");
 
 		ch_printf(ch, "%s   |%s   Immortal Data:  %sWizinvis [%s]                                       %s|\n\r",
 				ANSI_YELLOW_DIM, ANSI_MAGENTA_BOLD, ANSI_CYAN_BOLD, 
@@ -2894,7 +2898,6 @@ void do_help( CHAR_DATA *ch, char *argument )
 {
 	char buf[MAX_STRING_LENGTH];
 	HELP_DATA *pHelp;
-	bool found;
 
 	if ( argument[0] == '\0' )
 		argument = "mainmenu";
@@ -2908,7 +2911,6 @@ void do_help( CHAR_DATA *ch, char *argument )
 		return;
 	}
 
-	found=FALSE;
 	buf[0]='\0';
 
 	send_to_char_color("{300}", ch);
@@ -2934,7 +2936,6 @@ void do_multi( CHAR_DATA *ch, char *argument )
 	char buf[MAX_STRING_LENGTH],buf_race[20],buf_lang[80];
 	char buf2[MAX_STRING_LENGTH], buf_name[40];
 	CHAR_DATA *fch;
-	DESCRIPTOR_DATA *d;
 	int iLevelLower;
 	int iLevelUpper;
 	int nNumber;
@@ -2942,7 +2943,8 @@ void do_multi( CHAR_DATA *ch, char *argument )
 	int nTotal;
 	bool fNameRestrict;
 	bool fImmortalOnly, tong, under;
-	int cnt, lrang, hrang;
+	(void)tong; (void)under;
+	int lrang, hrang;
 	CHAR_DATA *wch;
 	char const *class;
 	bool follower;
@@ -3082,9 +3084,6 @@ void do_multi( CHAR_DATA *ch, char *argument )
 	for( fpl=first_player; fpl!=NULL; fpl=fpl->next)
 	{
 		wch=fpl->ch;
-		d=NULL;
-		if(is_desc_valid( wch))
-			d=wch->desc;
 		if( IS_SET( wch->act, PLR_WIZINVIS) && ch->level<(MAX_LEVEL-3))
 			continue;
 		if (wch!=ch && is_affected(wch, gsn_greater_stealth) &&
@@ -3124,11 +3123,8 @@ void do_multi( CHAR_DATA *ch, char *argument )
 		strcpy(buf_race,race_table[wch->race].race_name);
 		buf_race[3]='\0';
 
-		cnt=0;
 		/* get rid of stinking ESC sequence for nonVT100 -Dug 12/2/93 */
 		buf_lang[0]='\0';
-		tong = FALSE;
-		under = FALSE;
 
 		sprintf( buf_lang,"Ill:%2d Ele:%2d Rog:%2d Ran:%2d Nec:%2d Mon:%2d Asn:%2d",
 			wch->mclass[0],
@@ -3187,8 +3183,6 @@ void doit_who( CHAR_DATA *ch, char *argument, int typ )
 	char *pt;
 	int plen;
 	CHAR_DATA *fch;
-	DESCRIPTOR_DATA *d;
-	CLAN_DATA *nc;
 	AREA_DATA *pArea = NULL;
 	int iLevelLower;
 	int iLevelUpper;
@@ -3215,7 +3209,6 @@ void doit_who( CHAR_DATA *ch, char *argument, int typ )
 	*buf_race='\0';
 	*buf_lang='\0';
 	*buf2='\0';
-	nc=NULL;
 	fch = NULL;
 	iLevelLower = 0;
 	iLevelUpper = MAX_LEVEL;
@@ -3454,9 +3447,6 @@ void doit_who( CHAR_DATA *ch, char *argument, int typ )
 	for( fpl=first_player; fpl!=NULL; fpl=fpl->next)
 	{
 		wch=fpl->ch;
-		d=NULL;
-		if(is_desc_valid( wch))
-			d=wch->desc;
 		/*
 		* Check for match against restrictions.
 		* Don't use trust as that exposes trusted mortals.
@@ -4127,9 +4117,9 @@ void do_where( CHAR_DATA *ch, char *argument )
 				if (!is_desc_valid(victim))
 					sprintf(hoster, "linklost");
 				else if (IS_IMMORTAL(ch) || ch->which_god == GOD_POLICE)
-					sprintf(hoster, victim->desc->host);
+					sprintf(hoster, "%s", victim->desc->host);
 				else
-					sprintf(hoster, victim->desc->domain);
+					sprintf(hoster, "%s", victim->desc->domain);
 
 				sprintf( buf, "%s\n\r%s\n\r%s\n\r",
 					PERS(victim, ch), victim->in_room->name , hoster);
@@ -4432,6 +4422,7 @@ void do_alias( CHAR_DATA *ch, char *argument )
 	char *pt, *ptt;
 	bool match=FALSE,lowest=FALSE;
 	int percent, ampersand;
+	(void)ampersand;
 
 	/*
 	Re-wrote most of this to get rid of the overrunning buffers and also
@@ -6601,53 +6592,53 @@ void do_disguise( CHAR_DATA *ch, char *argument )
 					sprintf(tbuf, "%c", argument[index+1]);
 
 					if (tbuf[0]=='0')
-						sprintf(code, dim);
+						sprintf(code, "%s", dim);
 					if (tbuf[0]=='1')
-						sprintf(code, bold);
+						sprintf(code, "%s", bold);
 					if (tbuf[0] != '1' && tbuf[0] != 0)
-						sprintf(code, dim);
+						sprintf(code, "%s", dim);
 
 					sprintf(tbuf, "%c", argument[index+2]);
 
 					if (tbuf[0]=='0')
-						sprintf(foreground, black);
+						sprintf(foreground, "%s", black);
 					if (tbuf[0]=='1')
-						sprintf(foreground, red);
+						sprintf(foreground, "%s", red);
 					if (tbuf[0]=='2')
-						sprintf(foreground, green);
+						sprintf(foreground, "%s", green);
 					if (tbuf[0]=='3')
-						sprintf(foreground, yellow);
+						sprintf(foreground, "%s", yellow);
 					if (tbuf[0]=='4')
-						sprintf(foreground, blue);
+						sprintf(foreground, "%s", blue);
 					if (tbuf[0]=='5')
-						sprintf(foreground, purple);
+						sprintf(foreground, "%s", purple);
 					if (tbuf[0]=='6')
-						sprintf(foreground, cyan);
+						sprintf(foreground, "%s", cyan);
 					if (tbuf[0]=='7')
-						sprintf(foreground, white);
+						sprintf(foreground, "%s", white);
 					if (tbuf[0] > '7')
-						sprintf(foreground, cyan);
+						sprintf(foreground, "%s", cyan);
 
 					sprintf(tbuf, "%c", argument[index+3]);
 
 					if (tbuf[0]=='0')
-						sprintf(background, black);
+						sprintf(background, "%s", black);
 					if (tbuf[0]=='1')
-						sprintf(background, red);
+						sprintf(background, "%s", red);
 					if (tbuf[0]=='2')
-						sprintf(background, green);
+						sprintf(background, "%s", green);
 					if (tbuf[0]=='3')
-						sprintf(background, yellow);
+						sprintf(background, "%s", yellow);
 					if (tbuf[0]=='4')
-						sprintf(background, blue);
+						sprintf(background, "%s", blue);
 					if (tbuf[0]=='5')
-						sprintf(background, purple);
+						sprintf(background, "%s", purple);
 					if (tbuf[0]=='6')
-						sprintf(background, cyan);
+						sprintf(background, "%s", cyan);
 					if (tbuf[0]=='7')
-						sprintf(background, white);
+						sprintf(background, "%s", white);
 					if (tbuf[0] > '7')
-						sprintf(foreground, cyan);
+						sprintf(foreground, "%s", cyan);
 
 					sprintf(full, "%s", code);
 					strcat (full, background);

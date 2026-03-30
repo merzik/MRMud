@@ -347,7 +347,7 @@ void do_rreset( CHAR_DATA *ch, char *argument )
 		if ( !pRoom )
 		{
 			send_to_char( "Your room pointer got lost. Reset mode off.\n\r", ch);
-			bug("do_rreset: %s's dest_buf points to invalid room", (int)ch->name);
+			bug("do_rreset: %s's dest_buf points to invalid room", (intptr_t)ch->name);
 		}
 		ch->substate = SUB_NONE;
 		ch->dest_buf = NULL;
@@ -811,17 +811,12 @@ void do_reset( CHAR_DATA *ch, char *argument )
 void add_obj_reset( AREA_DATA *pArea, char cm, OBJ_DATA *obj, int v2, int v3 )
 {
 	OBJ_DATA *inobj;
-	static int iNest;
 
 	add_reset( pArea, cm, obj->pIndexData->vnum, v2, v3 );
 	/* Only add hide for in-room objects that are hidden and cant be moved, as
 	hide is an update reset, not a load-only reset. */
-	if ( cm == 'P' )
-		iNest++;
 	for ( inobj = obj->first_content; inobj; inobj = inobj->next_content )
 		add_obj_reset( pArea, 'P', inobj, 1, 0 );
-	if ( cm == 'P' )
-		iNest--;
 	return;
 }
 
@@ -995,6 +990,7 @@ void reset_area( AREA_DATA *pArea )
 	CHAR_DATA *mob;
 	ROOM_INDEX_DATA *pRoomIndex;
 	bool last;
+	(void)last;
 	int level;
 	char buf[MAX_INPUT_LENGTH];
 	extern bool fBootDb;
@@ -1316,6 +1312,7 @@ void list_resets( CHAR_DATA *ch, AREA_DATA *pArea, ROOM_INDEX_DATA *pRoom,
 	OBJ_INDEX_DATA *lastobj;
 	RESET_DATA *lo_reset;
 	bool found;
+	(void)found;
 	int num = 0;
 	const char *rname = "???", *mname = "???", *oname = "???";
 	char buf[256];
@@ -1472,7 +1469,7 @@ void list_resets( CHAR_DATA *ch, AREA_DATA *pArea, ROOM_INDEX_DATA *pRoom,
 actually reset, or if they're bugged. */
 void renumber_put_resets( AREA_DATA *pArea )
 {
-	RESET_DATA *pReset, *lastobj = NULL;
+	RESET_DATA *pReset;
 
 	for ( pReset = pArea->first_reset; pReset; pReset = pReset->next )
 	{
@@ -1481,7 +1478,6 @@ void renumber_put_resets( AREA_DATA *pArea )
 		default:
 			break;
 		case 'G': case 'E': case 'O':
-			lastobj = pReset;
 			break;
 		}
 	}
@@ -1562,7 +1558,7 @@ RESET_DATA *place_reset( AREA_DATA *tarea, char letter, int arg1, int arg2, int 
 			if ( tmp ) /* organize by location */
 				for ( ; tmp && tmp->command == letter && tmp->arg1 > arg1; tmp = tmp->prev );
 			if ( tmp ) /* organize by direction */
-				for ( ; tmp && tmp->command == letter && tmp->arg1 == tmp->arg1 && tmp->arg2 > arg2; tmp = tmp->prev );
+				for ( ; tmp && tmp->command == letter && tmp->arg1 == arg1 && tmp->arg2 > arg2; tmp = tmp->prev );
 			if ( tmp )
 				INSERT( pReset, tmp, tarea->first_reset, next, prev );
 			else
@@ -1583,7 +1579,7 @@ RESET_DATA *place_reset( AREA_DATA *tarea, char letter, int arg1, int arg2, int 
 					if ( tmp->arg3 == arg3 )
 						for ( ; tmp; tmp = tmp->prev )
 							if ( tmp->command == letter
-								&& tmp->arg3 == tmp->arg3
+								&& tmp->arg3 == arg3
 								&& tmp->arg1 <= arg1 )
 							{
 								tmp2 = tmp->next;
@@ -1716,6 +1712,7 @@ RESET_DATA *parse_reset( AREA_DATA *tarea, char *argument, CHAR_DATA *ch )
 	char arg4[MAX_INPUT_LENGTH];
 	char letter;
 	int extra, val1, val2, val3;
+	(void)extra;
 	int value;
 	ROOM_INDEX_DATA *room;
 	EXIT_DATA *pexit;

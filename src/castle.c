@@ -1318,7 +1318,7 @@ void do_castle( CHAR_DATA *ch, char *argument )
 
 		smash_tilde( argument );
 		argument = one_argument( argument, arg1 );
-		if(arg1==NULL || arg1[0]=='\0')
+		if(arg1[0]=='\0')
 		{
 			send_to_char("rset what? Use help CASTLE for a list of rset options.\n\r", ch);
 			return;

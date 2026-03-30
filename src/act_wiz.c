@@ -1351,6 +1351,7 @@ void do_mfind( CHAR_DATA *ch, char *argument )
 	int hash;
 	bool fAll;
 	bool found;
+	(void)found;
 	/*
 	int vnum;
 	extern int top_mob_index;
@@ -1423,6 +1424,7 @@ void do_ofind( CHAR_DATA *ch, char *argument )
 	int nMatch;
 	bool fAll;
 	bool found;
+	(void)found;
 
 	/*
 	int vnum;
@@ -2057,7 +2059,7 @@ void do_purge( CHAR_DATA *ch, char *argument )
 		return;
 	}
 
-	if ( arg[0] == '\0' || arg==NULL)
+	if ( arg[0] == '\0' )
 	{
 		/* 'purge' */
 		CHAR_DATA *vnext;
@@ -2835,21 +2837,21 @@ void do_users( CHAR_DATA *ch, char *argument )
 			sprintf( buf, "%3d ", count );
 
 			if ( getsockopt( count, SOL_SOCKET, SO_SNDBUF,
-				(char *) &val, (int *) &val ) < 0 )
+				(char *) &val, (socklen_t *) &val ) < 0 )
 				sprintf( buf2, "SN NA ");
 			else
 				sprintf( buf2, "SN %-5d ", val );
 			strcat( buf, buf2 );
 
 			if ( getsockopt( count, SOL_SOCKET, SO_RCVBUF,
-				(char *) &val, (int *) &val ) < 0 )
+				(char *) &val, (socklen_t *) &val ) < 0 )
 				sprintf( buf2, "RC NA ");
 			else
 				sprintf( buf2, "RC %-4d ", val );
 			strcat( buf, buf2 );
 
 			if ( getsockopt( count, SOL_SOCKET, SO_REUSEADDR,
-				(char *) &val, (int *) &val ) < 0 )
+				(char *) &val, (socklen_t *) &val ) < 0 )
 				sprintf( buf2, "RU N ");
 			else
 				sprintf( buf2, "RU %-1d ", val );
@@ -2857,7 +2859,7 @@ void do_users( CHAR_DATA *ch, char *argument )
 
 			/*
 			if ( getsockopt( count, SOL_SOCKET, SO_DEBUG,
-			(char *) &val, (int *) &val ) < 0 )
+			(char *) &val, (socklen_t *) &val ) < 0 )
 			sprintf( buf2, "DE N ");
 			else
 			sprintf( buf2, "DE %-1d ", val );
@@ -2865,21 +2867,21 @@ void do_users( CHAR_DATA *ch, char *argument )
 			*/
 
 			if ( getsockopt( count, SOL_SOCKET, SO_KEEPALIVE,
-				(char *) &val, (int *) &val ) < 0 )
+				(char *) &val, (socklen_t *) &val ) < 0 )
 				sprintf( buf2, "KE N ");
 			else
 				sprintf( buf2, "KE %-1d ", val );
 			strcat( buf, buf2 );
 
 			if ( getsockopt( count, SOL_SOCKET, SO_LINGER,
-				(char *) &val, (int *) &val ) < 0 )
+				(char *) &val, (socklen_t *) &val ) < 0 )
 				sprintf( buf2, "LG N ");
 			else
 				sprintf( buf2, "LG %-1d ", val );
 			strcat( buf, buf2 );
 
 			if ( getsockopt( count, SOL_SOCKET, SO_TYPE,
-				(char *) &val, (int *) &val ) < 0 )
+				(char *) &val, (socklen_t *) &val ) < 0 )
 				sprintf( buf2, "TY N ");
 			else
 				sprintf( buf2, "TY %-1d ", val );
@@ -3235,7 +3237,7 @@ void do_mlist( CHAR_DATA *ch, char *argument )
 				if(!fAll)
 					send_to_char( buf, ch );
 				else
-					fprintf(mobFile,buf);
+					fprintf(mobFile,"%s",buf);
 			}
 		}
 	}
@@ -4989,7 +4991,7 @@ void do_revert(CHAR_DATA *ch, char *argument)
 {
 	char arg[MAX_INPUT_LENGTH];
 	char back_name[MAX_STRING_LENGTH], real_name[MAX_STRING_LENGTH];
-	char victimname[MAX_STRING_LENGTH], sub_dir;
+	char victimname[MAX_STRING_LENGTH];
 	int i, length;
 	CHAR_DATA *victim;
 	FILE *back_file, *real_file;
@@ -5057,11 +5059,9 @@ void do_revert(CHAR_DATA *ch, char *argument)
 	length=strlen(victimname);
 	for(i=1;i<length;i++)
 		victimname[i]=tolower(victimname[i]);
-	sub_dir=tolower(victimname[0]);
-
 	/*
-	sprintf(back_name, "%s/%c/bak/%s", PLAYER_DIR, sub_dir, victimname);
-	sprintf(real_name, "%s/%c/%s", PLAYER_DIR, sub_dir, victimname);
+	sprintf(back_name, "%s/%c/bak/%s", PLAYER_DIR, tolower(victimname[0]), victimname);
+	sprintf(real_name, "%s/%c/%s", PLAYER_DIR, tolower(victimname[0]), victimname);
 	*/
 	strcpy(back_name, get_player_filename(victimname, PFILE_TYPE_BACKUP));
 	strcpy(real_name, get_player_filename(victimname, PFILE_TYPE_NORMAL));
@@ -5756,7 +5756,7 @@ void do_objectdump( CHAR_DATA *ch, char *argument )
 						IS_SET( obj_index[count]->wear_flags, ITEM_WEAR_WRIST ) ? 1 : 0,
 						IS_SET( obj_index[count]->wear_flags, ITEM_HOLD ) ? 1 : 0
 						);
-					fprintf( fparmor, buf );
+					fprintf( fparmor, "%s", buf );
 					break;
 				}
 			case ITEM_LIGHT:
@@ -5790,7 +5790,7 @@ void do_objectdump( CHAR_DATA *ch, char *argument )
 						IS_SET( obj_index[count]->extra_flags, ITEM_ANTI_EVIL ) ? 1 : 0,
 						obj_index[count]->value[2]
 						);
-						fprintf( fplight, buf );
+						fprintf( fplight, "%s", buf );
 						break;
 				}
 			case ITEM_WEAPON:
@@ -5828,7 +5828,7 @@ void do_objectdump( CHAR_DATA *ch, char *argument )
 						obj_index[count]->value[0],
 						obj_index[count]->value[3]
 						);
-						fprintf( fpweapon, buf );
+						fprintf( fpweapon, "%s", buf );
 						break;
 				}
 			case ITEM_CONTAINER:
@@ -5862,7 +5862,7 @@ void do_objectdump( CHAR_DATA *ch, char *argument )
 						IS_SET( obj_index[count]->extra_flags, ITEM_ANTI_EVIL ) ? 1 : 0,
 						obj_index[count]->value[0]
 						);
-						fprintf( fpcontainer, buf );
+						fprintf( fpcontainer, "%s", buf );
 						break;
 				}
 			case ITEM_WAND:
@@ -5877,7 +5877,7 @@ void do_objectdump( CHAR_DATA *ch, char *argument )
 						obj_index[count]->value[3],
 						obj_index[count]->weight
 						);
-					fprintf( fpwand, buf );
+					fprintf( fpwand, "%s", buf );
 					break;
 				}
 			case ITEM_STAFF:
@@ -5892,7 +5892,7 @@ void do_objectdump( CHAR_DATA *ch, char *argument )
 						obj_index[count]->value[3],
 						obj_index[count]->weight
 						);
-					fprintf( fpwand, buf );
+					fprintf( fpwand, "%s", buf );
 					break;
 				}
 			case ITEM_SCROLL:
@@ -5907,7 +5907,7 @@ void do_objectdump( CHAR_DATA *ch, char *argument )
 						obj_index[count]->value[3],
 						obj_index[count]->weight
 						);
-					fprintf( fppotion, buf );
+					fprintf( fppotion, "%s", buf );
 					break;
 				}
 			case ITEM_POTION:
@@ -5922,7 +5922,7 @@ void do_objectdump( CHAR_DATA *ch, char *argument )
 						obj_index[count]->value[3],
 						obj_index[count]->weight
 						);
-					fprintf( fppotion, buf );
+					fprintf( fppotion, "%s", buf );
 					break;
 				}
 			case ITEM_PILL:
@@ -5937,7 +5937,7 @@ void do_objectdump( CHAR_DATA *ch, char *argument )
 						obj_index[count]->value[3],
 						obj_index[count]->weight
 						);
-					fprintf( fppotion, buf );
+					fprintf( fppotion, "%s", buf );
 					break;
 				}
 			case ITEM_AMMO:
@@ -5951,7 +5951,7 @@ void do_objectdump( CHAR_DATA *ch, char *argument )
 						obj_index[count]->value[2],
 						obj_index[count]->value[3]
 						);
-						fprintf( fpammo, buf );
+						fprintf( fpammo, "%s", buf );
 						break;
 				}
 		}

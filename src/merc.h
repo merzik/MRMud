@@ -1874,7 +1874,7 @@ struct obj_index_data
 	sh_int weight;
 	int cost;
 	int max_objs;
-	int value [4];
+	int value [6];
 	int level_rent;
 	int level;
 	int total_objects; /* Total for resets */
@@ -1944,7 +1944,7 @@ struct obj_data
 	sh_int level;
 	sh_int timer;
 	sh_int sac_timer;
-	int value [4];
+	int value [6];
 	unsigned char *obj_quest;
 	long owned_by; /* PVNUM of owner */
 	bool saved;

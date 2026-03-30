@@ -283,6 +283,7 @@ void do_note (CHAR_DATA * ch, char *argument)
 	{
 		bool found_topic;
 
+		(void)found_topic;
 		found_topic = FALSE;
 		if (room_board)
 		{
@@ -3433,6 +3434,7 @@ void
 do_shadow (CHAR_DATA * ch, char *argument)
 {
 	char arg[MAX_INPUT_LENGTH], arg2[MAX_INPUT_LENGTH], *dir, *name;
+	(void)dir;
 	CHAR_DATA *victim;
 	int dirNum;
 	ROOM_INDEX_DATA *rm;
@@ -4260,6 +4262,7 @@ vt100prompter (CHAR_DATA * ch)
 		cnt = ch->vt100_type % 100 - 1;
 	else
 		cnt = ch->vt100_type % 100 - 2;
+	(void)cnt;
 
 	leng = str_cpy_max (buf, "\0337", MAX_STRING_LENGTH);
 
@@ -4790,7 +4793,7 @@ speech (CHAR_DATA * ch, CHAR_DATA * vi, char *arg)
 		return;
 	/* Max ARG length of 1200 chars */
 	strcpy (buf2, arg);
-	buf2[4000] = '\0';
+	buf2[3999] = '\0';
 	sprintf (buf, "%cT%c%ld%s%c",
 		30, /* Header for AUDIO hook */
 		32 + (ch->race % 8) * 2 + ch->sex, /* Voice style */
@@ -5239,7 +5242,7 @@ void do_block (CHAR_DATA * ch, char *argument)
 		return;
 
 	argument = one_argument (argument, buf1);
-	if ((buf1 == NULL) || buf1[0] == '\0')
+	if (buf1[0] == '\0')
 	{ /* send them the current block list */
 		if (ch->pcdata->block_list == NULL)
 			ch->pcdata->block_list = STRALLOC ("");
@@ -5266,7 +5269,7 @@ void do_block (CHAR_DATA * ch, char *argument)
 			strcpy (block_names, ch->pcdata->block_list);
 			block_list = &(block_names[0]);
 			for (block_list = one_argument (block_list, cur_name);
-				cur_name == NULL || cur_name[0] != '\0';
+				cur_name[0] != '\0';
 				block_list = one_argument (block_list, cur_name))
 				if (!strcasecmp (cur_name, name_to_delete))
 				{ /* now delete the old string and create the new one */
@@ -5684,6 +5687,7 @@ get_tactical_string (CHAR_DATA * ch, TACTICAL_MAP * tact)
 
 	old_bold = FALSE;
 	any_diff = FALSE;
+	(void)any_diff;
 
 	if (IS_NPC (ch) || ch->pcdata->tactical == NULL)
 		return (NULL);
@@ -5827,8 +5831,9 @@ get_tactical_map (CHAR_DATA * ch)
 	TACTICAL_MAP *tact;
 	register int val;
 	int cnt, lcnt;
-	register char *pti, *pto;
-	register char *ptoc;
+	register char *pti;
+	register unsigned char *pto;
+	register unsigned char *ptoc;
 	AFFECT_DATA *paf;
 	PC_DATA *pcd; /* Shortcutt one reference */
 	int size_v;
@@ -6795,6 +6800,7 @@ get_tactical_map (CHAR_DATA * ch)
 									cval = '0' + (10 * fch->hit / fch->max_hit);
 
 								len = strlen (pti);
+								(void)len;
 
 								if ((pcd->tactical_mode / 1000) % 10 == 0)
 								{
@@ -7762,11 +7768,12 @@ void do_reincarnate (CHAR_DATA * ch, char *arg)
 
 void do_download (CHAR_DATA * ch, char *argument)
 {
-	unsigned char bufo[33000];
-	unsigned char bufi[MAX_INPUT_LENGTH];
+	char bufo[33000];
+	char bufi[MAX_INPUT_LENGTH];
 	FILE *fp;
 	int cnt, foe;
-	unsigned char *pt, bt;
+	char *pt;
+	unsigned char bt;
 	unsigned char *pto, *ptc;
 	int checksum;
 	int port_size;
@@ -7787,7 +7794,7 @@ void do_download (CHAR_DATA * ch, char *argument)
 	while (*argument != '\0' && *argument < 33)
 		argument++;
 
-	for (pt = argument; *pt > 32 && *pt < 128; pt++);
+	for (pt = argument; *pt > 32 && (unsigned char)*pt < 128; pt++);
 	*pt = '\0';
 
 	/* sprintf( bufo, "You want to download '%s' with offset %d.\n\r", argument,
@@ -7845,7 +7852,7 @@ void do_download (CHAR_DATA * ch, char *argument)
 		send_to_char (bufo, ch);
 	}
 
-	pto = bufo;
+	pto = (unsigned char *)bufo;
 	cnt = 0;
 	foe = 0;
 	*pto = 30;
@@ -7888,7 +7895,7 @@ void do_download (CHAR_DATA * ch, char *argument)
 		*pto = 30;
 	pto++;
 	*pto = '\0';
-	pto = bufo;
+	pto = (unsigned char *)bufo;
 
 	*ptc = 'a' + checksum % 16;
 	ptc++;
@@ -7912,7 +7919,7 @@ void do_download (CHAR_DATA * ch, char *argument)
 void do_external (CHAR_DATA * ch, char *argument)
 {
 	FILE *fp;
-	unsigned char *pt;
+	char *pt;
 	char bufo[MAX_INPUT_LENGTH];
 
 	if (argument == NULL || *argument == '\0')
@@ -7931,7 +7938,7 @@ void do_external (CHAR_DATA * ch, char *argument)
 		while (*argument != '\0' && *argument < 33)
 			argument++;
 
-		for (pt = argument; *pt > 32 && *pt < 128; pt++);
+		for (pt = argument; *pt > 32 && (unsigned char)*pt < 128; pt++);
 		*pt = '\0';
 		for (pt = argument; *pt != '\0'; pt++)
 			if (*pt == '\\' || *pt == '/')

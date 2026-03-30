@@ -260,10 +260,10 @@ bool mprog_do_ifchck( char *ifchck, CHAR_DATA *mob, CHAR_DATA *actor,
 					 OBJ_DATA *obj, void *vo, CHAR_DATA *rndm)
 {
 
-	unsigned char buf[ MAX_INPUT_LENGTH ];
-	unsigned char arg[ MAX_INPUT_LENGTH ];
-	unsigned char opr[ MAX_INPUT_LENGTH ];
-	unsigned char val[ MAX_INPUT_LENGTH ];
+	char buf[ MAX_INPUT_LENGTH ];
+	char arg[ MAX_INPUT_LENGTH ];
+	char opr[ MAX_INPUT_LENGTH ];
+	char val[ MAX_INPUT_LENGTH ];
 	CHAR_DATA *vict = (CHAR_DATA *) vo;
 	OBJ_DATA *v_obj = (OBJ_DATA *) vo;
 	char *bufpt = buf;

@@ -625,7 +625,7 @@ char * const a_flags [] =
 			strcpy( tmp, ch->editor->line[x] );
 			smash_tilde( tmp );
 			len = strlen(tmp);
-			if ( tmp && tmp[len-1] == '~' )
+			if ( tmp[len-1] == '~' )
 				tmp[len-1] = '\0';
 			else
 				strcat( tmp, "\n\r" );
@@ -737,7 +737,7 @@ char * const a_flags [] =
 					write_to_buffer( ch->desc, "> ", 1000000 );
 					return;
 				}
-				count = 0; wordln = strlen(word1); word2ln = strlen(word2);
+				count = 0; wordln = strlen(word1); word2ln = strlen(word2); (void)word2ln;
 				ch_printf( ch, "Replacing all occurrences of %s with %s...\n\r", word1, word2 );
 				for ( x = edit->on_line; x < edit->numlines; x++ )
 				{
@@ -2265,7 +2265,7 @@ char * const a_flags [] =
 							send_to_char( "Not on NPC's.\n\r", ch );
 							return;
 						}
-						if ( !arg3 || arg3[0] == '\0' )
+						if ( arg3[0] == '\0' )
 						{
 							/* Crash bug fix, oops guess I should have caught this one :)
 							* But it was early in the morning :P --Shaddai
@@ -3097,7 +3097,7 @@ char * const a_flags [] =
 	{
 		/* #AREA { 5 35} Merc Prototype for New Area~ */
 		fprintf( fp, "#AREA ");
-		fprintf( fp, area->name);
+		fprintf( fp, "%s", area->name);
 		fprintf( fp, "~\n\n");
 		if(area->authors!=NULL)
 			fprintf( fp, "#AUTHORS %s~\n", area->authors);
@@ -3991,6 +3991,7 @@ char * const a_flags [] =
 		CHAR_DATA *victim;
 		int value;
 		int minattr, maxattr;
+		(void)minattr; (void)maxattr;
 		bool lockvictim;
 		char *origarg = argument;
 
@@ -4418,7 +4419,7 @@ char * const a_flags [] =
 					return;
 				}
 
-				if ( !arg3 || arg3[0] == '\0' )
+				if ( arg3[0] == '\0' )
 				{
 					if ( victim->pcdata->clan == NULL )
 						return;
@@ -4546,6 +4547,7 @@ char * const a_flags [] =
 			if ( !strcasecmp( arg2, "flags" ) )
 			{
 				bool pcflag;
+				(void)pcflag;
 				if ( !IS_NPC( victim ) && get_trust( ch ) < MAX_LEVEL )
 				{
 					send_to_char( "You can only modify a mobile's flags.\n\r", ch );
@@ -5303,7 +5305,7 @@ char * const a_flags [] =
 
 			if ( !strcasecmp( arg2, "ed" ) )
 			{
-				if ( !arg3 || arg3[0] == '\0' )
+				if ( arg3[0] == '\0' )
 				{
 					send_to_char( "Syntax: oedit <object> ed <keywords>\n\r",
 						ch );
@@ -5335,7 +5337,7 @@ char * const a_flags [] =
 
 			if ( !strcasecmp( arg2, "rmed" ) )
 			{
-				if ( !arg3 || arg3[0] == '\0' )
+				if ( arg3[0] == '\0' )
 				{
 					send_to_char( "Syntax: oedit <object> rmed <keywords>\n\r", ch );
 					return;
@@ -6000,7 +6002,7 @@ char * const a_flags [] =
 
 			argument = one_argument( argument, arg2 );
 			argument = one_argument( argument, arg3 );
-			if ( !arg2 || arg2[0] == '\0' )
+			if ( arg2[0] == '\0' )
 			{
 				send_to_char( "Create, change or remove an exit.\n\r", ch );
 				send_to_char( "Usage: redit exit <dir> [room] [flags] [key] [keywords]\n\r", ch );
@@ -6013,7 +6015,7 @@ char * const a_flags [] =
 			case '+': edir = get_dir( arg2+1); addexit = TRUE; break;
 			case '#': edir = atoi(arg2+1); numnotdir = TRUE; break;
 			}
-			if ( !arg3 || arg3[0] == '\0' )
+			if ( arg3[0] == '\0' )
 				evnum = 0;
 			else
 				evnum = atoi( arg3 );
@@ -6067,7 +6069,7 @@ char * const a_flags [] =
 				xit->vnum = evnum;
 			}
 			argument = one_argument( argument, arg3 );
-			if ( arg3 && arg3[0] != '\0' )
+			if ( arg3[0] != '\0' )
 				xit->exit_info = atoi( arg3 );
 			if ( argument && argument[0] != '\0' )
 			{
@@ -6103,7 +6105,7 @@ char * const a_flags [] =
 
 			argument = one_argument( argument, arg2 );
 			argument = one_argument( argument, arg3 );
-			if ( !arg2 || arg2[0] == '\0' )
+			if ( arg2[0] == '\0' )
 			{
 				send_to_char( "Create, change or remove a two-way exit.\n\r", ch );
 				send_to_char( "Usage: redit bexit <dir> [room] [flags] [key] [keywords]\n\r", ch );
@@ -6171,7 +6173,7 @@ char * const a_flags [] =
 		if ( !strcasecmp( arg, "exdesc" ) )
 		{
 			argument = one_argument( argument, arg2 );
-			if ( !arg2 || arg2[0] == '\0' )
+			if ( arg2[0] == '\0' )
 			{
 				send_to_char( "Create or clear a description for an exit.\n\r", ch );
 				send_to_char( "Usage: redit exdesc <dir> [description]\n\r", ch );
@@ -6801,6 +6803,7 @@ char * const a_flags [] =
 		char arg2[MAX_INPUT_LENGTH];
 		char arg3[MAX_INPUT_LENGTH];
 		bool proto, found;
+		(void)proto;
 		int vnum, value;
 
 		argument = one_argument( argument, arg1 );

@@ -112,11 +112,9 @@ void save_char_obj(CHAR_DATA *ch, int which_type)
 	FILE *fp;
 	ROOM_INDEX_DATA *troom;
 	bool IS_DESC;
-	int old_time;
 	int game_time_1, game_time_2, game_time_3, game_time_4, game_time_5;
+	(void)game_time_1;
 	/* let parent back out of save */
-
-	old_time = get_game_usec();
 
 	if ( IS_NPC(ch) || ch->level < 1)
 	{
@@ -626,6 +624,7 @@ void fwrite_obj( CHAR_DATA *ch, OBJ_DATA *obj, FILE *fp, int iNest )
 	AFFECT_DATA *paf;
 	/* OBJ_DATA *copy; */
 	int copies;
+	(void)copies;
 	copies=1; /* Too lazy to reverse logic */
 	if(( (ch->level+5) < obj->level || obj->test_obj ||
 		obj->item_type == ITEM_KEY ) && obj->wear_loc==WEAR_NONE)
@@ -1020,13 +1019,11 @@ bool load_char_obj( DESCRIPTOR_DATA *d, char *name )
 	FILE *fp;
 	bool found, foundgz, foundngz;
 	sh_int cnt;
-	int old_time;
 	extern bool merc_down;
 
 	if( name == NULL || *name =='\0' )
 		return( FALSE );
 
-	old_time = get_game_usec();
 	CREATE(ch, CHAR_DATA, 1 );
 	clear_char( ch );
 	CREATE( ch->pcdata, PC_DATA, 1 );
@@ -2309,6 +2306,7 @@ void fread_obj( CHAR_DATA *ch, FILE *fp )
 	bool fNest;
 	bool fVnum;
 	bool item_not_valid=FALSE;
+	(void)item_not_valid;
 
 	copies=1;
 	BasicVnum=0;
@@ -2953,7 +2951,6 @@ void fread_obj( CHAR_DATA *ch, FILE *fp )
 
 void fread_corpse( CHAR_DATA *ch, FILE *fp )
 {
-	bool found;
 	OBJ_DATA *obj;
 
 	obj = NULL;
@@ -2962,8 +2959,6 @@ void fread_corpse( CHAR_DATA *ch, FILE *fp )
 	obj->test_obj = FALSE;
 	ch->pcdata->corpse = obj;
 	obj->owned_by=ch->pcdata->pvnum;
-
-	found = TRUE;
 	for ( ; ; )
 	{
 		char letter;

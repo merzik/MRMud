@@ -1604,7 +1604,7 @@ void spell_induction(int sn, int level, CHAR_DATA *ch, void *vo )
 	ch->hit -= value;
 
 	update_pos(ch );
-	if (heal>0);
+	if (heal>0)
 	{
 		send_to_combat_char("You feel a surge of power.\n\r", ch );
 		act("$n drains $s strength to further $s magic.", ch, NULL, NULL, TO_ROOM);
@@ -5070,9 +5070,11 @@ void do_rcast(CHAR_DATA *ch, char *argument )
 	char *arg1,buf1[MAX_INPUT_LENGTH];
 	char *arg2,buf2[MAX_INPUT_LENGTH];
 	char *arg3,buf3[MAX_INPUT_LENGTH];
+	(void)arg3;
 	ROOM_INDEX_DATA *old_room;
 	CHAR_DATA *victim;
 	OBJ_DATA *obj;
+	(void)obj;
 	void *vo;
 	int mana;
 	int sn,cnt,dir,actn;
@@ -5452,6 +5454,7 @@ void do_mass(CHAR_DATA *ch, char *argument )
 	int mana;
 	int sn,cnt,learned,mlev,ilev;
 	int level;
+	(void)level;
 
 	/* No homonculous or pets */
 	if(IS_NPC(ch)&&(IS_AFFECTED(ch,AFF_CHARM) || ch->pIndexData->vnum==9900))

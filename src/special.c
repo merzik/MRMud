@@ -250,7 +250,7 @@ SPEC_FUN *spec_lookup( const char *name )
 {
 	int i;
 
-	for(i=0;spec_fun[i].name!="";i++)
+	for(i=0;spec_fun[i].name[0]!='\0';i++)
 		if(is_name(name,spec_fun[i].name))
 			return spec_fun[i].function;
 
@@ -264,7 +264,7 @@ char *spec_name_lookup( SPEC_FUN *fun )
 {
 	int i;
 
-	for(i=0;spec_fun[i].name!="";i++)
+	for(i=0;spec_fun[i].name[0]!='\0';i++)
 		if(spec_fun[i].function==fun)
 			return spec_fun[i].name;
 
@@ -278,7 +278,7 @@ OBJ_FUN *obj_lookup( const char *name )
 {
 	int i;
 
-	for(i=0;obj_fun[i].name!="";i++)
+	for(i=0;obj_fun[i].name[0]!='\0';i++)
 		if(is_name(name,obj_fun[i].name))
 			return obj_fun[i].function;
 
@@ -292,7 +292,7 @@ char *obj_name_lookup( OBJ_FUN *fun )
 {
 	int i;
 
-	for(i=0;obj_fun[i].name!="";i++)
+	for(i=0;obj_fun[i].name[0]!='\0';i++)
 		if(obj_fun[i].function==fun)
 			return obj_fun[i].name;
 

@@ -921,10 +921,6 @@ void save_html_who (void)
 	FILE *fp;
 	char buf[MAX_STRING_LENGTH], buf_race[20];
 	char buf2[MAX_STRING_LENGTH];
-	int leng;
-	CHAR_DATA *fch;
-	DESCRIPTOR_DATA *d;
-	int nMatch;
 	int nTotal;
 	CHAR_DATA *wch;
 	char const *class;
@@ -953,24 +949,17 @@ void save_html_who (void)
 	/*
 	* Set default arguments.
 	*/
-	fch = NULL;
-
 	fprintf( fp, "<table align=\"center\" width=\"600\" cellpadding=\"2\" border=\"0\">" );
 
 	/*
 	* Now show matching chars.
 	*/
 
-	nMatch = 0;
 	nTotal = 0;
 	buf[0] = '\0';
-	leng = 0;
 	for (fpl = first_player; fpl != NULL; fpl = fpl->next)
 	{
 		wch = fpl->ch;
-		d = NULL;
-		if (is_desc_valid (wch))
-			d = wch->desc;
 		/*
 		* Check for match against restrictions.
 		* Don't use trust as that exposes trusted mortals.
@@ -979,7 +968,6 @@ void save_html_who (void)
 		if (IS_SET (wch->act, PLR_WIZINVIS) || is_affected(wch, gsn_greater_stealth))
 			continue;
 		nTotal++;
-		nMatch++;
 
 
 		/*
@@ -1047,10 +1035,10 @@ void save_html_who (void)
 		*/
 		sprintf( buf2, "<tr><td width=\"25\" align=\"left\" valign=\"top\">[%2d</td><td width=\"30\" align=\"center\" valign=\"top\">%s</td><td width=\"30\" align=\"right\" valign=\"top\">%s]</td>\n",
 			wch->level, class, buf_race );
-		fprintf( fp, buf2 );
+		fprintf( fp, "%s", buf2 );
 		sprintf( buf2, "<td width=\"10\" align=\"center\" valign=\"top\">%c</td><td width=\"10\" align=\"center\" valign=\"top\">%c</td><td width=\"75\" align=\"right\" valign=\"top\">%s</td><td width=\"250\" valign=\"top\">%s</td>\n",
 			god, killer_thief, wch->name, IS_NPC (wch) ? "the monster" : wch->pcdata->title);
-		fprintf( fp, buf2 );
+		fprintf( fp, "%s", buf2 );
 		/*
 		buf2[71] = '\0';
 		strip_greater (buf2);
@@ -1071,7 +1059,7 @@ void save_html_who (void)
 			else
 				sprintf( buf2, "<td width=\"170\" valign=\"top\">Unknown</td></tr>"); /* Stealth Mode */
 
-		fprintf( fp, buf2 );
+		fprintf( fp, "%s", buf2 );
 		/*
 		leng = str_apd_max (buf, " {", leng, MAX_STRING_LENGTH);
 		leng = str_apd_max (buf, buf2, leng, MAX_STRING_LENGTH);

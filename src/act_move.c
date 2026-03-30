@@ -1164,10 +1164,8 @@ void do_down( CHAR_DATA *ch, char *argument)
 
 int scan_door( CHAR_DATA *ch, char *arg)
 {
-	int count, door;
+	int door;
 	EXIT_DATA *pexit;
-
-	count=0;
 	for( door = 0; door <= 5; door++)
 		if( ( pexit = ch->in_room->exit[door]) != NULL
 			&& IS_SET(pexit->exit_info, EX_ISDOOR)

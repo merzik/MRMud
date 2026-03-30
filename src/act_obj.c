@@ -236,6 +236,7 @@ void do_get( CHAR_DATA *ch, char *argument )
 	OBJ_DATA *obj_next;
 	OBJ_DATA *container;
 	bool found, spl, pc_corpse, multi_obj;
+	(void)multi_obj;
 	char buft[MAX_INPUT_LENGTH];
 	int goldprev, cnt, amount;
 	int money;
@@ -281,7 +282,7 @@ void do_get( CHAR_DATA *ch, char *argument )
 	else
 		amount=1;
 
-	if ( (arg2==NULL || arg2[0] == '\0') && !pc_corpse)
+	if ( arg2[0] == '\0' && !pc_corpse)
 	{
 
 		if( !IS_NPC( ch ) && ch->fighting != NULL )

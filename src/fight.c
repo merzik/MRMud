@@ -276,7 +276,7 @@ void violence_update(void)
 			if(ch->ansi==1)
 			{
 				/* determine color of messages */
-				if(ch->pcdata->color[4]!=0)
+				if(ch->pcdata->color[0][4]!=0)
 					sprintf(ch_col, "\033[1;%d;%dm", ch->pcdata->color[0][4],
 					ch->pcdata->color[1][4]);
 			}
@@ -1148,7 +1148,7 @@ void one_hit(CHAR_DATA *ch, CHAR_DATA *victim, int dt)
 					if(ch->vt100==1 && (ch->ansi==1))
 					{
 						/* determine color of messages */
-						if(ch->pcdata->color[5]!=0)
+						if(ch->pcdata->color[0][5]!=0)
 							sprintf(ch_col, "\033[1;%d;%dm", ch->pcdata->color[0][5], ch->pcdata->color[1][5]);
 					}
 					SET_BIT(victim->affected2_by, 0-AFF2_BLEEDING);
@@ -1186,7 +1186,7 @@ void one_hit(CHAR_DATA *ch, CHAR_DATA *victim, int dt)
 					if(ch->vt100==1 && (ch->ansi==1))
 					{
 						/* determine color of messages */
-						if(ch->pcdata->color[5]!=0)
+						if(ch->pcdata->color[0][5]!=0)
 							sprintf(ch_col, "\033[1;%d;%dm", ch->pcdata->color[0][5],
 							ch->pcdata->color[1][5]);
 					}
@@ -3061,6 +3061,7 @@ void group_gain(CHAR_DATA *ch, CHAR_DATA *victim)
 {
 	int iTanks = 0, iLevelers = 0, iTotalLevels = 0, iGroupExp = 0;
 	int iExpShare = 0, iExp = 0, iPets = 0, iPenalty = 0, iCnt;
+	(void)iPets;
 	/*
 	iMembers array - 0 -> Low leveler
 	1 -> High leveler
@@ -3455,6 +3456,7 @@ void dam_message(CHAR_DATA *ch, CHAR_DATA *victim, int dam, int dt)
 	char punct;
 	int percent;
 	int blen;
+	(void)blen;
 
 	percent = 100 * dam / victim->max_hit;
 
@@ -3536,7 +3538,7 @@ void dam_message(CHAR_DATA *ch, CHAR_DATA *victim, int dam, int dt)
 		if((dam>0) && (victim->ansi==1))
 		{
 			/* determine color of messages */
-			if(victim->pcdata->color[4]!=0)
+			if(victim->pcdata->color[0][4]!=0)
 				sprintf(hitYou, "\033[1;%d;%dm", victim->pcdata->color[0][4],
 				victim->pcdata->color[1][4]);
 		}
@@ -3544,7 +3546,7 @@ void dam_message(CHAR_DATA *ch, CHAR_DATA *victim, int dam, int dt)
 			if((dam>0) && (ch->ansi==1))
 			{
 				/* determine color of messages */
-				if(ch->pcdata->color[5]!=0)
+				if(ch->pcdata->color[0][5]!=0)
 					sprintf(youHit, "\033[1;%d;%dm", ch->pcdata->color[0][5],
 					ch->pcdata->color[1][5]);
 			}
@@ -5772,6 +5774,7 @@ void do_shoot(CHAR_DATA *ch, char *argument)
 	OBJ_DATA *ammo,*ammo2,*weapon;
 	int cnt,ammoNum,dirNum,distance,dam;
 	char *dirName,*chName,*arg,buf1[MAX_INPUT_LENGTH],buf2[MAX_INPUT_LENGTH];
+	(void)dirName;
 	char buf[MAX_INPUT_LENGTH];
 
 
@@ -6004,6 +6007,7 @@ void do_throw(CHAR_DATA *ch, char *argument)
 	int cnt,dirNum,distance,dam;
 	char buf1[MAX_INPUT_LENGTH],buf2[MAX_INPUT_LENGTH],buf3[MAX_INPUT_LENGTH],
 		*arg,*dirName,*chName,*objName,buf[MAX_INPUT_LENGTH];
+	(void)dirName;
 	bool wielded;
 
 
@@ -7855,7 +7859,7 @@ void found_prey(CHAR_DATA *ch, CHAR_DATA *victim)
 		return;
 	}
 
-	sprintf(victname, IS_NPC(victim) ? victim->short_descr : victim->name);
+	sprintf(victname, "%s", IS_NPC(victim) ? victim->short_descr : victim->name);
 
 	/* This is stupid - Chaos 4/18/99 */
 	if(!can_see(ch, victim))

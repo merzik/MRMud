@@ -978,7 +978,7 @@ void do_mpforce( CHAR_DATA *ch, char *argument )
 		return;
 
 	argument = one_argument( argument, arg );
-	if ( arg==NULL || argument==NULL || arg[0] == '\0' || argument[0] == '\0' )
+	if ( arg[0] == '\0' || argument[0] == '\0' )
 	{
 		/* if( IS_NPC( ch ))
 		bug( "Mpforce - Bad syntax: vnum %u.", ch->pIndexData->vnum ); */
