@@ -4058,9 +4058,9 @@ else \
 	do \
 { \
 	if ( !(first) ) \
-	(first) = (link); \
-else \
-	(last)->next = (link); \
+		(first) = (link); \
+	else \
+		(last)->next = (link); \
 	(link)->next = NULL; \
 	(link)->prev = (last); \
 	(last) = (link); \
@@ -4085,13 +4085,13 @@ else \
 	do \
 { \
 	if ( !(link)->prev ) \
-	(first) = (link)->next; \
-else \
-	(link)->prev->next = (link)->next; \
+		(first) = (link)->next; \
+	else \
+		(link)->prev->next = (link)->next; \
 	if ( !(link)->next ) \
-	(last) = (link)->prev; \
-else \
-	(link)->next->prev = (link)->prev; \
+		(last) = (link)->prev; \
+	else \
+		(link)->next->prev = (link)->prev; \
 } while(0)
 
 #define CHECK_LINKS(first, last, next, prev, type) \
