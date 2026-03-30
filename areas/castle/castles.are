@@ -1,0 +1,80 @@
+#AREA Castles of Players~
+
+#AUTHORS MrMud  ~
+#RANGES
+99 99 0 99
+#FLAGS 0
+
+#TEMPERATURE 20 80 15 5
+
+
+
+
+#HELPS
+0 $~
+
+
+
+
+#MOBILES
+#20000
+homonculous imp~
+the homonculous~
+There is a small homonculous snooping around here.
+~
+The homonculous looks like a six inch tall gargoyle, with little wings and
+fangs.  It appears to be looking for something important.
+~
+ACT_AGGRESSIVE|ACT_WEAK
+AFF_FLYING
+0 S
+3 0 0 5d3+4 2d2+2
+0 300
+POS_STANDING POS_STANDING SEX_NEUTRAL
+#0
+
+
+
+
+#OBJECTS
+#0
+
+
+
+
+#ROOMS
+#20000
+Castle base room.~
+~
+200 ROOM_NO_MOB|ROOM_SAFE|ROOM_NO_RECALL SECT_INSIDE
+DDIR_SOUTH
+~
+~
+0 -1 20001
+S
+#0
+
+
+
+
+#RESETS
+S
+
+
+
+
+#SHOPS
+0
+
+
+
+
+#SPECIALS
+S
+
+
+
+
+#$
+XXXXXXXXXX
+#Savearea
