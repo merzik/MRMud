@@ -37,6 +37,7 @@
 #include <stdarg.h>
 #include <string.h>
 /* #include <strings.h> */
+#include <stdint.h>
 #include <time.h>
 #include <sys/stat.h>
 #include <pthread.h>
