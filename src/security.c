@@ -3,6 +3,11 @@
 #include <string.h>
 #include <time.h>
 #include <memory.h> /* for memcpy() */
+#if defined(__linux__)
+#include <crypt.h>
+#else
+extern char *crypt(const char *key, const char *salt);
+#endif
 #include "security.h"
 
 #include "merc.h"

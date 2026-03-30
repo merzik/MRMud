@@ -7,6 +7,11 @@ NOCRYPT =
 #C_FLAGS = -g -ggdb -Wall $(PROF) $(NOCRYPT)
 C_FLAGS = -g -ggdb -g3 -Wall $(PROF) $(NOCRYPT)
 L_FLAGS = $(PROF)
+LIBS    =
+UNAME_S := $(shell uname -s)
+ifeq ($(UNAME_S),Linux)
+LIBS += -lcrypt
+endif
 #L_FLAGS = $(PROF)
 SYSTEM = -Dunix
 
@@ -16,7 +21,7 @@ O_FILES = reset.o edit.o act_comm.o act_info.o act_move.o act_obj.o act_wiz.o co
 
 ../bin/md: $(O_FILES)
 	rm -f ../bin/md
-	$(CC) $(L_FLAGS) -o ../bin/md $(O_FILES)
+	$(CC) $(L_FLAGS) -o ../bin/md $(O_FILES) $(LIBS)
 %.o: %.c merc.h
 	$(CC) -c $(C_FLAGS) $(SYSTEM) $<
 
