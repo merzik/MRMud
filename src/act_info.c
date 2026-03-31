@@ -204,7 +204,7 @@ void show_list_to_char( OBJ_DATA *list, CHAR_DATA *ch, int fShort,
 {
 	char buf[MAX_STRING_LENGTH],buf2[MAX_STRING_LENGTH], buf3[10];
 	int leng, lenb;
-	char **prgpstrShow, dim[10], bold[10];
+	char **prgpstrShow, dim[20], bold[20];
 	int *prgnShow;
 	int *refShow;
 	char *pstrShow;
@@ -1779,7 +1779,7 @@ void do_exits( CHAR_DATA *ch, char *argument )
 	(void)found;
 	bool fAuto;
 	int door,num_exits=0;
-	char dim[10], bold[10], buf3[MAX_STRING_LENGTH];
+	char dim[20], bold[20], buf3[MAX_STRING_LENGTH];
 	ROOM_INDEX_DATA * room;
 
 	buf[0] = '\0';
@@ -2480,7 +2480,7 @@ void get_spy_score( CHAR_DATA *ch, CHAR_DATA *viewer)
 	char buf[MAX_STRING_LENGTH],buf1[MAX_STRING_LENGTH],buf2[MAX_STRING_LENGTH];
 	char tbuf1[MAX_INPUT_LENGTH],tbuf2[MAX_INPUT_LENGTH];
 	/* AFFECT_DATA *paf;*/
-	char bold[10],dim[10];
+	char bold[20],dim[20];
 	int gac, leng;
 
 	*get_spy_score_txt = '\0';
@@ -3732,7 +3732,7 @@ void do_equipment( CHAR_DATA *ch, char *argument )
 	int iWear;
 	bool found;
 	int leng;
-	char buf[MAX_STRING_LENGTH], dim[10], bold[10], buf4[10];
+	char buf[MAX_STRING_LENGTH], dim[20], bold[20], buf4[10];
 
 	if(!IS_NPC(ch) && ch->ansi==0 && ch->vt100==1)
 	{

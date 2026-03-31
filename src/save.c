@@ -1290,26 +1290,8 @@ bool load_char_obj( DESCRIPTOR_DATA *d, char *name )
 
 		if( !is_valid_file( ch, fp ) )
 		{
-			char buf[100], buf2[100], name_buf[100];
+			char buf[MAX_INPUT_LENGTH], buf2[MAX_INPUT_LENGTH], name_buf[MAX_INPUT_LENGTH];
 
-			/*
-			strcpy( buf3, name );
-			buf3[1]='\0';
-			if( buf3[0]>='A' && buf3[0]<='Z')
-			buf3[0]+= ('a' - 'A');
-
-			strcpy( name_buf, capitalize_name( name ) );
-			if( COMPRESS_FILES)
-			{
-			sprintf( buf, "%s/%s/%s.gz", PLAYER_DIR, buf3, name_buf);
-			sprintf(buf2,"%s/%s/delete.%s.gz",PLAYER_DIR,buf3, name_buf);
-			}
-			else
-			{
-			sprintf( buf, "%s/%s/%s", PLAYER_DIR, buf3, name_buf );
-			sprintf(buf2,"%s/%s/delete.%s", PLAYER_DIR, buf3, name_buf );
-			}
-			*/
 			strcpy(buf, get_player_filename(name, PFILE_TYPE_NORMAL));
 			strcpy(buf2, get_player_filename(name, PFILE_TYPE_DELETE));
 			ch->desc = NULL;
@@ -1568,26 +1550,8 @@ bool load_char_obj( DESCRIPTOR_DATA *d, char *name )
 
 		if( character_expiration( ch ) < 0 || strcasecmp( ch->name, name ) )
 		{
-			char buf[100], buf2[100], name_buf[100];
+			char buf[MAX_INPUT_LENGTH], buf2[MAX_INPUT_LENGTH], name_buf[MAX_INPUT_LENGTH];
 
-			/*
-			strcpy( buf3, name );
-			buf3[1]='\0';
-			if( buf3[0]>='A' && buf3[0]<='Z')
-			buf3[0]+= ('a' - 'A');
-
-			strcpy( name_buf, capitalize_name( name ) );
-			if( COMPRESS_FILES)
-			{
-			sprintf( buf, "%s/%s/%s.gz", PLAYER_DIR, buf3, name_buf);
-			sprintf(buf2,"%s/%s/delete.%s.gz",PLAYER_DIR,buf3, name_buf);
-			}
-			else
-			{
-			sprintf( buf, "%s/%s/%s", PLAYER_DIR, buf3, name_buf );
-			sprintf(buf2,"%s/%s/delete.%s", PLAYER_DIR, buf3, name_buf );
-			}
-			*/
 			strcpy(buf, get_player_filename(name, PFILE_TYPE_NORMAL));
 			strcpy(buf2, get_player_filename(name, PFILE_TYPE_DELETE));
 			ch->desc = NULL;
