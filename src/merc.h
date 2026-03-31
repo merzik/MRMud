@@ -4072,9 +4072,9 @@ else \
 { \
 	(link)->prev = (insert)->prev; \
 	if ( !(insert)->prev ) \
-	(first) = (link); \
-else \
-	(insert)->prev->next = (link); \
+		{ (first) = (link); } \
+	else \
+		{ (insert)->prev->next = (link); } \
 	(insert)->prev = (link); \
 	(link)->next = (insert); \
 } while(0)
