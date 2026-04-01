@@ -303,6 +303,7 @@ void do_mpjunk( CHAR_DATA *ch, char *argument )
 		extract_obj( obj );
 	}
 	else
+	{
 		for ( obj = ch->first_carrying; obj != NULL; obj = obj_next )
 		{
 			obj_next = obj->next_content;
@@ -313,8 +314,9 @@ void do_mpjunk( CHAR_DATA *ch, char *argument )
 				extract_obj( obj );
 			}
 		}
+	}
 
-		return;
+	return;
 
 }
 
@@ -362,6 +364,7 @@ void do_mpjunk_person( CHAR_DATA *ch, char *argument )
 		extract_obj( obj );
 	}
 	else
+	{
 		for ( obj = victim->first_carrying; obj != NULL; obj = obj_next )
 		{
 			obj_next = obj->next_content;
@@ -372,8 +375,9 @@ void do_mpjunk_person( CHAR_DATA *ch, char *argument )
 				extract_obj( obj );
 			}
 		}
+	}
 
-		return;
+	return;
 
 }
 /* prints the message to everyone in the room other than the mob and victim */

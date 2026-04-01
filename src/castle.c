@@ -64,13 +64,15 @@ bool get_bitvector_value(char *name,int *number,char *allowed)
 	}
 	if(is_name_short(allowed,name))
 		for( cnt=0; cnt < MAX_BITVECTOR; cnt++)
+		{
 			if( is_name( name, bitvector_table[cnt].name ))
 			{
 				*number=bitvector_table[cnt].value;
 				return TRUE;
 			}
-			*number=-1;
-			return FALSE;
+		}
+	*number=-1;
+	return FALSE;
 }
 
 void list_bitvectors(CHAR_DATA *ch,char *prefix)
@@ -80,19 +82,21 @@ void list_bitvectors(CHAR_DATA *ch,char *prefix)
 
 	bigBuf[0]='\0';
 	for( cnt=0; cnt < MAX_BITVECTOR; cnt++)
+	{
 		if( is_name_short( prefix, bitvector_table[cnt].name ))
 		{
 			sprintf(buf," %s\n\r",bitvector_table[cnt].name);
 			strcat(bigBuf,buf);
 		}
-		if(bigBuf[0]=='\0')
-		{
-			sprintf(buf,"There are no bitvectors starting with '%s'.\n\r",prefix);
-			send_to_char(buf,ch);
-			return;
-		}
-		send_to_char(bigBuf,ch);
+	}
+	if(bigBuf[0]=='\0')
+	{
+		sprintf(buf,"There are no bitvectors starting with '%s'.\n\r",prefix);
+		send_to_char(buf,ch);
 		return;
+	}
+	send_to_char(bigBuf,ch);
+	return;
 }
 
 bool do_castle_mstat( CHAR_DATA *ch, char *argument )
@@ -218,21 +222,25 @@ bool do_castle_mstat( CHAR_DATA *ch, char *argument )
 		int cnt;
 		strcpy(buf, "Body parts: ");
 		for( cnt=0; cnt<MAX_BODY; cnt++)
+		{
 			if( IS_SET( victim->pIndexData->body_parts, 1<<cnt))
 			{
 				strcat( buf, body_table[cnt].name);
 				strcat( buf, " ");
 			}
-			strcat( buf, "\n\r");
-			strcat(buf, "Attack parts: ");
-			for( cnt=0; cnt<MAX_BODY; cnt++)
-				if( IS_SET( victim->pIndexData->attack_parts, 1<<cnt))
-				{
-					strcat( buf, body_table[cnt].name);
-					strcat( buf, " ");
-				}
-				strcat( buf, "\n\r");
-				send_to_char( buf, ch );
+		}
+		strcat( buf, "\n\r");
+		strcat(buf, "Attack parts: ");
+		for( cnt=0; cnt<MAX_BODY; cnt++)
+		{
+			if( IS_SET( victim->pIndexData->attack_parts, 1<<cnt))
+			{
+				strcat( buf, body_table[cnt].name);
+				strcat( buf, " ");
+			}
+		}
+		strcat( buf, "\n\r");
+		send_to_char( buf, ch );
 	}
 
 	if ( !( victim->pIndexData->progtypes ) )
@@ -1140,7 +1148,7 @@ void do_castle( CHAR_DATA *ch, char *argument )
 			put in to allow refering to mobiles that you forgot the name of */
 
 			for(victim=ch->in_room->first_person;victim;victim=victim->next_in_room)
-
+			{
 				if(IS_NPC(victim)&&victim->pIndexData->creator_pvnum==ch->pcdata->pvnum)
 				{
 					strcpy(arg2,victim->pIndexData->player_name);
@@ -1151,8 +1159,9 @@ void do_castle( CHAR_DATA *ch, char *argument )
 					victim->pIndexData->player_name=str_dup(arg2);
 					victim->name = str_dup(arg2);
 				}
-				send_to_char("You can now refer to your mobiles in this room as 'mob', '2.mob', etc.\n\r",ch);
-				return;
+			}
+			send_to_char("You can now refer to your mobiles in this room as 'mob', '2.mob', etc.\n\r",ch);
+			return;
 		}
 
 		smash_tilde( argument );

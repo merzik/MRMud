@@ -936,6 +936,7 @@ void game_loop_unix( int control , int port)
 
 				open_timer( TIMER_READ_DESC );
 				if ( FD_ISSET( d->descriptor, &in_set ) )
+				{
 					if( d->character == NULL || d->character->desc != d ||
 						( d->character->obj_prog_ip == 0 && d->character->alias_ip == 0 ) )
 					{
@@ -953,8 +954,9 @@ void game_loop_unix( int control , int port)
 							continue;
 						}
 					}
+				}
 
-					if ( d->character != NULL && d->character->wait > 0 &&
+				if ( d->character != NULL && d->character->wait > 0 &&
 						!IS_NPC(d->character))
 					{
 						bool HighSpeed;

@@ -54,6 +54,7 @@ void do_wizhelp( CHAR_DATA *ch, char *argument )
 	col = 0;
 	buf2[0]='\0';
 	for( level=96; level <= ch->level; level++)
+	{
 		for ( cmd = 0; cmd_table[cmd].name[0] != '\0'; cmd++ )
 		{
 			if ( cmd_table[cmd].level == level /* This should be LEVEL_HERO */
@@ -69,13 +70,14 @@ void do_wizhelp( CHAR_DATA *ch, char *argument )
 				}
 			}
 		}
+	}
 
-		if ( col % 5 != 0 )
-		{
-			strcat(buf2, "\n\r");
-			send_to_char( buf2, ch );
-		}
-		return;
+	if ( col % 5 != 0 )
+	{
+		strcat(buf2, "\n\r");
+		send_to_char( buf2, ch );
+	}
+	return;
 }
 
 
@@ -344,15 +346,17 @@ void do_disconnect( CHAR_DATA *ch, char *argument )
 		return;
 	}
 	for( d=first_descriptor; d != NULL; d=d->next)
+	{
 		if(d->descriptor == port)
 		{
 			close_socket( d , TRUE);
 			send_to_char( "Ok.\n\r", ch);
 			return;
 		}
-		bug( "Do_disconnect: desc not found.", 0 );
-		send_to_char( "Descriptor of that number not found!\n\r", ch );
-		return;
+	}
+	bug( "Do_disconnect: desc not found.", 0 );
+	send_to_char( "Descriptor of that number not found!\n\r", ch );
+	return;
 }
 
 
@@ -1280,21 +1284,25 @@ void do_mstat( CHAR_DATA *ch, char *argument )
 		int cnt;
 		strcpy(buf, "Body parts: ");
 		for( cnt=0; cnt<MAX_BODY; cnt++)
+		{
 			if( IS_SET( victim->pIndexData->body_parts, 1<<cnt))
 			{
 				strcat( buf, body_table[cnt].name);
 				strcat( buf, " ");
 			}
-			strcat( buf, "\n\r");
-			strcat(buf, "Attack parts: ");
-			for( cnt=0; cnt<MAX_BODY; cnt++)
-				if( IS_SET( victim->pIndexData->attack_parts, 1<<cnt))
-				{
-					strcat( buf, body_table[cnt].name);
-					strcat( buf, " ");
-				}
-				strcat( buf, "\n\r");
-				send_to_char( buf, ch );
+		}
+		strcat( buf, "\n\r");
+		strcat(buf, "Attack parts: ");
+		for( cnt=0; cnt<MAX_BODY; cnt++)
+		{
+			if( IS_SET( victim->pIndexData->attack_parts, 1<<cnt))
+			{
+				strcat( buf, body_table[cnt].name);
+				strcat( buf, " ");
+			}
+		}
+		strcat( buf, "\n\r");
+		send_to_char( buf, ch );
 	}
 	if(!IS_NPC(victim) && victim->pcdata->castle!=NULL)
 	{
@@ -1395,20 +1403,24 @@ void do_mfind( CHAR_DATA *ch, char *argument )
 	}
 	*/
 	for ( hash = 0; hash < MAX_KEY_HASH; hash++ )
+	{
 		for ( pMobIndex = mob_index_hash[hash];
 			pMobIndex;
 			pMobIndex = pMobIndex->next )
+		{
 			if ( fAll || nifty_is_name( arg, pMobIndex->player_name ) )
 			{
 				nMatch++;
 				ch_printf( ch, "[%5d] %s\n\r",
 					pMobIndex->vnum, capitalize( pMobIndex->short_descr ) );
 			}
+		}
+	}
 
-			if ( nMatch )
-				ch_printf( ch, "Number of matches: %d\n", nMatch );
-			else
-				send_to_char( "Nothing like that in hell, earth, or heaven.\n\r", ch );
+	if ( nMatch )
+		ch_printf( ch, "Number of matches: %d\n", nMatch );
+	else
+		send_to_char( "Nothing like that in hell, earth, or heaven.\n\r", ch );
 
 			return;
 }
@@ -1469,20 +1481,23 @@ void do_ofind( CHAR_DATA *ch, char *argument )
 	}
 	*/
 	for ( hash = 0; hash < MAX_KEY_HASH; hash++ )
+	{
 		for ( pObjIndex = obj_index_hash[hash];
 			pObjIndex;
 			pObjIndex = pObjIndex->next )
+		{
 			if ( fAll || nifty_is_name( arg, pObjIndex->name ) )
 			{
 				nMatch++;
 				ch_printf( ch, "[%5d] %s\n\r",
 					pObjIndex->vnum, capitalize( pObjIndex->short_descr ) );
 			}
+		}
+	}
 
-
-			if ( nMatch )
-				ch_printf( ch, "Number of matches: %d\n", nMatch );
-			else
+	if ( nMatch )
+		ch_printf( ch, "Number of matches: %d\n", nMatch );
+	else
 				send_to_char( "Nothing like that in hell, earth, or heaven.\n\r", ch );
 			return;
 }
@@ -1791,19 +1806,21 @@ void do_snoop( CHAR_DATA *ch, char *argument )
 	if ( arg[0] == '\0' )
 		victim = ch; /* Default to yourself */
 	else
+	{
 		if ( ( victim = get_char_world( ch, arg ) ) == NULL )
 		{
 			send_to_char( "They aren't here.\n\r", ch );
 			return;
 		}
+	}
 
-		if ( victim->desc == NULL )
-		{
-			send_to_char( "No descriptor to snoop.\n\r", ch );
-			return;
-		}
+	if ( victim->desc == NULL )
+	{
+		send_to_char( "No descriptor to snoop.\n\r", ch );
+		return;
+	}
 
-		if ( victim == ch )
+	if ( victim == ch )
 		{
 			send_to_char( "Cancelling all snoops.\n\r", ch );
 			for ( d = first_descriptor; d != NULL; d = d->next )
@@ -2268,19 +2285,21 @@ void do_restore( CHAR_DATA *ch, char *argument )
 	}
 
 	if(!IS_NPC( ch ) && !IS_NPC( victim ))
+	{
 		if(ch->level < 99)
 		{
 			sprintf( buf, "%s has restored %s", ch->name, victim->name );
 			log_string( buf );
 		}
+	}
 
-		victim->hit = victim->max_hit;
-		victim->mana = victim->max_mana;
-		victim->move = victim->max_move;
-		update_pos( victim );
+	victim->hit = victim->max_hit;
+	victim->mana = victim->max_mana;
+	victim->move = victim->max_move;
+	update_pos( victim );
 
-		act( "$n has restored you.", ch, NULL, victim, TO_VICT );
-		send_to_char( "Ok.\n\r", ch );
+	act( "$n has restored you.", ch, NULL, victim, TO_VICT );
+	send_to_char( "Ok.\n\r", ch );
 		return;
 }
 
@@ -3336,6 +3355,7 @@ void do_olist( CHAR_DATA *ch, char *argument )
 	}
 
 	for(level=lRange; level<hRange; level++)
+	{
 		for ( vnum = 0,nMatch=0; nMatch < top_obj_index; vnum++ )
 		{
 			if ( ( pObjIndex = get_obj_index( vnum ) ) != NULL )
@@ -3349,15 +3369,16 @@ void do_olist( CHAR_DATA *ch, char *argument )
 
 					/* Add spot for area name - Chaos 1/17/96 */
 					if(fAll || fSort)
+					{
 						if( lArea != pObjIndex->area )
 						{
 							lArea = pObjIndex->area;
 							fprintf(objFile,"------- AREA: %d %s -------\n", lArea->low_r_vnum,
 								lArea->name );
 						}
+					}
 
-
-						strcpy(buf2,"");
+					strcpy(buf2,"");
 						switch ( pObjIndex->item_type )
 						{
 						case ITEM_LIGHT:
@@ -3527,13 +3548,14 @@ void do_olist( CHAR_DATA *ch, char *argument )
 				}
 			}
 		}
-		if(fAll||fSort)
-		{
-			fclose(objFile);
-			send_to_char("Written to file: olist.all\n\r",ch);
-		}
+	}
+	if(fAll||fSort)
+	{
+		fclose(objFile);
+		send_to_char("Written to file: olist.all\n\r",ch);
+	}
 
-		return;
+	return;
 }
 
 
@@ -3695,6 +3717,7 @@ void do_rescale( CHAR_DATA *ch, char *argument )
 	divisor = 200 * (100-victim->level) + 10000;
 
 	for( mch=first_char; mch!=NULL; mch=mch->next)
+	{
 		if( IS_NPC(mch) && mch->pIndexData->vnum==vnum)
 		{
 			mch->level =mch->pIndexData->level*scale/10000;
@@ -3707,6 +3730,7 @@ void do_rescale( CHAR_DATA *ch, char *argument )
 			mch->npcdata->damsizedice =mch->pIndexData->damsizedice*scale/divisor;
 			mch->npcdata->damplus =mch->pIndexData->damplus*scale/divisor+1;
 		}
+	}
 
 		return;
 }
@@ -3875,6 +3899,7 @@ char *broken_bits( int number, char *vector , bool linear)
 			{
 				bitfound=FALSE;
 				for(cnt = 0; cnt < MAX_BITVECTOR; cnt++ )
+				{
 					if( bit == bitvector_table[cnt].value )
 						if( is_name_short( vector, bitvector_table[cnt].name ))
 						{
@@ -3884,7 +3909,8 @@ char *broken_bits( int number, char *vector , bool linear)
 							found=TRUE;
 							bitfound=TRUE;
 						}
-						if(!bitfound)
+				}
+				if(!bitfound)
 						{
 							if( found )
 								strcat(broken_string, "|" );
@@ -3899,14 +3925,18 @@ char *broken_bits( int number, char *vector , bool linear)
 				bit++;
 		}
 	else
+	{
 		for(cnt = 0; cnt < MAX_BITVECTOR; cnt++ )
+		{
 			if( number == bitvector_table[cnt].value )
 				if( is_name_short( vector, bitvector_table[cnt].name ))
 				{
 					strcat( broken_string, bitvector_table[cnt].name );
 					found=TRUE;
 				}
-				if( !found )
+		}
+	}
+	if( !found )
 				{
 					sprintf( buf, "%d", number );
 					strcat( broken_string, buf);

@@ -876,17 +876,19 @@ void fwrite_corpse( CHAR_DATA *ch , FILE *fp)
 	/* Let's make sure there is a corpse there - Chaos 3/1/96 */
 	found = FALSE;
 	for( obj=first_object; obj!=NULL; obj=obj->next )
+	{
 		if( obj == ch->pcdata->corpse && obj->item_type == ITEM_CORPSE_PC )
 		{
 			found = TRUE;
 			break;
 		}
+	}
 
-		if( !found )
-		{
-			log_string( "Bug: Corpse not found." );
-			return;
-		}
+	if( !found )
+	{
+		log_string( "Bug: Corpse not found." );
+		return;
+	}
 
 		/* Always write the object */
 		ch->pcdata->corpse->test_obj = FALSE;
@@ -1380,6 +1382,7 @@ bool load_char_obj( DESCRIPTOR_DATA *d, char *name )
 		}
 		/* remove all items and extract on faulty number */
 		if( d->descriptor != -999 )
+		{
 			if( ch->pcdata->obj_version_number != OBJECT_VERSION_NUMBER)
 			{
 				OBJ_DATA *obj, *obj_next;
@@ -1397,8 +1400,9 @@ bool load_char_obj( DESCRIPTOR_DATA *d, char *name )
 				if( ch->gold > 1000000 * ch->level || ch->gold < 0 )
 					ch->gold = 1000000 * ch->level;
 			}
-			if( fp != NULL )
-				fclose( fp );
+		}
+		if( fp != NULL )
+			fclose( fp );
 	}
 
 	/* Fix up a few flags - Chaos 10/1/95 */
@@ -1737,6 +1741,7 @@ void fread_char( CHAR_DATA *ch, FILE *fp )
 			{
 				tst=0;
 				for(cnt=0;cnt<MAX_ALIAS && tst==0;cnt++)
+				{
 					if(ch->pcdata->alias[cnt][0]=='\0')
 					{
 						tst=1;
@@ -1745,7 +1750,8 @@ void fread_char( CHAR_DATA *ch, FILE *fp )
 						ch->pcdata->alias_c[cnt]=fread_string( fp ) ;
 						ch->pcdata->alias[cnt]=fread_string( fp ) ;
 					}
-					if(tst==0)
+				}
+				if(tst==0)
 					{
 						char *ptx1;
 						ptx1 = fread_string( fp );
@@ -1981,13 +1987,15 @@ void fread_char( CHAR_DATA *ch, FILE *fp )
 			{
 				tst=0;
 				for(cnt=0;cnt<MAX_KILL_TRACK && tst==0;cnt++)
+				{
 					if(ch->pcdata->killname[cnt][0]=='\0')
 					{
 						tst=1;
 						STRFREE (ch->pcdata->killname[cnt] );
 						ch->pcdata->killname[cnt]=fread_string( fp ) ;
 					}
-					if(tst==0)
+				}
+				if(tst==0)
 					{
 						char *ptx1;
 						ptx1 = fread_string( fp );
@@ -3479,6 +3487,7 @@ CASTLE_DATA *get_castle_data( CHAR_DATA *ch )
 	ocastle->num_objects=0;
 
 	for( rvnum=1; rvnum<MAX_VNUM; rvnum++)
+	{
 		if( room_index[rvnum]!=NULL )
 		{
 			pRoomIndex = room_index[rvnum];
@@ -3488,9 +3497,9 @@ CASTLE_DATA *get_castle_data( CHAR_DATA *ch )
 					ocastle->num_rooms++;
 				}
 		}
+	}
 
-
-		return( ocastle );
+	return( ocastle );
 }
 
 void save_notes()
@@ -3521,15 +3530,17 @@ void save_notes()
 				bool foundn;
 
 				for (foundn = FALSE, tnote = first_note; tnote != NULL; tnote = tnote->next)
+				{
 					if (tnote == pnote)
 					{
 						foundn = TRUE;
 						break;
 					}
-					if (foundn)
-						UNLINK(pnote, first_note, last_note, next, prev);
-					else
-						bug("UNLINK ERROR: did not find note %s", pnote->subject);
+				}
+				if (foundn)
+					UNLINK(pnote, first_note, last_note, next, prev);
+				else
+					bug("UNLINK ERROR: did not find note %s", pnote->subject);
 			}
 #else
 			UNLINK (pnote, first_note, last_note, next, prev);

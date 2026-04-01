@@ -787,15 +787,17 @@ void do_reset( CHAR_DATA *ch, char *argument )
 
 		sprintf(fname, "%s.are", capitalize(arg));
 		for ( pArea = first_area; pArea; pArea = pArea->next )
+		{
 			if ( !strcasecmp(fname, pArea->filename) )
 			{
 				argument = parg;
 				break;
 			}
-			if ( !pArea )
-				pArea = ch->pcdata->area;
-			if ( !pArea )
-				pArea = ch->in_room->area;
+		}
+		if ( !pArea )
+			pArea = ch->pcdata->area;
+		if ( !pArea )
+			pArea = ch->in_room->area;
 	}
 	else
 		pArea = ch->pcdata->area;
@@ -1106,18 +1108,20 @@ void reset_area( AREA_DATA *pArea )
 			continue; */
 
 			if ( number_range(1,5)!=1)
+			{
 				if ( pObjIndex->total_objects >= pObjIndex->max_objs )
 				{
 					last = FALSE;
 					break;
 				}
+			}
 
-				obj = create_object( pObjIndex, level/2 );
-				obj->reset = pReset;
-				pReset->obj = obj;
-				obj_to_room( obj, pRoomIndex );
-				last = TRUE;
-				break;
+			obj = create_object( pObjIndex, level/2 );
+			obj->reset = pReset;
+			pReset->obj = obj;
+			obj_to_room( obj, pRoomIndex );
+			last = TRUE;
+			break;
 
 		case 'P':
 			/* Let's not make more than one */
@@ -1222,14 +1226,16 @@ void reset_area( AREA_DATA *pArea )
 			else
 			{
 				if ( number_range(1,5)!=1)
+				{
 					if ( pObjIndex->total_objects >= pObjIndex->max_objs)
 					{
 						last = FALSE;
 						break;
 					}
-					obj = create_object( pObjIndex, mob->pIndexData->level*3/4 );
-					obj->reset = pReset;
-					pReset->obj = obj;
+				}
+				obj = create_object( pObjIndex, mob->pIndexData->level*3/4 );
+				obj->reset = pReset;
+				pReset->obj = obj;
 			}
 			obj_to_char( obj, mob );
 			if ( pReset->command == 'E' )
@@ -1573,12 +1579,14 @@ RESET_DATA *place_reset( AREA_DATA *tarea, char letter, int arg1, int arg2, int 
 			tmp2 = tmp ? tmp->next : NULL;
 			/* organize by location */
 			for ( ; tmp; tmp = tmp->prev )
+			{
 				if ( tmp->command == letter && tmp->arg3 <= arg3 )
 				{
 					tmp2 = tmp->next;
 					/* organize by vnum */
 					if ( tmp->arg3 == arg3 )
 						for ( ; tmp; tmp = tmp->prev )
+						{
 							if ( tmp->command == letter
 								&& tmp->arg3 == arg3
 								&& tmp->arg1 <= arg1 )
@@ -1586,28 +1594,32 @@ RESET_DATA *place_reset( AREA_DATA *tarea, char letter, int arg1, int arg2, int 
 								tmp2 = tmp->next;
 								break;
 							}
-							break;
+						}
+					break;
 				}
-				/* skip over E or G for that mob */
-				if ( tmp2 && letter == 'M' )
+			}
+			/* skip over E or G for that mob */
+			if ( tmp2 && letter == 'M' )
+			{
+				for ( ; tmp2; tmp2 = tmp2->next )
+					if ( tmp2->command != 'E' && tmp2->command != 'G' )
+						break;
+			}
+			else
+			{
+				/* skip over P, T or H for that obj */
+				if ( tmp2 && letter == 'O' )
 				{
 					for ( ; tmp2; tmp2 = tmp2->next )
-						if ( tmp2->command != 'E' && tmp2->command != 'G' )
+						if ( tmp2->command != 'P' && tmp2->command != 'T'
+							&& tmp2->command != 'H' )
 							break;
 				}
-				else
-					/* skip over P, T or H for that obj */
-					if ( tmp2 && letter == 'O' )
-					{
-						for ( ; tmp2; tmp2 = tmp2->next )
-							if ( tmp2->command != 'P' && tmp2->command != 'T'
-								&& tmp2->command != 'H' )
-								break;
-					}
-					if ( tmp2 )
-						INSERT( pReset, tmp2, tarea->first_reset, next, prev );
-					else
-						LINK( pReset, tarea->first_reset, tarea->last_reset, next, prev );
+			}
+			if ( tmp2 )
+				INSERT( pReset, tmp2, tarea->first_reset, next, prev );
+			else
+				LINK( pReset, tarea->first_reset, tarea->last_reset, next, prev );
 					return pReset;
 		case 'G': case 'E':
 			/* find the last mob */
@@ -1653,6 +1665,7 @@ RESET_DATA *place_reset( AREA_DATA *tarea, char letter, int arg1, int arg2, int 
 			}
 
 			for ( tmp = tarea->last_reset; tmp; tmp = tmp->prev )
+			{
 				if ( (tmp->command == 'O' || tmp->command == 'G'
 					|| tmp->command == 'E' || tmp->command == 'P')
 					&& tmp->arg1 == arg3 )
@@ -1693,7 +1706,8 @@ RESET_DATA *place_reset( AREA_DATA *tarea, char letter, int arg1, int arg2, int 
 						LINK( pReset, tarea->first_reset, tarea->last_reset, next, prev );
 					return pReset;
 				}
-				break;
+			}
+			break;
 		}
 		/* likely a bad reset if we get here... add it anyways */
 	}
@@ -1877,6 +1891,7 @@ RESET_DATA *parse_reset( AREA_DATA *tarea, char *argument, CHAR_DATA *ch )
 										val2 = value;
 									}
 									else
+									{
 										if ( !strcasecmp( arg1, "rand" ) )
 										{
 											if ( !get_room_index(val1) )
@@ -1893,9 +1908,10 @@ RESET_DATA *parse_reset( AREA_DATA *tarea, char *argument, CHAR_DATA *ch )
 											val2 = 0;
 											letter = 'R';
 										}
+									}
 
-										if ( letter == '*' )
-											return NULL;
-										else
-											return make_reset( letter, val1, val3, val2 );
+									if ( letter == '*' )
+										return NULL;
+									else
+										return make_reset( letter, val1, val3, val2 );
 }

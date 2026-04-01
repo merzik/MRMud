@@ -1652,15 +1652,17 @@ void destroy_clan(CLAN_DATA *deadclan)
 		bool foundc;
 
 		for( foundc=FALSE, tclan=first_clan; tclan!=NULL; tclan=tclan->next )
+		{
 			if( tclan==deadclan )
 			{
 				foundc=TRUE;
 				break;
 			}
-			if( foundc )
-				UNLINK (deadclan, first_clan, last_clan, next, prev);
-			else
-				bug( "UNLINK ERROR could not find clan %d.", deadclan->name );
+		}
+		if( foundc )
+			UNLINK (deadclan, first_clan, last_clan, next, prev);
+		else
+			bug( "UNLINK ERROR could not find clan %d.", deadclan->name );
 	}
 #else
 	UNLINK (deadclan, first_clan, last_clan, next, prev);

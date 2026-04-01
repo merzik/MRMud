@@ -630,6 +630,7 @@ mobile_update (void)
 		if ( !IS_SET (ch->act, ACT_SENTINEL))
 			if (ch->fighting == NULL)
 				if (number_bits (4) < 8)
+				{
 					if ((abs(door = number_bits (5))) <= 5)
 					{
 						if ((pexit = ch->in_room->exit[abs(door)]) != NULL)
@@ -645,6 +646,7 @@ mobile_update (void)
 										}
 						}
 					}
+				}
 
 					/* Flee */
 					if (/*IS_SET(ch->act, ACT_WIMPY)
@@ -742,6 +744,7 @@ void weather_update (void)
 	*/
 	parea = NULL;
 	for (rvnum = 1; rvnum < MAX_VNUM; rvnum += 100)
+	{
 		if (get_room_index (rvnum) != NULL && room_index[rvnum]->area != parea)
 		{
 			parea = room_index[rvnum]->area;
@@ -893,8 +896,9 @@ void weather_update (void)
 					send_to_char (buf, gch->ch);
 			}
 		}
+	}
 
-		return;
+	return;
 }
 
 void
@@ -1144,6 +1148,7 @@ char_update (void)
 
 	/* Scan for Sanctified rooms */
 	for (iHash = 0; iHash < MAX_KEY_HASH; iHash++)
+	{
 		for (room = room_index_hash[iHash]; room != NULL; room = room->next)
 		{
 			if (room->sanctify_timer > 0)
@@ -1179,8 +1184,9 @@ char_update (void)
 				}
 			}
 		}
+	}
 
-		usage.numPlayers = 0;
+	usage.numPlayers = 0;
 		ch_quit = NULL;
 		for (ch = first_char; ch != NULL; ch = ch_next)
 		{
@@ -1252,12 +1258,14 @@ char_update (void)
 				if (ch->in_room->area->low_hard_range != 0 ||
 					ch->in_room->area->hi_hard_range != 0)
 					if (!IS_IMMORTAL (ch))
+					{
 						if (ch->level < ch->in_room->area->low_hard_range ||
 							ch->level > ch->in_room->area->hi_hard_range)
 						{
 							char_from_room (ch);
 							char_to_room (ch, room_index[ROOM_VNUM_TEMPLE]);
 						}
+					}
 
 						/* Adjust save vs spells to maximum allowed. */
 						max_save -= (ch->level / 5 + 1);

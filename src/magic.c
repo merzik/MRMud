@@ -234,11 +234,13 @@ bool saves_spell(int level, CHAR_DATA *ch, CHAR_DATA *victim )
 	{
 		attack_levels = 0;
 		for(fch=ch->in_room->first_person;	fch!=NULL; fch=fch->next_in_room )
+		{
 			if(fch!=ch && fch->fighting!=NULL && who_fighting(fch) ==ch )
 			{
 				attack_levels += fch->level;
 			}
-			range += (attack_levels / 5 );
+		}
+		range += (attack_levels / 5 );
 			range -= (ch->level / 5 );
 			if(attack_levels >	0 )
 				range += 5;
@@ -387,15 +389,16 @@ void do_cast(CHAR_DATA *ch, char *argument )
 			value = -1;	/* Default value */
 	}
 	else
+	{
 		if(arg3[0]!='\0' )/* Read the extra value - Chaos 2/8/95 */
 		{
 			value = atol(arg3 );
 			if (value < 1 )
 				value = -1;	/* Default value */
 		}
+	}
 
-
-		sn = skill_lookup(arg1 );
+	sn = skill_lookup(arg1 );
 		if(sn < 0 || !is_spell(sn))
 		{
 			send_to_combat_char("That is not a spell.\n\r", ch);
@@ -498,41 +501,45 @@ void do_cast(CHAR_DATA *ch, char *argument )
 
 			/* Check the just died counter */
 			if(!IS_NPC(victim) && !IS_NPC(ch))
+			{
 				if(victim->pcdata->just_died_ctr > 0 &&
 					ch->in_room->area->low_r_vnum!=ROOM_VNUM_ARENA)
 				{
 					send_to_char("That character is currently protected by the gods.\n\r", ch);
 					return;
 				}
-				if (!IS_NPC(victim) && is_affected(victim, gsn_anti_magic_shell))
+			}
+			if (!IS_NPC(victim) && is_affected(victim, gsn_anti_magic_shell))
+			{
+				act("$N shrugs as you attempt to direct the flows of magic towards $M.", ch, NULL, victim, TO_CHAR);
+				return;
+			}
+			if(!IS_NPC(ch))
+				ch->pcdata->just_died_ctr = 0;
+
+			/* Limitations of player vs. player - Chaos 3/24/99 */
+			if(ch!=victim )
+				if(ch->fighting==NULL || ch->fighting->who!=victim )
+					if((IS_NPC(ch) && IS_AFFECTED(ch, AFF_CHARM)) || !IS_NPC(ch))
+						if((IS_NPC(victim) && IS_AFFECTED(victim,AFF_CHARM)) ||	!IS_NPC(victim))
+							if(ch->in_room->area->low_r_vnum!=ROOM_VNUM_ARENA)
+							{
+								send_to_combat_char("You can't do that.\n\r", ch);
+								return;
+							}
+
+			if((IS_NPC(ch) && IS_AFFECTED(ch, AFF_CHARM)) || !IS_NPC(ch))
+			{
+				if(IS_NPC(victim) && IS_AFFECTED(victim, AFF_CHARM)
+					&& (victim->fighting == NULL ||	who_fighting(victim) !=ch))
 				{
-					act("$N shrugs as you attempt to direct the flows of magic towards $M.", ch, NULL, victim, TO_CHAR);
+					send_to_combat_char("You can't do that to a pet.\n\r", ch);
 					return;
 				}
-				if(!IS_NPC(ch))
-					ch->pcdata->just_died_ctr = 0;
+			}
 
-				/* Limitations of player vs. player - Chaos 3/24/99 */
-				if(ch!=victim )
-					if(ch->fighting==NULL || ch->fighting->who!=victim )
-						if((IS_NPC(ch) && IS_AFFECTED(ch, AFF_CHARM)) || !IS_NPC(ch))
-							if((IS_NPC(victim) && IS_AFFECTED(victim,AFF_CHARM)) ||	!IS_NPC(victim))
-								if(ch->in_room->area->low_r_vnum!=ROOM_VNUM_ARENA)
-								{
-									send_to_combat_char("You can't do that.\n\r", ch);
-									return;
-								}
-
-								if((IS_NPC(ch) && IS_AFFECTED(ch, AFF_CHARM)) || !IS_NPC(ch))
-									if(IS_NPC(victim) && IS_AFFECTED(victim, AFF_CHARM)
-										&& (victim->fighting == NULL ||	who_fighting(victim) !=ch))
-									{
-										send_to_combat_char("You can't do that to a pet.\n\r", ch);
-										return;
-									}
-
-									if(IS_NPC(victim) && victim->fighting!=NULL && !IS_NPC(ch ) &&
-										!is_same_group(ch, victim->fighting->who ))
+			if(IS_NPC(victim) && victim->fighting!=NULL && !IS_NPC(ch ) &&
+				!is_same_group(ch, victim->fighting->who ))
 									{
 										char buf[160];
 										sprintf(buf ,"%s seems to be busy!\n\r", capitalize(victim->short_descr));
@@ -895,16 +902,18 @@ void obj_cast_spell(int sn, int level, CHAR_DATA *ch, CHAR_DATA *victim, OBJ_DAT
 							return;
 						}
 
-						if((IS_NPC(ch) && IS_AFFECTED(ch, AFF_CHARM)) || !IS_NPC(ch))
-							if(IS_NPC(victim) && IS_AFFECTED(victim, AFF_CHARM)
-								&& (victim->fighting == NULL ||	who_fighting(victim) !=ch))
-							{
-								send_to_combat_char("You can't do that to a pet.\n\r", ch);
-								return;
-							}
+		if((IS_NPC(ch) && IS_AFFECTED(ch, AFF_CHARM)) || !IS_NPC(ch))
+		{
+			if(IS_NPC(victim) && IS_AFFECTED(victim, AFF_CHARM)
+				&& (victim->fighting == NULL ||	who_fighting(victim) !=ch))
+			{
+				send_to_combat_char("You can't do that to a pet.\n\r", ch);
+				return;
+			}
+		}
 
-							if((IS_NPC(victim) && victim->fighting!=NULL && !IS_NPC(ch ) &&
-								!is_same_group(ch, victim->fighting->who )) ||
+		if((IS_NPC(victim) && victim->fighting!=NULL && !IS_NPC(ch ) &&
+			!is_same_group(ch, victim->fighting->who )) ||
 								(!IS_NPC(victim) && victim->fighting!=NULL && !IS_NPC(ch) &&
 								!is_same_group(ch, victim )))
 							{
@@ -1299,6 +1308,7 @@ void spell_change_sex(int sn, int level, CHAR_DATA *ch, void *vo )
 			af.modifier = 2;
 	}
 	else
+	{
 		if(victim->sex == 1 )
 		{
 			if(number_range(0,5) <	5 )
@@ -1307,6 +1317,7 @@ void spell_change_sex(int sn, int level, CHAR_DATA *ch, void *vo )
 				af.modifier = -1;
 		}
 		else
+		{
 			if(victim->sex == 2 )
 			{
 				if(number_range(0,5) <	5 )
@@ -1314,8 +1325,10 @@ void spell_change_sex(int sn, int level, CHAR_DATA *ch, void *vo )
 				else
 					af.modifier = -2;
 			}
-			af.bitvector = 0;
-			affect_to_char(victim, &af );
+		}
+	}
+	af.bitvector = 0;
+	affect_to_char(victim, &af );
 			send_to_combat_char("A chill runs through you as your gender changes.\n\r", victim );
 			if (ch != victim )
 				send_to_combat_char("Ok.\n\r", ch );
@@ -1485,6 +1498,7 @@ void spell_feast(int sn, int level, CHAR_DATA *ch, void *vo )
 	char buf[ MAX_INPUT_LENGTH ];
 
 	for(fch = ch->in_room->first_person ; fch != NULL ; fch = fch->next_in_room )
+	{
 		if(!IS_NPC(fch ) && fch->position >= POS_RESTING )
 		{
 			gain_condition(fch, COND_FULL, 50 );
@@ -1498,7 +1512,8 @@ void spell_feast(int sn, int level, CHAR_DATA *ch, void *vo )
 			else
 				send_to_combat_char("You create a large selection of food and drinks.\n\rEveryone in the room joins you as you eat your fill.\n\r", ch);
 		}
-		return;
+	}
+	return;
 }
 
 void spell_restore(int sn, int level, CHAR_DATA *ch, void *vo )
@@ -3414,6 +3429,7 @@ void spell_remove_curse(int sn, int level, CHAR_DATA *ch, void *vo )
 		return;
 	}
 	for(obj=victim->first_carrying;	obj!=NULL ;	obj=obj->next_content)
+	{
 		if((!IS_SET(obj->extra_flags, ITEM_INVENTORY)) &&
 			(IS_SET(obj->extra_flags, ITEM_NODROP) ||
 			IS_SET(obj->extra_flags, ITEM_NOREMOVE)))
@@ -3428,8 +3444,9 @@ void spell_remove_curse(int sn, int level, CHAR_DATA *ch, void *vo )
 			send_to_combat_char(buf, victim);
 			return;
 		}
-		send_to_combat_char("That had no effect.\n\r", ch);
-		return;
+	}
+	send_to_combat_char("That had no effect.\n\r", ch);
+	return;
 }
 
 
@@ -3624,6 +3641,7 @@ void spell_sleep(int sn, int level, CHAR_DATA *ch, void *vo )
 		return;
 	}
 	if(!IS_NPC(ch) && !IS_NPC(victim ) )
+	{
 		if((which_god(ch)==GOD_NEUTRAL ) || /*Neutral can't sleep player*/
 			(which_god(ch)==GOD_INIT_CHAOS) || /*Neutral can't sleep player*/
 			(which_god(ch)==GOD_INIT_ORDER) || /*Neutral can't sleep player*/
@@ -3636,6 +3654,7 @@ void spell_sleep(int sn, int level, CHAR_DATA *ch, void *vo )
 			send_to_combat_char("You cannot cast sleep on that person.\n\r", ch);
 			return;
 		}
+	}
 		if (IS_AFFECTED(victim, AFF_SLEEP))
 		{
 			send_to_combat_char("They are already affected.\n\r", ch );
@@ -4172,6 +4191,7 @@ void spell_ventriloquate(int sn, int level, CHAR_DATA *ch, void *vo )
 	if(ch->in_room == NULL)
 		return;
 	for(vch = ch->in_room->first_person; vch != NULL; vch=vch->next_in_room )
+	{
 		if(!IS_NPC(vch ) && vch->level >= 97 )
 		{
 			sprintf(buf1, "You may not cast that with %s in the room.\n\r",
@@ -4179,12 +4199,13 @@ void spell_ventriloquate(int sn, int level, CHAR_DATA *ch, void *vo )
 			send_to_combat_char(buf1, ch );
 			return;
 		}
+	}
 
-		target_name = one_argument(target_name, speaker );
+	target_name = one_argument(target_name, speaker );
 
-
-		for (vch = ch->in_room->first_person; vch != NULL;	vch = vch->next_in_room )
-			if(vch->position >= POS_RESTING )
+	for (vch = ch->in_room->first_person; vch != NULL;	vch = vch->next_in_room )
+	{
+		if(vch->position >= POS_RESTING )
 			{
 				if (!is_name_short(speaker, vch->name ) )
 				{
@@ -4199,8 +4220,9 @@ void spell_ventriloquate(int sn, int level, CHAR_DATA *ch, void *vo )
 					send_to_combat_char(buf1, vch );
 				}
 			}
+	}
 
-			return;
+	return;
 }
 
 
@@ -5250,14 +5272,16 @@ void do_rcast(CHAR_DATA *ch, char *argument )
 				return;
 		}
 		if((IS_NPC(ch) && IS_AFFECTED(ch, AFF_CHARM)) || !IS_NPC(ch))
+		{
 			if(IS_NPC(victim) && IS_AFFECTED(victim, AFF_CHARM)
 				&& (victim->fighting == NULL ||	victim->fighting->who!=ch))
 			{
 				send_to_combat_char("You can't do that to a pet.\n\r", ch);
 				return;
 			}
+		}
 
-			if(IS_NPC(victim) && IS_AFFECTED(victim, AFF_CHARM))
+		if(IS_NPC(victim) && IS_AFFECTED(victim, AFF_CHARM))
 			{
 				send_to_combat_char("You can't cast that on a pet.\n\r", ch);
 				return;
@@ -5382,6 +5406,7 @@ void do_rcast(CHAR_DATA *ch, char *argument )
 		if(IS_NPC(ch))
 			(*skill_table[sn].spell_fun) (sn, ch->level/4, ch, vo );
 		else
+		{
 			if(multi(ch,sn)!=-1)
 			{
 				(*skill_table[sn].spell_fun) (sn, level, ch, vo );
@@ -5393,14 +5418,16 @@ void do_rcast(CHAR_DATA *ch, char *argument )
 				send_to_combat_char("You can't do that!\n\r", ch);
 				return;
 			}
-			/* restore previous settings */
-			ch->act=actn;
-			char_from_room(ch);
-			char_to_room(ch,old_room);
+		}
+		/* restore previous settings */
+		ch->act=actn;
+		char_from_room(ch);
+		char_to_room(ch,old_room);
 	}
 
 	/* Move some creatures into room of caster */
 	for(victim=first_char;	victim!=NULL ; victim=victim->next)
+	{
 		if(victim->fighting!=NULL && victim->fighting->who == ch && victim->in_room != ch->in_room)
 		{
 			if(IS_NPC(victim) && !IS_AFFECTED(victim, AFF_ETHEREAL) &&
@@ -5439,7 +5466,8 @@ void do_rcast(CHAR_DATA *ch, char *argument )
 				}
 			}
 		}
-		return;
+	}
+	return;
 }
 
 /*
@@ -5572,10 +5600,12 @@ void do_mass(CHAR_DATA *ch, char *argument )
 				if(ch->fighting==NULL || ch->fighting->who!=victim )
 					if((IS_NPC(ch) && IS_AFFECTED(ch, AFF_CHARM)) || !IS_NPC(ch))
 						if((IS_NPC(victim) && IS_AFFECTED(victim,AFF_CHARM)) ||	!IS_NPC(victim))
+						{
 							if(ch->in_room->area->low_r_vnum!=ROOM_VNUM_ARENA)
 							{
 								break;
 							}
+						}
 
 							{
 								if (victim->fighting!=NULL	&& victim->fighting->who==ch )
@@ -5912,29 +5942,31 @@ void spell_sanctify(int sn, int level, CHAR_DATA *ch, void *vo )
 	}
 
 	for(fch=room->first_person;	fch!=NULL; fch=fch->next_in_room )
+	{
 		if(fch->position==POS_FIGHTING	|| fch->fighting != NULL )
 		{
 			send_to_char("There is too much violence in the room to cast sanctify.\n\r", ch );
 			return;
 		}
+	}
 
-		/* Can't sanctify the arena. Presto 8-1-98 */
-		if(ch->in_room->area->low_r_vnum == ROOM_VNUM_ARENA)
-		{
-			send_to_char("The arena may not be sanctified.\n\r", ch);
-			return;
-		}
-
-		room->sanctify_timer = 16 +	level/5;
-		room->sanctify_char = ch;
-		SET_BIT(room->room_flags, ROOM_SAFE );
-
-		send_to_char("The room becomes sanctified, and is a sanctuary for all.\n\r",
-			ch);
-		act("$n prays to God and makes this small area a sanctuary to all.",
-			ch, NULL, NULL, TO_ROOM);
-
+	/* Can't sanctify the arena. Presto 8-1-98 */
+	if(ch->in_room->area->low_r_vnum == ROOM_VNUM_ARENA)
+	{
+		send_to_char("The arena may not be sanctified.\n\r", ch);
 		return;
+	}
+
+	room->sanctify_timer = 16 +	level/5;
+	room->sanctify_char = ch;
+	SET_BIT(room->room_flags, ROOM_SAFE );
+
+	send_to_char("The room becomes sanctified, and is a sanctuary for all.\n\r",
+		ch);
+	act("$n prays to God and makes this small area a sanctuary to all.",
+		ch, NULL, NULL, TO_ROOM);
+
+	return;
 }
 
 
@@ -6319,12 +6351,14 @@ void spell_nightmare(int sn, int level, CHAR_DATA *ch, void *vo )
 		return;
 	}
 	else
+	{
 		if(saves_spell(level, ch, victim ) )
 		{
 			send_to_combat_char("Nothing happens.\n\r", ch);
 			return;
 		}
-		if(IS_NPC(victim) )
+	}
+	if(IS_NPC(victim) )
 		{
 			if (!IS_SET(victim->act, ACT_WIMPY))
 				SET_BIT(victim->act, ACT_WIMPY);
