@@ -19,6 +19,9 @@ char * const mprog_flags [] =
 		"allgreet", "give", "bribe", "range", "social", "kill", "group_greet", "time"
 };
 
+#define RESET_NAME_PREVIEW 256
+#define REDIT_ARG_PREVIEW 600
+
 char * const area_flags[] =
 {
 	"nodebug", "noteleport", "nogohome", "norecall", "nocastle", "norip",
@@ -6171,7 +6174,10 @@ char * const a_flags [] =
 				else
 					rxit = NULL;
 			}
-			snprintf( tmpcmd, sizeof(tmpcmd), "exit %s %s %s", arg2, arg3, argument );
+			snprintf( tmpcmd, sizeof(tmpcmd), "exit %.*s %.*s %.*s",
+				REDIT_ARG_PREVIEW, arg2,
+				REDIT_ARG_PREVIEW, arg3,
+				REDIT_ARG_PREVIEW, argument );
 			do_redit( ch, tmpcmd );
 			if ( numnotdir )
 				xit = tmploc->exit[exnum];
@@ -6189,11 +6195,11 @@ char * const a_flags [] =
 			}
 			if ( vnum )
 			{
-				snprintf( tmpcmd, sizeof(tmpcmd), "%d redit exit %d %s %s",
+				snprintf( tmpcmd, sizeof(tmpcmd), "%d redit exit %d %.*s %.*s",
 					vnum,
 					rev_dir[edir],
-					rvnum,
-					argument );
+					REDIT_ARG_PREVIEW, rvnum,
+					REDIT_ARG_PREVIEW, argument );
 				do_at( ch, tmpcmd );
 			}
 			return;
@@ -6637,11 +6643,11 @@ char * const a_flags [] =
 				strcpy( roomname, room->name );
 			else
 				strcpy( roomname, "Room: *BAD VNUM*" );
-			snprintf( buf, sizeof(buf), "%2d) %s (%d) -> %s (%d) [%d]\n\r",
+			snprintf( buf, sizeof(buf), "%2d) %.*s (%d) -> %.*s (%d) [%d]\n\r",
 				num,
-				mobname,
+				RESET_NAME_PREVIEW, mobname,
 				pReset->arg1,
-				roomname,
+				RESET_NAME_PREVIEW, roomname,
 				pReset->arg3,
 				pReset->arg2 );
 			break;
@@ -6652,11 +6658,11 @@ char * const a_flags [] =
 				strcpy( objname, "Object: *BAD VNUM*" );
 			else
 				strcpy( objname, obj->name );
-			snprintf( buf, sizeof(buf), "%2d) %s (%d) -> %s (%s) [%d]\n\r",
+			snprintf( buf, sizeof(buf), "%2d) %.*s (%d) -> %.*s (%s) [%d]\n\r",
 				num,
-				objname,
+				RESET_NAME_PREVIEW, objname,
 				pReset->arg1,
-				mobname,
+				RESET_NAME_PREVIEW, mobname,
 				wear_locs[pReset->arg3],
 				pReset->arg2 );
 			break;
@@ -6667,9 +6673,9 @@ char * const a_flags [] =
 			else
 				if ( !obj )
 					strcpy( objname, "Object: *NULL obj*" );
-			snprintf( buf, sizeof(buf), "%2d) Hide %s (%d)\n\r",
+			snprintf( buf, sizeof(buf), "%2d) Hide %.*s (%d)\n\r",
 				num,
-				objname,
+				RESET_NAME_PREVIEW, objname,
 				obj ? obj->vnum : pReset->arg1 );
 			break;
 		case 'G':
@@ -6679,11 +6685,11 @@ char * const a_flags [] =
 				strcpy( objname, "Object: *BAD VNUM*" );
 			else
 				strcpy( objname, obj->name );
-			snprintf( buf, sizeof(buf), "%2d) %s (%d) -> %s (carry) [%d]\n\r",
+			snprintf( buf, sizeof(buf), "%2d) %.*s (%d) -> %.*s (carry) [%d]\n\r",
 				num,
-				objname,
+				RESET_NAME_PREVIEW, objname,
 				pReset->arg1,
-				mobname,
+				RESET_NAME_PREVIEW, mobname,
 				pReset->arg2 );
 			break;
 		case 'O':
@@ -6696,11 +6702,11 @@ char * const a_flags [] =
 				strcpy( roomname, "Room: *BAD VNUM*" );
 			else
 				strcpy( roomname, room->name );
-			snprintf( buf, sizeof(buf), "%2d) (object) %s (%d) -> %s (%d) [%d]\n\r",
+			snprintf( buf, sizeof(buf), "%2d) (object) %.*s (%d) -> %.*s (%d) [%d]\n\r",
 				num,
-				objname,
+				RESET_NAME_PREVIEW, objname,
 				pReset->arg1,
-				roomname,
+				RESET_NAME_PREVIEW, roomname,
 				pReset->arg3,
 				pReset->arg2 );
 			break;
@@ -6717,11 +6723,11 @@ char * const a_flags [] =
 					strcpy( roomname, "Object2: *NULL obj*" );
 				else
 					strcpy( roomname, obj->name );
-			snprintf( buf, sizeof(buf), "%2d) (Put) %s (%d) -> %s (%d) [%d]\n\r",
+			snprintf( buf, sizeof(buf), "%2d) (Put) %.*s (%d) -> %.*s (%d) [%d]\n\r",
 				num,
-				objname,
+				RESET_NAME_PREVIEW, objname,
 				pReset->arg1,
-				roomname,
+				RESET_NAME_PREVIEW, roomname,
 				obj ? obj->vnum : pReset->arg3,
 				pReset->arg2 );
 			break;
@@ -6748,13 +6754,13 @@ char * const a_flags [] =
 			case 1: strcpy( mobname, "Close" ); break;
 			case 2: strcpy( mobname, "Close and lock" ); break;
 			}
-			snprintf( buf, sizeof(buf), "%2d) %s [%d] the %s [%d] door %s (%d)\n\r",
+			snprintf( buf, sizeof(buf), "%2d) %.*s [%d] the %.*s [%d] door %.*s (%d)\n\r",
 				num,
-				mobname,
+				RESET_NAME_PREVIEW, mobname,
 				pReset->arg3,
-				objname,
+				RESET_NAME_PREVIEW, objname,
 				pReset->arg2,
-				roomname,
+				RESET_NAME_PREVIEW, roomname,
 				pReset->arg1 );
 			break;
 		case 'R':
@@ -6762,10 +6768,10 @@ char * const a_flags [] =
 				strcpy( roomname, "Room: *BAD VNUM*" );
 			else
 				strcpy( roomname, room->name );
-			snprintf( buf, sizeof(buf), "%2d) Randomize exits 0 to %d -> %s (%d)\n\r",
+			snprintf( buf, sizeof(buf), "%2d) Randomize exits 0 to %d -> %.*s (%d)\n\r",
 				num,
 				pReset->arg2,
-				roomname,
+				RESET_NAME_PREVIEW, roomname,
 				pReset->arg1 );
 			break;
 		}
