@@ -1860,10 +1860,11 @@ RESET_DATA *parse_reset( AREA_DATA *tarea, char *argument, CHAR_DATA *ch )
 									if ( val3 < 0 )
 										val3 = 0;
 									letter = 'P';
-								}
-								else
-									if ( !strcasecmp( arg1, "door" ) )
+									}
+									else
 									{
+										if ( !strcasecmp( arg1, "door" ) )
+										{
 										if ( (room = get_room_index(val1)) == NULL )
 										{
 											send_to_char( "Reset: DOOR: no such room\n\r", ch );
@@ -1905,8 +1906,9 @@ RESET_DATA *parse_reset( AREA_DATA *tarea, char *argument, CHAR_DATA *ch )
 												return NULL;
 											}
 											val3 = val2;
-											val2 = 0;
-											letter = 'R';
+												val2 = 0;
+												letter = 'R';
+											}
 										}
 									}
 

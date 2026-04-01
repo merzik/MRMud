@@ -11,6 +11,8 @@ LIBS    =
 UNAME_S := $(shell uname -s)
 ifeq ($(UNAME_S),Linux)
 LIBS += -lcrypt
+C_FLAGS += -Wno-misleading-indentation -Wno-format-overflow -Wno-address \
+	-Wno-unused-but-set-variable -Wno-maybe-uninitialized -Wno-restrict
 endif
 #L_FLAGS = $(PROF)
 SYSTEM = -Dunix
@@ -31,4 +33,3 @@ asan:
 
 clean:
 	rm -f $(O_FILES)
-
