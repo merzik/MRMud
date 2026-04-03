@@ -5,56 +5,63 @@ set port = 4321
 if ( "$1" != "" ) set port="$1"
 
 # Change to area directory.
-cd ../area_current
+cd ../areas
 
-# Set limits.
-nice -10
+# Remove limits and renice for higher cpu priority
+#nice -10
 unlimit
 
-    while ( 1 )
+while ( 1 )
 
-if ( -e shutdown.txt ) rm -f shutdown.txt
+  if ( -e shutdown.txt ) rm -f shutdown.txt
 
-  echo Finding log file
-    # If you want to have logs in a different directory,
-    #   change the 'set logfile' line to reflect the directory name.
-    set index = 1000
-    while ( 1 )
-	set logfile = ../log/$index.log
-	if ( ! -e $logfile ) break
-	@ index++
-    end
+  echo Finding log file...
+  # If you want to have logs in a different directory,
+  # change the 'set logfile' line to reflect the directory name.
+  set index = 1000
+  while ( 1 )
+    set logfile = ../log/$index.log
+    if ( ! -e $logfile ) break
+    @ index++
+  end
 
-    echo Found new log file $logfile
-    # Record starting time
-    date > $logfile
-    date > ../area_current/boot.txt
-    limit > $logfile
+  echo Found new log file $logfile!
+  # Record starting time
+  date > $logfile
+  date > ../areas/boot.txt
+  limit >> $logfile
 
-    # Record initial charges
-    # charges >> $logfile
+  echo Checking for binary file...
 
-    echo Startup with log file $logfile
+  cp -f ../bin/next_md ../bin/current_md
+  if ( ! -e ../bin/current_md ) then
+    echo There is no binary file.
+    echo Be sure to compile, and copy ../bin/md to ../bin/next_md.
+    exit 0
+  else
+    echo Binary file OK!
+  endif
 
-    cp -f ../bin/next_md ../bin/current_md 
-    if ( ! -e ../bin/current_md ) then
-        echo There is no binary file.
-        echo Be sure to compile, and copy ../bin/md to ../bin/next_md.
-	exit 0
-    endif
+  ../bin/current_md $port >>& $logfile
 
-    ../bin/current_md $port >&! $logfile
+  # Find the core file
+  set corefile = `ls core*`
 
-    # Analyze the core file
-    echo where | gdb ../bin/current_md core >> $logfile
-    echo "\n"
-    # Record ending charges
-    # charges >> $logfile
+  # Analyze the core file
+  echo where | gdb ../bin/md $corefile >> $logfile
+  echo "\n"
 
-    # Restart, giving old connections a chance to die.
-    #if ( -e shutdown.txt ) then
-	#rm -f shutdown.txt
-	#exit 0
-    #endif
-    sleep 50
- end
+  # Remove any core files
+  rm -f core*
+
+  # Send tail of log file to admin
+  tail -50 $logfile | /bin/mail -s "MR Crash Info" merzik@mortalrealms.com
+
+  # Restart, giving old connections a chance to die.
+  #if ( -e shutdown.txt ) then
+    #rm -f shutdown.txt
+    #exit 0
+  #endif
+
+  sleep 30
+end
