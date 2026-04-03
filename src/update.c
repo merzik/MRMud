@@ -630,6 +630,7 @@ mobile_update (void)
 		if ( !IS_SET (ch->act, ACT_SENTINEL))
 			if (ch->fighting == NULL)
 				if (number_bits (4) < 8)
+				{
 					if ((abs(door = number_bits (5))) <= 5)
 					{
 						if ((pexit = ch->in_room->exit[abs(door)]) != NULL)
@@ -645,6 +646,7 @@ mobile_update (void)
 										}
 						}
 					}
+				}
 
 					/* Flee */
 					if (/*IS_SET(ch->act, ACT_WIMPY)
@@ -742,6 +744,7 @@ void weather_update (void)
 	*/
 	parea = NULL;
 	for (rvnum = 1; rvnum < MAX_VNUM; rvnum += 100)
+	{
 		if (get_room_index (rvnum) != NULL && room_index[rvnum]->area != parea)
 		{
 			parea = room_index[rvnum]->area;
@@ -893,8 +896,9 @@ void weather_update (void)
 					send_to_char (buf, gch->ch);
 			}
 		}
+	}
 
-		return;
+	return;
 }
 
 void
@@ -921,10 +925,6 @@ void save_html_who (void)
 	FILE *fp;
 	char buf[MAX_STRING_LENGTH], buf_race[20];
 	char buf2[MAX_STRING_LENGTH];
-	int leng;
-	CHAR_DATA *fch;
-	DESCRIPTOR_DATA *d;
-	int nMatch;
 	int nTotal;
 	CHAR_DATA *wch;
 	char const *class;
@@ -953,24 +953,17 @@ void save_html_who (void)
 	/*
 	* Set default arguments.
 	*/
-	fch = NULL;
-
 	fprintf( fp, "<table align=\"center\" width=\"600\" cellpadding=\"2\" border=\"0\">" );
 
 	/*
 	* Now show matching chars.
 	*/
 
-	nMatch = 0;
 	nTotal = 0;
 	buf[0] = '\0';
-	leng = 0;
 	for (fpl = first_player; fpl != NULL; fpl = fpl->next)
 	{
 		wch = fpl->ch;
-		d = NULL;
-		if (is_desc_valid (wch))
-			d = wch->desc;
 		/*
 		* Check for match against restrictions.
 		* Don't use trust as that exposes trusted mortals.
@@ -979,7 +972,6 @@ void save_html_who (void)
 		if (IS_SET (wch->act, PLR_WIZINVIS) || is_affected(wch, gsn_greater_stealth))
 			continue;
 		nTotal++;
-		nMatch++;
 
 
 		/*
@@ -1047,10 +1039,10 @@ void save_html_who (void)
 		*/
 		sprintf( buf2, "<tr><td width=\"25\" align=\"left\" valign=\"top\">[%2d</td><td width=\"30\" align=\"center\" valign=\"top\">%s</td><td width=\"30\" align=\"right\" valign=\"top\">%s]</td>\n",
 			wch->level, class, buf_race );
-		fprintf( fp, buf2 );
+		fprintf( fp, "%s", buf2 );
 		sprintf( buf2, "<td width=\"10\" align=\"center\" valign=\"top\">%c</td><td width=\"10\" align=\"center\" valign=\"top\">%c</td><td width=\"75\" align=\"right\" valign=\"top\">%s</td><td width=\"250\" valign=\"top\">%s</td>\n",
 			god, killer_thief, wch->name, IS_NPC (wch) ? "the monster" : wch->pcdata->title);
-		fprintf( fp, buf2 );
+		fprintf( fp, "%s", buf2 );
 		/*
 		buf2[71] = '\0';
 		strip_greater (buf2);
@@ -1071,7 +1063,7 @@ void save_html_who (void)
 			else
 				sprintf( buf2, "<td width=\"170\" valign=\"top\">Unknown</td></tr>"); /* Stealth Mode */
 
-		fprintf( fp, buf2 );
+		fprintf( fp, "%s", buf2 );
 		/*
 		leng = str_apd_max (buf, " {", leng, MAX_STRING_LENGTH);
 		leng = str_apd_max (buf, buf2, leng, MAX_STRING_LENGTH);
@@ -1156,6 +1148,7 @@ char_update (void)
 
 	/* Scan for Sanctified rooms */
 	for (iHash = 0; iHash < MAX_KEY_HASH; iHash++)
+	{
 		for (room = room_index_hash[iHash]; room != NULL; room = room->next)
 		{
 			if (room->sanctify_timer > 0)
@@ -1191,8 +1184,9 @@ char_update (void)
 				}
 			}
 		}
+	}
 
-		usage.numPlayers = 0;
+	usage.numPlayers = 0;
 		ch_quit = NULL;
 		for (ch = first_char; ch != NULL; ch = ch_next)
 		{
@@ -1264,12 +1258,14 @@ char_update (void)
 				if (ch->in_room->area->low_hard_range != 0 ||
 					ch->in_room->area->hi_hard_range != 0)
 					if (!IS_IMMORTAL (ch))
+					{
 						if (ch->level < ch->in_room->area->low_hard_range ||
 							ch->level > ch->in_room->area->hi_hard_range)
 						{
 							char_from_room (ch);
 							char_to_room (ch, room_index[ROOM_VNUM_TEMPLE]);
 						}
+					}
 
 						/* Adjust save vs spells to maximum allowed. */
 						max_save -= (ch->level / 5 + 1);

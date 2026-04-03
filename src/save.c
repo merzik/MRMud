@@ -112,11 +112,9 @@ void save_char_obj(CHAR_DATA *ch, int which_type)
 	FILE *fp;
 	ROOM_INDEX_DATA *troom;
 	bool IS_DESC;
-	int old_time;
 	int game_time_1, game_time_2, game_time_3, game_time_4, game_time_5;
+	(void)game_time_1;
 	/* let parent back out of save */
-
-	old_time = get_game_usec();
 
 	if ( IS_NPC(ch) || ch->level < 1)
 	{
@@ -626,6 +624,7 @@ void fwrite_obj( CHAR_DATA *ch, OBJ_DATA *obj, FILE *fp, int iNest )
 	AFFECT_DATA *paf;
 	/* OBJ_DATA *copy; */
 	int copies;
+	(void)copies;
 	copies=1; /* Too lazy to reverse logic */
 	if(( (ch->level+5) < obj->level || obj->test_obj ||
 		obj->item_type == ITEM_KEY ) && obj->wear_loc==WEAR_NONE)
@@ -877,17 +876,19 @@ void fwrite_corpse( CHAR_DATA *ch , FILE *fp)
 	/* Let's make sure there is a corpse there - Chaos 3/1/96 */
 	found = FALSE;
 	for( obj=first_object; obj!=NULL; obj=obj->next )
+	{
 		if( obj == ch->pcdata->corpse && obj->item_type == ITEM_CORPSE_PC )
 		{
 			found = TRUE;
 			break;
 		}
+	}
 
-		if( !found )
-		{
-			log_string( "Bug: Corpse not found." );
-			return;
-		}
+	if( !found )
+	{
+		log_string( "Bug: Corpse not found." );
+		return;
+	}
 
 		/* Always write the object */
 		ch->pcdata->corpse->test_obj = FALSE;
@@ -1020,13 +1021,11 @@ bool load_char_obj( DESCRIPTOR_DATA *d, char *name )
 	FILE *fp;
 	bool found, foundgz, foundngz;
 	sh_int cnt;
-	int old_time;
 	extern bool merc_down;
 
 	if( name == NULL || *name =='\0' )
 		return( FALSE );
 
-	old_time = get_game_usec();
 	CREATE(ch, CHAR_DATA, 1 );
 	clear_char( ch );
 	CREATE( ch->pcdata, PC_DATA, 1 );
@@ -1293,26 +1292,8 @@ bool load_char_obj( DESCRIPTOR_DATA *d, char *name )
 
 		if( !is_valid_file( ch, fp ) )
 		{
-			char buf[100], buf2[100], name_buf[100];
+			char buf[MAX_INPUT_LENGTH], buf2[MAX_INPUT_LENGTH], name_buf[MAX_INPUT_LENGTH];
 
-			/*
-			strcpy( buf3, name );
-			buf3[1]='\0';
-			if( buf3[0]>='A' && buf3[0]<='Z')
-			buf3[0]+= ('a' - 'A');
-
-			strcpy( name_buf, capitalize_name( name ) );
-			if( COMPRESS_FILES)
-			{
-			sprintf( buf, "%s/%s/%s.gz", PLAYER_DIR, buf3, name_buf);
-			sprintf(buf2,"%s/%s/delete.%s.gz",PLAYER_DIR,buf3, name_buf);
-			}
-			else
-			{
-			sprintf( buf, "%s/%s/%s", PLAYER_DIR, buf3, name_buf );
-			sprintf(buf2,"%s/%s/delete.%s", PLAYER_DIR, buf3, name_buf );
-			}
-			*/
 			strcpy(buf, get_player_filename(name, PFILE_TYPE_NORMAL));
 			strcpy(buf2, get_player_filename(name, PFILE_TYPE_DELETE));
 			ch->desc = NULL;
@@ -1401,6 +1382,7 @@ bool load_char_obj( DESCRIPTOR_DATA *d, char *name )
 		}
 		/* remove all items and extract on faulty number */
 		if( d->descriptor != -999 )
+		{
 			if( ch->pcdata->obj_version_number != OBJECT_VERSION_NUMBER)
 			{
 				OBJ_DATA *obj, *obj_next;
@@ -1418,8 +1400,9 @@ bool load_char_obj( DESCRIPTOR_DATA *d, char *name )
 				if( ch->gold > 1000000 * ch->level || ch->gold < 0 )
 					ch->gold = 1000000 * ch->level;
 			}
-			if( fp != NULL )
-				fclose( fp );
+		}
+		if( fp != NULL )
+			fclose( fp );
 	}
 
 	/* Fix up a few flags - Chaos 10/1/95 */
@@ -1571,26 +1554,8 @@ bool load_char_obj( DESCRIPTOR_DATA *d, char *name )
 
 		if( character_expiration( ch ) < 0 || strcasecmp( ch->name, name ) )
 		{
-			char buf[100], buf2[100], name_buf[100];
+			char buf[MAX_INPUT_LENGTH], buf2[MAX_INPUT_LENGTH], name_buf[MAX_INPUT_LENGTH];
 
-			/*
-			strcpy( buf3, name );
-			buf3[1]='\0';
-			if( buf3[0]>='A' && buf3[0]<='Z')
-			buf3[0]+= ('a' - 'A');
-
-			strcpy( name_buf, capitalize_name( name ) );
-			if( COMPRESS_FILES)
-			{
-			sprintf( buf, "%s/%s/%s.gz", PLAYER_DIR, buf3, name_buf);
-			sprintf(buf2,"%s/%s/delete.%s.gz",PLAYER_DIR,buf3, name_buf);
-			}
-			else
-			{
-			sprintf( buf, "%s/%s/%s", PLAYER_DIR, buf3, name_buf );
-			sprintf(buf2,"%s/%s/delete.%s", PLAYER_DIR, buf3, name_buf );
-			}
-			*/
 			strcpy(buf, get_player_filename(name, PFILE_TYPE_NORMAL));
 			strcpy(buf2, get_player_filename(name, PFILE_TYPE_DELETE));
 			ch->desc = NULL;
@@ -1776,6 +1741,7 @@ void fread_char( CHAR_DATA *ch, FILE *fp )
 			{
 				tst=0;
 				for(cnt=0;cnt<MAX_ALIAS && tst==0;cnt++)
+				{
 					if(ch->pcdata->alias[cnt][0]=='\0')
 					{
 						tst=1;
@@ -1784,7 +1750,8 @@ void fread_char( CHAR_DATA *ch, FILE *fp )
 						ch->pcdata->alias_c[cnt]=fread_string( fp ) ;
 						ch->pcdata->alias[cnt]=fread_string( fp ) ;
 					}
-					if(tst==0)
+				}
+				if(tst==0)
 					{
 						char *ptx1;
 						ptx1 = fread_string( fp );
@@ -2020,13 +1987,15 @@ void fread_char( CHAR_DATA *ch, FILE *fp )
 			{
 				tst=0;
 				for(cnt=0;cnt<MAX_KILL_TRACK && tst==0;cnt++)
+				{
 					if(ch->pcdata->killname[cnt][0]=='\0')
 					{
 						tst=1;
 						STRFREE (ch->pcdata->killname[cnt] );
 						ch->pcdata->killname[cnt]=fread_string( fp ) ;
 					}
-					if(tst==0)
+				}
+				if(tst==0)
 					{
 						char *ptx1;
 						ptx1 = fread_string( fp );
@@ -2309,6 +2278,7 @@ void fread_obj( CHAR_DATA *ch, FILE *fp )
 	bool fNest;
 	bool fVnum;
 	bool item_not_valid=FALSE;
+	(void)item_not_valid;
 
 	copies=1;
 	BasicVnum=0;
@@ -2953,7 +2923,6 @@ void fread_obj( CHAR_DATA *ch, FILE *fp )
 
 void fread_corpse( CHAR_DATA *ch, FILE *fp )
 {
-	bool found;
 	OBJ_DATA *obj;
 
 	obj = NULL;
@@ -2962,8 +2931,6 @@ void fread_corpse( CHAR_DATA *ch, FILE *fp )
 	obj->test_obj = FALSE;
 	ch->pcdata->corpse = obj;
 	obj->owned_by=ch->pcdata->pvnum;
-
-	found = TRUE;
 	for ( ; ; )
 	{
 		char letter;
@@ -3520,6 +3487,7 @@ CASTLE_DATA *get_castle_data( CHAR_DATA *ch )
 	ocastle->num_objects=0;
 
 	for( rvnum=1; rvnum<MAX_VNUM; rvnum++)
+	{
 		if( room_index[rvnum]!=NULL )
 		{
 			pRoomIndex = room_index[rvnum];
@@ -3529,9 +3497,9 @@ CASTLE_DATA *get_castle_data( CHAR_DATA *ch )
 					ocastle->num_rooms++;
 				}
 		}
+	}
 
-
-		return( ocastle );
+	return( ocastle );
 }
 
 void save_notes()
@@ -3562,15 +3530,17 @@ void save_notes()
 				bool foundn;
 
 				for (foundn = FALSE, tnote = first_note; tnote != NULL; tnote = tnote->next)
+				{
 					if (tnote == pnote)
 					{
 						foundn = TRUE;
 						break;
 					}
-					if (foundn)
-						UNLINK(pnote, first_note, last_note, next, prev);
-					else
-						bug("UNLINK ERROR: did not find note %s", pnote->subject);
+				}
+				if (foundn)
+					UNLINK(pnote, first_note, last_note, next, prev);
+				else
+					bug("UNLINK ERROR: did not find note %s", pnote->subject);
 			}
 #else
 			UNLINK (pnote, first_note, last_note, next, prev);

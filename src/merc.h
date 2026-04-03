@@ -1874,7 +1874,7 @@ struct obj_index_data
 	sh_int weight;
 	int cost;
 	int max_objs;
-	int value [4];
+	int value [6];
 	int level_rent;
 	int level;
 	int total_objects; /* Total for resets */
@@ -1944,7 +1944,7 @@ struct obj_data
 	sh_int level;
 	sh_int timer;
 	sh_int sac_timer;
-	int value [4];
+	int value [6];
 	unsigned char *obj_quest;
 	long owned_by; /* PVNUM of owner */
 	bool saved;
@@ -4058,9 +4058,9 @@ else \
 	do \
 { \
 	if ( !(first) ) \
-	(first) = (link); \
-else \
-	(last)->next = (link); \
+		(first) = (link); \
+	else \
+		(last)->next = (link); \
 	(link)->next = NULL; \
 	(link)->prev = (last); \
 	(last) = (link); \
@@ -4072,9 +4072,9 @@ else \
 { \
 	(link)->prev = (insert)->prev; \
 	if ( !(insert)->prev ) \
-	(first) = (link); \
-else \
-	(insert)->prev->next = (link); \
+		{ (first) = (link); } \
+	else \
+		{ (insert)->prev->next = (link); } \
 	(insert)->prev = (link); \
 	(link)->next = (insert); \
 } while(0)
@@ -4085,13 +4085,13 @@ else \
 	do \
 { \
 	if ( !(link)->prev ) \
-	(first) = (link)->next; \
-else \
-	(link)->prev->next = (link)->next; \
+		(first) = (link)->next; \
+	else \
+		(link)->prev->next = (link)->next; \
 	if ( !(link)->next ) \
-	(last) = (link)->prev; \
-else \
-	(link)->next->prev = (link)->prev; \
+		(last) = (link)->prev; \
+	else \
+		(link)->next->prev = (link)->prev; \
 } while(0)
 
 #define CHECK_LINKS(first, last, next, prev, type) \

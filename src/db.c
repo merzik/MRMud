@@ -37,6 +37,7 @@
 #include <stdarg.h>
 #include <string.h>
 /* #include <strings.h> */
+#include <stdint.h>
 #include <time.h>
 #include <sys/stat.h>
 #include <pthread.h>
@@ -1386,11 +1387,9 @@ void load_objects( FILE *fp )
 		if( pObjIndex != NULL && IS_SET(pObjIndex->extra_flags, ITEM_LEVEL_RENT) &&
 			pObjIndex->vnum != 51 && pObjIndex->vnum != 50 )
 		{
-			int old;
 			est = obj_level_estimate( pObjIndex );
 			if( pObjIndex->level_rent < 1 )
 				pObjIndex->level_rent = 1;
-			old = pObjIndex->level_rent;
 			if( est < 1 )
 				est = 1;
 			if( pObjIndex->level_rent < ((est / 2) - 5) )
@@ -1420,6 +1419,7 @@ void load_resets( FILE *fp )
 	MOB_INDEX_DATA *pMob;
 	OBJ_INDEX_DATA *pObj;
 	RESET_DATA *last_mob=NULL, *last_object=NULL;
+	(void)last_mob; (void)last_object;
 
 	if ( area_load == NULL )
 	{
@@ -1911,7 +1911,7 @@ void load_specials( FILE *fp )
 void load_notes( void )
 {
 	FILE *fp;
-	NOTE_DATA *pnotelast,*pnote;
+	NOTE_DATA *pnote;
 	char letter,*pst;
 	char *pt;
 
@@ -1922,7 +1922,6 @@ void load_notes( void )
 
 	rewind( fp );
 
-	pnotelast = NULL;
 	for ( ; ; )
 	{
 		do
@@ -3074,8 +3073,7 @@ int fread_number( FILE *fp )
 		}
 		if( !foundb)
 		{
-			sprintf( buf, "Fread_number: bad format1 '%s'.", buf2);
-			bug( buf, 0 );
+			bug( "Fread_number: bad format1 '%s'.", buf2);
 		}
 	}
 	else
@@ -3770,7 +3768,7 @@ int number_range( int from, int to )
 		from = to;
 		to = from;
 	}
-	val = abs((abs(mrand48())%(to-from+1))+from);
+	val = (int)labs(((long)labs(mrand48())%(to-from+1))+from);
 	return( val );
 
 #else
@@ -3875,7 +3873,7 @@ void init_mm( )
 int number_mm( void )
 {
 #ifdef USE_48_RAND
-	return( abs(mrand48()) );
+	return( (int)labs(mrand48()) );
 
 #else
 	int *piState;
@@ -4346,7 +4344,7 @@ void log_quiet( char *strLogEntry )
 	strTime = ctime( &current_time );
 	strTime[strlen( strTime )-6] = '\0';
 	sprintf( buf, "%s - %s\n", strTime, strLogEntry );
-	fprintf( fpQuietLog, buf );
+	fprintf( fpQuietLog, "%s", buf );
 	fclose( fpQuietLog );
 
 	return;
@@ -4669,7 +4667,7 @@ void save_victors( void )
 	for ( cnt = 0; cnt < VICTORY_LIST_SIZE; cnt++ )
 	{
 		sprintf( buf, "%s~\n", victory_list[cnt] );
-		fprintf( fp, buf );
+		fprintf( fp, "%s", buf );
 	}
 
 	fprintf( fp, "#Victorlist\n" );
@@ -4956,7 +4954,7 @@ void save_sites( void )
 	{
 		pnextban = pban->next;
 		sprintf( strBuffer, "%s~\n", pban->name );
-		fprintf( fpSiteban, strBuffer );
+		fprintf( fpSiteban, "%s", strBuffer );
 	}
 
 	fprintf( fpSiteban, "#Sitebanlist~\n" );
@@ -5550,7 +5548,7 @@ int char_apd_max( const char *out_str, const char *add_str, int start,
 		return( str_actual );
 	}
 
-	str_pt1 =(char *) ((int)out_str+start);
+	str_pt1 =(char *) ((intptr_t)out_str+start);
 	*str_pt1=*add_str;
 	*(str_pt1+1)='\0';
 
@@ -5571,7 +5569,7 @@ int str_apd_max( const char *out_str, const char *add_str, int start,
 		return( str_actual );
 	}
 
-	str_pt1 =(char *) ((int)out_str+start);
+	str_pt1 =(char *) ((intptr_t)out_str+start);
 	str_size = start;
 
 	for( str_pt2=(char *)add_str ; *str_pt2!='\0';
@@ -5746,7 +5744,8 @@ char expand_line_mprog( MOB_INDEX_DATA *mind, MPROG_DATA *mprog, char *line,
 						else
 						{
 							for( last = mprog->token_list; last->next != NULL;
-								last = last->next );
+								last = last->next )
+								;
 								last->next = curr;
 							curr->line = last->line +1;
 						}
@@ -6207,8 +6206,8 @@ void *alloc_mem( int sMem )
 			{
 				char bufx[MAX_INPUT_LENGTH];
 
-				sprintf( bufx, "ERROR:Free_mem: Outside Range Mem. pBlock=%x ",
-					(int)pBlock);
+				sprintf( bufx, "ERROR:Free_mem: Outside Range Mem. pBlock=%lx ",
+					(intptr_t)pBlock);
 				log_string( bufx );
 				memory_dump( (char *)(pMem));
 				total_memory_warnings++;
@@ -6257,7 +6256,7 @@ void free_mem( void *pAdd, int sMem )
 	unsigned char iBlock;
 
 	/* Use address of variable instead of variable */
-	pMem =(void *) (* (int *)pAdd);
+	pMem =(void *) (* (intptr_t *)pAdd);
 
 	if( pMem == NULL || pMem==str_empty )
 		return;
@@ -6278,7 +6277,7 @@ void free_mem( void *pAdd, int sMem )
 		}
 
 		iSize = rgSizeList[ iList ];
-		for( cnt=0, pt=(char *)pMem; cnt < iSize ; cnt++, pt++ )
+		for( cnt=0, pt=(unsigned char *)pMem; cnt < iSize ; cnt++, pt++ )
 			*pt = 0;
 
 		/* always record after header info */
@@ -6295,8 +6294,8 @@ void free_mem( void *pAdd, int sMem )
 		{
 			char bufx[MAX_INPUT_LENGTH];
 
-			sprintf( bufx, "ERROR:Free_mem: Outside Range Mem. pBlock=%x ",
-				(int)pBlock);
+			sprintf( bufx, "ERROR:Free_mem: Outside Range Mem. pBlock=%lx ",
+				(intptr_t)pBlock);
 			log_string( bufx );
 			memory_dump( (char *)(pMem));
 			total_memory_warnings++;
@@ -6474,14 +6473,14 @@ void *alloc_perm( int sMem )
 		}
 		/* First item is link data */
 		pBlock=(PERM_BLOCK_LIST *)pMem;
-		pBlock->pMemPerm = pMem;
+		pBlock->pMemPerm = (char *)pMem;
 		pBlock->iMemPerm = sizeof( *pBlock );
 		pBlock->next = NULL;
 		pBlock->total_used = 0;
 		pBlock->block_number = block_index;
 
 		/* Find the right padding */
-		while ( ((unsigned int)( pBlock->pMemPerm + pBlock->iMemPerm ) % 4 ) != 0)
+		while ( ((uintptr_t)( pBlock->pMemPerm + pBlock->iMemPerm ) % 4 ) != 0)
 			pBlock->iMemPerm++;
 
 
@@ -6502,7 +6501,7 @@ void *alloc_perm( int sMem )
 	nAllocPerm += 1;
 	sAllocPerm += sMem;
 
-	if( ((int)pMem % sizeof( long )) != 0 )
+	if( ((intptr_t)pMem % sizeof( long )) != 0 )
 	{
 		log_string( "ERROR:Alloc_perm: Padding off." );
 		abort();
@@ -6547,12 +6546,12 @@ void memory_dump( char *ptr)
 
 	start = (unsigned char*)ptr - length;
 
-	sprintf( buf2, " Memory dump at %x to %x\n", (int)start, (int)start+2*length);
+	sprintf( buf2, " Memory dump at %lx to %lx\n", (long)start, (long)start+2*length);
 
 	for( cnt=0; cnt<length*2+4; cnt+=4, start+=4)
 	{
-		sprintf( buf, "%c %8x %2x %2x %2x %2x %3d %3d %3d %3d %c %c %c %c\n",
-			(char *)start==(char *)ptr?'>':' ', (int)start,
+		sprintf( buf, "%c %8lx %2x %2x %2x %2x %3d %3d %3d %3d %c %c %c %c\n",
+			(char *)start==(char *)ptr?'>':' ', (long)start,
 			*start, *(start+1), *(start+2), *(start+3),
 			*start, *(start+1), *(start+2), *(start+3),
 			*start >= ' ' ? ( *start <= '~' ? *start : '*' ) : '*',
@@ -6663,14 +6662,14 @@ void do_memory( CHAR_DATA *ch, char *argument )
 	send_to_char( buf1, ch);
 	send_to_char( buf2, ch); */
 
-	sprintf( buf, "CHAR_DATA %-10d Total Memory Warnings: %d\n\r",
-		sizeof( * ch), total_memory_warnings);
+	sprintf( buf, "CHAR_DATA %-10lu Total Memory Warnings: %d\n\r",
+		(unsigned long)sizeof( * ch), total_memory_warnings);
 	send_to_char( buf, ch);
-	sprintf( buf, "DESCRIPTOR_DATA %d\n\r", sizeof( * ch->desc) );
+	sprintf( buf, "DESCRIPTOR_DATA %lu\n\r", (unsigned long)sizeof( * ch->desc) );
 	send_to_char( buf, ch);
-	sprintf( buf, "PCDATA %d\n\r", sizeof( * ch->pcdata));
+	sprintf( buf, "PCDATA %lu\n\r", (unsigned long)sizeof( * ch->pcdata));
 	send_to_char( buf, ch);
-	sprintf( buf, "OBJ_DATA %d\n\r", sizeof( * pobj));
+	sprintf( buf, "OBJ_DATA %lu\n\r", (unsigned long)sizeof( * pobj));
 	send_to_char( buf, ch);
 	send_to_char( hash_stats(argument), ch );
 	return;

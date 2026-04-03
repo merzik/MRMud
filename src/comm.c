@@ -56,6 +56,14 @@
 
 #include "merc.h"
 
+#if !defined(RLIMIT_OFILE) && defined(RLIMIT_NOFILE)
+#define RLIMIT_OFILE RLIMIT_NOFILE
+#endif
+
+#if !defined(unix) && (defined(__unix__) || defined(__unix) || defined(__linux__) || defined(__APPLE__))
+#define unix
+#endif
+
 const char sector_name[8][20] =
 { "Inside", "City", "Field", "Forest", "Hills", "Mountains", "Shallow Water", "Deep Water" };
 /*
@@ -190,7 +198,7 @@ int socket args( ( int domain, int type, int protocol ) );
 int close args( ( int fd ) );
 //int getpeername args( ( int s, struct sockaddr *name, int *namelen) );
 //int getsockname args( ( int s, struct sockaddr *name, int *namelen) );
-int gettimeofday args( ( struct timeval *tp, struct timezone *tzp ) );
+/* modern libc headers declare gettimeofday; don't redeclare on Linux */
 //int listen args( ( int s, int backlog ) );
 /*int read args( ( int fd, char *buf, int nbyte ) );*/
 int select args( ( int width, fd_set *readfds, fd_set *writefds,
@@ -374,9 +382,9 @@ int main( int argc, char **argv )
 {
 	struct timeval now_time;
 	struct tm now;
-
 	bool fCopyOver = FALSE;
 	int cnt;
+
 	num_descriptors = 0;
 	total_memory_warnings = 0;
 	first_descriptor = NULL;
@@ -662,11 +670,11 @@ int init_socket( int port )
 
 	{
 		int sockbuf;
-		int socksize;
+		socklen_t socksize;
 
 		socksize = sizeof( sockbuf);
 		if ( getsockopt( fd, SOL_SOCKET, SO_SNDBUF,
-			(char *) &sockbuf, (int *) &socksize ) < 0 )
+			(char *) &sockbuf, &socksize ) < 0 )
 		{
 			perror( "getsockopt: SO_SNDBUF" );
 			close( fd );
@@ -704,7 +712,7 @@ int init_socket( int port )
 		}
 
 		if ( getsockopt( fd, SOL_SOCKET, SO_SNDBUF,
-			(char *) &sockbuf, (int *) &socksize ) < 0 )
+			(char *) &sockbuf, &socksize ) < 0 )
 		{
 			perror( "getsockopt: SO_SNDBUF" );
 			close( fd );
@@ -747,7 +755,7 @@ void game_loop_unix( int control , int port)
 	static struct timeval null_time;
 	struct timeval last_time;
 	DESCRIPTOR_DATA *d, *d_next;
-	int leng, dcnt;
+		int leng, dcnt;
 	char dbuf[180];
 
 
@@ -794,8 +802,10 @@ void game_loop_unix( int control , int port)
 		*/
 
 		for( dcnt=0; dcnt<255; dcnt++)
+		{
+			socklen_t leng_size = sizeof( leng );
 			if ( getsockopt( dcnt, SOL_SOCKET, SO_ERROR,
-				(char *) &leng, (int *) &leng ) >= 0 )
+				(char *) &leng, &leng_size ) >= 0 )
 
 				/* So_error commented out for compatibility with newer Linux distributions Merzik - 8-23-00
 				if( leng != 0 )
@@ -805,6 +815,7 @@ void game_loop_unix( int control , int port)
 
 				if (Greeter !=NULL && Greeted !=NULL && !IS_AFFECTED(Greeter, AFF2_POSSESS) && !IS_AFFECTED(Greeted, AFF2_POSSESS))
 					mprog_percent_check( Greeter, Greeted, NULL, NULL,GROUP_GREET_PROG );
+		}
 
 		Greeter = NULL;
 		Greeted = NULL;
@@ -917,6 +928,7 @@ void game_loop_unix( int control , int port)
 		* Process input.
 		*/
 		if( first_descriptor!=NULL && !IS_BOOTING)
+		{
 			for ( d = first_descriptor; d != NULL; d = d_next )
 			{
 				d_next = d->next;
@@ -924,6 +936,7 @@ void game_loop_unix( int control , int port)
 
 				open_timer( TIMER_READ_DESC );
 				if ( FD_ISSET( d->descriptor, &in_set ) )
+				{
 					if( d->character == NULL || d->character->desc != d ||
 						( d->character->obj_prog_ip == 0 && d->character->alias_ip == 0 ) )
 					{
@@ -941,8 +954,9 @@ void game_loop_unix( int control , int port)
 							continue;
 						}
 					}
+				}
 
-					if ( d->character != NULL && d->character->wait > 0 &&
+				if ( d->character != NULL && d->character->wait > 0 &&
 						!IS_NPC(d->character))
 					{
 						bool HighSpeed;
@@ -967,11 +981,13 @@ void game_loop_unix( int control , int port)
 								d->character->wait=0;
 						}
 						if(d->character->wait==0 && d->character->pcdata->old_wait!=0)
+						{
 							if(d->character->vt100==1 && IS_SET( d->character->act, PLR_PROMPT))
 							{
 								vt100prompt( d->character );
 							}
-							continue;
+						}
+						continue;
 					}
 
 					/* Reset those characters from obj_prog stuff */
@@ -1198,7 +1214,6 @@ void game_loop_unix( int control , int port)
 							d->character->hit > d->character->wimpy )
 						{
 							int exit_cnt, new_exit, cnt;
-							ROOM_INDEX_DATA *in_room;
 							CHAR_DATA *ch;
 
 							ALLOW_OUTPUT = FALSE;
@@ -1206,8 +1221,8 @@ void game_loop_unix( int control , int port)
 							exit_cnt=0;
 							new_exit=0;
 							cnt=0;
-							in_room = ch->in_room;
 							for(; cnt<6; cnt++)
+							{
 								if( cnt!=reverse(d->character->pcdata->travel) &&
 									ch->in_room->exit[cnt] != NULL )
 								{
@@ -1224,6 +1239,7 @@ void game_loop_unix( int control , int port)
 										}
 									}
 								}
+							}
 								ALLOW_OUTPUT = TRUE;
 								if( exit_cnt != 1 )
 								{
@@ -1281,6 +1297,7 @@ void game_loop_unix( int control , int port)
 							d->character->timer = 0;
 						}
 						for ( dn = first_descriptor; dn != NULL; dn = dn->next )
+						{
 							if( dn!=d && dn->character == d->character &&
 								dn->character != NULL && (dn->connected!=CON_PLAYING
 								&& dn->connected!=CON_EDITING))
@@ -1288,6 +1305,7 @@ void game_loop_unix( int control , int port)
 								/*fprintf(stderr, "we dont like you\n");*/
 								SET_BIT( dn->comm_flags, COMM_FLAG_DISCONNECT);
 							}
+						}
 							if( !IS_SET( d->comm_flags, COMM_FLAG_DISCONNECT ) )
 							{
 								if ( d->connected == CON_PLAYING )
@@ -1322,8 +1340,8 @@ void game_loop_unix( int control , int port)
 
 					}
 			}
-
-			if( more_than_one_close)
+		}
+		if( more_than_one_close)
 			{
 				more_than_one_close=FALSE;
 				log_string( "More than one close.");
@@ -1338,6 +1356,7 @@ void game_loop_unix( int control , int port)
 			*/
 			open_timer( TIMER_WRITE_DESC );
 			if( first_descriptor!=NULL && !IS_BOOTING)
+			{
 				for ( d = first_descriptor; d != NULL; d = d_next )
 				{
 					d_next = d->next;
@@ -1370,34 +1389,36 @@ void game_loop_unix( int control , int port)
 						}
 					}
 				}
+			}
 
-				close_timer( TIMER_WRITE_DESC );
+			close_timer( TIMER_WRITE_DESC );
 
-				/* Move prompt/tactical updates here */
-				if( first_descriptor!=NULL && !IS_BOOTING)
-					for ( d = first_descriptor; d != NULL; d = d_next )
+			/* Move prompt/tactical updates here */
+			if( first_descriptor!=NULL && !IS_BOOTING)
+			{
+				for ( d = first_descriptor; d != NULL; d = d_next )
+				{
+					d_next = d->next;
+					if( !IS_SET( d->comm_flags, COMM_FLAG_DISCONNECT) &&
+						d->character != NULL &&
+						(d->connected==CON_PLAYING||d->connected==CON_EDITING) &&
+						d->character->pcdata != NULL &&
+						d->character->pcdata->tactical_update)
 					{
-						d_next = d->next;
-						if( !IS_SET( d->comm_flags, COMM_FLAG_DISCONNECT) &&
-							d->character != NULL &&
-							(d->connected==CON_PLAYING||d->connected==CON_EDITING) &&
-							d->character->pcdata != NULL &&
-							d->character->pcdata->tactical_update)
-						{
-							vt100prompter( d->character );
-							d->character->pcdata->tactical_update = FALSE;
-						}
+						vt100prompter( d->character );
+						d->character->pcdata->tactical_update = FALSE;
 					}
+				}
 
-					if( first_descriptor!=NULL && !IS_BOOTING)
-						for ( d = first_descriptor; d != NULL; d = d->next )
-						{
-							if(IS_SET( d->comm_flags, COMM_FLAG_DISCONNECT))
-								continue;
-							write_to_port( d ) ;
-						}
+				for ( d = first_descriptor; d != NULL; d = d->next )
+				{
+					if(IS_SET( d->comm_flags, COMM_FLAG_DISCONNECT))
+						continue;
+					write_to_port( d ) ;
+				}
+			}
 
-						total_io_ticks++;
+			total_io_ticks++;
 
 						/*
 						* Synchronize to a clock.
@@ -1487,7 +1508,8 @@ void new_descriptor( int control, int port)
 	BAN_DATA *pban;
 	struct sockaddr_in sock;
 	int desc;
-	int size, sockbuf;
+	socklen_t size;
+	int sockbuf;
 	struct linger ld;
 
 	size = sizeof(sock);
@@ -1675,6 +1697,7 @@ void close_socket( DESCRIPTOR_DATA *dclose , bool Force)
 		*/
 
 		if( ch->desc!=NULL)
+		{
 			if( ch->desc->original!=NULL)
 			{
 				DESCRIPTOR_DATA *dtemp;
@@ -1687,6 +1710,7 @@ void close_socket( DESCRIPTOR_DATA *dclose , bool Force)
 				dtemp->original = NULL;
 				ch=owner;
 			}
+		}
 
 			if( ch != NULL )
 			{
@@ -1726,15 +1750,17 @@ void close_socket( DESCRIPTOR_DATA *dclose , bool Force)
 		bool found;
 		found=FALSE;
 		for( dtemp=first_descriptor;dtemp!=NULL;dtemp=dtemp->next)
+		{
 			if( dclose==dtemp )
 			{
 				found=TRUE;
 				break;
 			}
-			if( found )
-				UNLINK( dclose, first_descriptor, last_descriptor, next, prev );
-			else
-				bug( "UNLINK ERROR unlinking descriptor %d.", dclose->descriptor );
+		}
+		if( found )
+			UNLINK( dclose, first_descriptor, last_descriptor, next, prev );
+		else
+			bug( "UNLINK ERROR unlinking descriptor %d.", dclose->descriptor );
 	}
 #else
 	UNLINK( dclose, first_descriptor, last_descriptor, next, prev );
@@ -1952,10 +1978,9 @@ void read_from_buffer( DESCRIPTOR_DATA *d )
 			else
 				strcpy( d->incomm, d->inlast );
 	}
-	else
-		if ( (d->connected==CON_PLAYING || d->connected==CON_EDITING)
-			&& d->character!=NULL && d->original==NULL
-			&& ch->alias_ip==0 && d->incomm[0]!='\0')
+	else if ( (d->connected==CON_PLAYING || d->connected==CON_EDITING)
+		&& d->character!=NULL && d->original==NULL
+		&& ch->alias_ip==0 && d->incomm[0]!='\0')
 		{
 			strcpy( d->inlast, d->incomm );
 			if(d->incomm[0]>='a' && d->incomm[0]<='z')
@@ -1970,9 +1995,9 @@ void read_from_buffer( DESCRIPTOR_DATA *d )
 					ch->pcdata->back_buf[(int)(d->incomm[0]-'A')] = str_dup( d->incomm );
 				}
 		}
-		if(d->snoop_by!=NULL && d->character!=NULL && d->incomm[0]!='\n' &&
-			d->snoop_by->character->level>98)/* Chaos 11/9/93 */
-		{
+	if(d->snoop_by!=NULL && d->character!=NULL && d->incomm[0]!='\n' &&
+		d->snoop_by->character->level>98)/* Chaos 11/9/93 */
+	{
 			sh=d->snoop_by->original ? d->snoop_by->original : d->snoop_by->character;
 			if (sh!=NULL && sh->desc != NULL && sh->desc->character == sh )
 			{
@@ -2360,8 +2385,8 @@ bool scroll( DESCRIPTOR_DATA *d, const char *txi, bool youcheck, int lng)
 
 	open_timer( TIMER_WRITE_SCROLL );
 
-	pto = ch->pcdata->scroll_buf + ch->pcdata->scroll_end;
-	pti = (char *)txi;
+	pto = (unsigned char *)(ch->pcdata->scroll_buf + ch->pcdata->scroll_end);
+	pti = (unsigned char *)txi;
 	scr_end = ch->pcdata->scroll_end;
 	vt_code = FALSE;
 	mr_code = 0;
@@ -2451,7 +2476,7 @@ bool scroll( DESCRIPTOR_DATA *d, const char *txi, bool youcheck, int lng)
 			ch->pcdata->scroll_start=1;
 			ch->pcdata->scroll_end=0;
 			scr_end = 0;
-			pto = ch->pcdata->scroll_buf;
+			pto = (unsigned char *)ch->pcdata->scroll_buf;
 		}
 	}
 	/*
@@ -2496,8 +2521,8 @@ char *ansi_strip(char *txi)
 	register bool vt_code;
 	register int mr_code;
 
-	pti = (char *)txi;
-	pto = (char *)ansi_strip_txt;
+	pti = (unsigned char *)txi;
+	pto = (unsigned char *)ansi_strip_txt;
 	vt_code = FALSE;
 	mr_code = 0;
 
@@ -2595,6 +2620,7 @@ void write_to_buffer( DESCRIPTOR_DATA *d, char *txt, int length )
 	censorstring(txt); */
 
 	if(ch!=NULL)
+	{
 		if(ch->vt100==1)
 		{
 			if(txt[0]=='\n' && (txt[1]=='\0' || txt[2]=='\0' ||(length>0 && length<3)))
@@ -2604,9 +2630,10 @@ void write_to_buffer( DESCRIPTOR_DATA *d, char *txt, int length )
 			if(txt[0]=='\0')
 				return;
 		}
-		lengt=length;
-		if(ch!=NULL)
-		{
+	}
+	lengt=length;
+	if(ch!=NULL)
+	{
 			if( is_desc_valid( ch))
 				ch->desc->prompter=TRUE;
 			if(ch->vt100==0 && d->outtop == 0 && !d->fcommand)
@@ -2691,7 +2718,7 @@ void write_to_buffer( DESCRIPTOR_DATA *d, char *txt, int length )
 					position and not colour...Martin*/
 
 					lengt = str_apd_max(buf,"\0338", leng, MAX_STRING_LENGTH);
-					if (ch->ansi !=0 && ch->pcdata->color[0]!=0)
+					if (ch->ansi !=0 && ch->pcdata->color[0][0]!=0)
 						sprintf(buf2, "\033[0;%d;%dm", ch->pcdata->color[0][0],
 						ch->pcdata->color[1][0]);
 					else buf2[0]='\0';
@@ -2748,6 +2775,7 @@ void write_to_buffer( DESCRIPTOR_DATA *d, char *txt, int length )
 		}
 
 		if(ch!=NULL && !DISALLOW_SNOOP )
+		{
 			if(d->snoop_by!=NULL && length!=1000000)/* Chaos 11/9/93 */
 			{
 				sh = d->snoop_by->original ? d->snoop_by->original : d->snoop_by->character;
@@ -2774,15 +2802,16 @@ void write_to_buffer( DESCRIPTOR_DATA *d, char *txt, int length )
 					write_to_buffer(d->snoop_by, buf3, 0);
 				}
 			}
-			/*
-			* Copy.
-			*/
-			open_timer( TIMER_WRITE_APPEND );
-			d->outtop = str_apd_max( d->outbuf , buf, d->outtop, d->outsize );
-			/* d->outtop += lengt; */
-			close_timer( TIMER_WRITE_APPEND );
+		}
+		/*
+		* Copy.
+		*/
+		open_timer( TIMER_WRITE_APPEND );
+		d->outtop = str_apd_max( d->outbuf , buf, d->outtop, d->outsize );
+		/* d->outtop += lengt; */
+		close_timer( TIMER_WRITE_APPEND );
 
-			return;
+		return;
 }
 
 
@@ -2923,15 +2952,17 @@ void display_class_selections( DESCRIPTOR_DATA *d)
 	strcpy( buf, "{030}You may choose from the following classes, or type help [class] to learn more:\n\r{160} " );
 
 	for ( iClass = 0; iClass < MAX_CLASS; iClass++ )
+	{
 		if( race_table[ch->race].race_class[iClass]==0)
 		{
 			sprintf( buft, "%s ", class_table[iClass].who_name_long);
 			strcat( buf, buft );
 		}
+	}
 
-		strcat( buf, "\n\r{030}Please choose a class: {110}");
-		write_to_buffer( d, (char *)ansi_translate_text(ch,buf), 1000000);
-		return;
+	strcat( buf, "\n\r{030}Please choose a class: {110}");
+	write_to_buffer( d, (char *)ansi_translate_text(ch,buf), 1000000);
+	return;
 }
 
 /* Chaos - 3/21/99 */
@@ -3743,17 +3774,19 @@ bool nanny( DESCRIPTOR_DATA *d, char *argument )
 			write_to_buffer( d, (char *)ansi_translate_text(ch,buf), 1000000);
 			strcpy( buf ,"{060}Languages Known: {030}");
 			for(cnt=0;cnt<MAX_RACE;cnt++)
+			{
 				if(IS_SHIFT(ch->language,cnt))
 				{
 					strcat(buf, race_table[cnt].race_name);
 					strcat(buf," ");
 				}
-				strcat(buf, "\n\r");
-				write_to_buffer( d, (char *)ansi_translate_text(ch,buf), 1000000);
-				strcpy(buf, "\n\r{060}You may choose a new race and class by entering 'C'.\n\r");
-				write_to_buffer( d, (char *)ansi_translate_text(ch,buf), 1000000);
-				strcpy(buf, "\n\r{030}Do you wish to keep this character? (Return rerolls, 'Y' keeps): {110}");
-				write_to_buffer( d, (char *)ansi_translate_text(ch,buf), 1000000);
+			}
+			strcat(buf, "\n\r");
+			write_to_buffer( d, (char *)ansi_translate_text(ch,buf), 1000000);
+			strcpy(buf, "\n\r{060}You may choose a new race and class by entering 'C'.\n\r");
+			write_to_buffer( d, (char *)ansi_translate_text(ch,buf), 1000000);
+			strcpy(buf, "\n\r{030}Do you wish to keep this character? (Return rerolls, 'Y' keeps): {110}");
+			write_to_buffer( d, (char *)ansi_translate_text(ch,buf), 1000000);
 
 				d->connected = CON_REROLL;
 				break;
@@ -4120,40 +4153,48 @@ void do_lookup( CHAR_DATA *ch, char *arg )
 	bch = lookup_char( arg );
 
 	for( tch = first_char, cnt=0; tch!= NULL ; tch=tch->next, cnt++)
+	{
 		if( !IS_NPC( tch ) && !strcasecmp( tch->name, arg))
 		{
 			sprintf( buf, "%s found in char list, character %d.\n\r",
 				arg, cnt);
 			send_to_char( buf, ch );
 		}
+	}
 
-		for( gpl = first_player, cnt=0; gpl!= NULL; gpl=gpl->next, cnt++)
-			if( !strcasecmp( gpl->ch->name, arg))
-			{
-				sprintf( buf, "%s found in game list, character %d.\n\r",
-					arg, cnt);
-				send_to_char( buf, ch );
-			}
+	for( gpl = first_player, cnt=0; gpl!= NULL; gpl=gpl->next, cnt++)
+	{
+		if( !strcasecmp( gpl->ch->name, arg))
+		{
+			sprintf( buf, "%s found in game list, character %d.\n\r",
+				arg, cnt);
+			send_to_char( buf, ch );
+		}
+	}
 
-			for( td = first_descriptor; td!= NULL; td=td->next)
-				if( td->character!=NULL)
-					if( !strcasecmp( td->character->name, arg))
-					{
-						sprintf( buf, "%s found in descriptor list (%x). [%d %d]\n\r",
-							arg, (int)td->character, td->descriptor, td->connected);
-						send_to_char( buf, ch );
-					}
+	for( td = first_descriptor; td!= NULL; td=td->next)
+	{
+		if( td->character!=NULL && !strcasecmp( td->character->name, arg))
+		{
+			sprintf( buf, "%s found in descriptor list (%p). [%d %d]\n\r",
+				arg, (void *)td->character, td->descriptor, td->connected);
+			send_to_char( buf, ch );
+		}
+	}
 
-					/* search for objects that have the person for an owner */
-					for(obj=first_object;obj!=NULL;obj=obj->next)
-						if( obj->carried_by != NULL)
-							if((obj->carried_by!=bch)&&!strcasecmp(obj->carried_by->name,arg))
-							{
-								sprintf( buf, "%s not in game with (%s).\n\r", arg, obj->name);
-								send_to_char( buf, ch );
-							}
+	/* search for objects that have the person for an owner */
+	for(obj=first_object;obj!=NULL;obj=obj->next)
+	{
+		if( obj->carried_by != NULL
+			&& (obj->carried_by!=bch)
+			&& !strcasecmp(obj->carried_by->name,arg))
+		{
+			sprintf( buf, "%s not in game with (%s).\n\r", arg, obj->name);
+			send_to_char( buf, ch );
+		}
+	}
 
-							return;
+	return;
 }
 
 void remove_bad_desc_name( char *name )
@@ -4856,7 +4897,7 @@ void do_finger( CHAR_DATA *ch, char *argument)
 		str_apd_max(outbuf, "You see nothing special.\n\r", length, MAX_STRING_LENGTH);
 	}
 
-	if (ch->ansi !=0 && ch->pcdata->color[0]!=0)
+	if (ch->ansi !=0 && ch->pcdata->color[0][0]!=0)
 		sprintf(buf2, "\033[0;%d;%dm", ch->pcdata->color[0][0],
 		ch->pcdata->color[1][0]);
 	else 
@@ -4923,12 +4964,14 @@ void do_finger( CHAR_DATA *ch, char *argument)
 
 	length = str_apd_max (outbuf, buf2, length, MAX_STRING_LENGTH);
 	if (ch->ansi)
-		if (ch->pcdata->color[0]!=0)
+	{
+		if (ch->pcdata->color[0][0]!=0)
 		{
 			sprintf(buf2, "\033[0;%d;%dm", ch->pcdata->color[0][0],
 				ch->pcdata->color[1][0]);
 			length = str_apd_max (outbuf, buf2, length, MAX_STRING_LENGTH);
 		}
+	}
 
 		/* Adding age and wealth descriptors - Emperor 11/26/99 */
 
@@ -5138,8 +5181,7 @@ void do_finger( CHAR_DATA *ch, char *argument)
 			sprintf(buf, "%s%s is an %sOutcast!\n\r", ANSI_CYAN_DIM,get_name(fch),ANSI_CYAN_BOLD);
 			length = str_apd_max( outbuf, buf, length, MAX_STRING_LENGTH);
 		}
-		else
-			if ( fch->pcdata->clan)
+		else if ( fch->pcdata->clan)
 			{
 				if ( !strcasecmp( fch->name, fch->pcdata->clan->leader ) )
 					sprintf(buf, "%s%s%s is the founder of %s%s.\n\r", ANSI_CYAN_DIM,get_title(fch),
@@ -5158,7 +5200,7 @@ void do_finger( CHAR_DATA *ch, char *argument)
 				length = str_apd_max( outbuf, buf, length, MAX_STRING_LENGTH);
 			}
 
-			if( fch->pcdata->arrested == TRUE )
+		if( fch->pcdata->arrested == TRUE )
 			{
 				time_left = fch->pcdata->jailtime -
 					(current_time - fch->pcdata->jaildate);
@@ -5340,8 +5382,7 @@ void do_finger( CHAR_DATA *ch, char *argument)
 							sprintf( buf2, "%sInternet domain last on: %s\n\r", ANSI_CYAN_DIM,fch->desc->old_domain );
 					}
 				}
-				else
-					if( is_desc_valid( fch ) )
+				else if( is_desc_valid( fch ) )
 					{
 						if ( IS_IMMORTAL(ch) || ch->which_god == GOD_POLICE )
 						{
@@ -5364,17 +5405,16 @@ void do_finger( CHAR_DATA *ch, char *argument)
 							}
 						}
 					}
-					if ( strcasecmp( fch->name, "chaos" ) && strcasecmp( fch->name, "order" ) )
-						length = str_apd_max (outbuf, buf2, length, MAX_STRING_LENGTH);
-					if(!loaded)
-					{
-						FINGER_MODE=FALSE;
-						send_to_char(outbuf, ch);
-						return;
-					}
+				if ( strcasecmp( fch->name, "chaos" ) && strcasecmp( fch->name, "order" ) )
+					length = str_apd_max (outbuf, buf2, length, MAX_STRING_LENGTH);
+				if(!loaded)
+				{
+					FINGER_MODE=FALSE;
+					send_to_char(outbuf, ch);
+					return;
+				}
 			}
-			else
-				if( is_desc_valid( fch ) )
+			else if( is_desc_valid( fch ) )
 				{
 					if ( IS_IMMORTAL( ch ) || ch->which_god == GOD_POLICE )
 					{
@@ -6058,7 +6098,6 @@ void send_to_combat_char( char *txt, CHAR_DATA *ch )
 bool scroll_you( DESCRIPTOR_DATA *d, const char *txi, bool youcheck)
 {
 	int cnt;
-	CHAR_DATA *ch;
 	bool foundyou;
 	int youletter, lng;
 	register char *pti;
@@ -6072,8 +6111,6 @@ bool scroll_you( DESCRIPTOR_DATA *d, const char *txi, bool youcheck)
 	if((d->connected!=CON_PLAYING && d->connected !=CON_EDITING)
 		|| d->original!=NULL)
 		return(FALSE);
-	ch=d->character;
-
 	lng = strlen( txi );
 
 

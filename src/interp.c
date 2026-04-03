@@ -3073,7 +3073,7 @@ bool check_social_fast( CHAR_DATA *ch, int cmd, char *argument )
 	one_argument( argument, arg );
 	victim = NULL;
 
-	if ( arg == NULL || arg[0]=='\0' )
+	if ( arg[0]=='\0' )
 	{
 		act( social_table[cmd].others_no_arg, ch, NULL, victim, TO_ROOM );
 		act( social_table[cmd].char_no_arg, ch, NULL, victim, TO_CHAR );
@@ -3552,7 +3552,8 @@ void object_program ( CHAR_DATA * ch, OBJ_DATA *obj, OBJ_PROG *prg,
 		buf[0]=27;
 		buf[1]='\0';
 		for( cnt=0; argument[cnt]!='\0' && argument[cnt]!='\r' &&
-			argument[cnt]!='&' ; cnt++);
+			argument[cnt]!='&' ; cnt++)
+			;
 			argument[cnt]='\0';
 		ch->desc->intop = str_cpy_max( ch->desc->inbuf, buf, MAX_INPUT_LENGTH);
 		ch->desc->intop = str_apd_max( ch->desc->inbuf, prg->argument,

@@ -15,6 +15,7 @@
 #include <sys/types.h>
 #endif
 
+#include <stdint.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -347,7 +348,7 @@ void do_rreset( CHAR_DATA *ch, char *argument )
 		if ( !pRoom )
 		{
 			send_to_char( "Your room pointer got lost. Reset mode off.\n\r", ch);
-			bug("do_rreset: %s's dest_buf points to invalid room", (int)ch->name);
+			bug("do_rreset: %s's dest_buf points to invalid room", (intptr_t)ch->name);
 		}
 		ch->substate = SUB_NONE;
 		ch->dest_buf = NULL;
@@ -786,15 +787,17 @@ void do_reset( CHAR_DATA *ch, char *argument )
 
 		sprintf(fname, "%s.are", capitalize(arg));
 		for ( pArea = first_area; pArea; pArea = pArea->next )
+		{
 			if ( !strcasecmp(fname, pArea->filename) )
 			{
 				argument = parg;
 				break;
 			}
-			if ( !pArea )
-				pArea = ch->pcdata->area;
-			if ( !pArea )
-				pArea = ch->in_room->area;
+		}
+		if ( !pArea )
+			pArea = ch->pcdata->area;
+		if ( !pArea )
+			pArea = ch->in_room->area;
 	}
 	else
 		pArea = ch->pcdata->area;
@@ -811,17 +814,12 @@ void do_reset( CHAR_DATA *ch, char *argument )
 void add_obj_reset( AREA_DATA *pArea, char cm, OBJ_DATA *obj, int v2, int v3 )
 {
 	OBJ_DATA *inobj;
-	static int iNest;
 
 	add_reset( pArea, cm, obj->pIndexData->vnum, v2, v3 );
 	/* Only add hide for in-room objects that are hidden and cant be moved, as
 	hide is an update reset, not a load-only reset. */
-	if ( cm == 'P' )
-		iNest++;
 	for ( inobj = obj->first_content; inobj; inobj = inobj->next_content )
 		add_obj_reset( pArea, 'P', inobj, 1, 0 );
-	if ( cm == 'P' )
-		iNest--;
 	return;
 }
 
@@ -995,6 +993,7 @@ void reset_area( AREA_DATA *pArea )
 	CHAR_DATA *mob;
 	ROOM_INDEX_DATA *pRoomIndex;
 	bool last;
+	(void)last;
 	int level;
 	char buf[MAX_INPUT_LENGTH];
 	extern bool fBootDb;
@@ -1109,18 +1108,20 @@ void reset_area( AREA_DATA *pArea )
 			continue; */
 
 			if ( number_range(1,5)!=1)
+			{
 				if ( pObjIndex->total_objects >= pObjIndex->max_objs )
 				{
 					last = FALSE;
 					break;
 				}
+			}
 
-				obj = create_object( pObjIndex, level/2 );
-				obj->reset = pReset;
-				pReset->obj = obj;
-				obj_to_room( obj, pRoomIndex );
-				last = TRUE;
-				break;
+			obj = create_object( pObjIndex, level/2 );
+			obj->reset = pReset;
+			pReset->obj = obj;
+			obj_to_room( obj, pRoomIndex );
+			last = TRUE;
+			break;
 
 		case 'P':
 			/* Let's not make more than one */
@@ -1225,14 +1226,16 @@ void reset_area( AREA_DATA *pArea )
 			else
 			{
 				if ( number_range(1,5)!=1)
+				{
 					if ( pObjIndex->total_objects >= pObjIndex->max_objs)
 					{
 						last = FALSE;
 						break;
 					}
-					obj = create_object( pObjIndex, mob->pIndexData->level*3/4 );
-					obj->reset = pReset;
-					pReset->obj = obj;
+				}
+				obj = create_object( pObjIndex, mob->pIndexData->level*3/4 );
+				obj->reset = pReset;
+				pReset->obj = obj;
 			}
 			obj_to_char( obj, mob );
 			if ( pReset->command == 'E' )
@@ -1316,6 +1319,7 @@ void list_resets( CHAR_DATA *ch, AREA_DATA *pArea, ROOM_INDEX_DATA *pRoom,
 	OBJ_INDEX_DATA *lastobj;
 	RESET_DATA *lo_reset;
 	bool found;
+	(void)found;
 	int num = 0;
 	const char *rname = "???", *mname = "???", *oname = "???";
 	char buf[256];
@@ -1472,7 +1476,7 @@ void list_resets( CHAR_DATA *ch, AREA_DATA *pArea, ROOM_INDEX_DATA *pRoom,
 actually reset, or if they're bugged. */
 void renumber_put_resets( AREA_DATA *pArea )
 {
-	RESET_DATA *pReset, *lastobj = NULL;
+	RESET_DATA *pReset;
 
 	for ( pReset = pArea->first_reset; pReset; pReset = pReset->next )
 	{
@@ -1481,7 +1485,6 @@ void renumber_put_resets( AREA_DATA *pArea )
 		default:
 			break;
 		case 'G': case 'E': case 'O':
-			lastobj = pReset;
 			break;
 		}
 	}
@@ -1562,7 +1565,7 @@ RESET_DATA *place_reset( AREA_DATA *tarea, char letter, int arg1, int arg2, int 
 			if ( tmp ) /* organize by location */
 				for ( ; tmp && tmp->command == letter && tmp->arg1 > arg1; tmp = tmp->prev );
 			if ( tmp ) /* organize by direction */
-				for ( ; tmp && tmp->command == letter && tmp->arg1 == tmp->arg1 && tmp->arg2 > arg2; tmp = tmp->prev );
+				for ( ; tmp && tmp->command == letter && tmp->arg1 == arg1 && tmp->arg2 > arg2; tmp = tmp->prev );
 			if ( tmp )
 				INSERT( pReset, tmp, tarea->first_reset, next, prev );
 			else
@@ -1576,41 +1579,47 @@ RESET_DATA *place_reset( AREA_DATA *tarea, char letter, int arg1, int arg2, int 
 			tmp2 = tmp ? tmp->next : NULL;
 			/* organize by location */
 			for ( ; tmp; tmp = tmp->prev )
+			{
 				if ( tmp->command == letter && tmp->arg3 <= arg3 )
 				{
 					tmp2 = tmp->next;
 					/* organize by vnum */
 					if ( tmp->arg3 == arg3 )
 						for ( ; tmp; tmp = tmp->prev )
+						{
 							if ( tmp->command == letter
-								&& tmp->arg3 == tmp->arg3
+								&& tmp->arg3 == arg3
 								&& tmp->arg1 <= arg1 )
 							{
 								tmp2 = tmp->next;
 								break;
 							}
-							break;
+						}
+					break;
 				}
-				/* skip over E or G for that mob */
-				if ( tmp2 && letter == 'M' )
+			}
+			/* skip over E or G for that mob */
+			if ( tmp2 && letter == 'M' )
+			{
+				for ( ; tmp2; tmp2 = tmp2->next )
+					if ( tmp2->command != 'E' && tmp2->command != 'G' )
+						break;
+			}
+			else
+			{
+				/* skip over P, T or H for that obj */
+				if ( tmp2 && letter == 'O' )
 				{
 					for ( ; tmp2; tmp2 = tmp2->next )
-						if ( tmp2->command != 'E' && tmp2->command != 'G' )
+						if ( tmp2->command != 'P' && tmp2->command != 'T'
+							&& tmp2->command != 'H' )
 							break;
 				}
-				else
-					/* skip over P, T or H for that obj */
-					if ( tmp2 && letter == 'O' )
-					{
-						for ( ; tmp2; tmp2 = tmp2->next )
-							if ( tmp2->command != 'P' && tmp2->command != 'T'
-								&& tmp2->command != 'H' )
-								break;
-					}
-					if ( tmp2 )
-						INSERT( pReset, tmp2, tarea->first_reset, next, prev );
-					else
-						LINK( pReset, tarea->first_reset, tarea->last_reset, next, prev );
+			}
+			if ( tmp2 )
+				INSERT( pReset, tmp2, tarea->first_reset, next, prev );
+			else
+				LINK( pReset, tarea->first_reset, tarea->last_reset, next, prev );
 					return pReset;
 		case 'G': case 'E':
 			/* find the last mob */
@@ -1656,6 +1665,7 @@ RESET_DATA *place_reset( AREA_DATA *tarea, char letter, int arg1, int arg2, int 
 			}
 
 			for ( tmp = tarea->last_reset; tmp; tmp = tmp->prev )
+			{
 				if ( (tmp->command == 'O' || tmp->command == 'G'
 					|| tmp->command == 'E' || tmp->command == 'P')
 					&& tmp->arg1 == arg3 )
@@ -1696,7 +1706,8 @@ RESET_DATA *place_reset( AREA_DATA *tarea, char letter, int arg1, int arg2, int 
 						LINK( pReset, tarea->first_reset, tarea->last_reset, next, prev );
 					return pReset;
 				}
-				break;
+			}
+			break;
 		}
 		/* likely a bad reset if we get here... add it anyways */
 	}
@@ -1716,6 +1727,7 @@ RESET_DATA *parse_reset( AREA_DATA *tarea, char *argument, CHAR_DATA *ch )
 	char arg4[MAX_INPUT_LENGTH];
 	char letter;
 	int extra, val1, val2, val3;
+	(void)extra;
 	int value;
 	ROOM_INDEX_DATA *room;
 	EXIT_DATA *pexit;
@@ -1848,10 +1860,11 @@ RESET_DATA *parse_reset( AREA_DATA *tarea, char *argument, CHAR_DATA *ch )
 									if ( val3 < 0 )
 										val3 = 0;
 									letter = 'P';
-								}
-								else
-									if ( !strcasecmp( arg1, "door" ) )
+									}
+									else
 									{
+										if ( !strcasecmp( arg1, "door" ) )
+										{
 										if ( (room = get_room_index(val1)) == NULL )
 										{
 											send_to_char( "Reset: DOOR: no such room\n\r", ch );
@@ -1879,6 +1892,7 @@ RESET_DATA *parse_reset( AREA_DATA *tarea, char *argument, CHAR_DATA *ch )
 										val2 = value;
 									}
 									else
+									{
 										if ( !strcasecmp( arg1, "rand" ) )
 										{
 											if ( !get_room_index(val1) )
@@ -1892,12 +1906,14 @@ RESET_DATA *parse_reset( AREA_DATA *tarea, char *argument, CHAR_DATA *ch )
 												return NULL;
 											}
 											val3 = val2;
-											val2 = 0;
-											letter = 'R';
+												val2 = 0;
+												letter = 'R';
+											}
 										}
+									}
 
-										if ( letter == '*' )
-											return NULL;
-										else
-											return make_reset( letter, val1, val3, val2 );
+									if ( letter == '*' )
+										return NULL;
+									else
+										return make_reset( letter, val1, val3, val2 );
 }

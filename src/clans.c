@@ -1488,7 +1488,6 @@ void do_makeclan( CHAR_DATA *ch, char *argument )
 	char filename[256];
 	char buf[MAX_INPUT_LENGTH];
 	CLAN_DATA *clan;
-	bool found;
 	char arg[MAX_INPUT_LENGTH];
 	int i, type=0;
 
@@ -1496,7 +1495,7 @@ void do_makeclan( CHAR_DATA *ch, char *argument )
 		return;
 	argument= one_argument(argument, arg);
 
-	if ( !arg|| arg[0] == '\0' )
+	if ( arg[0] == '\0' )
 	{
 		send_to_char( "Usage: makeclan <clan name>\n\r", ch );
 		return;
@@ -1535,7 +1534,6 @@ void do_makeclan( CHAR_DATA *ch, char *argument )
 	}
 
 	ch->pcdata->account -=CLANHALL_CONSTRUCTION;
-	found = FALSE;
 	for (i=0;i<strlen(arg);i++)
 		arg[i]=LOWER(arg[i]);
 
@@ -1654,15 +1652,17 @@ void destroy_clan(CLAN_DATA *deadclan)
 		bool foundc;
 
 		for( foundc=FALSE, tclan=first_clan; tclan!=NULL; tclan=tclan->next )
+		{
 			if( tclan==deadclan )
 			{
 				foundc=TRUE;
 				break;
 			}
-			if( foundc )
-				UNLINK (deadclan, first_clan, last_clan, next, prev);
-			else
-				bug( "UNLINK ERROR could not find clan %d.", deadclan->name );
+		}
+		if( foundc )
+			UNLINK (deadclan, first_clan, last_clan, next, prev);
+		else
+			bug( "UNLINK ERROR could not find clan %d.", deadclan->name );
 	}
 #else
 	UNLINK (deadclan, first_clan, last_clan, next, prev);

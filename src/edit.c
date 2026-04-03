@@ -19,6 +19,9 @@ char * const mprog_flags [] =
 		"allgreet", "give", "bribe", "range", "social", "kill", "group_greet", "time"
 };
 
+#define RESET_NAME_PREVIEW 256
+#define REDIT_ARG_PREVIEW 600
+
 char * const area_flags[] =
 {
 	"nodebug", "noteleport", "nogohome", "norecall", "nocastle", "norip",
@@ -114,15 +117,17 @@ char * const a_flags [] =
 
 		buf[0] = '\0';
 		for ( x = 0; x < 32 ; x++ )
+		{
 			if ( IS_SET( bitvector, 1 << x ) )
 			{
 				strcat( buf, flagarray[x] );
 				strcat( buf, " " );
 			}
-			if ( (x=strlen( buf )) > 0 )
-				buf[--x] = '\0';
+		}
+		if ( (x=strlen( buf )) > 0 )
+			buf[--x] = '\0';
 
-			return buf;
+		return buf;
 	}
 
 	int get_dir (char *txt)
@@ -565,6 +570,7 @@ char * const a_flags [] =
 		if ( !data )
 			bug("editor: data is NULL!\n\r",0);
 		else
+		{
 			for ( ;; )
 			{
 				if ( lines >= 48 /* || size > 4096 */ )
@@ -594,11 +600,12 @@ char * const a_flags [] =
 					edit->line[lines][lpos] = '\0';
 					break;
 				}
-			}
-			edit->numlines = lines;
-			edit->size = size;
-			edit->on_line = lines;
-			ch->editor = edit;
+				}
+		}
+		edit->numlines = lines;
+		edit->size = size;
+		edit->on_line = lines;
+		ch->editor = edit;
 	}
 
 	char *copy_buffer( CHAR_DATA *ch )
@@ -625,7 +632,7 @@ char * const a_flags [] =
 			strcpy( tmp, ch->editor->line[x] );
 			smash_tilde( tmp );
 			len = strlen(tmp);
-			if ( tmp && tmp[len-1] == '~' )
+			if ( tmp[len-1] == '~' )
 				tmp[len-1] = '\0';
 			else
 				strcat( tmp, "\n\r" );
@@ -737,7 +744,7 @@ char * const a_flags [] =
 					write_to_buffer( ch->desc, "> ", 1000000 );
 					return;
 				}
-				count = 0; wordln = strlen(word1); word2ln = strlen(word2);
+				count = 0; wordln = strlen(word1); word2ln = strlen(word2); (void)word2ln;
 				ch_printf( ch, "Replacing all occurrences of %s with %s...\n\r", word1, word2 );
 				for ( x = edit->on_line; x < edit->numlines; x++ )
 				{
@@ -1557,27 +1564,29 @@ char * const a_flags [] =
 			}
 		}
 		else
+		{
 			if ( ( victim = get_char_world( ch, arg1 ) ) == NULL )
 			{
 				send_to_char( "They aren't here.\n\r", ch );
 				return;
 			}
+		}
 
 
-			if (!fullcont && (!IS_NPC(victim) || victim->pIndexData->creator_pvnum !=ch->pcdata->pvnum ))
-			{
-				ch_printf(ch, "You can't work on '%s' here!\n\r", arg1);
-				return;
-			}
+		if (!fullcont && (!IS_NPC(victim) || victim->pIndexData->creator_pvnum !=ch->pcdata->pvnum ))
+		{
+			ch_printf(ch, "You can't work on '%s' here!\n\r", arg1);
+			return;
+		}
 
-			if (!fullcont && ( IS_SET(victim->act, ACT_CLAN_GUARD) ||
-				IS_SET(victim->act, ACT_CLAN_HEALER) ))
-			{
-				ch_printf(ch, "You cannot edit your clan guards or healers once they've been selected.\n\r");
-				ch_printf(ch, "Make a new mobile and set it as the new healer or guard.\n\r", ch);
-				ch_printf(ch, "Note: The current clan guard or healer will be removed from the game.\n\r");
-				return;
-			}
+		if (!fullcont && ( IS_SET(victim->act, ACT_CLAN_GUARD) ||
+			IS_SET(victim->act, ACT_CLAN_HEALER) ))
+		{
+			ch_printf(ch, "You cannot edit your clan guards or healers once they've been selected.\n\r");
+			ch_printf(ch, "Make a new mobile and set it as the new healer or guard.\n\r", ch);
+			ch_printf(ch, "Note: The current clan guard or healer will be removed from the game.\n\r");
+			return;
+		}
 
 			if ( !strcasecmp( arg2, "sex" ) )
 			{
@@ -1787,22 +1796,24 @@ char * const a_flags [] =
 			}
 
 			else if ( !strcasecmp( argument, "tag" ) )
-			{ /* taging doesn't require a victim name, tags all mobiles w/ "mob" */
-				/* put in to allow refering to mobiles that you forgot the name of */
-				for(victim=ch->in_room->first_person;victim;victim=victim->next_in_room)
-					if(IS_NPC(victim)&&victim->pIndexData->creator_pvnum==ch->pcdata->pvnum)
+				{ /* taging doesn't require a victim name, tags all mobiles w/ "mob" */
+					/* put in to allow refering to mobiles that you forgot the name of */
+					for(victim=ch->in_room->first_person;victim;victim=victim->next_in_room)
 					{
+						if(IS_NPC(victim)&&victim->pIndexData->creator_pvnum==ch->pcdata->pvnum)
+						{
 						strcpy(arg2,victim->pIndexData->player_name);
 						strcat(arg2," mob ");
 						if(victim->name!=victim->pIndexData->player_name)
 							STRFREE (victim->name );
 						STRFREE (victim->pIndexData->player_name );
-						victim->pIndexData->player_name=STRALLOC(arg2);
-						victim->name = STRALLOC(arg2);
+							victim->pIndexData->player_name=STRALLOC(arg2);
+							victim->name = STRALLOC(arg2);
+						}
 					}
 					send_to_char("You can now refer to your mobiles in this room as 'mob', '2.mob', etc.\n\r",ch);
 					return;
-			}
+				}
 			else if ( !strcasecmp( arg2, "name" ) )
 			{
 				if ( !IS_NPC(victim) )
@@ -2244,16 +2255,18 @@ char * const a_flags [] =
 					return;
 				}
 
-				if ( !strcasecmp( arg2, "castle" ) )
-					if ( !IS_NPC(victim) )
+					if ( !strcasecmp( arg2, "castle" ) )
 					{
+						if ( !IS_NPC(victim) )
+						{
 						if(victim->pcdata->castle!=NULL)
 						{
 							DISPOSE(victim->pcdata->castle );
 							victim->pcdata->castle=NULL;
 							send_to_char("Their castle is cleared.\n\r",ch);
+							}
+							return;
 						}
-						return;
 					}
 
 					if ( !strcasecmp( arg2, "clan" ) )
@@ -2265,7 +2278,7 @@ char * const a_flags [] =
 							send_to_char( "Not on NPC's.\n\r", ch );
 							return;
 						}
-						if ( !arg3 || arg3[0] == '\0' )
+						if ( arg3[0] == '\0' )
 						{
 							/* Crash bug fix, oops guess I should have caught this one :)
 							* But it was early in the morning :P --Shaddai
@@ -2278,12 +2291,12 @@ char * const a_flags [] =
 							if ( !IS_IMMORTAL( victim ) ) {
 								--victim->pcdata->clan->members;
 								save_clan( victim->pcdata->clan );
-							}
+						}
 							STRFREE( victim->pcdata->clan_name );
 							victim->pcdata->clan_name = STRALLOC( "" );
 							victim->pcdata->clan = NULL;
 							return;
-						}
+					}
 						clan = get_clan( arg3 );
 						if ( !clan )
 						{
@@ -2406,18 +2419,20 @@ char * const a_flags [] =
 			}
 		}
 		else
+		{
 			if ( ( obj = get_obj_world( ch, arg1 ) ) == NULL )
 			{
 				send_to_char( "Nothing like that in hell, earth, or heaven.\n\r", ch );
 				return;
 			}
+		}
 
-			/*
-			* Snarf the value (which need not be numeric).
-			*/
-			value = atol( arg3 );
+		/*
+		* Snarf the value (which need not be numeric).
+		*/
+		value = atol( arg3 );
 
-			obj->basic = FALSE;
+		obj->basic = FALSE;
 
 			/*
 			* Set something.
@@ -2696,16 +2711,18 @@ char * const a_flags [] =
 				}
 			}
 			else
+			{
 				if(!get_bitvector_value(argument,&argn,"CROOM_"))
 				{
 					send_to_char("You must specify a flag to toggle!\n\r",ch);
 					list_bitvectors(ch,"CROOM_");
 					return;
 				}
-				if(IS_SET(ch->in_room->room_flags,argn))
-					REMOVE_BIT(ch->in_room->room_flags,argn);
-				else
-					SET_BIT(ch->in_room->room_flags,argn);
+			}
+			if(IS_SET(ch->in_room->room_flags,argn))
+				REMOVE_BIT(ch->in_room->room_flags,argn);
+			else
+				SET_BIT(ch->in_room->room_flags,argn);
 		}
 		else if(!strcasecmp(arg1,"sector"))
 		{
@@ -2971,38 +2988,42 @@ char * const a_flags [] =
 				if( (bit & number) != 0)
 				{
 					bitfound=FALSE;
-					for(cnt=0; cnt<MAX_BITVECTOR; cnt++ )
-						if( bit == bitvector_table[cnt].value )
-							if( is_name_short( vector, bitvector_table[cnt].name ))
+						for(cnt=0; cnt<MAX_BITVECTOR; cnt++ )
+							if( bit == bitvector_table[cnt].value )
 							{
+								if( is_name_short( vector, bitvector_table[cnt].name ))
+								{
 								if( found )
 									fprintf( fp, "|" );
 								fprintf( fp, "%s", bitvector_table[cnt].name );
-								found=TRUE;
-								bitfound=TRUE;
+									found=TRUE;
+									bitfound=TRUE;
+								}
 							}
-							if(!bitfound)
-							{
-								if( found )
-									fprintf( fp, "|" );
-								fprintf( fp, "%d", bit );
-								found=TRUE;
-							}
+						if(!bitfound)
+						{
+							if( found )
+								fprintf( fp, "|" );
+							fprintf( fp, "%d", bit );
+							found=TRUE;
+						}
 				}
 				if(bit!=0)
 					bit*=2;
 				else
 					bit++;
 			}
-		else
-			for( cnt=0; cnt < MAX_BITVECTOR; cnt++ )
+			else
 			{
-				if( number == bitvector_table[cnt].value )
-					if( is_name_short( vector, bitvector_table[cnt].name ))
-					{
-						fprintf( fp, "%s", bitvector_table[cnt].name );
-						found=TRUE;
-					}
+				for( cnt=0; cnt < MAX_BITVECTOR; cnt++ )
+				{
+					if( number == bitvector_table[cnt].value )
+						if( is_name_short( vector, bitvector_table[cnt].name ))
+						{
+							fprintf( fp, "%s", bitvector_table[cnt].name );
+							found=TRUE;
+						}
+				}
 			}
 			if( !found )
 				fprintf( fp, "%d", number );
@@ -3097,7 +3118,7 @@ char * const a_flags [] =
 	{
 		/* #AREA { 5 35} Merc Prototype for New Area~ */
 		fprintf( fp, "#AREA ");
-		fprintf( fp, area->name);
+		fprintf( fp, "%s", area->name);
 		fprintf( fp, "~\n\n");
 		if(area->authors!=NULL)
 			fprintf( fp, "#AUTHORS %s~\n", area->authors);
@@ -3146,6 +3167,7 @@ char * const a_flags [] =
 			break_bits( fp, room->sector_type, "SECT_", TRUE);
 			fprintf( fp, "\n");
 			for( door=0; door<6; door++)
+			{
 				if(room->exit[door]!=NULL)
 				{
 					if( room->exit[door]->to_room!=NULL &&
@@ -3171,18 +3193,19 @@ char * const a_flags [] =
 					fprintf( fp, " %d 0\n", room->exit[door]->key );
 					}*/
 				}
-				for( ed=room->first_extradesc; ed != NULL ; ed = ed->next)
-				{
-					fprintf( fp, "E\n" );
-					fprintf( fp, "%s~\n", fixer(ed->keyword ));
-					sprintf(buf, "%s", fixer(ed->description ));
-					if(buf[0] == ' ')
-						fprintf( fp, "." );
-					fprintf( fp, "%s~\n", buf);
-				}
-				if( room->fall_room > 0 )
-					fprintf( fp, "F %d %d %d\n", room->fall_room, room->fall_slope,
-					room->distance_of_fall );
+			}
+			for( ed=room->first_extradesc; ed != NULL ; ed = ed->next)
+			{
+				fprintf( fp, "E\n" );
+				fprintf( fp, "%s~\n", fixer(ed->keyword ));
+				snprintf(buf, sizeof(buf), "%s", fixer(ed->description ));
+				if(buf[0] == ' ')
+					fprintf( fp, "." );
+				fprintf( fp, "%s~\n", buf);
+			}
+			if( room->fall_room > 0 )
+				fprintf( fp, "F %d %d %d\n", room->fall_room, room->fall_slope,
+				room->distance_of_fall );
 				if( room->room_file != NULL )
 					fprintf( fp, "X %s~\n", fixer(room->room_file) );
 				fprintf( fp, "S\n");
@@ -3271,10 +3294,11 @@ char * const a_flags [] =
 		fprintf(fp,"#HELPS\n");
 
 		for(help=help_first;help!=NULL;help=help->next)
+		{
 			if(help->area==area)
 			{
 				fprintf(fp,"%d %s~\n",help->level,fixer(help->keyword));
-				sprintf(buf, "%s", fixer( help->text));
+				snprintf(buf, sizeof(buf), "%s", fixer( help->text));
 				if(buf[0] == ' ')
 					fprintf(fp,".");
 				fprintf(fp,"%s", buf);
@@ -3286,9 +3310,10 @@ char * const a_flags [] =
 				}
 				fprintf(fp,"~\n");
 			}
+		}
 
-			fprintf(fp,"0 $~\n");
-			return;
+		fprintf(fp,"0 $~\n");
+		return;
 	}
 
 
@@ -3524,6 +3549,7 @@ char * const a_flags [] =
 		fprintf(fp,"#SHOPS\n");
 
 		for(shop=shop_first;shop!=NULL;shop=shop->next)
+		{
 			if( (mob=get_mob_index(shop->keeper))!=NULL && mob->area == area)
 			{
 				fprintf(fp,"%d ", shop->keeper);
@@ -3539,9 +3565,10 @@ char * const a_flags [] =
 					shop->open_hour,shop->close_hour);
 				fprintf(fp," ;%s\n",fixer(mob->short_descr));
 			}
+		}
 
-			fprintf(fp,"0\n");
-			return;
+		fprintf(fp,"0\n");
+		return;
 	}
 
 	void save_resets( FILE *fp, AREA_DATA *area)
@@ -3679,20 +3706,22 @@ char * const a_flags [] =
 			return;
 		}
 
-		else if( ch!=NULL && all )
-		{
-			if( ch->level >= 98 )
-				for( cnt = 1; cnt < MAX_VNUM; cnt+=100)
-					if( get_room_index(cnt) != NULL )
-					{
+			else if( ch!=NULL && all )
+			{
+				if( ch->level >= 98 )
+				{
+					for( cnt = 1; cnt < MAX_VNUM; cnt+=100)
+						if( get_room_index(cnt) != NULL )
+						{
 						area = room_index[cnt]->area ;
 						sprintf( buf, "Saving %s.\n\r", area->name );
-						send_to_char(buf, ch );
-						save_area( area, TRUE );
-					}
-					send_to_char("Finished.\n\r", ch );
-					return;
-		}
+							send_to_char(buf, ch );
+							save_area( area, TRUE );
+						}
+				}
+				send_to_char("Finished.\n\r", ch );
+				return;
+			}
 		else
 			area=ch->in_room->area;
 
@@ -3991,6 +4020,7 @@ char * const a_flags [] =
 		CHAR_DATA *victim;
 		int value;
 		int minattr, maxattr;
+		(void)minattr; (void)maxattr;
 		bool lockvictim;
 		char *origarg = argument;
 
@@ -4131,6 +4161,7 @@ char * const a_flags [] =
 			}
 		}
 		else
+		{
 			if ( !victim )
 			{
 				if ( ( victim = get_char_world( ch, arg1 ) ) == NULL )
@@ -4139,15 +4170,16 @@ char * const a_flags [] =
 					return;
 				}
 			}
+		}
 
-			if ( get_trust( ch ) < get_trust( victim ) && !IS_NPC( victim ) )
-			{
-				send_to_char( "You can't do that!\n\r", ch );
-				ch->dest_buf = NULL;
-				return;
-			}
-			if ( lockvictim )
-				ch->dest_buf = victim;
+		if ( get_trust( ch ) < get_trust( victim ) && !IS_NPC( victim ) )
+		{
+			send_to_char( "You can't do that!\n\r", ch );
+			ch->dest_buf = NULL;
+			return;
+		}
+		if ( lockvictim )
+			ch->dest_buf = victim;
 
 			if ( IS_NPC(victim) )
 			{
@@ -4418,7 +4450,7 @@ char * const a_flags [] =
 					return;
 				}
 
-				if ( !arg3 || arg3[0] == '\0' )
+				if ( arg3[0] == '\0' )
 				{
 					if ( victim->pcdata->clan == NULL )
 						return;
@@ -4546,6 +4578,7 @@ char * const a_flags [] =
 			if ( !strcasecmp( arg2, "flags" ) )
 			{
 				bool pcflag;
+				(void)pcflag;
 				if ( !IS_NPC( victim ) && get_trust( ch ) < MAX_LEVEL )
 				{
 					send_to_char( "You can only modify a mobile's flags.\n\r", ch );
@@ -4991,6 +5024,7 @@ char * const a_flags [] =
 			}
 		}
 		else
+		{
 			if ( !obj )
 			{
 				if ( ( obj = get_obj_world( ch, arg1 ) ) == NULL )
@@ -4999,12 +5033,13 @@ char * const a_flags [] =
 					return;
 				}
 			}
-			if ( lockobj )
-				ch->dest_buf = obj;
-			else
-				ch->dest_buf = NULL;
+		}
+		if ( lockobj )
+			ch->dest_buf = obj;
+		else
+			ch->dest_buf = NULL;
 
-			value = atoi( arg3 );
+		value = atoi( arg3 );
 
 			if ( !strcasecmp( arg2, "on" ) )
 			{
@@ -5303,7 +5338,7 @@ char * const a_flags [] =
 
 			if ( !strcasecmp( arg2, "ed" ) )
 			{
-				if ( !arg3 || arg3[0] == '\0' )
+				if ( arg3[0] == '\0' )
 				{
 					send_to_char( "Syntax: oedit <object> ed <keywords>\n\r",
 						ch );
@@ -5335,7 +5370,7 @@ char * const a_flags [] =
 
 			if ( !strcasecmp( arg2, "rmed" ) )
 			{
-				if ( !arg3 || arg3[0] == '\0' )
+				if ( arg3[0] == '\0' )
 				{
 					send_to_char( "Syntax: oedit <object> rmed <keywords>\n\r", ch );
 					return;
@@ -6000,7 +6035,7 @@ char * const a_flags [] =
 
 			argument = one_argument( argument, arg2 );
 			argument = one_argument( argument, arg3 );
-			if ( !arg2 || arg2[0] == '\0' )
+			if ( arg2[0] == '\0' )
 			{
 				send_to_char( "Create, change or remove an exit.\n\r", ch );
 				send_to_char( "Usage: redit exit <dir> [room] [flags] [key] [keywords]\n\r", ch );
@@ -6013,7 +6048,7 @@ char * const a_flags [] =
 			case '+': edir = get_dir( arg2+1); addexit = TRUE; break;
 			case '#': edir = atoi(arg2+1); numnotdir = TRUE; break;
 			}
-			if ( !arg3 || arg3[0] == '\0' )
+			if ( arg3[0] == '\0' )
 				evnum = 0;
 			else
 				evnum = atoi( arg3 );
@@ -6067,7 +6102,7 @@ char * const a_flags [] =
 				xit->vnum = evnum;
 			}
 			argument = one_argument( argument, arg3 );
-			if ( arg3 && arg3[0] != '\0' )
+			if ( arg3[0] != '\0' )
 				xit->exit_info = atoi( arg3 );
 			if ( argument && argument[0] != '\0' )
 			{
@@ -6103,7 +6138,7 @@ char * const a_flags [] =
 
 			argument = one_argument( argument, arg2 );
 			argument = one_argument( argument, arg3 );
-			if ( !arg2 || arg2[0] == '\0' )
+			if ( arg2[0] == '\0' )
 			{
 				send_to_char( "Create, change or remove a two-way exit.\n\r", ch );
 				send_to_char( "Usage: redit bexit <dir> [room] [flags] [key] [keywords]\n\r", ch );
@@ -6139,7 +6174,10 @@ char * const a_flags [] =
 				else
 					rxit = NULL;
 			}
-			sprintf( tmpcmd, "exit %s %s %s", arg2, arg3, argument );
+			snprintf( tmpcmd, sizeof(tmpcmd), "exit %.*s %.*s %.*s",
+				REDIT_ARG_PREVIEW, arg2,
+				REDIT_ARG_PREVIEW, arg3,
+				REDIT_ARG_PREVIEW, argument );
 			do_redit( ch, tmpcmd );
 			if ( numnotdir )
 				xit = tmploc->exit[exnum];
@@ -6157,11 +6195,11 @@ char * const a_flags [] =
 			}
 			if ( vnum )
 			{
-				sprintf( tmpcmd, "%d redit exit %d %s %s",
+				snprintf( tmpcmd, sizeof(tmpcmd), "%d redit exit %d %.*s %.*s",
 					vnum,
 					rev_dir[edir],
-					rvnum,
-					argument );
+					REDIT_ARG_PREVIEW, rvnum,
+					REDIT_ARG_PREVIEW, argument );
 				do_at( ch, tmpcmd );
 			}
 			return;
@@ -6171,7 +6209,7 @@ char * const a_flags [] =
 		if ( !strcasecmp( arg, "exdesc" ) )
 		{
 			argument = one_argument( argument, arg2 );
-			if ( !arg2 || arg2[0] == '\0' )
+			if ( arg2[0] == '\0' )
 			{
 				send_to_char( "Create or clear a description for an exit.\n\r", ch );
 				send_to_char( "Usage: redit exdesc <dir> [description]\n\r", ch );
@@ -6471,25 +6509,27 @@ char * const a_flags [] =
 				victim->pIndexData->mobprogs = mprg_next->next;
 			}
 			else
+			{
 				for ( mprg = mprog; mprg; mprg = mprg_next )
 				{
 					mprg_next = mprg->next;
 					if ( ++cnt == (value - 1) )
 					{
 						mprg->next = mprg_next->next;
-						break;
-					}
+							break;
+						}
 				}
-				if ( mprg_next )
-				{
-					STRFREE( mprg_next->arglist );
-					STRFREE( mprg_next->comlist );
-					DISPOSE( mprg_next );
-					if ( num <= 1 )
-						REMOVE_BIT( victim->pIndexData->progtypes, mptype );
-					send_to_char( "Program removed.\n\r", ch );
-				}
-				return;
+			}
+			if ( mprg_next )
+			{
+				STRFREE( mprg_next->arglist );
+				STRFREE( mprg_next->comlist );
+				DISPOSE( mprg_next );
+				if ( num <= 1 )
+					REMOVE_BIT( victim->pIndexData->progtypes, mptype );
+				send_to_char( "Program removed.\n\r", ch );
+			}
+			return;
 		}
 
 		if ( !strcasecmp( arg2, "insert" ) )
@@ -6603,11 +6643,11 @@ char * const a_flags [] =
 				strcpy( roomname, room->name );
 			else
 				strcpy( roomname, "Room: *BAD VNUM*" );
-			sprintf( buf, "%2d) %s (%d) -> %s (%d) [%d]\n\r",
+			snprintf( buf, sizeof(buf), "%2d) %.*s (%d) -> %.*s (%d) [%d]\n\r",
 				num,
-				mobname,
+				RESET_NAME_PREVIEW, mobname,
 				pReset->arg1,
-				roomname,
+				RESET_NAME_PREVIEW, roomname,
 				pReset->arg3,
 				pReset->arg2 );
 			break;
@@ -6618,11 +6658,11 @@ char * const a_flags [] =
 				strcpy( objname, "Object: *BAD VNUM*" );
 			else
 				strcpy( objname, obj->name );
-			sprintf( buf, "%2d) %s (%d) -> %s (%s) [%d]\n\r",
+			snprintf( buf, sizeof(buf), "%2d) %.*s (%d) -> %.*s (%s) [%d]\n\r",
 				num,
-				objname,
+				RESET_NAME_PREVIEW, objname,
 				pReset->arg1,
-				mobname,
+				RESET_NAME_PREVIEW, mobname,
 				wear_locs[pReset->arg3],
 				pReset->arg2 );
 			break;
@@ -6633,9 +6673,9 @@ char * const a_flags [] =
 			else
 				if ( !obj )
 					strcpy( objname, "Object: *NULL obj*" );
-			sprintf( buf, "%2d) Hide %s (%d)\n\r",
+			snprintf( buf, sizeof(buf), "%2d) Hide %.*s (%d)\n\r",
 				num,
-				objname,
+				RESET_NAME_PREVIEW, objname,
 				obj ? obj->vnum : pReset->arg1 );
 			break;
 		case 'G':
@@ -6645,11 +6685,11 @@ char * const a_flags [] =
 				strcpy( objname, "Object: *BAD VNUM*" );
 			else
 				strcpy( objname, obj->name );
-			sprintf( buf, "%2d) %s (%d) -> %s (carry) [%d]\n\r",
+			snprintf( buf, sizeof(buf), "%2d) %.*s (%d) -> %.*s (carry) [%d]\n\r",
 				num,
-				objname,
+				RESET_NAME_PREVIEW, objname,
 				pReset->arg1,
-				mobname,
+				RESET_NAME_PREVIEW, mobname,
 				pReset->arg2 );
 			break;
 		case 'O':
@@ -6662,11 +6702,11 @@ char * const a_flags [] =
 				strcpy( roomname, "Room: *BAD VNUM*" );
 			else
 				strcpy( roomname, room->name );
-			sprintf( buf, "%2d) (object) %s (%d) -> %s (%d) [%d]\n\r",
+			snprintf( buf, sizeof(buf), "%2d) (object) %.*s (%d) -> %.*s (%d) [%d]\n\r",
 				num,
-				objname,
+				RESET_NAME_PREVIEW, objname,
 				pReset->arg1,
-				roomname,
+				RESET_NAME_PREVIEW, roomname,
 				pReset->arg3,
 				pReset->arg2 );
 			break;
@@ -6683,11 +6723,11 @@ char * const a_flags [] =
 					strcpy( roomname, "Object2: *NULL obj*" );
 				else
 					strcpy( roomname, obj->name );
-			sprintf( buf, "%2d) (Put) %s (%d) -> %s (%d) [%d]\n\r",
+			snprintf( buf, sizeof(buf), "%2d) (Put) %.*s (%d) -> %.*s (%d) [%d]\n\r",
 				num,
-				objname,
+				RESET_NAME_PREVIEW, objname,
 				pReset->arg1,
-				roomname,
+				RESET_NAME_PREVIEW, roomname,
 				obj ? obj->vnum : pReset->arg3,
 				pReset->arg2 );
 			break;
@@ -6714,13 +6754,13 @@ char * const a_flags [] =
 			case 1: strcpy( mobname, "Close" ); break;
 			case 2: strcpy( mobname, "Close and lock" ); break;
 			}
-			sprintf( buf, "%2d) %s [%d] the %s [%d] door %s (%d)\n\r",
+			snprintf( buf, sizeof(buf), "%2d) %.*s [%d] the %.*s [%d] door %.*s (%d)\n\r",
 				num,
-				mobname,
+				RESET_NAME_PREVIEW, mobname,
 				pReset->arg3,
-				objname,
+				RESET_NAME_PREVIEW, objname,
 				pReset->arg2,
-				roomname,
+				RESET_NAME_PREVIEW, roomname,
 				pReset->arg1 );
 			break;
 		case 'R':
@@ -6728,10 +6768,10 @@ char * const a_flags [] =
 				strcpy( roomname, "Room: *BAD VNUM*" );
 			else
 				strcpy( roomname, room->name );
-			sprintf( buf, "%2d) Randomize exits 0 to %d -> %s (%d)\n\r",
+			snprintf( buf, sizeof(buf), "%2d) Randomize exits 0 to %d -> %.*s (%d)\n\r",
 				num,
 				pReset->arg2,
-				roomname,
+				RESET_NAME_PREVIEW, roomname,
 				pReset->arg1 );
 			break;
 		}
@@ -6748,49 +6788,51 @@ char * const a_flags [] =
 
 		found = FALSE;
 		for ( tarea = first_area; tarea; tarea = tarea->next )
+		{
 			if ( !strcasecmp( tarea->filename, argument ) )
 			{
 				found = TRUE;
 				break;
 			}
+		}
 
 
-			if ( !found )
+		if ( !found )
+		{
+			if ( argument && argument[0] != '\0' )
 			{
-				if ( argument && argument[0] != '\0' )
-				{
-					send_to_char( "Area not found.\n\r", ch );
-					return;
-				}
-				else
-				{
-					tarea = ch->in_room->area;
-				}
+				send_to_char( "Area not found.\n\r", ch );
+				return;
 			}
+			else
+			{
+				tarea = ch->in_room->area;
+			}
+		}
 
-			ch_printf( ch, "Name: %s\n\rFilename: %-20s\n\r",
-				tarea->name,
-				tarea->filename);
-			ch_printf( ch, "Authors: %s\n\rAge: %d Number of players: %d\n\r",
-				tarea->authors,
-				tarea->age,
-				tarea->nplayer );
-			ch_printf( ch, "low_room: %5d hi_room: %d\n\r",
-				tarea->low_r_vnum,
-				tarea->hi_r_vnum );
-			ch_printf( ch, "low_obj : %5d hi_obj : %d\n\r",
-				tarea->low_o_vnum,
-				tarea->hi_o_vnum );
-			ch_printf( ch, "low_mob : %5d hi_mob : %d\n\r",
-				tarea->low_m_vnum,
-				tarea->hi_m_vnum );
-			ch_printf( ch, "soft range: %d - %d. hard range: %d - %d.\n\r",
-				tarea->low_soft_range,
-				tarea->hi_soft_range,
-				tarea->low_hard_range,
-				tarea->hi_hard_range );
-			ch_printf( ch, "Resetmsg: %s\n\r", tarea->resetmsg ? tarea->resetmsg
-				: "(default)" ); /* Rennard */
+		ch_printf( ch, "Name: %s\n\rFilename: %-20s\n\r",
+			tarea->name,
+			tarea->filename);
+		ch_printf( ch, "Authors: %s\n\rAge: %d Number of players: %d\n\r",
+			tarea->authors,
+			tarea->age,
+			tarea->nplayer );
+		ch_printf( ch, "low_room: %5d hi_room: %d\n\r",
+			tarea->low_r_vnum,
+			tarea->hi_r_vnum );
+		ch_printf( ch, "low_obj : %5d hi_obj : %d\n\r",
+			tarea->low_o_vnum,
+			tarea->hi_o_vnum );
+		ch_printf( ch, "low_mob : %5d hi_mob : %d\n\r",
+			tarea->low_m_vnum,
+			tarea->hi_m_vnum );
+		ch_printf( ch, "soft range: %d - %d. hard range: %d - %d.\n\r",
+			tarea->low_soft_range,
+			tarea->hi_soft_range,
+			tarea->low_hard_range,
+			tarea->hi_hard_range );
+		ch_printf( ch, "Resetmsg: %s\n\r", tarea->resetmsg ? tarea->resetmsg
+			: "(default)" ); /* Rennard */
 	}
 
 
@@ -6801,6 +6843,7 @@ char * const a_flags [] =
 		char arg2[MAX_INPUT_LENGTH];
 		char arg3[MAX_INPUT_LENGTH];
 		bool proto, found;
+		(void)proto;
 		int vnum, value;
 
 		argument = one_argument( argument, arg1 );
@@ -6819,17 +6862,19 @@ char * const a_flags [] =
 
 		found = FALSE; proto = FALSE;
 		for ( tarea = first_area; tarea; tarea = tarea->next )
+		{
 			if ( !strcasecmp( tarea->filename, arg1 ) )
 			{
 				found = TRUE;
 				break;
 			}
+		}
 
-			if ( !found )
-			{
-				send_to_char( "Area not found.\n\r", ch );
-				return;
-			}
+		if ( !found )
+		{
+			send_to_char( "Area not found.\n\r", ch );
+			return;
+		}
 
 			if ( !strcasecmp( arg2, "name" ) )
 			{

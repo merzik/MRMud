@@ -41,6 +41,7 @@
 *.su
 *.idb
 *.pdb
+.DS_Store
 
 # Kernel Module Compile Results
 *.mod*
@@ -51,5 +52,32 @@ Module.symvers
 Mkfile.old
 dkms.conf
 
-bin/
+bin/md
+bin/next_md
+bin/current_md
+log/*
+!log/.gitkeep
 
+player/*
+!player/*/
+player/*/*
+!player/*/.gitkeep
+!player/c/Chaos
+
+areas/adjusted.txt
+areas/boot.txt
+areas/bounty.txt
+areas/bounty.tmp
+areas/bugs.txt
+areas/config.tmp
+areas/copyover.dat
+areas/gamebugs.txt
+areas/ideas.txt
+areas/notes.txt
+areas/shutdown.txt
+areas/siteban.tmp
+areas/swear.txt
+areas/typos.txt
+areas/usage.tmp
+areas/victory.txt
+areas/victory.tmp

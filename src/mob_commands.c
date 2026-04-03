@@ -303,6 +303,7 @@ void do_mpjunk( CHAR_DATA *ch, char *argument )
 		extract_obj( obj );
 	}
 	else
+	{
 		for ( obj = ch->first_carrying; obj != NULL; obj = obj_next )
 		{
 			obj_next = obj->next_content;
@@ -313,8 +314,9 @@ void do_mpjunk( CHAR_DATA *ch, char *argument )
 				extract_obj( obj );
 			}
 		}
+	}
 
-		return;
+	return;
 
 }
 
@@ -362,6 +364,7 @@ void do_mpjunk_person( CHAR_DATA *ch, char *argument )
 		extract_obj( obj );
 	}
 	else
+	{
 		for ( obj = victim->first_carrying; obj != NULL; obj = obj_next )
 		{
 			obj_next = obj->next_content;
@@ -372,8 +375,9 @@ void do_mpjunk_person( CHAR_DATA *ch, char *argument )
 				extract_obj( obj );
 			}
 		}
+	}
 
-		return;
+	return;
 
 }
 /* prints the message to everyone in the room other than the mob and victim */
@@ -978,7 +982,7 @@ void do_mpforce( CHAR_DATA *ch, char *argument )
 		return;
 
 	argument = one_argument( argument, arg );
-	if ( arg==NULL || argument==NULL || arg[0] == '\0' || argument[0] == '\0' )
+	if ( arg[0] == '\0' || argument[0] == '\0' )
 	{
 		/* if( IS_NPC( ch ))
 		bug( "Mpforce - Bad syntax: vnum %u.", ch->pIndexData->vnum ); */

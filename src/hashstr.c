@@ -1,3 +1,4 @@
+#include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -54,6 +55,7 @@ char *str_alloc( char *str,int str_type )
 	psize = sizeof(struct hashstr_data);
 	if( str_type == 0 )
 		for (ptr = string_hash[hash]; ptr; ptr = ptr->next )
+		{
 			if ( lnp == ptr->length && !strcmp(str,(char *)ptr+psize) )
 			{
 				if( ptr->links < SINGLE_STRING-1 )
@@ -62,11 +64,12 @@ char *str_alloc( char *str,int str_type )
 					return (char *) ptr+psize;
 				}
 			}
-			pt = alloc_mem(len+psize+1);
+		}
+	pt = alloc_mem(len+psize+1);
 			ptr=(struct hashstr_data *)pt;
 
 			/* Let's quickly change the header of the raw memory - S for String */
-			set_block_type( 'S', pt );
+			set_block_type( 'S', (unsigned char *)pt );
 
 			if( str_type == 0 )
 				ptr->links = 1;
@@ -270,7 +273,7 @@ void hash_dump( int hash )
 	psize = sizeof(struct hashstr_data);
 	for ( c=0, ptr = string_hash[hash]; ptr; ptr = ptr->next, c++ )
 	{
-		str = (char *) (((int) ptr) + psize);
+		str = (char *) (((intptr_t) ptr) + psize);
 		fprintf( stderr, "Lnp:%4d Lnks:%5d Str: %s\n\r",
 			ptr->length, ptr->links, str );
 	}
@@ -289,12 +292,14 @@ char *check_hash( char *str )
 	psize = sizeof(struct hashstr_data);
 	hash = get_hash(str);
 	for (fnd = NULL, ptr = string_hash[hash], c = 0; ptr; ptr = ptr->next, c++ )
+	{
 		if ( lnp == ptr->length && !strcmp(str,(char *)ptr+psize) )
 		{
 			fnd = ptr;
 			p = c+1;
 		}
-		if ( fnd )
+	}
+	if ( fnd )
 			sprintf( buf, "Hash info on string: %s\n\rLinks: %d Position: %d/%d Hash: %d Lnp: %d\n\r",
 			str, fnd->links, p, c, hash, fnd->length );
 		else
@@ -372,7 +377,7 @@ void show_high_hash( int top )
 		for ( ptr = string_hash[x]; ptr; ptr = ptr->next )
 			if ( ptr->links >= top )
 			{
-				str = (char *) (((int) ptr) + psize);
+				str = (char *) (((intptr_t) ptr) + psize);
 				fprintf( stderr, "Links: %5d String: >%s<\n\r", ptr->links, str );
 			}
 }
