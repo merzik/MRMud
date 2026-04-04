@@ -21,6 +21,7 @@
 #include <sys/types.h>
 #endif
 #include <ctype.h>
+#include <inttypes.h>
 #include <stdio.h>
 #include <string.h>
 #include <time.h>
@@ -417,10 +418,10 @@ void fwrite_char( CHAR_DATA *ch, FILE *fp )
 		fprintf( fp, "ClanPledge %s~\n", ch->pcdata->clan_pledge );
 	if (ch->pcdata->clan_position != 0)
 		fprintf( fp, "ClanPosition %d\n", ch->pcdata->clan_position );
-	fprintf( fp, "LastTime %d\n", (int)current_time );
+	fprintf( fp, "LastTime %" PRIdMAX "\n", (intmax_t) current_time );
 	fprintf( fp, "Arrested %d\n", ch->pcdata->arrested);
 	fprintf( fp, "Jailtime %d\n", ch->pcdata->jailtime);
-	fprintf( fp, "Jaildate %d\n", ch->pcdata->jaildate);
+	fprintf( fp, "Jaildate %" PRIdMAX "\n", (intmax_t) ch->pcdata->jaildate);
 
 	fprintf( fp, "Mailaddress %s~\n", ch->pcdata->mail_address);
 	fprintf( fp, "Htmladdress %s~\n", ch->pcdata->html_address);
@@ -583,7 +584,7 @@ void fwrite_char( CHAR_DATA *ch, FILE *fp )
 	fprintf( fp, "PK_ATTACKS %d\n", MAX_PK_ATTACKS );
 	for( cnt=0; cnt<MAX_PK_ATTACKS; cnt++)
 	{
-		fprintf( fp, "%d %ld %s~\n", ch->pcdata->last_pk_attack_time[cnt],
+		fprintf( fp, "%" PRIdMAX " %ld %s~\n", (intmax_t) ch->pcdata->last_pk_attack_time[cnt],
 			ch->pcdata->last_pk_attack_pvnum[cnt],
 			ch->pcdata->last_pk_attack_name[cnt] );
 	}
@@ -1976,7 +1977,12 @@ void fread_char( CHAR_DATA *ch, FILE *fp )
 			}
 			break;
 		case 'J':
-			KEY( "Jaildate", ch->pcdata->jaildate, fread_number( fp ) );
+			if( !strcasecmp( word, "Jaildate" ) )
+			{
+				ch->pcdata->jaildate = fread_time( fp );
+				fMatch = TRUE;
+				break;
+			}
 			KEY( "Jailtime", ch->pcdata->jailtime, fread_number( fp ) );
 			break;
 		case 'K':
@@ -2024,7 +2030,12 @@ void fread_char( CHAR_DATA *ch, FILE *fp )
 			KEY( "LastNote", ch->pcdata->last_note, fread_number( fp ) );
 			SKEY("Lastlogin", ch->desc->old_host, fread_string_nohash( fp ) );
 			SKEY("LastDomain", ch->desc->old_domain, fread_string_nohash( fp ) );
-			KEY( "LastTime", ch->pcdata->last_time, fread_number( fp ));
+			if( !strcasecmp( word, "LastTime" ) )
+			{
+				ch->pcdata->last_time = fread_time( fp );
+				fMatch = TRUE;
+				break;
+			}
 			KEY( "LastConnect", ch->pcdata->last_connect, fread_number( fp ));
 			KEY("Last_Real_Room",ch->pcdata->last_real_room,fread_number( fp ));
 			break;
@@ -2095,7 +2106,7 @@ void fread_char( CHAR_DATA *ch, FILE *fp )
 					cnt = MAX_PK_ATTACKS;
 				for(cnt2=0; cnt2<cnt; cnt2++)
 				{
-					ch->pcdata->last_pk_attack_time[cnt2]=fread_number(fp);
+					ch->pcdata->last_pk_attack_time[cnt2]=fread_time(fp);
 					ch->pcdata->last_pk_attack_pvnum[cnt2]=fread_number(fp);
 					STRFREE( ch->pcdata->last_pk_attack_name[cnt2] );
 					ch->pcdata->last_pk_attack_name[cnt2]=fread_string(fp);
@@ -3506,7 +3517,7 @@ void save_notes()
 {
 	FILE *fp;
 	NOTE_DATA *pnote, *pnote_next;
-	int iCurTime;
+	time_t iCurTime;
 
 	log_string("Saving notes...");
 	fp = fopen(NOTE_FILE_T, "w");
@@ -3554,7 +3565,7 @@ void save_notes()
 		}
 		else/* Write the note to the file */
 		{
-			fprintf (fp, "Sender %s~\nDate %s~\nTime %d\nTo %s~\nSubject %s~\nTopic %d\nText\n%s~\nRoom %u\n\n",
+			fprintf (fp, "Sender %s~\nDate %s~\nTime %" PRIdMAX "\nTo %s~\nSubject %s~\nTopic %d\nText\n%s~\nRoom %u\n\n",
 				pnote->sender, pnote->date, pnote->time,
 				pnote->to_list, pnote->subject,
 				pnote->topic, pnote->text,

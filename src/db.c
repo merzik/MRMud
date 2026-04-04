@@ -37,6 +37,7 @@
 #include <stdarg.h>
 #include <string.h>
 /* #include <strings.h> */
+#include <inttypes.h>
 #include <stdint.h>
 #include <time.h>
 #include <sys/stat.h>
@@ -1947,7 +1948,7 @@ void load_notes( void )
 
 		if ( strcasecmp( fread_word( fp ), "time" ) )
 			break;
-		pnote->time = fread_number( fp );
+		pnote->time = fread_time( fp );
 
 		if ( strcasecmp( fread_word( fp ), "to" ) )
 			break;
@@ -3111,6 +3112,23 @@ int fread_number( FILE *fp )
 		ungetc( c, fp );
 
 	return number;
+}
+
+time_t fread_time( FILE *fp )
+{
+	char *word;
+	intmax_t number;
+	char *endptr;
+
+	word = fread_word( fp );
+	number = strtoimax( word, &endptr, 10 );
+	if( endptr == word || *endptr != '\0' )
+	{
+		bug( "fread_time: bad format '%s'.", word );
+		return 0;
+	}
+
+	return( (time_t) number );
 }
 
 
@@ -6975,7 +6993,7 @@ void load_bounties(void)
 				CREATE(bptr, BOUNTY_DATA, 1);
 				bptr->name = STRALLOC(capitalize(buf));
 				bptr->amount = fread_number(fp);
-				bptr->postdate = fread_number(fp);
+				bptr->postdate = fread_time(fp);
 				bptr->expires = fread_number(fp);
 				sort_bounty( bptr );
 			}
@@ -7005,8 +7023,8 @@ void save_bounties(void)
 	{
 		for(bptr=first_bounty; bptr; bptr=bptr->next)
 		{
-			fprintf(fp, "%-12s %9d %9d %9d\n", capitalize(bptr->name), bptr->amount,
-				bptr->postdate, bptr->expires);
+			fprintf(fp, "%-12s %9d %12" PRIdMAX " %9d\n", capitalize(bptr->name), bptr->amount,
+				(intmax_t) bptr->postdate, bptr->expires);
 		}
 		fprintf(fp, "NULL\nXXXXXXXXXX\n#Bounty\n");
 	}
@@ -7247,4 +7265,3 @@ int get_obj_stat( OBJ_INDEX_DATA *obj_index, char *argument )
 	return( 0 );
 
 }
-
