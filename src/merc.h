@@ -21,6 +21,7 @@
 /* #include <prof.h> */
 #include <stdarg.h>
 #include <stdlib.h>
+#include <stdint.h>
 #include <limits.h>
 
 #if defined(TRADITIONAL)
@@ -1318,9 +1319,9 @@ struct char_data
 	sh_int race;
 	sh_int level;
 	sh_int trust;
-	int played;
-	int killer_played;
-	int outcast_played;
+	int64_t played;
+	int64_t killer_played;
+	int64_t outcast_played;
 	time_t logon;
 	time_t save_time;
 	sh_int timer;
@@ -3331,6 +3332,7 @@ RID * get_room_index args( ( int vnum ) );
 RID * get_room_index_old args( ( int vnum ) );
 char fread_letter args( ( FILE *fp ) );
 int fread_number args( ( FILE *fp ) );
+int64_t fread_int64 args( ( FILE *fp ) );
 time_t fread_time args( ( FILE *fp ) );
 char * fread_string args( ( FILE *fp ) );
 char * fread_string_nohash args( ( FILE *fp ) );
@@ -3716,7 +3718,7 @@ bool FINGER_MODE; /* changes method of some commands */
 bool is_char_valid( CHAR_DATA *); /* scans all players for active */
 
 bool is_enchanted_obj( OBJ_DATA *);
-int get_game_usec( void );
+int64_t get_game_usec( void );
 
 void send_1_byte( CHAR_DATA *, int , sh_int ); /* Use for direct data */
 void send_2_byte( CHAR_DATA *, int , sh_int ); /* processing systems */
@@ -3784,7 +3786,7 @@ int display_timer( CHAR_DATA *ch, int );
 
 #define MAX_TIMERS 31
 
-int timers[ MAX_TIMERS ][5];
+int64_t timers[ MAX_TIMERS ][5];
 extern const char timer_strings[ MAX_TIMERS ][80] ;
 
 int get_max_speed( CHAR_DATA *ch ); /* Determine fastest rate of travel */
@@ -4186,4 +4188,3 @@ int initiate_mana_loss( int, int ); /* Returns mana loss */
 int initiate_move_loss( int, int ); /* Returns move loss */
 CASTLE_DATA *get_castle_data( CHAR_DATA *);
 CASTLE_DATA get_castle_data_data;
-

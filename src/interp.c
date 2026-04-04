@@ -21,6 +21,7 @@
 #include <sys/types.h>
 #endif
 #include <ctype.h>
+#include <inttypes.h>
 #include <stdio.h>
 #include <stdlib.h>
 /* #include <strings.h> */
@@ -2229,14 +2230,14 @@ int get_game_realtime( void )
 }
 
 
-int get_game_usec( void )
+int64_t get_game_usec( void )
 {
 	struct timeval last_time;
 
 	last_time.tv_usec=0;
 	last_time.tv_sec=0;
 	gettimeofday( &last_time, NULL );
-	return( last_time.tv_usec + 1000000 * last_time.tv_sec );
+	return( (int64_t) last_time.tv_usec + 1000000LL * (int64_t) last_time.tv_sec );
 }
 
 /*
@@ -2254,11 +2255,12 @@ void interpret( CHAR_DATA *ch, char *argue )
 	char buf[MAX_STRING_LENGTH];
 	char argument_buf[MAX_INPUT_LENGTH];
 	char *argument;
-	int cmd = -1, delta;
+	int cmd = -1;
+	int64_t delta;
 	int leng;
 	int trust;
 	bool found = FALSE;
-	int last_time;
+	int64_t last_time;
 	bool QUIT_CMD;
 	int largument;
 	char *pt, *pti, *pto;
@@ -2997,7 +2999,7 @@ void interpret( CHAR_DATA *ch, char *argue )
 				{
 					if( IS_SET( ch->act, PLR_WIZTIME ))
 					{
-						sprintf( buf, "(%d usec)\n\r", delta);
+						sprintf( buf, "(%" PRId64 " usec)\n\r", delta);
 						send_to_char( buf, ch);
 					}
 				}
@@ -3979,4 +3981,3 @@ void censorstring(char *input_string)
 		censorword(swear->word, lower_string, input_string);
 	}
 }
-

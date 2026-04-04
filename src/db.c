@@ -3114,6 +3114,23 @@ int fread_number( FILE *fp )
 	return number;
 }
 
+int64_t fread_int64( FILE *fp )
+{
+	char *word;
+	intmax_t number;
+	char *endptr;
+
+	word = fread_word( fp );
+	number = strtoimax( word, &endptr, 10 );
+	if( endptr == word || *endptr != '\0' )
+	{
+		bug( "fread_int64: bad format '%s'.", word );
+		return 0;
+	}
+
+	return( (int64_t) number );
+}
+
 time_t fread_time( FILE *fp )
 {
 	char *word;
@@ -3698,7 +3715,7 @@ int display_timer( CHAR_DATA *ch, int timer )
 	ind_usage = (float)(timers[ timer ][0] / timers[ timer ][1] ) /
 		(float)(timers[ timer ][3] / timers[ timer ][4]) / 10.0 ;
 
-	sprintf( buf, "%s%7d %8d %4.3f %4.4f\n\r",
+	sprintf( buf, "%s%7" PRId64 " %8" PRId64 " %4.3f %4.4f\n\r",
 		timer_strings[ timer] ,
 		timers[ timer ][0] / timers[ timer ][1],
 		timers[ timer ][3] / timers[ timer ][4] ,
@@ -3715,7 +3732,7 @@ int display_timer( CHAR_DATA *ch, int timer )
 
 void open_timer( int timer )
 {
-	int cur_time;
+	int64_t cur_time;
 	cur_time = get_game_usec();
 	if( timers[timer][2] > cur_time || timers[timer][2] == 0 )
 	{
@@ -3735,7 +3752,7 @@ void open_timer( int timer )
 
 void close_timer( int timer )
 {
-	int cur_time;
+	int64_t cur_time;
 	cur_time = get_game_usec();
 	if( timers[timer][2] > cur_time || timers[timer][2] == 0 )
 	{

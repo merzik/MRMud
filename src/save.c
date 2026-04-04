@@ -113,7 +113,7 @@ void save_char_obj(CHAR_DATA *ch, int which_type)
 	FILE *fp;
 	ROOM_INDEX_DATA *troom;
 	bool IS_DESC;
-	int game_time_1, game_time_2, game_time_3, game_time_4, game_time_5;
+	int64_t game_time_1, game_time_2, game_time_3, game_time_4, game_time_5;
 	(void)game_time_1;
 	/* let parent back out of save */
 
@@ -298,13 +298,13 @@ void save_char_obj(CHAR_DATA *ch, int which_type)
 	if( !IS_NPC( ch ) && IS_SET( ch->act, PLR_WIZTIME ))
 	{
 		char qbuf[200];
-		sprintf( qbuf, "(%d usec to open fp)\n\r",
+		sprintf( qbuf, "(%" PRId64 " usec to open fp)\n\r",
 			game_time_3-game_time_2);
 		send_to_char( qbuf, ch);
-		sprintf( qbuf, "(%d usec to write fp)\n\r",
+		sprintf( qbuf, "(%" PRId64 " usec to write fp)\n\r",
 			game_time_4-game_time_3);
 		send_to_char( qbuf, ch);
-		sprintf( qbuf, "(%d usec to close fp)\n\r",
+		sprintf( qbuf, "(%" PRId64 " usec to close fp)\n\r",
 			game_time_5-game_time_4);
 		send_to_char( qbuf, ch);
 	}
@@ -365,10 +365,10 @@ void fwrite_char( CHAR_DATA *ch, FILE *fp )
 	fprintf( fp, "Speak %d\n", ch->speak );
 	fprintf( fp, "Level %d\n", ch->level );
 	fprintf( fp, "Trust %d\n", ch->trust );
-	fprintf( fp, "Played %d\n", ch->played );
-	fprintf( fp, "KLR_Played %d\n", ch->killer_played );
+	fprintf( fp, "Played %" PRId64 "\n", ch->played );
+	fprintf( fp, "KLR_Played %" PRId64 "\n", ch->killer_played );
 	fprintf( fp, "Critical %ld\n", ch->critical_hit_by );
-	fprintf( fp, "OutCastPlay %d\n", ch->outcast_played );
+	fprintf( fp, "OutCastPlay %" PRId64 "\n", ch->outcast_played );
 	fprintf( fp, "Room %u\n",
 		( ch->in_room == get_room_index( ROOM_VNUM_LIMBO )
 		&& ch->was_in_room != NULL
@@ -1987,7 +1987,12 @@ void fread_char( CHAR_DATA *ch, FILE *fp )
 			break;
 		case 'K':
 
-			KEY( "KLR_Played", ch->killer_played, fread_number( fp ) );
+			if( !strcasecmp( word, "KLR_Played" ) )
+			{
+				ch->killer_played = fread_int64( fp );
+				fMatch = TRUE;
+				break;
+			}
 			KEY( "KillNum", ch->pcdata->killnum, fread_number( fp ) );
 			if ( !strcmp( word, "KillName" ) )
 			{
@@ -2075,7 +2080,12 @@ void fread_char( CHAR_DATA *ch, FILE *fp )
 			break;
 		case 'O':
 			KEY( "Obj_Ver_Num",ch->pcdata->obj_version_number,fread_number(fp));
-			KEY( "OutCastPlay", ch->outcast_played, fread_number( fp ) );
+			if( !strcasecmp( word, "OutCastPlay" ) )
+			{
+				ch->outcast_played = fread_int64( fp );
+				fMatch = TRUE;
+				break;
+			}
 			if ( !strcmp( word, "ObjRange" ) )
 			{
 				ch->pcdata->o_range_lo = fread_number( fp );
@@ -2086,7 +2096,12 @@ void fread_char( CHAR_DATA *ch, FILE *fp )
 
 		case 'P':
 			SKEY("Password", ch->pcdata->password, fread_string_nohash(fp));
-			KEY( "Played", ch->played, fread_number( fp ) );
+			if( !strcasecmp( word, "Played" ) )
+			{
+				ch->played = fread_int64( fp );
+				fMatch = TRUE;
+				break;
+			}
 			KEY( "Position", ch->position, fread_number( fp ) );
 			KEY( "Practice", ch->practice, fread_number( fp ) );
 			KEY( "Player2_Bits",ch->pcdata->player2_bits,fread_number( fp ) );

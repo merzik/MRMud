@@ -21,6 +21,7 @@
 #include <sys/types.h>
 #include <sys/socket.h>
 #endif
+#include <inttypes.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -1108,7 +1109,7 @@ void do_mstat( CHAR_DATA *ch, char *argument )
 		race_table[victim->race].race_name
 		);
 	else
-		sprintf( buf, "Played: %d. Sex: %s. Room: %u. Race: %s.\n\r",
+		sprintf( buf, "Played: %" PRId64 ". Sex: %s. Room: %u. Race: %s.\n\r",
 		victim->played,
 		victim->sex == SEX_MALE ? "male" :
 	victim->sex == SEX_FEMALE ? "female" : "neutral",
@@ -1187,8 +1188,8 @@ void do_mstat( CHAR_DATA *ch, char *argument )
 		victim->carry_number, victim->carry_weight );
 	send_to_char( buf, ch );
 
-	sprintf( buf, "Age: %d. Played: %d hours. Timer: %d.\n\r",
-		get_age( victim ), (int) victim->played/3600, victim->timer);
+	sprintf( buf, "Age: %d. Played: %" PRId64 " hours. Timer: %d.\n\r",
+		get_age( victim ), victim->played / 3600, victim->timer);
 	send_to_char( buf, ch );
 
 	if ( IS_NPC( victim ) )

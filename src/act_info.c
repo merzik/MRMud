@@ -21,6 +21,7 @@
 #include <sys/types.h>
 #endif
 #include <ctype.h>
+#include <inttypes.h>
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
@@ -2160,7 +2161,7 @@ void get_string_score_v1( CHAR_DATA *ch, CHAR_DATA *viewer)
 	/*****   |     Age:%s%3d%s yrs (%05d hrs)                                   |*/
 	if(strlen(buf1)>33)
 		buf1[33]='\0';
-	sprintf(buf,"%s   |%s             Age: %s%3d%s yrs (%05d hrs)%s                                 |\n\r", 
+	sprintf(buf,"%s   |%s             Age: %s%3d%s yrs (%05" PRId64 " hrs)%s                                 |\n\r", 
 		ANSI_YELLOW_DIM, catColor, valColor, get_age(ch), ANSI_GREEN_BOLD, (ch->played)/3600 + (IS_NPC(ch)?0:ch->pcdata->previous_hours),
 		ANSI_YELLOW_DIM);
 	leng = str_apd_max( get_string_score_txt, buf, leng, MAX_STRING_LENGTH);
@@ -2500,7 +2501,7 @@ void get_spy_score( CHAR_DATA *ch, CHAR_DATA *viewer)
 		buf1[70]='\0';
 	sprintf(buf,"%s |%s|\n\r",bold,str_resize(buf1,tbuf1,-70));
 	leng = str_apd_max( get_spy_score_txt, buf, leng, MAX_STRING_LENGTH);
-	sprintf(buf,"%s |%s Class:%s%s%s Age:%s%3d%s yrs (%05d hrs) RACE:%s %s|\n\r"
+	sprintf(buf,"%s |%s Class:%s%s%s Age:%s%3d%s yrs (%05" PRId64 " hrs) RACE:%s %s|\n\r"
 		,bold,dim,bold,
 		str_resize(class_table[ch->class].who_name_long,tbuf1,-20),
 		dim,bold,
