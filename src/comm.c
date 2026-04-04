@@ -5366,8 +5366,9 @@ void do_finger( CHAR_DATA *ch, char *argument)
 			{
 				if(fch->pcdata->last_time>0)
 				{
+					time_t last_time = (time_t)fch->pcdata->last_time;
 					sprintf( buf2, "%sLast time in the realm: %s\r",
-						ANSI_CYAN_DIM,ctime((const time_t *)&fch->pcdata->last_time));
+						ANSI_CYAN_DIM, ctime(&last_time));
 					length = str_apd_max (outbuf, buf2, length, MAX_STRING_LENGTH);
 				}
 				if(loaded)
