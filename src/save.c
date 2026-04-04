@@ -696,7 +696,7 @@ void fwrite_obj( CHAR_DATA *ch, OBJ_DATA *obj, FILE *fp, int iNest )
 				fprintf( fp, "Level %d\n", obj->level );
 				fprintf( fp, "Timer %d\n", obj->timer );
 				fprintf( fp, "Cost %d\n", obj->cost );
-				fprintf( fp, "Owner %d\n", obj->owned_by );
+				fprintf( fp, "Owner %ld\n", obj->owned_by );
 				fprintf( fp, "Values %d %d %d %d\n",
 				obj->value[0], obj->value[1], obj->value[2], obj->value[3] );
 				fprintf( fp, "Qst %d\n", obj->obj_quest );
@@ -1779,7 +1779,12 @@ void fread_char( CHAR_DATA *ch, FILE *fp )
 			SKEY( "ClanPledge", ch->pcdata->clan_pledge,fread_string( fp ) );
 			KEY( "ClanPosition",ch->pcdata->clan_position,fread_number( fp ) );
 			KEY( "Class", ch->class, fread_number( fp ) );
-			KEY( "Critical", ch->critical_hit_by, fread_number( fp ) );
+			if( !strcasecmp( word, "Critical" ) )
+			{
+				ch->critical_hit_by = (long) fread_int64( fp );
+				fMatch = TRUE;
+				break;
+			}
 			KEY( "Clock", ch->clock, fread_number( fp ) );
 			KEY( "CreationRoom", ch->pcdata->creation_room,fread_number( fp ) );
 			KEY( "Compass", ch->pcdata->compass_width,fread_number( fp ) );
@@ -2109,7 +2114,12 @@ void fread_char( CHAR_DATA *ch, FILE *fp )
 			KEY( "Portsize", ch->pcdata->port_size, fread_number( fp ) );
 			SKEY( "Prompt_Layout",ch->pcdata->prompt_layout,fread_string(fp));
 			KEY( "Portbaud", ch->pcdata->port_baud, fread_number( fp ) );
-			KEY( "P__vnum", ch->pcdata->pvnum, fread_number( fp ) );
+			if( !strcasecmp( word, "P__vnum" ) )
+			{
+				ch->pcdata->pvnum = (long) fread_int64( fp );
+				fMatch = TRUE;
+				break;
+			}
 			/* useless lines to keep old character files readable */
 			KEY( "P_vnum", cnt, fread_number( fp ) );
 			KEY( "Pvnum", cnt, fread_number( fp ) );
@@ -2122,7 +2132,7 @@ void fread_char( CHAR_DATA *ch, FILE *fp )
 				for(cnt2=0; cnt2<cnt; cnt2++)
 				{
 					ch->pcdata->last_pk_attack_time[cnt2]=fread_time(fp);
-					ch->pcdata->last_pk_attack_pvnum[cnt2]=fread_number(fp);
+					ch->pcdata->last_pk_attack_pvnum[cnt2]=(long)fread_int64(fp);
 					STRFREE( ch->pcdata->last_pk_attack_name[cnt2] );
 					ch->pcdata->last_pk_attack_name[cnt2]=fread_string(fp);
 				}
@@ -2690,7 +2700,12 @@ void fread_obj( CHAR_DATA *ch, FILE *fp )
 			}
 			break;
 		case 'O':
-			KEY( "Owner", obj->owned_by, fread_number( fp ) );
+			if( !strcasecmp( word, "Owner" ) )
+			{
+				obj->owned_by = (long) fread_int64( fp );
+				fMatch = TRUE;
+				break;
+			}
 			break;
 		case 'P':
 			if( !strcasecmp( word, "POISON_DATA" ) )
@@ -3163,7 +3178,12 @@ OBJ_DATA *fread_corpse_item( OBJ_DATA *ch_obj, CHAR_DATA *ch, FILE *fp ,
 			}
 			break;
 		case 'O':
-			KEY( "Owner", obj->owned_by, fread_number( fp ) );
+			if( !strcasecmp( word, "Owner" ) )
+			{
+				obj->owned_by = (long) fread_int64( fp );
+				fMatch = TRUE;
+				break;
+			}
 			break;
 		case 'Q':
 			if ( !strcasecmp( word, "Qst" ) )
@@ -3483,8 +3503,8 @@ POISON_DATA *fread_poison_data( FILE *fp )
 		pd->constant_duration=fread_number(fp);
 		pd->constant_damage_low=fread_number(fp);
 		pd->constant_damage_high=fread_number(fp);
-		pd->owner=fread_number(fp);
-		pd->poisoner =fread_number(fp);
+		pd->owner=(long)fread_int64(fp);
+		pd->poisoner =(long)fread_int64(fp);
 		pd->next = NULL;
 
 		return( pd );
@@ -3543,7 +3563,7 @@ void save_notes()
 	}
 
 	/* Weed out outdated notes and save the ones we're keeping to file */
-	for (pnote = first_note; pnote->next != NULL; pnote = pnote_next)
+	for (pnote = first_note; pnote != NULL; pnote = pnote_next)
 	{
 		pnote_next = pnote->next;
 

@@ -899,7 +899,7 @@ void load_owners( void)
 			break;
 		}
 		CREATE( pOwner, OWNER_DATA, 1);
-		pOwner->pvnum = fread_number( fpList );
+		pOwner->pvnum = (long) fread_int64( fpList );
 		pOwner->lastentry = fread_number( fpList );
 		pOwner->name = fread_string( fpList );
 		LINK (pOwner, first_owner, last_owner, next, prev);
