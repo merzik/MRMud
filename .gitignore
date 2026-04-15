@@ -57,12 +57,7 @@ bin/next_md
 bin/current_md
 log/*
 !log/.gitkeep
-
-player/*
-!player/*/
-player/*/*
-!player/*/.gitkeep
-!player/c/Chaos
+player/c/Chaos
 
 areas/adjusted.txt
 areas/boot.txt
@@ -78,6 +73,7 @@ areas/shutdown.txt
 areas/siteban.tmp
 areas/swear.txt
 areas/typos.txt
+areas/usage.txt
 areas/usage.tmp
 areas/victory.txt
 areas/victory.tmp

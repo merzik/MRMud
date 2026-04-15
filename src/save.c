@@ -21,6 +21,7 @@
 #include <sys/types.h>
 #endif
 #include <ctype.h>
+#include <inttypes.h>
 #include <stdio.h>
 #include <string.h>
 #include <time.h>
@@ -112,7 +113,7 @@ void save_char_obj(CHAR_DATA *ch, int which_type)
 	FILE *fp;
 	ROOM_INDEX_DATA *troom;
 	bool IS_DESC;
-	int game_time_1, game_time_2, game_time_3, game_time_4, game_time_5;
+	int64_t game_time_1, game_time_2, game_time_3, game_time_4, game_time_5;
 	(void)game_time_1;
 	/* let parent back out of save */
 
@@ -297,13 +298,13 @@ void save_char_obj(CHAR_DATA *ch, int which_type)
 	if( !IS_NPC( ch ) && IS_SET( ch->act, PLR_WIZTIME ))
 	{
 		char qbuf[200];
-		sprintf( qbuf, "(%d usec to open fp)\n\r",
+		sprintf( qbuf, "(%" PRId64 " usec to open fp)\n\r",
 			game_time_3-game_time_2);
 		send_to_char( qbuf, ch);
-		sprintf( qbuf, "(%d usec to write fp)\n\r",
+		sprintf( qbuf, "(%" PRId64 " usec to write fp)\n\r",
 			game_time_4-game_time_3);
 		send_to_char( qbuf, ch);
-		sprintf( qbuf, "(%d usec to close fp)\n\r",
+		sprintf( qbuf, "(%" PRId64 " usec to close fp)\n\r",
 			game_time_5-game_time_4);
 		send_to_char( qbuf, ch);
 	}
@@ -364,10 +365,10 @@ void fwrite_char( CHAR_DATA *ch, FILE *fp )
 	fprintf( fp, "Speak %d\n", ch->speak );
 	fprintf( fp, "Level %d\n", ch->level );
 	fprintf( fp, "Trust %d\n", ch->trust );
-	fprintf( fp, "Played %d\n", ch->played );
-	fprintf( fp, "KLR_Played %d\n", ch->killer_played );
+	fprintf( fp, "Played %" PRId64 "\n", ch->played );
+	fprintf( fp, "KLR_Played %" PRId64 "\n", ch->killer_played );
 	fprintf( fp, "Critical %ld\n", ch->critical_hit_by );
-	fprintf( fp, "OutCastPlay %d\n", ch->outcast_played );
+	fprintf( fp, "OutCastPlay %" PRId64 "\n", ch->outcast_played );
 	fprintf( fp, "Room %u\n",
 		( ch->in_room == get_room_index( ROOM_VNUM_LIMBO )
 		&& ch->was_in_room != NULL
@@ -417,10 +418,10 @@ void fwrite_char( CHAR_DATA *ch, FILE *fp )
 		fprintf( fp, "ClanPledge %s~\n", ch->pcdata->clan_pledge );
 	if (ch->pcdata->clan_position != 0)
 		fprintf( fp, "ClanPosition %d\n", ch->pcdata->clan_position );
-	fprintf( fp, "LastTime %d\n", (int)current_time );
+	fprintf( fp, "LastTime %" PRIdMAX "\n", (intmax_t) current_time );
 	fprintf( fp, "Arrested %d\n", ch->pcdata->arrested);
 	fprintf( fp, "Jailtime %d\n", ch->pcdata->jailtime);
-	fprintf( fp, "Jaildate %d\n", ch->pcdata->jaildate);
+	fprintf( fp, "Jaildate %" PRIdMAX "\n", (intmax_t) ch->pcdata->jaildate);
 
 	fprintf( fp, "Mailaddress %s~\n", ch->pcdata->mail_address);
 	fprintf( fp, "Htmladdress %s~\n", ch->pcdata->html_address);
@@ -583,7 +584,7 @@ void fwrite_char( CHAR_DATA *ch, FILE *fp )
 	fprintf( fp, "PK_ATTACKS %d\n", MAX_PK_ATTACKS );
 	for( cnt=0; cnt<MAX_PK_ATTACKS; cnt++)
 	{
-		fprintf( fp, "%d %ld %s~\n", ch->pcdata->last_pk_attack_time[cnt],
+		fprintf( fp, "%" PRIdMAX " %ld %s~\n", (intmax_t) ch->pcdata->last_pk_attack_time[cnt],
 			ch->pcdata->last_pk_attack_pvnum[cnt],
 			ch->pcdata->last_pk_attack_name[cnt] );
 	}
@@ -695,7 +696,7 @@ void fwrite_obj( CHAR_DATA *ch, OBJ_DATA *obj, FILE *fp, int iNest )
 				fprintf( fp, "Level %d\n", obj->level );
 				fprintf( fp, "Timer %d\n", obj->timer );
 				fprintf( fp, "Cost %d\n", obj->cost );
-				fprintf( fp, "Owner %d\n", obj->owned_by );
+				fprintf( fp, "Owner %ld\n", obj->owned_by );
 				fprintf( fp, "Values %d %d %d %d\n",
 				obj->value[0], obj->value[1], obj->value[2], obj->value[3] );
 				fprintf( fp, "Qst %d\n", obj->obj_quest );
@@ -1778,7 +1779,12 @@ void fread_char( CHAR_DATA *ch, FILE *fp )
 			SKEY( "ClanPledge", ch->pcdata->clan_pledge,fread_string( fp ) );
 			KEY( "ClanPosition",ch->pcdata->clan_position,fread_number( fp ) );
 			KEY( "Class", ch->class, fread_number( fp ) );
-			KEY( "Critical", ch->critical_hit_by, fread_number( fp ) );
+			if( !strcasecmp( word, "Critical" ) )
+			{
+				ch->critical_hit_by = (long) fread_int64( fp );
+				fMatch = TRUE;
+				break;
+			}
 			KEY( "Clock", ch->clock, fread_number( fp ) );
 			KEY( "CreationRoom", ch->pcdata->creation_room,fread_number( fp ) );
 			KEY( "Compass", ch->pcdata->compass_width,fread_number( fp ) );
@@ -1976,12 +1982,22 @@ void fread_char( CHAR_DATA *ch, FILE *fp )
 			}
 			break;
 		case 'J':
-			KEY( "Jaildate", ch->pcdata->jaildate, fread_number( fp ) );
+			if( !strcasecmp( word, "Jaildate" ) )
+			{
+				ch->pcdata->jaildate = fread_time( fp );
+				fMatch = TRUE;
+				break;
+			}
 			KEY( "Jailtime", ch->pcdata->jailtime, fread_number( fp ) );
 			break;
 		case 'K':
 
-			KEY( "KLR_Played", ch->killer_played, fread_number( fp ) );
+			if( !strcasecmp( word, "KLR_Played" ) )
+			{
+				ch->killer_played = fread_int64( fp );
+				fMatch = TRUE;
+				break;
+			}
 			KEY( "KillNum", ch->pcdata->killnum, fread_number( fp ) );
 			if ( !strcmp( word, "KillName" ) )
 			{
@@ -2024,7 +2040,12 @@ void fread_char( CHAR_DATA *ch, FILE *fp )
 			KEY( "LastNote", ch->pcdata->last_note, fread_number( fp ) );
 			SKEY("Lastlogin", ch->desc->old_host, fread_string_nohash( fp ) );
 			SKEY("LastDomain", ch->desc->old_domain, fread_string_nohash( fp ) );
-			KEY( "LastTime", ch->pcdata->last_time, fread_number( fp ));
+			if( !strcasecmp( word, "LastTime" ) )
+			{
+				ch->pcdata->last_time = fread_time( fp );
+				fMatch = TRUE;
+				break;
+			}
 			KEY( "LastConnect", ch->pcdata->last_connect, fread_number( fp ));
 			KEY("Last_Real_Room",ch->pcdata->last_real_room,fread_number( fp ));
 			break;
@@ -2064,7 +2085,12 @@ void fread_char( CHAR_DATA *ch, FILE *fp )
 			break;
 		case 'O':
 			KEY( "Obj_Ver_Num",ch->pcdata->obj_version_number,fread_number(fp));
-			KEY( "OutCastPlay", ch->outcast_played, fread_number( fp ) );
+			if( !strcasecmp( word, "OutCastPlay" ) )
+			{
+				ch->outcast_played = fread_int64( fp );
+				fMatch = TRUE;
+				break;
+			}
 			if ( !strcmp( word, "ObjRange" ) )
 			{
 				ch->pcdata->o_range_lo = fread_number( fp );
@@ -2075,7 +2101,12 @@ void fread_char( CHAR_DATA *ch, FILE *fp )
 
 		case 'P':
 			SKEY("Password", ch->pcdata->password, fread_string_nohash(fp));
-			KEY( "Played", ch->played, fread_number( fp ) );
+			if( !strcasecmp( word, "Played" ) )
+			{
+				ch->played = fread_int64( fp );
+				fMatch = TRUE;
+				break;
+			}
 			KEY( "Position", ch->position, fread_number( fp ) );
 			KEY( "Practice", ch->practice, fread_number( fp ) );
 			KEY( "Player2_Bits",ch->pcdata->player2_bits,fread_number( fp ) );
@@ -2083,7 +2114,12 @@ void fread_char( CHAR_DATA *ch, FILE *fp )
 			KEY( "Portsize", ch->pcdata->port_size, fread_number( fp ) );
 			SKEY( "Prompt_Layout",ch->pcdata->prompt_layout,fread_string(fp));
 			KEY( "Portbaud", ch->pcdata->port_baud, fread_number( fp ) );
-			KEY( "P__vnum", ch->pcdata->pvnum, fread_number( fp ) );
+			if( !strcasecmp( word, "P__vnum" ) )
+			{
+				ch->pcdata->pvnum = (long) fread_int64( fp );
+				fMatch = TRUE;
+				break;
+			}
 			/* useless lines to keep old character files readable */
 			KEY( "P_vnum", cnt, fread_number( fp ) );
 			KEY( "Pvnum", cnt, fread_number( fp ) );
@@ -2095,8 +2131,8 @@ void fread_char( CHAR_DATA *ch, FILE *fp )
 					cnt = MAX_PK_ATTACKS;
 				for(cnt2=0; cnt2<cnt; cnt2++)
 				{
-					ch->pcdata->last_pk_attack_time[cnt2]=fread_number(fp);
-					ch->pcdata->last_pk_attack_pvnum[cnt2]=fread_number(fp);
+					ch->pcdata->last_pk_attack_time[cnt2]=fread_time(fp);
+					ch->pcdata->last_pk_attack_pvnum[cnt2]=(long)fread_int64(fp);
 					STRFREE( ch->pcdata->last_pk_attack_name[cnt2] );
 					ch->pcdata->last_pk_attack_name[cnt2]=fread_string(fp);
 				}
@@ -2664,7 +2700,12 @@ void fread_obj( CHAR_DATA *ch, FILE *fp )
 			}
 			break;
 		case 'O':
-			KEY( "Owner", obj->owned_by, fread_number( fp ) );
+			if( !strcasecmp( word, "Owner" ) )
+			{
+				obj->owned_by = (long) fread_int64( fp );
+				fMatch = TRUE;
+				break;
+			}
 			break;
 		case 'P':
 			if( !strcasecmp( word, "POISON_DATA" ) )
@@ -3137,7 +3178,12 @@ OBJ_DATA *fread_corpse_item( OBJ_DATA *ch_obj, CHAR_DATA *ch, FILE *fp ,
 			}
 			break;
 		case 'O':
-			KEY( "Owner", obj->owned_by, fread_number( fp ) );
+			if( !strcasecmp( word, "Owner" ) )
+			{
+				obj->owned_by = (long) fread_int64( fp );
+				fMatch = TRUE;
+				break;
+			}
 			break;
 		case 'Q':
 			if ( !strcasecmp( word, "Qst" ) )
@@ -3457,8 +3503,8 @@ POISON_DATA *fread_poison_data( FILE *fp )
 		pd->constant_duration=fread_number(fp);
 		pd->constant_damage_low=fread_number(fp);
 		pd->constant_damage_high=fread_number(fp);
-		pd->owner=fread_number(fp);
-		pd->poisoner =fread_number(fp);
+		pd->owner=(long)fread_int64(fp);
+		pd->poisoner =(long)fread_int64(fp);
 		pd->next = NULL;
 
 		return( pd );
@@ -3506,7 +3552,7 @@ void save_notes()
 {
 	FILE *fp;
 	NOTE_DATA *pnote, *pnote_next;
-	int iCurTime;
+	time_t iCurTime;
 
 	log_string("Saving notes...");
 	fp = fopen(NOTE_FILE_T, "w");
@@ -3517,7 +3563,7 @@ void save_notes()
 	}
 
 	/* Weed out outdated notes and save the ones we're keeping to file */
-	for (pnote = first_note; pnote->next != NULL; pnote = pnote_next)
+	for (pnote = first_note; pnote != NULL; pnote = pnote_next)
 	{
 		pnote_next = pnote->next;
 
@@ -3554,7 +3600,7 @@ void save_notes()
 		}
 		else/* Write the note to the file */
 		{
-			fprintf (fp, "Sender %s~\nDate %s~\nTime %d\nTo %s~\nSubject %s~\nTopic %d\nText\n%s~\nRoom %u\n\n",
+			fprintf (fp, "Sender %s~\nDate %s~\nTime %" PRIdMAX "\nTo %s~\nSubject %s~\nTopic %d\nText\n%s~\nRoom %u\n\n",
 				pnote->sender, pnote->date, pnote->time,
 				pnote->to_list, pnote->subject,
 				pnote->topic, pnote->text,

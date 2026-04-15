@@ -21,6 +21,7 @@
 /* #include <prof.h> */
 #include <stdarg.h>
 #include <stdlib.h>
+#include <stdint.h>
 #include <limits.h>
 
 #if defined(TRADITIONAL)
@@ -599,7 +600,7 @@ struct note_data
 	char * subject;
 	int topic;
 	char * text;
-	int time; /* encoded format for dates */
+	time_t time; /* encoded format for dates */
 	int room_vnum; /* Room based note boards */
 };
 
@@ -1318,9 +1319,9 @@ struct char_data
 	sh_int race;
 	sh_int level;
 	sh_int trust;
-	int played;
-	int killer_played;
-	int outcast_played;
+	int64_t played;
+	int64_t killer_played;
+	int64_t outcast_played;
 	time_t logon;
 	time_t save_time;
 	sh_int timer;
@@ -1431,7 +1432,7 @@ struct pc_data
 	int give_prac_pos;
 	int give_prac_neg;
 	int just_died_ctr;
-	int time_of_death;
+	time_t time_of_death;
 	int demisedlevel;
 	int port_size;
 	int port_baud;
@@ -1472,7 +1473,7 @@ struct pc_data
 	int creation_room; /* Room where creation starts */
 	int creator_zone; /* Assigned zone number */
 	int last_connect; /* min*60+sec to block tintin repeat */
-	int last_time; /* current_time of last save */
+	time_t last_time; /* current_time of last save */
 	int death_room; /* vnum of saved death room */
 	int channel; /* The channel number tuned to */
 	int channel_request; /* The channel number requested */
@@ -1493,7 +1494,7 @@ struct pc_data
 	int travel; /* Traveling Direction, Normally -1 */
 	int account; /*Character's Bank Account*/
 	int jailtime;
-	int jaildate;
+	time_t jaildate;
 	int MrTerm_Experience;
 	int MrTerm_Exp_Level;
 	int MrTerm_Gold;
@@ -1528,7 +1529,7 @@ struct pc_data
 	sh_int old_wait;
 	sh_int history[9];
 	/* pthread_t beingsaved; */
-	int last_pk_attack_time[MAX_PK_ATTACKS];
+	time_t last_pk_attack_time[MAX_PK_ATTACKS];
 	long last_pk_attack_pvnum[MAX_PK_ATTACKS];
 	char *last_pk_attack_name[MAX_PK_ATTACKS];
 	char *last_command;
@@ -1830,7 +1831,7 @@ struct bounty_data
 	BOUNTY_DATA *prev;
 	char *name;
 	int amount;
-	int postdate;
+	time_t postdate;
 	int expires;
 };
 
@@ -3331,6 +3332,8 @@ RID * get_room_index args( ( int vnum ) );
 RID * get_room_index_old args( ( int vnum ) );
 char fread_letter args( ( FILE *fp ) );
 int fread_number args( ( FILE *fp ) );
+int64_t fread_int64 args( ( FILE *fp ) );
+time_t fread_time args( ( FILE *fp ) );
 char * fread_string args( ( FILE *fp ) );
 char * fread_string_nohash args( ( FILE *fp ) );
 char * fread_string_max ( FILE *fp , int );
@@ -3715,7 +3718,7 @@ bool FINGER_MODE; /* changes method of some commands */
 bool is_char_valid( CHAR_DATA *); /* scans all players for active */
 
 bool is_enchanted_obj( OBJ_DATA *);
-int get_game_usec( void );
+int64_t get_game_usec( void );
 
 void send_1_byte( CHAR_DATA *, int , sh_int ); /* Use for direct data */
 void send_2_byte( CHAR_DATA *, int , sh_int ); /* processing systems */
@@ -3783,7 +3786,7 @@ int display_timer( CHAR_DATA *ch, int );
 
 #define MAX_TIMERS 31
 
-int timers[ MAX_TIMERS ][5];
+int64_t timers[ MAX_TIMERS ][5];
 extern const char timer_strings[ MAX_TIMERS ][80] ;
 
 int get_max_speed( CHAR_DATA *ch ); /* Determine fastest rate of travel */
@@ -4185,5 +4188,3 @@ int initiate_mana_loss( int, int ); /* Returns mana loss */
 int initiate_move_loss( int, int ); /* Returns move loss */
 CASTLE_DATA *get_castle_data( CHAR_DATA *);
 CASTLE_DATA get_castle_data_data;
-
-

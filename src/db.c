@@ -37,6 +37,7 @@
 #include <stdarg.h>
 #include <string.h>
 /* #include <strings.h> */
+#include <inttypes.h>
 #include <stdint.h>
 #include <time.h>
 #include <sys/stat.h>
@@ -898,7 +899,7 @@ void load_owners( void)
 			break;
 		}
 		CREATE( pOwner, OWNER_DATA, 1);
-		pOwner->pvnum = fread_number( fpList );
+		pOwner->pvnum = (long) fread_int64( fpList );
 		pOwner->lastentry = fread_number( fpList );
 		pOwner->name = fread_string( fpList );
 		LINK (pOwner, first_owner, last_owner, next, prev);
@@ -1947,7 +1948,7 @@ void load_notes( void )
 
 		if ( strcasecmp( fread_word( fp ), "time" ) )
 			break;
-		pnote->time = fread_number( fp );
+		pnote->time = fread_time( fp );
 
 		if ( strcasecmp( fread_word( fp ), "to" ) )
 			break;
@@ -3113,6 +3114,40 @@ int fread_number( FILE *fp )
 	return number;
 }
 
+int64_t fread_int64( FILE *fp )
+{
+	char *word;
+	intmax_t number;
+	char *endptr;
+
+	word = fread_word( fp );
+	number = strtoimax( word, &endptr, 10 );
+	if( endptr == word || *endptr != '\0' )
+	{
+		bug( "fread_int64: bad format '%s'.", word );
+		return 0;
+	}
+
+	return( (int64_t) number );
+}
+
+time_t fread_time( FILE *fp )
+{
+	char *word;
+	intmax_t number;
+	char *endptr;
+
+	word = fread_word( fp );
+	number = strtoimax( word, &endptr, 10 );
+	if( endptr == word || *endptr != '\0' )
+	{
+		bug( "fread_time: bad format '%s'.", word );
+		return 0;
+	}
+
+	return( (time_t) number );
+}
+
 
 
 /*
@@ -3123,7 +3158,8 @@ char *fread_string( FILE *fp )
 {
 	char buf[MAX_STRING_LENGTH];
 	char *plast;
-	char c;
+	int c;
+	int ch;
 	int ln;
 
 	plast = buf;
@@ -3144,10 +3180,17 @@ char *fread_string( FILE *fp )
 			return STRALLOC("");
 		}
 		c = getc( fp );
+		if ( c == EOF )
+		{
+			bug("fread_string: EOF encountered on read.\n\r");
+			if ( fBootDb )
+				exit(1);
+			return STRALLOC("");
+		}
 	}
-	while ( isspace((int)c) );
+	while ( isspace(c) );
 
-	if ( ( *plast++ = c ) == '~' )
+	if ( ( *plast++ = (char)c ) == '~' )
 		return STRALLOC( "" );
 
 	for ( ;; )
@@ -3158,9 +3201,11 @@ char *fread_string( FILE *fp )
 			*plast = '\0';
 			return STRALLOC( buf );
 		}
-		switch ( *plast = getc( fp ) )
+		ch = getc( fp );
+		switch ( ch )
 		{
 		default:
+			*plast = (char)ch;
 			plast++; ln++;
 			break;
 
@@ -3173,6 +3218,7 @@ char *fread_string( FILE *fp )
 			break;
 
 		case '\n':
+			*plast = (char)ch;
 			plast++; ln++;
 			*plast++ = '\r'; ln++;
 			break;
@@ -3194,7 +3240,8 @@ char *fread_string_nohash( FILE *fp )
 {
 	char buf[MAX_STRING_LENGTH];
 	char *plast;
-	char c;
+	int c;
+	int ch;
 	int ln;
 
 	plast = buf;
@@ -3216,10 +3263,17 @@ char *fread_string_nohash( FILE *fp )
 			return str_dup("");
 		}
 		c = getc( fp );
+		if ( c == EOF )
+		{
+			bug("fread_string_no_hash: EOF encountered on read.\n\r");
+			if ( fBootDb )
+				exit(1);
+			return str_dup("");
+		}
 	}
-	while ( isspace((int)c) );
+	while ( isspace(c) );
 
-	if ( ( *plast++ = c ) == '~' )
+	if ( ( *plast++ = (char)c ) == '~' )
 		return str_dup( "" );
 
 	for ( ;; )
@@ -3230,9 +3284,11 @@ char *fread_string_nohash( FILE *fp )
 			*plast = '\0';
 			return str_dup( buf );
 		}
-		switch ( *plast = getc( fp ) )
+		ch = getc( fp );
+		switch ( ch )
 		{
 		default:
+			*plast = (char)ch;
 			plast++; ln++;
 			break;
 
@@ -3245,6 +3301,7 @@ char *fread_string_nohash( FILE *fp )
 			break;
 
 		case '\n':
+			*plast = (char)ch;
 			plast++; ln++;
 			*plast++ = '\r'; ln++;
 			break;
@@ -3680,7 +3737,7 @@ int display_timer( CHAR_DATA *ch, int timer )
 	ind_usage = (float)(timers[ timer ][0] / timers[ timer ][1] ) /
 		(float)(timers[ timer ][3] / timers[ timer ][4]) / 10.0 ;
 
-	sprintf( buf, "%s%7d %8d %4.3f %4.4f\n\r",
+	sprintf( buf, "%s%7" PRId64 " %8" PRId64 " %4.3f %4.4f\n\r",
 		timer_strings[ timer] ,
 		timers[ timer ][0] / timers[ timer ][1],
 		timers[ timer ][3] / timers[ timer ][4] ,
@@ -3697,7 +3754,7 @@ int display_timer( CHAR_DATA *ch, int timer )
 
 void open_timer( int timer )
 {
-	int cur_time;
+	int64_t cur_time;
 	cur_time = get_game_usec();
 	if( timers[timer][2] > cur_time || timers[timer][2] == 0 )
 	{
@@ -3717,7 +3774,7 @@ void open_timer( int timer )
 
 void close_timer( int timer )
 {
-	int cur_time;
+	int64_t cur_time;
 	cur_time = get_game_usec();
 	if( timers[timer][2] > cur_time || timers[timer][2] == 0 )
 	{
@@ -6975,7 +7032,7 @@ void load_bounties(void)
 				CREATE(bptr, BOUNTY_DATA, 1);
 				bptr->name = STRALLOC(capitalize(buf));
 				bptr->amount = fread_number(fp);
-				bptr->postdate = fread_number(fp);
+				bptr->postdate = fread_time(fp);
 				bptr->expires = fread_number(fp);
 				sort_bounty( bptr );
 			}
@@ -7005,8 +7062,8 @@ void save_bounties(void)
 	{
 		for(bptr=first_bounty; bptr; bptr=bptr->next)
 		{
-			fprintf(fp, "%-12s %9d %9d %9d\n", capitalize(bptr->name), bptr->amount,
-				bptr->postdate, bptr->expires);
+			fprintf(fp, "%-12s %9d %12" PRIdMAX " %9d\n", capitalize(bptr->name), bptr->amount,
+				(intmax_t) bptr->postdate, bptr->expires);
 		}
 		fprintf(fp, "NULL\nXXXXXXXXXX\n#Bounty\n");
 	}
@@ -7247,4 +7304,3 @@ int get_obj_stat( OBJ_INDEX_DATA *obj_index, char *argument )
 	return( 0 );
 
 }
-

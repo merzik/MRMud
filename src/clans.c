@@ -279,7 +279,12 @@ void fread_clan( CLAN_DATA *clan, FILE *fp )
 		case 'C':
 			KEY( "ClanObjOne", clan->clanobj1, fread_number( fp ) );
 			KEY( "ClanObjTwo", clan->clanobj2, fread_number( fp ) );
-			KEY( "Coffers", clan->coffers, fread_number( fp ) );
+			if( !strcasecmp( word, "Coffers" ) )
+			{
+				clan->coffers = (long) fread_int64( fp );
+				fMatch = TRUE;
+				break;
+			}
 			break;
 
 		case 'D':
@@ -287,7 +292,12 @@ void fread_clan( CLAN_DATA *clan, FILE *fp )
 			break;
 		case 'F':
 			KEY( "FileName", clan->filename, fread_string( fp ) );
-			KEY( "FounderVnum", clan->founder_pvnum, fread_number( fp ) );
+			if( !strcasecmp( word, "FounderVnum" ) )
+			{
+				clan->founder_pvnum = (long) fread_int64( fp );
+				fMatch = TRUE;
+				break;
+			}
 			break;
 
 		case 'E':

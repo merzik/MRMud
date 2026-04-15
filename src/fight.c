@@ -7961,15 +7961,16 @@ void get_attack_string(CHAR_DATA *ch, CHAR_DATA *viewer, char *buf)
 	for(cnt=0; cnt<MAX_PK_ATTACKS; cnt++)
 		if(ch->pcdata->last_pk_attack_time[cnt]>0)
 		{
+			time_t attack_time = (time_t)ch->pcdata->last_pk_attack_time[cnt];
 			attacks++;
 			if(ch->pcdata->last_pk_attack_time[cnt]+24*60*60 > current_time)
 				sprintf(buf2, "{170}%s {120}attacked you today on %s\r",
 				ch->pcdata->last_pk_attack_name[cnt],
-				ctime((const time_t *)&ch->pcdata->last_pk_attack_time[cnt]));
+				ctime(&attack_time));
 			else
 				sprintf(buf2, "{070}%s {020}attacked you before today on %s\r",
 				ch->pcdata->last_pk_attack_name[cnt],
-				ctime((const time_t *)&ch->pcdata->last_pk_attack_time[cnt]));
+				ctime(&attack_time));
 			leng = str_apd_max(buf, buf2, leng, MAX_STRING_LENGTH);
 		}
 

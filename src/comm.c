@@ -5366,8 +5366,9 @@ void do_finger( CHAR_DATA *ch, char *argument)
 			{
 				if(fch->pcdata->last_time>0)
 				{
+					time_t last_time = (time_t)fch->pcdata->last_time;
 					sprintf( buf2, "%sLast time in the realm: %s\r",
-						ANSI_CYAN_DIM,ctime((const time_t *)&fch->pcdata->last_time));
+						ANSI_CYAN_DIM, ctime(&last_time));
 					length = str_apd_max (outbuf, buf2, length, MAX_STRING_LENGTH);
 				}
 				if(loaded)
@@ -6160,9 +6161,8 @@ bool scroll_you( DESCRIPTOR_DATA *d, const char *txi, bool youcheck)
 /* Days till character expires. -1 is dead. */
 int character_expiration( CHAR_DATA *ch )
 {
-	struct tm ptm;
 	struct timeval ctm;
-	int pmonths, cmonths;
+	int inactive_days, retention_days;
 
 	if( ch->level < 1 )
 		return( 1 );
@@ -6170,47 +6170,22 @@ int character_expiration( CHAR_DATA *ch )
 	/* Expiring all chars before Dec 31, 1998 for security
 	purposes -- Merzik 1-17-2001 */
 
-	if (ch->level == 1 && ch->pcdata->last_time > 0)
-	{
-		gettimeofday( &ctm, NULL);
-		return (((ch->pcdata->last_time + 24 * 60 * 60 * 7) - ctm.tv_sec)/(24*60*60));
-	}
-
-
 	if( ch->pcdata->last_time>0 )
 	{
 		gettimeofday( &ctm, NULL);
-		ptm = *localtime((const time_t *)&ch->pcdata->last_time);
-		ptm.tm_min += ptm.tm_sec / 60;
-		ptm.tm_sec = ptm.tm_sec % 60;
-		ptm.tm_hour+= ptm.tm_min / 60;
-		ptm.tm_min = ptm.tm_min % 60;
-		ptm.tm_mday+= ptm.tm_hour / 24;
-		ptm.tm_hour = ptm.tm_hour % 24;
-		ptm.tm_mon += ptm.tm_mday / 30;
-		ptm.tm_mday = ptm.tm_mday % 30;
-
-		cmonths = ctm.tv_sec / 60 / 60 / 24 ;
-		pmonths = ptm.tm_mday + 30 * ptm.tm_mon + 360*ptm.tm_year -25064 ;
+		inactive_days = (ctm.tv_sec - ch->pcdata->last_time) / (24 * 60 * 60);
 		if( ch->pcdata->reincarnation > 0 )
-		{
-			cmonths = 36*30 - (cmonths-pmonths) ;
-			if( cmonths < 1 )
-				return( -1 );
-			else
-				return( cmonths );
-		}
+			retention_days = 36 * 30;
+		else if( ch->level <= 10 )
+			retention_days = 30;
 		else
-		{
-			if( ch->level==1 )
-				cmonths = 7 - (cmonths-pmonths);
-			else
-				cmonths = ((ch->level*10)+30) - (cmonths-pmonths);
-			if( cmonths < 1 )
-				return( -1 );
-			else
-				return( cmonths );
-		}
+			retention_days = (ch->level * 10) + 30;
+
+		retention_days -= inactive_days;
+		if( retention_days < 1 )
+			return( -1 );
+		else
+			return( retention_days );
 	}
 	return( 100 );
 

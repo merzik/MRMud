@@ -1,0 +1,106 @@
+name: CI
+
+on:
+  pull_request:
+    branches:
+      - main
+      - dev
+  push:
+    branches:
+      - main
+      - dev
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  c-build:
+    name: c-build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+
+      - name: Install build dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends build-essential libcrypt-dev
+
+      - name: Build server
+        run: |
+          make -C src clean
+          make -C src
+
+  shell-check:
+    name: shell-check
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+
+      - name: Check shell script syntax
+        run: |
+          bash -n docker-entrypoint.sh
+          bash -n build-and-push.sh
+
+  docker-build:
+    name: docker-build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v4
+
+      - name: Build multi-platform image
+        uses: docker/build-push-action@v7
+        with:
+          context: .
+          platforms: linux/amd64,linux/arm64
+          push: false
+
+  docker-smoke:
+    name: docker-smoke
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+
+      - name: Build native image
+        run: docker build -t mrmud:ci .
+
+      - name: Check image contents
+        run: |
+          docker run --rm mrmud:ci bash -lc '
+            test -f /game/bin/md
+            test -f /game/bin/next_md
+            test -f /game/player/c/Chaos
+            test -f /game/areas/area.lst
+            if find /game -name .gitkeep -print -quit | grep -q .; then
+              echo ".gitkeep files should not be present in the image"
+              exit 1
+            fi
+          '
+
+      - name: Check mounted directory seeding
+        run: |
+          tmpdir="$(mktemp -d)"
+          mkdir -p "$tmpdir/log" "$tmpdir/player" "$tmpdir/areas"
+
+          docker run --rm \
+            -v "$tmpdir/log:/game/log" \
+            -v "$tmpdir/player:/game/player" \
+            -v "$tmpdir/areas:/game/areas" \
+            mrmud:ci bash -lc '
+              test -f /game/areas/area.lst
+              test -f /game/player/c/Chaos
+              for letter in {a..z}; do
+                test -d "/game/player/${letter}/bak"
+              done
+            '
