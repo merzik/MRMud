@@ -52,6 +52,64 @@ make asan
 
 ## Running
 
+### Docker
+
+Build the image:
+
+```bash
+docker build -t mrmud .
+```
+
+Build and publish a multi-platform image with x64 and ARM64 support:
+
+```bash
+docker buildx build \
+  --platform linux/amd64,linux/arm64 \
+  -t your-registry/mrmud:latest \
+  --push \
+  .
+```
+
+GitHub Actions also publishes multi-platform images to GitHub Container Registry:
+
+- Pushes to `main` publish `ghcr.io/merzik/mrmud:latest`
+- Pushes to `dev` publish `ghcr.io/merzik/mrmud:dev`
+
+Run the game on the default port:
+
+```bash
+docker run --rm -it \
+  -p 4321:4321 \
+  -v "$PWD/log:/game/log" \
+  -v "$PWD/player:/game/player" \
+  -v "$PWD/areas:/game/areas" \
+  mrmud
+```
+
+The default port is `4321`. To use another port, set `MRMUD_PORT` and publish
+the same host/container port:
+
+```bash
+docker run --rm -it \
+  -e MRMUD_PORT=4444 \
+  -p 4444:4444 \
+  mrmud
+```
+
+The image stores the repository at `/game`. Runtime data can be persisted by
+mounting `/game/log`, `/game/player`, and `/game/areas`.
+
+On startup, the container creates missing `player/a` through `player/z`
+directories with `bak` children and seeds `player/c/Chaos` when it is missing.
+If `/game/areas` is mounted and empty, the container seeds it from the image.
+Files named `.gitkeep` are excluded from the image.
+
+You can also pass the port as the container command:
+
+```bash
+docker run --rm -it -p 4444:4444 mrmud 4444
+```
+
 ### Recommended: use a startup script
 
 The startup scripts handle:
