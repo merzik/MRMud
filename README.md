@@ -86,6 +86,23 @@ docker run --rm -it \
   mrmud
 ```
 
+Example `compose.yaml`:
+
+```yaml
+services:
+  mrmud:
+    image: ghcr.io/merzik/mrmud:latest
+    ports:
+      - "4321:4321"
+    environment:
+      MRMUD_PORT: "4321"
+    volumes:
+      - ./log:/game/log
+      - ./player:/game/player
+      - ./areas:/game/areas
+    restart: unless-stopped
+```
+
 The default port is `4321`. To use another port, set `MRMUD_PORT` and publish
 the same host/container port:
 
