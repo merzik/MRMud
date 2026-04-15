@@ -3158,7 +3158,8 @@ char *fread_string( FILE *fp )
 {
 	char buf[MAX_STRING_LENGTH];
 	char *plast;
-	char c;
+	int c;
+	int ch;
 	int ln;
 
 	plast = buf;
@@ -3179,10 +3180,17 @@ char *fread_string( FILE *fp )
 			return STRALLOC("");
 		}
 		c = getc( fp );
+		if ( c == EOF )
+		{
+			bug("fread_string: EOF encountered on read.\n\r");
+			if ( fBootDb )
+				exit(1);
+			return STRALLOC("");
+		}
 	}
-	while ( isspace((int)c) );
+	while ( isspace(c) );
 
-	if ( ( *plast++ = c ) == '~' )
+	if ( ( *plast++ = (char)c ) == '~' )
 		return STRALLOC( "" );
 
 	for ( ;; )
@@ -3193,9 +3201,11 @@ char *fread_string( FILE *fp )
 			*plast = '\0';
 			return STRALLOC( buf );
 		}
-		switch ( *plast = getc( fp ) )
+		ch = getc( fp );
+		switch ( ch )
 		{
 		default:
+			*plast = (char)ch;
 			plast++; ln++;
 			break;
 
@@ -3208,6 +3218,7 @@ char *fread_string( FILE *fp )
 			break;
 
 		case '\n':
+			*plast = (char)ch;
 			plast++; ln++;
 			*plast++ = '\r'; ln++;
 			break;
@@ -3229,7 +3240,8 @@ char *fread_string_nohash( FILE *fp )
 {
 	char buf[MAX_STRING_LENGTH];
 	char *plast;
-	char c;
+	int c;
+	int ch;
 	int ln;
 
 	plast = buf;
@@ -3251,10 +3263,17 @@ char *fread_string_nohash( FILE *fp )
 			return str_dup("");
 		}
 		c = getc( fp );
+		if ( c == EOF )
+		{
+			bug("fread_string_no_hash: EOF encountered on read.\n\r");
+			if ( fBootDb )
+				exit(1);
+			return str_dup("");
+		}
 	}
-	while ( isspace((int)c) );
+	while ( isspace(c) );
 
-	if ( ( *plast++ = c ) == '~' )
+	if ( ( *plast++ = (char)c ) == '~' )
 		return str_dup( "" );
 
 	for ( ;; )
@@ -3265,9 +3284,11 @@ char *fread_string_nohash( FILE *fp )
 			*plast = '\0';
 			return str_dup( buf );
 		}
-		switch ( *plast = getc( fp ) )
+		ch = getc( fp );
+		switch ( ch )
 		{
 		default:
+			*plast = (char)ch;
 			plast++; ln++;
 			break;
 
@@ -3280,6 +3301,7 @@ char *fread_string_nohash( FILE *fp )
 			break;
 
 		case '\n':
+			*plast = (char)ch;
 			plast++; ln++;
 			*plast++ = '\r'; ln++;
 			break;
