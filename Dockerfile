@@ -28,6 +28,7 @@ RUN apt-get update \
     && apt-get install -y --no-install-recommends \
         bash \
         gdb \
+        gosu \
         libcrypt1 \
     && rm -rf /var/lib/apt/lists/*
 
