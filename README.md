@@ -96,6 +96,8 @@ services:
       - "4321:4321"
     environment:
       MRMUD_PORT: "4321"
+      MRMUD_UID: "1000"
+      MRMUD_GID: "1000"
     volumes:
       - ./log:/game/log
       - ./player:/game/player
@@ -115,6 +117,22 @@ docker run --rm -it \
 
 The image stores the repository at `/game`. Runtime data can be persisted by
 mounting `/game/log`, `/game/player`, and `/game/areas`.
+
+Set `MRMUD_UID` and `MRMUD_GID` to run the game process as a specific
+user/group inside the container. The entrypoint still starts as root long
+enough to seed and fix ownership on mounted runtime directories, then drops to
+the requested IDs before starting the server:
+
+```bash
+docker run --rm -it \
+  -e MRMUD_UID="$(id -u)" \
+  -e MRMUD_GID="$(id -g)" \
+  -p 4321:4321 \
+  -v "$PWD/log:/game/log" \
+  -v "$PWD/player:/game/player" \
+  -v "$PWD/areas:/game/areas" \
+  mrmud
+```
 
 On startup, the container creates missing `player/a` through `player/z`
 directories with `bak` children and seeds `player/c/Chaos` when it is missing.
