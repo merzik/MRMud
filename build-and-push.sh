@@ -3,11 +3,12 @@
 # Build and push script for the Mortal Realms Docker image.
 # Usage: ./build-and-push.sh [tag]
 #   If tag is not provided, defaults to 'latest'.
+#   Set REGISTRY to override the default registry.
 
 set -e
 
 IMAGE_NAME="mrmud"
-REGISTRY="registry.merzik.net"
+REGISTRY="${REGISTRY:-ghcr.io/merzik}"
 FULL_IMAGE_NAME="${REGISTRY}/${IMAGE_NAME}"
 CURRENT_CONTEXT="$(docker context show)"
 SANITIZED_CONTEXT="$(echo "${CURRENT_CONTEXT}" | tr -c '[:alnum:]' '-')"
