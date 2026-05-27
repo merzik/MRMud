@@ -83,7 +83,7 @@ docker run --rm -it \
   -v "$PWD/log:/game/log" \
   -v "$PWD/player:/game/player" \
   -v "$PWD/areas:/game/areas" \
-  -v "$PWD/clanss:/game/clans" \
+  -v "$PWD/clans:/game/clans" \
   mrmud
 ```
 
