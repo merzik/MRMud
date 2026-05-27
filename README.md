@@ -83,6 +83,7 @@ docker run --rm -it \
   -v "$PWD/log:/game/log" \
   -v "$PWD/player:/game/player" \
   -v "$PWD/areas:/game/areas" \
+  -v "$PWD/clanss:/game/clans" \
   mrmud
 ```
 
@@ -102,6 +103,7 @@ services:
       - ./log:/game/log
       - ./player:/game/player
       - ./areas:/game/areas
+      - ./clans:/game/clans
     restart: unless-stopped
 ```
 
@@ -131,6 +133,7 @@ docker run --rm -it \
   -v "$PWD/log:/game/log" \
   -v "$PWD/player:/game/player" \
   -v "$PWD/areas:/game/areas" \
+  -v "$PWD/clans:/game/clans" \
   mrmud
 ```
 
