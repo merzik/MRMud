@@ -1,0 +1,37 @@
+#CLAN
+Name Example~
+Motto An example clan for the repository~
+Description An example clan for the repository~
+FileName example.cln~
+Email admin@example.com~
+Leader ExampleLeader~
+NumberOne ExampleOfficer~
+NumberTwo ~
+NumberThree ~
+NumberFour ~
+PKills 0 0 0 0 0 0
+PDeaths 0 0 0 0 0 0
+MKills 0
+MDeaths 0
+Members 2
+FounderVnum 0
+Tax 0
+Type 2
+Coffers 0
+ClanObjOne 0
+ClanObjTwo 0
+Home 0
+Store 0
+Guard 0
+NumGuards 0
+NumHealers 0
+NumBackDoor 0
+Healer 0
+Bamfin ~
+Bamfout Example clan depart.~
+Bank 0
+End
+
+#END
+
+#Clanfile
