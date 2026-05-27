@@ -26,6 +26,14 @@ seed_areas_if_empty() {
   fi
 }
 
+seed_clans_if_empty() {
+  mkdir -p "$GAME_DIR/clans"
+
+  if directory_is_empty "$GAME_DIR/clans"; then
+    cp -a "$SEED_DIR/clans/." "$GAME_DIR/clans/"
+  fi
+}
+
 prepare_player_directory() {
   local letter
 
@@ -43,6 +51,7 @@ prepare_player_directory() {
 prepare_runtime_directories() {
   mkdir -p "$GAME_DIR/log"
   seed_areas_if_empty
+  seed_clans_if_empty
   prepare_player_directory
 }
 
@@ -76,6 +85,7 @@ prepare_runtime_user() {
   chown -R "$RUN_UID:$RUN_GID" \
     "$GAME_DIR/areas" \
     "$GAME_DIR/bin" \
+    "$GAME_DIR/clans" \
     "$GAME_DIR/log" \
     "$GAME_DIR/player"
 }

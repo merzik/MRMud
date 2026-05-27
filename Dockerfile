@@ -18,7 +18,8 @@ RUN find /game -name .gitkeep -type f -delete \
     && cp /game/bin/md /game/bin/next_md \
     && mkdir -p /usr/local/share/mrmud-seed/player/c \
     && cp /game/player/c/Chaos /usr/local/share/mrmud-seed/player/c/Chaos \
-    && cp -a /game/areas /usr/local/share/mrmud-seed/areas
+    && cp -a /game/areas /usr/local/share/mrmud-seed/areas \
+    && cp -a /game/clans /usr/local/share/mrmud-seed/clans
 
 FROM ubuntu:24.04
 
@@ -42,7 +43,7 @@ RUN chmod +x /usr/local/bin/mrmud-entrypoint
 ENV MRMUD_PORT=4321
 
 EXPOSE 4321
-VOLUME ["/game/log", "/game/player", "/game/areas"]
+VOLUME ["/game/log", "/game/player", "/game/areas", "/game/clans"]
 
 ENTRYPOINT ["mrmud-entrypoint"]
 CMD ["startup"]
